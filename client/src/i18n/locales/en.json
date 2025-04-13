@@ -1,0 +1,28 @@
+{
+    "Wallet": "Wallet",
+    "Balance": "Balance",
+    "Transfer": "Transfer",
+    "Transactions": "Transactions",
+    "Register": "Register",
+
+    "register": {
+      "title": "Sign Up",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "confirmPassword": "Confirm Password",
+      "referral": "Referral Code (Optional)",
+      "submit": "Register"
+    },
+    "login": {
+  "title": "Login",
+  "email": "Email",
+  "password": "Password",
+  "submit": "Login",
+  "email_error": "Invalid email format.",
+  "password_error": "Password is required.",
+  "success": "Login successful!",
+  "fail": "Incorrect email or password."
+}
+  }
+  

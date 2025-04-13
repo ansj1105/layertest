@@ -1,0 +1,25 @@
+// 📁 vite.config.js
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import path from 'path';
+
+export default defineConfig({
+  plugins: [react()],
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, 'index.html'), // 유저용
+        admin: path.resolve(__dirname, 'admin.html'), // 관리자용
+      },
+    },
+  },
+  server: {
+    proxy: {
+      '/api': 'http://localhost:4000',
+      '/socket.io': {
+        target: 'http://localhost:4000',
+        ws: true,
+      },
+    },
+  },
+});
