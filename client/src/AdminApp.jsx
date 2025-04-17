@@ -3,6 +3,10 @@ import { useEffect, useState } from 'react';
 import AdminChat from './pages/admin/AdminChat';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminContentManager from './pages/admin/AdminContentManager';
+import AdminUserManager from './pages/admin/AdminUserManager';
+
+
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
@@ -41,6 +45,11 @@ export default function AdminApp() {
           path="/dashboard"
           element={admin ? <AdminDashboard onLogout={handleLogout} /> : <Navigate to="/login" replace />}
         />
+        <Route
+          path="/content"
+          element={admin ? <AdminContentManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+        <Route path="/users" element={admin ? <AdminUserManager /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
   );

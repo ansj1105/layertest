@@ -14,6 +14,8 @@ export default defineConfig({
     },
   },
   server: {
+   host: '0.0.0.0',  // 외부 접속 허용
+    port: 5173,
     proxy: {
       '/api': 'http://localhost:4000',
       '/socket.io': {

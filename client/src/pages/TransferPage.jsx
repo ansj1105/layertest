@@ -2,7 +2,6 @@
 // ✅ 프론트: TransferPage.jsx (axios 사용)
 import { useState } from 'react';
 import axios from 'axios';
-import TronWeb from 'tronweb';
 
 export default function TransferPage() {
   const [fromKey, setFromKey] = useState('');
@@ -12,21 +11,25 @@ export default function TransferPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const isTronAddress = (address) => /^T[1-9A-HJ-NP-Za-km-z]{33}$/.test(address);
+
   const sendUSDT = async () => {
     setLoading(true);
     setError(null);
     setTxHash(null);
 
-    if (!TronWeb.isAddress(toAddress)) {
+    if (!isTronAddress(toAddress)) {
       setError('Invalid recipient address');
       setLoading(false);
       return;
     }
+
     if (!fromKey || fromKey.length !== 64) {
       setError('Invalid private key');
       setLoading(false);
       return;
     }
+
     if (isNaN(amount) || parseFloat(amount) <= 0) {
       setError('Amount must be a positive number');
       setLoading(false);
@@ -39,10 +42,14 @@ export default function TransferPage() {
         toAddress,
         amount: parseFloat(amount),
       });
-      if (res.data.txHash) setTxHash(res.data.txHash);
-      else throw new Error(res.data.error || 'Transaction failed');
+
+      if (res.data.txHash) {
+        setTxHash(res.data.txHash);
+      } else {
+        throw new Error(res.data.error || 'Transaction failed');
+      }
     } catch (err) {
-      setError(err.message);
+      setError(err.response?.data?.error || err.message);
     } finally {
       setLoading(false);
     }
