@@ -21,9 +21,27 @@ app.use(
       },
     })
   );
+
+  /*
+  app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "default_secret_key",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      secure: false,          // ✅ HTTP에서도 쿠키 전달되도록 허용
+      sameSite: "lax",        // ✅ 크로스 사이트에서 최소한의 쿠키 전달
+      maxAge: 1000 * 60 * 60 * 3,
+    },
+  })
+);
+
+  */
 const allowedOrigins = [
     'http://localhost:5173',         // 개발 환경
-    'https://yourdomain.com',        // 실제 배포 도메인 (https!)
+    'https://yourdomain.com',  
+    'http://54.85.128.211:5173',
   ];
   
   app.use(
@@ -115,7 +133,11 @@ app.use('/api/auth', authRoutes);
 
 // ✅ 수정된 /api/get-balance API (Tronscan API 활용)
 
-
+// ✅ 간단한 API 엔드포인트
+app.get('/api/ping', (req, res) => {
+  console.log("✅ [백엔드] 클라이언트로부터 ping 수신!");
+  res.json({ message: "pong from server!" });
+});
 app.get("/api/get-balance", async (req, res) => {
   const address = req.query.address?.trim();
   console.log("📥 [잔액 조회 요청] address param:", address);
@@ -283,3 +305,11 @@ cron.schedule('0 * * * *', async () => {
   // ✅ 서버 실행
   const PORT = process.env.PORT || 4000;
   app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
+  // ✅ DB 연결 테스트 로그
+db.query('SELECT DATABASE() AS db')
+.then(([rows]) => {
+  console.log(`✅ DB 연결 확인: 현재 연결된 DB - ${rows[0].db}`);
+})
+.catch((err) => {
+  console.error('❌ DB 연결 실패:', err.message);
+});

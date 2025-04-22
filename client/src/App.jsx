@@ -89,8 +89,8 @@ export default function App() {
 
 
   return (
-    <Router>
-  {!user && window.location.pathname !== '/register' ? ( // If user is not logged in and not on the Register page
+<Router>
+  {(!user && !["/register", "/test"].includes(window.location.pathname)) ? (
     <LoginPage />
   ) : (
       <div className="min-h-screen bg-cover bg-center flex flex-col" style={{ backgroundImage: "url('/bg.jpg')" }}>

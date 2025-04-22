@@ -17,6 +17,7 @@
     import RegisterPage from './auth/RegisterPage';
     import LoginPage from './auth/LoginPage';
     import MyTeamPage from './MyTeamPage';
+    import TestPingPage from './TestPingPage';
     import TokenPurchasePage from '../components/TokenPurchasePage';
     import WithdrawPage from '../components/WithdrawPage';
     import WithdrawMethodPage from '../components/WithdrawMethodPage';
@@ -123,6 +124,7 @@
             <Route path="/transactions" element={<ProtectedRoute><TransactionPage /></ProtectedRoute>} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/test" element={<TestPingPage />} />
             <Route path="/messages/notices" element={<SystemNotices />} />
             <Route path="/messages/inbox" element={<PersonalMessages />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
