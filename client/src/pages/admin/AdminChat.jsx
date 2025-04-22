@@ -76,7 +76,7 @@ export default function AdminChat({ onLogout }) {
       <AdminNav onLogout={onLogout} />
 
       {/* ✅ 채팅 섹션 */}
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex ml-64 flex-1 overflow-hidden">
         {/* 사용자 목록 */}
         <div className="w-1/4 border-r overflow-y-auto bg-white">
           <h2 className="text-xl font-bold p-4">사용자 목록</h2>

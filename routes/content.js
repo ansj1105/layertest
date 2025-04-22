@@ -34,5 +34,21 @@ router.get('/content-files', async (req, res) => {
   const [rows] = await db.query('SELECT * FROM content_files ORDER BY id DESC');
   res.json(rows);
 });
-
+// 삭제 API 추가
+router.delete('/content-files/:id', async (req, res) => {
+    const { id } = req.params;
+  
+    // DB에서 파일 정보 조회
+    const [[file]] = await db.query('SELECT file_path FROM content_files WHERE id = ?', [id]);
+    if (!file) return res.status(404).json({ error: '파일을 찾을 수 없습니다' });
+  
+    const fullPath = path.join(__dirname, '..', 'public', file.file_path);
+    if (fs.existsSync(fullPath)) {
+      fs.unlinkSync(fullPath); // 실제 파일 삭제
+    }
+  
+    // DB에서 레코드 삭제
+    await db.query('DELETE FROM content_files WHERE id = ?', [id]);
+    res.json({ success: true });
+  });
 module.exports = router;

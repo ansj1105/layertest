@@ -2,6 +2,7 @@
 require("dotenv").config();
 const express = require("express");
 const TronWeb = require("tronweb");
+const cron = require('node-cron');
 const mysql = require("mysql2/promise");
 const cors = require("cors");
 const axios = require("axios");
@@ -66,6 +67,24 @@ const getTronWeb = (privateKey = null) => {
   const loginRoutes = require('./auth/login');//로그인 라우터
   const contentRoutes = require('./routes/content');
   const adminUserRoutes = require('./routes/adminUsers');
+  const messageRoutes = require('./routes/messages');
+  const popupMessageRoutes = require('./routes/popupMessages');
+  const referralRoutes = require('./routes/referral');
+  // 상단 import 구역에 추가
+const quantTradeRoutes = require('./routes/quanttrade');
+const tokenRoutes = require('./routes/token'); // ✅ QVC 토큰 관련 라우터
+app.use('/api/token', tokenRoutes);
+
+const { router: vipLevelRoutes } = require('./routes/vipLevels'); // ✅ router만 불러오기
+app.use('/api/admin/vip-levels', vipLevelRoutes);
+
+const { getNewVipLevel } = require('./routes/vipLevels'); // 함수 가져오기
+
+app.use('/api', quantTradeRoutes);
+app.use('/api/referral', referralRoutes);
+
+app.use('/api/popups', popupMessageRoutes);
+app.use('/api/messages', messageRoutes);  
   app.use('/api/admin', adminUserRoutes);
   app.use('/api', contentRoutes);
   app.use('/api/auth', loginRoutes); // ✅ 같은 prefix로 라우터 추가 등록 가능
@@ -232,6 +251,35 @@ app.get("/api/get-balance", async (req, res) => {
       res.status(500).json({ error: "Failed to fetch market data" });
     }
   });
+// 1시간마다 VIP 레벨 자동 갱신
+cron.schedule('0 * * * *', async () => {
+  console.log("⏰ [CRON] VIP 레벨 갱신 시작");
+
+  try {
+    const [users] = await db.query('SELECT id, usdt_balance FROM users');
+
+    for (const user of users) {
+      // A, B, C 추천인 수 집계
+      const [[counts]] = await db.query(`
+        SELECT
+          SUM(CASE WHEN level = 1 THEN 1 ELSE 0 END) AS A,
+          SUM(CASE WHEN level = 2 THEN 1 ELSE 0 END) AS B,
+          SUM(CASE WHEN level = 3 THEN 1 ELSE 0 END) AS C
+        FROM referral_relations
+        WHERE referrer_id = ?
+      `, [user.id]);
+
+      const newLevel = await getNewVipLevel(user.usdt_balance, counts, db);
+
+      // 현재 등급과 다를 경우 업데이트
+      await db.query('UPDATE users SET vip_level = ? WHERE id = ?', [newLevel, user.id]);
+    }
+
+    console.log("✅ [CRON] VIP 레벨 갱신 완료");
+  } catch (err) {
+    console.error("❌ [CRON ERROR] VIP 갱신 실패:", err.message);
+  }
+});
   // ✅ 서버 실행
   const PORT = process.env.PORT || 4000;
   app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));

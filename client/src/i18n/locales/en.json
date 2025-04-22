@@ -4,7 +4,7 @@
     "Transfer": "Transfer",
     "Transactions": "Transactions",
     "Register": "Register",
-
+"Home": "Home",
     "register": {
       "title": "Sign Up",
       "name": "Name",
@@ -12,7 +12,9 @@
       "password": "Password",
       "confirmPassword": "Confirm Password",
       "referral": "Referral Code (Optional)",
-      "submit": "Register"
+      "submit": "Register",
+        "no_account": "DO YOU HAVE ID?",
+  "register": "Register"
     },
     "login": {
   "title": "Login",

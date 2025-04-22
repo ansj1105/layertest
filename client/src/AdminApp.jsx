@@ -5,8 +5,10 @@ import AdminLogin from './pages/admin/AdminLogin';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminContentManager from './pages/admin/AdminContentManager';
 import AdminUserManager from './pages/admin/AdminUserManager';
-
-
+import AdminPopupManager from './pages/admin/AdminPopupManager';
+import AdminUserInfoPage from './pages/admin/AdminUserInfoPage';
+import AdminUserLevelPage from './pages/admin/AdminUserLevelPage';
+import AdminUserReferralPage from './pages/admin/AdminUserReferralPage';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
@@ -41,6 +43,10 @@ export default function AdminApp() {
           path="/chat"
           element={admin ? <AdminChat onLogout={handleLogout} /> : <Navigate to="/login" replace />}
         />
+                <Route
+          path="/popup"
+          element={admin ? <AdminPopupManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
         <Route
           path="/dashboard"
           element={admin ? <AdminDashboard onLogout={handleLogout} /> : <Navigate to="/login" replace />}
@@ -49,6 +55,10 @@ export default function AdminApp() {
           path="/content"
           element={admin ? <AdminContentManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
         />
+        <Route path="/users/info" element={admin ? <AdminUserInfoPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
+<Route path="/users/level" element={admin ? <AdminUserLevelPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
+<Route path="/users/referral" element={admin ? <AdminUserReferralPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
+
         <Route path="/users" element={admin ? <AdminUserManager /> : <Navigate to="/login" />} />
       </Routes>
     </Router>

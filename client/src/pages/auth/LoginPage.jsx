@@ -1,16 +1,14 @@
 // 📁 src/pages/auth/LoginPage.jsx
 import { useState } from "react";
 import axios from "axios";
+import ReCAPTCHA from "react-google-recaptcha";
 import { useTranslation } from "react-i18next";
 
 export default function LoginPage() {
   const { t } = useTranslation();
 
-  const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
-
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [captcha, setCaptcha] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -22,15 +20,17 @@ export default function LoginPage() {
 
     if (!isValidEmail(form.email)) return setError(t("login.email_error"));
     if (!form.password) return setError(t("login.password_error"));
+    if (!captcha) return setError("reCAPTCHA 인증이 필요합니다");
 
     try {
-      const res = await axios.post("http://localhost:4000/api/auth/login", form, {
-        withCredentials: true, // ✅ 이거 추가해야 세션 쿠키 주고받기 가능!
-      });
+      const res = await axios.post("http://localhost:4000/api/auth/login", {
+        ...form,
+        captchaToken: captcha,
+      }, { withCredentials: true });
+
       sessionStorage.setItem("user", JSON.stringify(res.data.user));
-//세션로그인
       setSuccess(t("login.success"));
-      // 여기에 토큰 저장 또는 리다이렉트 로직 추가 가능
+      window.location.href = "/";
     } catch (err) {
       setError(err.response?.data?.error || t("login.fail"));
     }
@@ -56,6 +56,13 @@ export default function LoginPage() {
         onChange={(e) => setForm({ ...form, password: e.target.value })}
       />
 
+      {/* ✅ reCAPTCHA */}
+      <ReCAPTCHA
+        sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
+        onChange={(token) => setCaptcha(token)}
+        className="mx-auto"
+      />
+
       <button
         className="bg-blue-500 text-white py-2 rounded w-full hover:bg-blue-600"
         onClick={handleLogin}
@@ -65,6 +72,13 @@ export default function LoginPage() {
 
       {error && <p className="text-red-500 text-center">{error}</p>}
       {success && <p className="text-green-600 text-center">{success}</p>}
+            {/* ✅ 회원가입 링크 */}
+            <p className="text-center text-sm mt-4">
+        {t("login.no_account")}{" "}
+        <a href="/register" className="text-blue-600 hover:underline font-semibold">
+          {t("login.register")}
+        </a>
+      </p>
     </div>
   );
 }

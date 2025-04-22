@@ -5,6 +5,7 @@
     "Transactions": "트랜잭션",
     "Register": "회원가입",
     "Login": "로그인",
+     "Home": "홈",
 "login": {
   "title": "로그인",
   "email": "이메일",
@@ -13,7 +14,9 @@
   "email_error": "올바른 이메일 형식이 아닙니다.",
   "password_error": "비밀번호를 입력해주세요.",
   "success": "로그인 성공!",
-  "fail": "이메일 또는 비밀번호가 올바르지 않습니다."
+  "fail": "이메일 또는 비밀번호가 올바르지 않습니다.",
+  "no_account": "아이디가 없으신가요?",
+  "register": "회원가입"
 },
 "register": {
     "title": "회원가입",

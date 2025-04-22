@@ -7,7 +7,17 @@ export default function AdminContentManager({ onLogout }) {
   const [videos, setVideos] = useState([]);
   const [bannerFile, setBannerFile] = useState(null);
   const [videoFile, setVideoFile] = useState(null);
-
+  const handleDelete = async (id) => {
+    if (!window.confirm("정말 삭제하시겠습니까?")) return;
+  
+    try {
+      await axios.delete(`http://localhost:4000/api/content-files/${id}`);
+      fetchContentFiles();
+    } catch (err) {
+      alert("삭제 실패");
+    }
+  };
+  
   const fetchContentFiles = async () => {
     const res = await axios.get("http://localhost:4000/api/content-files");
     setBanners(res.data.filter((f) => f.type === "banner"));
@@ -33,7 +43,7 @@ export default function AdminContentManager({ onLogout }) {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded shadow space-y-6">
+    <div className="min-h-screen bg-gray-100">
       <AdminNav onLogout={onLogout} />
 
       <h2 className="text-2xl font-bold mb-4">🎛 콘텐츠 업로드</h2>
@@ -44,10 +54,14 @@ export default function AdminContentManager({ onLogout }) {
         <input type="file" accept="image/*" onChange={(e) => setBannerFile(e.target.files[0])} />
         <button onClick={() => upload("banner")} className="ml-2 bg-blue-500 text-white px-4 py-1 rounded">업로드</button>
         <ul className="mt-2 space-y-1 text-sm text-gray-600">
-          {banners.map((b) => (
-            <li key={b.id}>✔️ {b.file_path}</li>
-          ))}
-        </ul>
+  {banners.map((b) => (
+    <li key={b.id} className="flex  items-center">
+      ✔️ {b.file_path}
+      <button onClick={() => handleDelete(b.id)} className="ml-2 bg-red-500 text-white px-4 py-1 rounded">삭제</button>
+    </li>
+  ))}
+</ul>
+
       </div>
 
       {/* 비디오 업로드 */}
@@ -56,10 +70,13 @@ export default function AdminContentManager({ onLogout }) {
         <input type="file" accept="video/*" onChange={(e) => setVideoFile(e.target.files[0])} />
         <button onClick={() => upload("video")} className="ml-2 bg-green-500 text-white px-4 py-1 rounded">업로드</button>
         <ul className="mt-2 space-y-1 text-sm text-gray-600">
-          {videos.map((v) => (
-            <li key={v.id}>🎬 {v.file_path}</li>
-          ))}
-        </ul>
+  {videos.map((v) => (
+    <li key={v.id} className="flex  items-center">
+      🎬 {v.file_path}
+      <button onClick={() => handleDelete(v.id)} className="ml-2 bg-red-500 text-white px-4 py-1 rounded">삭제</button>
+    </li>
+  ))}
+</ul>
       </div>
     </div>
   );

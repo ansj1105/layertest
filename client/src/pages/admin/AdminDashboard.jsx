@@ -18,7 +18,7 @@ export default function AdminDashboard({ onLogout }) {
       <AdminNav onLogout={onLogout} />
 
       {/* ✅ 콘텐츠 */}
-      <div className="p-6 space-y-6">
+      <div className="ml-64 p-6 space-y-6">
         <h1 className="text-2xl font-bold mb-4">Admin Dashboard</h1>
 
         <div className="grid grid-cols-2 gap-4">
