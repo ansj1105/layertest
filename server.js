@@ -8,6 +8,7 @@ const cors = require("cors");
 const axios = require("axios");
 const session = require("express-session"); // ✅ 세션 추가
 const app = express();
+
 app.use(
     session({
       secret: process.env.SESSION_SECRET || "default_secret_key",
@@ -97,7 +98,8 @@ const { router: vipLevelRoutes } = require('./routes/vipLevels'); // ✅ router�
 app.use('/api/admin/vip-levels', vipLevelRoutes);
 
 const { getNewVipLevel } = require('./routes/vipLevels'); // 함수 가져오기
-
+const walletRoutes = require('./routes/wallet');
+app.use('/api/wallet', walletRoutes);
 app.use('/api', quantTradeRoutes);
 app.use('/api/referral', referralRoutes);
 
@@ -313,3 +315,5 @@ db.query('SELECT DATABASE() AS db')
 .catch((err) => {
   console.error('❌ DB 연결 실패:', err.message);
 });
+
+module.exports.getTronWeb = getTronWeb;

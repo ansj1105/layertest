@@ -12,6 +12,7 @@
     import NotificationPopup from '../components/NotificationPopup';
     import PersonalMessages from '../components/PersonalMessages';
     import ProtectedRoute from '../components/ProtectedRoute';
+    import QuantTradingPage from '../components/QuantTradingPage';
     import ForgotPassword from './auth/ForgotPassword';
     import ResetPassword from './auth/ResetPassword';
     import RegisterPage from './auth/RegisterPage';
@@ -21,6 +22,7 @@
     import TokenPurchasePage from '../components/TokenPurchasePage';
     import WithdrawPage from '../components/WithdrawPage';
     import WithdrawMethodPage from '../components/WithdrawMethodPage';
+    import FundingPage from '../components/FundingPage';
     import WithdrawHistoryPage from '../components/WithdrawHistoryPage';
     import WithdrawProcessingPage from '../components/WithdrawProcessingPage';
     import WithdrawSuccessPage from '../components/WithdrawSuccessPage';
@@ -118,7 +120,13 @@
 
         <div className="flex-1 overflow-y-auto p-6 bg-white/80 text-black backdrop-blur-lg">
             <Routes>
+            // ... Routes 내부
+            <Route
+            path="/funding"
+            element={<ProtectedRoute><FundingPage /></ProtectedRoute>}
+            />
             <Route path="/wallet" element={<ProtectedRoute><WalletPage /></ProtectedRoute>} />
+            <Route path="/quant" element={<ProtectedRoute><QuantTradingPage /></ProtectedRoute>} />
             <Route path="/balance" element={<ProtectedRoute><BalancePage /></ProtectedRoute>} />
             <Route path="/transfer" element={<ProtectedRoute><TransferPage /></ProtectedRoute>} />
             <Route path="/transactions" element={<ProtectedRoute><TransactionPage /></ProtectedRoute>} />

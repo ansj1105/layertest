@@ -57,6 +57,7 @@ export default function App() {
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import axios from 'axios';
+
 import { useTranslation } from 'react-i18next';
 import './i18n/index';
 import './index.css';

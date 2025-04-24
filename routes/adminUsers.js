@@ -22,7 +22,12 @@ router.patch('/users/:id/block', async (req, res) => {
   await db.query(`UPDATE users SET is_blocked = ? WHERE id = ?`, [is_blocked, req.params.id]);
   res.json({ success: true });
 });
-
+// ✅ 사용자 VIP 등급 수동 조정
+router.patch('/users/:id/vip', async (req, res) => {
+  const { vip_level } = req.body;
+  await db.query('UPDATE users SET vip_level = ? WHERE id = ?', [vip_level, req.params.id]);
+  res.json({ success: true });
+});
 // 휴면 계정 필터링 (30일 이상 로그인 기록 없음)
 router.get('/users/dormant', async (req, res) => {
   const [rows] = await db.query(`SELECT * FROM users WHERE last_login IS NULL OR last_login < NOW() - INTERVAL 30 DAY`);

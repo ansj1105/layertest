@@ -43,13 +43,13 @@ export default function AdminContentManager({ onLogout }) {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className=" ml-64 min-h-screen bg-gray-100">
       <AdminNav onLogout={onLogout} />
 
-      <h2 className="text-2xl font-bold mb-4">🎛 콘텐츠 업로드</h2>
+      <h2 className=" text-2xl font-bold mb-4">🎛 콘텐츠 업로드</h2>
 
       {/* 배너 업로드 */}
-      <div>
+      <div ml-64>
         <h3 className="font-semibold">🖼 배너 이미지</h3>
         <input type="file" accept="image/*" onChange={(e) => setBannerFile(e.target.files[0])} />
         <button onClick={() => upload("banner")} className="ml-2 bg-blue-500 text-white px-4 py-1 rounded">업로드</button>

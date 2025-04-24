@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom';
 const navItems = [
   { to: '/', label: '첫 장', icon: '🏠' },
   { to: '/team', label: '내 팀', icon: '👥' },
-  { to: '/transfer', label: '수량화하다', icon: '📈' },
-  { to: '/wallet', label: '금율 지갑', icon: '💼' },
+  { to: '/quant', label: '수량화하다', icon: '📈' },
+  { to: '/funding', label: '금율 지갑', icon: '💼' },
   { to: '/transactions', label: '내 거', icon: '🧾' },
 ];
 

@@ -9,6 +9,9 @@ import AdminPopupManager from './pages/admin/AdminPopupManager';
 import AdminUserInfoPage from './pages/admin/AdminUserInfoPage';
 import AdminUserLevelPage from './pages/admin/AdminUserLevelPage';
 import AdminUserReferralPage from './pages/admin/AdminUserReferralPage';
+import TeamManagementPage from './pages/admin/TeamManagementPage';
+import QuantLeaderboardPage from './pages/admin/QuantLeaderboardPage';
+import WalletAdminPage from './pages/admin/WalletAdminPage';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
@@ -51,6 +54,14 @@ export default function AdminApp() {
           path="/dashboard"
           element={admin ? <AdminDashboard onLogout={handleLogout} /> : <Navigate to="/login" replace />}
         />
+                <Route
+          path="/quantpage"
+          element={admin ? <TeamManagementPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+         <Route
+          path="/quantrank"
+          element={admin ? <QuantLeaderboardPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
         <Route
           path="/content"
           element={admin ? <AdminContentManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
@@ -58,7 +69,10 @@ export default function AdminApp() {
         <Route path="/users/info" element={admin ? <AdminUserInfoPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
 <Route path="/users/level" element={admin ? <AdminUserLevelPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
 <Route path="/users/referral" element={admin ? <AdminUserReferralPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
-
+<Route
+    path="/wallet-admin"
+    element={admin ? <WalletAdminPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+  />
         <Route path="/users" element={admin ? <AdminUserManager /> : <Navigate to="/login" />} />
       </Routes>
     </Router>

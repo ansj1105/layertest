@@ -83,7 +83,7 @@ export default function TokenPurchasePage() {
         <div className="text-sm text-gray-300 mt-2">보유 QVC</div>
         <div className="text-2xl font-bold">{wallet?.balance || "0.00"} QVC</div>
         <div className="flex justify-around mt-4 text-sm text-yellow-200">
-          <button onClick={() => setShowTransferModal(true)} className="bg-yellow-700 rounded px-3 py-1">전입</button>
+        <button onClick={() => setShowTransferModal(true)} className="bg-yellow-700 rounded px-3 py-1">환전</button> 
           <button onClick={() => setShowChargeModal(true)} className="bg-yellow-700 rounded px-3 py-1">충전한다</button>
           <button className="bg-yellow-700 rounded px-3 py-1">환매</button>
         </div>
