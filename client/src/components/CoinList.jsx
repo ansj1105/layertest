@@ -9,7 +9,7 @@ export default function CoinList() {
   useEffect(() => {
     const fetchCoins = async () => {
       try {
-        const res = await axios.get('http://localhost:4000/api/market-data');
+        const res = await axios.get('http://54.85.128.211:4000/api/market-data');
         setCoins(res.data);
       } catch (err) {
         console.error("❌ Coin fetch error:", err);

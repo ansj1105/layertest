@@ -18,7 +18,7 @@ export default function FundingPage() {
   // 금융 지갑 요약 API 호출
   const fetchFinanceSummary = async () => {
     const res = await axios.get(
-      "http://localhost:4000/api/wallet/finance-summary",
+      "http://54.85.128.211:4000/api/wallet/finance-summary",
       { withCredentials: true }
     );
     // { success: true, data: { financeBalance, todayProjectIncome, totalProjectIncome } }
@@ -28,7 +28,7 @@ export default function FundingPage() {
   // 펀딩 프로젝트 목록 API 호출
   const fetchProjects = async () => {
     const res = await axios.get(
-      "http://localhost:4000/api/wallet/projects",
+      "http://54.85.128.211:4000/api/wallet/projects",
       { withCredentials: true }
     );
     // 응답이 [ { id, name, minAmount, maxAmount, dailyRate, cycle, startDate, endDate, … }, … ]

@@ -44,7 +44,7 @@ export default function RegisterPage() {
 
     try {
       await axios.post(
-        "http://localhost:4000/api/auth/register",
+        "http://54.85.128.211:4000/api/auth/register",
         { ...form, captchaToken },
         { withCredentials: true }
       );

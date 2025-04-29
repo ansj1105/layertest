@@ -28,13 +28,13 @@ export default function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/api/auth/me")
+    axios.get("http://54.85.128.211:4000/api/auth/me")
       .then(res => setUser(res.data.user))
       .catch(() => setUser(null));
   }, []);
 
   const handleLogout = async () => {
-    await axios.post("http://localhost:4000/api/auth/logout");
+    await axios.post("http://54.85.128.211:4000/api/auth/logout");
     setUser(null);
     window.location.href = "/login";
   };
@@ -73,13 +73,13 @@ export default function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/api/auth/me")
+    axios.get("http://54.85.128.211:4000/api/auth/me")
       .then(res => setUser(res.data.user))
       .catch(() => setUser(null));
   }, []);
 
   const handleLogout = async () => {
-    await axios.post("http://localhost:4000/api/auth/logout");
+    await axios.post("http://54.85.128.211:4000/api/auth/logout");
     setUser(null);
     window.location.href = "/login";
   };
