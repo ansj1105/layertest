@@ -9,7 +9,7 @@ export default function TeamManagementPage({ onLogout }) {
   const [newVipLevel, setNewVipLevel] = useState(1);
 
   useEffect(() => {
-    axios.get("/api/referral/my-team", { withCredentials: true })
+    axios.get("/api/referral/admin/my-team", { withCredentials: true })
       .then(res => {
         console.log("[DEBUG] API 응답 데이터:", res.data);
         const data = res.data.data || {};

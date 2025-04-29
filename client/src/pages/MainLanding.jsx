@@ -1,13 +1,16 @@
     // 📁 MainLanding.jsx
-    import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
+    import { Routes, Route, useLocation, useNavigate, Link } from 'react-router-dom';
     import { useEffect, useState } from 'react';
+    
     import axios from 'axios';
     import CoinList from '../components/CoinList';
+    import RechargeMethodPage from './RechargeMethodPage';
     import ContentList from '../components/ContentList';
     import WalletPage from './WalletPage';
     import BalancePage from './BalancePage';
     import TransferPage from './TransferPage';
     import TransactionPage from './TransactionPage';
+    import USDTRechargePage from './USDTRechargePage';
     import SystemNotices from '../components/SystemNotices';
     import NotificationPopup from '../components/NotificationPopup';
     import PersonalMessages from '../components/PersonalMessages';
@@ -20,7 +23,9 @@
     import MyTeamPage from './MyTeamPage';
     import TestPingPage from './TestPingPage';
     import TokenPurchasePage from '../components/TokenPurchasePage';
+     import AgencyCooperationPage from '../components/AgencyCooperationPage';
     import WithdrawPage from '../components/WithdrawPage';
+    import InviteFriendPage from '../components/InviteFriendPage';
     import WithdrawMethodPage from '../components/WithdrawMethodPage';
     import FundingPage from '../components/FundingPage';
     import WithdrawHistoryPage from '../components/WithdrawHistoryPage';
@@ -69,7 +74,7 @@
             </div>
 
             <div className="flex justify-between items-center px-6 py-3 bg-black/80">
-                <h2 className="text-white text-lg font-semibold">홈 콘텐츠</h2>
+                
                 <button
                 onClick={handleManualOpen}
                 className="text-white text-sm hover:underline flex items-center relative"
@@ -81,15 +86,18 @@
                     </span>
                 )}
                 </button>
+                <Link to="/messages/notices">📢</Link>
             </div>
 
             {/* ✅ QVC 토큰 메뉴 */}
-            <div className="bg-[#2b1e0f] text-yellow-400 rounded-md mx-6 mt-4 p-4 shadow-md">
-                <div className="text-center text-lg font-semibold border-b border-yellow-600 pb-2 mb-2" onClick={() => navigate("/token")}>
-                🪙 QVC 토큰
+            <div className="bg-[#2b1e0f] text-yellow-400 rounded-md  shadow-md">
+            <div
+  className="text-center text-lg font-semibold border-b border-yellow-600 py-4 mb-2 cursor-pointer"
+  onClick={() => navigate("/token")}
+>                🪙 QVC 토큰
                 </div>
-                <div className="grid grid-cols-4 gap-2 text-center text-sm">
-                <div className="cursor-pointer flex flex-col items-center" > 
+                <div className="grid grid-cols-4 p-6 text-center text-sm">
+                <div className="cursor-pointer flex flex-col items-center" onClick={() => navigate("/recharge")}> 
                     <span className="text-2xl">💰</span>
                     재충전
                 </div>
@@ -97,18 +105,18 @@
                     <span className="text-2xl">💸</span>
                     출금
                 </div>
-                <div className="cursor-pointer flex flex-col items-center">
+                <div className="cursor-pointer flex flex-col items-center" onClick={() => navigate("/agent")}>
                     <span className="text-2xl">👥</span>
                     에이전트
                 </div>
-                <div className="cursor-pointer flex flex-col items-center">
+                <div className="cursor-pointer flex flex-col items-center" onClick={() => navigate("/invite")}>
                     <span className="text-2xl">➕</span>
                     친구를 초대
                 </div>
                 </div>
             </div>
 
-            <div className="flex justify-center items-center p-6 backdrop-blur-md bg-black/40">
+            <div className="flex justify-center items-center p-4  backdrop-blur-md bg-gray-800">
                 <CoinList />
             </div>
 
@@ -118,7 +126,7 @@
             </>
         )}
 
-        <div className="flex-1 overflow-y-auto p-6 bg-white/80 text-black backdrop-blur-lg">
+        <div className="flex-1 overflow-y-auto  bg-white/80 text-black backdrop-blur-lg">
             <Routes>
             // ... Routes 내부
             <Route
@@ -137,9 +145,12 @@
             <Route path="/messages/inbox" element={<PersonalMessages />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/recharge" element={<ProtectedRoute><RechargeMethodPage /></ProtectedRoute>} />
+            <Route path="/recharge/usdt" element={<ProtectedRoute><USDTRechargePage /></ProtectedRoute>} />
             <Route path="/team" element={<ProtectedRoute><MyTeamPage /></ProtectedRoute>} />
             <Route path="/token" element={<ProtectedRoute><TokenPurchasePage /></ProtectedRoute>} />
-            
+             <Route path="/invite" element={<ProtectedRoute><InviteFriendPage /></ProtectedRoute>} />
+             <Route path="/agent" element={<ProtectedRoute><AgencyCooperationPage /></ProtectedRoute>} />
 <Route path="/withdraw" element={<ProtectedRoute><WithdrawPage /></ProtectedRoute>} />
 <Route path="/withdraw/method" element={<ProtectedRoute><WithdrawMethodPage /></ProtectedRoute>} />
 <Route path="/withdraw/history" element={<ProtectedRoute><WithdrawHistoryPage /></ProtectedRoute>} />

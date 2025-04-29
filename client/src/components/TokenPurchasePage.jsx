@@ -1,7 +1,7 @@
 // 📁 components/TokenPurchasePage.jsx
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import { ArrowLeftIcon } from "lucide-react"; // 아이콘 라이브러리 (shadcn-ui)
 export default function TokenPurchasePage() {
   const [sales, setSales] = useState([]);
   const [wallet, setWallet] = useState(null);
@@ -75,8 +75,17 @@ export default function TokenPurchasePage() {
 
   return (
     <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
-      <h2 className="text-center text-xl font-semibold border-b border-yellow-500 pb-2 mb-4">QVC 토큰</h2>
 
+      {/* 왼쪽 화살표 - 이전 페이지로 이동 */}
+
+      <h2 className="text-center text-xl font-semibold border-b border-yellow-500 pb-2 mb-4">QVC 토큰</h2>
+      <button
+        onClick={() => window.history.back()}
+        className="flex items-center space-x-1 mb-4 text-yellow-200 hover:text-yellow-100"
+      >
+        <ArrowLeftIcon size={20} />
+        <span>뒤로</span>
+      </button>
       <div className="bg-[#3b2b15] rounded-md p-4 text-center mb-4">
         <div className="text-sm text-gray-300">보유 USDT</div>
         <div className="text-2xl font-bold">{wallet?.usdt_balance || "0.00"} USDT</div>

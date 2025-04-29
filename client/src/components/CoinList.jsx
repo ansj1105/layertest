@@ -24,7 +24,7 @@ export default function CoinList() {
   }, []);
 
   return (
-    <div className="max-w-md w-full bg-gray-900 text-white p-6 rounded shadow-lg">
+    <div className="max-w-md w-full bg-gray-800 text-white rounded shadow-lg">
       <h2 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">📈 Market Price</h2>
       {loading ? (
         <p className="text-gray-400">Loading...</p>

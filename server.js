@@ -92,6 +92,8 @@ const getTronWeb = (privateKey = null) => {
   // 상단 import 구역에 추가
 const quantTradeRoutes = require('./routes/quanttrade');
 const tokenRoutes = require('./routes/token'); // ✅ QVC 토큰 관련 라우터
+const rechargeRoutes = require('./routes/recharge'); //코인충전관련
+ app.use('/api/recharge', rechargeRoutes);
 app.use('/api/token', tokenRoutes);
 
 const { router: vipLevelRoutes } = require('./routes/vipLevels'); // ✅ router만 불러오기

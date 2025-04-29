@@ -26,5 +26,64 @@
   "success": "Login successful!",
   "fail": "Incorrect email or password."
 }
+,
+  "quantvine": {
+    "title": "Quantvine Overview",
+    "vip_upgrade_criteria": "VIP Upgrade Criteria",
+    "vip": {
+      "vip1": "VIP1: Requires a minimum of 35 USDT worth of crypto assets.",
+      "vip2": "VIP2: At least 300 USDT of assets + invite 2 A-level, 2 B-level, and 2 C-level active members.",
+      "vip3": "VIP3: At least 1000 USDT of assets + invite and activate 5 A-level, 5 B-level, and 5 C-level members.",
+      "vip4": "VIP4: At least 5000 USDT of assets + invite and activate 15 A-level, 15 B-level, and 15 C-level members.",
+      "vip5": "VIP5: At least 20000 USDT of assets + invite and activate 30 A-level, 30 B-level, and 30 C-level members.",
+      "vip6": "VIP6: At least 50000 USDT of assets + invite and activate 60 A-level, 60 B-level, and 60 C-level members."
+    },
+    "overview": {
+      "description": "Quantvine quantitative trading collects and analyzes major data from crypto exchanges, executing high-probability trades via algorithms.",
+      "advantages": "Provides more precise and efficient profitability compared to manual trading.",
+      "assets": "Targets various cryptocurrencies such as BTC, ETH, and USDT.",
+      "automation": "Supports automatic entry, exit, profit-taking, and loss reduction.",
+      "no_manual": "No need for manual trading decisions. Earn efficiently and stably."
+    },
+    "method": {
+      "title": "Quantitative Method",
+      "step": "Click the button to start and complete an automated trade within 1-3 minutes.",
+      "profit_share": "50% of the profit goes to the platform, 50% returns to the user.",
+      "example": "Example: Buy BTC worth 1000 USDT on CoinEase, sell for 1050 USDT on OKX. 25 USDT goes to the platform, 25 USDT returns to the user."
+    },
+    "vip_daily": {
+      "vip1": "VIP1: Up to 5 trades per day, daily profit rate between 1.8%-2.1%.",
+      "vip2": "VIP2: Up to 6 trades per day, daily profit rate between 2.3%-2.6%.",
+      "vip3": "VIP3: Up to 7 trades per day, daily profit rate between 3.9%-4.3%.",
+      "vip4": "VIP4: Up to 8 trades per day, daily profit rate between 5.9%-6.4%.",
+      "vip5": "VIP5: Up to 9 trades per day, daily profit rate between 8.6%-9.4%.",
+      "vip6": "VIP6: Up to 10 trades per day, daily profit rate between 9.5%-10.5%."
+    }
+  }
+,
+  "agencyCooperation": {
+    "back": "Back",
+    "title": "Agency Cooperation",
+    "subTitle": "Counselor Partnership",
+    "lines": [
+      "Join the Quantvine team program and earn commissions by promoting Quantvine. Enjoy Quantvine’s convenience and sustained growth like no one else.",
+      "Quantvine offers every user a generous team-commission reward mechanism.",
+      "You can receive commission rewards in three tiers (these are extra rewards from Quantvine and do not reduce your team members’ earnings).",
+      "1. When Friend A shares and becomes your Level-1 member, you earn 21% of A’s daily profit.",
+      "2. When A’s Friend B becomes your Level-2 member, you earn 7% of B’s daily profit.",
+      "3. When B’s Friend C becomes your Level-3 member, you earn 1% of C’s daily profit.",
+      "Example: If each A, B, and C member earns $100 per day, you receive:",
+      "• Level-A member commission: $100 × 21% = $21",
+      "• Level-B member commission: $100 × 7%  = $7",
+      "• Level-C member commission: $100 × 1%  = $1",
+      "Your total team commission is 21% + 7% + 1% = 29%, which equals $29.",
+      "If you have 10 A-members, 100 B-members, and 1000 C-members each earning $100 daily, then:",
+      "A-level team income = 100 × 21% × 10  = $210",
+      "B-level team income = 100 × 7%  × 100 = $700",
+      "C-level team income = 100 × 1%  × 1000 = $1000",
+      "Your daily team income = 210 + 700 + 1000 = $1910",
+      "This is a very significant income."
+    ]
+  }
   }
   

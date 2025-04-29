@@ -2,7 +2,7 @@ export default function ReferralStatsBox({ stats }) {
   if (!stats) {
     return (
       <div className="p-4 bg-gray-100 rounded shadow mb-6 text-center text-gray-500">
-        📡 통계 정보를 불러오는 중...
+        📡불러오는 중...
       </div>
     );
   }
