@@ -12,7 +12,7 @@ export default function ContentList() {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const res = await axios.get("http://54.85.128.211:4000/api/content-files");
+        const res = await axios.get("http://localhost:4000/api/content-files");
         const files = res.data;
         setBanners(files.filter(f => f.type === 'banner'));
         const videoFile = files.find(f => f.type === 'video');
@@ -43,7 +43,7 @@ export default function ContentList() {
               {banners.map((banner, idx) => (
                 <div key={idx}>
                   <img
-                    src={`http://54.85.128.211:4000${banner.file_path}`}
+                    src={`http://localhost:4000${banner.file_path}`}
                     alt={`banner-${idx}`}
                     className="w-full h-64 object-cover rounded"
                   />
@@ -56,7 +56,7 @@ export default function ContentList() {
           {video && (
             <div className="w-full aspect-video">
               <video controls className="w-full h-full rounded shadow">
-                <source src={`http://54.85.128.211:4000${video}`} type="video/mp4" />
+                <source src={`http://localhost:4000${video}`} type="video/mp4" />
                 브라우저가 video 태그를 지원하지 않습니다.
               </video>
             </div>

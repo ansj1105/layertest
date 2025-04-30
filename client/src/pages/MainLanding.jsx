@@ -7,6 +7,7 @@
     import RechargeMethodPage from './RechargeMethodPage';
     import ContentList from '../components/ContentList';
     import WalletPage from './WalletPage';
+    import MyProfilePage from './MyProfilePage';
     import BalancePage from './BalancePage';
     import TransferPage from './TransferPage';
     import TransactionPage from './TransactionPage';
@@ -41,7 +42,7 @@
 
     useEffect(() => {
         const fetchPopups = async () => {
-        const res = await axios.get("http://54.85.128.211:4000/api/popups/active");
+        const res = await axios.get("http://localhost:4000/api/popups/active");
         setPopupList(res.data);
 
         const isPopupClosed = localStorage.getItem("popup_closed");
@@ -149,6 +150,7 @@
             <Route path="/recharge/usdt" element={<ProtectedRoute><USDTRechargePage /></ProtectedRoute>} />
             <Route path="/team" element={<ProtectedRoute><MyTeamPage /></ProtectedRoute>} />
             <Route path="/token" element={<ProtectedRoute><TokenPurchasePage /></ProtectedRoute>} />
+            <Route path="/myprofile" element={<ProtectedRoute><MyProfilePage /></ProtectedRoute>} />
              <Route path="/invite" element={<ProtectedRoute><InviteFriendPage /></ProtectedRoute>} />
              <Route path="/agent" element={<ProtectedRoute><AgencyCooperationPage /></ProtectedRoute>} />
 <Route path="/withdraw" element={<ProtectedRoute><WithdrawPage /></ProtectedRoute>} />

@@ -93,6 +93,8 @@ const getTronWeb = (privateKey = null) => {
 const quantTradeRoutes = require('./routes/quanttrade');
 const tokenRoutes = require('./routes/token'); // ✅ QVC 토큰 관련 라우터
 const rechargeRoutes = require('./routes/recharge'); //코인충전관련
+const mydataRoutes = require('./routes/mydata');
+app.use('/api/mydata', mydataRoutes);
  app.use('/api/recharge', rechargeRoutes);
 app.use('/api/token', tokenRoutes);
 

@@ -6,7 +6,7 @@ const navItems = [
   { to: '/team', label: '내 팀', icon: '👥' },
   { to: '/quant', label: '수량화하다', icon: '📈' },
   { to: '/funding', label: '금율 지갑', icon: '💼' },
-  { to: '/transactions', label: '내 거', icon: '🧾' },
+  { to: '/myprofile', label: '내 거', icon: '🧾' },
 ];
 
 function BottomNav() {

@@ -20,7 +20,7 @@ export default function AdminApp() {
   const [admin, setAdmin] = useState(null);
 
   useEffect(() => {
-    axios.get("http://54.85.128.211:4000/api/auth/admin/me")
+    axios.get("http://localhost:4000/api/auth/admin/me")
       .then(res => {
         if (res.data.user?.isAdmin) {
           setAdmin(res.data.user);
@@ -32,7 +32,7 @@ export default function AdminApp() {
   }, []);
 
   const handleLogout = async () => {
-    await axios.post("http://54.85.128.211:4000/api/auth/admin-logout");
+    await axios.post("http://localhost:4000/api/auth/admin-logout");
     setAdmin(null);
     window.location.href = "/admin.html#/login";
   };

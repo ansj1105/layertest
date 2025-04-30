@@ -11,7 +11,7 @@ export default function AdminContentManager({ onLogout }) {
     if (!window.confirm("정말 삭제하시겠습니까?")) return;
   
     try {
-      await axios.delete(`http://54.85.128.211:4000/api/content-files/${id}`);
+      await axios.delete(`http://localhost:4000/api/content-files/${id}`);
       fetchContentFiles();
     } catch (err) {
       alert("삭제 실패");
@@ -19,7 +19,7 @@ export default function AdminContentManager({ onLogout }) {
   };
   
   const fetchContentFiles = async () => {
-    const res = await axios.get("http://54.85.128.211:4000/api/content-files");
+    const res = await axios.get("http://localhost:4000/api/content-files");
     setBanners(res.data.filter((f) => f.type === "banner"));
     setVideos(res.data.filter((f) => f.type === "video"));
   };
@@ -33,7 +33,7 @@ export default function AdminContentManager({ onLogout }) {
     if (type === "banner" && bannerFile) formData.append("banner", bannerFile);
     if (type === "video" && videoFile) formData.append("video", videoFile);
 
-    await axios.post(`http://54.85.128.211:4000/api/upload/${type}`, formData, {
+    await axios.post(`http://localhost:4000/api/upload/${type}`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
 
