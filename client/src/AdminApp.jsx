@@ -2,6 +2,8 @@ import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { useEffect, useState } from 'react';
 import AdminChat from './pages/admin/AdminChat';
 import AdminLogin from './pages/admin/AdminLogin';
+import AdminInviteRewardsPage from './pages/admin/AdminInviteRewardsPage';
+import AdminJoinRewardsPage from './pages/admin/AdminJoinRewardsPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminContentManager from './pages/admin/AdminContentManager';
 import AdminUserManager from './pages/admin/AdminUserManager';
@@ -65,6 +67,14 @@ export default function AdminApp() {
         <Route
           path="/content"
           element={admin ? <AdminContentManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+                <Route
+          path="/invite-rewards"
+          element={admin ? <AdminInviteRewardsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+                        <Route
+          path="/admin-rewards"
+          element={admin ? <AdminJoinRewardsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
         />
         <Route path="/users/info" element={admin ? <AdminUserInfoPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
 <Route path="/users/level" element={admin ? <AdminUserLevelPage onLogout={handleLogout} /> : <Navigate to="/login" />} />

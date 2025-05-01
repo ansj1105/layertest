@@ -142,7 +142,83 @@
       "Standard processing time is about 5 minutes; with guarantee processing, it may take up to 30 minutes.",
       "Exchange rates are automatically updated based on market conditions."
     ]
+  },
+  "security": {
+    "title": "Security Center",
+    "email": "Email",
+    "tradePwd": "Trade PIN",
+    "loginPwd": "Login Password",
+    "withdrawAddr": "Withdrawal Address"
+  },
+  "security_p": {
+    "title": "Mailbox Binding",
+    "old_mailbox": "Old Mailbox",
+    "new_mailbox": "New Mailbox",
+    "enter_code": "Please enter the verification code",
+    "send_code": "Send Code",
+    "enter_new_email": "Please enter your email address",
+    "invalid_email": "Please enter a valid email address.",
+    "code_sent": "Verification code has been sent.",
+    "code_failed": "Failed to send code.",
+    "update_warning": "If the email is invalid, you may have trouble with password resets or account recovery.",
+    "update_success": "Your email has been updated successfully.",
+    "update_failed": "Failed to update email.",
+    "submit": "Submit"
+  },
+  "trade_pwd": {
+    "title": "Change Trading Password",
+    "email_label": "Email Address",
+    "code_label": "Verification Code",
+    "code_placeholder": "Enter verification code",
+    "send_code": "Send Code",
+    "new_pwd_label": "New Trading Password",
+    "new_pwd_placeholder": "Enter new password",
+    "confirm_pwd_label": "Confirm Password",
+    "confirm_pwd_placeholder": "Re-enter new password",
+    "confirm_warning": "If your email is invalid, you may experience issues resetting your trading password. Continue?",
+    "code_sent": "Verification code has been sent.",
+    "code_failed": "Failed to send verification code.",
+    "success": "Trading password changed successfully.",
+    "failed": "Failed to change trading password.",
+    "submit": "Submit"
+  },
+  "security_login": {
+    "title": "Change Login Password",
+    "old_password": "Current Password",
+    "new_password": "New Password",
+    "confirm_password": "Confirm Password",
+    "enter_old": "Enter your current password",
+    "enter_new": "Enter a new password",
+    "enter_confirm": "Re-enter the new password",
+    "submit": "Submit",
+    "mismatch_old": "Current password is incorrect.",
+    "mismatch_new": "New passwords do not match.",
+    "length_error": "Password must be at least 6 characters.",
+    "confirm_warning": "Are you sure you want to change your password?",
+    "success": "✅ Password changed successfully.",
+    "fail": "❌ Failed to change password."
+  },
+  "task": {
+    "title": "Task Center",
+    "invite_reward": {
+      "title": "Invite Rewards",
+      "description": "Reward when you reach the required number of active referrals just below Level 1",
+
+      "required": "{{level}}th Level ({{required}} referrals)",
+      "reward": "Receive reward of {{amount}} USDT after success.",
+      "claim": "Claim",
+      "claimed": "Claimed",
+      "claim_fail": "Failed to claim reward."
+    },
+    "join_reward": {
+      "title": "Register Rewards",
+      "description": "Receive reward of  {{amount}} USDT after new register success.",
+      "claim": "Claim",
+      "claimed": "Claimed",
+      "claim_fail": "Failed to claim reward"
+    }
   }
+  
   
   }
   

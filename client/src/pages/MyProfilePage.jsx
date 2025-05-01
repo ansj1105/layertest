@@ -165,9 +165,9 @@ export default function MyProfilePage() {
       {/* ── 메뉴 리스트 ───────────────────────────────────────── */}
       <div className="bg-[#2c1f0f] rounded-lg divide-y divide-yellow-700">
         {[
-          { icon: '🏆', label: '태스크 센터' },
+          { icon: '🏆', label: '태스크 센터' ,to :'/taskcenter'},
           { icon: '❓', label: '일반적인 문제',to :'/commonproblem' },
-          { icon: '🔒', label: '보안 센터' },
+          { icon: '🔒', label: '보안 센터' , to : '/security' },
           { icon: '📈', label: '양자화 튜토리얼' , to: '/quant-tutorial'},
           { icon: '🌐', label: '언어 설정' ,to :'/settings/language'},
           { icon: '🏢', label: '회사 소개', to: '/company' },

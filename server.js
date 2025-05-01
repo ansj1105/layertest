@@ -82,10 +82,17 @@ const mydataRoutes = require('./routes/mydata');
 app.use('/api/mydata', mydataRoutes);
  app.use('/api/recharge', rechargeRoutes);
 app.use('/api/token', tokenRoutes);
+// 상단 import
+const adminInviteRewards = require('./routes/admininviteRewards');
+// 관리자용 엔드포인트
+app.use('/api/admin/invite-rewards', adminInviteRewards);
+const adminJoinRoutes = require('./routes/adminJoinRewards');
+app.use('/api/admin/join-rewards', adminJoinRoutes);
 
 const { router: vipLevelRoutes } = require('./routes/vipLevels'); // ✅ router만 불러오기
 app.use('/api/admin/vip-levels', vipLevelRoutes);
-
+const securityRoutes = require('./routes/security');
+app.use('/api/security', securityRoutes);
 const { getNewVipLevel } = require('./routes/vipLevels'); // 함수 가져오기
 const walletRoutes = require('./routes/wallet');
 const withdrawalsRouter = require('./routes/withdrawals');
