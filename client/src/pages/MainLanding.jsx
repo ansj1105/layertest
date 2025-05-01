@@ -3,6 +3,7 @@
     import { useEffect, useState } from 'react';
     
     import axios from 'axios';
+    import AppDownloadPage from './AppDownloadPage';
     import CoinList from '../components/CoinList';
     import RechargeMethodPage from './RechargeMethodPage';
     import ContentList from '../components/ContentList';
@@ -23,16 +24,20 @@
     import LoginPage from './auth/LoginPage';
     import MyTeamPage from './MyTeamPage';
     import TestPingPage from './TestPingPage';
+    import CommonProblemsPage from '../components/CommonProblemsPage';
+    import CompanyIntroPage from '../components/CompanyIntroPage';
     import TokenPurchasePage from '../components/TokenPurchasePage';
      import AgencyCooperationPage from '../components/AgencyCooperationPage';
     import WithdrawPage from '../components/WithdrawPage';
     import InviteFriendPage from '../components/InviteFriendPage';
     import WithdrawMethodPage from '../components/WithdrawMethodPage';
     import FundingPage from '../components/FundingPage';
+    import LanguageSettingsPage from '../components/LanguageSettingsPage';
     import WithdrawHistoryPage from '../components/WithdrawHistoryPage';
     import WithdrawProcessingPage from '../components/WithdrawProcessingPage';
     import WithdrawSuccessPage from '../components/WithdrawSuccessPage';
     import WithdrawFailurePage from '../components/WithdrawFailurePage';
+    import QuantTutorialPage from '../components/QuantTutorialPage';
     export default function MainLanding({ user }) {
     const location = useLocation();
     const navigate = useNavigate();
@@ -134,6 +139,9 @@
             path="/funding"
             element={<ProtectedRoute><FundingPage /></ProtectedRoute>}
             />
+            <Route path="/commonproblem" element={<ProtectedRoute><CommonProblemsPage   /></ProtectedRoute>} />
+            <Route path="/company" element={<ProtectedRoute><CompanyIntroPage   /></ProtectedRoute>} />
+            <Route path="/download" element={<ProtectedRoute><AppDownloadPage  /></ProtectedRoute>} />
             <Route path="/wallet" element={<ProtectedRoute><WalletPage /></ProtectedRoute>} />
             <Route path="/quant" element={<ProtectedRoute><QuantTradingPage /></ProtectedRoute>} />
             <Route path="/balance" element={<ProtectedRoute><BalancePage /></ProtectedRoute>} />
@@ -141,6 +149,7 @@
             <Route path="/transactions" element={<ProtectedRoute><TransactionPage /></ProtectedRoute>} />
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/settings/language" element={<LanguageSettingsPage />} />
             <Route path="/test" element={<TestPingPage />} />
             <Route path="/messages/notices" element={<SystemNotices />} />
             <Route path="/messages/inbox" element={<PersonalMessages />} />
@@ -153,12 +162,16 @@
             <Route path="/myprofile" element={<ProtectedRoute><MyProfilePage /></ProtectedRoute>} />
              <Route path="/invite" element={<ProtectedRoute><InviteFriendPage /></ProtectedRoute>} />
              <Route path="/agent" element={<ProtectedRoute><AgencyCooperationPage /></ProtectedRoute>} />
-<Route path="/withdraw" element={<ProtectedRoute><WithdrawPage /></ProtectedRoute>} />
-<Route path="/withdraw/method" element={<ProtectedRoute><WithdrawMethodPage /></ProtectedRoute>} />
-<Route path="/withdraw/history" element={<ProtectedRoute><WithdrawHistoryPage /></ProtectedRoute>} />
-<Route path="/withdraw/process" element={<ProtectedRoute><WithdrawProcessingPage /></ProtectedRoute>} />
-<Route path="/withdraw/success" element={<ProtectedRoute><WithdrawSuccessPage /></ProtectedRoute>} />
-<Route path="/withdraw/failure" element={<ProtectedRoute><WithdrawFailurePage /></ProtectedRoute>} />
+            <Route path="/withdraw" element={<ProtectedRoute><WithdrawPage /></ProtectedRoute>} />
+            <Route path="/withdraw/method" element={<ProtectedRoute><WithdrawMethodPage /></ProtectedRoute>} />
+            <Route path="/withdraw/history" element={<ProtectedRoute><WithdrawHistoryPage /></ProtectedRoute>} />
+            <Route path="/withdraw/process" element={<ProtectedRoute><WithdrawProcessingPage /></ProtectedRoute>} />
+            <Route path="/withdraw/success" element={<ProtectedRoute><WithdrawSuccessPage /></ProtectedRoute>} />
+            <Route path="/withdraw/failure" element={<ProtectedRoute><WithdrawFailurePage /></ProtectedRoute>} />
+            <Route path="/withdraw/failure" element={<ProtectedRoute><WithdrawFailurePage /></ProtectedRoute>} />
+            <Route path="/quant-tutorial" element={<ProtectedRoute><QuantTutorialPage /></ProtectedRoute>} />
+
+
             </Routes>
         </div>
         </>

@@ -65,22 +65,7 @@ app.use(express.json());
 // ✅ DB 연결 설정
 const db = require("./db"); // 이걸로 사용
 // ✅ TronWeb 인스턴스 (기본 읽기용)
-const getTronWeb = (privateKey = null) => {
-    const address = process.env.TRON_DEFAULT_ADDRESS || "TTa5UgnnyRaBFPiXKMzSxNztMFbbnDQ1Dd";
-  
-    const options = {
-      fullHost: "https://api.trongrid.io",
-      headers: { "TRON-PRO-API-KEY": process.env.TRON_API_KEY },
-      address, // ✅ 이 라인이 핵심! (base58 주소)
-    };
-  
-    if (privateKey) {
-      options.privateKey = privateKey;
-    }
-  
-    return new TronWeb(options);
-  };
-  
+
   const USDT_CONTRACT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
   const authRoutes = require('./auth/register'); //회원가입 및 토큰처리   
   const loginRoutes = require('./auth/login');//로그인 라우터
@@ -103,164 +88,26 @@ app.use('/api/admin/vip-levels', vipLevelRoutes);
 
 const { getNewVipLevel } = require('./routes/vipLevels'); // 함수 가져오기
 const walletRoutes = require('./routes/wallet');
+const withdrawalsRouter = require('./routes/withdrawals');
+app.use('/api/withdrawals', withdrawalsRouter);
 app.use('/api/wallet', walletRoutes);
 app.use('/api', quantTradeRoutes);
 app.use('/api/referral', referralRoutes);
-
+const { router: tronRouter } = require('./routes/tron');
+app.use('/api/tron', tronRouter);
 app.use('/api/popups', popupMessageRoutes);
 app.use('/api/messages', messageRoutes);  
   app.use('/api/admin', adminUserRoutes);
   app.use('/api', contentRoutes);
   app.use('/api/auth', loginRoutes); // ✅ 같은 prefix로 라우터 추가 등록 가능
 app.use('/api/auth', authRoutes);
-  // ✅ 1. 지갑 생성 API
-  app.get("/api/create-wallet", async (req, res) => {
-    try {
-      const tronWeb = getTronWeb();
-      const account = await tronWeb.createAccount();
-  
-      await db.query(
-        "INSERT INTO wallet_log (address, private_key) VALUES (?, ?)",
-        [account.address.base58, account.privateKey]
-      );
-  
-      res.json({
-        address: account.address.base58,
-        privateKey: account.privateKey,
-      });
-    } catch (err) {
-      handleError(res, "Wallet creation failed", err);
-    }
-  });
-  
-  // ✅ 2. 잔액 조회 API
-// ✅ 수정된 /api/get-balance API (Tronscan API 활용)
 
-
-// ✅ 수정된 /api/get-balance API (Tronscan API 활용)
-
-// ✅ 간단한 API 엔드포인트
+  // ✅ 간단한 API 엔드포인트
 app.get('/api/ping', (req, res) => {
   console.log("✅ [백엔드] 클라이언트로부터 ping 수신!");
   res.json({ message: "pong from server!" });
 });
-app.get("/api/get-balance", async (req, res) => {
-  const address = req.query.address?.trim();
-  console.log("📥 [잔액 조회 요청] address param:", address);
 
-  if (!address || !/^T[1-9A-HJ-NP-Za-km-z]{33}$/.test(address)) {
-    console.warn("❗ 유효하지 않은 주소:", address);
-    return res.status(400).json({ error: "Invalid TRON address" });
-  }
-
-  try {
-    const response = await axios.get("https://apilist.tronscanapi.com/api/accountv2", {
-      params: { address },
-      headers: {
-        "TRON-PRO-API-KEY": process.env.TRON_API_KEY2,
-      },
-    });
-
-    console.log("🧾 [Tronscan API 전체 응답]:");
-    console.dir(response.data, { depth: null });
-
-    const usdtAsset = response.data.withPriceTokens?.find(
-      (token) => token.tokenId === "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t" // USDT 실제 계약 주소
-    );
-
-    const balance = usdtAsset ? (Number(usdtAsset.balance) / 1e6).toFixed(6) : "0.000000";
-    console.log(`✅ [Tronscan 조회 완료] ${address}: ${balance} USDT`);
-
-    try {
-      await db.query(
-        "INSERT INTO balance_log (address, balance_usdt) VALUES (?, ?)",
-        [address, balance]
-      );
-      console.log("📝 [DB 기록 완료]");
-    } catch (dbErr) {
-      console.warn("⚠️ [DB 기록 실패]:", dbErr.message);
-    }
-
-    res.json({ usdt: balance });
-  } catch (err) {
-    console.error("❌ [ERROR] Tronscan API 호출 실패:", err.message);
-    res.status(500).json({ error: "Tronscan balance check failed", details: err.message });
-  }
-});
-
-  
-  // ✅ 3. 송금 API
-  app.post("/api/send-usdt", async (req, res) => {
-    const { fromPrivateKey, toAddress, amount } = req.body;
-  
-    console.log("📨 [송금 요청]");
-    console.log("🔑 fromPrivateKey:", fromPrivateKey?.slice(0, 10) + '...');
-    console.log("📬 toAddress:", toAddress);
-    console.log("💸 amount:", amount);
-  
-    try {
-      // 주소 유효성 검사
-      const tronWeb = getTronWeb(fromPrivateKey);
-      const isValid = tronWeb.isAddress(toAddress);
-      console.log("✅ 주소 유효성 검사:", isValid);
-  
-      if (!isValid) {
-        console.warn("❗ 잘못된 주소:", toAddress);
-        return res.status(400).json({ error: "Invalid TRON address" });
-      }
-  
-      const contract = await tronWeb.contract().at(USDT_CONTRACT);
-      const tx = await contract.methods.transfer(toAddress, amount * 1e6).send();
-  
-      const fromAddress = tronWeb.address.fromPrivateKey(fromPrivateKey);
-  
-      await db.query(
-        "INSERT INTO transaction_log (from_address, to_address, amount_usdt, tx_hash) VALUES (?, ?, ?, ?)",
-        [fromAddress, toAddress, amount, tx]
-      );
-  
-      console.log("✅ 전송 완료:", tx);
-      res.json({ txHash: tx });
-  
-    } catch (err) {
-      console.error("❌ 송금 중 에러 발생:", err.message);
-  
-      await db.query(
-        "INSERT INTO transaction_log (from_address, to_address, amount_usdt, status) VALUES (?, ?, ?, ?)",
-        ["unknown", toAddress, amount, "failed"]
-      );
-  
-      handleError(res, "USDT transfer failed", err);
-    }
-  });
-  
-  
-  // ✅ 4. 트랜잭션 로그 조회 API
-  app.get("/api/transactions", async (req, res) => {
-    try {
-      const [rows] = await db.query("SELECT * FROM transaction_log ORDER BY id DESC LIMIT 50");
-      res.json(rows);
-    } catch (err) {
-      handleError(res, "Failed to fetch transactions", err);
-    }
-  });
-  
-  // ✅ 공통 에러 핸들러
-  function handleError(res, msg, err) {
-    console.error(`❌ [ERROR] ${msg}`);
-    console.error("▶ FULL ERROR:", err);
-  
-    res.status(500).json({
-      error: msg,
-      ...(process.env.NODE_ENV === "development" && {
-        debug: {
-          message: err?.message,
-          stack: err?.stack,
-          errorObject: err,
-        },
-      }),
-    });
-  }
   //코인정보 달라하기 api~!
   app.get('/api/market-data', async (req, res) => {
     try {
@@ -279,6 +126,8 @@ app.get("/api/get-balance", async (req, res) => {
       res.status(500).json({ error: "Failed to fetch market data" });
     }
   });
+
+  
 // 1시간마다 VIP 레벨 자동 갱신
 cron.schedule('0 * * * *', async () => {
   console.log("⏰ [CRON] VIP 레벨 갱신 시작");
@@ -320,4 +169,3 @@ db.query('SELECT DATABASE() AS db')
   console.error('❌ DB 연결 실패:', err.message);
 });
 
-module.exports.getTronWeb = getTronWeb;

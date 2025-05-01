@@ -84,6 +84,65 @@
       "Your daily team income = 210 + 700 + 1000 = $1910",
       "This is a very significant income."
     ]
+  },
+  "companyIntro": {
+    "back": "Back",
+    "title": "Company Introduction",
+    "items": [
+      "Quantitative Trading",
+      "Funding Projects",
+      "Blockchain-based",
+      "Perfect Security"
+    ]
+  },
+  "quantTutorial": {
+    "title": "Quantitative Trading Tutorial",
+    "description": "To help you better understand Quantvine, this tutorial explains in detail how the automated quantitative system generates profits and how to use it.",
+    "vipUpgradeCriteria": [
+      "VIP1: Requires a minimum of 35 USDT in crypto assets.",
+      "VIP2: Requires at least 300 USDT in crypto assets plus inviting and activating 2 A-level, 2 B-level, and 2 C-level members.",
+      "VIP3: Requires at least 1000 USDT in crypto assets plus inviting and activating 5 A-level, 5 B-level, and 5 C-level members.",
+      "VIP4: Requires at least 5000 USDT in crypto assets plus inviting and activating 15 A-level, 15 B-level, and 15 C-level members.",
+      "VIP5: Requires at least 20000 USDT in crypto assets plus inviting and activating 30 A-level, 30 B-level, and 30 C-level members.",
+      "VIP6: Requires at least 50000 USDT in crypto assets plus inviting and activating 60 A-level, 60 B-level, and 60 C-level members."
+    ],
+    "overview": "Quantvine Quantitative Overview: Click the button to start automated trading, which uses key market data to complete trades within 1–3 minutes and generate profits.",
+    "method": {
+      "title": "Trading Method",
+      "description": "Click the button to initiate automated trading and complete it within 1–3 minutes. Of the profits generated, 50% goes to the platform and 50% returns to you."
+    },
+    "vipDaily": [
+      "VIP1: Up to 5 trades per day with a daily profit rate of 1.8%–2.1%, earning 9–10.5 USDT daily on a 500 USDT stake.",
+      "VIP2: Up to 6 trades per day with a daily profit rate of 2.3%–2.6%, earning 46–52 USDT daily on a 2000 USDT stake.",
+      "VIP3: Up to 7 trades per day with a daily profit rate of 3.9%–4.3%, earning 195–215 USDT daily on a 5000 USDT stake.",
+      "VIP4: Up to 8 trades per day with a daily profit rate of 5.9%–6.4%, earning 590–640 USDT daily on a 10000 USDT stake.",
+      "VIP5: Up to 9 trades per day with a daily profit rate of 8.6%–9.4%, earning 1720–1880 USDT daily on a 20000 USDT stake.",
+      "VIP6: Up to 10 trades per day with a daily profit rate of 9.5%–10.5%, earning 1900–2100 USDT daily on a 20000 USDT stake."
+    ]
+  },
+  "commonProblems": {
+    "title": "Common Issues",
+    "lines": [
+      "Here are some common issues to be aware of when participating in the Quantvine program.",
+      "1. New users must deposit at least 30 USDT to begin trading.",
+      "2. To withdraw funds, you must complete quantitative trades totaling at least 20 USDT.",
+      "3. The minimum withdrawal amount is 50 USDT.",
+      "4. Withdrawal processing can take 9–16 hours; please be patient.",
+      "5. When depositing, the rate corresponding to your VIP level will automatically increase.",
+      "6. Exchange rates are based on current market prices.",
+      "7. All criteria may vary according to market analysis.",
+      "8. You must follow approved deposit methods and market regulations.",
+      "9. Please check your transaction logs regularly.",
+      "10. You can contact customer support at any time."
+    ],
+    "feesTitle": "Fee Information",
+    "fees": [
+      "Quantvine’s quantitative system and automated guarantee process may incur additional withdrawal fees (0%–5%).",
+      "Fee rates are subject to change without notice.",
+      "Standard processing time is about 5 minutes; with guarantee processing, it may take up to 30 minutes.",
+      "Exchange rates are automatically updated based on market conditions."
+    ]
   }
+  
   }
   

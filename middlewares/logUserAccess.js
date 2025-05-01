@@ -1,4 +1,4 @@
-const db = require('../models');
+const db = require('../db');
 module.exports = async function logUserAccess(req, res, next) {
   if (req.session?.user) {
     const userId = req.session.user.id;

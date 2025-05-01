@@ -22,7 +22,7 @@
         setLoading(true);
         setError(null);
         try {
-        const res = await axios.get(`http://localhost:4000/api/get-balance`, {
+        const res = await axios.get(`http://localhost:4000/api/tron/balance`, {
             params: { address: cleanAddress },
         });
         setBalance(res.data.usdt);
