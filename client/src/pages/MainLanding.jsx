@@ -23,9 +23,11 @@
     import RegisterPage from './auth/RegisterPage';
     import LoginPage from './auth/LoginPage';
     import MyTeamPage from './MyTeamPage';
+    import SecurityCenterPage  from './SecurityCenterPage';
     import TestPingPage from './TestPingPage';
     import CommonProblemsPage from '../components/CommonProblemsPage';
     import CompanyIntroPage from '../components/CompanyIntroPage';
+    import EmailBindingPage from '../components/EmailBindingPage';
     import TokenPurchasePage from '../components/TokenPurchasePage';
      import AgencyCooperationPage from '../components/AgencyCooperationPage';
     import WithdrawPage from '../components/WithdrawPage';
@@ -33,11 +35,14 @@
     import WithdrawMethodPage from '../components/WithdrawMethodPage';
     import FundingPage from '../components/FundingPage';
     import LanguageSettingsPage from '../components/LanguageSettingsPage';
+    import LoginPasswordPage from '../components/LoginPasswordPage';
     import WithdrawHistoryPage from '../components/WithdrawHistoryPage';
     import WithdrawProcessingPage from '../components/WithdrawProcessingPage';
     import WithdrawSuccessPage from '../components/WithdrawSuccessPage';
     import WithdrawFailurePage from '../components/WithdrawFailurePage';
     import QuantTutorialPage from '../components/QuantTutorialPage';
+    import TradePasswordPage from '../components/TradePasswordPage';
+    import TaskCenterPage from '../components/TaskCenterPage';
     export default function MainLanding({ user }) {
     const location = useLocation();
     const navigate = useNavigate();
@@ -145,6 +150,7 @@
             <Route path="/wallet" element={<ProtectedRoute><WalletPage /></ProtectedRoute>} />
             <Route path="/quant" element={<ProtectedRoute><QuantTradingPage /></ProtectedRoute>} />
             <Route path="/balance" element={<ProtectedRoute><BalancePage /></ProtectedRoute>} />
+            <Route path="/taskcenter" element={<ProtectedRoute><TaskCenterPage /></ProtectedRoute>} />
             <Route path="/transfer" element={<ProtectedRoute><TransferPage /></ProtectedRoute>} />
             <Route path="/transactions" element={<ProtectedRoute><TransactionPage /></ProtectedRoute>} />
             <Route path="/register" element={<RegisterPage />} />
@@ -160,6 +166,10 @@
             <Route path="/team" element={<ProtectedRoute><MyTeamPage /></ProtectedRoute>} />
             <Route path="/token" element={<ProtectedRoute><TokenPurchasePage /></ProtectedRoute>} />
             <Route path="/myprofile" element={<ProtectedRoute><MyProfilePage /></ProtectedRoute>} />
+            <Route path="/security" element={<ProtectedRoute><SecurityCenterPage  /></ProtectedRoute>} />
+            <Route path="/security/email" element={<ProtectedRoute><EmailBindingPage  /></ProtectedRoute>} />
+            <Route path="/security/login-password" element={<ProtectedRoute><LoginPasswordPage  /></ProtectedRoute>} />
+            <Route path="/security/trade-password" element={<ProtectedRoute><TradePasswordPage  /></ProtectedRoute>} />
              <Route path="/invite" element={<ProtectedRoute><InviteFriendPage /></ProtectedRoute>} />
              <Route path="/agent" element={<ProtectedRoute><AgencyCooperationPage /></ProtectedRoute>} />
             <Route path="/withdraw" element={<ProtectedRoute><WithdrawPage /></ProtectedRoute>} />

@@ -124,7 +124,18 @@ export default function AdminNav({ onLogout }) {
         >
           📢 팝업 알림 관리
         </Link>
-
+        <Link
+                to="/invite-rewards"
+                className="block bg-pink-300 px-4 py-2 hover:bg-pink-300 border-t"
+              >
+                🎁 초대 보상 관리
+              </Link>
+              <Link
+                to="/admin-rewards"
+                className="block bg-pink-300 px-4 py-2 hover:bg-pink-300 border-t"
+              >
+                🎁 가입 보상 관리
+              </Link>      
         <button
           onClick={onLogout}
           className="block w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
