@@ -3,7 +3,7 @@ import { useEffect, useState, useRef } from 'react';
 import io from 'socket.io-client';
 import axios from 'axios';
 
-const socket = io("http://localhost:4000", {
+const socket = io("http://54.85.128.211:4000", {
   withCredentials: true
 });
 
@@ -18,7 +18,7 @@ export default function UserChat({ userId }) {
   // ✅ 읽음 처리 함수 분리
   const markMessagesAsRead = () => {
     axios
-      .patch(`http://localhost:4000/api/auth/messages/${userId}/read`, {}, { withCredentials: true })
+      .patch(`http://54.85.128.211:4000/api/auth/messages/${userId}/read`, {}, { withCredentials: true })
       .then(() => {
         setMessages(prev => prev.map(m => m.from === 'admin' ? { ...m, read: true } : m));
         setUnread(0);
@@ -30,7 +30,7 @@ export default function UserChat({ userId }) {
   useEffect(() => {
     socket.emit("join", userId);
 
-    axios.get(`http://localhost:4000/api/auth/messages/${userId}`, { withCredentials: true })
+    axios.get(`http://54.85.128.211:4000/api/auth/messages/${userId}`, { withCredentials: true })
       .then(res => {
         let count = 0;
         const loaded = res.data.map(msg => {
@@ -65,7 +65,7 @@ export default function UserChat({ userId }) {
           setTimeout(() => setPopupVisible(false), 3000);
         } else {
           // ✅ 이 메시지에 대해서는 DB 업데이트도 바로 반영
-          axios.patch(`http://localhost:4000/api/auth/messages/${userId}/read`, {}, { withCredentials: true }).catch(console.error);
+          axios.patch(`http://54.85.128.211:4000/api/auth/messages/${userId}/read`, {}, { withCredentials: true }).catch(console.error);
         }
       });
       
@@ -81,7 +81,7 @@ export default function UserChat({ userId }) {
     setMessages(prev => [...prev, { from: 'user', text: input, time, read: true }]);
 
     try {
-      await axios.post("http://localhost:4000/api/auth/message", { message: input }, { withCredentials: true });
+      await axios.post("http://54.85.128.211:4000/api/auth/message", { message: input }, { withCredentials: true });
     } catch (err) {
       console.error("❌ 메시지 저장 실패:", err);
     }

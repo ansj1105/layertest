@@ -23,7 +23,7 @@ export default function LoginPage() {
     if (!captcha) return setError("reCAPTCHA 인증이 필요합니다");
 
     try {
-      const res = await axios.post("http://localhost:4000/api/auth/login", {
+      const res = await axios.post("http://54.85.128.211:4000/api/auth/login", {
         ...form,
         captchaToken: captcha,
       }, { withCredentials: true });
