@@ -5,26 +5,49 @@
     "Transactions": "Transactions",
     "Register": "Register",
 "Home": "Home",
-    "register": {
-      "title": "Sign Up",
-      "name": "Name",
-      "email": "Email",
-      "password": "Password",
-      "confirmPassword": "Confirm Password",
-      "referral": "Referral Code (Optional)",
-      "submit": "Register",
-        "no_account": "DO YOU HAVE ID?",
-  "register": "Register"
-    },
-    "login": {
-  "title": "Login",
+"register": {
+  "title": "Sign Up",
+  "by_phone": "By Phone",
+  "by_email": "By Email",
+  "name": "Name",
+  "phone": "Phone",
   "email": "Email",
   "password": "Password",
-  "submit": "Login",
+  "confirmPassword": "Confirm Password",
+  "referral": "Referral Code (Optional)",
+  "submit": "Register",
+  "name_error": "Name must be at least 2 characters.",
   "email_error": "Invalid email format.",
-  "password_error": "Password is required.",
+  "phone_error": "Invalid phone number.",
+  "password_error": "Password must be at least 6 characters.",
+  "confirm_error": "Passwords do not match.",
+  "captcha_required": "Please complete the CAPTCHA.",
+  "success": "Registration successful! Please log in.",
+  "fail": "Registration failed.",
+  "no_account": "Already have an account?",
+  "login": "Log in",
+  "agree": "By registering, you agree to our <0>terms</0> and <1>privacy</1>.",
+
+  "terms": "Terms of Service",
+  "privacy": "Privacy Policy"
+},
+"login": {
+  "title": "User Login",
+  "email": "Email or Username",
+  "password": "Password",
+  "submit": "Log In",
+  "identifier_error": "Please enter a valid email or phone",
+  "email_error": "Please enter a valid email",
+  "password_error": "Please enter your password",
+  "captcha_required": "Please complete the reCAPTCHA",
   "success": "Login successful!",
-  "fail": "Incorrect email or password."
+  "fail": "Login failed",
+  "no_account": "Don't have an account?",
+  "register": "Sign up",
+  "forgot_password": "Forgot Password?",
+  "identifier": "ID",
+  "forgot" : "Find Password"
+  
 }
 ,
   "quantvine": {
@@ -232,6 +255,16 @@
     "company": "About Company",
     "download": "App Download",
     "logout": "Logout"
+  },
+  "agreement": {
+    "terms": {
+      "title": "Terms of Service",
+      "content": "1. **General**\n\nWelcome to Quantvine. By using our service, you agree to these Terms of Service.\n\n2. **Accounts**\n\nUsers must register with accurate information and are responsible for their credentials.\n\n3. **Usage**\n\nYou may not misuse the service, including but not limited to hacking, reverse engineering, or any illegal activity.\n\n4. **Data & Privacy**\n\nWe collect personal data to provide and improve our services. Please review our Privacy Policy for details.\n\n5. **Modifications**\n\nWe may update these terms; continued use implies acceptance of any changes.\n\n6. **Governing Law**\n\nThese terms are governed by the laws of your jurisdiction."
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "content": "1. **Introduction**\n\nQuantvine (“we,” “our,” or “us”) respects your privacy and is committed to protecting it.\n\n2. **Information We Collect**\n\n- **Personal Data**: name, email, phone number, wallet addresses.\n- **Usage Data**: pages visited, actions taken.\n\n3. **How We Use Information**\n\nWe use your data to provide, maintain, and improve our services, to communicate with you, and to comply with legal obligations.\n\n4. **Data Sharing**\n\nWe do not sell personal data. We may share with service providers under strict confidentiality.\n\n5. **Security**\n\nWe implement industry‑standard measures to protect your information.\n\n6. **Your Rights**\n\nYou may access, correct, or delete your personal data by contacting support.\n\n7. **Changes**\n\nWe may revise this policy; we’ll notify you of significant changes."
+    }
   }
   
   

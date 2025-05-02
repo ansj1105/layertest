@@ -55,23 +55,40 @@ export default function App() {
 
 
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link,Routes,Route,useLocation  } from 'react-router-dom';
 import axios from 'axios';
-import {UserIcon, MailIcon,  X as CloseIcon,  ChevronRight} from 'lucide-react';
+import {
+  UserIcon,
+  MailIcon,
+  X as CloseIcon,
+  ChevronRight,
+  ClipboardCopy,
+  RefreshCw,
+  ArrowDownCircle,
+  Headphones
+} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import './i18n/index';
 import './index.css';
 import UserChat from './pages/UserChat';
 import MainLanding from './pages/MainLanding';
-import BottomNav from './components/BottomNav'; // 추가
-import LoginPage from './pages/auth/LoginPage'; // 추가!
+import BottomNav from './components/BottomNav';
+import LoginPage from './pages/auth/LoginPage';
+import LanguageSettingsPage from './components/LanguageSettingsPage';
 import RegisterPage from './pages/auth/RegisterPage'; // 추가!
 axios.defaults.withCredentials = true;
+/** 간단한 가역 인코딩 (XOR → 16진수, 8자리) */
+function encodeId(id) {
+  const ob = id ^ 0xA5A5A5A5;
+  return ob.toString(16).toUpperCase().padStart(8, '0');
+}
 
 export default function App() {
   const { t, i18n } = useTranslation();
   const [user, setUser] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
+  const loc = useLocation();
   useEffect(() => {
     axios.get("http://localhost:4000/api/auth/me")
       .then(res => setUser(res.data.user))
@@ -83,118 +100,161 @@ export default function App() {
     setUser(null);
     window.location.href = "/login";
   };
+  const handleCopyId = () => {
+    const enc = encodeId(user.id);
+    navigator.clipboard.writeText(enc);
+    setCopySuccess(true);
+    setTimeout(() => setCopySuccess(false), 1500);
+  };
 
   const changeLang = (lang) => {
     i18n.changeLanguage(lang);
   };
 
-
-  // 사이드바에 들어갈 메뉴 리스트
-  const MENU = [
-    { label: t('app.recharge'),      to: '/recharge' },
-    { label: t('app.withdraw'),      to: '/withdraw' },
-    { label: t('app.customer_service'), to: '/support' },
-    { label: t('app.task_center'),   to: '/taskcenter' },
-    { label: t('app.wallets'),       to: '/funding' },
-    { label: t('app.faq'),           to: '/commonproblem' },
-    { label: t('app.security_center'), to: '/security' },
-    { label: t('app.tutorial'),      to: '/quant-tutorial' },
-    { label: t('app.language'),      to: '/settings/language' },
-    { label: t('app.company'),       to: '/company' },
-    { label: t('app.download'),      to: '/download' },
-  ];
-
-  if (!user && !["/register", "/test"].includes(window.location.pathname))  {
+  // 1) /register 경로면 오직 회원가입 페이지만
+  if (loc.pathname === '/register') {
+    return <RegisterPage />;
+  }
+  if (loc.pathname === '/settings/language') {
+    return <LanguageSettingsPage />;
+  }
+  // 2) /register 가 아니고, 로그인 안된 상태면 로그인 페이지만
+  if (!user ) {
     return <LoginPage />;
   }
-  
+/*
+  if (!user && !["//settings/language", "/test"].includes(window.location.pathname))  {
+    return <LoginPage />;
+  }
+  */
 
   return (
-<Router>
+ 
+    <div className="min-h-screen w-full max-w-[500px] mx-auto bg-cover bg-center flex flex-col"
+         style={{ backgroundImage: "url('/bg.jpg')" }}>
+      {/* 상단 바 */}
+      <div className="bg-black/60 text-white px-4 py-3 flex justify-between items-center shadow-md">
+        <button onClick={() => setSidebarOpen(true)}>
+          <UserIcon size={24} className="text-yellow-300" />
+        </button>
+        <span className="text-lg font-semibold">Quantvine</span>
+        <MailIcon size={24} className="text-yellow-300" />
+      </div>
 
-    <div
-    className="min-h-screen w-full max-w-[500px] mx-auto bg-cover bg-center flex flex-col"
-    style={{ backgroundImage: "url('/bg.jpg')" }}
-  >
-    {/* 상단 바 */}
-    <div className="bg-black/60 text-white px-4 py-3 flex justify-between items-center shadow-md">
-      {/* User 아이콘 클릭 */}
-      <button onClick={()=>setSidebarOpen(true)}>
-        <UserIcon size={24} className="text-yellow-300"/>
-      </button>
-      <span className="text-lg font-semibold">Quantvine</span>
-      <MailIcon size={24} className="text-yellow-300"/>
-    </div>
+      {/* 사이드바 */}
+      {sidebarOpen && (
+        <div className="fixed inset-0 z-50 flex">
+          {/* 백드롭 */}
+          <div
+            className="fixed inset-0 bg-black/50"
+            onClick={() => setSidebarOpen(false)}
+          />
 
-    {/* 사이드바 오버레이 */}
-    {sidebarOpen && (
-      <div className="fixed inset-0 z-50 flex">
-        {/* Dimmed 백드롭 클릭 시 닫기 */}
-        <div
-          className="fixed inset-0 bg-black/50"
-          onClick={()=>setSidebarOpen(false)}
-        />
-        {/* 실제 사이드바 */}
-        <div className="relative w-64 bg-[#1a1109] text-yellow-100 p-4 overflow-y-auto">
-          {/* 닫기 버튼 */}
-          <button
-            className="absolute top-4 right-4 text-yellow-300"
-            onClick={()=>setSidebarOpen(false)}
-          >
-            <CloseIcon size={20}/>
-          </button>
+          {/* 실제 사이드바 */}
+          <div className="relative w-64 bg-[#1a1109] text-yellow-100 p-4 overflow-y-auto">
+            {/* 닫기 버튼 */}
+            <button
+              className="absolute top-4 right-4 text-yellow-300"
+              onClick={() => setSidebarOpen(false)}
+            >
+              <CloseIcon size={20} />
+            </button>
 
-          {/* 프로필 헤더 */}
-          <div className="flex items-center space-x-3 mb-6 mt-4">
-            <div className="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center text-xl">
-              {user.name[0]?.toUpperCase()}
+            {/* 프로필 */}
+            <div className="flex items-center space-x-3 mb-6 mt-4">
+              <div className="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center text-xl">
+                {user.name[0]?.toUpperCase()}
+              </div>
+              <div className="flex-1">
+                <p className="font-semibold">{user.name}</p>
+                <div className="flex items-center space-x-1 text-xs text-yellow-300">
+                  <span>
+                    ID: {encodeId(user.id)}
+                  </span>
+                  <ClipboardCopy
+                    size={14}
+                    className="cursor-pointer hover:text-white"
+                    onClick={handleCopyId}
+                  />
+                </div>
+                {copySuccess && (
+                  <p className="text-xs text-green-400">복사되었습니다!</p>
+                )}
+              </div>
             </div>
-            <div>
-              <p className="font-semibold">{user.name}</p>
-              <p className="text-xs text-yellow-300">
-                ID:{' '}
-                {(() => {
-                  const ob = user.id ^ 0xA5A5A5A5;
-                  return ob.toString(16).toUpperCase().padStart(8,'0');
-                })()}
-              </p>
+            <hr className="border-yellow-700 mb-4"/>
+
+            {/* 1. 재충전 · 출금 · 고객서비스 */}
+            <div className="grid grid-cols-3 gap-2 mb-4">
+              <Link
+                to="/recharge"
+                className="flex flex-col items-center p-2 rounded hover:bg-yellow-800"
+                onClick={() => setSidebarOpen(false)}
+              >
+                <RefreshCw size={24} className="mb-1" />
+                <span className="text-xs">재충전</span>
+              </Link>
+              <Link
+                to="/withdraw"
+                className="flex flex-col items-center p-2 rounded hover:bg-yellow-800"
+                onClick={() => setSidebarOpen(false)}
+              >
+                <ArrowDownCircle size={24} className="mb-1" />
+                <span className="text-xs">출금하기</span>
+              </Link>
+              <Link
+                to="/support"
+                className="flex flex-col items-center p-2 rounded hover:bg-yellow-800"
+                onClick={() => setSidebarOpen(false)}
+              >
+                <Headphones size={24} className="mb-1" />
+                <span className="text-xs">고객 서비스</span>
+              </Link>
             </div>
-          </div>
 
-          <hr className="border-yellow-700 mb-4"/>
-
-          {/* 메뉴 리스트 */}
-          <nav className="space-y-2">
-            {MENU.map(item => (
+            {/* 기타 메뉴 */}
+            {[
+              { to: '/taskcenter',    label: t('app.task_center') },
+              { to: '/funding',  label: t('app.wallets') },
+              { to: '/commonproblem',      label: t('app.faq') },
+              { to: '/security', label: t('app.security_center') },
+              { to: '/quant-tutorial', label: t('app.tutorial') },
+              { to: '/settings/language', label: t('app.language') },
+              { to: '/company',  label: t('app.company') },
+              { to: '/download', label: t('app.download') },
+            ].map(item => (
               <Link
                 key={item.to}
                 to={item.to}
                 className="flex justify-between items-center p-2 rounded hover:bg-yellow-800"
-                onClick={()=>setSidebarOpen(false)}
+                onClick={() => setSidebarOpen(false)}
               >
                 <span>{item.label}</span>
                 <ChevronRight size={16}/>
               </Link>
             ))}
-          </nav>
 
-          <div className="mt-6">
-            <button
-              onClick={handleLogout}
-              className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600"
-            >
-              {t('app.logout')}
-            </button>
+            {/* 로그아웃 */}
+            <div className="mt-6">
+              <button
+                onClick={handleLogout}
+                className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600"
+              >
+                {t('app.logout')}
+                <UserChat userId={user.id} />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    )}
+      )}
 
-    {user && <UserChat userId={user.id} />}
-    <MainLanding user={user}/>
-    <BottomNav />
-  </div>
-</Router>
+      {/* 메인 콘텐츠 */}
+  
+      
+      <MainLanding user={user} />
+      <BottomNav />
+    </div>
+
 );
 }
          {/* <div className="flex gap-4 flex-wrap justify-center text-sm md:text-base">
