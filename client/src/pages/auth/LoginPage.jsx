@@ -37,20 +37,11 @@ export default function LoginPage() {
     }
 
     try {
-<<<<<<< HEAD
-      const res = await axios.post("http://54.85.128.211:4000/api/auth/login", {
-        ...form,
-        captchaToken: captcha,
-      }, { withCredentials: true });
-
-      sessionStorage.setItem("user", JSON.stringify(res.data.user));
-=======
-      await axios.post("/api/auth/login", {
+      await axios.post("http://54.85.128.211:4000/api/auth/login", {
         identifier,
         password,
         captchaToken: captcha
       });
->>>>>>> main
       setSuccess(t("login.success"));
       setTimeout(() => window.location.href = "/", 200); // 강제 리로드
     } catch (err) {
