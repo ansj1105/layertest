@@ -189,41 +189,85 @@ module.exports = router;
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const fetch = require("node-fetch");
 const { sendResetCode } = require('../utils/sendMail');
 const db = require("../db"); // 📌 DB 연결은 별도 모듈화
 
 // ✅ 로그인 API
+function isValidEmail(val) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+}
+function isValidPhone(val) {
+  return /^\+\d{1,3}\s?\d{4,14}$/.test(val);
+}
+// ▶ 로그인
+// POST /api/auth/login
+// body: { identifier, password, captchaToken }
 router.post("/login", async (req, res) => {
-  const { email, password } = req.body;
+  const { identifier, password, captchaToken } = req.body;
 
-  if (!email || !/\S+@\S+\.\S+/.test(email)) {
-    return res.status(400).json({ error: "login.email_error" });
+  // 1) 입력 검증
+  if (!identifier || !(isValidEmail(identifier) || isValidPhone(identifier))) {
+    return res.status(400).json({ error: "login.identifier_error" });
   }
   if (!password) {
     return res.status(400).json({ error: "login.password_error" });
   }
+  if (!captchaToken) {
+    return res.status(400).json({ error: "login.captcha_required" });
+  }
 
+  // 2) reCAPTCHA 검증
   try {
-    const [rows] = await db.query("SELECT * FROM users WHERE email = ?", [email]);
+    const secret = process.env.RECAPTCHA_SECRET_KEY;
+    const resp = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${captchaToken}`,
+      { method: "POST" }
+    );
+    const data = await resp.json();
+    if (!data.success) {
+      return res.status(403).json({ error: "login.captcha_failed" });
+    }
+  } catch (e) {
+    console.error("CAPTCHA 검증 오류:", e);
+    return res.status(500).json({ error: "login.captcha_error" });
+  }
+
+  // 3) 사용자 조회 (이메일 또는 전화번호)
+  try {
+    const [rows] = await db.query(
+      `SELECT * 
+       FROM users 
+       WHERE (email = ? OR phone = ?) 
+         AND is_active = 1 
+         AND is_blocked = 0`,
+      [identifier, identifier]
+    );
     if (rows.length === 0) {
       return res.status(401).json({ error: "login.fail" });
     }
-
     const user = rows[0];
-    const match = await bcrypt.compare(password, user.password);
 
-    if (!match) {
+    // 4) 비밀번호 비교
+    const ok = await bcrypt.compare(password, user.password);
+    if (!ok) {
       return res.status(401).json({ error: "login.fail" });
     }
 
+    // 5) 세션 설정
     req.session.user = {
       id: user.id,
       name: user.name,
       email: user.email,
-      isAdmin: user.is_admin || false,
+      phone: user.phone,
+      nationality: user.nationality,
+      isAdmin: false  // 여기서는 항상 일반 사용자
     };
 
-    return res.json({ message: "login.success", user: req.session.user });
+    return res.json({
+      message: "login.success",
+      user: req.session.user
+    });
   } catch (err) {
     console.error("로그인 에러:", err);
     return res.status(500).json({ error: "login.fail" });
