@@ -226,6 +226,21 @@
         "claimed": "완료",
         "claim_fail": "보상 수령 실패했습니다"
       }
+    },
+    "app": {
+      "confirm_logout": "정말 로그아웃 하시겠습니까?",
+      "recharge": "재충전",
+      "withdraw": "출금하기",
+      "customer_service": "고객 서비스",
+      "task_center": "테스크 센터",
+      "wallets": "금융 지갑",
+      "faq": "일반적인 문제",
+      "security_center": "보안 센터",
+      "tutorial": "양자화 튜토리얼",
+      "language": "언어 설정",
+      "company": "회사 소개",
+      "download": "앱 다운로드",
+      "logout": "로그아웃"
     }
     
     

@@ -57,7 +57,7 @@ export default function App() {
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import axios from 'axios';
-import { Trash2, ArrowLeft, Mail, MailOpen,ArrowLeftIcon,UserIcon,MailIcon,BellIcon } from 'lucide-react';
+import {UserIcon, MailIcon,  X as CloseIcon,  ChevronRight} from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import './i18n/index';
 import './index.css';
@@ -71,7 +71,7 @@ axios.defaults.withCredentials = true;
 export default function App() {
   const { t, i18n } = useTranslation();
   const [user, setUser] = useState(null);
-
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   useEffect(() => {
     axios.get("http://localhost:4000/api/auth/me")
       .then(res => setUser(res.data.user))
@@ -89,18 +89,114 @@ export default function App() {
   };
 
 
+  // 사이드바에 들어갈 메뉴 리스트
+  const MENU = [
+    { label: t('app.recharge'),      to: '/recharge' },
+    { label: t('app.withdraw'),      to: '/withdraw' },
+    { label: t('app.customer_service'), to: '/support' },
+    { label: t('app.task_center'),   to: '/taskcenter' },
+    { label: t('app.wallets'),       to: '/funding' },
+    { label: t('app.faq'),           to: '/commonproblem' },
+    { label: t('app.security_center'), to: '/security' },
+    { label: t('app.tutorial'),      to: '/quant-tutorial' },
+    { label: t('app.language'),      to: '/settings/language' },
+    { label: t('app.company'),       to: '/company' },
+    { label: t('app.download'),      to: '/download' },
+  ];
+
+  if (!user && !["/register", "/test"].includes(window.location.pathname))  {
+    return <LoginPage />;
+  }
+  
+
   return (
 <Router>
-  {(!user && !["/register", "/test"].includes(window.location.pathname)) ? (
-    <LoginPage />
-  ) : (
+
     <div
     className="min-h-screen w-full max-w-[500px] mx-auto bg-cover bg-center flex flex-col"
     style={{ backgroundImage: "url('/bg.jpg')" }}
   >
-        {/* ✅ 네비게이션 */}
-        
-        <div className="bg-black/60 text-white px-4 py-3 flex flex-col md:flex-row justify-between items-center gap-2 shadow-md">
+    {/* 상단 바 */}
+    <div className="bg-black/60 text-white px-4 py-3 flex justify-between items-center shadow-md">
+      {/* User 아이콘 클릭 */}
+      <button onClick={()=>setSidebarOpen(true)}>
+        <UserIcon size={24} className="text-yellow-300"/>
+      </button>
+      <span className="text-lg font-semibold">Quantvine</span>
+      <MailIcon size={24} className="text-yellow-300"/>
+    </div>
+
+    {/* 사이드바 오버레이 */}
+    {sidebarOpen && (
+      <div className="fixed inset-0 z-50 flex">
+        {/* Dimmed 백드롭 클릭 시 닫기 */}
+        <div
+          className="fixed inset-0 bg-black/50"
+          onClick={()=>setSidebarOpen(false)}
+        />
+        {/* 실제 사이드바 */}
+        <div className="relative w-64 bg-[#1a1109] text-yellow-100 p-4 overflow-y-auto">
+          {/* 닫기 버튼 */}
+          <button
+            className="absolute top-4 right-4 text-yellow-300"
+            onClick={()=>setSidebarOpen(false)}
+          >
+            <CloseIcon size={20}/>
+          </button>
+
+          {/* 프로필 헤더 */}
+          <div className="flex items-center space-x-3 mb-6 mt-4">
+            <div className="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center text-xl">
+              {user.name[0]?.toUpperCase()}
+            </div>
+            <div>
+              <p className="font-semibold">{user.name}</p>
+              <p className="text-xs text-yellow-300">
+                ID:{' '}
+                {(() => {
+                  const ob = user.id ^ 0xA5A5A5A5;
+                  return ob.toString(16).toUpperCase().padStart(8,'0');
+                })()}
+              </p>
+            </div>
+          </div>
+
+          <hr className="border-yellow-700 mb-4"/>
+
+          {/* 메뉴 리스트 */}
+          <nav className="space-y-2">
+            {MENU.map(item => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="flex justify-between items-center p-2 rounded hover:bg-yellow-800"
+                onClick={()=>setSidebarOpen(false)}
+              >
+                <span>{item.label}</span>
+                <ChevronRight size={16}/>
+              </Link>
+            ))}
+          </nav>
+
+          <div className="mt-6">
+            <button
+              onClick={handleLogout}
+              className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600"
+            >
+              {t('app.logout')}
+            </button>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {user && <UserChat userId={user.id} />}
+    <MainLanding user={user}/>
+    <BottomNav />
+  </div>
+</Router>
+);
+}
          {/* <div className="flex gap-4 flex-wrap justify-center text-sm md:text-base">
           <Link to="/">{t('Home')}</Link>
             <Link to="/wallet">{t('Wallet')}</Link>
@@ -118,36 +214,3 @@ export default function App() {
             <button onClick={() => changeLang('en')} className="hover:underline">EN</button>
       
           </div>*/}
-
-<div className="flex justify-between items-center w-full px-4">
-      {/* 좌측: 유저 로고 + 텍스트 */}
-      <div className="flex items-center space-x-2">
-        <UserIcon size={24} />
-              <button onClick={handleLogout} className="text-red-400 hover:underline">Logout</button>
-      </div>
-          <div>
-      {/* 중앙: 벨 알림 아이콘 */}
-      <span className="text-lg font-semibold">Quantvine</span></div>
-    <div>
-      {/* 우측: 메일 아이콘 */}
-      <MailIcon size={24} />
-      </div>
-    </div>
-
-
-        </div>
-        {user && <UserChat userId={user.id} />}
-        {/* ✅ 메인 랜딩 */}
-        <MainLanding user={user} />
-     {/* ✅ 채팅창 */}
-   {/* ✅ 하단 고정 네비게이션 */}
-    {/* ✅ 하단 고정 네비게이션 */}
-    <BottomNav />
-   
-      </div>
-      
-          )}
-    </Router>
-  );
-  console.log(user)
-}

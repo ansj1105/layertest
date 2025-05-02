@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OCPP 전체 라이프사이클 메시지 흐름</title>
+  <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({ startOnLoad: true });</script>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; }
+    h1, h2 { color: #333; }
+    .mermaid { margin: 20px 0; }
+    ol { margin-left: 20px; }
+  </style>
+</head>
+<body>
+  <h1>OCPP 전체 라이프사이클 메시지 흐름</h1>
+  <p>충전기 부팅에서 다시 대기 상태로 복귀하기까지의 주요 OCPP 요청/응답 시퀀스를 나타냅니다.</p>
+
+  <div class="mermaid">
+sequenceDiagram
+    participant CP as Charge Point
+    participant CS as Central System
+
+    Note over CP: 충전기 부팅
+    CP->>CS: BootNotification.req
+    CS-->>CP: BootNotification.conf
+
+    Note over CP: 충전 준비 완료
+    CP->>CS: StatusNotification(req)
+    CS-->>CP: StatusNotification(conf)
+
+    Note over CP: 사용자 인증 (회원)
+    CP->>CS: Authorize.req
+    CS-->>CP: Authorize.conf
+
+    Note over CP: 충전 시작
+    CP->>CS: StartTransaction.req
+    CS-->>CP: StartTransaction.conf
+
+    Note over CP: 충전 중
+    CP->>CS: Heartbeat.req
+    CS-->>CP: Heartbeat.conf
+    CP->>CS: MeterValues.req
+    CS-->>CP: MeterValues.conf
+
+    alt 스마트 충전 적용
+      CS->>CP: SetChargingProfile.req
+      CP-->>CS: SetChargingProfile.conf
+      CP->>CS: GetCompositeSchedule.req
+      CS-->>CP: GetCompositeSchedule.conf
+    end
+
+    Note over CP: 충전 일시 중지/재개
+    CP->>CS: StatusNotification(req)
+    CS-->>CP: StatusNotification(conf)
+
+    Note over CP: 충전 종료
+    CP->>CS: StopTransaction.req
+    CS-->>CP: StopTransaction.conf
+
+    Note over CP: 대기 상태 복귀
+    CP->>CS: StatusNotification(req)
+    CS-->>CP: StatusNotification(conf)
+
+    alt 원격 제어 시나리오
+      CS->>CP: RemoteStartTransaction.req
+      CP-->>CS: RemoteStartTransaction.conf
+      CS->>CP: RemoteStopTransaction.req
+      CP-->>CS: RemoteStopTransaction.conf
+    end
+
+    alt 예약(Reserve)
+      CS->>CP: ReserveNow.req
+      CP-->>CS: ReserveNow.conf
+      Note over CP: 예약 사용자 태깅 시
+      CP->>CS: Authorize.req
+      CS-->>CP: Authorize.conf
+    end
+  </div>
+
+  <h2>순서별 설명</h2>
+  <ol>
+    <li><strong>부팅:</strong> BootNotification → BootNotification.conf</li>
+    <li><strong>준비 완료:</strong> StatusNotification → StatusNotification.conf</li>
+    <li><strong>인증:</strong> Authorize.req → Authorize.conf</li>
+    <li><strong>충전 시작:</strong> StartTransaction.req → StartTransaction.conf</li>
+    <li><strong>충전 중 상태 업데이트:</strong> Heartbeat.req/Heartbeat.conf, MeterValues.req/MeterValues.conf</li>
+    <li><strong>스마트 충전:</strong> SetChargingProfile, GetCompositeSchedule 적용</li>
+    <li><strong>일시 중지/재개:</strong> StatusNotification을 통해 상태 변화 통지</li>
+    <li><strong>충전 종료:</strong> StopTransaction.req → StopTransaction.conf</li>
+    <li><strong>대기 복귀:</strong> StatusNotification → StatusNotification.conf</li>
+    <li><strong>원격 제어:</strong> RemoteStart/StopTransaction</li>
+    <li><strong>예약:</strong> ReserveNow → 예약 시 Authorize 흐름</li>
+  </ol>
+</body>
+</html>

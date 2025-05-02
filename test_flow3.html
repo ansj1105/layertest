@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>오토차징 데이터 플로우</title>
+  <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({ startOnLoad: true });</script>
+  <style>
+    body { font-family: sans-serif; padding: 20px; }
+    h1 { text-align: center; }
+    .mermaid { margin: 2rem auto; max-width: 800px; }
+    ol { margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <h1>오토차징 데이터 플로우</h1>
+  <div class="mermaid">
+flowchart LR
+  subgraph "전기차"
+    EV_Cable["충전 케이블 연결"]
+    EV_PLC["PLC 통신: StartGQ"]
+  end
+
+  subgraph "충전기 (Charge Point)"
+    CP_Status["StatusNotification: Preparing"]
+    CP_DT["DataTransfer(vendorId, messageId, data)"]
+    CP_RS["RemoteStartTransaction.req"]
+    CP_ST["StartTransaction.req"]
+    CP_MV["MeterValues.req"]
+    CP_SP["StopTransaction.req"]
+  end
+
+  subgraph "중앙 시스템"
+    CS_Status["StatusNotification.conf"]
+    CS_DT["DataTransfer.conf"]
+    CS_RS["RemoteStartTransaction.conf"]
+    CS_ST["StartTransaction.conf"]
+    CS_MV["MeterValues.conf"]
+    CS_SP["StopTransaction.conf"]
+  end
+
+  EV_Cable --> CP_Status
+  CP_Status --> CS_Status
+
+  EV_PLC --> CP_DT
+  CP_DT --> CS_DT
+
+  CS_DT --> CP_RS
+  CP_RS --> CS_RS
+
+  CS_RS --> CP_ST
+  CP_ST --> CS_ST
+
+  CS_ST --> CP_MV
+  CP_MV --> CS_MV
+
+  CS_MV --> CP_SP
+  CP_SP --> CS_SP
+
+  CS_SP --> CP_Status
+  CP_Status --> CS_Status
+  </div>
+
+  <h2>오토차징(Auto-Charging) 개요</h2>
+  <p>오토차징은 전기차를 충전기에 연결했을 때, 사용자의 개입 없이도 자동으로 충전 세션을 시작하고 관리하는 기능입니다. 주요 흐름은 다음과 같습니다:</p>
+  <ol>
+    <li><strong>케이블 연결 &amp; PLC 핸드쉐이크:</strong> EV와 충전기 간 통신 채널(PLC)을 통해 차량 정보를 교환(예: StartGQ).</li>
+    <li><strong>DataTransfer:</strong> EV 제어 장치에서 생성된 고유 인증 데이터(EVCCMAC 등)를 충전기가 <code>DataTransfer</code> 메시지로 중앙 시스템에 전송.</li>
+    <li><strong>원격 시작(RemoteStartTransaction):</strong> 중앙 시스템은 수신한 EVCCMAC을 기반으로 사용자를 식별 후 <code>RemoteStartTransaction.req</code>를 발행해 충전을 자동 시작.</li>
+    <li><strong>충전 세션 관리:</strong> 이후 일반 트랜잭션 흐름(<code>StartTransaction</code>, <code>MeterValues</code>, <code>StopTransaction</code>)이 자동으로 수행.</li>
+    <li><strong>상태 알림(StatusNotification):</strong> 각 단계(충전 준비, 충전 중, 종료 등)에서 상태을 지속적으로 중앙에 보고하여 전체 세션을 모니터링.</li>
+  </ol>
+  <p>오토차징을 통해 사용자는 별도의 인증 태그나 앱 조작 없이도 간편하게 충전을 시작할 수 있으며, 운영자는 신속한 세션 처리를 통해 사용자 경험을 개선하고 운영 효율을 높일 수 있습니다.</p>
+</body>
+</html>
