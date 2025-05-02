@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>OCPP 플로우차트</title>
+  <script src="https://unpkg.com/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+  <style>
+    .mermaid { max-width: 900px; margin: 2rem auto; }
+  </style>
+</head>
+<body>
+  <h1>OCPP 1.6 플로우차트</h1>
+  <div class="mermaid">
+flowchart TD
+  %% 1) 설치 및 초기화
+  subgraph "설치 및 초기화"
+    A1["1. 충전기 설치\n(BootNotification)"] --> A2["1.1 GetConfiguration"]
+    A2 --> A3["1.2 ChangeConfiguration"]
+    A3 --> A4["1.3 Heartbeat"]
+    A4 --> A5["1.4 DataTransfer\ndisplayInfo"]
+  end
+
+  %% 2) 충전 흐름
+  subgraph "충전 흐름"
+    A5 --> B{인증 방식 분기}
+    B -->|회원| C1["2.1 Authorize"]
+    C1 --> C2["2.2 unitprice"]
+    C2 --> C3["2.3 StartTransaction"]
+    B -->|비회원 터미널| D1["3.1 Authorize"]
+    D1 --> D2["3.2 cellNumsend"]
+    D2 --> D3["3.3 creditcardApproval"]
+    D3 --> C3
+    B -->|비회원 QR| E1["4.1 Authorize"]
+    E1 --> C3
+    C3 --> C4["2.4 MeterValues"]
+    C4 --> C5["2.6 chargingTarget"]
+    C5 --> C6["2.5 StopTransaction"]
+  end
+
+  %% 3) 사후 처리 및 제어
+  subgraph "사후 처리 및 제어"
+    C6 --> F1["5.1 StatusNotification"]
+    F1 --> F2{원격 제어요청?}
+    F2 -->|Yes| G1["6.1 ChangeAvailability\n6.2 Reset\n6.3 TriggerMessage\n6.4 bootSetting"]
+    G1 --> H1["7.1 RemoteStartTransaction\n7.2 RemoteStopTransaction"]
+    H1 --> I1["8.1 UpdateFirmware\n8.2 FirmwareStatusNotification"]
+    F2 -->|No| I1
+  end
+  </div>
+</body>
+</html>

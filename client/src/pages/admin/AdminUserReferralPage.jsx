@@ -26,7 +26,9 @@ export default function UserReferralPage({ onLogout, userId }) {
     try {
       const { data } = await axios.get('http://54.85.128.211:4000/api/referral/users/all/my-teams', { withCredentials: true });
       setTeams(data.data);
+      console.log(data);
     } catch (err) {
+     
       console.error('전체 팀 조회 실패:', err);
       setTeams([]);
     }

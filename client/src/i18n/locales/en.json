@@ -217,6 +217,21 @@
       "claimed": "Claimed",
       "claim_fail": "Failed to claim reward"
     }
+  },
+  "app": {
+    "confirm_logout": "Are you sure you want to log out?",
+    "recharge": "Recharge",
+    "withdraw": "Withdraw",
+    "customer_service": "Customer Service",
+    "task_center": "Task Center",
+    "wallets": "Finance Wallet",
+    "faq": "General Issues",
+    "security_center": "Security Center",
+    "tutorial": "Quant Tutorial",
+    "language": "Language Settings",
+    "company": "About Company",
+    "download": "App Download",
+    "logout": "Logout"
   }
   
   
