@@ -33,8 +33,8 @@ export default function MyTeamPage() {
     async function fetchAll() {
       try {
         const [teamRes, statsRes] = await Promise.all([
-          axios.get("http://54.85.128.211:4000/api/referral/my-team",    { withCredentials: true }),
-          axios.get("http://54.85.128.211:4000/api/referral/stats",      { withCredentials: true }),
+          axios.get('http://54.85.128.211:4000/api/referral/my-team',    { withCredentials: true }),
+          axios.get('http://54.85.128.211:4000/api/referral/stats',      { withCredentials: true }),
           
         ]);
         console.log(teamRes);
