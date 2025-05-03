@@ -136,27 +136,44 @@ app.get('/api/ping', (req, res) => {
 
   
 // 1시간마다 VIP 레벨 자동 갱신
+
 cron.schedule('0 * * * *', async () => {
   console.log("⏰ [CRON] VIP 레벨 갱신 시작");
 
   try {
-    const [users] = await db.query('SELECT id, usdt_balance FROM users');
+    // 모든 유저 조회
+    const [users] = await db.query('SELECT id FROM users');
 
     for (const user of users) {
-      // A, B, C 추천인 수 집계
+      const userId = user.id;
+
+      // 하위 추천인 수 계산 (A: level=1, B: level=2, C: level=3)
       const [[counts]] = await db.query(`
         SELECT
           SUM(CASE WHEN level = 1 THEN 1 ELSE 0 END) AS A,
           SUM(CASE WHEN level = 2 THEN 1 ELSE 0 END) AS B,
           SUM(CASE WHEN level = 3 THEN 1 ELSE 0 END) AS C
         FROM referral_relations
-        WHERE referrer_id = ?
-      `, [user.id]);
+        WHERE referrer_id = ? AND status = 'active'
+      `, [userId]);
 
-      const newLevel = await getNewVipLevel(user.usdt_balance, counts, db);
+      const A = counts.A || 0;
+      const B = counts.B || 0;
+      const C = counts.C || 0;
 
-      // 현재 등급과 다를 경우 업데이트
-      await db.query('UPDATE users SET vip_level = ? WHERE id = ?', [newLevel, user.id]);
+      // 조건을 만족하는 최고 등급 조회
+      const [levels] = await db.query(`
+        SELECT level
+        FROM vip_levels
+        WHERE min_A <= ? AND min_B <= ? AND min_C <= ?
+        ORDER BY level DESC
+        LIMIT 1
+      `, [A, B, C]);
+
+      const newLevel = levels.length ? levels[0].level : 1;
+
+      // VIP 레벨 업데이트
+      await db.query(`UPDATE users SET vip_level = ? WHERE id = ?`, [newLevel, userId]);
     }
 
     console.log("✅ [CRON] VIP 레벨 갱신 완료");
