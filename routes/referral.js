@@ -365,105 +365,13 @@ router.get('/users/all/my-teams', async (req, res) => {
 });
 // ✅ 전체 유저 목록 기반으로 팀 구성 조회 + 계층 분리
 
-// 📁 routes/referral.js (또는 wallet.js) 의 /my-team 핸들러
-router.get('/my-team', async (req, res) => {
-  const userId = req.session.user?.id;
-  if (!userId) return res.status(401).json({ success:false, error:'Unauthorized' });
-
-  const enrichUser = async (u) => {
-    const [[{ team_count }]] = await db.query(
-      `SELECT COUNT(*) AS team_count 
-       FROM referral_relations 
-       WHERE referrer_id=? AND status='active'`, [u.id]);
-    const [[{ total_profit }]] = await db.query(
-      `SELECT IFNULL(SUM(amount),0) AS total_profit
-       FROM referral_rewards 
-       WHERE user_id=?`, [u.id]);
-    return {
-      id: u.id,
-      name: u.name,
-      email: u.email,
-      vip_level: u.vip_level,
-      created_at: u.created_at,
-      team_count: Number(team_count) || 0,
-      total_profit: parseFloat(total_profit) || 0,    // ← 문자열 → 숫자
-      last_active: u.created_at
-    };
-  };
-
-  // S: 로그인 유저 자신
-  const [[me]] = await db.query(
-    `SELECT id,name,email,vip_level,created_at FROM users WHERE id=?`, [userId]
-  );
-  const S = [await enrichUser(me)];
-
-  // A단계: level = 2
-  const [aRels] = await db.query(
-    `SELECT referred_id FROM referral_relations
-     WHERE referrer_id=? AND level=2 AND status='active'`, [userId]
-  );
-  const A_ids = aRels.map(r=>r.referred_id);
-  const A = A_ids.length
-    ? await Promise.all(
-        (await db.query(
-            `SELECT id,name,email,vip_level,created_at FROM users
-             WHERE id IN (?)`, [A_ids]
-         ))[0].map(enrichUser)
-      )
-    : [];
-
-  // B단계: level = 3
-  const [bRels] = A_ids.length
-    ? await db.query(
-        `SELECT referred_id FROM referral_relations
-         WHERE referrer_id IN (?) AND level=3 AND status='active'`, [A_ids]
-      )
-    : [[]];
-  const B_ids = (bRels[0]||[]).map(r=>r.referred_id);
-  const B = B_ids.length
-    ? await Promise.all(
-        (await db.query(
-           `SELECT id,name,email,vip_level,created_at FROM users
-            WHERE id IN (?)`, [B_ids]
-         ))[0].map(enrichUser)
-      )
-    : [];
-
-  // C단계: level = 4
-  const [cRels] = B_ids.length
-    ? await db.query(
-        `SELECT referred_id FROM referral_relations
-         WHERE referrer_id IN (?) AND level=4 AND status='active'`, [B_ids]
-      )
-    : [[]];
-  const C_ids = (cRels[0]||[]).map(r=>r.referred_id);
-  const C = C_ids.length
-    ? await Promise.all(
-        (await db.query(
-           `SELECT id,name,email,vip_level,created_at FROM users
-            WHERE id IN (?)`, [C_ids]
-         ))[0].map(enrichUser)
-      )
-    : [];
-
-  res.json({ success: true, data:{ S, A, B, C } });
-});
-router.get('/admin/my-team', async (req, res) => {
+// ✅ 관리자용 팀 구조 전체 조회
+router.get("/admin/my-team", async (req, res) => {
   try {
-    // 사용자 보강 함수
-    const enrichUser = async (u) => {
-      const [[{ team_count }]] = await db.query(
-        `SELECT COUNT(*) AS team_count
-         FROM referral_relations
-         WHERE referrer_id = ? AND status='active'`,
-        [u.id]
-      );
-      const [[{ total_profit }]] = await db.query(
-        `SELECT IFNULL(SUM(amount),0) AS total_profit
-         FROM referral_rewards
-         WHERE user_id = ?`,
-        [u.id]
-      );
+    const enrichUser = async (id) => {
+      const [[u]] = await db.query(`SELECT id,name,email,vip_level,created_at FROM users WHERE id = ?`, [id]);
+      const [[{ team_count }]] = await db.query(`SELECT COUNT(*) AS team_count FROM referral_relations WHERE referrer_id = ? AND status='active'`, [id]);
+      const [[{ total_profit }]] = await db.query(`SELECT IFNULL(SUM(amount),0) AS total_profit FROM referral_rewards WHERE user_id = ?`, [id]);
       return {
         id: u.id,
         name: u.name,
@@ -476,85 +384,138 @@ router.get('/admin/my-team', async (req, res) => {
       };
     };
 
-    // S 단계: referral_level = 1
-    const [sUsers] = await db.query(`
-      SELECT id,name,email,vip_level,created_at
-      FROM users
-      WHERE referral_level = 1
-    `);
-    const S = await Promise.all(sUsers.map(enrichUser));
+    const [userIds] = await db.query(`SELECT id FROM users`);
 
-    // A 단계: level = 2
-    const [aRels] = await db.query(`
-      SELECT referred_id
-      FROM referral_relations
-      WHERE level = 2 AND status='active'
-    `);
-    const A_ids = aRels.map(r => r.referred_id);
-    const A = A_ids.length
-      ? await Promise.all(
-          (await db.query(
-            `SELECT id,name,email,vip_level,created_at
-             FROM users
-             WHERE id IN (?)`, [A_ids]
-          ))[0].map(enrichUser)
-        )
-      : [];
+    const teams = await Promise.all(userIds.map(async ({ id }) => {
+      const S = await enrichUser(id);
 
-    // B 단계: level = 3
-    const [bRels] = await db.query(`
-      SELECT referred_id
-      FROM referral_relations
-      WHERE level = 3 AND status='active'
-    `);
-    const B_ids = bRels.map(r => r.referred_id);
-    const B = B_ids.length
-      ? await Promise.all(
-          (await db.query(
-            `SELECT id,name,email,vip_level,created_at
-             FROM users
-             WHERE id IN (?)`, [B_ids]
-          ))[0].map(enrichUser)
-        )
-      : [];
+      const [relations] = await db.query(
+        `SELECT referred_id, level FROM referral_relations
+         WHERE referrer_id = ? AND status = 'active'`,
+        [id]
+      );
 
-    // C 단계: level = 4
-    const [cRels] = await db.query(`
-      SELECT referred_id
-      FROM referral_relations
-      WHERE level = 4 AND status='active'
-    `);
-    const C_ids = cRels.map(r => r.referred_id);
-    const C = C_ids.length
-      ? await Promise.all(
-          (await db.query(
-            `SELECT id,name,email,vip_level,created_at
-             FROM users
-             WHERE id IN (?)`, [C_ids]
-          ))[0].map(enrichUser)
-        )
-      : [];
+      const A_ids = relations.filter(r => r.level === 1).map(r => r.referred_id);
+      const B_ids = relations.filter(r => r.level === 2).map(r => r.referred_id);
+      const C_ids = relations.filter(r => r.level === 3).map(r => r.referred_id);
 
-    res.json({ success: true, data: { S, A, B, C } });
+      const A = A_ids.length ? await Promise.all(A_ids.map(enrichUser)) : [];
+      const B = B_ids.length ? await Promise.all(B_ids.map(enrichUser)) : [];
+      const C = C_ids.length ? await Promise.all(C_ids.map(enrichUser)) : [];
+
+      return { S, A, B, C };
+    }));
+
+    res.json({ success: true, data: teams });
   } catch (err) {
     console.error('❌ 관리자용 팀 조회 오류:', err);
     res.status(500).json({ success: false, error: 'Admin team fetch failed' });
   }
 });
 
-  // 📁 routes/referral.js
+// ✅ 추천 팀 구조 조회 API
+router.get('/my-team', async (req, res) => {
+  const userId = req.session.user?.id;
+  if (!userId) return res.status(401).json({ success: false, error: 'Unauthorized' });
+
+  const enrichUser = async (id) => {
+    const [[u]] = await db.query(`SELECT id,name,email,vip_level,created_at FROM users WHERE id=?`, [id]);
+    const [[{ team_count }]] = await db.query(`SELECT COUNT(*) AS team_count FROM referral_relations WHERE referrer_id=? AND status='active'`, [id]);
+    const [[{ total_profit }]] = await db.query(`SELECT IFNULL(SUM(amount),0) AS total_profit FROM referral_rewards WHERE user_id=?`, [id]);
+    return {
+      id: u.id,
+      name: u.name,
+      email: u.email,
+      vip_level: u.vip_level,
+      created_at: u.created_at,
+      team_count: Number(team_count),
+      total_profit: parseFloat(total_profit),
+      last_active: u.created_at,
+    };
+  };
+
+  try {
+    const S = await enrichUser(userId);
+
+    // 전체 하위 관계에서 level에 따라 분기
+    const [relations] = await db.query(`
+      SELECT referred_id, level FROM referral_relations
+      WHERE referrer_id = ? AND status = 'active'
+    `, [userId]);
+
+    const A_ids = relations.filter(r => r.level === 1).map(r => r.referred_id);
+    const B_ids = relations.filter(r => r.level === 2).map(r => r.referred_id);
+    const C_ids = relations.filter(r => r.level === 3).map(r => r.referred_id);
+
+    const A = A_ids.length ? await Promise.all(A_ids.map(id => enrichUser(id))) : [];
+    const B = B_ids.length ? await Promise.all(B_ids.map(id => enrichUser(id))) : [];
+    const C = C_ids.length ? await Promise.all(C_ids.map(id => enrichUser(id))) : [];
+
+    res.json({ success: true, data: { S, A, B, C } });
+  } catch (err) {
+    console.error('❌ 팀 조회 오류:', err);
+    res.status(500).json({ success: false, error: '내 팀 조회 실패' });
+  }
+});
+
+// ✅ 내 통계 API
 router.get('/stats', async (req, res) => {
   const userId = req.session.user?.id;
   if (!userId) return res.status(401).json({ error: 'Unauthorized' });
+
+  try {
     const [[stats]] = await db.query(`
       SELECT
-        (SELECT COUNT(*) FROM referral_relations WHERE referrer_id = ?) AS totalMembers,
-        (SELECT COUNT(*) FROM referral_relations WHERE referrer_id = ? AND DATE(created_at) = CURDATE()) AS todayJoined,
+        (SELECT COUNT(*) FROM referral_relations WHERE referrer_id = ? AND status = 'active') AS totalMembers,
+        (SELECT COUNT(*) FROM referral_relations WHERE referrer_id = ? AND DATE(created_at) = CURDATE() AND status = 'active') AS todayJoined,
         (SELECT IFNULL(SUM(amount), 0) FROM referral_rewards WHERE user_id = ?) AS totalEarnings,
         (SELECT IFNULL(SUM(amount), 0) FROM referral_rewards WHERE user_id = ? AND DATE(created_at) = CURDATE()) AS todayEarnings
     `, [userId, userId, userId, userId]);
-  
+
     res.json(stats);
-  });
+  } catch (err) {
+    console.error("❌ 통계 조회 실패:", err);
+    res.status(500).json({ error: "통계 조회 실패" });
+  }
+});
   
+
+// ✅ 날짜별 수익 통계 조회 API
+router.get("/referral/contributions", async (req, res) => {
+  const userId = req.session.user?.id;
+  if (!userId) return res.status(401).json({ error: "Unauthorized" });
+
+  const { period } = req.query;
+  let interval = "DAY";
+  if (period === "weekly") interval = "WEEK";
+  if (period === "monthly") interval = "MONTH";
+
+  try {
+    const [list] = await db.query(
+      `SELECT
+         DATE(created_at) AS date,
+         SUM(amount) AS total
+       FROM referral_rewards
+       WHERE user_id = ?
+       GROUP BY DATE(created_at)
+       ORDER BY DATE(created_at) DESC
+       LIMIT 30`,
+      [userId]
+    );
+
+    const [[stats]] = await db.query(
+      `SELECT
+         COUNT(DISTINCT user_id) AS unique_users,
+         IFNULL(SUM(amount), 0) AS total_earnings
+       FROM referral_rewards
+       WHERE user_id = ?`,
+      [userId]
+    );
+
+    res.json({ stats, list });
+  } catch (err) {
+    console.error("❌ 기여 통계 조회 실패:", err);
+    res.status(500).json({ error: "기여 통계 조회 실패" });
+  }
+});
 module.exports = router;
