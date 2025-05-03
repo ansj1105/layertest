@@ -96,17 +96,12 @@ router.post("/register", async (req, res) => {
 
     // 5) 추천인 코드 처리
     let referrerId = null;
-    let referralLevel = 1;
     if (referral) {
-      const [rows] = await db.query(
-        `SELECT id, referral_level FROM users WHERE referral_code = ?`,
-        [referral]
-      );
-      if (rows.length === 0) {
+      const [refRows] = await db.query(`SELECT id FROM users WHERE referral_code = ?`, [referral]);
+      if (refRows.length === 0) {
         return res.status(400).json({ error: "유효하지 않은 추천 코드입니다." });
       }
-      referrerId = rows[0].id;
-      referralLevel = Math.min(rows[0].referral_level + 1, 3);
+      referrerId = refRows[0].id;
     }
 
     // 6) 비밀번호 해싱
@@ -117,31 +112,29 @@ router.post("/register", async (req, res) => {
 
     // 8) 사용자 생성
     const [result] = await db.query(
-      `INSERT INTO users
-         (name, email, phone, password, referral_code, referrer_id, referral_level, nationality, created_at)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW())`,
-      [
-        name,
-        email || null,
-        phone || null,
-        hashed,
-        referralCode,
-        referrerId,
-        referralLevel,
-        nationality
-      ]
+      `INSERT INTO users (name, email, phone, password, referral_code, referrer_id, nationality, created_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, NOW())`,
+      [name, email || null, phone || null, hashed, referralCode, referrerId, nationality]
     );
     const newUserId = result.insertId;
 
     // 9) 추천 관계 기록 (선택)
-    if (referrerId) {
-      await db.query(
-        `INSERT INTO referral_relations
-           (referrer_id, referred_id, level)
-         VALUES (?, ?, ?)`,
-        [referrerId, newUserId, referralLevel]
-      );
+   // ✅ 추천 관계 삽입 (최대 3단계까지 자동 계층 기록)
+   if (referrerId) {
+    await db.query(`INSERT INTO referral_relations (referrer_id, referred_id, level, status, created_at)
+                    VALUES (?, ?, ?, 'active', NOW())`, [referrerId, newUserId, 1]);
+
+    const [parents] = await db.query(
+      `SELECT referrer_id, level FROM referral_relations WHERE referred_id = ? AND level <= 2`,
+      [referrerId]
+    );
+
+    for (const parent of parents) {
+      await db.query(`INSERT INTO referral_relations (referrer_id, referred_id, level, status, created_at)
+                      VALUES (?, ?, ?, 'active', NOW())`,
+                      [parent.referrer_id, newUserId, parent.level + 1]);
     }
+  }
 
     // 10) 지갑 생성
     const tron = require("../models/tron").getTronWeb();
