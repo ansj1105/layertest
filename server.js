@@ -265,4 +265,3 @@ db.query('SELECT DATABASE() AS db')
 .catch((err) => {
   console.error('❌ DB 연결 실패:', err.message);
 });
-

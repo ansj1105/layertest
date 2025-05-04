@@ -44,15 +44,7 @@ export default function FundingPage() {
 
   // 프로젝트 목록 API
   const fetchProjects = async () => {
-<<<<<<< HEAD
-    const res = await axios.get(
-      "http://54.85.128.211:4000/api/wallet/projects",
-      { withCredentials: true }
-    );
-    // 응답이 [ { id, name, minAmount, maxAmount, dailyRate, cycle, startDate, endDate, … }, … ]
-=======
-    const res = await axios.get("/api/wallet/projects", { withCredentials: true });
->>>>>>> main
+    const res = await axios.get("http://54.85.128.211:4000/api/wallet/projects", { withCredentials: true });
     return res.data;
   };
 
