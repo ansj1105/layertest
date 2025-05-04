@@ -254,6 +254,7 @@ cron.schedule('0 * * * *', async () => {
   } catch (err) {
     console.error("❌ [CRON ERROR] VIP 갱신 실패:", err.message);
   }
+});
   // ✅ 서버 실행
   const PORT = process.env.PORT || 4000;
   app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
@@ -265,3 +266,4 @@ db.query('SELECT DATABASE() AS db')
 .catch((err) => {
   console.error('❌ DB 연결 실패:', err.message);
 });
+
