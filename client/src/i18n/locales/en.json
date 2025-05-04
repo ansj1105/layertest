@@ -31,6 +31,7 @@
   "terms": "Terms of Service",
   "privacy": "Privacy Policy"
 },
+
 "login": {
   "title": "User Login",
   "email": "Email or Username",
@@ -48,6 +49,131 @@
   "identifier": "ID",
   "forgot" : "Find Password"
   
+},  "walletLogs": {
+  "back": "Back",
+  "title": "Transfer Logs",
+  "tabs": {
+    "transfer": "Transfers",
+    "walletEarnings": "Wallet Earnings",
+    "financeIncome": "Finance Income"
+  },
+  "columns": {
+    "type": "Type",
+    "amount": "Amount",
+    "fee": "Fee",
+    "net": "Net",
+    "date": "Date"
+  },
+  "types": {
+    "fund_to_quant": "Fund → Quant",
+    "quant_to_fund": "Quant → Fund"
+  },
+  "loading": "Loading...",
+  "noRecords": "No records found."
+},
+"common": {
+  "faqTitle": "Common Questions",
+  "problem1": {
+    "question": "What is Funding Product and how do I earn?",
+    "answer": "The financial management products are tools and solutions developed by the company to help users receive rewards quickly.\nBy staking digital assets on a blockchain network, users can earn rewards based on the POS (Proof of Stake) mechanism.\nIn this mechanism, users delegate their digital assets to a node, which then gains the right to perform actions like block creation and transaction packaging on the blockchain and receives rewards.\nUsers share the rewards obtained by the node in proportion to the number of staked positions."
+  },
+  "problem2": {
+    "question": "How is expected yield calculated?",
+    "answer": "Expected income is a projected daily estimate based on your subscription quantity and the product's annualized reference calculation, provided for informational purposes only."
+
+  },
+  "problem3": {
+    "question": "When does interest start accruing?",
+    "answer": "Interest accrual begins at 00:00 on T+1."
+  },
+  "problem4": {
+    "question": "When are payouts made?",
+    "answer": "Interest begins to accrue from T+1, and the earnings are distributed together with the principal after maturity."
+  },
+  "problem5": {
+    "question": "What happens after the product matures?",
+    "answer": "Fixed-term products are automatically redeemed upon maturity."
+  }
+},
+"funding": {
+  "detail2": {
+    "loading": "Loading...",
+    "loadError": "Failed to load project info:",
+    "invalidAmount": "Please enter a valid amount.",
+    "amountRange": "Please enter an amount between {{min}} and {{max}}.",
+    "insufficientBalance": "You do not have enough balance.",
+    "exceedRemaining": "Project remaining capacity {{remaining}} USDT exceeded.",
+    "subscribe": "Subscribe",
+    "subscribeSuccess": "Subscription successful.",
+    "subscribeError": "Error during subscription.",
+    "descriptionLabel": "Description:",
+    "cycleLabel": "Cycle: {{cycle}} days",
+    "dailyRateLabel": "Daily rate: {{rate}}%",
+    "minMaxLabel": "Min: {{min}} USDT, Max: {{max}} USDT",
+    "targetLabel": "Target: {{target}} USDT",
+    "currentLabel": "Current invested: {{current}} USDT",
+    "availableLabel": "Available balance: {{balance}} USDT",
+    "amountPlaceholder": "Enter amount",
+    "investorsTitle": "Investors",
+    "noInvestors": "No investors yet."
+  },
+  "transfer_fail": "transfer fail",
+  "deposit_modal": {
+    "success" : "success",
+  "title": "Transfer In",
+  "net_amount":"after amount : {{net}}(After balance : {{remain}})",
+  "amount_placeholder": "Enter amount",
+  "fund_wallet": "Investment Wallet: {{balance}}",
+  "max_label": "Transfer All",
+  "real_account": "Main Account: {{balance}}",
+  "balance": "Balance: {{balance}}",
+  "fee": "Processing Fee: {{fee}} Now Fee: {{rate}}%)",
+  "submit": "Submit"
+},
+"withdraw_modal": {
+  "title": "Transfer Out",
+  "success": "Success",
+  "net_amount":"after amount : {{net}}(After balance : {{remain}})",
+  "amount_placeholder": "Enter amount",
+  "quant_wallet": "Quant Wallet: {{balance}}",
+  "max_label": "Withdraw All",
+  "real_account": "Main Account: {{balance}}",
+  "fee": "Processing Fee: {{fee}} Now Fee: {{rate}}%)",
+  "submit": "Submit"
+},
+"info": {
+  "title": "What is a Financial Product?",
+  "definition": "Financial products allow users to lock in a certain amount over a set period to earn rewards. They include various packages managed by Quantvine, each with its own rate and duration.",
+  "settlement": "Settlement occurs at 00:00 UTC each day, and income from 'T‑day' is available starting from T+1 day.",
+  "tradingTitle": "Transaction Explanation",
+  "trade1": "1. **Buying**: Subscribe to a product to lock funds for the specified duration.",
+  "trade2": "2. **Earnings**: Earn daily rewards at the advertised rate, credited every 24 hours.",
+  "trade3": "3. **Redemption**: After the holding period, principal and rewards are returned to your finance wallet.",
+  "trade4": "4. **Early exit**: Currently not supported. Future versions may allow early redemption with a fee."
+},
+"header": "Funding Management",
+"loading": "Loading...",
+"wallet_balance": "Finance Wallet Balance",
+"detail": "Detail",
+"deposit_request": "Fund Request",
+"withdraw_request": "Quant Request",
+"recharge": "Recharge",
+"all_transactions": "All Transactions",
+"today_income": "Today's Funding Income",
+"total_income": "Total Funding Income",
+"no_projects": "No active funding projects.",
+"project": {
+  "description" : "description : {{description}}",
+  "available": "Available: {{min}} ~ {{max}} USDT",
+  "daily_rate": "Daily Rate: {{rate}}%",
+  "duration": "Duration: {{cycle}} days (until {{end}})",
+  "apply": "Apply Now"
+},
+
+"charge_modal": {
+  "title": "How to Recharge",
+  "usdt_alert": "Please send USDT to the designated wallet address."
+}
 }
 ,
   "quantvine": {

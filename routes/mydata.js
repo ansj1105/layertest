@@ -51,9 +51,9 @@ router.get('/summary', async (req, res) => {
       // 5) 레퍼럴 하위 가입자 수
       const [[refRows]] = await db.query(`
         SELECT
-          SUM(level=2 AND status='active') AS level2,
-          SUM(level=3 AND status='active') AS level3,
-          SUM(level=4 AND status='active') AS level4
+          SUM(level=1 AND status='active') AS level2,
+          SUM(level=2 AND status='active') AS level3,
+          SUM(level=3 AND status='active') AS level4
         FROM referral_relations
         WHERE referrer_id = ?
       `, [userId]);
@@ -75,7 +75,7 @@ router.get('/summary', async (req, res) => {
               today: Number(investRows.today),
               yesterday: Number(investRows.yesterday),
             },
-            trade: {
+            trade: {  
               total: Number(tradeRows.total),
               today: Number(tradeRows.today),
               yesterday: Number(tradeRows.yesterday),

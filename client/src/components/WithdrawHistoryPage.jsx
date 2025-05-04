@@ -1,12 +1,12 @@
 // 📁 components/WithdrawHistoryPage.jsx
 import { useLocation, useNavigate } from "react-router-dom";
-
+import { ArrowLeftIcon } from "lucide-react"; // 아이콘 라이브러리 (shadcn-ui)
 const tabs = [
   { label: "모두", path: "/withdraw/history" },
   { label: "검토 중", path: "/withdraw/process" },
   { label: "성공", path: "/withdraw/success" },
   { label: "실패하다", path: "/withdraw/failure" },
-];
+]; 
 
 export default function WithdrawHistoryPage() {
   const navigate = useNavigate();
@@ -19,15 +19,12 @@ export default function WithdrawHistoryPage() {
       {/* 상단 헤더 */}
       <div className="flex items-center justify-between mb-4" >
       <button
-onClick={() => {
-  console.log("뒤로가기 클릭됨");
-  navigate("/withdraw");
-}}
-  type="button"
-  className="text-white text-xl cursor-pointer"
->
-  ←
-</button>
+        onClick={() => window.history.back()}
+        className="flex items-center space-x-1 mb-4 text-yellow-200 hover:text-yellow-100"
+      >
+        <ArrowLeftIcon size={20} />
+        <span>뒤로</span>
+      </button>
         <h2 className="text-xl font-bold text-center flex-grow -ml-6">출금 내역</h2>
         <span className="w-6" />
       </div>
