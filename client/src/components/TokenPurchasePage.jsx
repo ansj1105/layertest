@@ -1,84 +1,144 @@
-// 📁 components/TokenPurchasePage.jsx
+// 📁 src/components/TokenPurchasePage.jsx
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { ArrowLeftIcon } from "lucide-react"; // 아이콘 라이브러리 (shadcn-ui)
+import { useNavigate } from "react-router-dom";
 export default function TokenPurchasePage() {
+  const navigate = useNavigate();
   const [sales, setSales] = useState([]);
   const [wallet, setWallet] = useState(null);
+  const [financeSummary, setFinanceSummary] = useState({
+    fundBalance: 0,
+    quantBalance: 0,
+    depositFee: 0,
+    withdrawFee: 0,
+  });
   const [showDetails, setShowDetails] = useState(false);
   const [purchaseLogs, setPurchaseLogs] = useState([]);
   const [transactionLogs, setTransactionLogs] = useState([]);
-  const [showTransferModal, setShowTransferModal] = useState(false);
-  const [showChargeModal, setShowChargeModal] = useState(false);
-  const [selectedWallet, setSelectedWallet] = useState("정량지갑");
-  const [inputAmount, setInputAmount] = useState("");
+  const [showQuantToFundModal, setShowQuantToFundModal] = useState(false);
+  const [showFundToQuantModal, setShowFundToQuantModal] = useState(false);
+  const [transferAmount, setTransferAmount] = useState("");
+  const [error, setError] = useState("");
 
-  useEffect(() => {
-    fetchSales();
-    fetchWallet();
-  }, []);
-
+  // 1) 토큰 세일 목록
   const fetchSales = async () => {
     const res = await axios.get("/api/token/active-token-sales");
     setSales(res.data);
   };
 
+  // 2) QVC 지갑
   const fetchWallet = async () => {
     const res = await axios.get("/api/token/users/1/token-wallet");
     setWallet(res.data);
   };
 
+  // 3) Quant↔Fund 요약
+  const fetchFinanceSummary = async () => {
+    const res = await axios.get("/api/wallet/finance-summary", { withCredentials: true });
+    const d = res.data.data;
+    setFinanceSummary({
+      fundBalance:  Number(d.fundBalance),
+      quantBalance: Number(d.quantBalance),
+      depositFee:   parseFloat(d.depositFee),
+      withdrawFee:  parseFloat(d.withdrawFee),
+    });
+    console.log("✅ [finance-summary] state updated:", {
+      fundBalance:   Number(d.fundBalance),
+      quantBalance:  Number(d.quantBalance),
+      depositFee:    parseFloat(d.depositFee),
+      withdrawFee:   parseFloat(d.withdrawFee),
+    });
+  };
+
+  useEffect(() => {
+    fetchSales();
+    fetchWallet();
+    fetchFinanceSummary();
+  }, []);
+
+  // Quant → Fund (“환전”)
+  const handleQuantToFund = async () => {
+    setError("");
+    const amt = parseFloat(transferAmount);
+    if (isNaN(amt) || amt <= 0) {
+      return setError("유효한 금액을 입력해주세요.");
+    }
+    if (amt > financeSummary.quantBalance) {
+      return setError("Quant 지갑 잔액이 부족합니다.");
+    }
+
+    try {
+      await axios.post("/api/wallet/transfer-to-fund", { amount: amt }, { withCredentials: true });
+      alert("환전이 완료되었습니다.");
+      setShowQuantToFundModal(false);
+      setTransferAmount("");
+      fetchFinanceSummary();
+    } catch (e) {
+      setError(e.response?.data?.error || "환전에 실패했습니다.");
+    }
+  };
+
+  // Fund → Quant (“충전”)
+  const handleFundToQuant = async () => {
+    setError("");
+    const amt = parseFloat(transferAmount);
+    if (isNaN(amt) || amt <= 0) {
+      return setError("유효한 금액을 입력해주세요.");
+    }
+    if (amt > financeSummary.fundBalance) {
+      return setError("Fund 지갑 잔액이 부족합니다.");
+    }
+
+    try {
+      await axios.post("/api/wallet/transfer-to-quant", { amount: amt }, { withCredentials: true });
+      alert("충전이 완료되었습니다.");
+      setShowFundToQuantModal(false);
+      setTransferAmount("");
+      fetchFinanceSummary();
+    } catch (e) {
+      setError(e.response?.data?.error || "충전에 실패했습니다.");
+    }
+  };
+
+  // 구매·환전 세부내역
   const fetchDetails = async () => {
     try {
-      const purchaseRes = await axios.get("/api/token/users/1/token-purchases");
-      const transactionRes = await axios.get("/api/token/users/1/token-transactions");
-      setPurchaseLogs(purchaseRes.data);
-      setTransactionLogs(transactionRes.data);
+      const [pRes, tRes] = await Promise.all([
+        axios.get("/api/token/users/1/token-purchases"),
+        axios.get("/api/token/users/1/token-transactions"),
+      ]);
+      setPurchaseLogs(pRes.data);
+      setTransactionLogs(tRes.data);
       setShowDetails(true);
-    } catch (err) {
+    } catch {
       alert("세부 정보 불러오기 실패");
     }
   };
 
-  const handleTransfer = async () => {
-    try {
-      await axios.post("/api/token-deposit", {
-        userId: 1,
-        source: selectedWallet,
-        amount: parseFloat(inputAmount)
-      });
-      alert("전입 완료");
-      setShowTransferModal(false);
-      fetchWallet();
-    } catch (err) {
-      alert("전입 실패: " + (err.response?.data?.error || "오류"));
-    }
-  };
-
+  // 토큰 구매
   const handlePurchase = async (saleId) => {
-    const amount = prompt("구매할 QVC 수량을 입력하세요:");
-    if (!amount || isNaN(amount)) return alert("유효한 수량을 입력하세요.");
-
+    const amt = prompt("구매할 QVC 수량을 입력하세요:");
+    if (!amt || isNaN(amt)) return alert("유효한 수량을 입력하세요.");
     try {
       await axios.post("/api/token/purchase-token", {
         userId: 1,
         saleId,
-        amount: parseFloat(amount)
+        amount: parseFloat(amt),
       });
       alert("구매 완료!");
       fetchSales();
       fetchWallet();
-    } catch (err) {
-      alert(err.response?.data?.error || "구매 실패");
+    } catch (e) {
+      alert(e.response?.data?.error || "구매 실패");
     }
   };
 
   return (
     <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
-
-      {/* 왼쪽 화살표 - 이전 페이지로 이동 */}
-
-      <h2 className="text-center text-xl font-semibold border-b border-yellow-500 pb-2 mb-4">QVC 토큰</h2>
+      <h2 className="text-center text-xl font-semibold border-b border-yellow-500 pb-2 mb-4">
+        QVC 토큰
+      </h2>
       <button
         onClick={() => window.history.back()}
         className="flex items-center space-x-1 mb-4 text-yellow-200 hover:text-yellow-100"
@@ -86,80 +146,80 @@ export default function TokenPurchasePage() {
         <ArrowLeftIcon size={20} />
         <span>뒤로</span>
       </button>
+
+      {/* 잔액 카드 */}
       <div className="bg-[#3b2b15] rounded-md p-4 text-center mb-4">
-        <div className="text-sm text-gray-300">보유 USDT</div>
-        <div className="text-2xl font-bold">{wallet?.usdt_balance || "0.00"} USDT</div>
-        <div className="text-sm text-gray-300 mt-2">보유 QVC</div>
-        <div className="text-2xl font-bold">{wallet?.balance || "0.00"} QVC</div>
+        <div className="text-sm text-gray-300">Quant 지갑 USDT</div>
+        <div className="text-2xl font-bold">
+          {financeSummary.quantBalance.toFixed(6)} USDT
+        </div>
+        <div className="text-sm text-gray-300 mt-2">QVC 지갑</div>
+        <div className="text-2xl font-bold">
+          {wallet?.balance?.toFixed(6) || "0.000000"} QVC
+        </div>
         <div className="flex justify-around mt-4 text-sm text-yellow-200">
-        <button onClick={() => setShowTransferModal(true)} className="bg-yellow-700 rounded px-3 py-1">환전</button> 
-          <button onClick={() => setShowChargeModal(true)} className="bg-yellow-700 rounded px-3 py-1">충전한다</button>
+          <button
+            onClick={() => setShowQuantToFundModal(true)}
+            className="bg-yellow-700 rounded px-3 py-1"
+          >
+            환전
+          </button>
+          <button
+            className="px-4 py-1 border border-yellow-500 rounded"
+            onClick={() => navigate("/recharge")}
+          >
+            재충전
+          </button>
+          <button
+            onClick={() => setShowFundToQuantModal(true)}
+            className="bg-yellow-700 rounded px-3 py-1"
+          >
+            충전한다
+          </button>
           <button className="bg-yellow-700 rounded px-3 py-1">환매</button>
         </div>
-        <button onClick={fetchDetails} className="mt-3 bg-yellow-500 text-black py-2 px-4 rounded font-semibold text-sm">주문 세부정보</button>
+        <button
+          onClick={fetchDetails}
+          className="mt-3 bg-yellow-500 text-black py-2 px-4 rounded font-semibold text-sm"
+        >
+          주문 세부정보
+        </button>
       </div>
 
-      {showChargeModal && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-[#1c1c1c] w-72 rounded-lg text-white p-4 relative">
-            <h2 className="text-center text-lg font-bold mb-4">충전 방법</h2>
-            <p className="text-sm text-green-400 mb-2">충전 방법 선택</p>
-            <div
-              className="flex items-center justify-between bg-[#333] px-4 py-3 rounded mb-2 cursor-pointer"
-              onClick={() => alert("USDT 충전은 Wallet 주소를 사용합니다.")}
-            >
-              <div className="flex items-center gap-2">
-                <span className="text-green-300 font-bold">$</span>
-                USDT
-              </div>
-              <span>{">"}</span>
-            </div>
-            <div className="flex items-center justify-between bg-[#222] px-4 py-3 rounded text-gray-400">
-              <div className="flex items-center gap-2">
-                <span className="opacity-40">$</span>
-                USDC
-              </div>
-              <span>{">"}</span>
-            </div>
-            <button onClick={() => setShowChargeModal(false)} className="absolute top-3 right-3 text-gray-400">✕</button>
-          </div>
-        </div>
-      )}
-
-      {showTransferModal && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-60 flex items-center justify-center z-50">
-          <div className="bg-[#1c1c1c] p-6 rounded-lg w-80 text-white relative">
-            <button onClick={() => setShowTransferModal(false)} className="absolute right-3 top-3 text-gray-400">✕</button>
-            <div className="mb-3">
-              <label className="block text-sm mb-1">금액을 입력해주세요</label>
-              <input
-                type="number"
-                value={inputAmount}
-                onChange={(e) => setInputAmount(e.target.value)}
-                className="w-full bg-[#333] p-2 rounded text-white"
-              />
-            </div>
-
-            <div className="mb-3">
-              <select
-                className="w-full bg-[#444] text-white p-2 rounded"
-                value={selectedWallet}
-                onChange={(e) => setSelectedWallet(e.target.value)}
-              >
-                <option value="정량지갑">정량 지갑</option>
-                <option value="금융지갑">금융 지갑</option>
-              </select>
-            </div>
-
-            <div className="bg-[#222] p-2 rounded text-sm">
-              <div>실제 계정 : 0.00</div>
-              <div>균형 : {wallet?.usdt_balance || "0.00"}</div>
-              <div>수수료 처리 : 0.00</div>
-            </div>
-
+      {/* Quant → Fund 모달 */}
+      {showQuantToFundModal && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+          <div className="bg-[#2c1f0f] w-80 p-6 rounded-lg relative text-yellow-100">
             <button
-              onClick={handleTransfer}
-              className="mt-4 w-full bg-yellow-500 hover:bg-yellow-600 text-black py-2 rounded font-bold"
+              onClick={() => setShowQuantToFundModal(false)}
+              className="absolute top-3 right-3 text-gray-400"
+            >
+              ✕
+            </button>
+            <h3 className="text-lg font-semibold mb-4">Quant → Fund 환전</h3>
+            <input
+              type="number"
+              className="w-full bg-[#1a1109] p-2 rounded mb-2"
+              placeholder="USDT 입력"
+              value={transferAmount}
+              onChange={(e) => setTransferAmount(e.target.value)}
+            />
+            <div className="text-sm text-gray-300 mb-2">
+              잔액: {financeSummary.quantBalance.toFixed(6)} USDT
+            </div>
+            <div className="text-sm text-gray-300 mb-2">
+              수수료({financeSummary.withdrawFee}%):{" "}
+              {(parseFloat(transferAmount || 0) * financeSummary.withdrawFee / 100).toFixed(6)}
+            </div>
+            <div className="text-sm text-gray-300 mb-4">
+              환전 후:{" "}
+              {(parseFloat(transferAmount || 0) * (1 - financeSummary.withdrawFee / 100)).toFixed(6)}{" "}
+              USDT
+            </div>
+            {error && <div className="text-red-400 mb-2">{error}</div>}
+            <button
+              onClick={handleQuantToFund}
+              className="w-full bg-yellow-500 text-black py-2 rounded font-semibold"
             >
               제출하다
             </button>
@@ -167,6 +227,46 @@ export default function TokenPurchasePage() {
         </div>
       )}
 
+      {/* Fund → Quant 모달 */}
+      {showFundToQuantModal && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+          <div className="bg-[#2c1f0f] w-80 p-6 rounded-lg relative text-yellow-100">
+            <button
+              onClick={() => setShowFundToQuantModal(false)}
+              className="absolute top-3 right-3 text-gray-400"
+            >
+              ✕
+            </button>
+            <h3 className="text-lg font-semibold mb-4">Fund → Quant 충전</h3>
+            <input
+              type="number"
+              className="w-full bg-[#1a1109] p-2 rounded mb-2"
+              placeholder="USDT 입력"
+              value={transferAmount}
+              onChange={(e) => setTransferAmount(e.target.value)}
+            />
+            <div className="text-sm text-gray-300 mb-2">
+              잔액: {financeSummary.fundBalance.toFixed(6)} USDT
+            </div>
+            <div className="text-sm text-gray-300 mb-2">
+              수수료({financeSummary.depositFee}%):{" "}
+              {(parseFloat(transferAmount || 0) * financeSummary.depositFee / 100).toFixed(6)}
+            </div>
+            <div className="text-sm text-gray-300 mb-4">
+              충전 후:{" "}
+              {(parseFloat(transferAmount || 0) * (1 - financeSummary.depositFee / 100)).toFixed(6)}{" "}
+              USDT
+            </div>
+            {error && <div className="text-red-400 mb-2">{error}</div>}
+            <button
+              onClick={handleFundToQuant}
+              className="w-full bg-yellow-500 text-black py-2 rounded font-semibold"
+            >
+              제출하다
+            </button>
+          </div>
+        </div>
+      )}
       {showDetails && (
         <div className="bg-[#2d1f12] p-4 rounded mb-6">
           <h3 className="text-lg font-bold mb-2">📘 구매 내역</h3>

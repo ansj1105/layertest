@@ -140,7 +140,7 @@ export default function MyProfilePage() {
           <ArrowDownCircle size={28} className="mb-1" />
           <span className="text-xs" >출금하기</span>
         </button>
-        <button className="flex flex-col items-center text-yellow-100">
+        <button className="flex flex-col items-center text-yellow-100"onClick={() => navigate("/withdraw/history")} >
           <FileText size={28} className="mb-1" />
           <span className="text-xs">세부</span>
         </button>

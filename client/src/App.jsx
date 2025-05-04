@@ -241,7 +241,7 @@ export default function App() {
                 className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600"
               >
                 {t('app.logout')}
-                <UserChat userId={user.id} />
+             
               </button>
             </div>
           </div>
@@ -250,7 +250,7 @@ export default function App() {
 
       {/* 메인 콘텐츠 */}
   
-      
+      <UserChat userId={user.id} />
       <MainLanding user={user} />
       <BottomNav />
     </div>

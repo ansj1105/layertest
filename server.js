@@ -7,6 +7,8 @@ const mysql = require("mysql2/promise");
 const cors = require("cors");
 const axios = require("axios");
 const session = require("express-session"); // ✅ 세션 추가
+const { calculateFundingProfits } = require('./routes/fundingProfit');
+const { accrueDailyProfits, handleProjectExpiry } = require('./schedulers/projectScheduler');
 const app = express();
 
 app.use(
@@ -79,7 +81,12 @@ const quantTradeRoutes = require('./routes/quanttrade');
 const tokenRoutes = require('./routes/token'); // ✅ QVC 토큰 관련 라우터
 const rechargeRoutes = require('./routes/recharge'); //코인충전관련
 const mydataRoutes = require('./routes/mydata');
+const logsRoutes = require('./routes/logs');
+const projectsRoutes = require('./routes/projects');
+app.use('/api/projects', projectsRoutes);
 app.use('/api/mydata', mydataRoutes);
+app.use('/api/logs', logsRoutes);
+
  app.use('/api/recharge', rechargeRoutes);
 app.use('/api/token', tokenRoutes);
 // 상단 import
@@ -133,9 +140,76 @@ app.get('/api/ping', (req, res) => {
       res.status(500).json({ error: "Failed to fetch market data" });
     }
   });
+// 1️⃣ 기존 CRON 코드 안의 로직을 함수로 추출
+// 1️⃣ 기존 CRON 코드 안의 로직을 함수로 추출
+async function runVipUpdateJob() {
+  console.log("⏰ [CRON] VIP 레벨 갱신 시작");
 
-  
+  try {
+    const [users] = await db.query('SELECT id, vip_level FROM users');
+
+    for (const user of users) {
+      const userId = user.id;
+      const currentVip = user.vip_level;
+
+      // 2️⃣ 하위 추천인 수 조회
+      const [[counts]] = await db.query(`
+        SELECT
+          SUM(CASE WHEN level = 1 THEN 1 ELSE 0 END) AS A,
+          SUM(CASE WHEN level = 2 THEN 1 ELSE 0 END) AS B,
+          SUM(CASE WHEN level = 3 THEN 1 ELSE 0 END) AS C
+        FROM referral_relations
+        WHERE referrer_id = ? AND status = 'active'
+      `, [userId]);
+
+      const A = counts.A || 0;
+      const B = counts.B || 0;
+      const C = counts.C || 0;
+
+      console.log(`👤 [User ${userId}] 현재 VIP: ${currentVip}, 하위추천 A:${A}, B:${B}, C:${C}`);
+
+      // 3️⃣ VIP 조건에 맞는 최고 등급 찾기
+      const [levels] = await db.query(`
+        SELECT level
+        FROM vip_levels
+        WHERE min_A <= ? AND min_B <= ? AND min_C <= ?
+        ORDER BY level DESC
+        LIMIT 1
+      `, [A, B, C]);
+
+      const newLevel = levels.length ? levels[0].level : 1;
+
+      if (newLevel !== currentVip) {
+        await db.query(`UPDATE users SET vip_level = ? WHERE id = ?`, [newLevel, userId]);
+        console.log(`✅ [User ${userId}] VIP 레벨 갱신: ${currentVip} → ${newLevel}`);
+      } else {
+        console.log(`🟡 [User ${userId}] VIP 유지: ${currentVip}`);
+      }
+    }
+
+    console.log("✅ [CRON] VIP 레벨 갱신 완료");
+  } catch (err) {
+    console.error("❌ [CRON ERROR] VIP 갱신 실패:", err.message);
+  }
+}
+
+  // 3️⃣ 서버 시작할 때 테스트 실행
+runVipUpdateJob(); //레벨정산
+accrueDailyProfits(); //펀딩수익정산
+handleProjectExpiry(); //만료 정산
 // 1시간마다 VIP 레벨 자동 갱신
+
+//펀딩수익 스케쥴러
+// 테스트 실행: 서버 시작 시 1회 실행
+cron.schedule('0 0 * * *', async () => {
+  console.log("⏰ [CRON] 펀딩 수익 정산 시작");
+  try {
+    await calculateFundingProfits();
+    console.log("✅ [CRON] 펀딩 수익 정산 완료");
+  } catch (err) {
+    console.error("❌ [CRON] 펀딩 수익 정산 실패:", err.message);
+  }
+});
 
 cron.schedule('0 * * * *', async () => {
   console.log("⏰ [CRON] VIP 레벨 갱신 시작");

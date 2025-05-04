@@ -18,6 +18,7 @@
     import PersonalMessages from '../components/PersonalMessages';
     import ProtectedRoute from '../components/ProtectedRoute';
     import QuantTradingPage from '../components/QuantTradingPage';
+    import WalletLogsPage from '../components/WalletLogsPage';
     import ForgotPassword from './auth/ForgotPassword';
     import ResetPassword from './auth/ResetPassword';
     import RegisterPage from './auth/RegisterPage';
@@ -34,6 +35,7 @@
     import InviteFriendPage from '../components/InviteFriendPage';
     import WithdrawMethodPage from '../components/WithdrawMethodPage';
     import FundingPage from '../components/FundingPage';
+    import FundingDetailPage from '../components/FundingDetailPage';
     import LanguageSettingsPage from '../components/LanguageSettingsPage';
     import LoginPasswordPage from '../components/LoginPasswordPage';
     import WithdrawHistoryPage from '../components/WithdrawHistoryPage';
@@ -144,6 +146,8 @@
             path="/funding"
             element={<ProtectedRoute><FundingPage /></ProtectedRoute>}
             />
+            <Route path="/funding/logs" element={<ProtectedRoute><WalletLogsPage /></ProtectedRoute>}/>
+            <Route path="/funding/detail/:id" element={<ProtectedRoute><FundingDetailPage /></ProtectedRoute>}/>
             <Route path="/commonproblem" element={<ProtectedRoute><CommonProblemsPage   /></ProtectedRoute>} />
             <Route path="/company" element={<ProtectedRoute><CompanyIntroPage   /></ProtectedRoute>} />
             <Route path="/download" element={<ProtectedRoute><AppDownloadPage  /></ProtectedRoute>} />
