@@ -29,6 +29,7 @@
     import CommonProblemsPage from '../components/CommonProblemsPage';
     import CompanyIntroPage from '../components/CompanyIntroPage';
     import EmailBindingPage from '../components/EmailBindingPage';
+    import EscrowOrdersPage from '../components/EscrowOrdersPage';
     import TokenPurchasePage from '../components/TokenPurchasePage';
      import AgencyCooperationPage from '../components/AgencyCooperationPage';
     import WithdrawPage from '../components/WithdrawPage';
@@ -152,6 +153,7 @@
             <Route path="/company" element={<ProtectedRoute><CompanyIntroPage   /></ProtectedRoute>} />
             <Route path="/download" element={<ProtectedRoute><AppDownloadPage  /></ProtectedRoute>} />
             <Route path="/wallet" element={<ProtectedRoute><WalletPage /></ProtectedRoute>} />
+            <Route path="/wallet/orders" element={<ProtectedRoute><EscrowOrdersPage /></ProtectedRoute>} />
             <Route path="/quant" element={<ProtectedRoute><QuantTradingPage /></ProtectedRoute>} />
             <Route path="/balance" element={<ProtectedRoute><BalancePage /></ProtectedRoute>} />
             <Route path="/taskcenter" element={<ProtectedRoute><TaskCenterPage /></ProtectedRoute>} />

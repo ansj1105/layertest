@@ -11,10 +11,7 @@ export default function WalletLogsPage() {
   const [loading, setLoading] = useState(true);
 
   // 더미 데이터: 개발중인 탭용
-  const dummyWalletEarnings = [
-    { id:1, date:'2025-05-04', amount:2.50 },
-    { id:2, date:'2025-05-03', amount:1.20 },
-  ];
+  const [walletEarnings, setWalletEarnings] = useState([]);
   const dummyFinanceIncome = [
     { id:1, date:'2025-05-04', amount:0.75 },
     { id:2, date:'2025-05-02', amount:0.30 },
@@ -27,6 +24,13 @@ export default function WalletLogsPage() {
         .then(res => setLogs(res.data.data || []))
         .catch(console.error)
         .finally(() => setLoading(false));
+           } else if (tab === 'walletEarnings') {
+               setLoading(true);
+               axios.get('/api/logs/funding-profits', { withCredentials:true })
+                 .then(res => setWalletEarnings(res.data.data || []))
+                 .catch(console.error)
+                 .finally(() => setLoading(false));
+              
     }
   }, [tab]);
 
@@ -140,7 +144,23 @@ export default function WalletLogsPage() {
             </tr>
           </thead>
           <tbody>
-            {renderRows(dummyWalletEarnings, false)}
+                {loading
+         ? (
+           <tr>
+             <td colSpan={2} className="text-center py-4">
+               {t('walletLogs.loading')}
+             </td>
+           </tr>
+         )
+         : renderRows(
+             walletEarnings.map(log => ({
+              id: log.id,
+               date: new Date(log.createdAt).toLocaleDateString(),
+               amount: parseFloat(log.amount)
+             })),
+             false
+           )
+       }
           </tbody>
         </table>
       )}

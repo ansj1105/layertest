@@ -23,6 +23,52 @@
         "identifier": "아이디",
   "forgot" : "비밀번호 찾기"
     },  
+    "quantTrading": {
+         "leaderboardTitle": "리더보드",
+   "leaderboard": {
+     "name": "멤버 이름",
+     "earnings": "소득",
+     "status": "상태"
+   },
+   "partnersTitle": "핵심 협동 기관",
+  
+         "time": "시간",
+   "status": "상태",
+      "history" : "기록",
+      "noHistory" : "기록없음",
+      "success": "성공",
+      "position": "위치 실행",
+      "buyPlatform": "구매 플랫폼",
+      "buyPrice": "구매 가격",
+      "sellPlatform": "판매 플랫폼",
+      "sellPrice": "판매 가격",
+      "serviceFee": "서비스 비용",
+      "profit": "이익",
+      "commissionRate": "수익율",
+      "currentLevel": "현재 VIP 등급",
+      "cancel": "취소",
+      "enterAmount": "수량입력",
+      "confirm": "확인",
+      "back": "뒤로가기",
+      "title": "양적 거래",
+      "available": "사용 가능 자산",
+      "todayEarning": "오늘의 수입",
+      "totalEarning": "총 수익",
+      "level": "등급",
+      "progress": "{{current}}/{{total}}",
+      "intro": "양적 거래 소개",
+      "invite": "친구를 초대",
+      "dailyLimit": "일일 거래 횟수",
+      "times": "회",
+      "feeRate": "수익율",
+      "maxInvestment": "최대 투자금액",
+      "minHoldings": "최소 보유금액",
+      "conditions": "발기인 조건",
+      "start": "수량화 시작",
+      "confirmStart": "정량 거래를 시작하시겠습니까?",
+      "tradeError": "거래 실패: ",
+      "loading": "불러오는 중..."
+    },
     "funding": {
       
         "detail2": {

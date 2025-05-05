@@ -37,4 +37,33 @@ router.get('/transfer-logs', async (req, res) => {
   }
 });
 
+
+// ✅ funding-profits 조회 (user_id를 investment_id를 통해 추적)
+router.get('/funding-profits', async (req, res) => {
+  const userId = req.session?.user?.id;
+  if (!userId) {
+    return res.status(401).json({ success: false, error: 'Unauthorized' });
+  }
+
+  try {
+    const [rows] = await db.query(
+      `SELECT
+         fpl.id,
+         fpl.profit AS amount,
+         fpl.profit_date AS date,
+         fpl.created_at AS createdAt
+       FROM funding_profits_log fpl
+       JOIN funding_investments i ON fpl.investment_id = i.id
+       WHERE i.user_id = ?
+       ORDER BY fpl.created_at DESC`,
+      [userId]
+    );
+
+    res.json({ success: true, data: rows });
+  } catch (err) {
+    console.error('❌ funding-profits 오류:', err);
+    res.status(500).json({ success: false, error: 'funding-profits failed' });
+  }
+});
+
 module.exports = router;
