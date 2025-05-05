@@ -148,7 +148,14 @@ export default function TokenPurchasePage() {
       </button>
 
       {/* 잔액 카드 */}
-      <div className="bg-[#3b2b15] rounded-md p-4 text-center mb-4">
+     <div className="relative bg-[#3b2b15] rounded-md p-4 text-center mb-4">
+       {/* 우측 상단 세부 버튼 */}
+       <button
+         onClick={() => navigate("/funding/logs")}
+         className="absolute top-3 right-3 text-sm text-yellow-200 hover:text-yellow-100"
+       >
+         세부 &gt;
+       </button>
         <div className="text-sm text-gray-300">Quant 지갑 USDT</div>
         <div className="text-2xl font-bold">
           {financeSummary.quantBalance.toFixed(6)} USDT

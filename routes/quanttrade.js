@@ -212,4 +212,22 @@ router.get("/quanthistory", async (req, res) => {
     res.status(500).json({ error: "quant-profits history failed" });
   }
 });
+// GET /api/quant-trade/count-today
+router.get("/quant-trade/count-today", async (req, res) => {
+  const userId = req.session?.user?.id;
+  if (!userId) return res.status(401).json({ error: "Unauthorized" });
+  try {
+    const [[{ count }]] = await db.query(
+      `SELECT COUNT(*) AS count
+       FROM quant_trades
+       WHERE user_id = ? AND DATE(created_at) = CURDATE()`,
+      [userId]
+    );
+    res.json({ success: true, data: { tradesToday: count } });
+  } catch (err) {
+    console.error("❌ quant-trade count-today error:", err);
+    res.status(500).json({ error: "count-today failed" });
+  }
+});
+
 module.exports = router;
