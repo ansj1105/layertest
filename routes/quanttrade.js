@@ -1,4 +1,3 @@
-// 📁 routes/quanttrade.js
 const express = require("express");
 const router = express.Router();
 const db = require("../db");
@@ -8,47 +7,148 @@ router.post("/quant-trade", async (req, res) => {
   const userId = req.session?.user?.id;
   const tradeAmount = parseFloat(req.body.amount);
 
-  try {
-    const [[user]] = await db.query("SELECT * FROM users WHERE id = ?", [userId]);
-    if (!user) return res.status(404).json({ error: "User not found" });
+  if (!userId) return res.status(401).json({ error: "Unauthorized" });
+  if (isNaN(tradeAmount) || tradeAmount <= 0) {
+    return res.status(400).json({ error: "Invalid trade amount" });
+  }
 
-    const [[vip]] = await db.query("SELECT * FROM vip_levels WHERE level = ?", [user.vip_level]);
+  try {
+    // 1) 사용자 지갑 & VIP 조회
+    const [[walletRow]] = await db.query(
+      `SELECT w.quant_balance, u.vip_level
+       FROM wallets w
+       JOIN users u ON w.user_id = u.id
+       WHERE u.id = ?`,
+      [userId]
+    );
+    if (!walletRow) return res.status(404).json({ error: "Wallet not found" });
+
+    const currentBal = parseFloat(walletRow.quant_balance);
+    const vipLevel = walletRow.vip_level;
+    const [[vip]] = await db.query("SELECT * FROM vip_levels WHERE level = ?", [vipLevel]);
     if (!vip) return res.status(400).json({ error: "Invalid VIP level" });
 
-    if (user.usdt_balance < vip.min_holdings) {
+    const maxInvestment = parseFloat(vip.max_investment);
+    const minHoldings   = parseFloat(vip.min_holdings);
+    console.log(`💡 [QuantTrade] user ${userId} - tradeAmount=${tradeAmount}, currentBal=${currentBal}, max_investment=${maxInvestment}, min_holdings=${minHoldings}`);
+
+    // 투자 한도 및 보유량 체크
+    if (tradeAmount > maxInvestment) {
+      console.warn(`⚠️ [QuantTrade] Exceeds max investment: ${tradeAmount} > ${maxInvestment}`);
+      return res.status(400).json({ error: "Exceeds max investment for VIP level" });
+    }
+    if (currentBal < minHoldings) {
+      console.warn(`⚠️ [QuantTrade] Insufficient holdings: ${currentBal} < ${minHoldings}`);
       return res.status(400).json({ error: "Minimum holdings not met for VIP level" });
     }
 
-    // ✅ 일일 거래 횟수 체크
-    const [tradesToday] = await db.query(
-      `SELECT COUNT(*) as count FROM quant_trades WHERE user_id = ? AND DATE(created_at) = CURDATE()`,
+    // 2) 일일 거래 한도 체크
+    const [[{ count: tradesToday }]] = await db.query(
+      `SELECT COUNT(*) AS count
+       FROM quant_trades
+       WHERE user_id = ? AND DATE(created_at) = CURDATE()`,
       [userId]
     );
-
-    if (tradesToday[0].count >= vip.daily_trade_limit) {
+    if (tradesToday >= vip.daily_trade_limit) {
+      console.warn(`⚠️ [QuantTrade] Daily limit exceeded: ${tradesToday} >= ${vip.daily_trade_limit}`);
       return res.status(400).json({ error: "Daily trade limit exceeded" });
     }
 
-    // ✅ 거래 수익 계산
-    const commissionRate = (Math.random() * (vip.commission_max - vip.commission_min)) + vip.commission_min;
-    const profit = tradeAmount * (commissionRate / 100);
-    const userEarning = profit / 2;
-    const platformFee = profit / 2;
+    // 3) 커미션 비율 산정
+    const minRate = parseFloat(vip.commission_min) / vip.daily_trade_limit;
+    const maxRate = parseFloat(vip.commission_max) / vip.daily_trade_limit;
+    const commissionRate = (Math.random() * (maxRate - minRate)) + minRate;
 
-    // ✅ 거래 기록 저장
-    await db.query(
-      `INSERT INTO quant_trades (user_id, amount, commission_rate, user_earning, platform_fee, created_at) 
+    // 4) 수익 계산
+    const profit = tradeAmount * (commissionRate / 100);
+    const userProfit = profit;
+    const platformFee = 0;
+
+    // 5) 거래 기록 저장
+    const [result] = await db.query(
+      `INSERT INTO quant_trades (user_id, amount, commission_rate, user_earning, platform_fee, created_at)
        VALUES (?, ?, ?, ?, ?, NOW())`,
-      [userId, tradeAmount, commissionRate.toFixed(2), userEarning, platformFee]
+      [userId, tradeAmount, commissionRate.toFixed(4), userProfit, platformFee]
+    );
+    const tradeId = result.insertId;
+    console.log(`💾 [QuantTrade] Inserted quant_trades id=${tradeId}, user_earning=${userProfit}, platform_fee=${platformFee}`);
+
+    // 6) 사용자 지갑 업데이트
+    await db.query(
+      `UPDATE wallets
+       SET quant_balance = quant_balance + ?
+       WHERE user_id = ?`,
+      [userProfit, userId]
     );
 
-    // ✅ 사용자 수익 반영
-    await db.query("UPDATE users SET usdt_balance = usdt_balance + ? WHERE id = ?", [userEarning, userId]);
+    // 7) 수익 기록
+    await db.query(
+      `INSERT INTO quant_profits (user_id, trade_id, amount, type, created_at)
+       VALUES (?, ?, ?, 'trade', NOW())`,
+      [userId, tradeId, userProfit]
+    );
+
+    // 8) user_profit_summary 업데이트
+    await db.query(
+      `INSERT INTO user_profit_summary (user_id, quant_profit, total_profit, updated_at)
+       VALUES (?, ?, ?, NOW())
+       ON DUPLICATE KEY UPDATE
+         quant_profit = quant_profit + VALUES(quant_profit),
+         total_profit = total_profit + VALUES(total_profit),
+         updated_at = NOW()`,
+      [userId, userProfit, userProfit]
+    );
+
+    // 9) 추천 보상 분배
+    const [relations] = await db.query(
+      `SELECT referrer_id, level
+       FROM referral_relations
+       WHERE referred_id = ? AND status = 'active' AND level IN (1,2,3)`,
+      [userId]
+    );
+    const [[settings]] = await db.query(
+      `SELECT levelA, levelB, levelC FROM referral_reward_settings LIMIT 1`
+    );
+
+    for (const { referrer_id, level } of relations) {
+      let pct = level === 1 ? settings.levelA : level === 2 ? settings.levelB : settings.levelC;
+      const reward = userProfit * (pct / 100);
+      if (reward <= 0) continue;
+
+      await db.query(
+        `UPDATE wallets
+         SET quant_balance = quant_balance + ?
+         WHERE user_id = ?`,
+        [reward, referrer_id]
+      );
+
+      await db.query(
+        `INSERT INTO quant_profits (user_id, trade_id, amount, type, level, created_at)
+         VALUES (?, ?, ?, 'referral', ?, NOW())`,
+        [referrer_id, tradeId, reward, level]
+      );
+
+      await db.query(
+        `INSERT INTO user_profit_summary (user_id, quant_profit, total_profit, updated_at)
+         VALUES (?, ?, ?, NOW())
+         ON DUPLICATE KEY UPDATE
+           quant_profit = quant_profit + VALUES(quant_profit),
+           total_profit = total_profit + VALUES(total_profit),
+           updated_at = NOW()`,
+        [referrer_id, reward, reward]
+      );
+
+      await db.query(
+        `INSERT INTO quant_logs (user_id, action, detail, created_at)
+         VALUES (?, 'referral_reward', ?, NOW())`,
+        [referrer_id, `trade ${tradeId}, level ${level}, reward ${reward.toFixed(6)}`]
+      );
+    }
 
     return res.json({
       success: true,
-      message: `✅ 거래 성공 - 수익: ${userEarning.toFixed(4)} USDT`,
-      rate: commissionRate.toFixed(2)
+      message: `Trade successful: earned ${userProfit.toFixed(6)} USDT`,
+      rate: commissionRate.toFixed(4)
     });
   } catch (err) {
     console.error("Quant trade error:", err);
@@ -56,4 +156,60 @@ router.post("/quant-trade", async (req, res) => {
   }
 });
 
+// GET /api/quant-profits/summary
+router.get("/quant-profits/summary", async (req, res) => {
+  const userId = req.session?.user?.id;
+  if (!userId) return res.status(401).json({ error: "Unauthorized" });
+
+  try {
+    const [[{ totalProfit }]] = await db.query(
+      `SELECT IFNULL(SUM(amount),0) AS totalProfit
+       FROM quant_profits
+       WHERE user_id = ?`,
+      [userId]
+    );
+    const [[{ todayProfit }]] = await db.query(
+      `SELECT IFNULL(SUM(amount),0) AS todayProfit
+       FROM quant_profits
+       WHERE user_id = ? AND DATE(created_at) = CURDATE()`,
+      [userId]
+    );
+    res.json({ success: true, data: { totalProfit, todayProfit } });
+  } catch (err) {
+    console.error("❌ quant-profits summary error:", err);
+    res.status(500).json({ error: "quant-profits summary failed" });
+  }
+});
+
+
+// GET /api/quant-profits/history
+router.get("/quanthistory", async (req, res) => {
+  const userId = req.session?.user?.id;
+  if (!userId) return res.status(401).json({ error: "Unauthorized" });
+
+  try {
+    // join quant_profits → quant_trades to pull trade details
+    const [rows] = await db.query(`
+      SELECT
+        qp.id,
+        qp.type,
+        qp.level,
+        qp.amount          AS profit,
+        qp.created_at      AS createdAt,
+        qt.amount          AS tradeAmount,
+        qt.commission_rate AS commissionRate,
+        qt.platform_fee    AS platformFee
+      FROM quant_profits qp
+      JOIN quant_trades qt ON qp.trade_id = qt.id
+      WHERE qp.user_id = ?
+      ORDER BY qp.created_at DESC
+      LIMIT 50
+    `, [userId]);
+
+    res.json({ success: true, data: rows });
+  } catch (err) {
+    console.error("❌ quant-profits history error:", err);
+    res.status(500).json({ error: "quant-profits history failed" });
+  }
+});
 module.exports = router;

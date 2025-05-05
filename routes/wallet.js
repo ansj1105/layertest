@@ -177,6 +177,7 @@ router.get('/projects', async (req, res) => {
  * POST /api/wallet/projects/:id/invest
  * body: { amount: number }
  */
+// 📁 routes/wallet.js (투자 API 수정)
 router.post('/projects/:id/invest', async (req, res) => {
   const userId = req.session.user?.id;
   if (!userId) return res.status(401).json({ error: 'Unauthorized' });
@@ -198,7 +199,7 @@ router.post('/projects/:id/invest', async (req, res) => {
       return res.status(400).json({ error: 'Insufficient fund balance' });
     }
 
-    // 2) 프로젝트 설정 및 잔여 투자 가능액 조회
+    // 2) 프로젝트 설정 조회 (open 상태)
     const [[proj]] = await db.query(
       `SELECT daily_rate AS dailyRate,
               cycle_days AS cycleDays,
@@ -220,33 +221,33 @@ router.post('/projects/:id/invest', async (req, res) => {
       return res.status(400).json({ error: 'Exceeded project remaining capacity' });
     }
 
-    // 4) 해당 유저의 기존 투자 합산 조회
+    // 4) 해당 유저의 기존 프로젝트당 투자 합산 조회
     const [[userTotalRow]] = await db.query(
-      `SELECT IFNULL(SUM(amount), 0) AS userTotal
+      `SELECT IFNULL(SUM(amount),0) AS userTotal
        FROM funding_investments
        WHERE project_id = ? AND user_id = ?`,
       [projectId, userId]
     );
     const userTotal = parseFloat(userTotalRow.userTotal);
-    // 5) per-user 최대 투자 금액 (maxAmount) 체크
     if (userTotal + investAmount > parseFloat(proj.maxAmount)) {
       return res.status(400).json({ error: `Individual investment limit of ${proj.maxAmount} USDT exceeded` });
     }
 
-    // 6) profit 계산 (단순 예시)
+    // 5) profit 계산 (예: amount * dailyRate/100 * cycleDays)
     const profit = parseFloat(
       (investAmount * (proj.dailyRate / 100) * proj.cycleDays).toFixed(6)
     );
 
-    // 7) 투자 기록 삽입
-    await db.query(
+    // 6) 투자 기록 삽입
+    const [insertResult] = await db.query(
       `INSERT INTO funding_investments
          (project_id, user_id, amount, profit, created_at)
        VALUES (?, ?, ?, ?, NOW())`,
       [projectId, userId, investAmount, profit]
     );
+    const investmentId = insertResult.insertId;
 
-    // 8) 자금 이동 및 프로젝트 current_amount 업데이트
+    // 7) 지갑에서 금액 차감
     await db.query(
       `UPDATE wallets
          SET fund_balance = fund_balance - ?, updated_at = NOW()
@@ -254,12 +255,37 @@ router.post('/projects/:id/invest', async (req, res) => {
       [investAmount, userId]
     );
 
+    // 8) 프로젝트 current_amount 갱신
     await db.query(
       `UPDATE funding_projects
          SET current_amount = current_amount + ?
        WHERE id = ?`,
       [investAmount, projectId]
     );
+
+    // ───────────────────────────────────────────────────────────
+    // 9) funding_profits_log 테이블에 로그 추가
+    await db.query(
+      `INSERT INTO funding_profits_log
+         (investment_id, profit_date, profit, created_at)
+       VALUES (?, CURDATE(), ?, NOW())`,
+      [investmentId, profit]
+    );
+
+    // 10) user_profit_summary 테이블에 누적 반영 (upsert)
+    //    user_profit_summary.user_id를 PK 또는 UNIQUE로 설정해야 ON DUPLICATE KEY가 동작합니다.
+    await db.query(
+      `INSERT INTO user_profit_summary
+         (user_id, funding_profit, quant_profit, qvc_profit, total_profit, updated_at)
+       VALUES (?, ?, 0, 0, ?, NOW())
+       ON DUPLICATE KEY UPDATE
+         funding_profit = funding_profit + VALUES(funding_profit),
+         total_profit   = total_profit   + VALUES(funding_profit),
+         updated_at     = NOW()
+      `,
+      [userId, profit, profit]
+    );
+    // ───────────────────────────────────────────────────────────
 
     res.json({ success: true, profit });
   } catch (err) {

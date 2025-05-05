@@ -65,4 +65,35 @@ router.get('/:id/summary', async (req, res) => {
   }
 });
 
+
+// GET /api/funding-investments
+// Returns the current user's funding investments, newest first
+router.get('/funding-investments', async (req, res) => {
+  const userId = req.session.user?.id;
+  if (!userId) {
+    return res.status(401).json({ success: false, error: 'Unauthorized' });
+  }
+
+  try {
+    const [rows] = await db.query(
+      `SELECT
+         fi.id,
+         fi.project_id,
+         fp.name            AS project_name,
+         fi.amount,
+         fi.profit,
+         fi.created_at      AS createdAt
+       FROM funding_investments fi
+       JOIN funding_projects    fp ON fi.project_id = fp.id
+       WHERE fi.user_id = ?
+       ORDER BY fi.created_at DESC`,
+      [userId]
+    );
+
+    res.json({ success: true, data: rows });
+  } catch (err) {
+    console.error('❌ funding-investments error:', err);
+    res.status(500).json({ success: false, error: 'funding-investments failed' });
+  }
+});
 module.exports = router;
