@@ -17,6 +17,7 @@ export default function QuantTradingPage() {
   const [showIntro, setShowIntro] = useState(false);
    const [showTradeModal, setShowTradeModal] = useState(false);
    const [tradeAmount, setTradeAmount] = useState(0);
+   const [tradesToday, setTradesToday] = useState(0);
    // inside your component's state
 const [showHistory, setShowHistory] = useState(false);
    useEffect(() => {
@@ -34,6 +35,11 @@ const [showHistory, setShowHistory] = useState(false);
           });
         })
     .catch(() => setSummary({ todayProfit: 0, totalProfit: 0 }));
+       // fetch how many trades you've done today
+   axios
+    .get("/api/quant-trade/count-today", { withCredentials: true })
+     .then(res => setTradesToday(res.data.data.tradesToday || 0))
+     .catch(() => setTradesToday(0));
   }, []);
 
   // 안전하게 찍기
@@ -42,6 +48,12 @@ const [showHistory, setShowHistory] = useState(false);
   //
   // 1) Build & shuffle 30 fake leaderboard entries once
   //
+// find the VIP object that matches the user's real vip_level
+const myVip = vipLevels.find(v => v.level === user2?.vip_level) || {};
+
+// now pull the daily limit directly from that
+const dailyLimit = myVip.daily_trade_limit || 0;
+ const remaining   = Math.max(0, dailyLimit - tradesToday);
   const ALL_LEADERBOARD = useMemo(() => {
     const arr = [];
     for (let i = 0; i < 30; i++) {
@@ -287,11 +299,12 @@ const [showHistory, setShowHistory] = useState(false);
         </div>
       </div>
       {/* 거래 버튼 및 모달 트리거 */}
-      <button onClick={() => setShowTradeModal(true)} className="
-      
-      pb-10 w-full bg-yellow-500 hover:bg-yellow-600 text-black py-2 rounded font-bold text-lg mt-4">
-        {t('quantTrading.start')}
-      </button>
+       <button
+   onClick={() => setShowTradeModal(true)}
+   className="pb-10 w-full bg-yellow-500 hover:bg-yellow-600 text-black py-2 rounded font-bold text-lg mt-4"
+ >
+   {remaining}/{dailyLimit} {t("quantTrading.times")} · {t("quantTrading.start")}
+ </button>
 
      {/* 거래 금액 입력 모달 */}
      {showTradeModal && (
