@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { ArrowLeftIcon,HistoryIcon} from "lucide-react";
@@ -39,7 +39,49 @@ const [showHistory, setShowHistory] = useState(false);
   // 안전하게 찍기
   console.log('수익합계 ',summary);
   console.log('user2 vip_level:', user2?.vip_level);
+  //
+  // 1) Build & shuffle 30 fake leaderboard entries once
+  //
+  const ALL_LEADERBOARD = useMemo(() => {
+    const arr = [];
+    for (let i = 0; i < 30; i++) {
+      // random two‑letter uppercase prefix
+      const prefix = Math.random().toString(36).substring(2, 4).toUpperCase();
+      const suffix = Math.floor(Math.random() * 10);
+      arr.push({
+        name: `${prefix}***${suffix}`,
+        earnings: `${(Math.random() * 200).toFixed(2)} USDT`,
+        status: t("quantTrading.success")
+      });
+    }
+    // simple shuffle
+    return arr.sort(() => Math.random() - 0.5);
+  }, [t]);
 
+  //
+  // 2) Maintain a start index that jumps by 5 every 5s
+  //
+  const [lbStart, setLbStart] = useState(0);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setLbStart(prev => (prev + 5) % ALL_LEADERBOARD.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [ALL_LEADERBOARD.length]);
+
+  //
+  // 3) Compute the 5 entries to show, wrapping if necessary
+  //
+  const visibleLeaderboard = useMemo(() => {
+    const end = lbStart + 5;
+    if (end <= ALL_LEADERBOARD.length) {
+      return ALL_LEADERBOARD.slice(lbStart, end);
+    }
+    return [
+      ...ALL_LEADERBOARD.slice(lbStart),
+      ...ALL_LEADERBOARD.slice(0, end - ALL_LEADERBOARD.length)
+    ];
+  }, [ALL_LEADERBOARD, lbStart]);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -114,16 +156,26 @@ const [showHistory, setShowHistory] = useState(false);
   return (
     <div className="p-6 text-yellow-100 bg-[#1a1109] min-h-screen">
       {/* 뒤로가기 */}
-    <span>  <button onClick={() => navigate(-1)} className="flex items-center mb-4 text-yellow-200 hover:text-yellow-100">
-        <ArrowLeftIcon size={20} />
-        <span className="ml-1">{t('quantTrading.back')}</span>
-      </button>
+      <div className="flex items-center justify-between mb-4">
+    {/* 뒤로가기 */}
+    <button
+      onClick={() => navigate(-1)}
+      className="flex items-center text-yellow-200 hover:text-yellow-100"
+    >
+      <ArrowLeftIcon size={20} />
+      <span className="ml-1">{t('quantTrading.back')}</span>
+    </button>
 
-      {/* 제목 */}
-      <h2 className="text-xl font-bold text-center mb-4">{t('quantTrading.title')} </h2>
+    {/* 제목 */}
+    <h2 className="text-xl font-bold text-center flex-grow">
+      {t('quantTrading.title')}
+    </h2>
+
+    {/* 히스토리 버튼 */}
     <button onClick={() => setShowHistory(true)}>
-  <HistoryIcon />  {/* whatever icon you prefer */}
-</button></span>
+      <HistoryIcon size={20} className="text-yellow-200 hover:text-yellow-100" />
+    </button>
+  </div>
 
 
 {showHistory && <QuantHistoryModal onClose={() => setShowHistory(false)} />}
@@ -184,24 +236,21 @@ const [showHistory, setShowHistory] = useState(false);
       </div>
 
           {/* ─── 1) LEADERBOARD ─────────────────────────── */}
-          <div className="bg-[#342410] rounded p-4 mb-6 text-sm">
-        <h3 className="text-yellow-300 font-semibold mb-2">{t('quantTrading.leaderboardTitle')}</h3>
+          {/* ─── 1) LEADERBOARD ─────────────────────────── */}
+      <div className="bg-[#342410] rounded p-4 mb-6 text-sm">
+        <h3 className="text-yellow-300 font-semibold mb-2">
+          {t("quantTrading.leaderboardTitle")}
+        </h3>
         <table className="w-full text-left">
           <thead>
             <tr className="text-gray-400">
-              <th className="pb-2">{t('quantTrading.leaderboard.name')}</th>
-              <th className="pb-2">{t('quantTrading.leaderboard.earnings')}</th>
-              <th className="pb-2">{t('quantTrading.leaderboard.status')}</th>
+              <th className="pb-2">{t("quantTrading.leaderboard.name")}</th>
+              <th className="pb-2">{t("quantTrading.leaderboard.earnings")}</th>
+              <th className="pb-2">{t("quantTrading.leaderboard.status")}</th>
             </tr>
           </thead>
           <tbody>
-            {[
-              { name: 'jq***9', earnings: '142.53 USDT', status: t('quantTrading.success') },
-              { name: 'd4***8', earnings: '73.12 USDT',  status: t('quantTrading.success') },
-              { name: 'cq***6', earnings: '149.86 USDT', status: t('quantTrading.success') },
-              { name: 'o2***5', earnings: '148.01 USDT', status: t('quantTrading.success') },
-              { name: 'tg***1', earnings: '49.57 USDT',  status: t('quantTrading.success') },
-            ].map((row, i) => (
+            {visibleLeaderboard.map((row, i) => (
               <tr key={i} className="border-t border-gray-700">
                 <td className="py-1">{row.name}</td>
                 <td className="py-1">{row.earnings}</td>
@@ -218,7 +267,7 @@ const [showHistory, setShowHistory] = useState(false);
         <div className="flex flex-wrap justify-center gap-4">
           {[
             '/icons/binance.png',
-            '/icons/okx.png',
+           // '/icons/okx.png',
             '/icons/coinbase.png',
             '/icons/kraken.png',
             '/icons/kucoin.png',
@@ -238,7 +287,9 @@ const [showHistory, setShowHistory] = useState(false);
         </div>
       </div>
       {/* 거래 버튼 및 모달 트리거 */}
-      <button onClick={() => setShowTradeModal(true)} className="w-full bg-yellow-500 hover:bg-yellow-600 text-black py-2 rounded font-bold text-lg mt-4">
+      <button onClick={() => setShowTradeModal(true)} className="
+      
+      pb-10 w-full bg-yellow-500 hover:bg-yellow-600 text-black py-2 rounded font-bold text-lg mt-4">
         {t('quantTrading.start')}
       </button>
 
