@@ -1,34 +1,50 @@
 // 📁 src/components/BottomNav.jsx
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+// Lucide icons
+import { Home, Users, BarChart2, Briefcase, FileText } from 'lucide-react';
 
 const navItems = [
-  { to: '/', label: '첫 장', icon: '🏠' },
-  { to: '/team', label: '내 팀', icon: '👥' },
-  { to: '/quant', label: '수량화하다', icon: '📈' },
-  { to: '/funding', label: '금율 지갑', icon: '💼' },
-  { to: '/myprofile', label: '내 거', icon: '🧾' },
+  { to: '/',        key: 'bottomNav.home',    icon: Home      },
+  { to: '/team',    key: 'bottomNav.team',    icon: Users     },
+  { to: '/quant',   key: 'bottomNav.quant',   icon: BarChart2 },
+  { to: '/funding', key: 'bottomNav.funding', icon: Briefcase },
+  { to: '/myprofile', key: 'bottomNav.mine',  icon: FileText  },
 ];
 
-function BottomNav() {
+export default function BottomNav() {
+  const { t } = useTranslation();
+
   return (
-<div
-  className="fixed bottom-0 left-1/2 transform -translate-x-1/2 z-50 bg-black text-white flex justify-around items-center border-t border-gray-800 h-16 w-full max-w-[500px]"
->   {navItems.map((item) => (
+    <div className="fixed bottom-0 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-[500px] h-16 bg-black flex overflow-visible">
+      {navItems.map(({ to, key, icon: Icon }) => (
         <NavLink
-          key={item.to}
-          to={item.to}
-          className={({ isActive }) =>
-            `flex flex-col items-center text-xs ${
-              isActive ? 'text-yellow-400' : 'text-gray-400'
-            }`
-          }
+          key={to}
+          to={to}
+          end
+          className="flex-1 flex items-center justify-center overflow-visible"
         >
-          <div className="text-xl">{item.icon}</div>
-          <span>{item.label}</span>
+          {({ isActive }) => (
+            <div className="relative flex flex-col items-center pt-0 overflow-visible">
+              {/* 1) active bump */}
+              {isActive && (
+                <div className="absolute -top-3 w-14 h-8 -z-10 bg-black rounded-t-full" />
+              )}
+
+              {/* 2) active icon background */}
+              <div className={`${isActive ? 'bg-[#1F6D79]' : ''} rounded-full p-2`}>
+                <Icon size={24} className={isActive ? 'text-white' : 'text-gray-400'} />
+              </div>
+
+              {/* 3) label */}
+              <span className={`mt-0 text-xs ${isActive ? 'text-white' : 'text-gray-400'}`}>
+                {t(key)}
+              </span>
+            </div>
+          )}
         </NavLink>
       ))}
     </div>
   );
 }
-
-export default BottomNav; // ✅ 반드시 있어야 함

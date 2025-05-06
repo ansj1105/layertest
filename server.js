@@ -5,6 +5,7 @@ const TronWeb = require("tronweb");
 const cron = require('node-cron');
 const mysql = require("mysql2/promise");
 const cors = require("cors");
+const path = require('path');
 const axios = require("axios");
 const session = require("express-session"); // ✅ 세션 추가
 const { calculateFundingProfits } = require('./routes/fundingProfit');
@@ -72,6 +73,7 @@ const db = require("./db"); // 이걸로 사용
   const authRoutes = require('./auth/register'); //회원가입 및 토큰처리   
   const loginRoutes = require('./auth/login');//로그인 라우터
   const contentRoutes = require('./routes/content');
+  app.use('/api', contentRoutes );
   const adminUserRoutes = require('./routes/adminUsers');
   const messageRoutes = require('./routes/messages');
   const popupMessageRoutes = require('./routes/popupMessages');
@@ -112,9 +114,13 @@ app.use('/api/tron', tronRouter);
 app.use('/api/popups', popupMessageRoutes);
 app.use('/api/messages', messageRoutes);  
   app.use('/api/admin', adminUserRoutes);
-  app.use('/api', contentRoutes);
+ 
   app.use('/api/auth', loginRoutes); // ✅ 같은 prefix로 라우터 추가 등록 가능
 app.use('/api/auth', authRoutes);
+app.use(
+  '/uploads',
+  express.static(path.join(__dirname, 'public', 'uploads'))
+);//업로드 경로로
 
   // ✅ 간단한 API 엔드포인트
 app.get('/api/ping', (req, res) => {

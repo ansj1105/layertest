@@ -3,12 +3,14 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from 'axios';
+import VideoWithPreview from './VideoWithPreview';
 
 export default function ContentList() {
   const [banners, setBanners] = useState([]);
   const [video, setVideo] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  // ← 현재 슬라이드 인덱스
+  const [currentSlide, setCurrentSlide] = useState(0);
   useEffect(() => {
     const fetchContent = async () => {
       try {
@@ -32,33 +34,57 @@ export default function ContentList() {
   const noContent = banners.length === 0 && !video;
 
   return (
-    <div className="w-full max-w-4xl space-y-8 text-white text-center">
+    <div className="w-full max-w-4xl mx-auto text-white text-center space-y-8">
       {noContent ? (
         <p className="text-gray-400">업로드된 파일이 없습니다.</p>
       ) : (
         <>
-          {/* 배너 슬라이더 */}
+          {/* 배너 슬라이더: h-[170px] 컨테이너 안에서 이미지를 object-cover */}
           {banners.length > 0 && (
-            <Slider dots autoplay autoplaySpeed={3000} infinite>
+            <div className="relative w-full h-[170px] rounded overflow-visible">
+            <Slider
+              dots
+              infinite
+              autoplay
+              autoplaySpeed={3000}
+              // ← 슬라이드가 바뀔 때마다 호출
+              afterChange={idx => setCurrentSlide(idx)}
+              // ← 각 dot 렌더링
+              customPaging={i => (
+                <div
+                  className={`w-2 h-2 rounded-full ${
+                    currentSlide === i ? 'bg-white' : 'bg-gray-400'
+                  }`}
+                />
+              )}
+              // ← dots를 이미지 위에 절대 위치
+              appendDots={dots => (
+                <div>
+                  <ul className="absolute bottom-6 left-0 right-0 flex justify-center space-x-2">
+                    {dots}
+                  </ul>
+                </div>
+              )}
+            >
               {banners.map((banner, idx) => (
-                <div key={idx}>
+                <div key={idx} className="h-[170px] overflow-hidden rounded">
                   <img
                     src={`http://54.85.128.211:4000${banner.file_path}`}
                     alt={`banner-${idx}`}
-                    className="w-full h-64 object-cover rounded"
+                    className="w-full h-full object-cover"
                   />
                 </div>
               ))}
             </Slider>
-          )}
+          </div>
+        )}
 
-          {/* 동영상 */}
+          {/* 동영상: VideoWithPreview 컴포넌트 사용 */}
           {video && (
             <div className="w-full aspect-video">
-              <video controls className="w-full h-full rounded shadow">
-                <source src={`http://54.85.128.211:4000${video}`} type="video/mp4" />
-                브라우저가 video 태그를 지원하지 않습니다.
-              </video>
+              <VideoWithPreview
+                src={`http://54.85.128.211:4000${video}`}
+              />
             </div>
           )}
         </>

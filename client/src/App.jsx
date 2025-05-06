@@ -130,15 +130,25 @@ export default function App() {
 
   return (
  
-    <div className="min-h-screen w-full max-w-[500px] mx-auto bg-cover bg-center flex flex-col"
-         style={{ backgroundImage: "url('/bg.jpg')" }}>
+    <div
+      className="min-h-screen w-full max-w-[500px] mx-auto bg-white bg-cover bg-center flex flex-col"
+      style={{ backgroundImage: "url('/bg.jpg')" }}
+    >
       {/* 상단 바 */}
-      <div className="bg-black/60 text-white px-4 py-3 flex justify-between items-center shadow-md">
-        <button onClick={() => setSidebarOpen(true)}>
-          <UserIcon size={24} className="text-yellow-300" />
-        </button>
-        <span className="text-lg font-semibold">Quantvine</span>
-        <MailIcon size={24} className="text-yellow-300" />
+      <div className="bg-[#1D1D27] text-white px-4 py-3 flex justify-between items-center shadow-md">
+  {/* 유저 버튼 */}
+  <button onClick={() => setSidebarOpen(true)}>
+  <div className="bg-[#1F6D79] rounded-full p-1">
+      <UserIcon size={32} className="text-white" />
+    </div>
+  </button>
+          {/* 로고 */}
+  <img
+    src="/img/item/logo/logo.png"      // ← 본인 경로에 맞게 수정
+    alt="Quantvine"
+    className="h-10"              // 높이 24px, 너비는 비율대로
+  />
+        <MailIcon size={32} className="text-white-300" />
       </div>
 
       {/* 사이드바 */}

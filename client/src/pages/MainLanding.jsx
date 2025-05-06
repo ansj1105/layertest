@@ -46,13 +46,15 @@
     import QuantTutorialPage from '../components/QuantTutorialPage';
     import TradePasswordPage from '../components/TradePasswordPage';
     import TaskCenterPage from '../components/TaskCenterPage';
+    import { ArrowRightIcon,Bell  } from 'lucide-react';
+    import { useTranslation } from 'react-i18next';
     export default function MainLanding({ user }) {
     const location = useLocation();
     const navigate = useNavigate();
     const [popupList, setPopupList] = useState([]);
     const [showPopup, setShowPopup] = useState(false);
     const [unreadCount, setUnreadCount] = useState(0);
-
+    const { t } = useTranslation();
     useEffect(() => {
         const fetchPopups = async () => {
         const res = await axios.get("http://54.85.128.211:4000/api/popups/active");
@@ -83,54 +85,115 @@
         <>
         {location.pathname === "/" && (
             <>
-            <div className="flex justify-center items-center py-6 bg-black/30">
+            <div className="flex justify-center items-center py-2 bg-white">
                 <ContentList />
             </div>
 
-            <div className="flex justify-between items-center px-6 py-3 bg-black/80">
+            <div className="flex justify-between items-center px-6 py-2 bg-white">
                 
-                <button
+  {/* 알림 버튼 */}
+            <button
                 onClick={handleManualOpen}
-                className="text-white text-sm hover:underline flex items-center relative"
-                >
-                🔔 알림
+                className="relative"  // remove flex/text-sm here
+            >
+                {/* 둥근 배경 안에 벨 아이콘 */}
+                <div className="bg-[#1F6D79] rounded-full p-2">
+                <Bell size={24} className="text-white" />
+                </div>
+                {/* 뱃지 */}
                 {unreadCount > 0 && (
-                    <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
+                <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs px-1 rounded-full">
                     {unreadCount}
-                    </span>
+                </span>
                 )}
-                </button>
-                <Link to="/messages/notices">📢</Link>
+            </button>
+                 <Link to="/messages/notices">
+                   <span className="inline-flex items-center text-black text-xl text-sm">
+                     <span>MORE</span>
+                     <ArrowRightIcon size={20} className="ml-1" />
+                   </span>
+                 </Link>
             </div>
 
             {/* ✅ QVC 토큰 메뉴 */}
-            <div className="bg-[#2b1e0f] text-yellow-400 rounded-md  shadow-md">
-            <div
-  className="text-center text-lg font-semibold border-b border-yellow-600 py-4 mb-2 cursor-pointer"
-  onClick={() => navigate("/token")}
->                🪙 QVC 토큰
+            <div className="bg-[#171924] border-4 border-[#1F6D79] rounded-lg shadow-lg overflow-hidden">
+                {/* 토큰 헤더 */}
+                <div
+                onClick={() => navigate('/token')}
+                className="flex items-center justify-center space-x-3 bg-[#171924] px-6 py-4 cursor-pointer"
+                >
+                <img
+                    src="/img/item/usc.png"
+                    alt="USC token"
+                    className="h-14 w-14"
+                />
+                <span className="text-2xl font-bold text-white">
+                    {t('token.header')}
+                </span>
                 </div>
-                <div className="grid grid-cols-4 p-6 text-center text-sm">
-                <div className="cursor-pointer flex flex-col items-center" onClick={() => navigate("/recharge")}> 
-                    <span className="text-2xl">💰</span>
-                    재충전
+
+                {/* 액션 버튼들 */}
+                <div className="bg-[#171924] border-2 border-[#1F6D79] grid grid-cols-4 gap-4 px-6 py-5 text-center">
+                <div
+                    onClick={() => navigate('/recharge')}
+                    className="flex flex-col items-center space-y-1 cursor-pointer"
+                >
+                    <img
+                    src="/img/item/Recharge.png"
+                    alt="Recharge"
+                    className="h-8 w-8"
+                    />
+                    <span className="text-sm text-white font-bold">
+                    {t('token.recharge')}
+                    </span>
                 </div>
-                <div className="cursor-pointer flex flex-col items-center"onClick={() => navigate("/withdraw")} >
-                    <span className="text-2xl">💸</span>
-                    출금
+
+                <div
+                    onClick={() => navigate('/withdraw')}
+                    className="flex flex-col items-center space-y-1 cursor-pointer"
+                >
+                    <img
+                    src="/img/item/Withdraw.png"
+                    alt="Withdraw"
+                    className="h-8 w-8"
+                    />
+                    <span className="text-sm text-white font-bold">
+                    {t('token.withdraw')}
+                    </span>
                 </div>
-                <div className="cursor-pointer flex flex-col items-center" onClick={() => navigate("/agent")}>
-                    <span className="text-2xl">👥</span>
-                    에이전트
+
+                <div
+                    onClick={() => navigate('/agent')}
+                    className="flex flex-col items-center space-y-1 cursor-pointer"
+                >
+                    <img
+                    src="/img/item/Agent.png"
+                    alt="Agent"
+                    className="h-8 w-8"
+                    />
+                    <span className="text-sm text-white font-bold">
+                    {t('token.agent')}
+                    </span>
                 </div>
-                <div className="cursor-pointer flex flex-col items-center" onClick={() => navigate("/invite")}>
-                    <span className="text-2xl">➕</span>
-                    친구를 초대
+
+                <div
+                    onClick={() => navigate('/invite')}
+                    className="flex flex-col items-center space-y-1 cursor-pointer"
+                >
+                    <img
+                    src="/img/item/Invite.png"
+                    alt="Invite"
+                    className="h-8 w-8"
+                    />
+                    <span className="text-sm text-white font-bold">
+                    {t('token.invite')}
+                    </span>
                 </div>
                 </div>
             </div>
 
-            <div className="flex justify-center items-center p-4  backdrop-blur-md bg-gray-800">
+
+            <div >
                 <CoinList />
             </div>
 
