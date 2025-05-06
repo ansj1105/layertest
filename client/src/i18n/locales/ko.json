@@ -69,6 +69,13 @@
       "tradeError": "거래 실패: ",
       "loading": "불러오는 중..."
     },
+    "bottomNav": {
+      "home": "첫 장",
+      "team": "내 팀",
+      "quant": "수량화하다",
+      "funding": "금율 지갑",
+      "mine": "내 거"
+    },
     "funding": {
       
         "detail2": {
@@ -152,6 +159,16 @@
       "usdt_alert": "지정된 금융 지갑 주소로 USDT를 송금해 주세요."
     }
   },
+  
+    "token": {
+      "header": "QVC 토큰",
+      "recharge": "재충전",
+      "withdraw": "출금",
+      "agent": "에이전트",
+      "invite": "친구를 초대"
+    }
+  
+,  
   "walletLogs": {
     "back": "뒤로가기",
     "title": "이관 내역",

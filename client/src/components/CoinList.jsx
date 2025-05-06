@@ -19,39 +19,71 @@ export default function CoinList() {
     };
 
     fetchCoins();
-    const interval = setInterval(fetchCoins, 60000); // 60초마다 자동 갱신
+    const interval = setInterval(fetchCoins, 60000);
     return () => clearInterval(interval);
   }, []);
 
   return (
-    <div className="max-w-md w-full bg-gray-800 text-white rounded shadow-lg">
-      <h2 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">📈 Market Price</h2>
-      {loading ? (
-        <p className="text-gray-400">Loading...</p>
-      ) : (
-        <ul className="space-y-3">
-          {coins.map((coin) => (
-            <li
-              key={coin.id}
-              className="flex justify-between items-center px-2 py-2 bg-gray-800 rounded"
-            >
-    <div className="flex items-center space-x-2">
-  <img src={coin.image} alt={coin.name} className="w-[27px] h-[27px]" />
-  <span className="font-semibold">{coin.symbol.toUpperCase()}/USDT</span>
-</div>
-<div className="text-right">
-  <div>${coin.current_price.toLocaleString()}</div>
-  <div className={coin.price_change_percentage_24h >= 0 ? 'text-green-400' : 'text-red-400'}>
-    {coin.price_change_percentage_24h >= 0 ? '▲' : '▼'}
-    {Math.abs(coin.price_change_percentage_24h).toFixed(2)}%
-  </div>
-  {/* 아래처럼 숨겨서 Tailwind에게 사용 중임을 알려줘도 됨 */}
-<div className="hidden text-green-400 text-red-400" />
-</div>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="pt-4 px-0 pb-20 bg-[#f0f3f5]">
+      <div className="bg-white rounded-lg shadow-lg">
+        <table className="min-w-full table-fixed">
+          {/* 헤더 */}
+          <thead className="bg-[#1E3A3C]">
+            <tr>
+              <th className="w-1/2 text-left px-4 py-3 text-white">Trading pair</th>
+              <th className="w-1/4 text-right px-4 py-3 text-white">Latest price</th>
+              <th className="w-1/4 text-right px-4 py-3 text-white">Change(%)</th>
+            </tr>
+          </thead>
+
+          {/* 바디 */}
+          <tbody className="divide-y divide-gray-200">
+            {loading ? (
+              <tr>
+                <td colSpan={3} className="text-center py-6 text-gray-500">
+                  Loading...
+                </td>
+              </tr>
+            ) : coins.length === 0 ? (
+              <tr>
+                <td colSpan={3} className="text-center py-6 text-gray-500">
+                  No data
+                </td>
+              </tr>
+            ) : (
+              coins.map(coin => {
+                const up = coin.price_change_percentage_24h >= 0;
+                return (
+                  <tr key={coin.id} className="hover:bg-gray-50">
+                    {/* 페어 */}
+                    <td className="flex items-center space-x-2 px-4 py-3">
+                      <img
+                        src={coin.image}
+                        alt={coin.symbol}
+                        className="w-6 h-6 rounded-full"
+                      />
+                      <span className="font-medium">
+                        {coin.symbol.toUpperCase()}/USDT
+                      </span>
+                    </td>
+                    {/* 가격 */}
+                    <td className="text-right px-4 py-3">
+                      <span className={`font-semibold ${up ? 'text-green-500' : 'text-red-500'}`}>
+                        {coin.current_price.toLocaleString()}
+                      </span>
+                    </td>
+                    {/* 변동률 */}
+                    <td className={`text-right px-4 py-3 ${up ? 'text-green-500' : 'text-red-500'}`}>
+                      {up ? '▲' : '▼'}
+                      {Math.abs(coin.price_change_percentage_24h).toFixed(2)}%
+                    </td>
+                  </tr>
+                );
+              })
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

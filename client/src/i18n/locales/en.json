@@ -139,6 +139,20 @@
   "tradeError": "Trade failed: ",
   "loading": "Loading..."
 },
+"token": {
+  "header": "QVC Token",
+  "recharge": "Recharge",
+  "withdraw": "Withdraw",
+  "agent": "Agent",
+  "invite": "Invite Friends"
+},
+"bottomNav": {
+  "home": "Home",
+  "team": "My team",
+  "quant": "Quantify",
+  "funding": "Funding",
+  "mine": "Mine"
+},
 "funding": {
   "detail2": {
     "loading": "Loading...",
