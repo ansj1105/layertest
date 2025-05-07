@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeftIcon } from "lucide-react"; // 아이콘 라이브러리 (shadcn-ui)
 export default function AppDownloadPage() {
   // QR 코드에 활용할 URL
-  const downloadUrl = 'https://www.quantvines.top/download';
+  const downloadUrl = 'https://www.Upstarts.top/download';
 
   // 앱 버전 (필요에 따라 .env 등에서 불러올 수도 있습니다)
   const appVersion = '1.0.2.3';
@@ -22,12 +22,12 @@ export default function AppDownloadPage() {
       </button>
       <img
         src="/logo192.png"
-        alt="Quantvine Logo"
+        alt="Upstart Logo"
         className="w-24 h-24 rounded-full mb-4"
       />
 
       {/* 앱 이름 & 버전 */}
-      <h1 className="text-2xl font-bold mb-1">Quantvine</h1>
+      <h1 className="text-2xl font-bold mb-1">Upstart</h1>
       <p className="text-sm text-gray-500 mb-8">Version: {appVersion}</p>
 
 
@@ -42,10 +42,10 @@ export default function AppDownloadPage() {
       {/* 앱스토어 버튼 */}
       <div className="flex space-x-4 mb-12">
         {/*
-        <a href="https://play.google.com/store/apps/details?id=com.quantvine.app" target="_blank" rel="noopener noreferrer">
+        <a href="https://play.google.com/store/apps/details?id=com.Upstart.app" target="_blank" rel="noopener noreferrer">
           <img src="/img/android-badge.png" alt="Download on Android" className="h-12"/>
         </a>
-        <a href="https://apps.apple.com/app/quantvine/id123456789" target="_blank" rel="noopener noreferrer">
+        <a href="https://apps.apple.com/app/Upstart/id123456789" target="_blank" rel="noopener noreferrer">
           <img src="/img/appstore-badge.png" alt="Download on the App Store" className="h-12"/>
         </a>
         */}
