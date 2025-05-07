@@ -101,6 +101,13 @@
      "earnings": "Earnings",
      "status": "Status"
    },
+   "confirmText": "You are about to trade {{amount}} USDT. Proceed?",
+   "errorMinHolding": "You must hold at least {{min}} USDT to trade.",
+   "errorMaxInvestment": "Max investment per trade is {{max}} USDT.",
+       "cooldownMessage": "You can trade again in {{min}}m {{sec}}s",
+    "tradeButton": "{{remaining}}/{{dailyLimit}} {{times}} · {{start}}",
+   "cooldownAlert": "Please wait {{min}}m {{sec}}s before trading again.",
+   "confirmTitle": "Confirm Trade",
    "partnersTitle": "Key Partners",
   "history" : "history",
      "time": "Time",
@@ -485,6 +492,90 @@
       "title": "Privacy Policy",
       "content": "1. **Introduction**\n\nUpstart (“we,” “our,” or “us”) respects your privacy and is committed to protecting it.\n\n2. **Information We Collect**\n\n- **Personal Data**: name, email, phone number, wallet addresses.\n- **Usage Data**: pages visited, actions taken.\n\n3. **How We Use Information**\n\nWe use your data to provide, maintain, and improve our services, to communicate with you, and to comply with legal obligations.\n\n4. **Data Sharing**\n\nWe do not sell personal data. We may share with service providers under strict confidentiality.\n\n5. **Security**\n\nWe implement industry‑standard measures to protect your information.\n\n6. **Your Rights**\n\nYou may access, correct, or delete your personal data by contacting support.\n\n7. **Changes**\n\nWe may revise this policy; we’ll notify you of significant changes."
     }
+  },
+  "profile": {
+    "loading":             "⏳ Loading...",
+    "greeting":            "Hi, {{name}}",
+    "vipLevel":            "VIP{{level}}",
+    "idLabel":             "ID",
+    "summary": {
+      "totalBalance":      "Total Balance",
+      "totalEarnings":     "Total Earnings",
+      "todayCommission":   "Today’s Commission",
+      "todayIncome":       "Today’s Income",
+      "yesterdayIncome":   "Yesterday’s Income"
+    },
+    "actions": {
+      "recharge":          "Recharge",
+      "withdraw":          "Withdraw",
+      "details":           "Details"
+    },
+    "referral": {
+      "level1":            "Level 1",
+      "level2":            "Level 2",
+      "level3":            "Level 3"
+    },
+    "menu": {
+      "taskCenter":        "Task Center",
+      "faq":               "FAQ",
+      "securityCenter":    "Security Center",
+      "quantTutorial":     "Quant Tutorial",
+      "language":          "Language Settings",
+      "aboutCompany":      "About Us",
+      "downloadApp":       "Download App"
+    },
+    "logout":              "Logout",
+    "copySuccess":         "ID copied to clipboard!",
+    "logoutConfirmMessage":"Are you sure you want to log out?",
+    "logoutCancel":        "Cancel",
+    "logoutConfirm":       "Confirm"
+  },
+  "team": {
+    "title":                 "My Team",
+    "loading":               "⏳ Loading...",
+    "errorLoad":             "Failed to load referral data",
+    "errorLoadContrib":      "Failed to load contributions",
+    "tabs": {
+      "members":             "Members",
+      "contrib":             "Contributions"
+    },
+    "filter": {
+      "level":               "Filter Level:",
+      "period":              "Period:"
+    },
+    "level": {
+      "A":                   "Level 1 (Direct)",
+      "B":                   "Level 2 (Indirect)",
+      "C":                   "Level 3"
+    },
+    "period": {
+      "today":               "Today",
+      "week":                "This Week",
+      "month":               "This Month"
+    },
+    "noMembers":             "No referred users.",
+    "noRecords":             "No records.",
+    "registered":            "Registered",
+    "vip":                   "VIP",
+    "teamSize":              "Team Size",
+    "contrib": {
+      "todayEarnings":       "Today’s Earnings",
+      "totalEarnings":       "Total Earnings"
+    },
+    "table": {
+      "account":             "Account",
+      "level":               "Level",
+      "time":                "Time",
+      "earning":             "Earnings"
+    }
+  },
+  "referral2": {
+    "loading": "📡 Loading...",
+    "totalEarnings": "Total Team Earnings",
+    "todayEarnings": "Today's Earnings",
+    "totalMembers": "Total Team Members",
+    "todayJoined": "New Members Today",
+    "members": "members"
   }
   
   

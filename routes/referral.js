@@ -458,7 +458,7 @@ router.get('/my-team', async (req, res) => {
   }
 });
 
-// ✅ 내 통계 API
+// 📁 routes/referral.js (또는 stats를 정의한 파일)
 router.get('/stats', async (req, res) => {
   const userId = req.session.user?.id;
   if (!userId) return res.status(401).json({ error: 'Unauthorized' });
@@ -466,56 +466,124 @@ router.get('/stats', async (req, res) => {
   try {
     const [[stats]] = await db.query(`
       SELECT
-        (SELECT COUNT(*) FROM referral_relations WHERE referrer_id = ? AND status = 'active') AS totalMembers,
-        (SELECT COUNT(*) FROM referral_relations WHERE referrer_id = ? AND DATE(created_at) = CURDATE() AND status = 'active') AS todayJoined,
-        (SELECT IFNULL(SUM(amount), 0) FROM referral_rewards WHERE user_id = ?) AS totalEarnings,
-        (SELECT IFNULL(SUM(amount), 0) FROM referral_rewards WHERE user_id = ? AND DATE(created_at) = CURDATE()) AS todayEarnings
+        -- 1) 전체 팀원 수
+        (SELECT COUNT(*) 
+           FROM referral_relations 
+          WHERE referrer_id = ? 
+            AND status = 'active') AS totalMembers,
+
+        -- 2) 오늘 가입한 팀원 수
+        (SELECT COUNT(*) 
+           FROM referral_relations 
+          WHERE referrer_id = ? 
+            AND status = 'active' 
+            AND DATE(created_at) = CURDATE()) AS todayJoined,
+
+        -- 3) 전체 정량 수익
+        (SELECT IFNULL(SUM(amount),0) 
+           FROM quant_profits 
+          WHERE user_id = ?) AS totalProfit,
+
+        -- 4) 오늘 정량 수익
+        (SELECT IFNULL(SUM(amount),0) 
+           FROM quant_profits 
+          WHERE user_id = ? 
+            AND DATE(created_at) = CURDATE()) AS todayProfit
     `, [userId, userId, userId, userId]);
 
-    res.json(stats);
+    res.json({ success: true, data: stats });
   } catch (err) {
     console.error("❌ 통계 조회 실패:", err);
     res.status(500).json({ error: "통계 조회 실패" });
   }
 });
-  
 
-// ✅ 날짜별 수익 통계 조회 API
-router.get("/referral/contributions", async (req, res) => {
+
+// Query params: ?period=today|week|month
+
+router.get('/contributions', async (req, res) => {
   const userId = req.session.user?.id;
-  if (!userId) return res.status(401).json({ error: "Unauthorized" });
+  if (!userId) return res.status(401).json({ error: 'Unauthorized' });
 
-  const { period } = req.query;
-  let interval = "DAY";
-  if (period === "weekly") interval = "WEEK";
-  if (period === "monthly") interval = "MONTH";
+  // period 파라미터에 따른 날짜 조건
+  let dateCondition = '';
+  if (req.query.period === 'today') {
+    dateCondition = `AND DATE(qp.created_at) = CURDATE()`;
+  } else if (req.query.period === 'week') {
+    dateCondition = `AND YEARWEEK(qp.created_at, 1) = YEARWEEK(CURDATE(), 1)`;
+  } else if (req.query.period === 'month') {
+    dateCondition = `
+      AND MONTH(qp.created_at) = MONTH(CURDATE())
+      AND YEAR(qp.created_at )= YEAR(CURDATE())
+    `;
+  }
 
   try {
-    const [list] = await db.query(
-      `SELECT
-         DATE(created_at) AS date,
-         SUM(amount) AS total
-       FROM referral_rewards
-       WHERE user_id = ?
-       GROUP BY DATE(created_at)
-       ORDER BY DATE(created_at) DESC
-       LIMIT 30`,
+    // 1) 전체/오늘 referral 수익 합계
+    const [[statsRow]] = await db.query(
+      `
+      SELECT
+        IFNULL(SUM(qp.amount), 0) AS totalEarnings,
+        IFNULL(SUM(
+          CASE WHEN DATE(qp.created_at)=CURDATE() THEN qp.amount ELSE 0 END
+        ), 0)               AS todayEarnings
+      FROM quant_profits qp
+      WHERE qp.user_id = ?            -- 이 유저가 referrer
+        AND qp.type = 'referral'
+        ${dateCondition}
+      `,
       [userId]
     );
 
-    const [[stats]] = await db.query(
-      `SELECT
-         COUNT(DISTINCT user_id) AS unique_users,
-         IFNULL(SUM(amount), 0) AS total_earnings
-       FROM referral_rewards
-       WHERE user_id = ?`,
-      [userId]
+    // 2) 상세 리스트: 같은 trade_id 의 trade 행을 찾아 실제 거래자(tp.user_id)를 꺼냄
+    const [rows] = await db.query(
+      `
+      SELECT
+        u.name        AS userName,    -- 실제 하위 유저
+        CASE qp.level WHEN 1 THEN 'A'
+                       WHEN 2 THEN 'B'
+                       WHEN 3 THEN 'C' END AS levelLabel,
+        qp.created_at AS time,
+        qp.amount     AS earning
+      FROM quant_profits qp
+
+      -- 같은 거래에서 발생한 trade 수익 행(tp.type='trade') 조인
+      JOIN quant_profits tp
+        ON tp.trade_id = qp.trade_id
+       AND tp.type     = 'trade'
+
+      JOIN users u
+        ON u.id        = tp.user_id
+
+      WHERE qp.user_id = ?
+        AND qp.type    = 'referral'
+        ${dateCondition}
+
+      ORDER BY qp.created_at DESC
+      LIMIT 100
+      `,
+      [userId, userId]
     );
 
-    res.json({ stats, list });
+    res.json({
+      success: true,
+      stats: {
+        totalEarnings: parseFloat(statsRow.totalEarnings),
+        todayEarnings: parseFloat(statsRow.todayEarnings)
+      },
+      list: rows.map(r => ({
+        user_name: r.userName,
+        level:     r.levelLabel,
+        time:      r.time,
+        earning:   parseFloat(r.earning)
+      }))
+    });
   } catch (err) {
-    console.error("❌ 기여 통계 조회 실패:", err);
-    res.status(500).json({ error: "기여 통계 조회 실패" });
+    console.error('❌ contributions API error:', err.message);
+    if (err.sql) console.error('  SQL was:', err.sql);
+    res.status(500).json({ error: 'Failed to load contributions' });
   }
 });
+
+
 module.exports = router;

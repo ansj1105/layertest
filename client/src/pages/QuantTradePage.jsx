@@ -60,7 +60,39 @@ export default function QuantTradingPage() {
   if (loading) return <div className="text-center text-white">{t('quantTrading.loading')}</div>;
 
   const currentVIP = vipLevels.find(v => v.level === user2?.vip_level) || {};
+// ↙ 기존 executeTrade 대신, 바로 실행하는 함수
+const handleStartTrade = async () => {
+  const minHold   = vipLevels[currentIndex]?.min_holdings;
+  const maxInvest = vipLevels[currentIndex]?.max_investment;
+  const bal       = finance.quantBalance;
 
+  // 1) 최소 보유량 체크
+  if (bal < minHold) {
+    return alert(t('quantTrading.errorMinHold', { minHold }));
+  }
+
+  // 2) 실제 주문 금액 = Math.min(보유량, VIP 최대투자)
+  const amount = Math.min(bal, maxInvest);
+
+  try {
+    // ── 여기에 실제 주문 API 호출 ──
+    const res = await axios.post(
+      '/api/quant-trade',
+      { amount },
+      { withCredentials: true }
+    );
+    alert(t('quantTrading.success', { amount }));
+    // 주문 후 잔액 / 이익 요약 등 재조회
+    const finRes = await axios.get('/api/wallet/finance-summary', { withCredentials: true });
+    setFinance({
+      quantBalance: finRes.data.data.quantBalance,
+      fundBalance:  finRes.data.data.fundBalance
+    });
+  } catch (err) {
+    console.error(err);
+    alert(err.response?.data?.error || t('quantTrading.errorExec'));
+  }
+};
   return (
     <div className="p-6 text-yellow-100 bg-[#1a1109] min-h-screen">
       {/* 뒤로가기 */}
@@ -130,7 +162,7 @@ export default function QuantTradingPage() {
         <div>{t('quantTrading.conditions')}: A-{vipLevels[currentIndex]?.min_A}, B-{vipLevels[currentIndex]?.min_B}, C-{vipLevels[currentIndex]?.min_C}</div>
       </div>
       {/* 거래 버튼 및 모달 트리거 */}
-      <button onClick={() => setShowTradeModal(true)} className="w-full bg-yellow-500 hover:bg-yellow-600 text-black py-2 rounded font-bold text-lg mt-4">
+      <button onClick={() => handleStartTrade(true)} className="w-full bg-yellow-500 hover:bg-yellow-600 text-black py-2 rounded font-bold text-lg mt-4">
         {t('quantTrading.start')}
       </button>
 

@@ -19,6 +19,13 @@ export default function QuantTradingPage() {
    const [tradeAmount, setTradeAmount] = useState(0);
    const [tradesToday, setTradesToday] = useState(0);
    // inside your component's state
+    // 즉시 거래 모달 상태
+    const [showInstantModal, setShowInstantModal] = useState(false);
+    // 쿨다운 만료 시각(timestamp in ms)
+    const [cooldownEnd, setCooldownEnd] = useState(0);
+ 
+   //const COOLDOWN_MS = 5 * 60 * 1000; // 5분
+   
 const [showHistory, setShowHistory] = useState(false);
    useEffect(() => {
     axios.get('/api/mydata/me')
@@ -140,7 +147,7 @@ const dailyLimit = myVip.daily_trade_limit || 0;
      return true;
    };
   
-   const executeTrade = async () => {
+   const executeTrade_old = async () => {
      if (!validateTrade(tradeAmount)) return;
      try {
       const res = await axios.post("/api/quant-trade", { amount: tradeAmount }, { withCredentials:true });
@@ -151,20 +158,76 @@ const dailyLimit = myVip.daily_trade_limit || 0;
       // 수익 요약 새로고침
       const sumRes = await axios.get('/api/quant-profits/summary', { withCredentials:true });
       setSummary(sumRes.data.data);
+      window.location.reload();
      } catch (err) {
        alert(t('quantTrading.tradeError') + (err.response?.data?.error || ""));
      }
    };
-  const handleTrade = async () => {
-    if (!window.confirm(t('quantTrading.confirmStart'))) return;
-    try {
-      const res = await axios.post("/api/quant-trade", { amount: 100 }, { withCredentials: true });
-      alert(res.data.message);
-    } catch (err) {
-      alert(t('quantTrading.tradeError') + (err.response?.data?.error || ""));
-    }
-  };
 
+  // 즉시 거래 모달
+
+ // --- 아래 유틸: 1~5분 사이 랜덤 ms 생성
+ function getRandomCooldownMs() {
+  const min = 1 * 60 * 1000;   // 1분
+  const max = 5 * 60 * 1000;   // 5분
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// 현재 거래 가능 여부
+const now = Date.now();
+const canTrade = now >= cooldownEnd;
+const remainingMs = Math.max(0, cooldownEnd - now);
+const remainingMin = Math.floor(remainingMs / 60000);
+const remainingSec = Math.floor((remainingMs % 60000) / 1000);
+
+// 즉시 거래 버튼 클릭
+const handleStart = () => {
+  if (finance.quantBalance < currentVIP.min_holdings) {
+    return alert(
+      t("quantTrading.errorMinHolding", { min: currentVIP.min_holdings })
+    );
+  }
+  if (!canTrade) {
+    return alert(
+      t("quantTrading.cooldownAlert", { min: remainingMin, sec: remainingSec })
+    );
+  }
+  // 모달 띄우기 전, tradeAmount 셋팅 (잔고 vs max_investment)
+  const defaultAmount = Math.min(
+    finance.quantBalance,
+    currentVIP.max_investment
+  );
+  setTradeAmount(defaultAmount);
+  setShowInstantModal(true);
+};
+
+// 거래 실행
+const executeTrade = async () => {
+  setShowInstantModal(false);
+  try {
+    const res = await axios.post(
+      "/api/quant-trade",
+      { amount: tradeAmount },
+      { withCredentials: true }
+    );
+    alert(res.data.message);
+
+     // 성공 시 랜덤 쿨다운 설정
+     const cooldownMs = getRandomCooldownMs();
+     setCooldownEnd(Date.now() + cooldownMs);
+
+    // 잔액 재조회
+    const finRes = await axios.get("/api/wallet/finance-summary", {
+      withCredentials: true,
+    });
+    setFinance({
+      quantBalance: Number(finRes.data.data.quantBalance),
+      fundBalance: Number(finRes.data.data.fundBalance),
+    });
+  } catch (err) {
+    alert(t("quantTrading.tradeError") + (err.response?.data?.error || ""));
+  }
+};
   return (
     <div className="p-6 text-yellow-100 bg-[#1a1109] min-h-screen">
       {/* 뒤로가기 */}
@@ -298,13 +361,53 @@ const dailyLimit = myVip.daily_trade_limit || 0;
           ))}
         </div>
       </div>
-      {/* 거래 버튼 및 모달 트리거 */}
-       <button
-   onClick={() => setShowTradeModal(true)}
-   className="pb-10 w-full bg-yellow-500 hover:bg-yellow-600 text-black py-2 rounded font-bold text-lg mt-4"
- >
-   {remaining}/{dailyLimit} {t("quantTrading.times")} · {t("quantTrading.start")}
+      {/* 거래 버튼 및 모달 트리거() => setShowTradeModal(true) */}
+            <button
+        onClick={handleStart}
+        disabled={!canTrade}
+        className={`
+          w-full py-2 pb-10 rounded font-bold text-lg mt-4
+          ${!canTrade
+            ? 'bg-gray-400 cursor-not-allowed opacity-50'
+            : 'bg-yellow-500 hover:bg-yellow-600 text-black'}
+        `}
+      >
+   { !canTrade
+     // 쿨다운 메시지도 i18n key로
+    ? t('quantTrading.cooldownMessage', {
+         min: remainingMin,
+         sec: remainingSec
+      })
+    : t('quantTrading.tradeButton', {
+         remaining,
+         dailyLimit,
+         times: t('quantTrading.times'),
+         start: t('quantTrading.start')
+       })
+   }
  </button>
+
+
+      {/* 즉시 거래 확인 모달 */}
+      {showInstantModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-black p-6 rounded w-80 text-center">
+            <h3 className="mb-4 font-bold text-lg">{t('quantTrading.confirmTitle')}</h3>
+            <p className="mb-6">
+              {t('quantTrading.confirmText', { amount: tradeAmount.toFixed(6) })}
+            </p>
+            <div className="flex justify-around">
+              <button onClick={() => setShowInstantModal(false)} className="px-4 py-2 bg-red-900 rounded">
+                {t('quantTrading.cancel')}
+              </button>
+              <button onClick={executeTrade} className="px-4 py-2 bg-yellow-500 rounded">
+                {t('quantTrading.confirm')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
 
      {/* 거래 금액 입력 모달 */}
      {showTradeModal && (
