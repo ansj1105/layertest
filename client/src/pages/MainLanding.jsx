@@ -115,7 +115,7 @@
                  </Link>
             </div>
 
-            {/* ✅ QVC 토큰 메뉴 */}
+            {/* ✅ USC 토큰 메뉴 */}
             <div className="bg-[#171924] border-4 border-[#1F6D79] rounded-lg shadow-lg overflow-hidden">
                 {/* 토큰 헤더 */}
                 <div

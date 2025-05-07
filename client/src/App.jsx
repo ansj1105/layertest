@@ -145,7 +145,7 @@ export default function App() {
           {/* 로고 */}
   <img
     src="/img/item/logo/logo.png"      // ← 본인 경로에 맞게 수정
-    alt="Quantvine"
+    alt="Upstart"
     className="h-10"              // 높이 24px, 너비는 비율대로
   />
         <MailIcon size={32} className="text-white-300" />

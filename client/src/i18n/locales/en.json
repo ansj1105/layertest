@@ -140,7 +140,7 @@
   "loading": "Loading..."
 },
 "token": {
-  "header": "QVC Token",
+  "header": "USC Token",
   "recharge": "Recharge",
   "withdraw": "Withdraw",
   "agent": "Agent",
@@ -201,7 +201,7 @@
 },
 "info": {
   "title": "What is a Financial Product?",
-  "definition": "Financial products allow users to lock in a certain amount over a set period to earn rewards. They include various packages managed by Quantvine, each with its own rate and duration.",
+  "definition": "Financial products allow users to lock in a certain amount over a set period to earn rewards. They include various packages managed by Upstart, each with its own rate and duration.",
   "settlement": "Settlement occurs at 00:00 UTC each day, and income from 'T‑day' is available starting from T+1 day.",
   "tradingTitle": "Transaction Explanation",
   "trade1": "1. **Buying**: Subscribe to a product to lock funds for the specified duration.",
@@ -234,8 +234,8 @@
 }
 }
 ,
-  "quantvine": {
-    "title": "Quantvine Overview",
+  "Upstart": {
+    "title": "Upstart Overview",
     "vip_upgrade_criteria": "VIP Upgrade Criteria",
     "vip": {
       "vip1": "VIP1: Requires a minimum of 35 USDT worth of crypto assets.",
@@ -246,7 +246,7 @@
       "vip6": "VIP6: At least 50000 USDT of assets + invite and activate 60 A-level, 60 B-level, and 60 C-level members."
     },
     "overview": {
-      "description": "Quantvine quantitative trading collects and analyzes major data from crypto exchanges, executing high-probability trades via algorithms.",
+      "description": "Upstart quantitative trading collects and analyzes major data from crypto exchanges, executing high-probability trades via algorithms.",
       "advantages": "Provides more precise and efficient profitability compared to manual trading.",
       "assets": "Targets various cryptocurrencies such as BTC, ETH, and USDT.",
       "automation": "Supports automatic entry, exit, profit-taking, and loss reduction.",
@@ -273,9 +273,9 @@
     "title": "Agency Cooperation",
     "subTitle": "Counselor Partnership",
     "lines": [
-      "Join the Quantvine team program and earn commissions by promoting Quantvine. Enjoy Quantvine’s convenience and sustained growth like no one else.",
-      "Quantvine offers every user a generous team-commission reward mechanism.",
-      "You can receive commission rewards in three tiers (these are extra rewards from Quantvine and do not reduce your team members’ earnings).",
+      "Join the Upstart team program and earn commissions by promoting Upstart. Enjoy Upstart’s convenience and sustained growth like no one else.",
+      "Upstart offers every user a generous team-commission reward mechanism.",
+      "You can receive commission rewards in three tiers (these are extra rewards from Upstart and do not reduce your team members’ earnings).",
       "1. When Friend A shares and becomes your Level-1 member, you earn 21% of A’s daily profit.",
       "2. When A’s Friend B becomes your Level-2 member, you earn 7% of B’s daily profit.",
       "3. When B’s Friend C becomes your Level-3 member, you earn 1% of C’s daily profit.",
@@ -304,7 +304,7 @@
   },
   "quantTutorial": {
     "title": "Quantitative Trading Tutorial",
-    "description": "To help you better understand Quantvine, this tutorial explains in detail how the automated quantitative system generates profits and how to use it.",
+    "description": "To help you better understand Upstart, this tutorial explains in detail how the automated quantitative system generates profits and how to use it.",
     "vipUpgradeCriteria": [
       "VIP1: Requires a minimum of 35 USDT in crypto assets.",
       "VIP2: Requires at least 300 USDT in crypto assets plus inviting and activating 2 A-level, 2 B-level, and 2 C-level members.",
@@ -313,7 +313,7 @@
       "VIP5: Requires at least 20000 USDT in crypto assets plus inviting and activating 30 A-level, 30 B-level, and 30 C-level members.",
       "VIP6: Requires at least 50000 USDT in crypto assets plus inviting and activating 60 A-level, 60 B-level, and 60 C-level members."
     ],
-    "overview": "Quantvine Quantitative Overview: Click the button to start automated trading, which uses key market data to complete trades within 1–3 minutes and generate profits.",
+    "overview": "Upstart Quantitative Overview: Click the button to start automated trading, which uses key market data to complete trades within 1–3 minutes and generate profits.",
     "method": {
       "title": "Trading Method",
       "description": "Click the button to initiate automated trading and complete it within 1–3 minutes. Of the profits generated, 50% goes to the platform and 50% returns to you."
@@ -330,7 +330,7 @@
   "commonProblems": {
     "title": "Common Issues",
     "lines": [
-      "Here are some common issues to be aware of when participating in the Quantvine program.",
+      "Here are some common issues to be aware of when participating in the Upstart program.",
       "1. New users must deposit at least 30 USDT to begin trading.",
       "2. To withdraw funds, you must complete quantitative trades totaling at least 20 USDT.",
       "3. The minimum withdrawal amount is 50 USDT.",
@@ -344,7 +344,7 @@
     ],
     "feesTitle": "Fee Information",
     "fees": [
-      "Quantvine’s quantitative system and automated guarantee process may incur additional withdrawal fees (0%–5%).",
+      "Upstart’s quantitative system and automated guarantee process may incur additional withdrawal fees (0%–5%).",
       "Fee rates are subject to change without notice.",
       "Standard processing time is about 5 minutes; with guarantee processing, it may take up to 30 minutes.",
       "Exchange rates are automatically updated based on market conditions."
@@ -443,11 +443,11 @@
   "agreement": {
     "terms": {
       "title": "Terms of Service",
-      "content": "1. **General**\n\nWelcome to Quantvine. By using our service, you agree to these Terms of Service.\n\n2. **Accounts**\n\nUsers must register with accurate information and are responsible for their credentials.\n\n3. **Usage**\n\nYou may not misuse the service, including but not limited to hacking, reverse engineering, or any illegal activity.\n\n4. **Data & Privacy**\n\nWe collect personal data to provide and improve our services. Please review our Privacy Policy for details.\n\n5. **Modifications**\n\nWe may update these terms; continued use implies acceptance of any changes.\n\n6. **Governing Law**\n\nThese terms are governed by the laws of your jurisdiction."
+      "content": "1. **General**\n\nWelcome to Upstart. By using our service, you agree to these Terms of Service.\n\n2. **Accounts**\n\nUsers must register with accurate information and are responsible for their credentials.\n\n3. **Usage**\n\nYou may not misuse the service, including but not limited to hacking, reverse engineering, or any illegal activity.\n\n4. **Data & Privacy**\n\nWe collect personal data to provide and improve our services. Please review our Privacy Policy for details.\n\n5. **Modifications**\n\nWe may update these terms; continued use implies acceptance of any changes.\n\n6. **Governing Law**\n\nThese terms are governed by the laws of your jurisdiction."
     },
     "privacy": {
       "title": "Privacy Policy",
-      "content": "1. **Introduction**\n\nQuantvine (“we,” “our,” or “us”) respects your privacy and is committed to protecting it.\n\n2. **Information We Collect**\n\n- **Personal Data**: name, email, phone number, wallet addresses.\n- **Usage Data**: pages visited, actions taken.\n\n3. **How We Use Information**\n\nWe use your data to provide, maintain, and improve our services, to communicate with you, and to comply with legal obligations.\n\n4. **Data Sharing**\n\nWe do not sell personal data. We may share with service providers under strict confidentiality.\n\n5. **Security**\n\nWe implement industry‑standard measures to protect your information.\n\n6. **Your Rights**\n\nYou may access, correct, or delete your personal data by contacting support.\n\n7. **Changes**\n\nWe may revise this policy; we’ll notify you of significant changes."
+      "content": "1. **Introduction**\n\nUpstart (“we,” “our,” or “us”) respects your privacy and is committed to protecting it.\n\n2. **Information We Collect**\n\n- **Personal Data**: name, email, phone number, wallet addresses.\n- **Usage Data**: pages visited, actions taken.\n\n3. **How We Use Information**\n\nWe use your data to provide, maintain, and improve our services, to communicate with you, and to comply with legal obligations.\n\n4. **Data Sharing**\n\nWe do not sell personal data. We may share with service providers under strict confidentiality.\n\n5. **Security**\n\nWe implement industry‑standard measures to protect your information.\n\n6. **Your Rights**\n\nYou may access, correct, or delete your personal data by contacting support.\n\n7. **Changes**\n\nWe may revise this policy; we’ll notify you of significant changes."
     }
   }
   

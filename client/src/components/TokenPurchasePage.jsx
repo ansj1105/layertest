@@ -27,7 +27,7 @@ export default function TokenPurchasePage() {
     setSales(res.data);
   };
 
-  // 2) QVC 지갑
+  // 2) USC 지갑
   const fetchWallet = async () => {
     const res = await axios.get("/api/token/users/1/token-wallet");
     setWallet(res.data);
@@ -118,7 +118,7 @@ export default function TokenPurchasePage() {
 
   // 토큰 구매
   const handlePurchase = async (saleId) => {
-    const amt = prompt("구매할 QVC 수량을 입력하세요:");
+    const amt = prompt("구매할 USC 수량을 입력하세요:");
     if (!amt || isNaN(amt)) return alert("유효한 수량을 입력하세요.");
     try {
       await axios.post("/api/token/purchase-token", {
@@ -137,7 +137,7 @@ export default function TokenPurchasePage() {
   return (
     <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
       <h2 className="text-center text-xl font-semibold border-b border-yellow-500 pb-2 mb-4">
-        QVC 토큰
+      USC 토큰
       </h2>
       <button
         onClick={() => window.history.back()}
@@ -160,9 +160,9 @@ export default function TokenPurchasePage() {
         <div className="text-2xl font-bold">
           {financeSummary.quantBalance.toFixed(6)} USDT
         </div>
-        <div className="text-sm text-gray-300 mt-2">QVC 지갑</div>
+        <div className="text-sm text-gray-300 mt-2">USC 지갑</div>
         <div className="text-2xl font-bold">
-          {wallet?.balance?.toFixed(6) || "0.000000"} QVC
+          {wallet?.balance?.toFixed(6) || "0.000000"} USC
         </div>
         <div className="flex justify-around mt-4 text-sm text-yellow-200">
           <button
@@ -281,7 +281,7 @@ export default function TokenPurchasePage() {
             <ul className="text-sm space-y-1">
               {purchaseLogs.map((item) => (
                 <li key={item.id} className="border-b border-gray-600 py-1">
-                  {item.amount} QVC / {item.total_price} USDT (단가: {item.price}) - {new Date(item.createdAt).toLocaleString()}
+                  {item.amount} USC / {item.total_price} USDT (단가: {item.price}) - {new Date(item.createdAt).toLocaleString()}
                 </li>
               ))}
             </ul>
@@ -292,7 +292,7 @@ export default function TokenPurchasePage() {
             <ul className="text-sm space-y-1">
               {transactionLogs.map((tx) => (
                 <li key={tx.id} className="border-b border-gray-600 py-1">
-                  [{tx.type}] {tx.amount} QVC - {tx.status} - {new Date(tx.createdAt).toLocaleString()}
+                  [{tx.type}] {tx.amount} USC - {tx.status} - {new Date(tx.createdAt).toLocaleString()}
                 </li>
               ))}
             </ul>
@@ -301,12 +301,12 @@ export default function TokenPurchasePage() {
       )}
 
       {sales.length === 0 ? (
-        <div className="text-center text-gray-400 mt-12">현재 판매중인 QVC가 없습니다.</div>
+        <div className="text-center text-gray-400 mt-12">현재 판매중인 USC가 없습니다.</div>
       ) : (
         sales.map((sale, idx) => (
           <div key={sale.id} className="bg-[#3b2b15] rounded-md p-4 mb-4">
             <div className="flex items-center mb-2">
-              <img src="/img/qvc-icon.png" alt="qvc" className="w-6 h-6 mr-2" />
+              <img src="/img/qvc-icon.png" alt="USC" className="w-6 h-6 mr-2" />
               <span className="font-bold text-lg">{idx + 1}차 사전 판매</span>
             </div>
             <div className="text-sm text-gray-300">총 수량: <span className="text-yellow-100">{sale.total_supply} QVC</span></div>
