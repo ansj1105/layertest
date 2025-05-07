@@ -37,14 +37,8 @@ export default function MyTeamPage() {
     (async () => {
       try {
         const [teamRes, statsRes] = await Promise.all([
-<<<<<<< HEAD
-          axios.get('http://54.85.128.211:4000/api/referral/my-team',    { withCredentials: true }),
-          axios.get('http://54.85.128.211:4000/api/referral/stats',      { withCredentials: true }),
-          
-=======
           axios.get('/api/referral/my-team',    { withCredentials: true }),
           axios.get('/api/referral/stats',      { withCredentials: true }),
->>>>>>> main
         ]);
         setTeam(teamRes.data.data);
         const { totalMembers, todayJoined, totalProfit, todayProfit } = statsRes.data.data;
