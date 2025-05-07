@@ -156,7 +156,7 @@ export default function TokenPurchasePage() {
        >
          세부 &gt;
        </button>
-        <div className="text-sm text-gray-300">Quant 지갑 USDT</div>
+        <div className="text-sm text-gray-300">정량 지갑 USDT</div>
         <div className="text-2xl font-bold">
           {financeSummary.quantBalance.toFixed(6)} USDT
         </div>
@@ -309,8 +309,8 @@ export default function TokenPurchasePage() {
               <img src="/img/qvc-icon.png" alt="USC" className="w-6 h-6 mr-2" />
               <span className="font-bold text-lg">{idx + 1}차 사전 판매</span>
             </div>
-            <div className="text-sm text-gray-300">총 수량: <span className="text-yellow-100">{sale.total_supply} QVC</span></div>
-            <div className="text-sm text-gray-300">남은 수량: <span className="text-yellow-100">{sale.remaining_supply} QVC</span></div>
+            <div className="text-sm text-gray-300">총 수량: <span className="text-yellow-100">{sale.total_supply} USC</span></div>
+            <div className="text-sm text-gray-300">남은 수량: <span className="text-yellow-100">{sale.remaining_supply} USC</span></div>
             <div className="text-sm text-gray-300">시작 시간: <span className="text-yellow-100">{new Date(sale.start_time).toLocaleString()}</span></div>
             <div className="text-sm text-gray-300">종료 시간: <span className="text-yellow-100">{new Date(sale.end_time).toLocaleString()}</span></div>
             <button
