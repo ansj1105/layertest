@@ -11,7 +11,7 @@ export default function AdminLogin() {
   const handleLogin = async () => {
     setError('');
     try {
-      await axios.post('http://54.85.128.211:4000/api/auth/admin-login', form, {
+      await axios.post('http://localhost:4000/api/auth/admin-login', form, {
         withCredentials: true,
       });
       navigate('/dashboard');

@@ -46,7 +46,7 @@ export default function MyProfilePage() {
   };
 
   const handleLogout = async () => {
-    await axios.post("http://54.85.128.211:4000/api/auth/logout");
+    await axios.post("http://localhost:4000/api/auth/logout");
     setUser(null);
     window.location.href = "/login";
   };

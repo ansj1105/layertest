@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import AdminNav from '../../components/admin/AdminNav'; // ✅ 네비게이션 컴포넌트 추가
 
-const socket = io('http://54.85.128.211:4000', { withCredentials: true });
+const socket = io('http://localhost:4000', { withCredentials: true });
 
 export default function AdminChat({ onLogout }) {
   const [users, setUsers] = useState([]);
@@ -29,7 +29,7 @@ export default function AdminChat({ onLogout }) {
   }, [selectedUser]);
 
   const fetchUsers = () => {
-    axios.get('http://54.85.128.211:4000/api/auth/users', { withCredentials: true })
+    axios.get('http://localhost:4000/api/auth/users', { withCredentials: true })
       .then(res => setUsers(res.data))
       .catch(console.error);
   };
@@ -40,11 +40,11 @@ export default function AdminChat({ onLogout }) {
 
   const loadMessages = (user) => {
     setSelectedUser(user);
-    axios.get(`http://54.85.128.211:4000/api/auth/messages/${user.id}`, { withCredentials: true })
+    axios.get(`http://localhost:4000/api/auth/messages/${user.id}`, { withCredentials: true })
       .then(res => setMessages(res.data))
       .catch(console.error);
 
-    axios.patch(`http://54.85.128.211:4000/api/auth/messages/${user.id}/read`, {}, { withCredentials: true })
+    axios.patch(`http://localhost:4000/api/auth/messages/${user.id}/read`, {}, { withCredentials: true })
       .catch(console.error);
   };
 
@@ -62,7 +62,7 @@ export default function AdminChat({ onLogout }) {
       is_read: true
     }]);
 
-    axios.post('http://54.85.128.211:4000/api/auth/reply', {
+    axios.post('http://localhost:4000/api/auth/reply', {
       userId: selectedUser.id,
       message: newMessage
     }, { withCredentials: true });

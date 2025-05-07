@@ -15,7 +15,7 @@ export default function AdminContentManager({ onLogout }) {
   // 서버에서 현재 파일 목록 가져오기
   const fetchContentFiles = async () => {
     try {
-      const res = await axios.get('http://54.85.128.211:4000/api/content-files');
+      const res = await axios.get('http://localhost:4000/api/content-files');
       setBanners(res.data.filter(f => f.type === 'banner'));
       setVideos(res.data.filter(f => f.type === 'video'));
     } catch (err) {
@@ -30,7 +30,7 @@ export default function AdminContentManager({ onLogout }) {
   const handleDelete = async (id) => {
     if (!window.confirm('정말 삭제하시겠습니까?')) return;
     try {
-      await axios.delete(`http://54.85.128.211:4000/api/content-files/${id}`);
+      await axios.delete(`http://localhost:4000/api/content-files/${id}`);
       fetchContentFiles();
     } catch {
       alert('삭제 실패');
@@ -87,7 +87,7 @@ export default function AdminContentManager({ onLogout }) {
     if (type === 'video') formData.append('video', videoFile);
 
     try {
-      await axios.post(`http://54.85.128.211:4000/api/upload/${type}`, formData, {
+      await axios.post(`http://localhost:4000/api/upload/${type}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setBannerFile(null);
@@ -131,7 +131,7 @@ export default function AdminContentManager({ onLogout }) {
             {banners.length > 0 ? banners.map((b) => (
               <li key={b.id} className="flex flex-col items-center bg-white p-2 rounded shadow">
                 <img
-                  src={`http://54.85.128.211:4000${b.file_path}`}
+                  src={`http://localhost:4000${b.file_path}`}
                   alt="banner-thumb"
                   className="h-24 w-full object-cover rounded mb-2"
                 />
@@ -176,7 +176,7 @@ export default function AdminContentManager({ onLogout }) {
                 <video
                   controls
                   className="w-full max-w-lg rounded mb-2"
-                  src={`http://54.85.128.211:4000${v.file_path}`}
+                  src={`http://localhost:4000${v.file_path}`}
                 />
                 <span className="block text-xs text-gray-600 mb-2">{v.file_path.split('/').pop()}</span>
                 <button
