@@ -1,83 +1,101 @@
 // 📁 src/pages/MyTeamPage.jsx
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 import ProtectedRoute from '../components/ProtectedRoute';
 import ReferralStatsBox from '../components/ReferralStatsBox';
 
 const LEVELS = [
-  { value: 'A', label: '레벨 1 (직접)' },
-  { value: 'B', label: '레벨 2 (간접)' },
-  { value: 'C', label: '레벨 3' },
+  { value: 'A', labelKey: 'team.level.A' },
+  { value: 'B', labelKey: 'team.level.B' },
+  { value: 'C', labelKey: 'team.level.C' },
 ];
 
 const PERIODS = [
-  { value: 'today', label: '오늘' },
-  { value: 'week',  label: '이번 주' },
-  { value: 'month', label: '이번 달' },
+  { value: 'today', labelKey: 'team.period.today' },
+  { value: 'week',  labelKey: 'team.period.week' },
+  { value: 'month', labelKey: 'team.period.month' },
 ];
 
 export default function MyTeamPage() {
+  const { t } = useTranslation();
   const [team, setTeam] = useState({ A: [], B: [], C: [] });
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const [activeTab, setActiveTab]           = useState('members'); // 'members' | 'contrib'
+  const [activeTab, setActiveTab]           = useState('members');
   const [filterLevel, setFilterLevel]       = useState('A');
+
+  // === 기여 탭용 state
   const [period, setPeriod]                 = useState('today');
+  const [contribLoading, setContribLoading] = useState(false);
   const [contribStats, setContribStats]     = useState(null);
   const [contribList, setContribList]       = useState([]);
-  const [contribLoading, setContribLoading] = useState(false);
 
-  // 첫 로딩에 팀+통계만 가져옴
+  // ▶ 멤버 목록 & 전체 통계 불러오기
   useEffect(() => {
-    async function fetchAll() {
+    (async () => {
       try {
         const [teamRes, statsRes] = await Promise.all([
+<<<<<<< HEAD
           axios.get('http://54.85.128.211:4000/api/referral/my-team',    { withCredentials: true }),
           axios.get('http://54.85.128.211:4000/api/referral/stats',      { withCredentials: true }),
           
+=======
+          axios.get('/api/referral/my-team',    { withCredentials: true }),
+          axios.get('/api/referral/stats',      { withCredentials: true }),
+>>>>>>> main
         ]);
-        console.log(teamRes);
-        console.log(statsRes);
         setTeam(teamRes.data.data);
-        setStats(statsRes.data);
+        const { totalMembers, todayJoined, totalProfit, todayProfit } = statsRes.data.data;
+        setStats({
+          totalMembers,
+          todayJoined,
+          totalEarnings: totalProfit,
+          todayEarnings: todayProfit,
+        });
       } catch (err) {
-        console.error('❌ 레퍼럴 데이터 불러오기 실패:', err);
+        console.error('❌', t('team.errorLoad'), err);
       } finally {
         setLoading(false);
       }
-    }
-    fetchAll();
-  }, []);
+    })();
+  }, [t]);
 
-  // 팀 기여 탭 진입하거나 period 바뀔 때마다 다시 불러오기
+  // ▶ “기여” 탭을 켰을 때, period 변화나 처음 진입 시 불러오기
   useEffect(() => {
     if (activeTab !== 'contrib') return;
-    setContribLoading(true);
-    axios.get('/api/referral/contributions', {
-      params: { period },
-      withCredentials: true
-    })
-      .then(res => {
-        // { stats: {...}, list: [...] }
-        setContribStats(res.data.stats);
-        setContribList(res.data.list);
-      })
-      .catch(err => console.error('❌ 기여 데이터 불러오기 실패:', err))
-      .finally(() => setContribLoading(false));
-  }, [activeTab, period]);
+        console.log('⏳ [contrib] fetching, period =', period);
+        setContribLoading(true);
+    
+        axios.get('/api/referral/contributions', {
+          params: { period },
+          withCredentials: true
+        })
+        .then(res => {
+          console.log('✅ [contrib] response.data:', res.data);
+          setContribStats(res.data.stats);
+          setContribList(res.data.list);
+        })
+        .catch(err => {
+          console.error('❌ [contrib] error:', err.response?.data || err.message);
+        })
+        .finally(() => {
+          setContribLoading(false);
+        });
+  }, [activeTab, period, t]);
 
   const renderMemberCard = u => (
     <div key={u.id} className="bg-[#2c1f0f] p-4 rounded mb-3 flex justify-between items-center">
       <div>
         <div className="text-lg font-semibold text-yellow-100">{u.name || u.email}</div>
         <div className="text-sm text-yellow-300 mt-1">
-          등록: {new Date(u.created_at).toLocaleDateString()}
+          {t('team.registered')}: {new Date(u.created_at).toLocaleDateString()}
         </div>
       </div>
       <div className="text-right space-y-1">
-        <div className="text-sm">VIP: {u.vip_level}</div>
-        <div className="text-sm">팀원: {u.team_count}</div>
+        <div className="text-sm">{t('team.vip')}: {u.vip_level}</div>
+        <div className="text-sm">{t('team.teamSize')}: {u.team_count}</div>
       </div>
     </div>
   );
@@ -95,7 +113,7 @@ export default function MyTeamPage() {
     return (
       <ProtectedRoute>
         <div className="min-h-screen flex items-center justify-center text-yellow-300">
-          ⏳ 불러오는 중...
+          {t('team.loading')}
         </div>
       </ProtectedRoute>
     );
@@ -106,44 +124,41 @@ export default function MyTeamPage() {
       <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
         {/* 헤더 */}
         <div className="flex items-center mb-4">
-          <button onClick={() => history.back()} className="mr-2">
-            ←
-          </button>
-          <h1 className="text-xl font-semibold">👥 내 팀 보기</h1>
+          <button onClick={() => history.back()} className="mr-2">←</button>
+          <h1 className="text-xl font-semibold">{t('team.title')}</h1>
         </div>
 
-        {/* 통계 박스 */}
+        {/* 전체 통계 */}
         {stats && (
           <ReferralStatsBox stats={{
-            totalMembers: stats.totalMembers,
-            todayJoined:  stats.todayJoined,
+            totalMembers:  stats.totalMembers,
+            todayJoined:   stats.todayJoined,
             totalEarnings: stats.totalEarnings,
-            todayEarnings: stats.todayEarnings
+            todayEarnings: stats.todayEarnings,
           }} />
         )}
 
-        {/* 탭 */}
+        {/* 탭 버튼 */}
         <div className="flex bg-[#2c1f0f] rounded mb-4 overflow-hidden">
           <button
             onClick={() => setActiveTab('members')}
             className={`flex-1 py-2 font-medium ${activeTab==='members'? 'bg-yellow-700 text-black':'text-yellow-300'}`}
           >
-            팀 멤버
+            {t('team.tabs.members')}
           </button>
           <button
             onClick={() => setActiveTab('contrib')}
             className={`flex-1 py-2 font-medium ${activeTab==='contrib'? 'bg-yellow-700 text-black':'text-yellow-300'}`}
           >
-            팀 기여
+            {t('team.tabs.contrib')}
           </button>
         </div>
 
-        {/* 팀 멤버 리스트 */}
-        {activeTab==='members' && (
+        {/* ── 팀 멤버 리스트 ── */}
+        {activeTab === 'members' && (
           <>
-            {/* 레벨 필터 */}
             <div className="mb-4 flex items-center">
-              <label className="mr-2">단계 필터:</label>
+              <label className="mr-2">{t('team.filter.level')}</label>
               <select
                 className="bg-[#2c1f0f] text-yellow-100 p-2 rounded"
                 value={filterLevel}
@@ -151,54 +166,63 @@ export default function MyTeamPage() {
               >
                 {LEVELS.map(l => (
                   <option key={l.value} value={l.value}>
-                    {l.label}
+                    {t(l.labelKey)}
                   </option>
                 ))}
               </select>
             </div>
-            {team[filterLevel].length>0
-              ? team[filterLevel].map(renderMemberCard)
-              : <p className="text-center text-yellow-300">추천된 사용자가 없습니다.</p>
-            }
+            {team[filterLevel].length > 0 ? (
+              <div className="max-h-80 overflow-y-auto space-y-3">
+                {team[filterLevel].map(renderMemberCard)}
+              </div>
+            ) : (
+              <p className="text-center text-yellow-300">{t('team.noMembers')}</p>
+            )}
           </>
         )}
 
-        {/* 팀 기여 리스트 */}
-        {activeTab==='contrib' && (
+        {/* ── 팀 기여 리스트 ── */}
+        {activeTab === 'contrib' && (
           <>
-            {/* 기간 필터 */}
             <div className="mb-4 flex items-center">
-              <label className="mr-2">기간:</label>
+              <label className="mr-2">{t('team.filter.period')}</label>
               <select
                 className="bg-[#2c1f0f] text-yellow-100 p-2 rounded"
                 value={period}
                 onChange={e => setPeriod(e.target.value)}
               >
-                {PERIODS.map(p=>(
-                  <option key={p.value} value={p.value}>{p.label}</option>
+                {PERIODS.map(p => (
+                  <option key={p.value} value={p.value}>
+                    {t(p.labelKey)}
+                  </option>
                 ))}
               </select>
             </div>
 
-            {/* 수익 요약 */}
+            {/* stats: 오늘 / 누적 earnings */}
             {contribStats && (
               <div className="mb-4 bg-[#2c1f0f] p-4 rounded flex justify-between text-sm">
-                <div>오늘 누적 수입: <span className="text-red-500">{contribStats.todayEarnings.toFixed(6)} USDT</span></div>
-                <div>총 수입: {contribStats.totalEarnings.toFixed(6)} USDT</div>
+                <div>
+                  {t('team.contrib.todayEarnings')}:
+                  <span className="text-red-500"> {contribStats.todayEarnings.toFixed(6)} USDT</span>
+                </div>
+                <div>
+                  {t('team.contrib.totalEarnings')}:
+                  <span> {contribStats.totalEarnings.toFixed(6)} USDT</span>
+                </div>
               </div>
             )}
 
-            {/* 테이블 */}
             {contribLoading
-              ? <p className="text-center">⏳ 불러오는 중...</p>
-              : contribList.length>0 ? (
+              ? <p className="text-center">{t('team.loading')}</p>
+              : contribList.length > 0 ? (
                 <table className="w-full table-auto text-xs bg-[#2c1f0f] rounded overflow-hidden">
                   <thead>
                     <tr className="bg-[#3a270e]">
-                      <th className="p-2">계정</th>
-                      <th className="p-2">수준</th>
-                      <th className="p-2">시간</th>
-                      <th className="p-2">소득</th>
+                      <th className="p-2">{t('team.table.account')}</th>
+                      <th className="p-2">{t('team.table.level')}</th>
+                      <th className="p-2">{t('team.table.time')}</th>
+                      <th className="p-2">{t('team.table.earning')}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -206,7 +230,7 @@ export default function MyTeamPage() {
                   </tbody>
                 </table>
               ) : (
-                <p className="text-center text-yellow-300">기록 없음</p>
+                <p className="text-center text-yellow-300">{t('team.noRecords')}</p>
               )
             }
           </>

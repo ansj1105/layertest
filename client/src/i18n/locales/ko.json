@@ -30,6 +30,14 @@
      "earnings": "소득",
      "status": "상태"
    },
+   "confirmTitle": "거래 확인",
+   "confirmText": "총 {{amount}} USDT를 거래하시겠습니까?",
+   "tradeError": "거래 실패: ",
+   "errorMinHolding": "거래를 위해 최소 {{min}} USDT를 보유해야 합니다.",
+       "cooldownMessage": "{{min}}분 {{sec}}초 후 재거래 가능",
+    "tradeButton": "{{remaining}}/{{dailyLimit}} {{times}} · {{start}}",
+   "errorMaxInvestment": "1회 최대 투자 한도는 {{max}} USDT입니다.",
+   "cooldownAlert": "OO분 OO초가 아니라, 실제 템플릿에 맞게\n\"{{min}}분 {{sec}}초 후에 다시 거래 가능합니다.\"",
    "partnersTitle": "핵심 협동 기관",
   
          "time": "시간",
@@ -498,6 +506,90 @@
         "title": "개인정보처리방침",
         "content": "1. **개요**\n\nUpstart(이하 “당사”)는 회원님의 개인정보 보호를 중요하게 생각합니다.\n\n2. **수집 항목**\n\n- **개인정보**: 이름, 이메일, 휴대폰 번호, 지갑 주소\n- **서비스 이용 정보**: 방문 페이지, 이용 기록\n\n3. **수집 목적**\n\n서비스 제공·개선, 회원 소통, 법적 의무 이행을 위해 개인정보를 사용합니다.\n\n4. **제3자 제공**\n\n회원 동의 없이 개인정보를 판매하지 않으며, 업무 위탁 시에는 철저히 보호합니다.\n\n5. **보안 대책**\n\n업계 표준 수준의 기술적·관리적 보호 조치를 통해 개인정보를 안전하게 관리합니다.\n\n6. **회원 권리**\n\n회원은 언제든지 개인정보 열람, 정정, 삭제를 요청할 수 있습니다.\n\n7. **정책 변경**\n\n본 방침은 개정될 수 있으며, 주요 변경 시 사이트를 통해 안내합니다."
       }
+    },
+    "profile": {
+      "loading":             "⏳ 로딩 중...",
+      "greeting":            "Hi, {{name}}",
+      "vipLevel":            "VIP{{level}}",
+      "idLabel":             "ID",
+      "summary": {
+        "totalBalance":      "전체 균형",
+        "totalEarnings":     "총 수익",
+        "todayCommission":   "오늘 커미션",
+        "todayIncome":       "오늘 수입",
+        "yesterdayIncome":   "어제 수입"
+      },
+      "actions": {
+        "recharge":          "재충전",
+        "withdraw":          "출금하기",
+        "details":           "세부"
+      },
+      "referral": {
+        "level1":            "Level 1",
+        "level2":            "Level 2",
+        "level3":            "Level 3"
+      },
+      "menu": {
+        "taskCenter":        "태스크 센터",
+        "faq":               "일반적인 문제",
+        "securityCenter":    "보안 센터",
+        "quantTutorial":     "양자화 튜토리얼",
+        "language":          "언어 설정",
+        "aboutCompany":      "회사 소개",
+        "downloadApp":       "앱 다운로드"
+      },
+      "logout":              "로그아웃",
+      "copySuccess":         "ID가 복사되었습니다!",
+      "logoutConfirmMessage":"로그아웃 하시겠습니까?",
+      "logoutCancel":        "취소",
+      "logoutConfirm":       "확인"
+    },
+    "team": {
+      "title":                 "내 팀 보기",
+      "loading":               "⏳ 불러오는 중...",
+      "errorLoad":             "레퍼럴 데이터 불러오기 실패",
+      "errorLoadContrib":      "기여 데이터 불러오기 실패",
+      "tabs": {
+        "members":             "팀 멤버",
+        "contrib":             "팀 기여"
+      },
+      "filter": {
+        "level":               "단계 필터:",
+        "period":              "기간:"
+      },
+      "level": {
+        "A":                   "레벨 1 (직접)",
+        "B":                   "레벨 2 (간접)",
+        "C":                   "레벨 3"
+      },
+      "period": {
+        "today":               "오늘",
+        "week":                "이번 주",
+        "month":               "이번 달"
+      },
+      "noMembers":             "추천된 사용자가 없습니다.",
+      "noRecords":             "기록 없음",
+      "registered":            "등록",
+      "vip":                   "VIP",
+      "teamSize":              "팀원",
+      "contrib": {
+        "todayEarnings":       "오늘 누적 수입",
+        "totalEarnings":       "총 수입"
+      },
+      "table": {
+        "account":             "계정",
+        "level":               "수준",
+        "time":                "시간",
+        "earning":             "소득"
+      }
+    },
+    "referral2": {
+      "loading": "📡 불러오는 중...",
+      "totalEarnings": "총 팀 수익",
+      "todayEarnings": "오늘 수입",
+      "totalMembers": "총 팀원 수",
+      "todayJoined": "오늘 가입 팀원",
+      "members": "명"
     }
     
     

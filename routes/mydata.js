@@ -7,92 +7,110 @@ const db = require('../db');
 // GET /api/mydata/summary
 
 router.get('/summary', async (req, res) => {
-    try {
-      const userId = req.session.user?.id;
-      if (!userId) return res.status(401).json({ success: false, error: 'Unauthorized' });
-  
-      // 1) 지갑 잔액
-      const [walletRows] = await db.query(
-        'SELECT IFNULL(fund_balance,0) AS fund, IFNULL(quant_balance,0) AS quant FROM wallets WHERE user_id = ?',
-        [userId]
-      );
-      const wallet = walletRows[0] || { fund: 0, quant: 0 };
-  
-      // 2) 추천 리워드
-      const [[rewardRows]] = await db.query(`
-        SELECT
-          IFNULL(SUM(amount),0) AS total,
-          IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE() THEN amount END),0) AS today,
-          IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE()-INTERVAL 1 DAY THEN amount END),0) AS yesterday
-        FROM referral_rewards
-        WHERE user_id = ?
-      `, [userId]);
-  
-      // 3) 투자 수익
-      const [[investRows]] = await db.query(`
-        SELECT
-          IFNULL(SUM(profit),0) AS total,
-          IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE() THEN profit END),0) AS today,
-          IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE()-INTERVAL 1 DAY THEN profit END),0) AS yesterday
-        FROM funding_investments
-        WHERE user_id = ?
-      `, [userId]);
-  
-      // 4) 양적거래 수익
-      const [[tradeRows]] = await db.query(`
-        SELECT
-          IFNULL(SUM(user_earning),0) AS total,
-          IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE() THEN user_earning END),0) AS today,
-          IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE()-INTERVAL 1 DAY THEN user_earning END),0) AS yesterday
-        FROM quant_trades
-        WHERE user_id = ?
-      `, [userId]);
-  
-      // 5) 레퍼럴 하위 가입자 수
-      const [[refRows]] = await db.query(`
-        SELECT
-          SUM(level=1 AND status='active') AS level2,
-          SUM(level=2 AND status='active') AS level3,
-          SUM(level=3 AND status='active') AS level4
-        FROM referral_relations
-        WHERE referrer_id = ?
-      `, [userId]);
-  
-      return res.json({
-        success: true,
-        data: {
-          balance: {
-            total: Number(wallet.fund) + Number(wallet.quant)
+  try {
+    const userId = req.session.user?.id;
+    if (!userId) return res.status(401).json({ success: false, error: 'Unauthorized' });
+
+    // 1) 지갑 잔액
+    const [walletRows] = await db.query(
+      'SELECT IFNULL(fund_balance,0) AS fund, IFNULL(quant_balance,0) AS quant FROM wallets WHERE user_id = ?',
+      [userId]
+    );
+    const wallet = walletRows[0] || { fund: 0, quant: 0 };
+
+    // 2) 추천 리워드 (기존)
+    const [[rewardRows]] = await db.query(`
+      SELECT
+        IFNULL(SUM(amount),0) AS total,
+        IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE() THEN amount END),0) AS today,
+        IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE()-INTERVAL 1 DAY THEN amount END),0) AS yesterday
+      FROM referral_rewards
+      WHERE user_id = ?
+    `, [userId]);
+
+    // 3) 투자 수익 (기존)
+    const [[investRows]] = await db.query(`
+      SELECT
+        IFNULL(SUM(profit),0) AS total,
+        IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE() THEN profit END),0) AS today,
+        IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE()-INTERVAL 1 DAY THEN profit END),0) AS yesterday
+      FROM funding_investments
+      WHERE user_id = ?
+    `, [userId]);
+
+    // 4) 양적거래 수익 (기존)
+    const [[tradeRows]] = await db.query(`
+      SELECT
+        IFNULL(SUM(user_earning),0) AS total,
+        IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE() THEN user_earning END),0) AS today,
+        IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE()-INTERVAL 1 DAY THEN user_earning END),0) AS yesterday
+      FROM quant_trades
+      WHERE user_id = ?
+    `, [userId]);
+
+    // 5) 레퍼럴 하위 가입자 수 (기존)
+    const [[refRows]] = await db.query(`
+      SELECT
+        SUM(level=1 AND status='active') AS level2,
+        SUM(level=2 AND status='active') AS level3,
+        SUM(level=3 AND status='active') AS level4
+      FROM referral_relations
+      WHERE referrer_id = ?
+    `, [userId]);
+
+    // 6) quant_profits에서 'referral' 타입 합계 (신규)
+    const [[qprofRows]] = await db.query(`
+      SELECT
+        IFNULL(SUM(amount),0) AS total,
+        IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE() THEN amount END),0) AS today,
+        IFNULL(SUM(CASE WHEN DATE(created_at)=CURDATE()-INTERVAL 1 DAY THEN amount END),0) AS yesterday
+      FROM quant_profits
+      WHERE user_id = ? AND type = 'referral'
+    `, [userId]);
+
+    return res.json({
+      success: true,
+      data: {
+        balance: {
+          total: Number(wallet.fund) + Number(wallet.quant)
+        },
+        earnings: {
+          referralRewards: {    // 기존 referral_rewards
+            total: Number(rewardRows.total),
+            today: Number(rewardRows.today),
+            yesterday: Number(rewardRows.yesterday),
           },
-          earnings: {
-            referral: {
-              total: Number(rewardRows.total),
-              today: Number(rewardRows.today),
-              yesterday: Number(rewardRows.yesterday),
-            },
-            investment: {
-              total: Number(investRows.total),
-              today: Number(investRows.today),
-              yesterday: Number(investRows.yesterday),
-            },
-            trade: {  
-              total: Number(tradeRows.total),
-              today: Number(tradeRows.today),
-              yesterday: Number(tradeRows.yesterday),
-            }
+          quantReferrals: {     // 신규 quant_profits referral
+            total: Number(qprofRows.total),
+            today: Number(qprofRows.today),
+            yesterday: Number(qprofRows.yesterday),
           },
-          referrals: {
-            level2: refRows.level2 || 0,
-            level3: refRows.level3 || 0,
-            level4: refRows.level4 || 0,
+          investment: {         // funding_investments
+            total: Number(investRows.total),
+            today: Number(investRows.today),
+            yesterday: Number(investRows.yesterday),
+          },
+          trade: {              // quant_trades
+            total: Number(tradeRows.total),
+            today: Number(tradeRows.today),
+            yesterday: Number(tradeRows.yesterday),
           }
+        },
+        referrals: {           // 하위 가입자 수
+          level2: refRows.level2 || 0,
+          level3: refRows.level3 || 0,
+          level4: refRows.level4 || 0,
         }
-      });
-    } catch (err) {
-      console.error('❌ /api/mydata/summary 오류:', err);
-      res.status(500).json({ success: false, error: 'Server error' });
-    }
-  });
+      }
+    });
+  } catch (err) {
+    console.error('❌ /api/mydata/summary 오류:', err);
+    res.status(500).json({ success: false, error: 'Server error' });
+  }
+});
+
+
+
   router.get('/me', async (req, res) => {
     try {
       const userId = req.session.user?.id;

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>사용자 패턴 분석 대시보드</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    label, select, h2, p { display: block; margin-bottom: 1rem; }
+    .analysis { margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <h1>📝 사용자 패턴 분석 대시보드</h1>
+  <label for="userSelect">사용자 선택:</label>
+  <select id="userSelect">
+    <option value="">-- 닉네임 선택 --</option>
+  </select>
+
+  <div id="analysis" class="analysis"></div>
+
+  <script>
+    // 1) JSON 결과 파일 로드
+    fetch('analysis.json')
+      .then(res => res.json())
+      .then(data => {
+        const select = document.getElementById('userSelect');
+        // 드롭다운 옵션 생성
+        Object.keys(data).forEach(user => {
+          const opt = document.createElement('option');
+          opt.value = user;
+          opt.textContent = user;
+          select.appendChild(opt);
+        });
+
+        // 선택 이벤트 핸들러
+        select.addEventListener('change', () => {
+          const user = select.value;
+          const div = document.getElementById('analysis');
+          if (!user) {
+            div.innerHTML = '';
+            return;
+          }
+          const info = data[user];
+          div.innerHTML = `
+            <h2>${user} 분석 결과</h2>
+            <p>총 메시지 수: ${info.total_messages}</p>
+            <h3>Top 5 자주 쓰는 문장</h3>
+            <ul>
+              ${info.top_messages.map(([msg, cnt]) => `<li>${msg} (${cnt}회)</li>`).join('')}
+            </ul>
+            <h3>Top 10 자주 쓰는 단어</h3>
+            <ul>
+              ${info.top_words.map(([word, cnt]) => `<li>${word} (${cnt}회)</li>`).join('')}
+            </ul>
+          `;
+        });
+      })
+      .catch(err => console.error(err));
+  </script>
+</body>
+</html>
