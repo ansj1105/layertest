@@ -14,7 +14,7 @@ export default function ContentList() {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-        const res = await axios.get("http://54.85.128.211:4000/api/content-files");
+        const res = await axios.get("http://localhost:4000/api/content-files");
         const files = res.data;
         setBanners(files.filter(f => f.type === 'banner'));
         const videoFile = files.find(f => f.type === 'video');
@@ -69,7 +69,7 @@ export default function ContentList() {
               {banners.map((banner, idx) => (
                 <div key={idx} className="h-[170px] overflow-hidden rounded">
                   <img
-                    src={`http://54.85.128.211:4000${banner.file_path}`}
+                    src={`http://localhost:4000${banner.file_path}`}
                     alt={`banner-${idx}`}
                     className="w-full h-full object-cover"
                   />
@@ -83,7 +83,7 @@ export default function ContentList() {
           {video && (
             <div className="w-full aspect-video">
               <VideoWithPreview
-                src={`http://54.85.128.211:4000${video}`}
+                src={`http://localhost:4000${video}`}
               />
             </div>
           )}

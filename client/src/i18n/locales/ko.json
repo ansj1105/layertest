@@ -76,6 +76,42 @@
       "funding": "금율 지갑",
       "mine": "내 거"
     },
+    "tokenPurchase": {
+      "title":               "USC 토큰",
+      "back":                "뒤로",
+      "details":             "세부",
+      "quantWallet":         "정량 지갑 USDT",
+      "uscWallet":           "USC 지갑",
+      "swap":                "환전",
+      "recharge":            "재충전",
+      "deposit":             "충전",
+      "redeem":              "환매",
+      "orderDetails":        "주문 세부정보",
+      "swapQuantToFundTitle":"Quant → Fund 환전",
+      "swapFundToQuantTitle":"Fund → Quant 충전",
+      "inputUsdt":           "USDT 입력",
+      "balance":             "잔액:",
+      "fee":                 "수수료({{rate}}%)",
+      "afterSwap":           "환전 후:",
+      "submit":              "제출",
+      "noSales":             "현재 판매중인 USC가 없습니다.",
+      "phase":               "차 사전 판매",
+      "totalSupply":         "총 수량:",
+      "remainingSupply":     "남은 수량:",
+      "startTime":           "시작 시간:",
+      "endTime":             "종료 시간:",
+      "buy":                 "구매하기",
+      "promptAmount":        "구매할 USC 수량을 입력하세요:",
+      "purchaseSuccess":     "구매 완료!",
+      "errors": {
+        "invalidAmount":     "유효한 금액을 입력해주세요.",
+        "insufficientQuant": "Quant 지갑 잔액이 부족합니다.",
+        "insufficientFund":  "Fund 지갑 잔액이 부족합니다.",
+        "swapFail":          "환전에 실패했습니다.",
+        "depositFail":       "충전에 실패했습니다.",
+        "purchaseFail":      "구매에 실패했습니다."
+      }
+    },
     "funding": {
       
         "detail2": {

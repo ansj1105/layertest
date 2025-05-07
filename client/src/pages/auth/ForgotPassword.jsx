@@ -7,7 +7,7 @@ export default function ForgotPassword() {
 
   const handleSubmit = async () => {
     try {
-      const res = await axios.post("http://54.85.128.211:4000/api/auth/forgot-password", { email });
+      const res = await axios.post("http://localhost:4000/api/auth/forgot-password", { email });
       setResult(`토큰: ${res.data.token}`); // 실제 서비스라면 링크로 전송
     } catch (err) {
       setResult(err.response?.data?.error || "Error");
