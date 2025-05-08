@@ -287,7 +287,7 @@ const executeTrade = async () => {
           {t('quantTrading.progress', { current: currentIndex + 1, total: vipLevels.length })}
         </div>
         <button
-          onClick={() => setShowIntro(true)}
+          onClick={() => navigate('/quant-tutorial')}
           className="w-full bg-yellow-600 text-black py-2 rounded font-semibold mb-2"
         >
           {t('quantTrading.intro')}
