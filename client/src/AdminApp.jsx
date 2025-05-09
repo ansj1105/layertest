@@ -20,19 +20,6 @@ axios.defaults.withCredentials = true;
 
 export default function AdminApp() {
 
-<<<<<<< HEAD
-  useEffect(() => {
-    axios.get("http://54.85.128.211:4000/api/auth/admin/me")
-      .then(res => {
-        if (res.data.user?.isAdmin) {
-          setAdmin(res.data.user);
-        } else {
-          setAdmin(null);
-        }
-      })
-      .catch(() => setAdmin(null));
-  }, []);
-=======
     const [admin, setAdmin]       = useState(null);
     const [isChecking, setCheck]  = useState(true);
   
@@ -49,7 +36,6 @@ export default function AdminApp() {
       return <div className="text-center mt-20">Loading…</div>;
     }
   
->>>>>>> main
 
   const handleLoginSuccess = (user) => {
     setAdmin(user);
