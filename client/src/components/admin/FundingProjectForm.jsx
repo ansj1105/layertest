@@ -43,15 +43,26 @@ export default function FundingProjectForm({ project, onSaved }) {
 
   const handleSubmit = async () => {
     try {
-      // 간단한 검증
+      // 1) 이름 검증
       if (!form.name.trim()) {
         alert("프로젝트 이름을 입력해주세요.");
         return;
       }
+
+      // 2) 시작일이 오늘 이전인지 체크
+      const todayStr = new Date().toISOString().slice(0, 10);
+      if (form.startDate < todayStr) {
+        alert("주의: 시작일이 오늘보다 이전인 프로젝트는 생성할 수 없습니다.");
+        return;
+      }
+
+      // 3) 금액 검증
       if (form.minAmount <= 0 || form.maxAmount <= 0 || form.targetAmount <= 0) {
         alert("금액 관련 필드는 모두 0보다 큰 값을 입력해야 합니다.");
         return;
       }
+
+      // 4) 날짜 입력 검증
       if (!form.startDate || !form.endDate) {
         alert("시작일과 마감일을 모두 선택해주세요.");
         return;
@@ -86,12 +97,10 @@ export default function FundingProjectForm({ project, onSaved }) {
         );
       }
 
-      console.log("프로젝트 저장 응답:", res.data);
       alert(isEdit ? "프로젝트가 수정되었습니다." : "프로젝트가 생성되었습니다.");
-      onSaved();  // 부모 컴포넌트에 알림
-
+      onSaved();
     } catch (err) {
-      console.error("프로젝트 생성/수정 실패:", err.response?.data || err);
+      console.error("프로젝트 저장 중 오류:", err);
       alert("프로젝트 저장 중 오류가 발생했습니다:\n" + (err.response?.data?.error || err.message));
     }
   };

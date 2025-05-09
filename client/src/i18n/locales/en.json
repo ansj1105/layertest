@@ -50,6 +50,8 @@
   "forgot" : "Find Password"
   
 },  "walletLogs": {
+  "prev" : "prev",
+  "next" : "next",
   "back": "Back",
   "title": "Transfer Logs",
   "tabs": {
@@ -58,6 +60,7 @@
     "financeIncome": "Finance Income"
   },
   "columns": {
+    "description" : "description",
     "type": "Type",
     "amount": "Amount",
     "fee": "Fee",
@@ -197,6 +200,11 @@
   "mine": "Mine"
 },
 "funding": {
+  "active_projects": "Projects go on",
+  "expired_projects": "Projects expired",
+  "no_active_projects": "No Projects exceeding.",
+  "no_expired_projects": "No Projects expired.",
+  "expired_label": "Projects expired",
   "detail2": {
     "loading": "Loading...",
     "loadError": "Failed to load project info:",
@@ -531,6 +539,7 @@
     "logoutConfirm":       "Confirm"
   },
   "team": {
+    "todayJoinedCount" : "Today Joined",
     "title":                 "My Team",
     "loading":               "⏳ Loading...",
     "errorLoad":             "Failed to load referral data",

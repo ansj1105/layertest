@@ -61,7 +61,9 @@ const myVip = vipLevels.find(v => v.level === user2?.vip_level) || {};
 // now pull the daily limit directly from that
 const dailyLimit = myVip.daily_trade_limit || 0;
  const remaining   = Math.max(0, dailyLimit - tradesToday);
-  const ALL_LEADERBOARD = useMemo(() => {
+  
+ 
+ const ALL_LEADERBOARD = useMemo(() => {
     const arr = [];
     for (let i = 0; i < 30; i++) {
       // random two‑letter uppercase prefix
@@ -81,26 +83,33 @@ const dailyLimit = myVip.daily_trade_limit || 0;
   // 2) Maintain a start index that jumps by 5 every 5s
   //
   const [lbStart, setLbStart] = useState(0);
+   
+  
+  // 1) slide by 1, not by windowSize!
   useEffect(() => {
     const timer = setInterval(() => {
-      setLbStart(prev => (prev + 5) % ALL_LEADERBOARD.length);
+      setLbStart(prev => (prev + 1) % ALL_LEADERBOARD.length);
     }, 5000);
     return () => clearInterval(timer);
   }, [ALL_LEADERBOARD.length]);
 
-  //
-  // 3) Compute the 5 entries to show, wrapping if necessary
-  //
+  // 2) windowSize = 6, slice(lbStart, lbStart + 6)
   const visibleLeaderboard = useMemo(() => {
-    const end = lbStart + 5;
+    const windowSize = 6;
+    const end = lbStart + windowSize;
     if (end <= ALL_LEADERBOARD.length) {
       return ALL_LEADERBOARD.slice(lbStart, end);
+    } else {
+      return [
+        ...ALL_LEADERBOARD.slice(lbStart),
+        ...ALL_LEADERBOARD.slice(0, end - ALL_LEADERBOARD.length)
+      ];
     }
-    return [
-      ...ALL_LEADERBOARD.slice(lbStart),
-      ...ALL_LEADERBOARD.slice(0, end - ALL_LEADERBOARD.length)
-    ];
   }, [ALL_LEADERBOARD, lbStart]);
+
+
+
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -319,19 +328,26 @@ const executeTrade = async () => {
         <table className="w-full text-left">
           <thead>
             <tr className="text-gray-400">
+            <th className="pr-2 pb-2"></th>
               <th className="pb-2">{t("quantTrading.leaderboard.name")}</th>
               <th className="pb-2">{t("quantTrading.leaderboard.earnings")}</th>
               <th className="pb-2">{t("quantTrading.leaderboard.status")}</th>
             </tr>
           </thead>
           <tbody>
-            {visibleLeaderboard.map((row, i) => (
-              <tr key={i} className="border-t border-gray-700">
-                <td className="py-1">{row.name}</td>
-                <td className="py-1">{row.earnings}</td>
-                <td className="py-1">{row.status}</td>
-              </tr>
-            ))}
+                     {visibleLeaderboard.map((row, i) => {
+             // (lbStart + i) % ALL_LEADERBOARD.length + 1
+             // 또는 단순히 1~6 사이의 인덱스로 i+1
+             const displayIndex = i + 1;
+             return (
+               <tr key={i} className="border-t border-gray-700">
+                <td className="px-2 py-1 font-semibold">{displayIndex}</td>
+                 <td className="py-1">{row.name}</td>
+                 <td className="py-1">{row.earnings}</td>
+                 <td className="py-1">{row.status}</td>
+               </tr>
+             );
+           })}
           </tbody>
         </table>
       </div>
