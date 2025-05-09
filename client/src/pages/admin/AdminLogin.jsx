@@ -8,6 +8,7 @@ export default function AdminLogin() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
+<<<<<<< HEAD
   const handleLogin = async () => {
     setError('');
     try {
@@ -19,6 +20,22 @@ export default function AdminLogin() {
       setError(err.response?.data?.error || 'Login failed');
     }
   };
+=======
+// AdminLogin.jsx
+const handleLogin = async () => {
+  try {
+    await axios.post("/api/auth/admin-login", form, { withCredentials: true });
+    // 전체 페이지 리로드 → 세션 쿠키가 살아 있으므로 AdminApp이 admin 상태를 받아 옵니다
+          // 2) 세션 정보 조회
+          const res = await axios.get("/api/auth/admin/me");
+          const user = res.data.user;
+    window.location.href = "/admin.html#/dashboard";
+  } catch (err) {
+    setError(err.response?.data?.error || "Login failed");
+  }
+};
+
+>>>>>>> main
 
   return (
     <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded shadow space-y-4">

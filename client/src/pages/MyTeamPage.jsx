@@ -147,24 +147,33 @@ export default function MyTeamPage() {
             {t('team.tabs.contrib')}
           </button>
         </div>
-
+        
         {/* ── 팀 멤버 리스트 ── */}
         {activeTab === 'members' && (
           <>
-            <div className="mb-4 flex items-center">
-              <label className="mr-2">{t('team.filter.level')}</label>
-              <select
-                className="bg-[#2c1f0f] text-yellow-100 p-2 rounded"
-                value={filterLevel}
-                onChange={e => setFilterLevel(e.target.value)}
-              >
-                {LEVELS.map(l => (
-                  <option key={l.value} value={l.value}>
-                    {t(l.labelKey)}
-                  </option>
-                ))}
-              </select>
+            <div className="mb-4 flex justify-between items-center">
+              {/* 왼쪽: 오늘 등록한 사람 수 */}
+              <div className="text-yellow-100">
+                {t('team.todayJoinedCount', { count: stats?.todayJoined ?? 0  })}
+              </div>
+              {stats?.todayJoined ?? 0}
+              {/* 오른쪽: 레벨 필터 드롭다운 */}
+              <div>
+                <label className="mr-2 text-yellow-200">{t('team.filter.level')}</label>
+                <select
+                  className="bg-[#2c1f0f] text-yellow-100 p-2 rounded"
+                  value={filterLevel}
+                  onChange={e => setFilterLevel(e.target.value)}
+                >
+                  {LEVELS.map(l => (
+                    <option key={l.value} value={l.value}>
+                      {t(l.labelKey)}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
+
             {team[filterLevel].length > 0 ? (
               <div className="max-h-80 overflow-y-auto space-y-3">
                 {team[filterLevel].map(renderMemberCard)}
@@ -175,37 +184,47 @@ export default function MyTeamPage() {
           </>
         )}
 
+
         {/* ── 팀 기여 리스트 ── */}
         {activeTab === 'contrib' && (
           <>
-            <div className="mb-4 flex items-center">
-              <label className="mr-2">{t('team.filter.period')}</label>
-              <select
-                className="bg-[#2c1f0f] text-yellow-100 p-2 rounded"
-                value={period}
-                onChange={e => setPeriod(e.target.value)}
-              >
-                {PERIODS.map(p => (
-                  <option key={p.value} value={p.value}>
-                    {t(p.labelKey)}
-                  </option>
-                ))}
-              </select>
+            
+            <div className="mb-4 flex justify-between items-center">
+              {/* 왼쪽: 오늘 등록한 사람 수 */}
+    
+    {/* 1. 오늘/누적 수익 박스 */}
+    {contribStats && (
+      <div className="mb-4 bg-[#2c1f0f] p-2 rounded flex justify-between text-sm">
+        <div>
+          {t('team.contrib.todayEarnings')}:
+          <span className="text-red-500"> {contribStats.todayEarnings.toFixed(6)} USDT</span>
+        </div>
+        <div>
+          {t('team.contrib.totalEarnings')}:
+          <span> {contribStats.totalEarnings.toFixed(6)} USDT</span>
+        </div>
+      </div>
+    )}
+
+    {/* 2. Period 필터 (새 줄) */}
+    <div className="mb-4 flex items-center">
+      <label className="mr-2 text-yellow-200">{t('team.filter.period')}</label>
+      <select
+        className="bg-[#2c1f0f] text-yellow-100 p-2 rounded"
+        value={period}
+        onChange={e => setPeriod(e.target.value)}
+      >
+        {PERIODS.map(p => (
+          <option key={p.value} value={p.value}>
+            {t(p.labelKey)}
+          </option>
+        ))}
+      </select>
+              </div>
             </div>
 
-            {/* stats: 오늘 / 누적 earnings */}
-            {contribStats && (
-              <div className="mb-4 bg-[#2c1f0f] p-4 rounded flex justify-between text-sm">
-                <div>
-                  {t('team.contrib.todayEarnings')}:
-                  <span className="text-red-500"> {contribStats.todayEarnings.toFixed(6)} USDT</span>
-                </div>
-                <div>
-                  {t('team.contrib.totalEarnings')}:
-                  <span> {contribStats.totalEarnings.toFixed(6)} USDT</span>
-                </div>
-              </div>
-            )}
+           
+
 
             {contribLoading
               ? <p className="text-center">{t('team.loading')}</p>

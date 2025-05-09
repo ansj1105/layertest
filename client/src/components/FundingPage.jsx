@@ -27,6 +27,8 @@ export default function FundingPage() {
   const [withdrawAmt, setWithdrawAmt] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [openFaq, setOpenFaq] = useState(null);
+  const activeProjects  = projects.filter(p => p.status === 'open');
+  const expiredProjects = projects.filter(p => p.status === 'closed');
   // 요약 API
   const fetchFinanceSummary = async () => {
     const res = await axios.get("http://54.85.128.211:4000/api/wallet/finance-summary", { withCredentials: true });
@@ -393,17 +395,22 @@ export default function FundingPage() {
       )}
 
 
-      {/* ─── 펀딩 프로젝트 목록 ──────────────────────────── */}
-      <div className="flex-1 overflow-y-auto space-y-4 max-h-[calc(100vh-400px)]">
-        {projects.length === 0 ? (
-          <p className="text-center text-gray-500 py-10">
-            {t("funding.no_projects")}
-          </p>
-        ) : (
-          projects.map((proj) => (
-            <div key={proj.id} className="bg-[#3b2b15] rounded-md p-4">
-              <h3 className="text-lg font-bold mb-2">{proj.name}</h3>
-              <p className="text-sm text-gray-300 mb-1">
+
+            {/* ─── 펀딩 프로젝트 목록 ──────────────────────────── */}
+            <div className="flex-1 overflow-y-auto space-y-4 max-h-[calc(100vh-400px)]">
+
+              {/* 활성 프로젝트 */}
+              <h3 className="text-xl font-semibold mb-2">{t("funding.active_projects")}</h3>
+              {activeProjects.length === 0 ? (
+                <p className="text-center text-gray-500 py-4">
+                  {t("funding.no_active_projects")}
+                </p>
+              ) : (
+                activeProjects.map(proj => (
+                  <div key={proj.id} className="bg-[#3b2b15] rounded-md p-4">
+                    {/* 프로젝트 정보 */}
+                    <h3 className="text-lg font-bold mb-2">{proj.name}</h3>
+                    <p className="text-sm text-gray-300 mb-1">
               {t("funding.project.description", {
                   description: proj.description,
                 })}
@@ -424,15 +431,60 @@ export default function FundingPage() {
                   end: new Date(proj.endDate).toLocaleDateString(),
                 })}
               </p>
-              <button
-                onClick={() => navigate(`/funding/detail/${proj.id}`)}
-                className="w-full bg-yellow-500 text-black py-2 rounded font-semibold"
-              >
-                {t("funding.project.apply")}
-              </button>
-            </div>
-          ))
-        )}
+                    <button
+                      onClick={() => navigate(`/funding/detail/${proj.id}`)}
+                      className="w-full bg-yellow-500 text-black py-2 rounded font-semibold"
+                    >
+                      {t("funding.project.apply")}
+                    </button>
+                  </div>
+                ))
+              )}
+
+              {/* 만료된 프로젝트 */}
+              <h3 className="text-xl font-semibold mt-8 mb-2">{t("funding.expired_projects")}</h3>
+              {expiredProjects.length === 0 ? (
+                <p className="text-center text-gray-500 py-4">
+                  {t("funding.no_expired_projects")}
+                </p>
+              ) : (
+                expiredProjects.map(proj => (
+                  <div key={proj.id} className="bg-[#2c1f0f] rounded-md p-4 opacity-70">
+                    {/* 만료됨 표시 */}
+                    <h3 className="text-lg font-bold mb-2">
+                      {proj.name} <span className="text-red-400">({t("funding.expired_label")})</span>
+                    </h3>
+                    {/* ... 기존 정보 동일하게 표시 가능 ... */}
+                    <p className="text-sm text-gray-300 mb-1">
+              {t("funding.project.description", {
+                  description: proj.description,
+                })}
+                </p>
+              <p className="text-sm text-gray-300 mb-1">
+                
+                {t("funding.project.available", {
+                  min: proj.minAmount,
+                  max: proj.maxAmount,
+                })}
+              </p>
+              <p className="text-sm text-gray-300 mb-1">
+                {t("funding.project.daily_rate", { rate: proj.dailyRate })}
+              </p>
+              <p className="text-sm text-gray-300 mb-4">
+                {t("funding.project.duration", {
+                  cycle: proj.cycle,
+                  end: new Date(proj.endDate).toLocaleDateString(),
+                })}
+              </p>
+                    <button
+                      disabled
+                      className="w-full bg-gray-600 text-gray-400 py-2 rounded font-semibold cursor-not-allowed"
+                    >
+                      {t("funding.project.apply")}
+                    </button>
+                  </div>
+                ))
+              )}
 
         
       {/* ─── 일반적인 문제 (FAQ) ──────────────────────────── */}

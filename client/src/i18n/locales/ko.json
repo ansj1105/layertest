@@ -121,7 +121,11 @@
       }
     },
     "funding": {
-      
+      "active_projects": "진행 중인 프로젝트",
+      "expired_projects": "만료된 프로젝트",
+      "no_active_projects": "진행 중인 프로젝트가 없습니다.",
+      "no_expired_projects": "만료된 프로젝트가 없습니다.",
+      "expired_label": "만료됨",
         "detail2": {
           "loading": "로딩 중...",
           "loadError": "프로젝트 정보 로드 실패:",
@@ -215,22 +219,30 @@
 ,  
   "walletLogs": {
     "back": "뒤로가기",
+    "prev" : "이전",
+    "next" : "다음",
     "title": "이관 내역",
     "tabs": {
-      "transfer": "이관",
-      "walletEarnings": "지갑 수익",
-      "financeIncome": "금융 소득"
+      "transfer": "이체 내역",
+      "walletEarnings": "정량 수익",
+      "financeIncome": "펀딩 수익"
     },
     "columns": {
-      "type": "유형",
-      "amount": "금액",
+      "description" : "설명",
+      "date": "날짜",
+      "amount": "수익",
+      "category": "구분",
+      "type": "타입",
       "fee": "수수료",
-      "net": "순액",
-      "date": "날짜"
+      "net": "실수령액"
     },
     "types": {
       "fund_to_quant": "펀드→퀀트",
       "quant_to_fund": "퀀트→펀드"
+    },
+    "quantTypes": {
+      "trade": "거래 수익",
+      "referral": "레퍼럴 수익"
     },
     "loading": "로딩 중...",
     "noRecords": "내역이 없습니다."
@@ -545,6 +557,7 @@
       "logoutConfirm":       "확인"
     },
     "team": {
+      "todayJoinedCount" : "오늘 등록한 사람",
       "title":                 "내 팀 보기",
       "loading":               "⏳ 불러오는 중...",
       "errorLoad":             "레퍼럴 데이터 불러오기 실패",

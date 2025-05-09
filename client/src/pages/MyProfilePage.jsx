@@ -24,7 +24,89 @@ export default function MyProfilePage() {
   const [summary, setSummary] = useState(null);
   const [copySuccess, setCopySuccess] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+   // 펀딩(투자) 수익 집계용
+ const [investmentEarnings, setInvestmentEarnings] = useState({
+   total: 0,
+   today: 0,
+   yesterday: 0
+ });
+  // 레퍼럴 수익 집계용
+  const [referralEarnings, setReferralEarnings] = useState({
+    total: 0,
+    today: 0,
+    yesterday: 0
+  });
+
   const navigate = useNavigate();
+   // wallets_log 불러와서 funding in 항목 집계
+   useEffect(() => {
+     if (!user?.id) return;
+     axios.get('/api/logs/wallets-log', { withCredentials: true })
+       .then(res => {
+        console.log('📥 wallets-log raw response:', res.data);
+        const logs = res.data.data || [];
+        console.log('🏷 parsed wallets-log entries:', logs);
+         const now = new Date();
+         const todayStr     = now.toISOString().slice(0,10);
+         const yesterday    = new Date(now);
+         yesterday.setDate(yesterday.getDate()-1);
+         const yesterdayStr = yesterday.toISOString().slice(0,10);
+  
+         let total = 0, today = 0, yesterdaySum = 0;
+         logs.forEach(log => {
+           if (log.category==='funding' && log.direction==='in') {
+             const amt = parseFloat(log.amount);
+             total += amt;
+             const logDate = new Date(log.logDate).toISOString().slice(0,10);
+             if (logDate === todayStr) {
+               today += amt;
+             } else if (logDate === yesterdayStr) {
+               yesterdaySum += amt;
+             }
+           }
+         });
+         setInvestmentEarnings({
+          total,
+           today,
+           yesterday: yesterdaySum
+         });
+       })
+       .catch(console.error);
+   }, [user]);
+
+  // 2) 레퍼럴 수익(referral type) 집계
+  useEffect(() => {
+    if (!user?.id) return;
+    axios.get('/api/logs/quant-profits')
+      .then(res => {
+        console.log('📥 wallets-log raw response:', res.data);
+        const rows = res.data.data || [];
+        console.log('🏷 parsed wallets-log entries:', rows);
+        const now = new Date();
+        const todayStr = now.toISOString().slice(0, 10);
+        const yesterday = new Date(now);
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yesterdayStr = yesterday.toISOString().slice(0, 10);
+
+        let total = 0, today = 0, yesterdaySum = 0;
+        rows.forEach(row => {
+
+          // type이 'referral'인 것만 집계
+          if (row.type === 'referral' || row.type === 'trade') {
+            const amt = parseFloat(row.amount);
+            total += amt;
+            const rowDate = new Date(row.created_at).toISOString().slice(0, 10);
+            if (rowDate === todayStr) {
+              today += amt;
+            } else if (rowDate === yesterdayStr) {
+              yesterdaySum += amt;
+            }
+          }
+        });
+        setReferralEarnings({ total, today, yesterday: yesterdaySum });
+      })
+      .catch(console.error);
+  }, [user]);
 
   useEffect(() => {
     axios.get('/api/mydata/me')
@@ -38,6 +120,13 @@ export default function MyProfilePage() {
       .catch(() => setSummary(null));
   }, []);
 
+
+// quant-profits 불러와서 referral type 집계
+
+
+
+console.log('오늘수익:',referralEarnings.today);  
+console.log('전체수익:',referralEarnings.total);
   const handleCopyId = () => {
     const encId = encodeId(user.id);
     navigator.clipboard.writeText(encId);
@@ -63,12 +152,17 @@ export default function MyProfilePage() {
   }
 
   const encId = encodeId(user.id);
-  const totalEarnings = summary.earnings.quantReferrals.total
-    + summary.earnings.investment.total
-    + summary.earnings.trade.total;
-      const todayIncome     = summary.earnings.quantReferrals.today+summary.earnings.investment.today + summary.earnings.trade.today;
-      const yesterdayIncome = summary.earnings.quantReferrals.yesterday+summary.earnings.investment.yesterday + summary.earnings.trade.yesterday;
-    
+   // summary.earnings.investment.* 대신 우리가 계산한 investmentEarnings 사용
+    const totalEarnings = referralEarnings.total
+      + investmentEarnings.total
+      + summary.earnings.trade.total;
+    const todayIncome     = referralEarnings.today
+      + investmentEarnings.today
+      + summary.earnings.trade.today;
+    const yesterdayIncome = referralEarnings.yesterday
+      + investmentEarnings.yesterday
+      + summary.earnings.trade.yesterday;
+    const commit = referralEarnings.today;
   return (
     <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4 pb-[6rem] space-y-6">
       {/* ── 상단 프로필 ────────────────────────────────────────── */}
@@ -116,7 +210,7 @@ export default function MyProfilePage() {
           <div>
           <p className="text-xs">{t('profile.summary.todayCommission')}</p>
             <p className="font-semibold">
-              {(summary.earnings.quantReferrals?.today ?? 0).toFixed(2)} USDT
+              {commit.toFixed(2)} USDT
              </p>
            </div>
            <div>

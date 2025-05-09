@@ -66,4 +66,94 @@ router.get('/funding-profits', async (req, res) => {
   }
 });
 
+router.get('/quant-profits', async (req, res) => {
+  // 1) 세션에서 user 확인
+  const user = req.session.user;
+  if (!user?.id) {
+    return res.status(401).json({ error: 'Not authenticated' });
+  }
+
+  try {
+    // 2) quant_profits 테이블에서 해당 user_id 로 조회
+    const [rows] = await db.query(
+      `SELECT 
+         id,
+         trade_id,
+         amount,
+         type,
+         level,
+         created_at
+       FROM quant_profits
+       WHERE user_id = ?
+       ORDER BY created_at DESC`,
+      [user.id]
+    );
+
+    // 3) 결과 반환
+    return res.json({ data: rows });
+  } catch (err) {
+    console.error('Error fetching quant profits:', err);
+    return res.status(500).json({ error: 'Failed to fetch quant profits' });
+  }
+});
+
+router.get('/wallets-log', async (req, res) => {
+  const user = req.session.user;
+  if (!user?.id) {
+    return res.status(401).json({ error: 'Not authenticated' });
+  }
+
+  try {
+    const [rows] = await db.query(
+      `SELECT
+         id,
+         category,
+         log_date   AS logDate,
+         direction,
+         amount,
+         balance_after   AS balanceAfter,
+         reference_type  AS referenceType,
+         reference_id    AS referenceId,
+         description,
+         created_at      AS createdAt
+       FROM wallets_log
+       WHERE user_id = ?
+       ORDER BY log_date DESC`,
+      [user.id]
+    );
+
+    return res.json({ data: rows });
+  } catch (err) {
+    console.error('Error fetching wallets_log:', err);
+    return res.status(500).json({ error: 'Failed to fetch wallet logs' });
+  }
+});
+
+router.get('/quant-profits2', async (req, res) => {
+  const user = req.session.user;
+  if (!user?.id) {
+    return res.status(401).json({ error: 'Not authenticated' });
+  }
+
+  try {
+  const [rows] = await db.query(
+    `SELECT 
+       id,
+       trade_id    AS tradeId,
+       amount,
+       type,
+       level,
+       created_at  AS createdAt
+     FROM quant_profits
+     WHERE user_id = ?
+     ORDER BY created_at DESC`,
+    [user.id]
+  );
+  res.json({ data: rows });
+}
+  catch (err) {
+    console.error('Error fetching wallets_log:', err);
+    return res.status(500).json({ error: 'Failed to fetch wallet logs' });
+  }
+});
 module.exports = router;

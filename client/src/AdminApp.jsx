@@ -19,8 +19,8 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 
 export default function AdminApp() {
-  const [admin, setAdmin] = useState(null);
 
+<<<<<<< HEAD
   useEffect(() => {
     axios.get("http://54.85.128.211:4000/api/auth/admin/me")
       .then(res => {
@@ -32,7 +32,30 @@ export default function AdminApp() {
       })
       .catch(() => setAdmin(null));
   }, []);
+=======
+    const [admin, setAdmin]       = useState(null);
+    const [isChecking, setCheck]  = useState(true);
+  
+    // 1) 마운트 직후에만 한 번 세션 확인
+    useEffect(() => {
+      axios.get("/api/auth/admin/me")
+        .then(res => setAdmin(res.data.user || null))
+        .catch(() => setAdmin(null))
+        .finally(() => setCheck(false));
+    }, []);
+  
+    // 2) 세션 확인 중에는 로딩 화면
+    if (isChecking) {
+      return <div className="text-center mt-20">Loading…</div>;
+    }
+  
+>>>>>>> main
 
+  const handleLoginSuccess = (user) => {
+    setAdmin(user);
+    // 로그인 후 대시보드로 이동
+    window.location.hash = "/dashboard";
+  };
   const handleLogout = async () => {
     await axios.post("http://54.85.128.211:4000/api/auth/admin-logout");
     setAdmin(null);
@@ -43,7 +66,7 @@ export default function AdminApp() {
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path="/login" element={<AdminLogin />} />
+        <Route path="/login" element={<AdminLogin onLoginSuccess={handleLoginSuccess} />} />
         <Route
           path="/chat"
           element={admin ? <AdminChat onLogout={handleLogout} /> : <Navigate to="/login" replace />}
