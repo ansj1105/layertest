@@ -60,7 +60,6 @@ export default function RegisterPage() {
     if (!captchaToken)                                        return setError(t("register.captcha_required"));
     if (!form.nationality) return setError("국적을 선택해주세요.");
     try {
-<<<<<<< HEAD
       await axios.post("/api/auth/register", {
         name: form.name,
         email: method==="email" ? form.email : null,
@@ -70,21 +69,6 @@ export default function RegisterPage() {
         nationality: form.nationality,
         captchaToken
       }, { withCredentials: true });
-=======
-      await axios.post(
-        "/api/auth/register",
-        {
-          name: form.name,
-          email: method==="email" ? form.email : null,
-          phone: method==="phone" ? fullPhone : null, // 변경된 fullPhone 전달
-          password: form.password,
-          referral: form.referral || null,
-          nationality: form.nationality,  // ➌ payload에 추가
-          captchaToken
-        },
-        { withCredentials: true }
-      );
->>>>>>> main
       setSuccess(t("register.success"));
       setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
