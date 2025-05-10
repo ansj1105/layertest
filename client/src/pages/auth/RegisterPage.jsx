@@ -72,7 +72,7 @@ export default function RegisterPage() {
       }, { withCredentials: true });
 =======
       await axios.post(
-        "http://localhost:4000/api/auth/register",
+        "/api/auth/register",
         {
           name: form.name,
           email: method==="email" ? form.email : null,

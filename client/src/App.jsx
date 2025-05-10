@@ -90,13 +90,21 @@ export default function App() {
   const [copySuccess, setCopySuccess] = useState(false);
   const loc = useLocation();
   useEffect(() => {
+<<<<<<< HEAD
     axios.get("http://54.85.128.211:4000/api/auth/me")
+=======
+    axios.get("/api/auth/me")
+>>>>>>> main
       .then(res => setUser(res.data.user))
       .catch(() => setUser(null));
   }, []);
 
   const handleLogout = async () => {
+<<<<<<< HEAD
     await axios.post("http://54.85.128.211:4000/api/auth/logout");
+=======
+    await axios.post("/api/auth/logout");
+>>>>>>> main
     setUser(null);
     window.location.href = "/login";
   };
