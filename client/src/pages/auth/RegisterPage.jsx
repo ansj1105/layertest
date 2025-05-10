@@ -5,12 +5,12 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { useTranslation, Trans } from "react-i18next";
 import { ArrowLeft, Globe, X as CloseIcon } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
-import { LANGUAGES } from '../../i18n/languages';
-
+import { LANGUAGES } from '../../i18n/languages';  // ➊
+import '../../styles/RegisterPage.css';
 const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 const countryCodes = [
   { code: '+82', label: '🇰🇷 KR (+82)' },
-  { code: '+1',  label: '🇺🇸 US (+1)' },
+  { code: '+1', label: '🇺🇸 US (+1)' },
   { code: '+84', label: '🇻🇳 VN (+84)' },
   { code: '+81', label: '🇯🇵 JP (+81)' },
   { code: '+86', label: '🇨🇳 CN (+86)' },
@@ -21,19 +21,27 @@ export default function RegisterPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const [method, setMethod] = useState("phone"); 
+  const [method, setMethod] = useState("phone"); // 'phone' | 'email'
   const [form, setForm] = useState({
-    name: "", email: "", phone: "", password: "",
-    confirmPassword: "", referral: "", nationality: "KR",
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+    referral: "",
+    nationality: "KR",   // ➋ 기본값 설정
   });
   const [captchaToken, setCaptchaToken] = useState(null);
-  const [error, setError]     = useState("");
+  const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const [openTerms, setOpenTerms]     = useState(false);
+  // 팝업 열림 상태
+  const [openTerms, setOpenTerms] = useState(false);
   const [openPrivacy, setOpenPrivacy] = useState(false);
 
+  // URL에 ?ref= 코드가 있으면 referral 필드 자동 채우기
   useEffect(() => {
-    const ref = new URLSearchParams(window.location.search).get("ref");
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
     if (ref) setForm(f => ({ ...f, referral: ref.toUpperCase() }));
   }, []);
 
@@ -43,16 +51,16 @@ export default function RegisterPage() {
 
   const handleSubmit = async () => {
     setError(""); setSuccess("");
-    const fullPhone = `${countryCode}${form.phone}`;
-    if (!isValidName(form.name))                  return setError(t("register.name_error"));
-    if (method==="email" && !isValidEmail(form.email)) return setError(t("register.email_error"));
-    if (method==="phone" && !isValidPhone(fullPhone)) return setError(t("register.phone_error"));
-    if (form.password.length < 6)                return setError(t("register.password_error"));
-    if (form.password !== form.confirmPassword)  return setError(t("register.confirm_error"));
-    if (!captchaToken)                           return setError(t("register.captcha_required"));
-    if (!form.nationality)                       return setError("국적을 선택해주세요.");
-
+    const fullPhone = `${countryCode}${form.phone}`; // 국가코드 결합
+    if (!isValidName(form.name))                              return setError(t("register.name_error"));
+    if (method === "email" && !isValidEmail(form.email))      return setError(t("register.email_error"));
+    if (method === "phone" && !isValidPhone(fullPhone)) return setError(t("register.phone_error")); // <- 변경됨
+    if (form.password.length < 6)                             return setError(t("register.password_error"));
+    if (form.password !== form.confirmPassword)               return setError(t("register.confirm_error"));
+    if (!captchaToken)                                        return setError(t("register.captcha_required"));
+    if (!form.nationality) return setError("국적을 선택해주세요.");
     try {
+<<<<<<< HEAD
       await axios.post("/api/auth/register", {
         name: form.name,
         email: method==="email" ? form.email : null,
@@ -62,6 +70,21 @@ export default function RegisterPage() {
         nationality: form.nationality,
         captchaToken
       }, { withCredentials: true });
+=======
+      await axios.post(
+        "http://localhost:4000/api/auth/register",
+        {
+          name: form.name,
+          email: method==="email" ? form.email : null,
+          phone: method==="phone" ? fullPhone : null, // 변경된 fullPhone 전달
+          password: form.password,
+          referral: form.referral || null,
+          nationality: form.nationality,  // ➌ payload에 추가
+          captchaToken
+        },
+        { withCredentials: true }
+      );
+>>>>>>> main
       setSuccess(t("register.success"));
       setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
@@ -69,201 +92,214 @@ export default function RegisterPage() {
     }
   };
 
-  // 재사용 가능한 Neon 스타일 input
-  const NeonInput = props => (
-    <input
-      {...props}
-      className={`
-        w-full px-3 py-2 bg-[#11131a] text-teal-200
-        border-2 border-teal-400 rounded-md
-        shadow-[0_0_8px_rgba(44,196,201,0.8)]
-      `}
-      onChange={e => props.onChange?.(e.target.value)}
-    />
-  );
-
   return (
-    <div className="h-screen flex flex-col bg-[#0d0f13]">
-      {/* 헤더 */}
-      <header className="
-        fixed top-0 left-1/2 transform -translate-x-1/2
-        w-full max-w-md h-14 bg-[#11131a] z-20
-        flex items-center justify-between px-4
-      ">
-        <button onClick={() => navigate(-1)}><ArrowLeft size={20} className="text-teal-200"/></button>
-        <h1 className="text-white font-semibold t">회원가입</h1>
-        <button onClick={() => navigate("/settings/language")}><Globe size={20} className="text-teal-200"/></button>
-      </header>
-
-      {/* 본문 (스크롤) */}
-      <main className="pt-14 pb-6 px-4 flex-1 overflow-y-auto">
-        <div className="max-w-md mx-auto space-y-5">
+    <div className="page-wrapper">
+      <div className="r-box">
+        {/* 상단 */}
+        <div className="top-nav-bar-r">
+          <button onClick={() => navigate(-1)}>
+            <ArrowLeft size={20} className="top-tran" />
+          </button>
+          <h1 className="login-h-text-r">
+            {t("register.title")}
+          </h1>
+          <button onClick={() => navigate("/settings/language")}>
+            <Globe size={20} className="top-tran" />
+          </button>
+        </div>
+        {/* 로고 */}
+        <img
+        src="/img/item/logo/logo.png"
+        alt="Upstart"
+        className="login-logo-r"
+        />
+        {/* 탭 */}
+        <div className="flex01">
+        <button
+          onClick={() => setMethod("phone")}
+          className={`v-token-r-m ${method === "phone" ? "active-button" : "inactive-button"}`}
+        >
+          {t("register.by_phone")}
+        </button>
+        <button
+          onClick={() => setMethod("email")}
+          className={`v-token-r-m ${method === "email" ? "active-button" : "inactive-button"}`}
+        >
+          {t("register.by_phone")}
+        </button>
           
-          {/* 로고 */}
-          <div className="flex justify-center">
-            <img src="/img/item/logo/logo.png" alt="Upstart" className="h-12"/>
-          </div>
-
-          {/* ─── Tabs ──────────────────────────────────────────────────────────── */}
-          <div className="flex gap-2">
-            {['phone','email'].map(tab => (
-              <button
-                key={tab}
-                onClick={()=>setMethod(tab)}
-                className={`
-                  flex-1 text-center font-medium rounded-md
-                  border-2 border-teal-400
-                  shadow-[0_0_8px_rgba(44,196,201,0.8)]
-                  transition-colors
-                  ${method===tab
-                    ? 'bg-teal-400 text-white'          /* Active: 흰 텍스트 */
-                    : 'bg-[#11131a] text-teal-300'}      /* Inactive: 연한 민트 */
-                  py-3                                  /* 높이 살짝 늘림 */
-                `}
+        </div>
+      {/* 국적 선택 드롭다운 추가 */}
+      <div className="flex0">
+        <label className="v-token-r0">Nationality</label>
+        <select
+          value={form.nationality}
+          onChange={e => setForm(f => ({ ...f, nationality: e.target.value }))}
+          className="v-token-r00"
+        >
+          {LANGUAGES.map(lang => (
+            <option key={lang.code} value={lang.code}>
+              {lang.label}
+            </option>
+          ))}
+        </select>
+      </div>
+        {/* 입력 폼 */}
+        <div className="r-box1">
+          <input
+            type="text"
+            placeholder={t("register.name")}
+            className="v-token-r"
+            value={form.name}
+            onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+          />
+          {method === "email" ? (
+            <input
+              type="email"
+              placeholder={t("register.email")}
+              className="v-token-r"
+              value={form.email}
+              onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+            />
+          ) : (
+            <div className="flex1">
+              <select
+                className="v-token-r1"
+                value={countryCode}
+                onChange={e => setCountryCode(e.target.value)}
               >
-                {tab==='phone' ? t("register.by_phone") : t("register.by_email")}
-              </button>
-            ))}
+                {countryCodes.map(country => (
+                  <option key={country.code} value={country.code}>
+                    {country.code}  {/* ✅ 숫자만 표시하고, 앞에 + 추가 */}
+                  </option>
+                ))}
+              </select>
+
+            <input
+              type="tel"
+              placeholder={t("register.phone")}
+              className="v-token-r2"
+              value={form.phone}
+              onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+            />
           </div>
+          )}
+          <input
+            type="password"
+            placeholder={t("register.password")}
+            className="v-token-r"
+            value={form.password}
+            onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
+          />
+          <input
+            type="password"
+            placeholder={t("register.confirmPassword")}
+            className="v-token-r"
+            value={form.confirmPassword}
+            onChange={e => setForm(f => ({ ...f, confirmPassword: e.target.value }))}
+          />
+          <input
+            type="text"
+            placeholder={t("register.referral")}
+            className="v-token-r"
+            value={form.referral}
+            onChange={e => setForm(f => ({ ...f, referral: e.target.value.toUpperCase() }))}
+          />
 
-          {/* 국적 */}
-          <div>
-            <label className="block mb-1 text-sm text-teal-200">국적</label>
-            <select
-              value={form.nationality}
-              onChange={e=>setForm(f=>({...f,nationality:e.target.value}))}
-              className="
-                w-full px-3 py-2 bg-[#11131a] text-teal-200
-                border-2 border-teal-400 rounded-md
-                shadow-[0_0_8px_rgba(44,196,201,0.8)]
-              "
-            >
-              {LANGUAGES.map(lang=>(
-                <option key={lang.code} value={lang.code}>{lang.label}</option>
-              ))}
-            </select>
-          </div>
-
-          {/* 입력 필드 */}
-          <div className="space-y-4">
-            <NeonInput
-              placeholder={t("register.name")}
-              value={form.name}
-              onChange={v=>setForm(f=>({...f,name:v}))}
-              
-            />
-
-            {method==="email" ? (
-              <NeonInput
-                type="email"
-                placeholder={t("register.email")}
-                value={form.email}
-                onChange={v=>setForm(f=>({...f,email:v}))}
-              />
-            ) : (
-              <div className="flex gap-2">
-                <select
-                  value={countryCode}
-                  onChange={e=>setCountryCode(e.target.value)}
-                  className="
-                    w-24 px-3 py-2 bg-[#11131a] text-teal-200
-                    border-2 border-teal-400 rounded-l-md
-                    shadow-[0_0_8px_rgba(44,196,201,0.8)]
-                  "
-                >
-                  {countryCodes.map(c=>(
-                    <option key={c.code} value={c.code}>{c.code}</option>
-                  ))}
-                </select>
-                <NeonInput
-                  placeholder={t("register.phone")}
-                  value={form.phone}
-                  onChange={v=>setForm(f=>({...f,phone:v}))}
-                  className="rounded-r-md"
-                />
-              </div>
-            )}
-
-            <NeonInput
-              type="password"
-              placeholder={t("register.password")}
-              value={form.password}
-              onChange={v=>setForm(f=>({...f,password:v}))}
-            />
-            <NeonInput
-              type="password"
-              placeholder={t("register.confirmPassword")}
-              value={form.confirmPassword}
-              onChange={v=>setForm(f=>({...f,confirmPassword:v}))}
-            />
-            <NeonInput
-              placeholder={t("register.referral")}
-              value={form.referral}
-              onChange={v=>setForm(f=>({...f,referral:v.toUpperCase()}))}
+          <div className="chptcha custom-recaptcha">
+            <ReCAPTCHA
+              sitekey={RECAPTCHA_SITE_KEY}
+              onChange={token => setCaptchaToken(token)}
             />
           </div>
 
-          {/* reCAPTCHA */}
-          <div className="flex justify-center mt-3">
-            <ReCAPTCHA sitekey={RECAPTCHA_SITE_KEY} onChange={token=>setCaptchaToken(token)}/>
-          </div>
-
-          {/* 에러/성공 메시지 */}
           {error   && <p className="text-red-400 text-center">{error}</p>}
           {success && <p className="text-green-400 text-center">{success}</p>}
 
-          {/* 회원가입 버튼 */}
           <button
             onClick={handleSubmit}
-            className="
-              w-full mt-4 rounded-lg
-              bg-[#206D7F] border-2 border-[#A8CAC6]
-              text-white font-semibold text-lg
-              py-4
-              transition-colors
-              hover:bg-[#2DD4BF]               /* 약간 어두운 hover 색 선택 가능 */
-            "
+            className="r-button"
           >
-            회원가입
+            {t("register.submit")}
           </button>
 
-          {/* 로그인 & 약관 */}
-          <div className="mt-4 text-center text-xs text-teal-200">
-            {t("register.no_account")}&nbsp;
-            <Link to="/login" className="underline text-teal-400">{t("register.login")}</Link>
+          <div className="auth-links-r">
+          <span>Do you already have an account?&nbsp;&nbsp;</span>
+
+            <Link to="/login" className="auth-links-r">
+              login
+            </Link>
           </div>
-          <div className="mt-2 text-center text-xs text-teal-300">
+
+      
+          {/* 약관 동의 */}
+          <div className="auth-links-r">
             <Trans i18nKey="register.agree">
-              <button className="underline text-yellow-300" onClick={()=>setOpenTerms(true)}/>
-              <button className="underline ml-2 text-yellow-300" onClick={()=>setOpenPrivacy(true)}/>
+              {/*
+                The two child <button> tags below will
+                replace <0>…</0> and <1>…</1> in your JSON.
+              */}
+              
+              <button
+                className="auth-links"
+                onClick={() => setOpenTerms(true)}
+              />
+              <button
+                className="auth-links"
+                onClick={() => setOpenPrivacy(true)}
+              />
             </Trans>
           </div>
-
         </div>
-      </main>
-
-      {/* 팝업 모달 */}
-      {openTerms && (
-        <Modal title={t("agreement.terms.title")} content={t("agreement.terms.content")} onClose={()=>setOpenTerms(false)}/>
-      )}
-      {openPrivacy && (
-        <Modal title={t("agreement.privacy.title")} content={t("agreement.privacy.content")} onClose={()=>setOpenPrivacy(false)}/>
-      )}
-    </div>
-  );
-}
-
-// 간단 모달 컴포넌트
-function Modal({ title, content, onClose }) {
-  return (
-    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-30" onClick={onClose}>
-      <div className="bg-[#1d1d27] text-teal-100 p-6 rounded-md max-w-md mx-4" onClick={e=>e.stopPropagation()}>
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-lg font-semibold">{title}</h2>
-          <button onClick={onClose}><CloseIcon size={18} className="text-teal-200"/></button>
-        </div>
-        <div className="text-sm leading-relaxed max-h-60 overflow-y-auto">{content}</div>
       </div>
+
+      {/* ─── 약관 팝업 ─── */}
+      {openTerms && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+          onClick={() => setOpenTerms(false)}
+        >
+          <div
+            className="bg-[#2c1f0f] text-yellow-100 p-6 rounded max-w-lg w-full mx-4 relative"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-2 right-2 text-yellow-300"
+              onClick={() => setOpenTerms(false)}
+            >
+              <CloseIcon size={20} />
+            </button>
+            <h2 className="text-xl font-semibold mb-4">{t("agreement.terms.title")}</h2>
+            <div className="text-sm whitespace-pre-line leading-relaxed max-h-60 overflow-y-auto">
+              {t("agreement.terms.content")}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* ─── 개인정보 팝업 ─── */}
+      {openPrivacy && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+          onClick={() => setOpenPrivacy(false)}
+        >
+          <div
+            className="bg-[#2c1f0f] text-yellow-100 p-6 rounded max-w-lg w-full mx-4 relative"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-2 right-2 text-yellow-300"
+              onClick={() => setOpenPrivacy(false)}
+            >
+              <CloseIcon size={20} />
+            </button>
+            <h2 className="text-xl font-semibold mb-4">{t("agreement.privacy.title")}</h2>
+            <div className="text-sm whitespace-pre-line leading-relaxed max-h-60 overflow-y-auto">
+              {t("agreement.privacy.content")}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
