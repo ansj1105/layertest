@@ -6,6 +6,8 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeft, Globe } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 
+import '../../styles/login.css';
+
 axios.defaults.withCredentials = true;
 
 export default function LoginPage() {
@@ -52,37 +54,44 @@ export default function LoginPage() {
     }
   };
 
+  
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100 flex flex-col items-center p-4">
+    <div className="page-wrapper">
       {/* 상단 바 */}
-      <div className="w-full max-w-sm flex items-center justify-between mb-6">
+      <div className="top-nav-bar-login">
         <button onClick={() => navigate(-1)}>
-          <ArrowLeft size={24} className="text-yellow-300"/>
+
         </button>
-        <h1 className="text-lg font-semibold">{t("login.title")}</h1>
+
         <button onClick={() => navigate("/settings/language")}>
-          <Globe size={24} className="text-yellow-300"/>
+          <Globe size={24} className="top-tran"/>
         </button>
       </div>
 
       {/* 폼 컨테이너 */}
-      <div className="w-full max-w-sm bg-[#2c1f0f] p-6 rounded-lg space-y-4 shadow-lg">
+      <div className="login-box">
+        {/* 로고 */}
+        <img
+          src="/img/item/logo/logo.png"
+          alt="Upstart"
+          className="login-logo"
+        />
         <input
           type="text"
           placeholder={t("login.identifier")}
-          className="w-full bg-[#3a270e] px-4 py-2 rounded placeholder-yellow-500 focus:outline-none"
+          className="v-token1"
           value={identifier}
           onChange={e => setIdentifier(e.target.value)}
         />
         <input
           type="password"
           placeholder={t("login.password")}
-          className="w-full bg-[#3a270e] px-4 py-2 rounded placeholder-yellow-500 focus:outline-none"
+          className="v-token1"
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
 
-        <div className="flex justify-center">
+        <div className="chptcha custom-recaptcha">
           <ReCAPTCHA
             sitekey={import.meta.env.VITE_RECAPTCHA_SITE_KEY}
             onChange={setCaptcha}
@@ -91,7 +100,7 @@ export default function LoginPage() {
 
         <button
           onClick={handleLogin}
-          className="w-full bg-yellow-600 text-black py-2 rounded hover:bg-yellow-700"
+          className="login-button"
         >
           {t("login.submit")}
         </button>
@@ -99,13 +108,10 @@ export default function LoginPage() {
         {error   && <p className="text-red-400 text-center">{error}</p>}
         {success && <p className="text-green-400 text-center">{success}</p>}
 
-        <div className="flex justify-between text-sm text-yellow-300">
-          <Link to="/register" className="hover:underline">
-            {t("login.register")}
-          </Link>
-          <Link to="/forgot-password" className="hover:underline">
-            {t("login.forgot")}
-          </Link>
+        <div className="auth-links">
+          <span>Don't you have an account?</span>
+          <Link to="/register">{t("login.register")}</Link>
+          <Link to="/forgot-password">{t("login.forgot")}</Link>
         </div>
       </div>
     </div>

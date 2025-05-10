@@ -643,4 +643,62 @@ router.get('/projects/:id/stats', async (req, res) => {
   }
 });
 
+router.get('/admin/wallet-settings', async (req, res) => {
+  try {
+    const [rows] = await db.query(
+      `SELECT id, deposit_fee_rate, withdraw_fee_rate, auto_approve, updated_at
+         FROM wallet_settings
+         LIMIT 1`
+    );
+    if (!rows.length) return res.status(404).json({ error: 'Settings not found' });
+    return res.json({ data: rows[0] });
+  } catch (err) {
+    console.error('Error fetching wallet settings:', err);
+    return res.status(500).json({ error: 'Failed to fetch settings' });
+  }
+});
+
+// ▶ PUT 설정 업데이트
+router.put('/admin/wallet-settings',  async (req, res) => {
+  const { deposit_fee_rate, withdraw_fee_rate, auto_approve } = req.body;
+
+  // 유효성 검사
+  if (
+    typeof deposit_fee_rate !== 'number' ||
+    deposit_fee_rate < 0 ||
+    typeof withdraw_fee_rate !== 'number' ||
+    withdraw_fee_rate < 0 ||
+    !['auto','manual'].includes(auto_approve)
+  ) {
+    return res.status(400).json({ error: 'Invalid parameters' });
+  }
+
+  try {
+    // 단일 row라면 id=1 로 고정하거나, 원하는 id로 바꾸세요
+    const SETTINGS_ID = 1;
+
+    await db.query(
+      `UPDATE wallet_settings
+         SET deposit_fee_rate  = ?,
+             withdraw_fee_rate = ?,
+             auto_approve      = ?,
+             updated_at        = NOW()
+       WHERE id = ?`,
+      [deposit_fee_rate, withdraw_fee_rate, auto_approve, SETTINGS_ID]
+    );
+
+    // 업데이트 후 변경된 설정을 다시 조회해 반환
+    const [[updated]] = await db.query(
+      `SELECT id, deposit_fee_rate, withdraw_fee_rate, auto_approve, updated_at
+         FROM wallet_settings
+         WHERE id = ?`,
+      [SETTINGS_ID]
+    );
+    return res.json({ data: updated });
+  } catch (err) {
+    console.error('Error updating wallet settings:', err);
+    return res.status(500).json({ error: 'Failed to update settings' });
+  }
+});
+
 module.exports = router;

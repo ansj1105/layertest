@@ -1,0 +1,192 @@
+
+
+/* 로그인 */
+/* 전체 래퍼: 사이드바가 절대위치로 들어가도 475px 범위내 */
+.page-wrapper {
+  position: relative;
+  max-width: 506px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* 기본틀 */
+.top-nav-bar-login {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  width: 100%;
+  max-width: 500px;              /* ✅ container와 맞춤 */
+  height: 58.27px;
+  background: #1d1d27;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 1000;
+}
+
+/* 탑바 중간간 글씨 */
+.login-h-text {
+  font-weight: bold;
+  color: #ffffff;
+  text-align: left;
+  font-size: 20px;
+  font-weight: bold; /* 굵은 글씨 */
+  margin-left: 35px;
+  }
+/* 탑바 번역역 */
+.top-tran{
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
+}
+
+.login-box {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  background: #1d1d27;
+  display: flex;                /* ✅ Flexbox 적용 */
+  flex-direction: column;       /* ✅ 세로 방향 정렬 */
+  align-items: center;          /* ✅ 가로 가운데 정렬 */
+  padding: 0 16px;
+  justify-content: flex-start;  /* ✅ 위쪽 정렬 */
+  z-index: 100;
+}
+
+
+/* 로그인 로고 */
+.login-logo {
+  width: 180px;
+  height: 70px;
+  padding-bottom: 2.5px;
+  margin-top: 90px;
+  margin-bottom: 60px;
+}
+
+
+/* 하단 섹션 */
+.v-token1 {
+  width: 90%;
+  height: 55px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background: #191c29;
+  border-radius: 13px;
+  cursor: pointer;
+  gap: 12px;
+  color: #26ffe6;
+  transition: all 0.4s ease; /* 부드럽게 전환 */
+  border: 1.1px solid #1ad3b7 !important;
+  box-shadow: 0 0 12px 2px #b8dfd9 !important;
+  padding-left: 16px; /* 왼쪽에서 16px 만큼 떨어지게 */
+  text-align: center;          /* 입력된 텍스트는 가운데 정렬 */
+}
+
+.v-token1::placeholder {
+  color: #ccc;               /* 글자 색상 */
+  font-size: 14px;           /* 글자 크기 */
+  text-align: center;        /* 가운데 정렬 */
+
+}
+
+.chptcha{
+  margin-top: 30px;
+  margin-bottom: 18px;
+}
+
+.custom-recaptcha iframe {
+  transform: scale(1.0); /* 크기 비율 조정 (0.5 ~ 1.0 추천) */
+  transform-origin: 0 0; /* 좌상단 기준으로 축소 */
+  
+}
+
+
+.login-button{
+  width: 90%;
+  height: 55px;
+  margin-top: 10px;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  color: white;
+  background: #206D7F;
+  border-radius: 13px;
+  cursor: pointer;
+  gap: 12px;
+  font-size: 18px;       /* ✅ 글자 크기 */
+  font-weight: bold;     /* ✅ 글자 굵기 */
+  letter-spacing: 1px;   /* ✅ 글자 간격 */
+  text-transform: uppercase; /* ✅ 모두 대문자로 (옵션) */
+  transition: all 0.4s ease; /* 부드럽게 전환 */
+  border: 0.1px solid #1ad3b7 !important;
+  box-shadow: 0 0 1px 1px #b8dfd9 !important;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background: #26ffe61f; /* 어두운 청색 톤 */
+  border-color: #26ffe6;
+  box-shadow: 0 0 16px 6px #81f5e9;
+}
+
+
+.login-button-text {
+  font-weight: bold;
+  font-size: 24px;
+  color: #ffffff;
+  text-align: left;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  font-family: 'DM Serif Display', serif;
+  font-weight: 400;
+  font-size: 30px;
+  color: #ffffff;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
+  }
+
+
+
+
+  
+.auth-links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #ffc107; /* 노란색 계열 (Tailwind: text-yellow-300) */
+}
+
+.auth-links span{
+  color: #ffffff;
+}
+
+.auth-links a {
+  text-decoration: none;
+  color: #26ffe6;
+  transition: color 0.3s, text-decoration 0.3s;
+  margin-left: 10px;
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
+  color: #ffd54f; /* 조금 더 밝은 노란색으로 hover 효과 */
+}

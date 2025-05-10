@@ -556,6 +556,7 @@
       "logoutCancel":        "취소",
       "logoutConfirm":       "확인"
     },
+    
     "team": {
       "todayJoinedCount" : "오늘 등록한 사람",
       "title":                 "내 팀 보기",

@@ -8,12 +8,14 @@ import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminContentManager from './pages/admin/AdminContentManager';
 import AdminUserManager from './pages/admin/AdminUserManager';
 import AdminPopupManager from './pages/admin/AdminPopupManager';
+import AdminWalletSettings from './pages/admin/AdminWalletSettings';
 import AdminUserInfoPage from './pages/admin/AdminUserInfoPage';
 import AdminUserLevelPage from './pages/admin/AdminUserLevelPage';
 import AdminUserReferralPage from './pages/admin/AdminUserReferralPage';
 import TeamManagementPage from './pages/admin/TeamManagementPage';
 import QuantLeaderboardPage from './pages/admin/QuantLeaderboardPage';
 import WalletAdminPage from './pages/admin/WalletAdminPage';
+import AdminWalletsPage from './pages/admin/AdminWalletsPage';
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
@@ -93,7 +95,16 @@ export default function AdminApp() {
     path="/wallet-admin"
     element={admin ? <WalletAdminPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
   />
+  <Route
+    path="/wallet-settings"
+    element={admin ? <AdminWalletSettings onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+  />
+    <Route
+    path="/wallet-deposits"
+    element={admin ? <AdminWalletsPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+  />
         <Route path="/users" element={admin ? <AdminUserManager /> : <Navigate to="/login" />} />
+
       </Routes>
     </Router>
   );
