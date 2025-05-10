@@ -31,7 +31,7 @@
     import EmailBindingPage from '../components/EmailBindingPage';
     import EscrowOrdersPage from '../components/EscrowOrdersPage';
     import TokenPurchasePage from '../components/TokenPurchasePage';
-     import AgencyCooperationPage from '../components/AgencyCooperationPage';
+    import AgencyCooperationPage from '../components/AgencyCooperationPage';
     import WithdrawPage from '../components/WithdrawPage';
     import InviteFriendPage from '../components/InviteFriendPage';
     import WithdrawMethodPage from '../components/WithdrawMethodPage';
@@ -48,6 +48,10 @@
     import TaskCenterPage from '../components/TaskCenterPage';
     import { ArrowRightIcon,Bell  } from 'lucide-react';
     import { useTranslation } from 'react-i18next';
+    import '../styles/MainLanding.css';
+
+
+
     export default function MainLanding({ user }) {
     const location = useLocation();
     const navigate = useNavigate();
@@ -85,7 +89,7 @@
         <>
         {location.pathname === "/" && (
             <>
-            <div className="flex justify-center items-center py-2 bg-white">
+            <div className="flex justify-center items-center py-2  bg-white">
                 <ContentList />
             </div>
 
@@ -107,93 +111,67 @@
                 </span>
                 )}
             </button>
-                 <Link to="/messages/notices">
-                   <span className="inline-flex items-center text-black text-xl text-sm">
-                     <span>MORE</span>
-                     <ArrowRightIcon size={20} className="ml-1" />
-                   </span>
-                 </Link>
+                <Link to="/messages/notices">
+                <span className="inline-flex items-center text-black text-xl text-sm">
+                    <span>MORE</span>
+                    <ArrowRightIcon size={20} className="ml-1" />
+                </span>
+                </Link>
             </div>
 
             {/* ✅ USC 토큰 메뉴 */}
-            <div className="bg-[#171924] border-4 border-[#1F6D79] rounded-lg shadow-lg overflow-hidden">
-                {/* 토큰 헤더 */}
-                <div
-                onClick={() => navigate('/token')}
-                className="flex items-center justify-center space-x-3 bg-[#171924] px-6 py-4 cursor-pointer"
-                >
-                <img
-                    src="/img/item/usc.png"
-                    alt="USC token"
-                    className="h-14 w-14"
-                />
-                <span className="text-2xl font-bold text-white">
-                    {t('token.header')}
-                </span>
+
+
+                {/* ✅ 기존 Tailwind → CSS class 적용 */}
+                <div className="v-token" onClick={() => navigate('/token')}>
+                    <img src="/img/item/usc.png" alt="USC token" />
+                    <span className="v-token-text">{t('token.header')}</span>
+
                 </div>
+
+                
+                {/* ✅ 중간 흰색 공간 추가 */}
+                <div className="h-3 bg-white" />
+                
 
                 {/* 액션 버튼들 */}
-                <div className="bg-[#171924] border-2 border-[#1F6D79] grid grid-cols-4 gap-4 px-6 py-5 text-center">
-                <div
-                    onClick={() => navigate('/recharge')}
-                    className="flex flex-col items-center space-y-1 cursor-pointer"
-                >
-                    <img
-                    src="/img/item/Recharge.png"
-                    alt="Recharge"
-                    className="h-8 w-8"
-                    />
+                <div className="v-main-card-two">
+                <div className="v-main-card-two-list">
+                    
+                    <div onClick={() => navigate('/recharge')} className="v-main-card-two-item">
+                    <img src="/img/item/Recharge.png" alt="Recharge" className="h-8 w-8" />
                     <span className="text-sm text-white font-bold">
-                    {t('token.recharge')}
+                        {t('token.recharge')}
                     </span>
-                </div>
+                    </div>
 
-                <div
-                    onClick={() => navigate('/withdraw')}
-                    className="flex flex-col items-center space-y-1 cursor-pointer"
-                >
-                    <img
-                    src="/img/item/Withdraw.png"
-                    alt="Withdraw"
-                    className="h-8 w-8"
-                    />
+                    <div onClick={() => navigate('/withdraw')} className="v-main-card-two-item">
+                    <img src="/img/item/Withdraw.png" alt="Withdraw" className="h-8 w-8" />
                     <span className="text-sm text-white font-bold">
-                    {t('token.withdraw')}
+                        {t('token.withdraw')}
                     </span>
-                </div>
+                    </div>
 
-                <div
-                    onClick={() => navigate('/agent')}
-                    className="flex flex-col items-center space-y-1 cursor-pointer"
-                >
-                    <img
-                    src="/img/item/Agent.png"
-                    alt="Agent"
-                    className="h-8 w-8"
-                    />
+                    <div onClick={() => navigate('/agent')} className="v-main-card-two-item">
+                    <img src="/img/item/Agent.png" alt="Agent" className="h-8 w-8" />
                     <span className="text-sm text-white font-bold">
-                    {t('token.agent')}
+                        {t('token.agent')}
                     </span>
-                </div>
+                    </div>
 
-                <div
-                    onClick={() => navigate('/invite')}
-                    className="flex flex-col items-center space-y-1 cursor-pointer"
-                >
-                    <img
-                    src="/img/item/Invite.png"
-                    alt="Invite"
-                    className="h-8 w-8"
-                    />
+                    <div onClick={() => navigate('/invite')} className="v-main-card-two-item">
+                    <img src="/img/item/Invite.png" alt="Invite" className="h-8 w-8" />
                     <span className="text-sm text-white font-bold">
-                    {t('token.invite')}
+                        {t('token.invite')}
                     </span>
+                    </div>
+
                 </div>
                 </div>
-            </div>
 
 
-            <div >
+
+            <div className='pb-14'>
                 <CoinList />
             </div>
 
@@ -239,8 +217,8 @@
             <Route path="/security/email" element={<ProtectedRoute><EmailBindingPage  /></ProtectedRoute>} />
             <Route path="/security/login-password" element={<ProtectedRoute><LoginPasswordPage  /></ProtectedRoute>} />
             <Route path="/security/trade-password" element={<ProtectedRoute><TradePasswordPage  /></ProtectedRoute>} />
-             <Route path="/invite" element={<ProtectedRoute><InviteFriendPage /></ProtectedRoute>} />
-             <Route path="/agent" element={<ProtectedRoute><AgencyCooperationPage /></ProtectedRoute>} />
+            <Route path="/invite" element={<ProtectedRoute><InviteFriendPage /></ProtectedRoute>} />
+            <Route path="/agent" element={<ProtectedRoute><AgencyCooperationPage /></ProtectedRoute>} />
             <Route path="/withdraw" element={<ProtectedRoute><WithdrawPage /></ProtectedRoute>} />
             <Route path="/withdraw/method" element={<ProtectedRoute><WithdrawMethodPage /></ProtectedRoute>} />
             <Route path="/withdraw/history" element={<ProtectedRoute><WithdrawHistoryPage /></ProtectedRoute>} />

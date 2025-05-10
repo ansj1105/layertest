@@ -1,44 +1,16 @@
-// 📁 src/components/admin/AdminNav.jsx
-/*
-import { Link } from "react-router-dom";
-
-export default function AdminNav({ onLogout }) {
-  return (
-    <div className="space-x-2 mb-6 text-center">
-      <Link to="/chat" className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-        💬 채팅 관리
-      </Link>
-      <Link to="/dashboard" className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">
-        📊 대시보드
-      </Link>
-      <Link to="/content" className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600">
-        🖼️ 콘텐츠 관리
-      </Link>
-      <Link to="/users" className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
-        👤 사용자 관리
-      </Link>
-      <Link to="/popup" className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
-        📢 팝업 알림 관리
-      </Link>
-      <button
-        onClick={onLogout}
-        className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-      >
-        🚪 로그아웃
-      </button>
-    </div>
-  );
-}
-*/
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function AdminNav({ onLogout }) {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [isQuantMenuOpen, setIsQuantMenuOpen] = useState(false);
+  const [isRewardMenuOpen, setIsRewardMenuOpen] = useState(false);
+  const [isWalletMenuOpen, setIsWalletMenuOpen] = useState(false);
 
   const toggleUserMenu = () => setIsUserMenuOpen(prev => !prev);
   const toggleQuantMenu = () => setIsQuantMenuOpen(prev => !prev);
+  const toggleRewardMenu = () => setIsRewardMenuOpen(prev => !prev);
+  const toggleWalletMenu = () => setIsWalletMenuOpen(prev => !prev);
 
   return (
     <div className="w-64 h-screen p-4 bg-green-100 border-r-2 border-green-300 fixed top-0 left-0 overflow-y-auto">
@@ -95,25 +67,15 @@ export default function AdminNav({ onLogout }) {
           </button>
           {isQuantMenuOpen && (
             <div className="bg-orange-100 border-t mt-1">
-              <Link
-                to="/quantpage"
-                className="block px-4 py-2 hover:bg-orange-200"
-              >
+              <Link to="/quantpage" className="block px-4 py-2 hover:bg-orange-200">
                 🔄 리워드 시스템
               </Link>
-              <Link
-                to="/quantrank"
-                className="block px-4 py-2 hover:bg-orange-200 border-t"
-              >
+              <Link to="/quantrank" className="block px-4 py-2 hover:bg-orange-200 border-t">
                 📈 팀 리더보드
               </Link>
-                            <Link
-                to="/wallet-admin"
-                className="block px-4 py-2 hover:bg-orange-200 border-t"
-              >
-                 💼 재무 관리
+              <Link to="/wallet-admin" className="block px-4 py-2 hover:bg-orange-200 border-t">
+                💼 재무 관리
               </Link>
-             
             </div>
           )}
         </div>
@@ -124,21 +86,53 @@ export default function AdminNav({ onLogout }) {
         >
           📢 팝업 알림 관리
         </Link>
-        <Link
-                to="/invite-rewards"
-                className="block bg-pink-300 px-4 py-2 hover:bg-pink-300 border-t"
-              >
-                🎁 초대 보상 관리
+
+        {/* 보상센터 메뉴 */}
+        <div>
+          <button
+            onClick={toggleRewardMenu}
+            className="w-full text-left bg-pink-300 text-white px-4 py-2 rounded hover:bg-pink-400"
+          >
+            🎁 보상센터 {isRewardMenuOpen ? '▲' : '▼'}
+          </button>
+          {isRewardMenuOpen && (
+            <div className="bg-pink-100 border-t">
+              <Link to="/invite-rewards" className="block px-4 py-2 hover:bg-pink-200">
+                🔗 초대 보상 관리
               </Link>
-              <Link
-                to="/admin-rewards"
-                className="block bg-pink-300 px-4 py-2 hover:bg-pink-300 border-t"
-              >
-                🎁 가입 보상 관리
-              </Link>      
+              <Link to="/admin-rewards" className="block px-4 py-2 hover:bg-pink-200 border-t">
+                🙋 가입 보상 관리
+              </Link>
+            </div>
+          )}
+        </div>
+
+        {/* 지갑 관리 메뉴 */}
+        <div>
+          <button
+            onClick={toggleWalletMenu}
+            className="w-full text-left bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mt-2"
+          >
+            💼 지갑 관리 {isWalletMenuOpen ? '▲' : '▼'}
+          </button>
+          {isWalletMenuOpen && (
+            <div className="bg-green-200 border-t">
+              <Link to="/wallet-deposits" className="block px-4 py-2 hover:bg-green-300">
+                입금 관리
+              </Link>
+              <Link to="/wallet-withdrawals" className="block px-4 py-2 hover:bg-green-300 border-t">
+                출금 관리
+              </Link>
+              <Link to="/wallet-settings" className="block px-4 py-2 hover:bg-green-300 border-t">
+                출입금 수수료 설정
+              </Link>
+            </div>
+          )}
+        </div>
+
         <button
           onClick={onLogout}
-          className="block w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+          className="block w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 mt-4"
         >
           🚪 로그아웃
         </button>

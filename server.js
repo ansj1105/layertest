@@ -203,6 +203,7 @@ async function runVipUpdateJob() {
 runVipUpdateJob(); //레벨정산
 accrueDailyProfits(); //펀딩수익정산
 handleProjectExpiry(); //만료 정산
+
 // 1시간마다 VIP 레벨 자동 갱신
 
 //펀딩수익 스케쥴러
