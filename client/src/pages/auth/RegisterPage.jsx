@@ -61,7 +61,7 @@ export default function RegisterPage() {
     if (!form.nationality) return setError("국적을 선택해주세요.");
     try {
       await axios.post(
-        "http://localhost:4000/api/auth/register",
+        "/api/auth/register",
         {
           name: form.name,
           email: method==="email" ? form.email : null,
