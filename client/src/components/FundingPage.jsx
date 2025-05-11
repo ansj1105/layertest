@@ -31,11 +31,7 @@ export default function FundingPage() {
   const expiredProjects = projects.filter(p => p.status === 'closed');
   // 요약 API
   const fetchFinanceSummary = async () => {
-<<<<<<< HEAD
-    const res = await axios.get("http://54.85.128.211:4000/api/wallet/finance-summary", { withCredentials: true });
-=======
     const res = await axios.get("/api/wallet/finance-summary", { withCredentials: true });
->>>>>>> main
     console.log(res);
     const data = res.data.data;
     return {
@@ -50,11 +46,7 @@ export default function FundingPage() {
 
   // 프로젝트 목록 API
   const fetchProjects = async () => {
-<<<<<<< HEAD
-    const res = await axios.get("http://54.85.128.211:4000/api/wallet/projects", { withCredentials: true });
-=======
     const res = await axios.get("/api/wallet/projects", { withCredentials: true });
->>>>>>> main
     return res.data;
   };
 
