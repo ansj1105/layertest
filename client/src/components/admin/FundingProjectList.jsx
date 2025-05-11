@@ -10,7 +10,11 @@ export default function FundingProjectList() {
   const [selectedProject, setSelectedProject] = useState(null);
 
   const fetchProjects = async () => {
+<<<<<<< HEAD
     const url = "http://54.85.128.211:4000/api/wallet/projects";
+=======
+    const url = "/api/wallet/projects";
+>>>>>>> main
     console.log("[DEBUG] 요청 URL:", url);
     try {
       const res = await axios.get(url, { withCredentials: true });
@@ -32,7 +36,11 @@ export default function FundingProjectList() {
   }, []);
 
   const handleDelete = async (id) => {
+<<<<<<< HEAD
     const url = `http://54.85.128.211:4000/api/wallet/projects/${id}`;
+=======
+    const url = `/api/wallet/projects/${id}`;
+>>>>>>> main
     console.log("[DEBUG] DELETE 요청 URL:", url);
     try {
       await axios.delete(url, { withCredentials: true });

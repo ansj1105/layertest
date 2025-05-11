@@ -1,0 +1,245 @@
+
+
+/* 내팀팀 */
+/* 전체 래퍼: 사이드바가 절대위치로 들어가도 475px 범위내 */
+.page-wrapper {
+  position: relative;
+  max-width: 506px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #0e0e11;
+}
+
+
+/* 기본틀 */
+.top-nav-bar-team {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  width: 100%;
+  max-width: 500px;              /* ✅ container와 맞춤 */
+  height: 58.27px;
+  background: #1d1d27;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 1000;
+}
+
+
+/* 회원들, 기여 */
+.flex-my {
+  width: 97%;
+  display: flex;
+  justify-content: center;   /* Flex 아이템 가로 중앙 정렬 */
+  margin: 0 auto;            /* 컨테이너 자체를 중앙에 배치 */
+
+  z-index: 100;
+}
+
+
+
+.v-token-r-my {
+  
+  width: 90%;
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background: rgb(55, 119, 115);
+  border-radius: 3px;
+  color: #ffffff;
+  transition: all 0.4s ease; /* 부드럽게 전환 */
+  box-shadow: 0 0 2px 2px #b8dfd9 !important;
+
+  
+
+}
+
+.referra-t {
+  width: 97%;
+  height: 200px;
+  margin: auto;                /* 블록 요소 가로 세로 중앙 정렬 */
+  display: flex;
+  flex-direction: row;
+  align-items: center;          /* 세로 가운데 (내부 콘텐츠) */
+  justify-content: center;      /* 가로 가운데 (내부 콘텐츠) */
+  padding: 30px;
+  background: #191c29;
+  border-radius: 10px;
+  color: #ffffff;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 12px 2px #b8dfd9 !important;
+  margin-bottom: 10px;
+  
+  gap: 16px; /* 상하 영역 간 간격 */
+}
+
+.v-token-r-my:hover {
+  color: #ffe695; /* 조금 더 밝은 노란색으로 hover 효과 */
+}
+
+
+.active-button {
+  background-color: #365754;
+  color: #ffe695;
+  font-weight: 600;
+}
+
+.inactive-button {
+  background-color: #152221;
+  color: #ffffff;
+}
+
+
+
+
+
+/* 상단 현황판 섹션션 */
+.referra-tt {
+  width: 97%;
+  height: 160px;
+  margin: 8px auto;
+  padding: 13px;
+  background: #152221;
+  border-radius: 8px;
+  color: #ffffff;
+  box-shadow: 0 0 4px 2px #b8dfd9;
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* 상하 영역 간 간격 */
+
+  justify-content: center;      /* 가로 가운데 (내부 콘텐츠) */
+  
+}
+
+.referra-section {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  margin: 10px;
+}
+
+.referra-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.referra-title {
+  font-size: 17px;
+  color: #ffffff; /* text-yellow-300 */
+  font-weight: bold;
+  margin-bottom: 1px;
+}
+
+.referra-value {
+  font-size: 13.6px;
+  font-weight: bold;
+  color: #fef9c3; /* text-yellow-100 */
+  margin: 1px;
+}
+
+
+/* 레벨별 드롭바 */
+.referra-dro {
+  width: 97%;
+  height: 50px;
+  margin: 5px auto;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;  /* 왼쪽, 오른쪽 정렬 */
+  align-items: center;             /* 세로 가운데 정렬 */
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+
+.level-title {
+  font-size: 14px;
+  color: #ffffff; /* text-yellow-300 */
+  font-weight: bold;
+  margin-bottom: 1px;
+  margin-left: 3px;
+}
+
+.level-value {
+  font-size: 13.6px;
+  font-weight: bold;
+  color: #fef9c3; /* text-yellow-100 */
+  margin: 1px;
+}
+
+.level-hierarchy{
+  background: #2c1f0f;
+  color: #fef9c3;
+  padding: 3px;
+  background: #152221;
+  border-radius: 4px;
+  color: #ffffff;
+  box-shadow: 0 0 1px 1px #b8dfd9;
+}
+
+
+
+
+
+
+.data-box-container {
+  max-height: 320px;               /* 약 80 * 4 줄 높이 */
+  overflow-y: auto;
+  padding-right: 8px;              /* 스크롤바와 내용 간 여백 */
+  margin: 0 auto;
+  width: 95%;
+
+}
+
+/* 카드 스타일 */
+.data-card {
+  background: #111b1b;
+  padding: 14px;
+  border-radius: 8px;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 1px 1px #b8dfd9;
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 12px !important;
+}
+
+/* 카드 내 텍스트 */
+.data-card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #facc15; /* text-yellow-300 */
+}
+
+.data-card-sub {
+  font-size: 0.85rem;
+  color: #fde68a; /* text-yellow-100 */
+}
+
+/* 스크롤바 커스텀 (크롬/엣지/사파리) */
+.data-box-container {
+  max-height: 390px;
+  overflow-y: auto;
+  padding-right: 8px;
+  margin: 0 auto;
+  width: 95%;
+  /* 스크롤바 숨기기 (크롬, 엣지, 사파리) */
+  scrollbar-width: none;             /* Firefox */
+  -ms-overflow-style: none;           /* IE, Edge */
+}
+

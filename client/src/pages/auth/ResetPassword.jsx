@@ -8,7 +8,11 @@ export default function ResetPassword() {
 
   const handleReset = async () => {
     try {
+<<<<<<< HEAD
       const res = await axios.post("http://54.85.128.211:4000/api/auth/reset-password", { token, newPassword });
+=======
+      const res = await axios.post("/api/auth/reset-password", { token, newPassword });
+>>>>>>> main
       setResult(res.data.message);
     } catch (err) {
       setResult(err.response?.data?.error || "실패");

@@ -11,7 +11,11 @@ export default function WalletPage() {
     setLoading(true);
     setError(null);
     try {
+<<<<<<< HEAD
       const res = await fetch('http://54.85.128.211:4000/api/tron/create-wallet');
+=======
+      const res = await fetch('/api/tron/create-wallet');
+>>>>>>> main
       const data = await res.json();
       setWallet(data.address, data.privateKey);
     } catch (err) {

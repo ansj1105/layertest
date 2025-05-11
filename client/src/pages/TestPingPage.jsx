@@ -7,7 +7,11 @@ export default function TestPingPage() {
 
   const handleLocalPing = async () => {
     try {
+<<<<<<< HEAD
       const res = await axios.get("http://54.85.128.211:4000/api/ping", {
+=======
+      const res = await axios.get("/api/ping", {
+>>>>>>> main
         withCredentials: true,  
       });
       setLocalRes(res.data.message);
@@ -19,7 +23,11 @@ export default function TestPingPage() {
 
   const handleServerPing = async () => {
     try {
+<<<<<<< HEAD
       const res = await axios.get(`http://54.85.128.211:4000/api/ping`, {
+=======
+      const res = await axios.get(`/api/ping`, {
+>>>>>>> main
         withCredentials: true,
       });
       setServerRes(res.data.message);

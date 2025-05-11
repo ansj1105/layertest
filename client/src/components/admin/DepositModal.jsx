@@ -24,6 +24,7 @@ export default function DepositModal({ wallet, onClose, onDeposited }) {
       );
       onDeposited(res.data.data);
       onClose();
+      window.location.reload();
     } catch (e) {
       console.error(e);
       setError('입금 처리 중 오류가 발생했습니다.');
@@ -45,7 +46,7 @@ export default function DepositModal({ wallet, onClose, onDeposited }) {
             className="w-full border px-2 py-1 rounded"
           >
             <option value="fund">펀딩 잔액</option>
-            <option value="real">실제 잔액</option>
+            <option value="quant">양적(퀀트) 잔액</option>
           </select>
         </div>
         <div className="mb-4">

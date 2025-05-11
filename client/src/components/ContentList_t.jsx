@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from 'axios';
 import VideoWithPreview from './VideoWithPreview';
-import '../styles/MainLanding.css';
+
 export default function ContentList() {
   const [banners, setBanners] = useState([]);
   const [video, setVideo] = useState(null);
@@ -14,11 +14,7 @@ export default function ContentList() {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-<<<<<<< HEAD
-        const res = await axios.get("http://54.85.128.211:4000/api/content-files");
-=======
         const res = await axios.get("/api/content-files");
->>>>>>> main
         const files = res.data;
         setBanners(files.filter(f => f.type === 'banner'));
         const videoFile = files.find(f => f.type === 'video');
@@ -38,7 +34,7 @@ export default function ContentList() {
   const noContent = banners.length === 0 && !video;
 
   return (
-    <div className="content-wrapper">
+    <div className="w-full max-w-4xl mx-auto text-white text-center space-y-8">
       {noContent ? (
         <p className="text-gray-400">업로드된 파일이 없습니다.</p>
       ) : (
@@ -64,7 +60,7 @@ export default function ContentList() {
               // ← dots를 이미지 위에 절대 위치
               appendDots={dots => (
                 <div>
-                  <ul className="absolute bottom-6 left-0 right-0 flex justify-center space-x-0">
+                  <ul className="absolute bottom-6 left-0 right-0 flex justify-center space-x-2">
                     {dots}
                   </ul>
                 </div>
@@ -73,7 +69,7 @@ export default function ContentList() {
               {banners.map((banner, idx) => (
                 <div key={idx} className="h-[170px] overflow-hidden rounded">
                   <img
-                    src={`http://54.85.128.211:4000${banner.file_path}`}
+                    src={`http://localhost:4000${banner.file_path}`}
                     alt={`banner-${idx}`}
                     className="w-full h-full object-cover"
                   />
@@ -87,7 +83,7 @@ export default function ContentList() {
           {video && (
             <div className="w-full aspect-video">
               <VideoWithPreview
-                src={`http://54.85.128.211:4000${video}`}
+                src={`http://localhost:4000${video}`}
               />
             </div>
           )}

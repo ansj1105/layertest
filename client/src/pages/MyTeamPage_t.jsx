@@ -4,8 +4,6 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import ProtectedRoute from '../components/ProtectedRoute';
 import ReferralStatsBox from '../components/ReferralStatsBox';
-import '../styles/MyTeamPage.css';
-import '../styles/topbar.css';
 
 const LEVELS = [
   { value: 'A', labelKey: 'team.level.A' },
@@ -117,13 +115,12 @@ export default function MyTeamPage() {
 
   return (
     <ProtectedRoute>
-      <div className="page-wrapper">
+      <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
         {/* 헤더 */}
-        <div className="top-bar">
-          <button onClick={() => history.back()} className="top-tran">←</button>
-          <h1 className="top-h-text">{t('team.title')}</h1>
+        <div className="flex items-center mb-4">
+          <button onClick={() => history.back()} className="mr-2">←</button>
+          <h1 className="text-xl font-semibold">{t('team.title')}</h1>
         </div>
-
 
         {/* 전체 통계 */}
         {stats && (
@@ -136,16 +133,16 @@ export default function MyTeamPage() {
         )}
 
         {/* 탭 버튼 */}
-        <div className="flex-my">
+        <div className="flex bg-[#2c1f0f] rounded mb-4 overflow-hidden">
           <button
             onClick={() => setActiveTab('members')}
-            className={`v-token-r-my ${activeTab==='members'? "active-button" : "inactive-button"}`}
+            className={`flex-1 py-2 font-medium ${activeTab==='members'? 'bg-yellow-700 text-black':'text-yellow-300'}`}
           >
             {t('team.tabs.members')}
           </button>
           <button
             onClick={() => setActiveTab('contrib')}
-            className={`v-token-r-my ${activeTab==='contrib'? "active-button" : "inactive-button"}`}
+            className={`flex-1 py-2 font-medium ${activeTab==='contrib'? 'bg-yellow-700 text-black':'text-yellow-300'}`}
           >
             {t('team.tabs.contrib')}
           </button>
@@ -154,17 +151,17 @@ export default function MyTeamPage() {
         {/* ── 팀 멤버 리스트 ── */}
         {activeTab === 'members' && (
           <>
-            <div className="referra-dro">
+            <div className="mb-4 flex justify-between items-center">
               {/* 왼쪽: 오늘 등록한 사람 수 */}
-              <div className="level-title">
+              <div className="text-yellow-100">
                 {t('team.todayJoinedCount', { count: stats?.todayJoined ?? 0  })}
               </div>
               {stats?.todayJoined ?? 0}
               {/* 오른쪽: 레벨 필터 드롭다운 */}
               <div>
-                <label className="level-title mr-1">{t('team.filter.level')}</label>
+                <label className="mr-2 text-yellow-200">{t('team.filter.level')}</label>
                 <select
-                  className="level-hierarchy"
+                  className="bg-[#2c1f0f] text-yellow-100 p-2 rounded"
                   value={filterLevel}
                   onChange={e => setFilterLevel(e.target.value)}
                 >
@@ -177,22 +174,13 @@ export default function MyTeamPage() {
               </div>
             </div>
 
-            <div className="data-box-container">
-              {team[filterLevel].map(u => (
-                <div key={u.id} className="data-card">
-                  <div>
-                    <div className="data-card-title">{u.name || u.email}</div>
-                    <div className="data-card-sub">
-                      {t('team.registered')}: {new Date(u.created_at).toLocaleDateString()}
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="text-sm">{t('team.vip')}: {u.vip_level}</div>
-                    <div className="text-sm">{t('team.teamSize')}: {u.team_count}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            {team[filterLevel].length > 0 ? (
+              <div className="max-h-80 overflow-y-auto space-y-3">
+                {team[filterLevel].map(renderMemberCard)}
+              </div>
+            ) : (
+              <p className="text-center text-yellow-300">{t('team.noMembers')}</p>
+            )}
           </>
         )}
 

@@ -10,7 +10,11 @@ export default function TransactionPage() {
   useEffect(() => {
     const fetchLogs = async () => {
       try {
+<<<<<<< HEAD
         const res = await axios.get('http://54.85.128.211:4000/api/tron/transactions');
+=======
+        const res = await axios.get('/api/tron/transactions');
+>>>>>>> main
         setLogs(res.data);
       } catch (err) {
         console.error('Failed to fetch transactions:', err);

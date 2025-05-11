@@ -45,7 +45,11 @@ export default function AdminApp() {
     window.location.hash = "/dashboard";
   };
   const handleLogout = async () => {
+<<<<<<< HEAD
     await axios.post("http://54.85.128.211:4000/api/auth/admin-logout");
+=======
+    await axios.post("/api/auth/admin-logout");
+>>>>>>> main
     setAdmin(null);
     window.location.href = "/admin.html#/login";
   };

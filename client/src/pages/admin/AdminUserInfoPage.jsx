@@ -8,17 +8,29 @@ export default function AdminUserManager({ onLogout }) {
   const [showBlockedOnly, setShowBlockedOnly] = useState(false);
 
   const fetchUsers = async () => {
+<<<<<<< HEAD
     const res = await axios.get('http://54.85.128.211:4000/api/admin/users');
+=======
+    const res = await axios.get('/api/admin/users');
+>>>>>>> main
     setUsers(res.data);
   };
 
   const toggleStatus = async (id, currentStatus) => {
+<<<<<<< HEAD
     await axios.patch(`http://54.85.128.211:4000/api/admin/users/${id}/status`, { is_active: !currentStatus });
+=======
+    await axios.patch(`/api/admin/users/${id}/status`, { is_active: !currentStatus });
+>>>>>>> main
     fetchUsers();
   };
 
   const toggleBlock = async (id, currentStatus) => {
+<<<<<<< HEAD
     await axios.patch(`http://54.85.128.211:4000/api/admin/users/${id}/block`, { is_blocked: !currentStatus });
+=======
+    await axios.patch(`/api/admin/users/${id}/block`, { is_blocked: !currentStatus });
+>>>>>>> main
     fetchUsers();
   };
 

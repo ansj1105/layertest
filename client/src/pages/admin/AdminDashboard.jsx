@@ -7,7 +7,11 @@ export default function AdminDashboard({ onLogout }) {
   const [stats, setStats] = useState({ userCount: 0, messageCount: 0 });
 
   useEffect(() => {
+<<<<<<< HEAD
     axios.get("http://54.85.128.211:4000/api/admin/stats")
+=======
+    axios.get("/api/admin/stats")
+>>>>>>> main
       .then(res => setStats(res.data))
       .catch(err => console.error("통계 로드 실패:", err));
   }, []);

@@ -22,7 +22,11 @@
         setLoading(true);
         setError(null);
         try {
+<<<<<<< HEAD
         const res = await axios.get(`http://54.85.128.211:4000/api/tron/balance`, {
+=======
+        const res = await axios.get(`/api/tron/balance`, {
+>>>>>>> main
             params: { address: cleanAddress },
         });
         setBalance(res.data.usdt);
