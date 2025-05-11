@@ -14,11 +14,7 @@ export default function UserReferralPage({ onLogout, userId }) {
   // 사용자 목록 조회 (관리자용)
   const fetchUsers = async () => {
     try {
-<<<<<<< HEAD
-      const res = await axios.get('http://54.85.128.211:4000/api/admin/users', { withCredentials: true });
-=======
       const res = await axios.get('/api/admin/users', { withCredentials: true });
->>>>>>> main
       setUsers(res.data);
     } catch (err) {
       console.error('사용자 목록 조회 실패:', err);
@@ -28,11 +24,7 @@ export default function UserReferralPage({ onLogout, userId }) {
   // 전체 레퍼럴 네트워크 조회
   const fetchAllTeams = async () => {
     try {
-<<<<<<< HEAD
-      const { data } = await axios.get('http://54.85.128.211:4000/api/referral/users/all/my-teams', { withCredentials: true });
-=======
       const { data } = await axios.get('/api/referral/users/all/my-teams', { withCredentials: true });
->>>>>>> main
       setTeams(data.data);
       console.log(data);
     } catch (err) {
@@ -45,11 +37,7 @@ export default function UserReferralPage({ onLogout, userId }) {
   // 보상 설정 조회
   const fetchSettings = async () => {
     try {
-<<<<<<< HEAD
-      const { data } = await axios.get('http://54.85.128.211:4000/api/referral/reward-settings', { withCredentials: true });
-=======
       const { data } = await axios.get('/api/referral/reward-settings', { withCredentials: true });
->>>>>>> main
       setSettings(data.data);
     } catch (err) {
       console.error('보상 설정 조회 실패:', err);
@@ -60,11 +48,7 @@ export default function UserReferralPage({ onLogout, userId }) {
   const fetchReferralCode = async (userId) => {
     try {
       const { data } = await axios.get(
-<<<<<<< HEAD
-        `http://54.85.128.211:4000/api/referral/users/${userId}/code`,
-=======
         `/api/referral/users/${userId}/code`,
->>>>>>> main
         { withCredentials: true }
       );
       setReferralCode(data.data.referral_code || '');
@@ -79,11 +63,7 @@ export default function UserReferralPage({ onLogout, userId }) {
     if (!selectedUserId) return;
     try {
       const { data } = await axios.post(
-<<<<<<< HEAD
-        `http://54.85.128.211:4000/api/referral/users/${selectedUserId}/code`,
-=======
         `/api/referral/users/${selectedUserId}/code`,
->>>>>>> main
         {},
         { withCredentials: true }
       );
@@ -100,11 +80,7 @@ export default function UserReferralPage({ onLogout, userId }) {
     if (!selectedUserId) return;
     try {
       await axios.put(
-<<<<<<< HEAD
-        `http://54.85.128.211:4000/api/referral/users/${selectedUserId}/code`,
-=======
         `/api/referral/users/${selectedUserId}/code`,
->>>>>>> main
         { referral_code: referralCode },
         { withCredentials: true }
       );
@@ -132,11 +108,7 @@ export default function UserReferralPage({ onLogout, userId }) {
 
   const saveSettings = async () => {
     try {
-<<<<<<< HEAD
-      await axios.put('http://54.85.128.211:4000/api/referral/reward-settings', settings, { withCredentials: true });
-=======
       await axios.put('/api/referral/reward-settings', settings, { withCredentials: true });
->>>>>>> main
       alert('✅ 보상 설정이 저장되었습니다.');
     } catch (err) {
       console.error('보상 설정 저장 실패:', err);

@@ -7,11 +7,7 @@ export default function AdminUserLevelPage({ onLogout }) {
   const [editedLevels, setEditedLevels] = useState({});
 
   const fetchLevels = async () => {
-<<<<<<< HEAD
-    const res = await axios.get("http://54.85.128.211:4000/api/admin/vip-levels");
-=======
     const res = await axios.get("/api/admin/vip-levels");
->>>>>>> main
     setLevels(res.data.data);
   };
 
@@ -29,11 +25,7 @@ export default function AdminUserLevelPage({ onLogout }) {
     const updateData = editedLevels[level];
     if (!updateData) return;
 
-<<<<<<< HEAD
-    await axios.put(`http://54.85.128.211:4000/api/admin/vip-levels/${level}`, updateData);
-=======
     await axios.put(`/api/admin/vip-levels/${level}`, updateData);
->>>>>>> main
     await fetchLevels();
     setEditedLevels(prev => {
       const newData = { ...prev };

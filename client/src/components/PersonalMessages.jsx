@@ -5,11 +5,7 @@ export default function PersonalMessages() {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-<<<<<<< HEAD
-    axios.get("http://54.85.128.211:4000/api/messages/inbox", { withCredentials: true })
-=======
     axios.get("/api/messages/inbox", { withCredentials: true })
->>>>>>> main
       .then(res => setMessages(res.data))
       .catch(console.error);
   }, []);

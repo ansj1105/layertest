@@ -39,11 +39,7 @@ export default function LoginPage() {
     }
 
     try {
-<<<<<<< HEAD
-      await axios.post("http://54.85.128.211:4000/api/auth/login", {
-=======
       await axios.post("/api/auth/login", {
->>>>>>> main
         identifier,
         password,
         captchaToken: captcha

@@ -29,11 +29,7 @@ export default function AdminChat({ onLogout }) {
   }, [selectedUser]);
 
   const fetchUsers = () => {
-<<<<<<< HEAD
-    axios.get('http://54.85.128.211:4000/api/auth/users', { withCredentials: true })
-=======
     axios.get('/api/auth/users', { withCredentials: true })
->>>>>>> main
       .then(res => setUsers(res.data))
       .catch(console.error);
   };
@@ -44,19 +40,11 @@ export default function AdminChat({ onLogout }) {
 
   const loadMessages = (user) => {
     setSelectedUser(user);
-<<<<<<< HEAD
-    axios.get(`http://54.85.128.211:4000/api/auth/messages/${user.id}`, { withCredentials: true })
-      .then(res => setMessages(res.data))
-      .catch(console.error);
-
-    axios.patch(`http://54.85.128.211:4000/api/auth/messages/${user.id}/read`, {}, { withCredentials: true })
-=======
     axios.get(`/api/auth/messages/${user.id}`, { withCredentials: true })
       .then(res => setMessages(res.data))
       .catch(console.error);
 
     axios.patch(`/api/auth/messages/${user.id}/read`, {}, { withCredentials: true })
->>>>>>> main
       .catch(console.error);
   };
 
@@ -74,11 +62,7 @@ export default function AdminChat({ onLogout }) {
       is_read: true
     }]);
 
-<<<<<<< HEAD
-    axios.post('http://54.85.128.211:4000/api/auth/reply', {
-=======
     axios.post('/api/auth/reply', {
->>>>>>> main
       userId: selectedUser.id,
       message: newMessage
     }, { withCredentials: true });

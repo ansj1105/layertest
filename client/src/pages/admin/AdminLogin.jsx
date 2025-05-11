@@ -8,19 +8,6 @@ export default function AdminLogin() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-<<<<<<< HEAD
-  const handleLogin = async () => {
-    setError('');
-    try {
-      await axios.post('http://54.85.128.211:4000/api/auth/admin-login', form, {
-        withCredentials: true,
-      });
-      navigate('/dashboard');
-    } catch (err) {
-      setError(err.response?.data?.error || 'Login failed');
-    }
-  };
-=======
 // AdminLogin.jsx
 const handleLogin = async () => {
   try {
@@ -35,7 +22,6 @@ const handleLogin = async () => {
   }
 };
 
->>>>>>> main
 
   return (
     <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded shadow space-y-4">

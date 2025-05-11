@@ -14,11 +14,7 @@ export default function ContentList() {
   useEffect(() => {
     const fetchContent = async () => {
       try {
-<<<<<<< HEAD
-        const res = await axios.get("http://54.85.128.211:4000/api/content-files");
-=======
         const res = await axios.get("/api/content-files");
->>>>>>> main
         const files = res.data;
         setBanners(files.filter(f => f.type === 'banner'));
         const videoFile = files.find(f => f.type === 'video');
