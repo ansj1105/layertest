@@ -10,7 +10,7 @@ export default function ProtectedRoute({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:4000/api/auth/me")
+    axios.get("/api/auth/me")
       .then(() => setAuthenticated(true))
       .catch(() => setAuthenticated(false))
       .finally(() => setLoading(false));

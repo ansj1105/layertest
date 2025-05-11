@@ -4,10 +4,6 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeftIcon,HistoryIcon} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import QuantHistoryModal from './QuantHistoryModal';
-import '../styles/QuantTradingPage.css';
-import '../styles/topbar.css';
-
-
 export default function QuantTradingPage() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -28,19 +24,7 @@ export default function QuantTradingPage() {
     // 쿨다운 만료 시각(timestamp in ms)
     const [cooldownEnd, setCooldownEnd] = useState(0);
  
-    const [isGlowing, setIsGlowing] = useState(false);
-
-    const handleButtonClick = () => {
-      setIsGlowing(true);
-      handleStart(); // 기존 기능 호출
-      // 반짝임 효과 1.5초 후 제거
-      setTimeout(() => setIsGlowing(false), 1500);
-    };
-
-
-
    //const COOLDOWN_MS = 5 * 60 * 1000; // 5분
-   
    
 const [showHistory, setShowHistory] = useState(false);
    useEffect(() => {
@@ -129,18 +113,18 @@ const dailyLimit = myVip.daily_trade_limit || 0;
   useEffect(() => {
     const fetchData = async () => {
       try {
-              const [vipRes, userRes, finRes] = await Promise.all([
-                  axios.get("/api/admin/vip-levels", { headers:{ 'Accept-Language': i18n.language } }),
-                  axios.get("/api/auth/me", { withCredentials:true }),
-                  axios.get("/api/wallet/finance-summary", { withCredentials:true })
-                ]);
+               const [vipRes, userRes, finRes] = await Promise.all([
+                   axios.get("/api/admin/vip-levels", { headers:{ 'Accept-Language': i18n.language } }),
+                   axios.get("/api/auth/me", { withCredentials:true }),
+                   axios.get("/api/wallet/finance-summary", { withCredentials:true })
+                 ]);
         const sortedLevels = vipRes.data.data || vipRes.data;
         sortedLevels.sort((a, b) => a.level - b.level);
         setVipLevels(sortedLevels);
-              setFinance({
-                  quantBalance: finRes.data.data.quantBalance,
-                  fundBalance: finRes.data.data.fundBalance
-                });
+               setFinance({
+                   quantBalance: finRes.data.data.quantBalance,
+                   fundBalance: finRes.data.data.fundBalance
+                 });
         setUser(userRes.data);
         const idx = sortedLevels.findIndex(v => v.level === userRes.data.vip_level);
         setCurrentIndex(idx < 0 ? 0 : idx);
@@ -160,21 +144,21 @@ const dailyLimit = myVip.daily_trade_limit || 0;
   console.log("test", currentVIP);
   console.log("test2",currentVIP.min_holdings);
    // Validate amount against VIP limits
-  const validateTrade = (amount) => {
-    if (qamount < currentVIP.min_holdings) {
-      alert(t('quantTrading.errorMinHolding', { min: currentVIP.min_holdings }));
-      return false;
-    }
-    if (amount > currentVIP.max_investment) {
-      alert(t('quantTrading.errorMaxInvestment', { max: currentVIP.max_investment }));
-      return false;
-    }
-    return true;
-  };
-
-  const executeTrade_old = async () => {
-    if (!validateTrade(tradeAmount)) return;
-    try {
+   const validateTrade = (amount) => {
+     if (qamount < currentVIP.min_holdings) {
+       alert(t('quantTrading.errorMinHolding', { min: currentVIP.min_holdings }));
+       return false;
+     }
+     if (amount > currentVIP.max_investment) {
+       alert(t('quantTrading.errorMaxInvestment', { max: currentVIP.max_investment }));
+       return false;
+     }
+     return true;
+   };
+  
+   const executeTrade_old = async () => {
+     if (!validateTrade(tradeAmount)) return;
+     try {
       const res = await axios.post("/api/quant-trade", { amount: tradeAmount }, { withCredentials:true });
       alert(res.data.message);
       setShowTradeModal(false);
@@ -184,15 +168,15 @@ const dailyLimit = myVip.daily_trade_limit || 0;
       const sumRes = await axios.get('/api/quant-profits/summary', { withCredentials:true });
       setSummary(sumRes.data.data);
       window.location.reload();
-    } catch (err) {
-      alert(t('quantTrading.tradeError') + (err.response?.data?.error || ""));
-    }
-  };
+     } catch (err) {
+       alert(t('quantTrading.tradeError') + (err.response?.data?.error || ""));
+     }
+   };
 
   // 즉시 거래 모달
 
  // --- 아래 유틸: 1~5분 사이 랜덤 ms 생성
-function getRandomCooldownMs() {
+ function getRandomCooldownMs() {
   const min = 1 * 60 * 1000;   // 1분
   const max = 5 * 60 * 1000;   // 5분
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -238,8 +222,8 @@ const executeTrade = async () => {
     alert(res.data.message);
 
      // 성공 시 랜덤 쿨다운 설정
-    const cooldownMs = getRandomCooldownMs();
-    setCooldownEnd(Date.now() + cooldownMs);
+     const cooldownMs = getRandomCooldownMs();
+     setCooldownEnd(Date.now() + cooldownMs);
 
     // 잔액 재조회
     const finRes = await axios.get("/api/wallet/finance-summary", {
@@ -254,186 +238,127 @@ const executeTrade = async () => {
   }
 };
   return (
-    <div className="page-wrapper">
+    <div className="p-6 text-yellow-100 bg-[#1a1109] min-h-screen">
       {/* 뒤로가기 */}
-      <div className="top-bar">
-      {/* 뒤로가기 */}
-      <button onClick={() => history.back()} className="top-tran">←</button>
+      <div className="flex items-center justify-between mb-4">
+    {/* 뒤로가기 */}
+    <button
+      onClick={() => navigate(-1)}
+      className="flex items-center text-yellow-200 hover:text-yellow-100"
+    >
+      <ArrowLeftIcon size={20} />
+      <span className="ml-1">{t('quantTrading.back')}</span>
+    </button>
 
     {/* 제목 */}
-    <h2 className="top-h-text">
+    <h2 className="text-xl font-bold text-center flex-grow">
       {t('quantTrading.title')}
     </h2>
 
     {/* 히스토리 버튼 */}
     <button onClick={() => setShowHistory(true)}>
-      <HistoryIcon size={20} className="top-tran" />
+      <HistoryIcon size={20} className="text-yellow-200 hover:text-yellow-100" />
     </button>
   </div>
 
 
 {showHistory && <QuantHistoryModal onClose={() => setShowHistory(false)} />}
       {/* 자산 정보 */}
-      <div className="referra-jj">
-      <div>{t('quantTrading.available')} <strong>{finance.quantBalance} USDT</strong></div>
-      <div>{t('quantTrading.todayEarning')} <strong>{summary.todayProfit.toFixed(6)} USDT</strong></div>
-      <div>{t('quantTrading.totalEarning')} <strong>{summary.totalProfit.toFixed(6)} USDT</strong></div>
+      <div className="bg-[#2e1c10] rounded p-4 mb-4 text-sm">
+      <div>{t('quantTrading.available')}: <strong>{finance.quantBalance} USDT</strong></div>
+      <div>{t('quantTrading.todayEarning')}: <strong>{summary.todayProfit.toFixed(6)} USDT</strong></div>
+      <div>{t('quantTrading.totalEarning')}: <strong>{summary.totalProfit.toFixed(6)} USDT</strong></div>
       </div>
-      <div className="referra-m-l">
-      <span className="font-semibold mr-2">VIP 등급 : </span>
-      <strong>{currentVIP.level}</strong>
+      <div className="bg-[#2e1c10] rounded p-4 mb-4 text-sm flex items-center">
+      <span className="font-semibold mr-2">{t('quantTrading.currentLevel')}:</span>
+      <strong>VIP {currentVIP.level}</strong>
     </div>
-
-
-      {/* 거래 버튼 및 모달 트리거() => setShowTradeModal(true) */}
-      <button
-        onClick={handleStart}
-        disabled={!canTrade}
-        className={`
-          referra-butt
-          ${!canTrade
-            ? 'bg-gray-400 cursor-not-allowed opacity-50'
-            : 'bg-yellow-500 hover:bg-yellow-600 text-black'}
-        `}
-      >
-    { !canTrade
-      // 쿨다운 메시지도 i18n key로
-      ? t('quantTrading.cooldownMessage', {
-          min: remainingMin,
-          sec: remainingSec
-        })
-      : t('quantTrading.tradeButton', {
-          remaining,
-          dailyLimit,
-          times: t('quantTrading.times'),
-          start: t('quantTrading.start')
-        })
-    }
-  </button>
-        
-  <div className="referra-quant-container">
-    <span className="referra-quant-label">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        className="referra-quant-icon"
-        viewBox="0 0 24 24"
-        fill="#26ffe6"  // 골드 컬러, 원하시는 색으로 변경 가능
-      >
-        <path d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" />
-      </svg>
-      Progress Overview
-    </span>
-    <button
-      onClick={() => navigate('/quant-tutorial')}
-      className="referra-quant-tutorial-btn"
-    >
-      ➤
-    </button>
-  </div>
-
          {/* 레벨 카루셀 (VIP 관계없이 좌우 이동 가능) */}
-        <div className="referra-h">
-
-          <div className="referra-progress-text">
-            {t('quantTrading.progress', { current: currentIndex + 1, total: vipLevels.length })}
-          </div>
-          
-        <div className="referra-level-nav">
+         <div className="bg-[#342410] p-4 rounded text-sm mb-2">
+        <div className="flex justify-between items-center mb-2">
           <button
             onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
-            className="referra-bold"
+            className="text-yellow-500 font-bold text-lg"
           >
-            ◀
+            ←
           </button>
-          <span className="referra-left-align">Previous Level</span>
-          <div className="referra-level-title">
+          <div className="text-center flex-grow font-bold text-yellow-300">
             VIP {vipLevels[currentIndex]?.level} {t('quantTrading.level')}
           </div>
-          <span className="referra-right-align">Higher level</span>
           <button
             onClick={() => setCurrentIndex(prev => Math.min(vipLevels.length - 1, prev + 1))}
-            className="referra-bold"
+            className="text-yellow-500 font-bold text-lg"
           >
-            ▶
+            →
           </button>
         </div>
-        
-              {/* 상세 정보 */}
-              <div className="vip-details-container">
-                <div>
-                  <span className="vip-details-label">{t('quantTrading.dailyLimit')}:</span>
-                  <span className="vip-details-value">
-                    {vipLevels[currentIndex]?.daily_trade_limit} {t('quantTrading.times')}
-                  </span>
-                </div>
-                <div>
-                  <span className="vip-details-label">{t('quantTrading.feeRate')}:</span>
-                  <span className="vip-details-value">
-                    {vipLevels[currentIndex]?.commission_min}% ~ {vipLevels[currentIndex]?.commission_max}%
-                  </span>
-                </div>
-                <div>
-                  <span className="vip-details-label">{t('quantTrading.maxInvestment')}:</span>
-                  <span className="vip-details-value">
-                    {vipLevels[currentIndex]?.max_investment} USDT
-                  </span>
-                </div>
-                <div>
-                  <span className="vip-details-label">{t('quantTrading.minHoldings')}:</span>
-                  <span className="vip-details-value">
-                    {vipLevels[currentIndex]?.min_holdings} USDT
-                  </span>
-                </div>
-                <div>
-                  <span className="vip-details-label">{t('quantTrading.conditions')}:</span>
-                  <span className="vip-details-value">
-                    A-{vipLevels[currentIndex]?.min_A}, B-{vipLevels[currentIndex]?.min_B}, C-{vipLevels[currentIndex]?.min_C}
-                  </span>
-                </div>
-              </div>
-
-              <button
-                onClick={() => navigate('/invite')}
-                className="referra-invite-btn"
-              >
-                {t('quantTrading.invite')}
-              </button>
+        <div className="text-center text-xs text-gray-400 mb-2">
+          {t('quantTrading.progress', { current: currentIndex + 1, total: vipLevels.length })}
+        </div>
+        <button
+          onClick={() => navigate('/quant-tutorial')}
+          className="w-full bg-yellow-600 text-black py-2 rounded font-semibold mb-2"
+        >
+          {t('quantTrading.intro')}
+        </button>
+        <button
+          onClick={() => navigate('/invite')}
+          className="w-full border border-yellow-400 text-yellow-400 py-1 rounded font-semibold"
+        >
+          {t('quantTrading.invite')}
+        </button>
       </div>
 
 
-
+      {/* 상세 정보 */}
+      <div className="bg-[#342410] p-4 rounded text-sm">
+        <div>{t('quantTrading.dailyLimit')}: {vipLevels[currentIndex]?.daily_trade_limit} {t('quantTrading.times')}</div>
+        <div>{t('quantTrading.feeRate')}: {vipLevels[currentIndex]?.commission_min}% ~ {vipLevels[currentIndex]?.commission_max}%</div>
+        <div>{t('quantTrading.maxInvestment')}: {vipLevels[currentIndex]?.max_investment} USDT</div>
+        <div>{t('quantTrading.minHoldings')}: {vipLevels[currentIndex]?.min_holdings} USDT</div>
+        <div>{t('quantTrading.conditions')}: A-{vipLevels[currentIndex]?.min_A}, B-{vipLevels[currentIndex]?.min_B}, C-{vipLevels[currentIndex]?.min_C}</div>
+      </div>
 
           {/* ─── 1) LEADERBOARD ─────────────────────────── */}
           {/* ─── 1) LEADERBOARD ─────────────────────────── */}
-          <div className="leaderboard-container">
-            <table className="leaderboard-table">
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Name</th>
-                  <th>Earnings</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                {visibleLeaderboard.map((row, i) => (
-                  <tr key={i}>
-                    <td className="leaderboard-rank">{i + 1}</td>
-                    <td className="leaderboard-name">{row.name}</td>
-                    <td className="leaderboard-earnings">{row.earnings}</td>
-                    <td className="leaderboard-status">{row.status}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+      <div className="bg-[#342410] rounded p-4 mb-6 text-sm">
+        <h3 className="text-yellow-300 font-semibold mb-2">
+          {t("quantTrading.leaderboardTitle")}
+        </h3>
+        <table className="w-full text-left">
+          <thead>
+            <tr className="text-gray-400">
+            <th className="pr-2 pb-2"></th>
+              <th className="pb-2">{t("quantTrading.leaderboard.name")}</th>
+              <th className="pb-2">{t("quantTrading.leaderboard.earnings")}</th>
+              <th className="pb-2">{t("quantTrading.leaderboard.status")}</th>
+            </tr>
+          </thead>
+          <tbody>
+                     {visibleLeaderboard.map((row, i) => {
+             // (lbStart + i) % ALL_LEADERBOARD.length + 1
+             // 또는 단순히 1~6 사이의 인덱스로 i+1
+             const displayIndex = i + 1;
+             return (
+               <tr key={i} className="border-t border-gray-700">
+                <td className="px-2 py-1 font-semibold">{displayIndex}</td>
+                 <td className="py-1">{row.name}</td>
+                 <td className="py-1">{row.earnings}</td>
+                 <td className="py-1">{row.status}</td>
+               </tr>
+             );
+           })}
+          </tbody>
+        </table>
+      </div>
       
       {/* ─── 2) PARTNERS ICON BAR ─────────────────────────── */}
-      <div className="partners-section">
-        <h3 className="partners-title">{t('quantTrading.partnersTitle')}</h3>
-        <div className="partners-icons">
+      <div className="mt-8 text-center">
+        <h3 className="text-gray-400 mb-2">{t('quantTrading.partnersTitle')}</h3>
+        <div className="flex flex-wrap justify-center gap-4">
           {[
             '/icons/binance.png',
+           // '/icons/okx.png',
             '/icons/coinbase.png',
             '/icons/kraken.png',
             '/icons/kucoin.png',
@@ -446,21 +371,45 @@ const executeTrade = async () => {
             <img
               key={i}
               src={src}
-              alt={`Partner ${i}`}
-              className="partner-icon"
+              alt=""
+              className="h-8 w-8 object-contain opacity-80 hover:opacity-100 transition"
             />
           ))}
         </div>
       </div>
-
+      {/* 거래 버튼 및 모달 트리거() => setShowTradeModal(true) */}
+            <button
+        onClick={handleStart}
+        disabled={!canTrade}
+        className={`
+          w-full py-2 pb-10 rounded font-bold text-lg mt-4
+          ${!canTrade
+            ? 'bg-gray-400 cursor-not-allowed opacity-50'
+            : 'bg-yellow-500 hover:bg-yellow-600 text-black'}
+        `}
+      >
+   { !canTrade
+     // 쿨다운 메시지도 i18n key로
+    ? t('quantTrading.cooldownMessage', {
+         min: remainingMin,
+         sec: remainingSec
+      })
+    : t('quantTrading.tradeButton', {
+         remaining,
+         dailyLimit,
+         times: t('quantTrading.times'),
+         start: t('quantTrading.start')
+       })
+   }
+ </button>
 
 
       {/* 즉시 거래 확인 모달 */}
       {showInstantModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
           <div className="bg-black p-6 rounded w-80 text-center">
-            <h3 className="mb-4 font-bold text-white text-lg">{t('quantTrading.confirmTitle')}</h3>
-            <p className="mb-6 text-white">
+            <h3 className="mb-4 font-bold text-lg">{t('quantTrading.confirmTitle')}</h3>
+            <p className="mb-6">
               {t('quantTrading.confirmText', { amount: tradeAmount.toFixed(6) })}
             </p>
             <div className="flex justify-around">
@@ -477,28 +426,28 @@ const executeTrade = async () => {
 
 
      {/* 거래 금액 입력 모달 */}
-      {showTradeModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white text-black p-6 rounded w-3/4 max-w-sm">
-            <h3 className="text-lg font-bold mb-4">{t('quantTrading.enterAmount')}</h3>
-            <input
-              type="number"
-              value={tradeAmount}
-              onChange={e => setTradeAmount(parseFloat(e.target.value))}
-              className="w-full mb-4 p-2 border rounded"
-              min={0}
-              step="0.000001"
-            />
-            <div className="flex justify-between">
-              <button onClick={() => setShowTradeModal(false)} className="px-4 py-2 bg-gray-300 rounded">
-                {t('quantTrading.cancel')}
-              </button>
-              <button onClick={executeTrade} className="px-4 py-2 bg-yellow-500 text-black rounded">
-                {t('quantTrading.confirm')}
-              </button>
-            </div>
-          </div>
-        </div>
+     {showTradeModal && (
+       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+         <div className="bg-white text-black p-6 rounded w-3/4 max-w-sm">
+           <h3 className="text-lg font-bold mb-4">{t('quantTrading.enterAmount')}</h3>
+           <input
+             type="number"
+             value={tradeAmount}
+             onChange={e => setTradeAmount(parseFloat(e.target.value))}
+             className="w-full mb-4 p-2 border rounded"
+             min={0}
+             step="0.000001"
+           />
+          <div className="flex justify-between">
+             <button onClick={() => setShowTradeModal(false)} className="px-4 py-2 bg-gray-300 rounded">
+               {t('quantTrading.cancel')}
+             </button>
+             <button onClick={executeTrade} className="px-4 py-2 bg-yellow-500 text-black rounded">
+               {t('quantTrading.confirm')}
+             </button>
+           </div>
+         </div>
+       </div>
   )}
 
       {/* 소개 모달 */}

@@ -39,7 +39,7 @@ export default function LoginPage() {
     }
 
     try {
-      await axios.post("http://localhost:4000/api/auth/login", {
+      await axios.post("/api/auth/login", {
         identifier,
         password,
         captchaToken: captcha

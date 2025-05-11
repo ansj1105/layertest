@@ -61,7 +61,7 @@
     const { t } = useTranslation();
     useEffect(() => {
         const fetchPopups = async () => {
-        const res = await axios.get("http://localhost:4000/api/popups/active");
+        const res = await axios.get("/api/popups/active");
         setPopupList(res.data);
 
         const isPopupClosed = localStorage.getItem("popup_closed");

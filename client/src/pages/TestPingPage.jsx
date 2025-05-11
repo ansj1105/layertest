@@ -7,7 +7,7 @@ export default function TestPingPage() {
 
   const handleLocalPing = async () => {
     try {
-      const res = await axios.get("http://localhost:4000/api/ping", {
+      const res = await axios.get("/api/ping", {
         withCredentials: true,  
       });
       setLocalRes(res.data.message);
@@ -19,7 +19,7 @@ export default function TestPingPage() {
 
   const handleServerPing = async () => {
     try {
-      const res = await axios.get(`http://localhost:4000/api/ping`, {
+      const res = await axios.get(`/api/ping`, {
         withCredentials: true,
       });
       setServerRes(res.data.message);

@@ -37,7 +37,7 @@ export default function TransferPage() {
     }
 
     try {
-      const res = await axios.post('http://localhost:4000/api/tron/send', {
+      const res = await axios.post('/api/tron/send', {
         fromPrivateKey: fromKey,
         toAddress,
         amount: parseFloat(amount),

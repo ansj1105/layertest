@@ -15,7 +15,7 @@ export default function AdminContentManager({ onLogout }) {
   // 서버에서 현재 파일 목록 가져오기
   const fetchContentFiles = async () => {
     try {
-      const res = await axios.get('http://localhost:4000/api/content-files');
+      const res = await axios.get('/api/content-files');
       setBanners(res.data.filter(f => f.type === 'banner'));
       setVideos(res.data.filter(f => f.type === 'video'));
     } catch (err) {
@@ -30,7 +30,7 @@ export default function AdminContentManager({ onLogout }) {
   const handleDelete = async (id) => {
     if (!window.confirm('정말 삭제하시겠습니까?')) return;
     try {
-      await axios.delete(`http://localhost:4000/api/content-files/${id}`);
+      await axios.delete(`/api/content-files/${id}`);
       fetchContentFiles();
     } catch {
       alert('삭제 실패');
@@ -87,7 +87,7 @@ export default function AdminContentManager({ onLogout }) {
     if (type === 'video') formData.append('video', videoFile);
 
     try {
-      await axios.post(`http://localhost:4000/api/upload/${type}`, formData, {
+      await axios.post(`/api/upload/${type}`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setBannerFile(null);

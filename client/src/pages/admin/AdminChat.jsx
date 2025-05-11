@@ -29,7 +29,7 @@ export default function AdminChat({ onLogout }) {
   }, [selectedUser]);
 
   const fetchUsers = () => {
-    axios.get('http://localhost:4000/api/auth/users', { withCredentials: true })
+    axios.get('/api/auth/users', { withCredentials: true })
       .then(res => setUsers(res.data))
       .catch(console.error);
   };
@@ -40,11 +40,11 @@ export default function AdminChat({ onLogout }) {
 
   const loadMessages = (user) => {
     setSelectedUser(user);
-    axios.get(`http://localhost:4000/api/auth/messages/${user.id}`, { withCredentials: true })
+    axios.get(`/api/auth/messages/${user.id}`, { withCredentials: true })
       .then(res => setMessages(res.data))
       .catch(console.error);
 
-    axios.patch(`http://localhost:4000/api/auth/messages/${user.id}/read`, {}, { withCredentials: true })
+    axios.patch(`/api/auth/messages/${user.id}/read`, {}, { withCredentials: true })
       .catch(console.error);
   };
 
@@ -62,7 +62,7 @@ export default function AdminChat({ onLogout }) {
       is_read: true
     }]);
 
-    axios.post('http://localhost:4000/api/auth/reply', {
+    axios.post('/api/auth/reply', {
       userId: selectedUser.id,
       message: newMessage
     }, { withCredentials: true });

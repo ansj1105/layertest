@@ -39,51 +39,73 @@ router.get('/wallets', async (req, res) => {
     return res.status(500).json({ success: false, error: 'Failed to fetch wallets' });
   }
 });
+
+// 📁 routes/withdrawals.js
+// 📁 routes/withdrawals.js
 // 📁 routes/withdrawals.js
 router.post('/wallets/:id/deposit', async (req, res) => {
   const walletId = req.params.id;
   const { type, amount } = req.body;
 
-  if (!['fund', 'real'].includes(type) || isNaN(amount)) {
+  if (!['fund', 'quant'].includes(type) || isNaN(amount)) {
     return res.status(400).json({ success: false, error: 'Invalid type or amount' });
   }
 
   try {
-    // 1) 해당 지갑 정보 조회
-    const [[wallet]] = await db.query(`SELECT * FROM wallets WHERE id = ?`, [walletId]);
+    // 1) 지갑 조회
+    const [[wallet]] = await db.query(
+      `SELECT * FROM wallets WHERE id = ?`,
+      [walletId]
+    );
     if (!wallet) {
       return res.status(404).json({ success: false, error: 'Wallet not found' });
     }
 
+    // 2) 새 잔액 계산
+    const prevFund  = parseFloat(wallet.fund_balance);
+    const prevQuant = parseFloat(wallet.quant_balance);
+    const amt       = parseFloat(amount);
 
-   // 2) 잔액 계산 (문자열 → 숫자 변환 필수)
-   const prevFund = parseFloat(wallet.fund_balance);
-   const prevQunant = parseFloat(wallet.quant);
-   const amt      = parseFloat(amount);
+    const newFund  = type === 'fund'  ? prevFund  + amt : prevFund;
+    const newQuant = type === 'quant' ? prevQuant + amt : prevQuant;
 
-  const newFund = type === 'fund'
-     ? prevFund + amt
-     : prevFund;
-   const newReal = type === 'real'
-     ? prevQunant + amt
-     : prevQunant;
-
-    // 3) DB 업데이트
+    // 3) 지갑 테이블 업데이트
     await db.query(
       `UPDATE wallets 
-         SET fund_balance = ?, real_amount = ?, updated_at = NOW() 
-       WHERE id = ?`, 
-      [newFund.toFixed(6), newReal.toFixed(6), walletId]
+         SET fund_balance  = ?, 
+             quant_balance = ?, 
+             updated_at     = NOW() 
+       WHERE id = ?`,
+      [ newFund.toFixed(6), newQuant.toFixed(6), walletId ]
     );
 
-    // 5) 새 잔액 반환
+    // 4) wallets_log 에 로그 삽입
+    const category      = type === 'fund' ? 'funding' : 'quant';
+    const balanceAfter  = type === 'fund' ? newFund : newQuant;
+    await db.query(
+      `INSERT INTO wallets_log
+         (user_id, category, log_date, direction, amount, balance_after,
+          reference_type, reference_id, description, created_at, updated_at)
+       VALUES
+         (?,       ?,        NOW(),     'in',      ?,      ?,             ?,            ?,            ?,           NOW(),      NOW())`,
+      [
+        wallet.user_id,
+        category,
+        amt.toFixed(6),
+        balanceAfter.toFixed(6),
+        'admin_deposit',    // reference_type
+        walletId,           // reference_id
+        '관리자 수동 입금'     // description
+      ]
+    );
+
+    // 5) 결과 반환
     return res.json({
       success: true,
       data: {
-        wallet_id: walletId,
-
-       fund_balance: newFund.toFixed(6),
-       real_amount:   newReal.toFixed(6),
+        wallet_id:     walletId,
+        fund_balance:  newFund.toFixed(6),
+        quant_balance: newQuant.toFixed(6),
       }
     });
   } catch (err) {
@@ -91,6 +113,8 @@ router.post('/wallets/:id/deposit', async (req, res) => {
     return res.status(500).json({ success: false, error: 'Deposit failed' });
   }
 });
+
+
 
 
 // ── 2) PENDING 입금 처리 스케줄러용 함수 ─────────────────────────────────────────

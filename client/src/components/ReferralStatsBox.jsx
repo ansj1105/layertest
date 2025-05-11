@@ -12,34 +12,33 @@ export default function referral2StatsBox({ stats }) {
   }
 
   return (
-    <div className="grid grid-cols-2 gap-4 bg-[#2c1f0f] border border-yellow-700 p-4 rounded-lg mb-6">
-      {/* Total Team Earnings */}
-      <div className="flex flex-col">
-        <h4 className="text-xs text-yellow-300 mb-1">{t('referral2.totalEarnings')}</h4>
-        <p className="text-lg font-bold text-yellow-100">
-          {stats.totalEarnings} USDT
-        </p>
+    <div className="referra-tt">
+      {/* 상단: 총 팀 수입 / 오늘의 수입 */}
+      <div className="referra-section">
+        <div className="referra-block">
+          <h4 className="referra-title">{t('referral2.totalEarnings')}</h4>
+          <p className="referra-value">{stats.totalEarnings} USDT</p>
+        </div>
+        <div className="referra-block">
+          <h4 className="referra-title">{t('referral2.todayEarnings')}</h4>
+          <p className="referra-value">{stats.todayEarnings} USDT</p>
+        </div>
       </div>
-      {/* Today's Earnings */}
-      <div className="flex flex-col">
-        <h4 className="text-xs text-yellow-300 mb-1">{t('referral2.todayEarnings')}</h4>
-        <p className="text-lg font-bold text-yellow-100">
-          {stats.todayEarnings} USDT
-        </p>
-      </div>
-      {/* Total Team Members */}
-      <div className="flex flex-col">
-        <h4 className="text-xs text-yellow-300 mb-1">{t('referral2.totalMembers')}</h4>
-        <p className="text-lg font-bold text-yellow-100">
-          {stats.totalMembers} {t('referral2.members')}
-        </p>
-      </div>
-      {/* New Members Today */}
-      <div className="flex flex-col">
-        <h4 className="text-xs text-yellow-300 mb-1">{t('referral2.todayJoined')}</h4>
-        <p className="text-lg font-bold text-yellow-100">
-          {stats.todayJoined} {t('referral2.members')}
-        </p>
+
+      {/* 하단: 총 팀원 수 / 오늘 새로운 회원 */}
+      <div className="referra-section">
+        <div className="referra-block">
+          <h4 className="referra-title">{t('referral2.totalMembers')}</h4>
+          <p className="referra-value">
+            {stats.totalMembers} {t('referral2.members')}
+          </p>
+        </div>
+        <div className="referra-block">
+          <h4 className="referra-title">{t('referral2.todayJoined')}</h4>
+          <p className="referra-value">
+            {stats.todayJoined} {t('referral2.members')}
+          </p>
+        </div>
       </div>
     </div>
   );
