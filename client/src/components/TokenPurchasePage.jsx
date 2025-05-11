@@ -97,11 +97,10 @@ export default function TokenPurchasePage() {
       return alert(t("tokenPurchase.errors.invalidAmount"));
     }
     try {
-      await axios.post("/api/token/purchase-token", {
-        userId: 1,
-        saleId,
-        amount: parseFloat(amt),
-      });
+       await axios.post("/api/token/purchase-token", {
+           saleId,
+           amount: parseFloat(amt),
+        }, { withCredentials: true });
       alert(t("tokenPurchase.purchaseSuccess"));
       // 재조회
       axios.get("/api/token/active-token-sales").then(res => setSales(res.data));
@@ -263,41 +262,112 @@ export default function TokenPurchasePage() {
 
       {/* 판매 카드 */}
       {sales.length === 0 ? (
-
-
-
-        <div className="text-center text-gray-400 mt-12">
-          {t("tokenPurchase.noSales")}
-        </div>
-
-      ) : (
-        sales.map((sale, idx) => (
-          <div key={sale.id} className="bg-[#3b2b15] rounded-md p-4 mb-4">
-            <div className="flex items-center mb-2">
-              <img src="/img/qvc-icon.png" alt="USC" className="w-6 h-6 mr-2" />
-              <span className="font-bold text-lg">{idx + 1}{t("tokenPurchase.phase")}</span>
-            </div>
-            <div className="text-sm text-gray-300">
-              {t("tokenPurchase.totalSupply")} <span className="text-yellow-100">{sale.total_supply} USC</span>
-            </div>
-            <div className="text-sm text-gray-300">
-              {t("tokenPurchase.remainingSupply")} <span className="text-yellow-100">{sale.remaining_supply} USC</span>
-            </div>
-            <div className="text-sm text-gray-300">
-              {t("tokenPurchase.startTime")} <span className="text-yellow-100">{new Date(sale.start_time).toLocaleString()}</span>
-            </div>
-            <div className="text-sm text-gray-300">
-              {t("tokenPurchase.endTime")} <span className="text-yellow-100">{new Date(sale.end_time).toLocaleString()}</span>
-            </div>
-            <button
-              className="mt-3 w-full bg-yellow-500 text-black font-semibold py-2 rounded"
-              onClick={() => handlePurchase(sale.id)}
-            >
-              {t("tokenPurchase.buy")}
-            </button>
+          <div className="text-center text-gray-400 mt-12">
+            {t("tokenPurchase.noSales")}
           </div>
-        ))
-      )}
+        ) : (
+          sales.map((sale, idx) => {
+            const now = Date.now();
+            const canBuy = sale.is_active &&
+              now >= new Date(sale.start_time) &&
+              now <= new Date(sale.end_time);
+
+            return (
+              <div key={sale.id} className="bg-[#3b2b15] rounded-md p-4 mb-4">
+                {/* 단계 / 이름 */}
+                <div className="flex items-center mb-2">
+                  <img src="/img/item/usc.png" alt="USC" className="w-6 h-6 mr-2" />
+                  <span className="font-bold text-lg">
+                    {idx + 1}{t("tokenPurchase.phase")} – {sale.name}
+                  </span>
+                </div>
+
+                {/* 공급량, 남은량 */}
+                <div className="text-sm text-gray-300">
+                  {t("tokenPurchase.totalSupply")}{" "}
+                  <span className="text-yellow-100">
+                    {sale.total_supply.toLocaleString()} USC
+                  </span>
+                </div>
+                <div className="text-sm text-gray-300">
+                  {t("tokenPurchase.remainingSupply")}{" "}
+                  <span className="text-yellow-100">
+                    {sale.remaining_supply.toLocaleString()} USC
+                  </span>
+                </div>
+
+                {/* 가격, 수수료 */}
+                <div className="text-sm text-gray-300">
+                  {t("tokenPurchase.price")}:{" "}
+                  <span className="text-yellow-100">
+                    {sale.price.toFixed(6)} USDT
+                  </span>
+                </div>
+                <div className="text-sm text-gray-300">
+                  {t("tokenPurchase.feeRate")}:{" "}
+                  <span className="text-yellow-100">
+                    {sale.fee_rate}%
+                  </span>
+                </div>
+
+                {/* 최소/최대 구매, 락업 */}
+                <div className="text-sm text-gray-300">
+                  {t("tokenPurchase.minPurchase")}:{" "}
+                  <span className="text-yellow-100">
+                    {sale.minimum_purchase} USC
+                  </span>
+                </div>
+                <div className="text-sm text-gray-300">
+                  {t("tokenPurchase.maxPurchase")}:{" "}
+                  <span className="text-yellow-100">
+                    {sale.maximum_purchase} USC
+                  </span>
+                </div>
+                <div className="text-sm text-gray-300">
+                  {t("tokenPurchase.lockupPeriod")}:{" "}
+                  <span className="text-yellow-100">
+                    {sale.lockup_period} {t("tokenPurchase.days")}
+                  </span>
+                </div>
+
+                {/* 시작 / 종료 */}
+                <div className="text-sm text-gray-300">
+                  {t("tokenPurchase.startTime")}{" "}
+                  <span className="text-yellow-100">
+                    {new Date(sale.start_time).toLocaleString()}
+                  </span>
+                </div>
+                <div className="text-sm text-gray-300">
+                  {t("tokenPurchase.endTime")}{" "}
+                  <span className="text-yellow-100">
+                    {new Date(sale.end_time).toLocaleString()}
+                  </span>
+                </div>
+
+                {/* 구매 가능 여부 */}
+                <div className="mt-2 text-sm">
+                  {canBuy
+                    ? <span className="text-green-400">{t("tokenPurchase.canBuy")}</span>
+                    : <span className="text-red-400">{t("tokenPurchase.cannotBuy")}</span>
+                  }
+                </div>
+
+                {/* 구매 버튼 */}
+                <button
+                  disabled={!canBuy}
+                  onClick={() => handlePurchase(sale.id)}
+                  className={`mt-3 w-full font-semibold py-2 rounded 
+                    ${canBuy 
+                      ? 'bg-yellow-500 text-black hover:bg-yellow-600' 
+                      : 'bg-gray-600 cursor-not-allowed'}`}
+                >
+                  {t("tokenPurchase.buy")}
+                </button>
+              </div>
+            );
+          })
+        )}
+
     </div>
   );
 }

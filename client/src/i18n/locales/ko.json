@@ -85,6 +85,14 @@
       "mine": "내 거"
     },
     "tokenPurchase": {
+      "price":               "USC 당 가격",
+      "feeRate":               "수수료율",
+      "minPurchase":               "최소구매",
+      "maxPurchase":               "최대구매",
+      "lockupPeriod":               "락업기간",
+      "days":               "일",
+      "canBuy":               "구매가능",
+      "cannotBuy":               "구매불가",
       "title":               "USC 토큰",
       "back":                "뒤로",
       "details":             "세부",

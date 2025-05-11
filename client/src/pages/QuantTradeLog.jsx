@@ -5,11 +5,7 @@ export default function QuantTradeLog() {
   const [logs, setLogs] = useState([]);
 
   useEffect(() => {
-<<<<<<< HEAD
-    axios.get('http://54.85.128.211:4000/api/quant-trade/logs', { withCredentials: true })
-=======
     axios.get('/api/quant-trade/logs', { withCredentials: true })
->>>>>>> main
       .then(res => setLogs(res.data))
       .catch(console.error);
   }, []);
