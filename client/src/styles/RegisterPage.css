@@ -2,15 +2,14 @@
 
 /* 로그인 */
 /* 전체 래퍼: 사이드바가 절대위치로 들어가도 475px 범위내 */
-.page-wrapper {
-
+.page-wrapper-r {
   position: relative;
   max-width: 506px;
   margin: 0 auto;
- /* height: 100%;*/
   display: flex;
   flex-direction: column;
-  overflow: auto;         /* ← 여기를 추가하면 내부 스크롤 활성화 */
+  overflow: auto; /* 스크롤 활성화 */
+
 }
 
 
@@ -57,12 +56,24 @@
   max-width: 500px;
   height: 100%;
   background: #1d1d27;
-  display: flex;                /* ✅ Flexbox 적용 */
-  flex-direction: column;       /* ✅ 세로 방향 정렬 */
-  align-items: center;          /* ✅ 가로 가운데 정렬 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0 16px;
-  justify-content: flex-start;  /* ✅ 위쪽 정렬 */
+  justify-content: flex-start;
   z-index: 100;
+  padding-bottom: 30px;
+  
+  /* ✅ 스크롤 활성화 */
+  overflow-y: auto;
+
+  /* ✅ 스크롤바 숨기기 (브라우저별 처리) */
+  scrollbar-width: none;            /* Firefox */
+  -ms-overflow-style: none;         /* IE & Edge */
+}
+
+.r-box::-webkit-scrollbar {
+  display: none;                    /* Chrome, Safari */
 }
 .r-box1 {
 
@@ -345,9 +356,9 @@
 
 
 
-.chptcha{
-  margin-top: 30px;
-  margin-bottom: 18px;
+.chptcha-r{
+  margin-top: 7px !important;
+  margin-bottom: 7px !important;
 }
 
 .custom-recaptcha iframe {

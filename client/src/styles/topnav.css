@@ -19,7 +19,7 @@
   transform: translateX(-50%);   /* ✅ 가운데 정렬 */
   width: 100%;
   max-width: 500px;              /* ✅ container와 맞춤 */
-  height: 58.27px;
+  height: 61.27px;
   background: #1d1d27;
   display: flex;
   align-items: center;
@@ -126,3 +126,27 @@
 #fixed-bell:hover img {
   transform: scale(1.1);
 }
+
+
+@media screen and (max-width: 768px) {
+  #fixed-bell {
+    position: fixed !important;
+    left: 90% !important;               /* 모바일에서는 오른쪽 끝에 배치 */
+    bottom: 80px !important;            /* 하단에서 조금 위로 */
+    transform: translateX(-50%) !important;
+    z-index: 9999 !important;
+    width: 50px !important;             /* 사이즈 축소 */
+    height: 50px !important;
+    background: rgba(26, 115, 134, 0.7) !important;
+    border-radius: 50% !important;
+    box-shadow: 0 8px 16px rgba(11, 61, 68, 0.6) !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+  }
+
+
+}
+

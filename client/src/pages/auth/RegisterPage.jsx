@@ -77,7 +77,7 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="page-wrapper">
+    <div className="page-wrapper-r">
       <div className="r-box">
         {/* 상단 */}
         <div className="top-nav-bar-r">
@@ -190,7 +190,7 @@ export default function RegisterPage() {
             onChange={e => setForm(f => ({ ...f, referral: e.target.value.toUpperCase() }))}
           />
 
-          <div className="chptcha custom-recaptcha">
+          <div className="chptcha-r custom-recaptcha">
             <ReCAPTCHA
               sitekey={RECAPTCHA_SITE_KEY}
               onChange={token => setCaptchaToken(token)}

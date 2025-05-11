@@ -2,7 +2,7 @@
 
 /* 로그인 */
 /* 전체 래퍼: 사이드바가 절대위치로 들어가도 475px 범위내 */
-.page-wrapper {
+.page-wrapper-l {
   position: relative;
   max-width: 506px;
   margin: 0 auto;
@@ -74,7 +74,7 @@
 
 
 /* 하단 섹션 */
-.v-token1 {
+.v-token1-l {
   width: 90%;
   height: 55px;
   margin-top: 10px;
@@ -96,7 +96,7 @@
   text-align: center;          /* 입력된 텍스트는 가운데 정렬 */
 }
 
-.v-token1::placeholder {
+.v-token1-l::placeholder {
   color: #ccc;               /* 글자 색상 */
   font-size: 14px;           /* 글자 크기 */
   text-align: center;        /* 가운데 정렬 */
@@ -167,7 +167,7 @@
 
 
   
-.auth-links {
+.auth-links-l {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -175,18 +175,72 @@
   color: #ffc107; /* 노란색 계열 (Tailwind: text-yellow-300) */
 }
 
-.auth-links span{
+.auth-links-l span{
   color: #ffffff;
 }
 
-.auth-links a {
+.auth-links-l a {
   text-decoration: none;
   color: #26ffe6;
   transition: color 0.3s, text-decoration 0.3s;
   margin-left: 10px;
 }
 
-.auth-links a:hover {
+.auth-links-l a:hover {
   text-decoration: underline;
   color: #ffd54f; /* 조금 더 밝은 노란색으로 hover 효과 */
+}
+
+
+@media screen and (max-width: 500px) {
+  .page-wrapper-l,
+  .login-box {
+    width: 100%;
+    max-width: 500px;
+    padding: 0 16px;
+  }
+
+  .v-token1-l {
+    width: 90%;
+    font-size: 16px;
+  }
+
+  .login-button {
+    width: 90%;
+    font-size: 18px;
+  }
+
+  .login-logo {
+    width: 150px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+  }
+
+
+  .auth-links-l {
+    display: flex;
+    flex-direction: row; /* 가로 정렬 */
+    justify-content: center; /* 중앙 정렬 */
+    align-items: center;
+    gap: 16px; /* 요소 간 간격 추가 */
+    font-size: 14px;
+    color: #ffc107;
+  }
+
+  .auth-links-l span {
+    color: #ffffff;
+  }
+
+  .auth-links-l a {
+    text-decoration: none;
+    color: #26ffe6;
+    transition: color 0.3s, text-decoration 0.3s;
+    margin-left: 0; /* 좌측 마진 제거 */
+  }
+
+  .auth-links-l a:hover {
+    text-decoration: underline;
+    color: #ffd54f;
+  }
+
 }

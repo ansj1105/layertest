@@ -177,7 +177,7 @@ export default function MyTeamPage() {
               </div>
             </div>
 
-            <div className="data-box-container">
+            <div className="data-box-container-m">
               {team[filterLevel].map(u => (
                 <div key={u.id} className="data-card">
                   <div>

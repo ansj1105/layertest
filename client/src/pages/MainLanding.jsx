@@ -89,7 +89,7 @@
         <>
         {location.pathname === "/" && (
             <>
-            <div className="flex justify-center items-center py-2  bg-white">
+            <div className="flex ">
                 <ContentList />
             </div>
 

@@ -10,6 +10,7 @@
   display: flex;
   flex-direction: column;
   background-color: #0e0e11;
+  overflow: auto; /* 스크롤 활성화 */
 }
 
 
@@ -196,7 +197,7 @@
 
 .data-box-container {
   max-height: 320px;               /* 약 80 * 4 줄 높이 */
-  overflow-y: auto;
+
   padding-right: 8px;              /* 스크롤바와 내용 간 여백 */
   margin: 0 auto;
   width: 95%;
@@ -232,14 +233,91 @@
 }
 
 /* 스크롤바 커스텀 (크롬/엣지/사파리) */
-.data-box-container {
-  max-height: 390px;
-  overflow-y: auto;
+.data-box-container-m {
+  max-height: 410px;
+
   padding-right: 8px;
   margin: 0 auto;
   width: 95%;
-  /* 스크롤바 숨기기 (크롬, 엣지, 사파리) */
-  scrollbar-width: none;             /* Firefox */
-  -ms-overflow-style: none;           /* IE, Edge */
+
 }
 
+ 
+
+
+
+
+@media (max-width: 768px) {
+
+
+
+
+
+  .v-token-r-my {
+    width: 100%;
+    height: 45px;
+    font-size: 14px;
+    border-radius: 5px;
+  }
+
+  .referra-t {
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    padding: 16px;
+    gap: 12px;
+  }
+
+
+
+  .referra-title {
+    font-size: 15px;
+  }
+
+  .referra-value {
+    font-size: 12px;
+  }
+
+
+
+  .level-title, .level-value {
+    font-size: 13px;
+    margin-bottom: 0;
+  }
+
+  .level-hierarchy {
+    padding: 2px 6px;
+    font-size: 12px;
+  }
+
+
+
+  .data-card {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 10px;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+
+  .data-card-title {
+    font-size: 14px;
+  }
+
+  .data-card-sub {
+    font-size: 12px;
+  }
+  .text-right {
+    margin-left: auto;
+    display: block; /* 필요 시 */
+  }
+  .data-card {
+    display: flex;               /* Flexbox 사용 */
+    flex-direction: row;         /* 가로로 배열 */
+    align-items: center;         /* 세로 중앙 정렬 */
+    justify-content: space-between; /* 필요에 따라 space-around, center 등 조정 */
+    gap: 12px;                   /* 요소 간 간격 추가 */
+  }
+  
+}

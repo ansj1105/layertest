@@ -9,7 +9,7 @@ import { useNavigate, Link } from "react-router-dom";
 import '../../styles/login.css';
 
 axios.defaults.withCredentials = true;
-
+ 
 export default function LoginPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ export default function LoginPage() {
 
   
   return (
-    <div className="page-wrapper">
+    <div className="page-wrapper-l">
       {/* 상단 바 */}
       <div className="top-nav-bar-login">
         <button onClick={() => navigate(-1)}>
@@ -79,14 +79,14 @@ export default function LoginPage() {
         <input
           type="text"
           placeholder={t("login.identifier")}
-          className="v-token1"
+          className="v-token1-l"
           value={identifier}
           onChange={e => setIdentifier(e.target.value)}
         />
         <input
           type="password"
           placeholder={t("login.password")}
-          className="v-token1"
+          className="v-token1-l"
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
@@ -108,7 +108,7 @@ export default function LoginPage() {
         {error   && <p className="text-red-400 text-center">{error}</p>}
         {success && <p className="text-green-400 text-center">{success}</p>}
 
-        <div className="auth-links">
+        <div className="auth-links-l">
           <span>Don't you have an account?</span>
           <Link to="/register">{t("login.register")}</Link>
           <Link to="/forgot-password">{t("login.forgot")}</Link>
