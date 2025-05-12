@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import '../styles/MyProfilePage.css';
 import {
   ClipboardCopy,
   RefreshCw,
@@ -147,130 +148,126 @@ console.log('전체수익:',referralEarnings.total);
     return (
       <div className="flex items-center justify-center h-screen bg-[#1a1109] text-yellow-100">
         {t('profile.loading')}
-      </div>
-    );
-  }
+        </div>
+      );
+    }
 
-  const encId = encodeId(user.id);
-   // summary.earnings.investment.* 대신 우리가 계산한 investmentEarnings 사용
-    const totalEarnings = referralEarnings.total
-      + investmentEarnings.total
-      + summary.earnings.trade.total;
-    const todayIncome     = referralEarnings.today
-      + investmentEarnings.today
-      + summary.earnings.trade.today;
-    const yesterdayIncome = referralEarnings.yesterday
-      + investmentEarnings.yesterday
-      + summary.earnings.trade.yesterday;
-    const commit = referralEarnings.today;
-  return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4 pb-[6rem] space-y-6">
-      {/* ── 상단 프로필 ────────────────────────────────────────── */}
-      <div className="flex justify-between items-center">
-        <div className="flex items-center space-x-3">
-          <div className="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center text-xl">
-            {user.name[0]?.toUpperCase()}
+    const encId = encodeId(user.id);
+    // summary.earnings.investment.* 대신 우리가 계산한 investmentEarnings 사용
+      const totalEarnings = referralEarnings.total
+        + investmentEarnings.total
+        + summary.earnings.trade.total;
+      const todayIncome     = referralEarnings.today
+        + investmentEarnings.today
+        + summary.earnings.trade.today;
+      const yesterdayIncome = referralEarnings.yesterday
+        + investmentEarnings.yesterday
+        + summary.earnings.trade.yesterday;
+      const commit = referralEarnings.today;
+    return (
+      <div className="profile-container">
+        <div className="profile-header">
+          <div className="profile-user-info">
+            <div className="profile-avatar">
+              {user.name[0]?.toUpperCase()}
+            </div>
+            <div>
+              <p className="profile-username">
+                {t('profile.greeting', { name: user.name })}
+              </p>
+              <p className="profile-vip-level">
+                {t('profile.vipLevel', { level: user.vip_level })}
+              </p>
+            </div>
           </div>
-          <div>
-            <p className="text-lg font-semibold">
-              {t('profile.greeting', { name: user.name })}
-            </p>
-            <p className="text-sm">{t('profile.vipLevel', { level: user.vip_level })}</p>
+          <div className="profile-id-section">
+            <span>
+              {t('profile.idLabel')}: {encId}
+            </span>
+            <ClipboardCopy
+              size={16}
+              className="profile-clipboard-icon"
+              onClick={handleCopyId}
+            />
           </div>
         </div>
-        <div className="flex items-center space-x-1">
-          <span className="text-xs text-yellow-300">
-            {t('profile.idLabel')}: {encId}
-          </span>
-          <ClipboardCopy
-            size={16}
-            className="cursor-pointer text-yellow-300 hover:text-white"
-            onClick={handleCopyId}
-          />
-        </div>
-      </div>
+
 
       {/* ── 잔액 및 수익 카드 ───────────────────────────────────── */}
-      <div className="bg-[#2c1f0f] p-4 rounded-lg border border-yellow-700 space-y-4">
-        <div className="flex justify-between">
+      <div className="profile-summary-card">
+        <div className="profile-summary-header">
           <div>
-            <p className="text-sm">{t('profile.summary.totalBalance')}</p>
-            <p className="text-2xl font-bold">
+            <p className="profile-summary-balance-label">{t('profile.summary.totalBalance')}</p>
+            <p className="profile-summary-balance-value">
               {summary.balance.total.toFixed(2)} USDT
             </p>
           </div>
           <div>
-            <p className="text-sm">{t('profile.summary.totalEarnings')}</p>
-            <p className="text-2xl font-bold">
+            <p className="profile-summary-balance-label">{t('profile.summary.totalEarnings')}</p>
+            <p className="profile-summary-balance-value">
               {totalEarnings.toFixed(2)} USDT
             </p>
           </div>
         </div>
-        <div className="grid grid-cols-3 gap-4 text-center">
+        <div className="profile-summary-grid">
           <div>
-          <p className="text-xs">{t('profile.summary.todayCommission')}</p>
-            <p className="font-semibold">
-              {commit.toFixed(2)} USDT
-             </p>
-           </div>
-           <div>
-             <p className="text-xs">{t('profile.summary.todayIncome')}</p>
-             <p className="font-semibold">
-              {todayIncome.toFixed(2)} USDT
-            </p>
+            <p className="profile-summary-grid-label">{t('profile.summary.todayCommission')}</p>
+            <p className="profile-summary-grid-value">{commit.toFixed(2)} USDT</p>
           </div>
           <div>
-            <p className="text-xs">{t('profile.summary.yesterdayIncome')}</p>
-            <p className="font-semibold">
-              {yesterdayIncome.toFixed(2)} USDT
-            </p>
+            <p className="profile-summary-grid-label">{t('profile.summary.todayIncome')}</p>
+            <p className="profile-summary-grid-value">{todayIncome.toFixed(2)} USDT</p>
+          </div>
+          <div>
+            <p className="profile-summary-grid-label">{t('profile.summary.yesterdayIncome')}</p>
+            <p className="profile-summary-grid-value">{yesterdayIncome.toFixed(2)} USDT</p>
           </div>
         </div>
       </div>
 
       {/* ── 작업 버튼 ─────────────────────────────────────────── */}
-      <div className="flex justify-around">
+      <div className="profile-actions-container">
         <button
-          className="flex flex-col items-center text-yellow-100"
+          className="profile-action-btn"
           onClick={() => navigate("/recharge")}
         >
-          <RefreshCw size={28} className="mb-1" />
-          <span className="text-xs">{t('profile.actions.recharge')}</span>
+          <RefreshCw size={28} className="profile-action-icon" />
+          <span className="profile-action-text">{t('profile.actions.recharge')}</span>
         </button>
         <button
-          className="flex flex-col items-center text-yellow-100"
+          className="profile-action-btn"
           onClick={() => navigate("/withdraw")}
         >
-          <ArrowDownCircle size={28} className="mb-1" />
-          <span className="text-xs">{t('profile.actions.withdraw')}</span>
+          <ArrowDownCircle size={28} className="profile-action-icon" />
+          <span className="profile-action-text">{t('profile.actions.withdraw')}</span>
         </button>
         <button
-          className="flex flex-col items-center text-yellow-100"
+          className="profile-action-btn"
           onClick={() => navigate("/withdraw/history")}
         >
-          <FileText size={28} className="mb-1" />
-          <span className="text-xs">{t('profile.actions.details')}</span>
+          <FileText size={28} className="profile-action-icon" />
+          <span className="profile-action-text">{t('profile.actions.details')}</span>
         </button>
       </div>
 
       {/* ── 레퍼럴 계층 현황 ──────────────────────────────────── */}
-      <div className="bg-[#2c1f0f] p-4 rounded-lg border border-yellow-700 grid grid-cols-3 text-center">
-        <div>
-          <p className="text-sm">{t('profile.referral.level1')}</p>
-          <p className="font-semibold">{summary.referrals.level2}</p>
+      <div className="referral-level-container">
+        <div className="referral-level-item">
+          <p className="referral-level-title">{t('profile.referral.level1')}</p>
+          <p className="referral-level-value">{summary.referrals.level2}</p>
         </div>
-        <div>
-          <p className="text-sm">{t('profile.referral.level2')}</p>
-          <p className="font-semibold">{summary.referrals.level3}</p>
+        <div className="referral-level-item">
+          <p className="referral-level-title">{t('profile.referral.level2')}</p>
+          <p className="referral-level-value">{summary.referrals.level3}</p>
         </div>
-        <div>
-          <p className="text-sm">{t('profile.referral.level3')}</p>
-          <p className="font-semibold">{summary.referrals.level4}</p>
+        <div className="referral-level-item">
+          <p className="referral-level-title">{t('profile.referral.level3')}</p>
+          <p className="referral-level-value">{summary.referrals.level4}</p>
         </div>
       </div>
 
       {/* ── 메뉴 리스트 ───────────────────────────────────────── */}
-      <div className="bg-[#2c1f0f] rounded-lg divide-y divide-yellow-700">
+      <div className="profile-menu-container">
         {[
           { icon: '🏆', key: 'taskCenter',    to: '/taskcenter' },
           { icon: '❓', key: 'faq',           to: '/commonproblem' },
@@ -281,21 +278,19 @@ console.log('전체수익:',referralEarnings.total);
           { icon: '⬇️', key: 'downloadApp',   to: '/download' }
         ].map((item, i) => {
           const label = t(`profile.menu.${item.key}`);
-          const base = "flex items-center p-3 text-yellow-100 hover:bg-yellow-900 cursor-pointer";
           return (
-            <Link key={i} to={item.to} className={base}>
-              <span className="mr-3 text-lg">{item.icon}</span>
+            <Link key={i} to={item.to} className="profile-menu-item">
+              <span className="profile-menu-icon">{item.icon}</span>
               <span>{label}</span>
             </Link>
           );
         })}
       </div>
 
-      {/* ── 로그아웃 버튼 ─────────────────────────────────────────── */}
-      <div className="text-center mt-4">
+      <div className="logout-button-container">
         <button
           onClick={() => setShowLogoutConfirm(true)}
-          className="inline-flex items-center text-red-400 hover:underline"
+          className="logout-button"
         >
           <LogOut size={16} className="mr-1" />
           {t('profile.logout')}

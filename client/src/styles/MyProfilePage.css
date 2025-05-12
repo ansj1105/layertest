@@ -1,0 +1,423 @@
+
+
+
+/* 전체 프로필 컨테이너 */
+.profile-container {
+  height: 100% !;
+  background-color: #0e0e11;
+
+  color: #fef9c3; /* text-yellow-100 */
+  padding: 16px;
+  padding-bottom: 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 24px; /* space-y-6 */
+}
+
+/* 프로필 상단 컨테이너 */
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+/* 좌측 유저 정보 */
+.profile-user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* space-x-3 */
+}
+
+/* 아바타 (원형 배경) */
+.profile-avatar {
+  width: 48px;
+  height: 48px;
+  background-color: #206D7F; /* bg-yellow-600 */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #ffffff; /* Contrast text color */
+  font-weight: bold;
+}
+
+/* 유저 이름 */
+.profile-username {
+  font-size: 17px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* VIP 레벨 텍스트 */
+.profile-vip-level {
+  font-size: 14px;
+  color: #fef9c3;
+}
+
+/* 우측 ID 복사 컨테이너 */
+.profile-id-section {
+  display: flex;
+  align-items: center;
+  gap: 4px; /* space-x-1 */
+  font-size: 12px;
+  color: #facc15; /* text-yellow-300 */
+}
+
+
+
+
+
+/* 복사 아이콘 스타일 */
+.profile-clipboard-icon {
+  cursor: pointer;
+  color: #ffffff;
+  width: 20px;
+  height: 20px;
+  transition: color 0.3s ease;
+}
+
+.profile-clipboard-icon:hover {
+  color: #ffffff;
+}
+
+
+
+
+
+
+/* 전체 카드 스타일 */
+.profile-summary-card {
+  background-color: #153c44;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #65c1d3; /* border-yellow-700 */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* space-y-4 */
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  height: 100%;
+  width: 100%;
+
+
+  font-size: 14px;
+}
+
+/* 수익 정보 컨테이너 */
+.funding-income-container {
+  font-size: 14px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 16px;
+  font-size: 14px;
+}
+
+
+/* 상단 두 개의 주요 요약 정보 */
+.profile-summary-header {
+  display: flex;
+  flex-direction: row;  /* ✅ 가로 정렬 */
+  align-items: center;  /* 세로 중앙 정렬 */
+  width: 100%;
+  gap: 42px; /* 요소 간 간격 */
+
+  font-size: 14px;
+  justify-content: center;
+}
+
+.profile-summary-header p {
+  margin: 4px 0;
+}
+
+.profile-summary-balance-label {
+  color: #ffffff;
+  display: flex;
+  flex-direction: row;  /* ✅ 가로 정렬 */
+  align-items: center;  /* 세로 중앙 정렬 */
+  width: 100%;
+
+  font-size: 18px;
+  justify-content: center;
+  font-weight: bold;
+  
+}
+
+.profile-summary-balance-value {
+  font-size: 22px;
+  font-weight: bold;
+  color: #fef9c3;
+}
+
+/* 하단 그리드 요약 정보 */
+.profile-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  text-align: center;
+}
+
+
+.profile-summary-grid-label {
+  font-size: 14px;
+  color: #ffffff;
+  margin-bottom: 4px;
+}
+
+.profile-summary-grid-value {
+  font-weight: 600;
+  font-size: 15px;
+  color: #fef9c3;
+}
+
+
+
+
+
+
+
+.profile-actions-container {
+  display: flex;
+  justify-content: space-around; /* 버튼 간격 균등하게 */
+  align-items: center;
+
+  
+}
+
+.profile-action-btn {
+  display: flex;
+  flex-direction: column; /* 아이콘과 텍스트 세로 배치 */
+  align-items: center;
+  color: #ffffff; /* text-yellow-100 */
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+}
+
+.profile-action-btn:hover {
+  transform: scale(1.1); /* 호버 시 약간 확대 */
+  color: #ffffff;
+}
+
+.profile-action-icon {
+  margin-bottom: 8px;
+  width: 45px !important;
+  height: 45px !important;
+}
+
+.profile-action-text {
+  font-size: 12px;
+  font-weight: bold;
+  color: #fef9c3;
+}
+
+
+
+
+
+
+.referral-level-container {
+  background-color: #153c44;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid #65c1d3; /* border-yellow-700 */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3개 칼럼 */
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  gap: 12px; /* 각 칼럼 간 간격 */
+
+}
+
+.referral-level-item p {
+  margin: 4px 0;
+}
+
+.referral-level-title {
+  font-size: 14px;
+  color: #cccccc;
+}
+
+.referral-level-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: #fef9c3; /* text-yellow-100 */
+}
+
+
+
+
+
+.profile-menu-container {
+  background: #111b1b;
+
+
+
+  width: 100%;
+  
+}
+
+.profile-menu-item {
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  background: #111b1b;
+  padding: 14px;
+  border-radius: 8px;
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  display: flex;
+
+  align-items: center;
+  box-shadow: 0 0 1px 1px #b8dfd9;
+  margin-left: 5px;
+  margin-top: 5px;
+  margin-bottom: 12px !important;
+}
+
+.profile-menu-item:hover {
+  background-color: #4a3b25;
+  cursor: pointer;
+}
+
+.profile-menu-icon {
+  margin-right: 12px;
+  font-size: 20px;
+}
+
+/* 로그아웃 버튼 */
+.logout-button-container {
+  text-align: center;
+  margin-top: 4px;
+  margin-bottom: 50px;
+  font-size: 20px ;
+
+}
+
+.logout-button {
+  display: inline-flex;
+  align-items: center;
+  color: #fef9c3;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+
+}
+
+.logout-button:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+
+.logout-button svg {
+  width: 35px;
+  height: 35px;
+
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 12px;
+    gap: 16px;
+    margin-bottom: 50px;
+
+  }
+
+  .profile-header {
+
+    gap: 12px;
+  }
+
+  .profile-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+
+  .profile-username {
+    font-size: 16px;
+  }
+
+  .profile-vip-level {
+    font-size: 12px;
+  }
+
+  .profile-summary-card {
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .profile-summary-header {
+    gap: 8px;
+  }
+
+  .profile-summary-balance-label {
+    font-size: 16px;
+
+  }
+
+  .profile-summary-balance-value {
+    font-size: 20px;
+    
+  }
+
+  .profile-summary-grid {
+    gap: 4px;
+  }
+
+  .profile-actions-container {
+    gap: 16px;
+  }
+
+  .profile-action-btn {
+    gap: 8px;
+  }
+
+  .profile-action-icon {
+    width: 32px !important;
+    height: 32px !important;
+  }
+
+  .profile-action-text {
+    font-size: 14px;
+  }
+
+  .referral-level-container {
+    gap: 8px;
+  }
+
+  .referral-level-value {
+    font-size: 16px;
+  }
+
+  .profile-menu-container {
+    padding: 0;
+  }
+
+  .profile-menu-item {
+    padding: 10px;
+    font-size: 14px;
+    margin: 6px 0;
+  }
+
+  .logout-button-container {
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+
+  .logout-button svg {
+    width: 24px;
+    height: 24px;
+  }
+}

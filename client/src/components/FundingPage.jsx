@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import '../styles/FundingPage.css';
+import '../styles/topbar.css';
 
 export default function FundingPage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
-
+ 
   const [summary, setSummary] = useState({
     financeBalance: 0,
     quantBalance: 0,
@@ -145,16 +147,16 @@ export default function FundingPage() {
     }
   };
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
+    <div className="page-wrapper-f">
       {/* ─── 상단 헤더 ───────────────────────────────── */}
-      <div className="flex items-center justify-between mb-4">
-        <button onClick={() => navigate(-1)} className="text-white text-xl">
+      <div className="top-bar">
+        <button onClick={() => navigate(-1)} className="top-tran">
           ←
         </button>
-        <h2 className="text-lg font-semibold">{t("funding.header")}</h2>
+        <h2 className="top-h-text">{t("funding.header")}</h2>
         <button
           onClick={() => setShowInfoModal(true)}
-          className="text-white text-xl"
+          className="top-tran"
         >
           ?
         </button>
@@ -195,37 +197,39 @@ export default function FundingPage() {
       )}
 
       {/* ─── 금융 지갑 카드 ─────────────────────────────── */}
-      <div className="bg-[#3b2b15] rounded-md p-4 mb-6">
-        <div className="flex justify-between items-center">
-          <div>
-            <div className="text-sm text-gray-400">{t("funding.wallet_balance")}</div>
-            <div className="text-2xl font-bold">
-              {financeBalance.toFixed(6)} USDT
-            </div>
-          </div>
-          <button
-            onClick={() => navigate("/funding/logs")}
-            className="px-3 py-1 border border-gray-600 rounded"
-          >
-            {t("funding.detail")} &gt;
-          </button>
-        </div>
+      <div className="funding-card">
+        <div className="funding-balance-header">
+          <div className="funding-balance-label">{t("funding.wallet_balance")}</div>
+            <div className="funding-balance-amount-ll">
 
-        <div className="flex justify-around mt-4 text-sm">
+              <div className="funding-balance-amount">
+                {financeBalance.toFixed(6)}&nbsp;&nbsp;USDT
+              </div>
+                <button
+                  onClick={() => navigate("/funding/logs")}
+                  className="funding-detail-btn"
+                >
+                  {t("funding.detail")} &gt;
+              </button>
+            </div>
+
+          </div>
+
+        <div className="funding-action-buttons">
           <button
-            className="px-4 py-1 border border-yellow-500 rounded"
+            className="funding-action-btn"
             onClick={() => setShowDepositModal(true)}
           >
             {t("funding.deposit_request")}
           </button>
           <button
-            className="px-4 py-1 border border-yellow-500 rounded"
+            className="funding-action-btn"
             onClick={() => setShowWithdrawModal(true)}
           >
             {t("funding.withdraw_request")}
           </button>
           <button
-            className="px-4 py-1 border border-yellow-500 rounded"
+            className="funding-action-btn"
             onClick={() => navigate("/recharge")}
           >
             {t("funding.recharge")}
@@ -259,20 +263,24 @@ export default function FundingPage() {
           </div>
         )}
 
-        <div className="flex justify-between text-sm mt-4 text-green-400">
-          <div>
-            <div className="text-gray-400">{t("funding.today_income")}</div>
-            <div>{todayProjectIncome.toFixed(6)} USDT</div>
+        <div className="funding-income-container">
+          <div className="funding-income-block">
+            <div className="funding-income-label">{t("funding.today_income")}</div>
+            <div className="funding-income-amount">
+              {todayProjectIncome.toFixed(6)} USDT
+            </div>
           </div>
-          <div>
-            <div className="text-gray-400">{t("funding.total_income")}</div>
-            <div>{totalProjectIncome.toFixed(6)} USDT</div>
+          <div className="funding-income-block">
+            <div className="funding-income-label">{t("funding.total_income")}</div>
+            <div className="funding-income-amount">
+              {totalProjectIncome.toFixed(6)} USDT
+            </div>
           </div>
         </div>
 
         <button
           onClick={() => navigate("/wallet/orders")}
-          className="w-full mt-4 bg-yellow-500 text-black py-2 rounded font-semibold"
+          className="funding-income-button"
         >
           {t("funding.all_transactions")}
         </button>
@@ -397,43 +405,33 @@ export default function FundingPage() {
 
 
             {/* ─── 펀딩 프로젝트 목록 ──────────────────────────── */}
-            <div className="flex-1 overflow-y-auto space-y-4 max-h-[calc(100vh-400px)]">
-
+            <div className="project-list-container">
               {/* 활성 프로젝트 */}
-              <h3 className="text-xl font-semibold mb-2">{t("funding.active_projects")}</h3>
+              <h3 className="project-title">{t("funding.active_projects")}</h3>
               {activeProjects.length === 0 ? (
                 <p className="text-center text-gray-500 py-4">
                   {t("funding.no_active_projects")}
                 </p>
               ) : (
                 activeProjects.map(proj => (
-                  <div key={proj.id} className="bg-[#3b2b15] rounded-md p-4">
+                  <div key={proj.id} className="project-card">
                     {/* 프로젝트 정보 */}
-                    <h3 className="text-lg font-bold mb-2">{proj.name}</h3>
-                    <p className="text-sm text-gray-300 mb-1">
-              {t("funding.project.description", {
-                  description: proj.description,
-                })}
-                </p>
-              <p className="text-sm text-gray-300 mb-1">
-                
-                {t("funding.project.available", {
-                  min: proj.minAmount,
-                  max: proj.maxAmount,
-                })}
-              </p>
-              <p className="text-sm text-gray-300 mb-1">
-                {t("funding.project.daily_rate", { rate: proj.dailyRate })}
-              </p>
-              <p className="text-sm text-gray-300 mb-4">
-                {t("funding.project.duration", {
-                  cycle: proj.cycle,
-                  end: new Date(proj.endDate).toLocaleDateString(),
-                })}
-              </p>
+                    <h3>{proj.name}</h3>
+                    <p className="project-description">
+                      {t("funding.project.description", { description: proj.description })}
+                    </p>
+                    <p className="project-description">
+                      {t("funding.project.available", { min: proj.minAmount, max: proj.maxAmount })}
+                    </p>
+                    <p className="project-description">
+                      {t("funding.project.daily_rate", { rate: proj.dailyRate })}
+                    </p>
+                    <p className="project-description">
+                      {t("funding.project.duration", { cycle: proj.cycle, end: new Date(proj.endDate).toLocaleDateString() })}
+                    </p>
                     <button
                       onClick={() => navigate(`/funding/detail/${proj.id}`)}
-                      className="w-full bg-yellow-500 text-black py-2 rounded font-semibold"
+                      className="project-apply-btn"
                     >
                       {t("funding.project.apply")}
                     </button>
@@ -441,75 +439,68 @@ export default function FundingPage() {
                 ))
               )}
 
+
               {/* 만료된 프로젝트 */}
-              <h3 className="text-xl font-semibold mt-8 mb-2">{t("funding.expired_projects")}</h3>
-              {expiredProjects.length === 0 ? (
-                <p className="text-center text-gray-500 py-4">
-                  {t("funding.no_expired_projects")}
-                </p>
-              ) : (
-                expiredProjects.map(proj => (
-                  <div key={proj.id} className="bg-[#2c1f0f] rounded-md p-4 opacity-70">
-                    {/* 만료됨 표시 */}
-                    <h3 className="text-lg font-bold mb-2">
-                      {proj.name} <span className="text-red-400">({t("funding.expired_label")})</span>
-                    </h3>
-                    {/* ... 기존 정보 동일하게 표시 가능 ... */}
-                    <p className="text-sm text-gray-300 mb-1">
-              {t("funding.project.description", {
-                  description: proj.description,
-                })}
-                </p>
-              <p className="text-sm text-gray-300 mb-1">
-                
-                {t("funding.project.available", {
-                  min: proj.minAmount,
-                  max: proj.maxAmount,
-                })}
-              </p>
-              <p className="text-sm text-gray-300 mb-1">
-                {t("funding.project.daily_rate", { rate: proj.dailyRate })}
-              </p>
-              <p className="text-sm text-gray-300 mb-4">
-                {t("funding.project.duration", {
-                  cycle: proj.cycle,
-                  end: new Date(proj.endDate).toLocaleDateString(),
-                })}
-              </p>
-                    <button
-                      disabled
-                      className="w-full bg-gray-600 text-gray-400 py-2 rounded font-semibold cursor-not-allowed"
-                    >
-                      {t("funding.project.apply")}
-                    </button>
-                  </div>
-                ))
-              )}
+              <h3 className="funding-expired-title">{t("funding.expired_projects")}</h3>
+                {expiredProjects.length === 0 ? (
+                  <p className="funding-empty-message">
+                    {t("funding.no_expired_projects")}
+                  </p>
+                ) : (
+                  expiredProjects.map(proj => (
+                    <div key={proj.id} className="funding-expired-card">
+                      <h3>
+                        {proj.name} <span className="funding-expired-label">({t("funding.expired_label")})</span>
+                      </h3>
+                      <p className="funding-expired-description">
+                        {t("funding.project.description", { description: proj.description })}
+                      </p>
+                      <p className="funding-expired-description">
+                        {t("funding.project.available", { min: proj.minAmount, max: proj.maxAmount })}
+                      </p>
+                      <p className="funding-expired-description">
+                        {t("funding.project.daily_rate", { rate: proj.dailyRate })}
+                      </p>
+                      <p className="funding-expired-description">
+                        {t("funding.project.duration", {
+                          cycle: proj.cycle,
+                          end: new Date(proj.endDate).toLocaleDateString(),
+                        })}
+                      </p>
+                      <button disabled className="funding-expired-btn">
+                      Project Expiration
+                      </button>
+                    </div>
+                  ))
+                )}
 
         
       {/* ─── 일반적인 문제 (FAQ) ──────────────────────────── */}
-      <div className="mt-8">
-        <h2 className="text-lg font-semibold mb-4">{t("common.faqTitle")}</h2>
-        {["problem1","problem2","problem3","problem4","problem5"].map(key => {
+      <div className="faq-section">
+        <h2 className="faq-title">{t("common.faqTitle")}</h2>
+        {["problem1", "problem2", "problem3", "problem4", "problem5"].map(key => {
           const isOpen = openFaq === key;
           return (
-            <div key={key} className="mb-2 bg-[#2c1f0f] rounded">
+            <div key={key} className="faq-card">
               <button
                 onClick={() => setOpenFaq(isOpen ? null : key)}
-                className="w-full flex justify-between items-center p-4 text-left"
+                className="faq-question-btn"
               >
                 <span>{t(`common.${key}.question`)}</span>
                 <svg
-                  className={`w-4 h-4 transform transition-transform ${isOpen ? "rotate-180" : "rotate-0"}`}
-                  viewBox="0 0 20 20" fill="currentColor"
+                  className={`faq-icon ${isOpen ? "rotate-180" : "rotate-0"}`}
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
                 >
-                  <path fillRule="evenodd" clipRule="evenodd"
+                  <path
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z"
                   />
                 </svg>
               </button>
               {isOpen && (
-                <div className="px-4 pb-4 text-sm text-gray-300">
+                <div className="faq-answer">
                   {t(`common.${key}.answer`)}
                 </div>
               )}

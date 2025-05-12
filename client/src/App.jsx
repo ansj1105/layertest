@@ -52,238 +52,222 @@ export default function App() {
 */
 /*
   /* ✅ 네비게이션 */
+  
+import './styles/Sidebar.css';
+import './styles/topnav.css';
+import { useEffect, useState } from 'react';
+import { BrowserRouter as Router, Link,Routes,Route,useLocation  } from 'react-router-dom';
+import axios from 'axios';
+import {
+  UserIcon,
+  MailIcon,
+  X as CloseIcon,
+  ChevronRight,
+  ClipboardCopy,
+  RefreshCw,
+  ArrowDownCircle,
+  Headphones
+} from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import './i18n/index';
+import './index.css';
+import UserChat from './pages/UserChat';
+import MainLanding from './pages/MainLanding';
+import BottomNav from './components/BottomNav';
+import LoginPage from './pages/auth/LoginPage';
+import LanguageSettingsPage from './components/LanguageSettingsPage';
+import RegisterPage from './pages/auth/RegisterPage'; // 추가!
+axios.defaults.withCredentials = true;
+/** 간단한 가역 인코딩 (XOR → 16진수, 8자리) */
+function encodeId(id) {
+  const ob = id ^ 0xA5A5A5A5;
+  return ob.toString(16).toUpperCase().padStart(8, '0');
+}
 
-  import './styles/topnav.css';
-  import { useEffect, useState } from 'react';
-  import { BrowserRouter as Router, Link,Routes,Route,useLocation  } from 'react-router-dom';
-  import axios from 'axios';
-  import {
-    UserIcon,
-    MailIcon,
-    X as CloseIcon,
-    ChevronRight,
-    ClipboardCopy,
-    RefreshCw,
-    ArrowDownCircle,
-    Headphones
-  } from 'lucide-react';
-  import { useTranslation } from 'react-i18next';
-  import './i18n/index';
-  import './index.css';
-  import UserChat from './pages/UserChat';
-  import MainLanding from './pages/MainLanding';
-  import BottomNav from './components/BottomNav';
-  import LoginPage from './pages/auth/LoginPage';
-  import LanguageSettingsPage from './components/LanguageSettingsPage';
-  import RegisterPage from './pages/auth/RegisterPage'; // 추가!
-  axios.defaults.withCredentials = true;
-  /** 간단한 가역 인코딩 (XOR → 16진수, 8자리) */
-  function encodeId(id) {
-    const ob = id ^ 0xA5A5A5A5;
-    return ob.toString(16).toUpperCase().padStart(8, '0');
+export default function App() {
+  const { t, i18n } = useTranslation();
+  const [user, setUser] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
+  const loc = useLocation();
+  useEffect(() => {
+    axios.get("/api/auth/me")
+      .then(res => setUser(res.data.user))
+      .catch(() => setUser(null));
+  }, []);
+
+  const handleLogout = async () => {
+    await axios.post("/api/auth/logout");
+    setUser(null);
+    window.location.href = "/login";
+  };
+  const handleCopyId = () => {
+    const enc = encodeId(user.id);
+    navigator.clipboard.writeText(enc);
+    setCopySuccess(true);
+    setTimeout(() => setCopySuccess(false), 1500);
+  };
+
+  const changeLang = (lang) => {
+    i18n.changeLanguage(lang);
+  };
+
+  // 1) /register 경로면 오직 회원가입 페이지만
+  if (loc.pathname === '/register') {
+    return <RegisterPage />;
   }
-  
-  export default function App() {
-    const { t, i18n } = useTranslation();
-    const [user, setUser] = useState(null);
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [copySuccess, setCopySuccess] = useState(false);
-    const loc = useLocation();
-    useEffect(() => {
-      axios.get("/api/auth/me")
-        .then(res => setUser(res.data.user))
-        .catch(() => setUser(null));
-    }, []);
-  
-    const handleLogout = async () => {
-      await axios.post("/api/auth/logout");
-      setUser(null);
-      window.location.href = "/login";
-    };
-    const handleCopyId = () => {
-      const enc = encodeId(user.id);
-      navigator.clipboard.writeText(enc);
-      setCopySuccess(true);
-      setTimeout(() => setCopySuccess(false), 1500);
-    };
-  
-    const changeLang = (lang) => {
-      i18n.changeLanguage(lang);
-    };
-  
-    // 1) /register 경로면 오직 회원가입 페이지만
-    if (loc.pathname === '/register') {
-      return <RegisterPage />;
-    }
-    if (loc.pathname === '/settings/language') {
-      return <LanguageSettingsPage />;
-    }
-    // 2) /register 가 아니고, 로그인 안된 상태면 로그인 페이지만
-    if (!user ) {
-      return <LoginPage />;
-    }
-  /*
-    if (!user && !["//settings/language", "/test"].includes(window.location.pathname))  {
-      return <LoginPage />;
-    }
-    */
-  
-    return (
-  
-      <div className="top-container" style={{ backgroundImage: "url('/bg.jpg')" }}>
-          {/* 상단 바 */}
-          <div className="top-nav-bar ">
-            
-            {/* 유저 버튼 */}
-            <div className="btn-avatar"> 
-              <button className="avatar-button" onClick={() => setSidebarOpen(true)}>
-                <img 
-                  src="/img/item/top/avatar.png" 
-                  alt="User Avatar"
-                  className="avatar-img"
-                />
-              </button>
-            </div>
-  
-            {/* 로고 */}
-            <img
-              src="/img/item/logo/logo.png"
-              alt="Upstart"
-              className="top-logo"
-            />
-  
-            {/* 메일 아이콘 */}
-            <div className="avatar-mase">
-              <img
-                src="/img/item/top/envelope.png"
-                alt="Mail Icon"
+  if (loc.pathname === '/settings/language') {
+    return <LanguageSettingsPage />;
+  }
+  // 2) /register 가 아니고, 로그인 안된 상태면 로그인 페이지만
+  if (!user ) {
+    return <LoginPage />;
+  }
+/*
+  if (!user && !["//settings/language", "/test"].includes(window.location.pathname))  {
+    return <LoginPage />;
+  }
+  */
+
+  return (
+
+    <div className="top-container" style={{ backgroundImage: "url('/bg.jpg')" }}>
+        {/* 상단 바 */}
+        <div className="top-nav-bar ">
+          
+          {/* 유저 버튼 */}
+          <div className="btn-avatar"> 
+            <button className="avatar-button" onClick={() => setSidebarOpen(true)}>
+              <img 
+                src="/img/item/top/avatar.png" 
+                alt="User Avatar"
                 className="avatar-img"
               />
-            </div>
-            
+            </button>
           </div>
-  
-  
-        {/* 사이드바 */}
-        {sidebarOpen && (
-          <div className="fixed inset-0 z-50 flex">
-            {/* 백드롭 */}
-            <div
-              className="fixed inset-0 bg-black/50"
-              onClick={() => setSidebarOpen(false)}
+
+          {/* 로고 */}
+          <img
+            src="/img/item/logo/logo.png"
+            alt="Upstart"
+            className="top-logo"
+          />
+
+          {/* 메일 아이콘 */}
+          <div className="avatar-mase">
+            <img
+              src="/img/item/top/envelope.png"
+              alt="Mail Icon"
+              className="avatar-img"
             />
-  
-  
-  
-  
-            {/* 실제 사이드바 */}
-            <div className="relative w-64 bg-[#1a1109] text-yellow-100 p-4 overflow-y-auto">
-              {/* 닫기 버튼 */}
-              <button
-                className="absolute top-4 right-4 text-yellow-300"
+          </div>
+          
+        </div>
+
+
+      {/* 사이드바 */}
+      {sidebarOpen && (
+        <div className="sidebar-overlay">
+          {/* 백드롭 */}
+          <div
+            className="sidebar-backdrop"
+            onClick={() => setSidebarOpen(false)}
+          />
+
+          {/* 사이드바 본체 */}
+          <div className="sidebar-panel">
+            {/* 닫기 버튼 */}
+            <button
+              className="sidebar-close-btn"
+              onClick={() => setSidebarOpen(false)}
+            >
+              <CloseIcon size={20} />
+            </button>
+
+            {/* 프로필 */}
+            <div className="sidebar-profile">
+              <div className="sidebar-avatar">
+                {user.name[0]?.toUpperCase()}
+              </div>
+              <div className="flex-1">
+                <p className="sidebar-username">{user.name}</p>
+                <div className="sidebar-id">
+                  <span>ID: {encodeId(user.id)}</span>
+                  <ClipboardCopy
+                    size={14}
+                    className="cursor-pointer hover:text-white"
+                    onClick={handleCopyId}
+                  />
+                </div>
+                {copySuccess && (
+                  <p className="sidebar-copy-success">복사되었습니다!</p>
+                )}
+              </div>
+            </div>
+
+            <hr className="custom-hr" />
+
+            {/* 상단 메뉴 (재충전, 출금, 고객서비스) */}
+            <div className="sidebar-grid">
+              <Link to="/recharge" onClick={() => setSidebarOpen(false)}>
+                <RefreshCw size={24} className="mb-1" />
+                <span className="text-xs">재충전</span>
+              </Link>
+              <Link to="/withdraw" onClick={() => setSidebarOpen(false)}>
+                <ArrowDownCircle size={24} className="mb-1" />
+                <span className="text-xs">출금하기</span>
+              </Link>
+              <Link to="/support" onClick={() => setSidebarOpen(false)}>
+                <Headphones size={24} className="mb-1" />
+                <span className="text-xs">고객 서비스</span>
+              </Link>
+            </div>
+
+            {/* 기타 메뉴 */}
+            {[
+              { to: '/taskcenter', label: t('app.task_center') },
+              { to: '/funding', label: t('app.wallets') },
+              { to: '/commonproblem', label: t('app.faq') },
+              { to: '/security', label: t('app.security_center') },
+              { to: '/quant-tutorial', label: t('app.tutorial') },
+              { to: '/settings/language', label: t('app.language') },
+              { to: '/company', label: t('app.company') },
+              { to: '/download', label: t('app.download') },
+            ].map(item => (
+              <Link
+                key={item.to}
+                to={item.to}
+                className="sidebar-menu-item"
                 onClick={() => setSidebarOpen(false)}
               >
-                <CloseIcon size={20} />
+                <span>{item.label}</span>
+                <ChevronRight size={16} />
+              </Link>
+            ))}
+
+            {/* 로그아웃 버튼 */}
+            <div className="sidebar-logout">
+              <button
+                onClick={handleLogout}
+                className="sidebar-logout-btn"
+              >
+                {t('app.logout')}
               </button>
-  
-              {/* 프로필 */}
-              <div className="flex items-center space-x-3 mb-6 mt-4">
-                <div className="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center text-xl">
-                  {user.name[0]?.toUpperCase()}
-                </div>
-                <div className="flex-1">
-                  <p className="font-semibold">{user.name}</p>
-                  <div className="flex items-center space-x-1 text-xs text-yellow-300">
-                    <span>
-                      ID: {encodeId(user.id)}
-                    </span>
-                    <ClipboardCopy
-                      size={14}
-                      className="cursor-pointer hover:text-white"
-                      onClick={handleCopyId}
-                    />
-                  </div>
-                  {copySuccess && (
-                    <p className="text-xs text-green-400">복사되었습니다!</p>
-                  )}
-                </div>
-              </div>
-              <hr className="border-yellow-700 mb-4"/>
-  
-              {/* 1. 재충전 · 출금 · 고객서비스 */}
-              <div className="grid grid-cols-3 gap-2 mb-4">
-                <Link
-                  to="/recharge"
-                  className="flex flex-col items-center p-2 rounded hover:bg-yellow-800"
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <RefreshCw size={24} className="mb-1" />
-                  <span className="text-xs">재충전</span>
-                </Link>
-                <Link
-                  to="/withdraw"
-                  className="flex flex-col items-center p-2 rounded hover:bg-yellow-800"
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <ArrowDownCircle size={24} className="mb-1" />
-                  <span className="text-xs">출금하기</span>
-                </Link>
-                <Link
-                  to="/support"
-                  className="flex flex-col items-center p-2 rounded hover:bg-yellow-800"
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <Headphones size={24} className="mb-1" />
-                  <span className="text-xs">고객 서비스</span>
-                </Link>
-              </div>
-  
-              {/* 기타 메뉴 */}
-              {[
-                { to: '/taskcenter',    label: t('app.task_center') },
-                { to: '/funding',  label: t('app.wallets') },
-                { to: '/commonproblem',      label: t('app.faq') },
-                { to: '/security', label: t('app.security_center') },
-                { to: '/quant-tutorial', label: t('app.tutorial') },
-                { to: '/settings/language', label: t('app.language') },
-                { to: '/company',  label: t('app.company') },
-                { to: '/download', label: t('app.download') },
-              ].map(item => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  className="flex justify-between items-center p-2 rounded hover:bg-yellow-800"
-                  onClick={() => setSidebarOpen(false)}
-                >
-                  <span>{item.label}</span>
-                  <ChevronRight size={16}/>
-                </Link>
-              ))}
-  
-              {/* 로그아웃 */}
-              <div className="mt-6">
-                <button
-                  onClick={handleLogout}
-                  className="w-full bg-red-500 text-white py-2 rounded hover:bg-red-600"
-                >
-                  {t('app.logout')}
-               
-                </button>
-              </div>
             </div>
           </div>
-        )}
-  
-        {/* 메인 콘텐츠 */}
-    <div className="pt-16 ">
-        <UserChat userId={user.id} />
-        <MainLanding user={user} />
-        <BottomNav />
         </div>
+      )}
+
+      {/* 메인 콘텐츠 */}
+  <div className="pt-16 ">
+      <UserChat userId={user.id} />
+      <MainLanding user={user} />
+      <BottomNav />
       </div>
-  
-  );
-  }
+    </div>
+
+);
+}
          {/* <div className="flex gap-4 flex-wrap justify-center text-sm md:text-base">
           <Link to="/">{t('Home')}</Link>
             <Link to="/wallet">{t('Wallet')}</Link>

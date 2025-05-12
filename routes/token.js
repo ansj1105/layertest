@@ -140,95 +140,314 @@ router.get("/active-token-sales", async (_, res) => {
 });
 // 📁 routes/token.js (or wherever you keep your token APIs)
 
+
+// ------------------------
+// 3.4 토큰 구매 및 판매
+// ------------------------
+// 📁 routes/token.js
+
+// 3.4 토큰 구매 및 판매
 router.post("/purchase-token", async (req, res) => {
-     const userId = req.session.user?.id;
-   if (!userId) return res.status(401).json({ error: "Not authenticated" });
-   const { saleId, amount } = req.body;
-  // 1) load sale
-  const [[sale]] = await db.query(
-    `SELECT * FROM token_sales WHERE id = ? AND is_active = 1`,
-    [saleId]
-  );
-  if (!sale) return res.status(400).json({ error: "존재하지 않거나 비활성화된 세일입니다" });
+  const userId = req.session.user?.id;
+  if (!userId) return res.status(401).json({ error: "Not authenticated" });
 
-  // 2) enforce min/max/available
-  if (amount < sale.minimum_purchase) 
-    return res.status(400).json({ error: "최소 구매 단위 미만입니다" });
-  if (sale.maximum_purchase && amount > sale.maximum_purchase) 
-    return res.status(400).json({ error: "최대 구매 단위 초과입니다" });
-  if (sale.remaining_supply < amount) 
-    return res.status(400).json({ error: "판매 가능한 수량 부족" });
+  const { saleId, amount } = req.body;
+  let purchaseId;
 
-  // 3) load wallet
-  const [[wallet]] = await db.query(
-    `SELECT * FROM wallets WHERE user_id = ?`,
-    [userId]
-  );
-  if (!wallet) return res.status(400).json({ error: "지갑이 없습니다" });
+  try {
+    // 1) load sale
+    const [[sale]] = await db.query(
+      `SELECT * FROM token_sales
+         WHERE id = ? AND is_active = 1`,
+      [saleId]
+    );
+    if (!sale) throw new Error("NO_SALE");
 
-  const totalPrice = +(amount * sale.price).toFixed(6);
-  if (wallet.quant_balance < totalPrice) {
-    return res.status(400).json({ error: "잔액이 부족합니다" });
+    // 2) enforce min/max/available
+    if (amount < sale.minimum_purchase) throw new Error("BELOW_MIN");
+    if (sale.maximum_purchase && amount > sale.maximum_purchase) throw new Error("ABOVE_MAX");
+    if (sale.remaining_supply < amount) throw new Error("NO_SUPPLY");
+
+    // 3) load user wallet
+    const [[wallet]] = await db.query(
+      `SELECT * FROM wallets WHERE user_id = ?`,
+      [userId]
+    );
+    if (!wallet) throw new Error("NO_WALLET");
+
+    // 4) price check
+    const totalPrice = +(amount * sale.price).toFixed(6);
+    if (wallet.quant_balance < totalPrice) throw new Error("INSUFFICIENT_FUNDS");
+
+    // 5) generate purchaseId via MySQL UUID()
+    const [[{ id: genId }]] = await db.query(`SELECT UUID() AS id`);
+    purchaseId = genId;
+
+    // 6) record purchase with status PENDING
+    const lockupUntil = sale.lockup_period
+      ? new Date(Date.now() + sale.lockup_period * 86400000)
+      : null;
+
+    await db.query(
+      `INSERT INTO token_purchases
+         (id, user_id, token_id, sale_id, amount, price, total_price,
+          status, lockup_until, created_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, 'PENDING', ?, NOW())`,
+      [purchaseId, userId, sale.token_id, sale.id, amount, sale.price, totalPrice, lockupUntil]
+    );
+
+    // 7) update token_wallets balance & locked_amount
+    await db.query(
+      `UPDATE token_wallets
+         SET balance       = balance + ?,
+             locked_amount = locked_amount + ?
+       WHERE user_id = ?`,
+      [amount, lockupUntil ? amount : 0, userId]
+    );
+
+    // 8) insert into token_lockups for granular 락업 관리
+    if (lockupUntil) {
+      await db.query(
+        `INSERT INTO token_lockups
+           (id, wallet_id, amount, unlock_at)
+         VALUES (UUID(), (SELECT id FROM token_wallets WHERE user_id=?), ?, ?)`,
+        [userId, amount, lockupUntil]
+      );
+    }
+
+    // 9) update token_sales & tokens
+    await Promise.all([
+      db.query(
+        `UPDATE token_sales
+           SET remaining_supply = remaining_supply - ?
+         WHERE id = ?`,
+        [amount, sale.id]
+      ),
+      db.query(
+        `UPDATE tokens
+           SET circulating_supply = circulating_supply + ?
+         WHERE id = ?`,
+        [amount, sale.token_id]
+      )
+    ]);
+
+    // 10) deduct USDT from user wallet
+    const newQuantBal = +(wallet.quant_balance - totalPrice).toFixed(6);
+    await db.query(
+      `UPDATE wallets
+         SET quant_balance = ?, updated_at = NOW()
+       WHERE user_id = ?`,
+      [newQuantBal, userId]
+    );
+
+    // 11) finalize purchase
+    await db.query(
+      `UPDATE token_purchases
+         SET status = 'COMPLETED', updated_at = NOW()
+       WHERE id = ?`,
+      [purchaseId]
+    );
+
+    // 12) log in wallets_log
+    await db.query(
+      `INSERT INTO wallets_log
+         (user_id, category, log_date, direction, amount, balance_after,
+          reference_type, reference_id, description, created_at)
+       VALUES (?, 'quant', NOW(), 'out', ?, ?, 'token_purchase', ?, ?, NOW())`,
+      [userId, totalPrice, newQuantBal, purchaseId, `Purchased ${amount} ${sale.name}`]
+    );
+
+    return res.json({ success: true, purchaseId });
+  } catch (err) {
+    // 실패 시 token_purchases는 PENDING 상태로 남고,
+    // token_lockups 도 롤백 되지 않으므로, 필요하다면 수동 삭제하거나
+    // 상태 필드를 이용해 expired 처리 하실 수 있습니다.
+    console.error("❌ purchase-token error:", err);
+    switch (err.message) {
+      case "NO_SALE":
+      case "BELOW_MIN":
+      case "ABOVE_MAX":
+      case "NO_SUPPLY":
+      case "NO_WALLET":
+      case "INSUFFICIENT_FUNDS":
+        return res.status(400).json({ error: err.message });
+      default:
+        return res.status(500).json({ error: "Internal server error" });
+    }
   }
-
-  // 4) insert purchase record
-  const purchaseId = uuidv4();
-  const lockupUntil = sale.lockup_period
-    ? new Date(Date.now() + sale.lockup_period * 86400000)
-    : null;
-
-  await db.query(
-    `INSERT INTO token_purchases
-      (id, user_id, token_id, sale_id, amount, price, total_price, lockup_until, created_at, updated_at)
-     VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW(), NOW())`,
-    [purchaseId, userId, sale.token_id, sale.id, amount, sale.price, totalPrice, lockupUntil]
-  );
-
-  // 5) update token wallet & sales & tokens
-  await db.query(
-    `UPDATE token_wallets
-       SET balance = balance + ?, 
-           locked_amount = locked_amount + ?
-     WHERE user_id = ?`,
-    [amount, lockupUntil ? amount : 0, userId]
-  );
-  await db.query(
-    `UPDATE token_sales
-       SET remaining_supply = remaining_supply - ?
-     WHERE id = ?`,
-    [amount, sale.id]
-  );
-  await db.query(
-    `UPDATE tokens
-       SET circulating_supply = circulating_supply + ?
-     WHERE id = ?`,
-    [amount, sale.token_id]
-  );
-
-  // 6) deduct USDT from user wallet
-  const newQuantBal = +(wallet.quant_balance - totalPrice).toFixed(6);
-  await db.query(
-    `UPDATE wallets
-       SET quant_balance = ?, updated_at = NOW()
-     WHERE user_id = ?`,
-    [newQuantBal, userId]
-  );
-
-  // 7) log in wallets_log
-  await db.query(
-    `INSERT INTO wallets_log
-      (user_id, category, log_date, direction, amount, balance_after,
-       reference_type, reference_id, description, created_at, updated_at)
-     VALUES (?, 'quant', NOW(), 'out', ?, ?, 'token_purchase', ?, ?, NOW(), NOW())`,
-    [userId, totalPrice, newQuantBal, purchaseId, `Purchased ${amount} ${sale.name}`]
-  );
-
-  return res.json({ success: true, purchaseId });
 });
+
 
 router.get("/users/:userId/token-purchases", async (req, res) => {
   const [rows] = await db.query("SELECT * FROM token_purchases WHERE user_id = ? ORDER BY created_at DESC", [req.params.userId]);
   res.json(rows);
 });
 
+// ▶ 특정 주문 상세 조회
+// GET /api/token-purchases/:purchaseId
+router.get('/token-purchases/:purchaseId', async (req, res) => {
+  const purchaseId = req.params.purchaseId;
+  try {
+    const [rows] = await db.query(
+      `SELECT
+         id,
+         user_id,
+         token_id,
+         sale_id,
+         amount,
+         price,
+         total_price,
+         status,
+         lockup_until,
+         created_at,
+         updated_at
+       FROM token_purchases
+       WHERE id = ?`,
+      [purchaseId]
+    );
+    if (rows.length === 0) {
+      return res.status(404).json({ success: false, error: '해당 주문을 찾을 수 없습니다.' });
+    }
+    res.json({ success: true, data: rows[0] });
+  } catch (err) {
+    console.error('❌ 주문 상세 조회 오류:', err);
+    res.status(500).json({ success: false, error: '서버 오류로 조회에 실패했습니다.' });
+  }
+});
+
+// ▶ 전체 주문 목록 조회
+// GET /api/token-purchases
+router.get('/token-purchases', async (_req, res) => {
+  try {
+    const [rows] = await db.query(
+      `SELECT
+         id,
+         user_id,
+         token_id,
+         sale_id,
+         amount,
+         price,
+         total_price,
+         status,
+         lockup_until,
+         created_at,
+         updated_at
+       FROM token_purchases
+       ORDER BY created_at DESC`
+    );
+    res.json({ success: true, data: rows });
+  } catch (err) {
+    console.error('❌ 전체 주문 조회 오류:', err);
+    res.status(500).json({ success: false, error: '서버 오류로 조회에 실패했습니다.' });
+  }
+});
+
+// ▶ 내 토큰 지갑 전체 조회
+// GET /api/token/my/wallet-details
+router.get("/my/wallet-details", async (req, res) => {
+  try {
+    const userId = req.session.user?.id;
+    if (!userId) {
+      return res.status(401).json({ success: false, error: "Not authenticated" });
+    }
+
+    // 1) token_wallets에서 내 지갑 조회
+    const [[wallet]] = await db.query(
+      `SELECT id, user_id, balance, locked_amount, created_at, updated_at
+         FROM token_wallets
+        WHERE user_id = ?`,
+      [userId]
+    );
+    if (!wallet) {
+      return res.status(404).json({ success: false, error: "Token wallet not found" });
+    }
+
+    // 2) token_lockups에서 이 지갑의 모든 락업 내역 조회
+    const [lockups] = await db.query(
+      `SELECT id, wallet_id, amount, unlock_at, created_at
+         FROM token_lockups
+        WHERE wallet_id = ?
+        ORDER BY unlock_at ASC`,
+      [wallet.id]
+    );
+
+    // 3) 응답
+    return res.json({
+      success: true,
+      data: {
+        wallet,
+        lockups
+      }
+    });
+  } catch (err) {
+    console.error("❌ /my/wallet-details error:", err);
+    return res.status(500).json({ success: false, error: "Internal server error" });
+  }
+});
+
+
+// ▶ 내 주문 목록 조회
+// GET /api/my/token-purchases
+router.get('/my/token-purchases', async (req, res) => {
+  const userId = req.session.user?.id;
+  if (!userId) return res.status(401).json({ success: false, error: 'Not authenticated' });
+
+  try {
+    const [rows] = await db.query(
+      `SELECT
+         id,
+         token_id,
+         sale_id,
+         amount,
+         price,
+         total_price,
+         status,
+         lockup_until,
+         created_at,
+         updated_at
+       FROM token_purchases
+       WHERE user_id = ?
+       ORDER BY created_at DESC`,
+      [userId]
+    );
+    res.json({ success: true, data: rows });
+  } catch (err) {
+    console.error('❌ 내 주문 목록 조회 오류:', err);
+    res.status(500).json({ success: false, error: '서버 오류로 조회에 실패했습니다.' });
+  }
+});
+
+// ▶ 내 특정 주문 상세 조회
+// GET /api/my/token-purchases/:purchaseId
+router.get('/my/token-purchases/:purchaseId', async (req, res) => {
+  const userId     = req.session.user?.id;
+  const purchaseId = req.params.purchaseId;
+  if (!userId) return res.status(401).json({ success: false, error: 'Not authenticated' });
+
+  try {
+    const [rows] = await db.query(
+      `SELECT
+         id,
+         token_id,
+         sale_id,
+         amount,
+         price,
+         total_price,
+         status,
+         lockup_until,
+         created_at,
+         updated_at
+       FROM token_purchases
+       WHERE id = ? AND user_id = ?`,
+      [purchaseId, userId]
+    );
+    if (rows.length === 0) {
+      return res.status(404).json({ success: false, error: '해당 주문을 찾을 수 없습니다.' });
+    }
+    res.json({ success: true, data: rows[0] });
+  } catch (err) {
+    console.error('❌ 내 주문 상세 조회 오류:', err);
+    res.status(500).json({ success: false, error: '서버 오류로 조회에 실패했습니다.' });
+  }
+});
 module.exports = router;

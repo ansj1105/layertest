@@ -6,13 +6,12 @@
   position: relative;
   max-width: 506px;
   margin: 0 auto;
-  height: 100%;
+
   display: flex;
   flex-direction: column;
   background-color: #0e0e11;
   overflow: auto; /* 스크롤 활성화 */
 }
-
 
 /* 기본틀 */
 .top-nav-bar-team {
@@ -234,11 +233,13 @@
 
 /* 스크롤바 커스텀 (크롬/엣지/사파리) */
 .data-box-container-m {
-  max-height: 410px;
-
+  max-height: 100% !important;
+  margin-bottom: 100px !important;
   padding-right: 8px;
   margin: 0 auto;
   width: 95%;
+  color: #facc15;
+
 
 }
 

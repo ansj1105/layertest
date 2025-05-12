@@ -201,16 +201,12 @@ export default function MyTeamPage() {
         {activeTab === 'contrib' && (
           <>
             
-            <div className="mb-4 flex justify-between items-center">
+            <div className="referra-dro">
               {/* 왼쪽: 오늘 등록한 사람 수 */}
     
     {/* 1. 오늘/누적 수익 박스 */}
     {contribStats && (
-      <div className="mb-4 bg-[#2c1f0f] p-2 rounded flex justify-between text-sm">
-        <div>
-          {t('team.contrib.todayEarnings')}:
-          <span className="text-red-500"> {contribStats.todayEarnings.toFixed(6)} USDT</span>
-        </div>
+      <div className="level-title">
         <div>
           {t('team.contrib.totalEarnings')}:
           <span> {contribStats.totalEarnings.toFixed(6)} USDT</span>
@@ -218,11 +214,14 @@ export default function MyTeamPage() {
       </div>
     )}
 
+
+
+
     {/* 2. Period 필터 (새 줄) */}
-    <div className="mb-4 flex items-center">
-      <label className="mr-2 text-yellow-200">{t('team.filter.period')}</label>
+    <div className="level-title ">
+      <label className="level-title">{t('team.filter.period')}</label>
       <select
-        className="bg-[#2c1f0f] text-yellow-100 p-2 rounded"
+        className="level-hierarchy"
         value={period}
         onChange={e => setPeriod(e.target.value)}
       >
@@ -255,7 +254,7 @@ export default function MyTeamPage() {
                   </tbody>
                 </table>
               ) : (
-                <p className="text-center text-yellow-300">{t('team.noRecords')}</p>
+                <div className="data-box-container-m">{t('team.noRecords')}</div>
               )
             }
           </>

@@ -145,6 +145,15 @@ router.post("/register", async (req, res) => {
        VALUES (?, ?, ?, 0, 0)`,
       [newUserId, account.address.base58, account.privateKey]
     );
+    // (10) 토큰 지갑 생성: token_wallets 테이블
+    //    - id 컬럼은 UUID()
+    //    - balance, locked_amount 은 0
+    await db.query(
+      `INSERT INTO token_wallets
+         (id, user_id, balance, locked_amount, created_at, updated_at)
+       VALUES (UUID(), ?, 0, 0, NOW(), NOW())`,
+      [newUserId]
+    );
 
     return res.json({ success: true, message: "회원가입이 완료되었습니다.", referralCode });
   } catch (err) {

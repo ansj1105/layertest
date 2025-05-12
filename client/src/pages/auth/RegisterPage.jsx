@@ -109,7 +109,7 @@ export default function RegisterPage() {
           onClick={() => setMethod("email")}
           className={`v-token-r-m ${method === "email" ? "active-button" : "inactive-button"}`}
         >
-          {t("register.by_phone")}
+          {t("register.by_email")}
         </button>
           
         </div>
