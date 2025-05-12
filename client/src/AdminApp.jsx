@@ -16,6 +16,11 @@ import TeamManagementPage from './pages/admin/TeamManagementPage';
 import QuantLeaderboardPage from './pages/admin/QuantLeaderboardPage';
 import WalletAdminPage from './pages/admin/WalletAdminPage';
 import AdminWalletsPage from './pages/admin/AdminWalletsPage';
+import AdminWalletPage from './pages/admin/AdminWalletPage';
+import TokenSalesAdminPage from './pages/admin/TokenSalesAdminPage';
+import TokensAdminPage from './pages/admin/TokensAdminPage';
+import TokenLogsPage from './pages/admin/TokenLogsPage';
+
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
@@ -75,6 +80,7 @@ export default function AdminApp() {
           path="/quantrank"
           element={admin ? <QuantLeaderboardPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
         />
+
         <Route
           path="/content"
           element={admin ? <AdminContentManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
@@ -83,6 +89,19 @@ export default function AdminApp() {
           path="/invite-rewards"
           element={admin ? <AdminInviteRewardsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
         />
+                <Route
+          path="/token"
+          element={admin ? <TokensAdminPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+                        <Route
+          path="/tokensales"
+          element={admin ? <TokenSalesAdminPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+                                <Route
+          path="/tokenlogs"
+          element={admin ? <TokenLogsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+        
                         <Route
           path="/admin-rewards"
           element={admin ? <AdminJoinRewardsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
@@ -103,6 +122,11 @@ export default function AdminApp() {
     path="/wallet-deposits"
     element={admin ? <AdminWalletsPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
   />
+      <Route
+    path="/wallet-withdrawals"
+    element={admin ? <AdminWalletPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+  />
+
         <Route path="/users" element={admin ? <AdminUserManager /> : <Navigate to="/login" />} />
 
       </Routes>

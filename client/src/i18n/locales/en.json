@@ -152,6 +152,10 @@
 },
 "tokenPurchase": {
   "title":               "USC Token",
+  "available":               "USC available",
+  "inputUsdc":               "USC ",
+  "redeemTitle":               "Redeem",
+  "redeemSubmit":               "Submit",
   "quantity":               "quantity",
   "token":               "token PER",
   "totalCost":               "total USDT Cost",

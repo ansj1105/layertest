@@ -103,7 +103,10 @@ app.use('/api/admin/vip-levels', vipLevelRoutes);
 const securityRoutes = require('./routes/security');
 app.use('/api/security', securityRoutes);
 const { getNewVipLevel } = require('./routes/vipLevels'); // 함수 가져오기
+const tokensRouter = require('./routes/admintoken');
+app.use('/api/admin/tokens', tokensRouter);
 const walletRoutes = require('./routes/wallet');
+
 const withdrawalsRouter = require('./routes/withdrawals');
 app.use('/api/withdrawals', withdrawalsRouter);
 app.use('/api/wallet', walletRoutes);
