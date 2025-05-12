@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import OrderHistoryModal from "./OrderHistoryModal"
 import PurchaseModal from "./PurchaseModal";
 import LockupModal from "./LockupModal";
+
+
 export default function TokenPurchasePage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -25,29 +27,60 @@ export default function TokenPurchasePage() {
   const [showOrderHistory, setShowOrderHistory] = useState(false);
   const [modalSale, setModalSale] = useState(null);
   const [showLockup, setShowLockup] = useState(false);
-  // 1) 토큰 세일 목록
-  useEffect(() => {
-    axios.get("/api/token/active-token-sales").then(res => setSales(res.data));
-    axios.get("/api/token/my/wallet-details", { withCredentials: true })
-    .then(res => {
-       if (res.data.success) {
-        console.log(res.data.data);
-        setWallet(res.data.data.wallet);
-       }
-     })
-     .catch(console.error);
+    // Redeem 모달 상태
+    const [showRedeemModal, setShowRedeemModal] = useState(false);
+    const [redeemAmount, setRedeemAmount] = useState("");
+    const [redeemError, setRedeemError] = useState("");
+ 
+  // 페이지 진입 시 데이터 로드
+  const loadAll = async () => {
+    const [salesRes, walletRes, summaryRes] = await Promise.all([
+      axios.get("/api/token/active-token-sales"),
+      axios.get("/api/token/my/wallet-details", { withCredentials: true }),
+      
+      axios.get("/api/wallet/finance-summary", { withCredentials: true }),
+    ]);
+    setSales(salesRes.data);
+    if (walletRes.data.success) setWallet(walletRes.data.data.wallet);
+    const d = summaryRes.data.data;
+    setFinanceSummary({
+      fundBalance:   Number(d.fundBalance),
+      quantBalance:  Number(d.quantBalance),
+      depositFee:    parseFloat(d.depositFee),
+      withdrawFee:   parseFloat(d.withdrawFee),
+    });
+  };
 
-    axios.get("/api/wallet/finance-summary", { withCredentials: true })
-      .then(res => {
-        const d = res.data.data;
-        setFinanceSummary({
-          fundBalance:   Number(d.fundBalance),
-          quantBalance:  Number(d.quantBalance),
-          depositFee:    parseFloat(d.depositFee),
-          withdrawFee:   parseFloat(d.withdrawFee),
-        });
-      });
+  useEffect(() => {
+    loadAll().catch(console.error);
   }, []);
+
+  // Redeem 처리
+  const handleRedeem = async () => {
+    setRedeemError("");
+    const amt = parseFloat(redeemAmount);
+    if (isNaN(amt) || amt <= 0) {
+      return setRedeemError(t("tokenPurchase.errors.invalidAmount"));
+    }
+    const available = wallet.balance - wallet.locked_amount;
+    if (amt > available) {
+      return setRedeemError(t("tokenPurchase.errors.insufficientWallet"));
+    }
+
+    try {
+      // 1) 만료된 락업 언락
+      await axios.post("/api/token/my/unlock-expired-lockups", {}, { withCredentials: true });
+      // 2) 입력량만큼 Quant로 교환
+      await axios.post("/api/token/my/exchange-token-to-quant", { tokenAmount: amt }, { withCredentials: true });
+      alert(t("tokenPurchase.redeemSuccess"));
+      setShowRedeemModal(false);
+      setRedeemAmount("");
+      // 3) 데이터 리로드
+      await loadAll();
+    } catch {
+      setRedeemError(t("tokenPurchase.errors.redeemFail"));
+    }
+  };
 
   // Quant → Fund (“환전”)
   const handleQuantToFund = async () => {
@@ -181,9 +214,12 @@ export default function TokenPurchasePage() {
           >
             {t("tokenPurchase.deposit")}
           </button>
-          <button className="bg-yellow-700 rounded px-3 py-1">
-            {t("tokenPurchase.redeem")}
-          </button>
+          <button
+          onClick={() => setShowRedeemModal(true)}
+          className="bg-yellow-700 rounded px-3 py-1"
+        >
+          {t("tokenPurchase.redeem")}
+        </button>
         </div>
 
         <button
@@ -193,6 +229,41 @@ export default function TokenPurchasePage() {
           {t("tokenPurchase.orderDetails")}
         </button>
       </div>
+
+
+      
+      {/* ── Redeem 모달 ── */}
+      {showRedeemModal && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+          <div className="bg-[#2c1f0f] w-80 p-6 rounded-lg relative text-yellow-100">
+            <button
+              onClick={() => setShowRedeemModal(false)}
+              className="absolute top-3 right-3 text-gray-400"
+            >✕</button>
+            <h3 className="text-lg font-semibold mb-4">
+              {t("tokenPurchase.redeemTitle")}
+            </h3>
+            <div className="text-sm text-gray-300 mb-2">
+              {t("tokenPurchase.available")}{" "}
+              {(wallet.balance - wallet.locked_amount).toFixed(6)} USC
+            </div>
+            <input
+              type="number"
+              className="w-full bg-[#1a1109] p-2 rounded mb-2"
+              placeholder={t("tokenPurchase.inputUsdc")}
+              value={redeemAmount}
+              onChange={e => setRedeemAmount(e.target.value)}
+            />
+            {redeemError && <div className="text-red-400 mb-2">{redeemError}</div>}
+            <button
+              onClick={handleRedeem}
+              className="w-full bg-yellow-500 text-black py-2 rounded font-semibold"
+            >
+              {t("tokenPurchase.redeemSubmit")}
+            </button>
+          </div>
+        </div>
+      )}
            {/* ─── 주문 내역 모달 ─── */}
      {showOrderHistory && (
        <OrderHistoryModal onClose={() => setShowOrderHistory(false)} />

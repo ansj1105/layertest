@@ -6,7 +6,7 @@ export default function AdminNav({ onLogout }) {
   const [isQuantMenuOpen, setIsQuantMenuOpen] = useState(false);
   const [isRewardMenuOpen, setIsRewardMenuOpen] = useState(false);
   const [isWalletMenuOpen, setIsWalletMenuOpen] = useState(false);
-
+  const [isTokenMenuOpen, setIsTokenMenuOpen] = useState(false); // 토큰 메뉴
   const toggleUserMenu = () => setIsUserMenuOpen(prev => !prev);
   const toggleQuantMenu = () => setIsQuantMenuOpen(prev => !prev);
   const toggleRewardMenu = () => setIsRewardMenuOpen(prev => !prev);
@@ -86,7 +86,37 @@ export default function AdminNav({ onLogout }) {
         >
           📢 팝업 알림 관리
         </Link>
-
+ {/* 토큰 관리 메뉴 */}
+ <div className="mt-4">
+        <button
+          onClick={() => setIsTokenMenuOpen(open => !open)}
+          className="w-full text-left bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
+        >
+          🔗 토큰 관리 {isTokenMenuOpen ? "▲" : "▼"}
+        </button>
+        {isTokenMenuOpen && (
+          <div className="bg-yellow-100 border-t mt-1">
+            <Link
+              to="/token"
+              className="block px-4 py-2 hover:bg-yellow-200"
+            >
+              토큰
+            </Link>
+            <Link
+              to="/tokensales"
+              className="block px-4 py-2 hover:bg-yellow-200 border-t"
+            >
+              토큰 판매 관리
+            </Link>
+            <Link
+              to="/tokenlogs"
+              className="block px-4 py-2 hover:bg-yellow-200 border-t"
+            >
+              토큰 구매/환매 내역
+            </Link>
+          </div>
+        )}
+      </div>
         {/* 보상센터 메뉴 */}
         <div>
           <button
@@ -120,8 +150,11 @@ export default function AdminNav({ onLogout }) {
               <Link to="/wallet-deposits" className="block px-4 py-2 hover:bg-green-300">
                 입금 관리
               </Link>
-              <Link to="/wallet-withdrawals" className="block px-4 py-2 hover:bg-green-300 border-t">
+             <Link to="/wallet-deposits" className="block px-4 py-2 hover:bg-green-300">
                 출금 관리
+              </Link>
+              <Link to="/wallet-withdrawals" className="block px-4 py-2 hover:bg-green-300 border-t">
+                지갑 관리
               </Link>
               <Link to="/wallet-settings" className="block px-4 py-2 hover:bg-green-300 border-t">
                 출입금 수수료 설정
