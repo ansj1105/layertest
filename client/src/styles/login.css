@@ -76,24 +76,24 @@
 /* 하단 섹션 */
 .v-token1-l {
   width: 90%;
-  height: 55px;
+  min-height: 55px;            /* ✅ 최소 높이 고정 */
   margin-top: 10px;
   margin-bottom: 5px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  padding: 5px 16px;
   background: #191c29;
   border-radius: 13px;
   cursor: pointer;
   gap: 12px;
   color: #26ffe6;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
   border: 1.1px solid #1ad3b7 !important;
   box-shadow: 0 0 12px 2px #b8dfd9 !important;
-  padding-left: 16px; /* 왼쪽에서 16px 만큼 떨어지게 */
-  text-align: center;          /* 입력된 텍스트는 가운데 정렬 */
+  text-align: center;
+  flex-shrink: 0;              /* ✅ 크기 줄어드는 것 방지 */
 }
 
 .v-token1-l::placeholder {
@@ -118,6 +118,7 @@
 .login-button{
   width: 90%;
   height: 55px;
+  min-height: 55px;            /* ✅ 최소 높이 고정 */
   margin-top: 10px;
   margin-bottom: 25px;
   display: flex;
@@ -138,6 +139,7 @@
   border: 0.1px solid #1ad3b7 !important;
   box-shadow: 0 0 1px 1px #b8dfd9 !important;
   transition: background-color 0.3s ease;
+  flex-shrink: 0;              /* ✅ 크기 줄어드는 것 방지 */
 }
 
 .login-button:hover {
@@ -168,7 +170,7 @@
 
   
 .auth-links-l {
-  display: flex;
+
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
@@ -218,7 +220,7 @@
 
 
   .auth-links-l {
-    display: flex;
+
     flex-direction: row; /* 가로 정렬 */
     justify-content: center; /* 중앙 정렬 */
     align-items: center;
