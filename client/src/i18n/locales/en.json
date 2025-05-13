@@ -636,9 +636,9 @@
       "period":              "Period:"
     },
     "level": {
-      "A":                   "Level 1 (Direct)",
-      "B":                   "Level 2 (Indirect)",
-      "C":                   "Level 3"
+      "A":                   "Level A (1st)",
+      "B":                   "Level B (2nd)",
+      "C":                   "Level C (3rd)"
     },
     "period": {
       "today":               "Today",
