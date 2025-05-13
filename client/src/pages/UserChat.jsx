@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import '../styles/topnav.css';
 
-const socket = io("http://54.85.128.211:4000", {
+const socket = io("http://localhost:4000", {
   withCredentials: true
 });
 
