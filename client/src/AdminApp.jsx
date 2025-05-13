@@ -17,9 +17,11 @@ import QuantLeaderboardPage from './pages/admin/QuantLeaderboardPage';
 import WalletAdminPage from './pages/admin/WalletAdminPage';
 import AdminWalletsPage from './pages/admin/AdminWalletsPage';
 import AdminWalletPage from './pages/admin/AdminWalletPage';
+import AdminWithdrawalsPage from './pages/admin/AdminWithdrawalsPage';
 import TokenSalesAdminPage from './pages/admin/TokenSalesAdminPage';
 import TokensAdminPage from './pages/admin/TokensAdminPage';
 import TokenLogsPage from './pages/admin/TokenLogsPage';
+
 
 import axios from 'axios';
 
@@ -125,6 +127,10 @@ export default function AdminApp() {
       <Route
     path="/wallet-withdrawals"
     element={admin ? <AdminWalletPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+  />
+        <Route
+    path="/wallet-withdraw"
+    element={admin ? <AdminWithdrawalsPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
   />
 
         <Route path="/users" element={admin ? <AdminUserManager /> : <Navigate to="/login" />} />

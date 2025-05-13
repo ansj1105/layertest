@@ -225,7 +225,6 @@
             <Route path="/withdraw/process" element={<ProtectedRoute><WithdrawProcessingPage /></ProtectedRoute>} />
             <Route path="/withdraw/success" element={<ProtectedRoute><WithdrawSuccessPage /></ProtectedRoute>} />
             <Route path="/withdraw/failure" element={<ProtectedRoute><WithdrawFailurePage /></ProtectedRoute>} />
-            <Route path="/withdraw/failure" element={<ProtectedRoute><WithdrawFailurePage /></ProtectedRoute>} />
             <Route path="/quant-tutorial" element={<ProtectedRoute><QuantTutorialPage /></ProtectedRoute>} />
 
 

@@ -76,6 +76,7 @@
 },
 "common": {
   "faqTitle": "Common Questions",
+  "back" : "back",
   "problem1": {
     "question": "What is Funding Product and how do I earn?",
     "answer": "The financial management products are tools and solutions developed by the company to help users receive rewards quickly.\nBy staking digital assets on a blockchain network, users can earn rewards based on the POS (Proof of Stake) mechanism.\nIn this mechanism, users delegate their digital assets to a node, which then gains the right to perform actions like block creation and transaction packaging on the blockchain and receives rewards.\nUsers share the rewards obtained by the node in proportion to the number of staked positions."
@@ -150,6 +151,41 @@
   "tradeError": "Trade failed: ",
   "loading": "Loading..."
 },
+"history": {
+  "title": "Transaction History",
+  "back": "Back",
+  "loading": "Loading…",
+  "tabs": {
+    "all": "All",
+    "deposit": "Deposit",
+    "withdraw": "Withdrawal",
+    "pending": "Pending",
+    "success": "Success",
+    "failed": "Failed"
+  },
+  "table": {
+    "id": "ID",
+    "amount": "Amount",
+    "flow": "Flow",
+    "method": "Method",
+    "status": "Status",
+    "date": "Date"
+  },
+  "flow": {
+    "deposit": "Deposit",
+    "withdrawal": "Withdrawal"
+  },
+  "status": {
+    "pending": "Pending",
+    "processing": "Processing",
+    "success": "Success",
+    "failed": "Failed"
+  },
+  "noData": "No records found.",
+  "noDataAlt": "No data",
+  "errorLoad": "Failed to load history."
+}  ,
+
 "tokenPurchase": {
   "title":               "USC Token",
   "available":               "USC available",
@@ -219,6 +255,33 @@
   "funding": "Funding",
   "mine": "Mine"
 },
+
+  "withdraw": {
+    "title": "Withdraw USDT",
+    "addressLabel": "Withdrawal Address",
+    "addressPlaceholder": "TRC20 USDT Address",
+    "invalidAddress": "Invalid address.",
+    "validAddress": "Valid address.",
+    "amountLabel": "Amount to Withdraw",
+    "amountPlaceholder": "e.g. 10.5",
+    "feeRate": "Fee Rate",
+    "estimatedFee": "Estimated Fee",
+    "netAmount": "Net Amount",
+    "submitting": "Submitting…",
+    "submit": "Submit"
+  },
+  "common": {
+    "back": "Back"
+  },
+  "errors": {
+    "invalidAddress": "Please enter a valid address.",
+    "invalidAmount": "Please enter a valid withdrawal amount.",
+    "submitFailed": "Failed to submit withdrawal request."
+  },
+  "success": {
+    "submitted": "Withdrawal request submitted successfully."
+  }
+,
 "funding": {
   "active_projects": "Projects go on",
   "expired_projects": "Projects expired",

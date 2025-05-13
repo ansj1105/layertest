@@ -150,7 +150,7 @@ export default function AdminNav({ onLogout }) {
               <Link to="/wallet-deposits" className="block px-4 py-2 hover:bg-green-300">
                 입금 관리
               </Link>
-             <Link to="/wallet-deposits" className="block px-4 py-2 hover:bg-green-300">
+             <Link to="/wallet-withdraw" className="block px-4 py-2 hover:bg-green-300">
                 출금 관리
               </Link>
               <Link to="/wallet-withdrawals" className="block px-4 py-2 hover:bg-green-300 border-t">

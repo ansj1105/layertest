@@ -266,11 +266,47 @@
     },
     "loading": "로딩 중...",
     "noRecords": "내역이 없습니다."
-  }
+  },
+
+  "history": {
+    "title": "입출금 내역",
+    "back": "뒤로",
+    "loading": "로딩 중…",
+    "tabs": {
+      "all": "모두",
+      "deposit": "입금",
+      "withdraw": "출금",
+      "pending": "요청중",
+      "success": "성공",
+      "failed": "실패"
+    },
+    "table": {
+      "id": "ID",
+      "amount": "금액",
+      "flow": "구분",
+      "method": "방식",
+      "status": "상태",
+      "date": "일시"
+    },
+    "flow": {
+      "deposit": "입금",
+      "withdrawal": "출금"
+    },
+    "status": {
+      "pending": "검토 중",
+      "processing": "처리 중",
+      "success": "성공",
+      "failed": "실패"
+    },
+    "noData": "기록이 없습니다.",
+    "noDataAlt": "기록 없음",
+    "errorLoad": "내역을 불러오는 중 오류가 발생했습니다."
+  }  ,
   
-  ,
+
   "common": {
     "faqTitle": "일반적인 문제",
+    "back" : "뒤로",
     "problem1": {
       "question": "금융상품이란 무엇인가요? 수익은 어디서 얻나요?",
       "answer": "재무 관리 제품은 사용자가 신속하게 보상을 받을 수 있도록 돕기 위해 회사에서 만든 도구 및 제품입니다.\n블록체인 네트워크에 디지털 자산을 스테이킹하면 POS(Proof of Stake) 메커니즘을 기반으로 보상을 얻을 수 있습니다.\n이 메커니즘에서 사용자는 디지털 자산을 노드에 맡기고 노드는 블록체인에서 블록 생성, 패키지 거래 등의 권리를 행사하고 보상을 받습니다.\n사용자는 잠긴 포지션 수에 비례하여 노드에서 얻은 보상을 공유합니다."
@@ -538,6 +574,29 @@
         "title": "개인정보처리방침",
         "content": "1. **개요**\n\nUpstart(이하 “당사”)는 회원님의 개인정보 보호를 중요하게 생각합니다.\n\n2. **수집 항목**\n\n- **개인정보**: 이름, 이메일, 휴대폰 번호, 지갑 주소\n- **서비스 이용 정보**: 방문 페이지, 이용 기록\n\n3. **수집 목적**\n\n서비스 제공·개선, 회원 소통, 법적 의무 이행을 위해 개인정보를 사용합니다.\n\n4. **제3자 제공**\n\n회원 동의 없이 개인정보를 판매하지 않으며, 업무 위탁 시에는 철저히 보호합니다.\n\n5. **보안 대책**\n\n업계 표준 수준의 기술적·관리적 보호 조치를 통해 개인정보를 안전하게 관리합니다.\n\n6. **회원 권리**\n\n회원은 언제든지 개인정보 열람, 정정, 삭제를 요청할 수 있습니다.\n\n7. **정책 변경**\n\n본 방침은 개정될 수 있으며, 주요 변경 시 사이트를 통해 안내합니다."
       }
+    },
+    "withdraw": {
+      "title": "USDT 출금",
+      "addressLabel": "출금 주소",
+      "addressPlaceholder": "TRC20 USDT 주소",
+      "invalidAddress": "유효하지 않은 주소입니다.",
+      "validAddress": "유효한 주소입니다.",
+      "amountLabel": "출금 수량",
+      "amountPlaceholder": "예: 10.5",
+      "feeRate": "수수료율",
+      "estimatedFee": "예상 수수료",
+      "netAmount": "예상 수령액",
+      "submitting": "제출 중…",
+      "submit": "제출"
+    },
+
+    "errors": {
+      "invalidAddress": "유효한 주소를 입력해 주세요.",
+      "invalidAmount": "출금 수량을 올바르게 입력해 주세요.",
+      "submitFailed": "출금 요청에 실패했습니다."
+    },
+    "success": {
+      "submitted": "출금 요청이 성공적으로 접수되었습니다."
     },
     "profile": {
       "loading":             "⏳ 로딩 중...",
