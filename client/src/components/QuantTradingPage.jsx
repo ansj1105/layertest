@@ -254,7 +254,7 @@ const executeTrade = async () => {
   }
 };
   return (
-    <div className="page-wrapper">
+    <div className="page-wrapper-qq">
       {/* 뒤로가기 */}
       <div className="top-bar">
       {/* 뒤로가기 */}

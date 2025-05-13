@@ -1,16 +1,30 @@
-
+.flex-1{
+  position: relative;
+  max-width: 506px !important;
+  margin: 0 auto;
+  height: 100%;
+  flex-direction: column;
+  background-color: #0e0e11;
+  overflow: auto; /* 스크롤 활성화 */
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
 
 /* 내팀팀 */
 /* 전체 래퍼: 사이드바가 절대위치로 들어가도 475px 범위내 */
-.page-wrapper {
+.page-wrapper-qq {
   position: relative;
-  max-width: 506px;
+  max-width: 506px ;
   margin: 0 auto;
   height: 100%;
   display: flex;
   flex-direction: column;
   background-color: #0e0e11;
-  
+  overflow: auto; /* 스크롤 활성화 */
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 
@@ -30,7 +44,7 @@
   padding: 0 16px;
   z-index: 1000;
 }
-
+ 
 
 /* 회원들, 기여 */
 .flex-my {
@@ -192,7 +206,7 @@
 
 /* 하단 현황판 섹션션 */
 .referra-h {
-  width: 97%;
+  width: 95%;
   height: auto;
   margin: 8px auto;
   padding: 16px;
@@ -636,10 +650,23 @@
 
 
 @media screen and (max-width: 768px) {
-  .page-wrapper {
+
+  .page-wrappe-q {
+    position: relative;
+    max-width: 506px;
+    margin: 0 auto;
+    height: 100%;
     max-width: 100%;
-    padding: 0 12px;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: #0e0e11;
+    overflow: auto; /* 스크롤 활성화 */
+
+
   }
+
 
   .top-bar{
     width: 106% !important;
@@ -654,7 +681,7 @@
 
 
   .referra-jj {
-    width: 100%;
+    width: 97%;
     height: 90px;
 
 
@@ -681,7 +708,7 @@
 
 
   .referra-h {
-    width: 100%;
+    width: 95%;
     padding: 12px;
   }
 

@@ -15,30 +15,36 @@ html *::after {
   
 }
 
-.nav-body{
-  width: 506px;
-  border-top: 2px solid #1d1d27 !important;
+.nav-body-b {
+  position: fixed;                  /* ✅ 화면 기준으로 고정 */
+  bottom: 0;                        /* ✅ 하단에 붙이기 */
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-width: 500px;                /* ✅ 데스크탑용 제한 */
+  margin: 0 auto;
+  border-top: 2px solid #1d1d27;
   box-shadow: 0 -8px 12px -4px #b8dfd9;
   display: flex;
   align-items: center;
-  justify-content: center !important; /* ← 가운데 정렬 핵심 */
-  position: fixed;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  justify-content: center;
   z-index: 999;
+  box-sizing: border-box;
+  background-color: #1d1d27;       /* ✅ 배경 없으면 투명하게 겹쳐질 수 있음 */
+  height: 58px;                    /* ✅ 고정 높이 지정 (내용에 맞게 조정) */
 }
 
 
 
-.menu{
-  
+.menu-b{
+  width: 100%;
+  max-width: 100%;
   margin: 0;
   display: flex;
   /* Works well with 100% width  */
-  width: 100%;
   font-size: 0.9em;
-
+  padding: 0 12px;
+  box-sizing: border-box;
   position: relative;
   align-items: center;
   justify-content: center;
@@ -128,7 +134,7 @@ html *::after {
   clip-path: url(#menu);
   background-color: var(--bgColorMenu, #1d1d27);
   transition: transform 0.5s ease;
-  left: -12% !important; /* ✅ 모바일 기준 유지 (이미 잘 조정된 값) */
+  left: -8.8% !important; /* ✅ 모바일 기준 유지 (이미 잘 조정된 값) */
   transform-origin: center;
 }
 
@@ -175,30 +181,34 @@ gap: 4px;
 
 
   .nav-body {
-    width: 506px;
-    border-top: 2px solid #1d1d27 !important;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: 100%;             /* ✅ 모바일은 자동, 데스크탑은 max-width로 제한 */
+    max-width: 500px;
+    border-top: 2px solid #1d1d27 ;
     box-shadow: 0 -8px 12px -4px #b8dfd9;
     display: flex;
     align-items: center;
-    justify-content: center !important; /* ← 가운데 정렬 핵심 */
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    justify-content: center;
     z-index: 999;
+    box-sizing: border-box;
   }
 
   .menu {
     width: 100%;
     max-width: 100%;
     display: flex;
-    padding: 0;
     font-size: 0.68em;
     justify-content: space-around;
     align-items: center;
     background-color: var(--bgColorMenu);
     margin: 0;
     padding: 0 1em;
+    margin-left: 8px;
+    margin-right: 8px;
     position: relative;
     justify-content: center;
 
@@ -276,8 +286,9 @@ gap: 4px;
     clip-path: url(#menu);
     background-color: var(--bgColorMenu, #1d1d27);
     transition: transform 0.5s ease;
-    left: -7.2% !important ; /* ✅ PC 기준 유지 */
+    left: -9% !important ; /* ✅ PC 기준 유지 */
     transform-origin: center;
+
   }
 
 

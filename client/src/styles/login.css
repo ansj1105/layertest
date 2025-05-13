@@ -70,6 +70,9 @@
   padding-bottom: 2.5px;
   margin-top: 90px;
   margin-bottom: 60px;
+  min-width: 180px;     /* ✅ 최소 너비 고정 */
+  min-height: 70px;     /* ✅ 최소 높이 고정 */
+  flex-shrink: 0;       /* ✅ 축소되지 않게 */
 }
 
 
