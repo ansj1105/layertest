@@ -181,7 +181,7 @@
             </>
         )}
 
-        <div className="flex-1 overflow-y-auto  bg-white/80 text-black backdrop-blur-lg">
+        <div className="flex-1">
             <Routes>
             // ... Routes 내부
             <Route
@@ -224,6 +224,7 @@
             <Route path="/withdraw/history" element={<ProtectedRoute><WithdrawHistoryPage /></ProtectedRoute>} />
             <Route path="/withdraw/process" element={<ProtectedRoute><WithdrawProcessingPage /></ProtectedRoute>} />
             <Route path="/withdraw/success" element={<ProtectedRoute><WithdrawSuccessPage /></ProtectedRoute>} />
+            <Route path="/withdraw/failure" element={<ProtectedRoute><WithdrawFailurePage /></ProtectedRoute>} />
             <Route path="/withdraw/failure" element={<ProtectedRoute><WithdrawFailurePage /></ProtectedRoute>} />
             <Route path="/quant-tutorial" element={<ProtectedRoute><QuantTutorialPage /></ProtectedRoute>} />
 

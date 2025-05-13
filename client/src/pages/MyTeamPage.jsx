@@ -117,7 +117,7 @@ export default function MyTeamPage() {
 
   return (
     <ProtectedRoute>
-      <div className="page-wrapper">
+      <div className="page-wrapper-my">
         {/* 헤더 */}
         <div className="top-bar">
           <button onClick={() => history.back()} className="top-tran">←</button>
@@ -179,10 +179,10 @@ export default function MyTeamPage() {
 
             <div className="data-box-container-m">
               {team[filterLevel].map(u => (
-                <div key={u.id} className="data-card">
+                <div key={u.id} className="data-card-my">
                   <div>
-                    <div className="data-card-title">{u.name || u.email}</div>
-                    <div className="data-card-sub">
+                    <div className="data-card-my-title">{u.name || u.email}</div>
+                    <div className="data-card-my-sub">
                       {t('team.registered')}: {new Date(u.created_at).toLocaleDateString()}
                     </div>
                   </div>
@@ -234,15 +234,16 @@ export default function MyTeamPage() {
               </div>
             </div>
 
-           
+            
 
 
-            {contribLoading
-              ? <p className="text-center">{t('team.loading')}</p>
-              : contribList.length > 0 ? (
-                <table className="w-full table-auto text-xs bg-[#2c1f0f] rounded overflow-hidden">
+            {contribLoading ? (
+              <p className="text-center text-yellow-200 py-4">{t('team.loading')}</p>
+            ) : contribList.length > 0 ? (
+              <div className="overflow-x-auto">
+                <table className="data-box-container-m1">
                   <thead>
-                    <tr className="bg-[#3a270e]">
+                    <tr className="ta-11">
                       <th className="p-2">{t('team.table.account')}</th>
                       <th className="p-2">{t('team.table.level')}</th>
                       <th className="p-2">{t('team.table.time')}</th>
@@ -250,13 +251,27 @@ export default function MyTeamPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {contribList.map(renderContribRow)}
+                    {contribList.map((item, idx) => (
+                      <tr key={idx} className="ta-12">
+                        <td className="p-2">{item.account}</td>
+                        <td className="p-2">{item.level}</td>
+                        <td className="p-2">
+                          {new Date(item.time).toLocaleString()}
+                        </td>
+                        <td className="p-2">
+                          {item.earning.toLocaleString()} USC
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
-              ) : (
-                <div className="data-box-container-m">{t('team.noRecords')}</div>
-              )
-            }
+              </div>
+            ) : (
+              <div className="data-box-container-m no-data text-center text-gray-400 py-4">
+                {t('team.noRecords')}
+              </div>
+            )}
+            
           </>
         )}
       </div>

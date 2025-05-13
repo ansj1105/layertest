@@ -30,8 +30,8 @@ export default function BottomNav() {
       const isMobile = window.innerWidth <= 768;
   
       // ✅ 이동 거리와 보정 값 다르게 설정
-      const mobileStep = itemWidth * 0.95;    // 모바일에서는 더 많이 이동
-      const pcStep = itemWidth * 0.99;        // PC에서는 덜 이동
+      const mobileStep = itemWidth * 1.2;    // 모바일에서는 더 많이 이동
+      const pcStep = itemWidth * 1.2;        // PC에서는 덜 이동
       const correction = isMobile ? itemWidth * 0.42 : itemWidth / 2; // 중앙 정렬 보정
   
       setItemWidthPx(isMobile ? mobileStep : pcStep);
@@ -44,8 +44,8 @@ export default function BottomNav() {
   }, []);
 
   return (
-    <div className="nav-body">
-      <menu className="menu">
+    <div className="nav-body-b">
+      <menu className="menu-b">
         {navItems.map(({ to, key, label }, index) => (
           <NavLink
             key={to}

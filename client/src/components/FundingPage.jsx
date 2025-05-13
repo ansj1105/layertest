@@ -45,7 +45,7 @@ export default function FundingPage() {
       withdrawFee: data.withdrawFee
     };
   };
-
+ 
   // 프로젝트 목록 API
   const fetchProjects = async () => {
     const res = await axios.get("/api/wallet/projects", { withCredentials: true });
