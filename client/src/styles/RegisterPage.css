@@ -92,7 +92,7 @@
 
 /* 하단 섹션 */
 .v-token-r {
-  
+  min-height: 55px;            /* ✅ 최소 높이 고정 */
   width: 90%;
   height: 55px;
   margin-top: 10px;
@@ -111,6 +111,7 @@
   border: 1.1px solid #1ad3b7 !important;
   box-shadow: 0 0 12px 2px #b8dfd9 !important;
   padding-left: 16px; /* 왼쪽에서 16px 만큼 떨어지게 */
+  flex-shrink: 0;              /* ✅ 크기 줄어드는 것 방지 */
   
 
 }
@@ -406,7 +407,14 @@
   }
 
 
+.auth-links-r-t{
+  color: #ffd54f;
+}
 
+.auth-links-r-t:hover {
+  text-decoration: underline;
+  color: #7e7145; /* 조금 더 밝은 노란색으로 hover 효과 */
+}
 
   
 .auth-links-r {
@@ -421,7 +429,7 @@
 .auth-links-r span{
   color: #ffffff;
 }
-
+ 
 
 .auth-links-r a {
   text-decoration: none;

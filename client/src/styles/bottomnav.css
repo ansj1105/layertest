@@ -4,7 +4,7 @@ html {
   --bgColorMenu : #1d1d27;
   --duration: .7s;    
   
-
+ 
 }
 
 html *,
@@ -28,6 +28,7 @@ html *::after {
   transform: translateX(-50%);
   z-index: 999;
 }
+
 
 
 .menu{
@@ -120,18 +121,15 @@ html *::after {
 }
 
 .menu__border{
-  z-index: 0;
-  left: -12.5%;
-  bottom: 100%;
-  width: 8.8em;
-  height: 1.7em;
   position: absolute;
+  bottom: 100%;
+  width: 8.7em;
+  height: 1.8em;
   clip-path: url(#menu);
-  will-change: transform;
-  background-color: var(--bgColorMenu);
-  transition: transform var(--timeOut , var(--duration));
-  
-  
+  background-color: var(--bgColorMenu, #1d1d27);
+  transition: transform 0.5s ease;
+  left: -12% !important; /* ✅ 모바일 기준 유지 (이미 잘 조정된 값) */
+  transform-origin: center;
 }
 
 .svg-container {
@@ -177,21 +175,23 @@ gap: 4px;
 
 
   .nav-body {
-    width: 100vw;
-    bottom: 0;
-    left: 0;
-    transform: none;
-    border-radius: 0;
-    padding: 0;
-    height: 54px;
-    background-color: var(--bgColorMenu);
+    width: 506px;
+    border-top: 2px solid #1d1d27 !important;
+    box-shadow: 0 -8px 12px -4px #b8dfd9;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: center !important; /* ← 가운데 정렬 핵심 */
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
   }
 
   .menu {
     width: 100%;
     max-width: 100%;
+    display: flex;
     padding: 0;
     font-size: 0.68em;
     justify-content: space-around;
@@ -199,8 +199,14 @@ gap: 4px;
     background-color: var(--bgColorMenu);
     margin: 0;
     padding: 0 1em;
+    position: relative;
+    justify-content: center;
+
 
   }
+
+
+
 
   .menu__item {
     display: flex;
@@ -265,13 +271,13 @@ gap: 4px;
   .menu__border {
     position: absolute;
     bottom: 100%;
-    width: 9.2em;
-    height: 1.8em;
+    width: 9.8em;
+    height: 2.0em;
     clip-path: url(#menu);
     background-color: var(--bgColorMenu, #1d1d27);
     transition: transform 0.5s ease;
-    left: 0;
-    transform-origin: center center;
+    left: -7.2% !important ; /* ✅ PC 기준 유지 */
+    transform-origin: center;
   }
 
 

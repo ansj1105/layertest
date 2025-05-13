@@ -270,7 +270,7 @@
 
 
 .data-box-container {
-  max-height: 320px;               /* 약 80 * 4 줄 높이 */
+
   overflow-y: auto;
   padding-right: 8px;              /* 스크롤바와 내용 간 여백 */
   margin: 0 auto;

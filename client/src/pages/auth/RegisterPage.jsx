@@ -225,11 +225,11 @@ export default function RegisterPage() {
               */}
               
               <button
-                className="auth-links"
+                className="auth-links-r-t"
                 onClick={() => setOpenTerms(true)}
               />
               <button
-                className="auth-links"
+                className="auth-links-r-t"
                 onClick={() => setOpenPrivacy(true)}
               />
             </Trans>

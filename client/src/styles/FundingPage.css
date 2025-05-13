@@ -60,27 +60,10 @@
   margin-bottom: 12px; /* 아래 USDT 정보와 간격 */
 }
 
-/* 잔액 텍스트 */
-.funding-balance-label {
-  font-size: 20px;
-  color: #ffffff;
-  align-items: center;    /* ✅ 세로 중앙 정렬 */
-  font-weight: bold;
-  margin-bottom: 10px;
-}
 
 
 
 
-.funding-balance-amount {
-  text-align: center; /* ✅ USDT 금액 중앙 배치 */
-  font-size: 20px;
-  font-weight: bold;
-  display: flex;
-  margin-left: 20px !important;
-  color: #fef9c3; /* text-yellow-100 */
-  margin: 1px;
-}
 
 .funding-balance-amount-ll {
   display: flex;

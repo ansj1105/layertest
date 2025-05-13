@@ -6,7 +6,7 @@
   position: relative;
   max-width: 506px;
   margin: 0 auto;
-
+  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: #0e0e11;
@@ -195,8 +195,6 @@
 
 
 .data-box-container {
-  max-height: 320px;               /* 약 80 * 4 줄 높이 */
-
   padding-right: 8px;              /* 스크롤바와 내용 간 여백 */
   margin: 0 auto;
   width: 95%;
@@ -233,8 +231,8 @@
 
 /* 스크롤바 커스텀 (크롬/엣지/사파리) */
 .data-box-container-m {
-  max-height: 100% !important;
-  margin-bottom: 100px !important;
+  max-height: 350px ;
+  margin-bottom: 400px !important;
   padding-right: 8px;
   margin: 0 auto;
   width: 95%;
