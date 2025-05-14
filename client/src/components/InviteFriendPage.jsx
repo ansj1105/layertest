@@ -21,35 +21,11 @@ export default function InviteFriendPage() {
     fetchReferralCode();
   }, []);
 
-    const handleCopy = async (text) => {
-        // Clipboard API 지원 확인
-       if (navigator.clipboard && navigator.clipboard.writeText) {
-          try {
-            await navigator.clipboard.writeText(text);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-          } catch (err) {
-            console.error("클립보드 복사 실패:", err);
-         }
-        } else {
-          // 폴백: textarea + execCommand
-          const textarea = document.createElement("textarea");
-          textarea.value = text;
-          // 화면 밖으로 배치
-         textarea.style.position = "fixed";
-          textarea.style.top = "-9999px";
-          document.body.appendChild(textarea);
-          textarea.select();
-          try {
-            document.execCommand("copy");
-           setCopied(true);
-            setTimeout(() => setCopied(false), 2000);
-          } catch (err) {
-            console.error("폴백 복사 실패:", err);
-          }
-          document.body.removeChild(textarea);
-        }
-      };
+  const handleCopy = (text) => {
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   const fullUrl = `${DOMAIN}/register?ref=${referralCode}`;
 

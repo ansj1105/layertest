@@ -21,7 +21,7 @@ body::-webkit-scrollbar {
     max-width: 100%;
     overflow-x: hidden;
     scrollbar-width: none;
-    z-index: 100;
+    
 }
 
 .page-wrapper::-webkit-scrollbar, 

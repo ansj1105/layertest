@@ -1,40 +1,19 @@
-import '../styles/MainLanding.css';
-import PropTypes from 'prop-types';
-
-NotificationPopup.propTypes = {
-  list: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.any.isRequired,
-      title: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  onClose: PropTypes.func.isRequired,
-};
-
-
-
 export default function NotificationPopup({ list, onClose }) {
   return (
-    <div className="notification-overlay" onClick={onClose}>
-      <div
-        className="notification-popup"
-        onClick={(e) => e.stopPropagation()} // 모달 바깥 클릭 시만 닫히게
-      >
-        <div className="notification-header">
-          <h3 className="notification-title">시스템 알림</h3>
-          <button className="notification-close-btn" onClick={onClose}>
-            ✕
-          </button>
+    <div className="fixed top-24 left-1/2 transform -translate-x-1/2 bg-white rounded shadow-lg z-50 w-96 max-w-full p-4 space-y-4 border">
+      <h3 className="text-lg font-bold border-b pb-2">📢 시스템 알림</h3>
+      {list.map(item => (
+        <div key={item.id} className="border-b pb-2 mb-2">
+          <h4 className="font-semibold">{item.title}</h4>
+          <p className="text-sm text-gray-700">{item.content}</p>
         </div>
-
-        {list.map((item) => (
-          <div key={item.id} className="notification-item">
-            <h4>{item.title}</h4>
-            <p>{item.content}</p>
-          </div>
-        ))}
-      </div>
+      ))}
+      <button
+        className="w-full mt-2 bg-red-500 text-white py-1 rounded hover:bg-red-600"
+        onClick={onClose}
+      >
+        닫기
+      </button>
     </div>
   );
 }

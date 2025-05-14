@@ -164,19 +164,28 @@ export default function FundingPage() {
 
       {/* ─── 정보 모달 ─────────────────────────── */}
       {showInfoModal && (
-        <div className="info-modal-overlay" onClick={() => setShowInfoModal(false)}>
-          <div className="info-modal-content" onClick={e => e.stopPropagation()}>
-            <button className="info-modal-close" onClick={() => setShowInfoModal(false)}>
+        <div
+          className="fixed inset-0 z-50 flex justify-center bg-black/70 pt-[100px]"
+          onClick={() => setShowInfoModal(false)}
+        >
+          <div
+            className="bg-[#2c1f0f] text-yellow-100 p-6 rounded-lg w-[90%] max-w-xl mx-4 relative"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setShowInfoModal(false)}
+              className="absolute top-4 right-4 text-yellow-300 hover:text-white"
+            >
               ✕
             </button>
-            <h3 className="info-modal-title">
+            <h3 className="text-xl font-semibold mb-4">
               {t("funding.info.title")}
             </h3>
-            <div className="info-modal-body">
+            <div className="text-sm space-y-3 max-h-[60vh] overflow-y-auto leading-relaxed">
               <p>{t("funding.info.definition")}</p>
               <p>{t("funding.info.settlement")}</p>
-              <h4 className="info-modal-subtitle">{t("funding.info.tradingTitle")}</h4>
-              <ul className="info-modal-list">
+              <h4 className="font-semibold mt-4">{t("funding.info.tradingTitle")}</h4>
+              <ul className="list-disc list-inside space-y-1">
                 <li>{t("funding.info.trade1")}</li>
                 <li>{t("funding.info.trade2")}</li>
                 <li>{t("funding.info.trade3")}</li>
@@ -186,6 +195,7 @@ export default function FundingPage() {
           </div>
         </div>
       )}
+
       {/* ─── 금융 지갑 카드 ─────────────────────────────── */}
       <div className="funding-card">
         <div className="funding-balance-header">
@@ -227,21 +237,25 @@ export default function FundingPage() {
         </div>
 
         {showChargeModal && (
-          <div className="charge-modal-overlay">
-            <div className="charge-modal-box">
-              <h2 className="charge-modal-title">{t("funding.charge_modal.title")}</h2>
+          <div className="fixed top-0 left-0 w-full h-full bg-black/70 flex items-center justify-center z-50">
+            <div className="bg-[#1c1c1c] w-80 rounded-lg text-white p-4 relative">
+              <h2 className="text-center text-lg font-bold mb-4">
+                {t("funding.charge_modal.title")}
+              </h2>
               <div
-                className="charge-option"
-                onClick={() => alert(t("funding.charge_modal.usdt_alert"))}
+                className="flex items-center justify-between bg-[#333] px-4 py-3 rounded mb-2 cursor-pointer"
+                onClick={() =>
+                  alert(t("funding.charge_modal.usdt_alert"))
+                }
               >
-                <div className="charge-option-content">
-                  <span className="charge-option-symbol">$</span> USDT
+                <div className="flex items-center gap-2">
+                  <span className="text-green-300 font-bold">$</span> USDT
                 </div>
                 <span>&gt;</span>
               </div>
               <button
                 onClick={() => setShowChargeModal(false)}
-                className="charge-modal-close"
+                className="absolute top-3 right-3 text-gray-400"
               >
                 ✕
               </button>
@@ -274,44 +288,56 @@ export default function FundingPage() {
 
       {/*
         ─── Deposit 모달
-        ───────────────────────── 
+        ─────────────────────────
       */}
       {showDepositModal && (
-        <div className="deposit-modal-overlay" onClick={() => setShowDepositModal(false)}>
-          <div className="deposit-modal-box" onClick={e => e.stopPropagation()}>
-            <button className="deposit-modal-close" onClick={() => setShowDepositModal(false)}>✕</button>
-            <h3 className="deposit-modal-title">{t("funding.deposit_modal.title")}</h3>
+        <div
+          className="fixed inset-0 z-50 flex items-start justify-center bg-black/70 pt-[100px]"
+          onClick={() => setShowDepositModal(false)}
+        >
+          <div
+            className="bg-[#2c1f0f] text-yellow-100 p-6 rounded-lg w-[90%] max-w-sm relative"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-3 right-3 text-yellow-300 hover:text-white"
+              onClick={() => setShowDepositModal(false)}
+            >✕</button>
+            <h3 className="text-xl font-semibold mb-4">{t("funding.deposit_modal.title")}</h3>
 
             <input
               type="number"
               placeholder={t("funding.deposit_modal.amount_placeholder")}
-              className="deposit-modal-input"
+              className="w-full bg-[#1a1109] px-3 py-2 mb-2 rounded placeholder-yellow-500"
               value={depositAmt}
               onChange={e => setDepositAmt(e.target.value)}
             />
-
             <button
-              className="deposit-modal-max-btn"
+              className="text-xs text-yellow-300 underline mb-4"
               onClick={() => setDepositAmt(financeBalance.toString())}
             >
               {t("funding.deposit_modal.max_label")}
             </button>
 
-            <div className="deposit-modal-info">
-              <p>{t("funding.deposit_modal.fund_wallet", { balance: financeBalance.toFixed(6) })}</p>
+            <div className="text-sm space-y-1 mb-4">
+              <p>{t("funding.deposit_modal.fund_wallet", {
+                balance: financeBalance.toFixed(6)
+              })}</p>
               <p>{t("funding.deposit_modal.fee", {
                 fee: calcFee(depositAmt, depositFee).toFixed(6),
                 rate: depositFee
               })}</p>
               <p>{t("funding.deposit_modal.net_amount", {
                 net: calcNet(parseFloat(depositAmt) || 0, depositFee).toFixed(2),
-                remain: financeBalance - calcNet(parseFloat(depositAmt) || 0, depositFee).toFixed(2)
+                remain: financeBalance- calcNet(parseFloat(depositAmt) || 0, depositFee).toFixed(2)
               })}</p>
             </div>
 
-            {errorMsg && <p className="deposit-modal-error">{errorMsg}</p>}
-
-            <button onClick={handleDeposit} className="deposit-modal-submit">
+            {errorMsg && <p className="text-red-400 text-sm mb-2">{errorMsg}</p>}
+            <button
+              onClick={handleDeposit}
+              className="w-full bg-yellow-600 text-black py-2 rounded"
+            >
               {t("funding.deposit_modal.submit")}
             </button>
           </div>
@@ -323,41 +349,53 @@ export default function FundingPage() {
         ─────────────────────────
       */}
       {showWithdrawModal && (
-        <div className="withdraw-modal-overlay" onClick={() => setShowWithdrawModal(false)}>
-          <div className="withdraw-modal-box" onClick={e => e.stopPropagation()}>
-            <button className="withdraw-modal-close" onClick={() => setShowWithdrawModal(false)}>✕</button>
-            <h3 className="withdraw-modal-title">{t("funding.withdraw_modal.title")}</h3>
+        <div
+          className="fixed inset-0 z-50 flex items-start justify-center bg-black/70 pt-[100px]"
+          onClick={() => setShowWithdrawModal(false)}
+        >
+          <div
+            className="bg-[#2c1f0f] text-yellow-100 p-6 rounded-lg w-[90%] max-w-sm relative"
+            onClick={e => e.stopPropagation()}
+          >
+            <button
+              className="absolute top-3 right-3 text-yellow-300 hover:text-white"
+              onClick={() => setShowWithdrawModal(false)}
+            >✕</button>
+            <h3 className="text-xl font-semibold mb-4">{t("funding.withdraw_modal.title")}</h3>
 
             <input
               type="number"
               placeholder={t("funding.withdraw_modal.amount_placeholder")}
-              className="withdraw-modal-input"
+              className="w-full bg-[#1a1109] px-3 py-2 mb-2 rounded placeholder-yellow-500"
               value={withdrawAmt}
               onChange={e => setWithdrawAmt(e.target.value)}
             />
-
             <button
-              className="withdraw-modal-max-btn"
+              className="text-xs text-yellow-300 underline mb-4"
               onClick={() => setWithdrawAmt(quantBalance.toString())}
             >
               {t("funding.withdraw_modal.max_label")}
             </button>
 
-            <div className="withdraw-modal-info">
-              <p>{t("funding.withdraw_modal.quant_wallet", { balance: quantBalance.toFixed(6) })}</p>
+            <div className="text-sm space-y-1 mb-4">
+              <p>{t("funding.withdraw_modal.quant_wallet", {
+                balance: quantBalance.toFixed(6)
+              })}</p>
               <p>{t("funding.withdraw_modal.fee", {
                 fee: calcFee(withdrawAmt, withdrawFee).toFixed(6),
                 rate: withdrawFee
               })}</p>
               <p>{t("funding.withdraw_modal.net_amount", {
                 net: calcNet(parseFloat(withdrawAmt) || 0, withdrawFee).toFixed(2),
-                remain: quantBalance - calcNet(parseFloat(withdrawAmt) || 0, withdrawFee).toFixed(2)
+                remain: quantBalance- calcNet(parseFloat(withdrawAmt) || 0, withdrawFee).toFixed(2)
               })}</p>
             </div>
 
-            {errorMsg && <p className="withdraw-modal-error">{errorMsg}</p>}
-
-            <button onClick={handleWithdraw} className="withdraw-modal-submit">
+            {errorMsg && <p className="text-red-400 text-sm mb-2">{errorMsg}</p>}
+            <button
+              onClick={handleWithdraw}
+              className="w-full bg-yellow-600 text-black py-2 rounded"
+            >
               {t("funding.withdraw_modal.submit")}
             </button>
           </div>
