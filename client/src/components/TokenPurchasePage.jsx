@@ -241,59 +241,42 @@ export default function TokenPurchasePage() {
       
 
 
-      
-{/* ───추가된 중복복 ─── */}
 
-      {/* ─── 주문 내역 모달 ─── */}
+      {/* ── Redeem 모달 ── */}
       {showRedeemModal && (
-        <OrderHistoryModal onClose={() => setShowOrderHistory(false)} />
-      )}
-        {/* Quant → Fund 모달 */}
-        {showQuantToFundModal && (
-          <div className="modal-overlay">
-            <div className="modal-container">
-              <button
-                onClick={() => setShowQuantToFundModal(false)}
-                className="modal-close-btn"
-              >✕</button>
-
-
-              <h3 className="modal-title">
-                {t("tokenPurchase.redeemTitle")}
-              </h3>
-
-
-              <input
-                type="number"
-                className="modal-input"
-                placeholder={t("tokenPurchase.inputUsdt")}
-                value={transferAmount}
-                onChange={e => setTransferAmount(e.target.value)}
-              />
-
-              <div className="modal-text">
-                {t("tokenPurchase.available")}{" "}
-                {(wallet.balance - wallet.locked_amount).toFixed(6)} USC
-              </div>
-
-              {redeemError && <div className="modal-error">{redeemError}</div>}
-              
-              
-              <button
-                onClick={handleRedeem}
-                className="modal-submit-btn"
-              >
-                {t("tokenPurchase.redeemSubmit")}
-              </button>
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+          <div className="bg-[#2c1f0f] w-80 p-6 rounded-lg relative text-yellow-100">
+            <button
+              onClick={() => setShowRedeemModal(false)}
+              className="absolute top-3 right-3 text-gray-400"
+            >✕</button>
+            <h3 className="text-lg font-semibold mb-4">
+              {t("tokenPurchase.redeemTitle")}
+            </h3>
+            <div className="text-sm text-gray-300 mb-2">
+              {t("tokenPurchase.available")}{" "}
+              {(wallet.balance - wallet.locked_amount).toFixed(6)} USC
             </div>
+            <input
+              type="number"
+              className="w-full bg-[#1a1109] p-2 rounded mb-2"
+              placeholder={t("tokenPurchase.inputUsdc")}
+              value={redeemAmount}
+              onChange={e => setRedeemAmount(e.target.value)}
+            />
+            {redeemError && <div className="text-red-400 mb-2">{redeemError}</div>}
+            <button
+              onClick={handleRedeem}
+              className="w-full bg-yellow-500 text-black py-2 rounded font-semibold"
+            >
+              {t("tokenPurchase.redeemSubmit")}
+            </button>
           </div>
-
-
-
+        </div>
       )}
 
 
-{/* ─── 추가된상황황 ─── */}
+
 
 
 
