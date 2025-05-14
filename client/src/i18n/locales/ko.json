@@ -85,6 +85,7 @@
       "mine": "내 거"
     },
     "tokenPurchase": {
+      "redeemSuccess" : "코인 환전 성공",
       "price":               "USC 당 가격",
       "totalCost":               "총 USDT 소모",
       "yourBalance":               "USDT 지갑",

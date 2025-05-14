@@ -188,6 +188,7 @@
 
 "tokenPurchase": {
   "title":               "USC Token",
+   "redeemSuccess" : "redeemSuccess",
   "available":               "USC available",
   "inputUsdc":               "USC ",
   "redeemTitle":               "Redeem",
