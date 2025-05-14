@@ -11,7 +11,7 @@ NotificationPopup.propTypes = {
   ).isRequired,
   onClose: PropTypes.func.isRequired,
 };
-
+ 
 
 
 export default function NotificationPopup({ list, onClose }) {

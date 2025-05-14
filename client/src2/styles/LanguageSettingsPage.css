@@ -1,0 +1,228 @@
+.page-wrapper-rang {
+  position: relative;
+  max-width: 506px !important;
+  margin: 0 auto;
+  height: 100%;
+  flex-direction: column;
+  background-color: #0e0e11;
+  overflow: auto; /* 스크롤 활성화 */
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  z-index: 100;
+
+}
+  
+.project-list-container-rang {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 500px;
+  height: 100%;
+  background: #1d1d27;
+  display: flex;                /* ✅ Flexbox 적용 */
+  flex-direction: column;       /* ✅ 세로 방향 정렬 */
+  align-items: center;          /* ✅ 가로 가운데 정렬 */
+  padding: 0 16px;
+  justify-content: flex-start;  /* ✅ 위쪽 정렬 */
+  z-index: 100;
+  
+}
+
+.project-list-container-rang::-webkit-scrollbar {
+  width: 0px; /* Chrome, Safari, Opera */
+  height: 0px;
+  background: transparent; /* Optional, just in case */
+}
+
+
+
+.top-bar-rang {
+  margin-top: 0px;
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  width: 100%;
+  max-width: 500px;              /* ✅ container와 맞춤 */
+  height: 58.27px;
+  background: #1d1d27;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 1000;
+  margin-bottom: 8px;
+
+}
+
+
+
+/* 뒤로가기 버튼 */
+.language-back-button {
+  color: #ffffff;
+  font-size: 30px !important;
+  font-weight: bold !important;              /* 글자 굵게 */
+  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;            /* 세로 가운데 정렬 */
+  justify-content: center;        /* 가로 가운데 정렬 */
+  height: 100%;                   /* 부모 요소 높이 기준 */
+  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+}
+
+.language-back-button:hover {
+  color: #fffde3;
+}
+
+/* 제목 */
+.language-title {
+  font-weight: bold;
+  color: #ffffff;
+  text-align: left;
+  font-size: 20px;
+  width: 100%;
+  height: 40%;
+  align-items: center;            /* 세로 가운데 정렬 */
+  justify-content: center;        /* 가로 가운데 정렬 */
+  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+}
+
+/* 언어 리스트 전체 박스 */
+.language-list {
+  width: 97%;
+  background: #152221;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 8px auto 24px auto;
+  box-shadow: 0 0 1px 1px #b8dfd9;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;   /* ✅ 세로로 쌓이게 */
+  gap: 8px;
+  height: 740px;
+  max-height: 85%;        /* ✅ 적절한 높이 제한 */
+  overflow-y: auto;         /* ✅ 스크롤 생기게 */
+}
+
+.language-list1::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+
+
+
+
+
+
+/* 언어 항목 */
+.language-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  border-bottom: 1px solid #779290;
+}
+
+.language-item:hover {
+  background-color: #152221;
+}
+
+
+
+/* 활성화된 언어 */
+.language-item.active {
+  background-color: #377973;
+  display: flex;
+  align-items: center;
+}
+
+/* 개발 중 언어 비활성화 */
+.language-item.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+/* 언어 아이콘 및 텍스트 */
+.language-label {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  font-size: 0.875rem;
+}
+
+
+.language-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+}
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+
+  .page-wrapper-rang {
+    max-width: 100%;
+    padding: 0 12px;
+    margin-bottom: 80px;
+  }
+
+  .project-list-container-rang {
+    max-width: 100%;
+    padding: 0 12px;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .top-bar-rang {
+    max-width: 100%;
+    height: 54px;
+    padding: 0 12px;
+    font-size: 16px;
+  }
+
+  .language-back-button {
+    font-size: 22px !important;
+  }
+
+  .language-title {
+    font-size: 18px;
+    height: auto;
+    margin-top: 6px;
+    text-align: center;
+  }
+
+  .language-list {
+    width: 100%;
+    max-height: 85%;
+    padding: 12px;
+    font-size: 14px;
+    overflow-y: auto;
+  }
+
+  .language-item {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .language-label {
+    gap: 1rem;
+    font-size: 14px;
+  }
+
+  .language-check {
+    width: 20px;
+    height: 20px;
+  }
+}
