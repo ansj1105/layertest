@@ -36,7 +36,7 @@ export default function OrderHistoryModal({ onClose }) {
           <h3 className="order-modal-title">나의 주문 및 환매 내역</h3>
           <button onClick={onClose} className="order-modal-close-btn">✕</button>
         </div>
-
+ 
 
         {/* 모달 제목 */}
         
