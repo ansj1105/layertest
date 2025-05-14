@@ -4,7 +4,8 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ChevronDown, ChevronUp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
+import '../styles/TaskCenterPage.css';
+import '../styles/topbar.css';
 export default function TaskCenterPage() {
   const { t } = useTranslation();
   const nav = useNavigate();
@@ -53,55 +54,56 @@ export default function TaskCenterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
+    <div className="page-wrapper-task">
       {/* Header */}
-      <div className="flex items-center mb-4">
-        <button onClick={()=>nav(-1)} className="mr-2">
-          <ArrowLeft size={24} className="text-yellow-200"/>
+      <div className="top-bar">
+        <button onClick={() => nav(-1)} className="top-tran">
+          <ArrowLeft size={24} className="back-button-icon" />
         </button>
-        <h1 className="text-xl font-semibold">{t('task.title')}</h1>
+        <h1 className="top-h-text">{t('task.title')}</h1>
       </div>
 
-      {/*** 초대 보상 영역 ***/}
+      {/* 초대 보상 영역 */}
       <div
         onClick={() => setInviteOpen(o => !o)}
-        className="flex justify-between items-center p-4 bg-[#2c1f0f] rounded mb-0 cursor-pointer"
+        className="invite-toggle-box"
       >
-        <span className="font-medium">{t('task.invite_reward.title')}</span>
-        {inviteOpen ? <ChevronUp/> : <ChevronDown/>}
+        <span className="invite-toggle-title">{t('task.invite_reward.title')}</span>
+        {inviteOpen ? <ChevronUp /> : <ChevronDown />}
       </div>
+
       {/* 설명문구: 토글 전/후 항상 보임 */}
-      <p className="p-4 bg-[#2c1f0f] rounded-b mb-6 text-sm text-yellow-300">
+      <p className="invite-reward-description">
         {t('task.invite_reward.description')}
       </p>
       {inviteOpen && (
-        <div className="space-y-2 mb-8">
+        <div className="invite-reward-list">
           {inviteRewards.map(r => (
-            <div key={r.id} className="flex justify-between items-center p-3 bg-[#3a270e] rounded">
+            <div key={r.id} className="invite-reward-card">
               <div>
-                <p className="text-sm">
+                <p className="invite-reward-text">
                   {t('task.invite_reward.required', {
                     level: r.level,
                     required: r.required
                   })}
                 </p>
-                <p className="text-xs text-yellow-300">
+                <p className="invite-reward-subtext">
                   {t('task.invite_reward.reward', { amount: r.amount })}
                 </p>
-                <p className="text-xs text-yellow-300">
+                <p className="invite-reward-subtext">
                   ({r.count}/{r.required})
                 </p>
               </div>
               <button
                 disabled={r.claimed || r.count < r.required}
-                onClick={()=>claimInvite(r.id)}
-                className={`py-1 px-3 rounded text-sm font-semibold
-                  ${r.claimed
-                    ? 'bg-gray-600 text-gray-300'
+                onClick={() => claimInvite(r.id)}
+                className={`invite-reward-button ${
+                  r.claimed
+                    ? 'reward-btn-claimed'
                     : r.count < r.required
-                      ? 'bg-gray-700 text-gray-500 cursor-not-allowed'
-                      : 'bg-yellow-600 text-black'
-                  }`}
+                      ? 'reward-btn-disabled'
+                      : 'reward-btn-active'
+                }`}
               >
                 {r.claimed
                   ? t('task.invite_reward.claimed')
@@ -113,32 +115,31 @@ export default function TaskCenterPage() {
       )}
 
       {/*** 가입 보너스 영역 ***/}
-      <div className="p-4 bg-[#2c1f0f] rounded mb-2">
-        <div className="flex justify-between items-center">
-          <span className="font-medium">{t('task.join_reward.title')}</span>
-          {/* 수령 가능 횟수 표시: 0/1 또는 1/1 */}
+      <div className="join-reward-container">
+        <div className="join-reward-header">
+          <span className="join-reward-title">{t('task.join_reward.title')}</span>
           {joinRewards.map(jr => (
-            <span key={jr.id} className="text-sm text-yellow-300">
-              ({ jr.claimed ? 1 : 0 }/1)
+            <span key={jr.id} className="join-reward-count">
+              ({jr.claimed ? 1 : 0}/1)
             </span>
           ))}
         </div>
-        <p className="mt-1 text-sm text-yellow-300">
-          {joinRewards.map(jr => 
+
+        <p className="join-reward-description">
+          {joinRewards.map(jr =>
             t('task.join_reward.description', { amount: jr.amount })
           )}
         </p>
-        <div className="mt-3 flex justify-end">
+
+        <div className="join-reward-actions">
           {joinRewards.map(jr => (
             <button
               key={jr.id}
               disabled={jr.claimed}
-              onClick={()=>claimJoin(jr.id)}
-              className={`py-1 px-3 rounded text-sm font-semibold
-                ${jr.claimed
-                  ? 'bg-gray-600 text-gray-300'
-                  : 'bg-yellow-600 text-black'
-                }`}
+              onClick={() => claimJoin(jr.id)}
+              className={`join-reward-button ${
+                jr.claimed ? 'reward-btn-disabled' : 'reward-btn-active'
+              }`}
             >
               {jr.claimed
                 ? t('task.join_reward.claimed')

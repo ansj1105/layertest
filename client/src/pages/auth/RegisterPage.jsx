@@ -214,7 +214,7 @@ export default function RegisterPage() {
               login
             </Link>
           </div>
-
+ 
       
           {/* 약관 동의 */}
           <div className="auth-links-r">
@@ -240,22 +240,28 @@ export default function RegisterPage() {
       {/* ─── 약관 팝업 ─── */}
       {openTerms && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+          className="terms-modal-overlay"
           onClick={() => setOpenTerms(false)}
         >
+          
           <div
-            className="bg-[#2c1f0f] text-yellow-100 p-6 rounded max-w-lg w-full mx-4 relative"
+            className="terms-modal"
             onClick={e => e.stopPropagation()}
           >
             <button
-              className="absolute top-2 right-2 text-yellow-300"
+              className="terms-close-btn"
               onClick={() => setOpenTerms(false)}
             >
               <CloseIcon size={20} />
             </button>
-            <h2 className="text-xl font-semibold mb-4">{t("agreement.terms.title")}</h2>
-            <div className="text-sm whitespace-pre-line leading-relaxed max-h-60 overflow-y-auto">
-              {t("agreement.terms.content")}
+            <h2 className="terms-title">{t("agreement.terms.title")}</h2>
+            {/* 줄바꿈 적용 */}
+            <div className="terms-content">
+              {t("agreement.terms.content")
+                .split('\n')
+                .map((line, idx) => (
+                  <p key={idx}>{line}</p>
+                ))}
             </div>
           </div>
         </div>
@@ -264,22 +270,27 @@ export default function RegisterPage() {
       {/* ─── 개인정보 팝업 ─── */}
       {openPrivacy && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+          className="privacy-modal-overlay"
           onClick={() => setOpenPrivacy(false)}
         >
           <div
-            className="bg-[#2c1f0f] text-yellow-100 p-6 rounded max-w-lg w-full mx-4 relative"
+            className="privacy-modal"
             onClick={e => e.stopPropagation()}
           >
             <button
-              className="absolute top-2 right-2 text-yellow-300"
+              className="privacy-close-btn"
               onClick={() => setOpenPrivacy(false)}
             >
               <CloseIcon size={20} />
             </button>
-            <h2 className="text-xl font-semibold mb-4">{t("agreement.privacy.title")}</h2>
-            <div className="text-sm whitespace-pre-line leading-relaxed max-h-60 overflow-y-auto">
-              {t("agreement.privacy.content")}
+            <h2 className="privacy-modal-title">{t("agreement.privacy.title")}</h2>
+            {/* 줄바꿈 적용 */}
+            <div className="privacy-modal-content">
+              {t("agreement.terms.content")
+                .split('\n')
+                .map((line, idx) => (
+                  <p key={idx}>{line}</p>
+                ))}
             </div>
           </div>
         </div>

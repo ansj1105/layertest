@@ -2,7 +2,9 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { LANGUAGES } from '../i18n/languages';
-
+import '../styles/topbar.css';
+import '../styles/LanguageSettingsPage.css';
+import { Check, Lock } from "lucide-react"; // 또는 Heroicons 등 사용 가능
 export default function LanguageSettingsPage() {
   const { i18n } = useTranslation();
   const current = i18n.language;
@@ -16,39 +18,48 @@ export default function LanguageSettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
-      <button
-        className="flex items-center space-x-1 mb-4 text-yellow-200 hover:text-yellow-100"
-        onClick={() => window.history.back()}
-      >
-        ← 뒤로
-      </button>
-      <h2 className="text-center text-xl font-semibold mb-6">언어 설정</h2>
+  <div className="page-wrapper-rang">
+    <div className="project-list-container-rang">
+      {/* 상단 */}
 
-      <ul className="divide-y divide-yellow-700 bg-[#2c1f0f] rounded-lg overflow-hidden">
-        {LANGUAGES.map((lang) => {
-          const isActive = current.startsWith(lang.code);
-          return (
-            <li
-              key={lang.code}
-              className={`
-                flex items-center justify-between px-4 py-3 cursor-pointer
-                ${isActive ? 'bg-yellow-800' : 'hover:bg-yellow-900'}
-                ${!lang.implemented ? 'opacity-50 cursor-not-allowed' : ''}
-              `}
-              onClick={() => handleChange(lang)}
-            >
-              <div className="flex items-center space-x-3">
-                <span className="text-2xl">{lang.flag}</span>
-                <span className="text-sm">{lang.label}</span>
-              </div>
-              <div className="text-sm">
-                {isActive ? '✔️' : lang.implemented ? '' : '개발중'}
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="top-bar-rang">
+        <button className="language-back-button" onClick={() => window.history.back()}>
+          ←
+        </button>
+        <h2 className="language-title">언어 설정</h2>
+      </div>
+        <ul className="language-list">
+          {LANGUAGES.map((lang) => {
+            const isActive = current.startsWith(lang.code);
+            const isDisabled = !lang.implemented;
+
+            return (
+              <li
+                key={lang.code}
+                className={`
+                  language-item
+                  ${isActive ? 'active' : ''}
+                  ${isDisabled ? 'disabled' : ''}
+                `}
+                onClick={() => !isDisabled && handleChange(lang)}
+              >
+                <div className="language-label">
+                  <span className="text-2xl">{lang.flag}</span>
+                  <span>{lang.label}</span>
+                </div>
+                <div className="language-check">
+                  {isActive ? (
+                    <Check className="w-6 h-6 text-yellow-400" />
+                  ) : isDisabled ? (
+                    <Lock className="w-4 h-4 text-gray-500" />
+                  ) : null}
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
+
   );
 }

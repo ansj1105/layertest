@@ -2,6 +2,9 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Trash2, ArrowLeft, Mail, MailOpen,ArrowLeftIcon } from 'lucide-react';
+import '../styles/topbar.css';
+import '../styles/SystemNotices.css';
+
 
 export default function SystemNotices() {
   const [tab, setTab]         = useState('notices'); // 'notices' | 'inbox'
@@ -88,65 +91,57 @@ export default function SystemNotices() {
   const list = tab === 'notices' ? notices : inbox;
 
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100">
-       <div className="p-4">
-      <h2 className="text-center text-xl font-semibold mb-4">메시지 센터</h2>
-      <button
-        onClick={() => window.history.back()}
-        className="flex items-center space-x-1 mb-4 text-yellow-200 hover:text-yellow-100"
-      >
-        <ArrowLeftIcon size={20} />
-        <span>뒤로</span>
-      </button>
-      {/* 탭 */}
-      <div className="flex mb-2 border-b border-yellow-400">
+    <div className="page-wrapper-mass">
+      <div className="top-bar">
+
+        <button onClick={() => window.history.back()} className="top-tran-sys">
+          <ArrowLeftIcon size={24} />
+        </button>
+        <h2 className="top-h-text-sys">메시지 센터</h2>
+      </div>  
+
+      <div className="tab-bar">
         <button
-          className={`flex-1 py-2 ${tab==='notices'
-            ? 'border-b-2 border-yellow-400 text-yellow-100'
-            : 'text-yellow-300'}`}
-          onClick={()=>setTab('notices')}
-        >공고</button>
+          onClick={() => setTab('notices')}
+          className={`tab-button ${tab === 'notices' ? 'active-button' : 'inactive-button'}`}
+        >
+          공고
+        </button>
         <button
-          className={`flex-1 py-2 ${tab==='inbox'
-            ? 'border-b-2 border-yellow-400 text-yellow-100'
-            : 'text-yellow-300'}`}
-          onClick={()=>setTab('inbox')}
-        >시스템 알림</button>
+          onClick={() => setTab('inbox')}
+          className={`tab-button ${tab === 'inbox' ? 'active-button' : 'inactive-button'}`}
+        >
+          시스템 알림
+        </button>
       </div>
 
       {/* 리스트 */}
-      <div className="space-y-2 mb-16">
+      <div className="message-list">
         {list.map(item => (
           <div
             key={item.id}
-            className={`
-              flex justify-between items-start p-3 rounded cursor-pointer
-              ${(tab==='inbox' && !item.is_read) || (tab==='notices' && !item.is_read)
-                ? 'bg-yellow-800'
-                : 'bg-yellow-900'
-              }
-            `}
+            className={`message-item ${!item.is_read ? 'unread' : 'read'}`}
             onClick={() => {
-              if (tab==='notices') markNoticeRead(item);
-              else               markInboxRead(item);
+              if (tab === 'notices') markNoticeRead(item);
+              else markInboxRead(item);
               setDetail(item);
             }}
           >
-            <div className="flex items-center">
+            <div className="message-content">
               {item.is_read
-                ? <MailOpen className="mr-2 text-yellow-300" size={18}/>
-                : <Mail     className="mr-2 text-yellow-300" size={18}/>
+                ? <MailOpen className="message-icon" size={18} />
+                : <Mail className="message-icon" size={18} />
               }
               <div>
-                <p className="text-sm font-medium">{item.title || item.content}</p>
-                <span className="text-xs text-yellow-300">
+                <p className="message-title">{item.title || item.content}</p>
+                <span className="message-date">
                   {new Date(item.created_at).toLocaleString()}
                 </span>
               </div>
             </div>
             <Trash2
               size={16}
-              className="ml-2 text-yellow-300 hover:text-red-500"
+              className="message-delete"
               onClick={e => {
                 e.stopPropagation();
                 deleteItem(item.id, tab);
@@ -155,37 +150,36 @@ export default function SystemNotices() {
           </div>
         ))}
       </div>
-      </div>
+
       {/* 하단 버튼 */}
-      <div className="fixed bottom-25  left-0 right-0 flex">
-        <button
-          onClick={deleteAll}
-          className="flex-1 bg-green-600 py-2 text-black"
-        >모두 삭제</button>
-        <button
-          onClick={markAllRead}
-          className="flex-1 bg-green-600 py-2 text-black"
-        >모두 읽기</button>
+      <div className="bottom-action-bar">
+        <button onClick={deleteAll} className="bottom-action-btn">
+          모두 삭제
+        </button>
+        <button onClick={markAllRead} className="bottom-action-btn">
+          모두 읽기
+        </button>
       </div>
 
       {/* 상세 보기 오버레이 */}
       {detail && (
-        <div className="fixed inset-0 bg-black/75 z-50">
-          <div className="flex items-center bg-[#2c1f0f] p-3">
-            <button
-              onClick={()=>setDetail(null)}
-              className="text-yellow-100 hover:text-white mr-2"
+        <div className="detail-overlay">
+          <div className="detail-header">
+          <button
+              onClick={() => setDetail(null)}
+              className="detail-back-btn"
             >
-              <ArrowLeft size={24}/>
+              <ArrowLeft size={24} />
             </button>
-            <span className="text-yellow-100 text-lg font-semibold">세부</span>
+            <span className="detail-title">세부</span>
+
           </div>
-          <div className="p-4 bg-[#3a270e] text-yellow-100 h-full overflow-y-auto">
-            <h1 className="text-xl font-semibold mb-2">{detail.title}</h1>
-            <span className="text-xs text-yellow-300 mb-4 block">
+          <div className="detail-body">
+            <h1>{detail.title}</h1>
+            <span className="detail-date">
               {new Date(detail.created_at).toLocaleString()}
             </span>
-            <p className="whitespace-pre-wrap leading-relaxed">
+            <p className="detail-content">
               {detail.body || detail.content}
             </p>
           </div>
