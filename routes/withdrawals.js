@@ -598,7 +598,7 @@ router.put('/admin/wallet-settings', async (req, res) => {
   if (
     deposit_fee_rate == null ||
     withdraw_fee_rate == null ||
-    //token_to_quant_rate == null ||
+    token_to_quant_rate == null ||
     !['auto','manual'].includes(auto_approve)
   ) {
     return res.status(400).json({ success: false, error: 'Missing or invalid fields' });

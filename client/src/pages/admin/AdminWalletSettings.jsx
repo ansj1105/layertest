@@ -10,6 +10,7 @@ export default function AdminWalletSettings({ onLogout }) {
     withdraw_fee_rate: '',
     real_withdraw_fee: '',
     auto_approve: 'auto',
+    token_to_quant_rate: ''
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -21,10 +22,11 @@ export default function AdminWalletSettings({ onLogout }) {
       const data = res.data.data || {};
       setSettings(data);
       setForm({
-        deposit_fee_rate: data.deposit_fee_rate ?? '',
-        withdraw_fee_rate: data.withdraw_fee_rate ?? '',
-        real_withdraw_fee: data.real_withdraw_fee ?? '',
-        auto_approve: data.auto_approve || 'auto',
+        deposit_fee_rate:    data.deposit_fee_rate ?? '',
+        withdraw_fee_rate:   data.withdraw_fee_rate ?? '',
+        real_withdraw_fee:   data.real_withdraw_fee ?? '',
+        auto_approve:        data.auto_approve || 'auto',
+        token_to_quant_rate: data.token_to_quant_rate ?? ''
       });
     } catch (err) {
       console.error('설정 로드 실패', err);
@@ -39,7 +41,7 @@ export default function AdminWalletSettings({ onLogout }) {
   }, []);
 
   const handleChange = (key, value) => {
-    setForm(f => ({ ...f, [key]: value }));
+    setForm(prev => ({ ...prev, [key]: value }));
   };
 
   const handleSubmit = async () => {
@@ -48,10 +50,11 @@ export default function AdminWalletSettings({ onLogout }) {
       await axios.put(
         '/api/withdrawals/admin/wallet-settings',
         {
-          deposit_fee_rate: parseFloat(form.deposit_fee_rate),
-          withdraw_fee_rate: parseFloat(form.withdraw_fee_rate),
-          real_withdraw_fee: parseFloat(form.real_withdraw_fee),
-          auto_approve: form.auto_approve,
+          deposit_fee_rate:    parseFloat(form.deposit_fee_rate),
+          withdraw_fee_rate:   parseFloat(form.withdraw_fee_rate),
+          real_withdraw_fee:   parseFloat(form.real_withdraw_fee),
+          auto_approve:        form.auto_approve,
+          token_to_quant_rate: parseFloat(form.token_to_quant_rate)
         },
         { withCredentials: true }
       );
@@ -111,6 +114,21 @@ export default function AdminWalletSettings({ onLogout }) {
               />
               <p className="text-sm text-gray-500 mt-1">
                 예: 0.0050 = 0.5%
+              </p>
+            </div>
+
+            {/* token to quant rate */}
+            <div className="mb-4">
+              <label className="block mb-1 font-medium">토큰 → 정량 환율</label>
+              <input
+                type="number"
+                step="0.000001"
+                value={form.token_to_quant_rate}
+                onChange={e => handleChange('token_to_quant_rate', e.target.value)}
+                className="w-full border px-3 py-2 rounded"
+              />
+              <p className="text-sm text-gray-500 mt-1">
+                예: 1.25
               </p>
             </div>
 

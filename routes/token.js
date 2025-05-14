@@ -711,6 +711,11 @@ router.post("/my/exchange-token-to-quant", async (req, res, next) => {
         WHERE id = ?`,
       [newTokenBalance, tokenWallet.id]
     );
+// 6) wallets.quant_balance 증가
+if (isNaN(newQuantBalance)) {
+  console.error("❌ newQuantBalance가 NaN입니다. 계산 로직 확인 필요.");
+  return res.status(400).json({ success: false, error: "계산된 잔액이 잘못되었습니다." });
+}
 
     // 6) wallets.quant_balance 증가
     await db.query(
