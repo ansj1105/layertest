@@ -185,7 +185,7 @@ export default function RegisterPage() {
           <input
             type="text"
             placeholder={t("register.referral")}
-            className="v-token-r"
+            className="v-token-r-ex"
             value={form.referral}
             onChange={e => setForm(f => ({ ...f, referral: e.target.value.toUpperCase() }))}
           />
