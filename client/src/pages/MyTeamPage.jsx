@@ -253,7 +253,7 @@ export default function MyTeamPage() {
                   <tbody>
                     {contribList.map((item, idx) => (
                       <tr key={idx} className="ta-12">
-                        <td className="p-2">{item.account}</td>
+                        <td className="p-2">{item.user_name}</td>
                         <td className="p-2">{item.level}</td>
                         <td className="p-2">
                           {new Date(item.time).toLocaleString()}
