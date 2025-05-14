@@ -25,6 +25,7 @@
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
+  z-index: 100;
 }
 
 
@@ -649,6 +650,177 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 오버레이 */
+.history-modal-overlay {
+  width: 100%;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 100px;
+  z-index: 99999;
+  z-index: 1050;
+}
+
+/* 모달 박스 */
+.history-modal-box {
+  background-color: #0e1817;
+  max-width: 498px;
+  width: 430px;
+  color: #fef9c3;
+  margin-bottom: 24px;
+  margin: 8px auto;
+  border-radius: 8px;
+  max-width: 640px;
+  padding: 13px;
+  flex-direction: row;     /* ✅ 가로 배열 */
+  align-items: center;    /* ✅ 세로 중앙 정렬 */
+  justify-content: space-between; /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
+  gap: 16px;
+  margin-bottom: 13px;
+  box-shadow: 0 0 4px 2px #b8dfd9;
+  height: 85%;
+}
+
+/* 상단 타이틀 영역 */
+.history-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  margin-top: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.history-modal-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-left: 10px;
+ 
+}
+
+/* 닫기 버튼 */
+.history-modal-close {
+  padding: 0.25rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+  top: 1rem;
+  right: 1rem;
+  color: #fde68a;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+
+}
+
+.history-modal-close:hover {
+  color: #ffffff;
+}
+
+/* 스크롤 영역 */
+.history-modal-scroll {
+  max-height: 90%;
+  overflow-y: auto;
+  background-color: transparent; /* 배경 투명 */
+  margin-bottom: 30px;
+}
+
+
+
+.history-modal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.history-modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.history-modal-scroll::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2); /* 흐릿한 밝은 색 */
+  border-radius: 3px;
+}
+
+/* 개별 히스토리 카드 */
+.history-card {
+  background-color: #1a2c2a;
+  border-radius: 0.375rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* 카드 헤더 */
+.history-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.0rem;
+  font-weight: 600;
+}
+
+/* 성공 상태 */
+.history-success {
+  color: #4ade80; /* Tailwind: text-green-400 */
+}
+
+/* 카드 내부 정보 그리드 */
+.history-card-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* ✅ 한 줄씩 세로로 정렬 */
+  gap: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.history-card-grid div{
+  display: flex;
+  justify-content: space-between; /* 양쪽 정렬 */
+  align-items: center;             /* 수직 정렬 */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 연한 밑줄 */
+
+}
+
+
+
+/* 각 항목 타이틀 */
+.history-label {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* 수익 텍스트 */
+.history-profit {
+  color: #4ade80;
+}
+
+.history-card-header span{
+   color: #fde68a;
+}
+
+
+
 @media screen and (max-width: 768px) {
 
   .page-wrappe-q {
@@ -761,5 +933,88 @@
     width: 50px;
     height: 50px;
     margin: 8px;
+  }
+
+
+
+
+
+
+
+
+
+
+  /* 모달 오버레이 상단 여백 줄이기 */
+  .history-modal-overlay {
+    padding-top: 60px;
+    align-items: flex-start;
+  }
+
+  /* 모달 박스 전체 너비 확보 */
+  .history-modal-box {
+    width: 92%;
+    max-width: 92%;
+    padding: 1rem;
+    border-radius: 10px;
+    height: auto;
+    margin: 0 auto 16px auto;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* 상단 타이틀 */
+  .history-modal-header {
+    font-size: 1rem;
+    margin-top: 6px;
+    margin-bottom: 12px;
+  }
+
+  .history-modal-title {
+    font-size: 1rem;
+    margin-left: 6px;
+  }
+
+  /* 닫기 버튼 */
+  .history-modal-close {
+    font-size: 1rem;
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+
+  /* 스크롤 영역 */
+  .history-modal-scroll {
+    max-height: 60vh;
+    margin-bottom: 20px;
+    padding-right: 2px;
+  }
+
+  /* 카드 */
+  .history-card {
+    padding: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .history-card-header {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  /* 그리드 항목 */
+  .history-card-grid {
+    gap: 0.4rem;
+    font-size: 0.8125rem;
+  }
+
+  .history-card-grid div {
+    padding: 2px 0;
+  }
+
+  /* 라벨 */
+  .history-label {
+    font-size: 0.85rem;
+  }
+
+  .history-profit {
+    font-size: 0.85rem;
   }
 }
