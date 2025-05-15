@@ -7,7 +7,9 @@ import { useNavigate } from "react-router-dom";
 import OrderHistoryModal from "./OrderHistoryModal"
 import PurchaseModal from "./PurchaseModal";
 import LockupModal from "./LockupModal";
-
+import '../styles/TokenPurchasePage.css';
+import '../styles/topbar.css';
+import '../styles/bottomnav.css';
 
 export default function TokenPurchasePage() {
   const { t } = useTranslation();
@@ -156,154 +158,175 @@ export default function TokenPurchasePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
-      <h2 className="text-center text-xl font-semibold border-b border-yellow-500 pb-2 mb-4">
-        {t("tokenPurchase.title")}
-      </h2>
+    <div className="page-wrapper-token">
+      <div className="top-bar">
+        <button
+          onClick={() => navigate(-1)}
+          className="top-tran"
+        >
+          <ArrowLeftIcon size={30} />
+        </button>
+        <h2 className="top-h-text">{t("tokenPurchase.title")}</h2>
+        </div>
 
-      <button
-        onClick={() => navigate(-1)}
-        className="flex items-center space-x-1 mb-4 text-yellow-200 hover:text-yellow-100"
-      >
-        <ArrowLeftIcon size={20} />
-        <span>{t("tokenPurchase.back")}</span>
-      </button>
 
       {/* ─── 잔액 카드 ───────────────────────────── */}
-      <div className="relative bg-[#3b2b15] rounded-md p-4 text-center mb-4">
-        <button
-          onClick={() => navigate("/funding/logs")}
-          className="absolute top-3 right-3 text-sm text-yellow-200 hover:text-yellow-100"
-        >
-          {t("tokenPurchase.details")} &gt;
-        </button>
+      <div className="funding-card">
 
-        <div className="text-sm text-gray-300">{t("tokenPurchase.quantWallet")}</div>
-        <div className="text-2xl font-bold">
-          {financeSummary.quantBalance.toFixed(6)} USDT
-        </div>
-        <div className="text-sm text-gray-300 mt-2">{t("tokenPurchase.uscWallet")}</div>
-        <div className="mt-2">
-          <span className="text-2xl font-bold">
-            {wallet?.balance?.toFixed(6) || "0.000000"} USC
-          </span>
+
+        <div className="funding-balance-amount-token-1">
+          <div className="funding-balance-amount-t">
+            {financeSummary.quantBalance.toFixed(6)}&nbsp;&nbsp;USDT</div>
+
+
           <button
-            onClick={() => setShowLockup(true)}
-            className="ml-4 px-2 py-1 bg-emerald-500 text-black rounded hover:bg-emerald-600"
+            onClick={() => navigate("/funding/logs")}
+            className="funding-detail-btn"
           >
-            락업 상세
+            {t("tokenPurchase.details")} &gt;
           </button>
-        </div>
+          </div>
 
-        <div className="flex justify-around mt-4 text-sm text-yellow-200">
+
+          <div className="funding-balance-amount-token">
+          <span className="funding-balance-amount-t">
+            {wallet?.balance?.toFixed(6) || "0.000000"}&nbsp;&nbsp;USC</span>
+            
+              <button
+                onClick={() => setShowLockup(true)}
+                className="funding-detail-btn"
+              >
+                락업 상세
+              </button>
+            </div>
+
+        <div className="funding-action-buttons">
           <button
             onClick={() => setShowQuantToFundModal(true)}
-            className="bg-yellow-700 rounded px-3 py-1"
+            className="funding-action-btn"
           >
             {t("tokenPurchase.swap")}
           </button>
+
+
           <button
             onClick={() => navigate("/recharge")}
-            className="px-4 py-1 border border-yellow-500 rounded"
+            className="funding-action-btn"
           >
             {t("tokenPurchase.recharge")}
           </button>
+
           <button
             onClick={() => setShowFundToQuantModal(true)}
-            className="bg-yellow-700 rounded px-3 py-1"
+            className="funding-action-btn"
           >
             {t("tokenPurchase.deposit")}
           </button>
+
           <button
           onClick={() => setShowRedeemModal(true)}
-          className="bg-yellow-700 rounded px-3 py-1"
-        >
+          className="funding-action-btn"
+          >
           {t("tokenPurchase.redeem")}
-        </button>
+          </button>
         </div>
 
         <button
           onClick={() => setShowOrderHistory(true)}  
-          className="mt-3 bg-yellow-500 text-black py-2 px-4 rounded font-semibold text-sm"
+          className="funding-income-button"
         >
           {t("tokenPurchase.orderDetails")}
         </button>
       </div>
-
-
       
+
+
+
       {/* ── Redeem 모달 ── */}
       {showRedeemModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-[#2c1f0f] w-80 p-6 rounded-lg relative text-yellow-100">
+        <div className="redeem-modal-overlay">
+          <div className="redeem-modal">
             <button
               onClick={() => setShowRedeemModal(false)}
-              className="absolute top-3 right-3 text-gray-400"
-            >✕</button>
-            <h3 className="text-lg font-semibold mb-4">
+              className="redeem-modal-close"
+            >
+              ✕
+            </button>
+            <h3 className="redeem-modal-title">
               {t("tokenPurchase.redeemTitle")}
             </h3>
-            <div className="text-sm text-gray-300 mb-2">
+            <div className="redeem-modal-balance">
               {t("tokenPurchase.available")}{" "}
               {(wallet.balance - wallet.locked_amount).toFixed(6)} USC
             </div>
             <input
               type="number"
-              className="w-full bg-[#1a1109] p-2 rounded mb-2"
+              className="redeem-modal-input"
               placeholder={t("tokenPurchase.inputUsdc")}
               value={redeemAmount}
               onChange={e => setRedeemAmount(e.target.value)}
             />
-            {redeemError && <div className="text-red-400 mb-2">{redeemError}</div>}
+            {redeemError && (
+              <div className="redeem-modal-error">{redeemError}</div>
+            )}
             <button
               onClick={handleRedeem}
-              className="w-full bg-yellow-500 text-black py-2 rounded font-semibold"
+              className="redeem-modal-submit"
             >
               {t("tokenPurchase.redeemSubmit")}
             </button>
           </div>
         </div>
       )}
+
+
+
+
+
+
+
+
            {/* ─── 주문 내역 모달 ─── */}
      {showOrderHistory && (
        <OrderHistoryModal onClose={() => setShowOrderHistory(false)} />
      )}
       {/* Quant → Fund 모달 */}
       {showQuantToFundModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-[#2c1f0f] w-80 p-6 rounded-lg relative text-yellow-100">
+        <div className="modal-overlay">
+          <div className="modal-content">
             <button
               onClick={() => setShowQuantToFundModal(false)}
-              className="absolute top-3 right-3 text-gray-400"
+              className="modal-close-btn"
             >
               ✕
             </button>
             <h3 className="text-lg font-semibold mb-4">
               {t("tokenPurchase.swapQuantToFundTitle")}
             </h3>
+
+
             <input
               type="number"
-              className="w-full bg-[#1a1109] p-2 rounded mb-2"
+              className="modal-input"
               placeholder={t("tokenPurchase.inputUsdt")}
               value={transferAmount}
               onChange={e => setTransferAmount(e.target.value)}
             />
-            <div className="text-sm text-gray-300 mb-2">
-              {t("tokenPurchase.balance")} {financeSummary.quantBalance.toFixed(6)} USDT
+            <div className="modal-text-row">
+              {t("tokenPurchase.balance")} {financeSummary.quantBalance.toFixed(6)}&nbsp;&nbsp;USDT
             </div>
-            <div className="text-sm text-gray-300 mb-2">
-              {t("tokenPurchase.fee", { rate: financeSummary.withdrawFee })}:{" "}
+            <div className="modal-text-row">
+              {t("tokenPurchase.fee", { rate: financeSummary.withdrawFee })}{" "}
               {(parseFloat(transferAmount || 0) * financeSummary.withdrawFee / 100).toFixed(6)}
             </div>
-            <div className="text-sm text-gray-300 mb-4">
-              {t("tokenPurchase.afterSwap")}:{" "}
-              {(parseFloat(transferAmount || 0) * (1 - financeSummary.withdrawFee / 100)).toFixed(6)}{" "}
-              USDT
+            <div className="modal-text-row mb-4">
+              {t("tokenPurchase.afterSwap")}{" "}
+              {(parseFloat(transferAmount || 0) * (1 - financeSummary.withdrawFee / 100)).toFixed(6)}{" "}&nbsp;&nbsp;USDT
             </div>
-            {error && <div className="text-red-400 mb-2">{error}</div>}
+            {error && <div className="modal-error">{error}</div>}
             <button
               onClick={handleQuantToFund}
-              className="w-full bg-yellow-500 text-black py-2 rounded font-semibold"
+              className="modal-submit-btn"
             >
               {t("tokenPurchase.submit")}
             </button>
@@ -311,14 +334,14 @@ export default function TokenPurchasePage() {
         </div>
       )}
      {/* ─── 락업 내역 모달 ─── */}
-     {showLockup && <LockupModal onClose={() => setShowLockup(false)} />}
+     {showLockup && <LockupModal onClose={() => setShowLockup(false)} />} 
       {/* Fund → Quant 모달 */}
       {showFundToQuantModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-[#2c1f0f] w-80 p-6 rounded-lg relative text-yellow-100">
+        <div className="modal-overlay">
+          <div className="modal-content">
             <button
               onClick={() => setShowFundToQuantModal(false)}
-              className="absolute top-3 right-3 text-gray-400"
+              className="modal-close-btn"
             >
               ✕
             </button>
@@ -327,27 +350,26 @@ export default function TokenPurchasePage() {
             </h3>
             <input
               type="number"
-              className="w-full bg-[#1a1109] p-2 rounded mb-2"
+              className="modal-input"
               placeholder={t("tokenPurchase.inputUsdt")}
               value={transferAmount}
               onChange={e => setTransferAmount(e.target.value)}
             />
-            <div className="text-sm text-gray-300 mb-2">
-              {t("tokenPurchase.balance")} {financeSummary.fundBalance.toFixed(6)} USDT
+            <div className="modal-text-row">
+              {t("tokenPurchase.balance")} {financeSummary.fundBalance.toFixed(6)}&nbsp;&nbsp;USDT
             </div>
-            <div className="text-sm text-gray-300 mb-2">
-              {t("tokenPurchase.fee", { rate: financeSummary.depositFee })}:{" "}
+            <div className="modal-text-row">
+              {t("tokenPurchase.fee", { rate: financeSummary.depositFee })}{" "}
               {(parseFloat(transferAmount || 0) * financeSummary.depositFee / 100).toFixed(6)}
             </div>
-            <div className="text-sm text-gray-300 mb-4">
-              {t("tokenPurchase.afterSwap")}:{" "}
-              {(parseFloat(transferAmount || 0) * (1 - financeSummary.depositFee / 100)).toFixed(6)}{" "}
-              USDT
+            <div className="modal-text-row mb-4">
+              {t("tokenPurchase.afterSwap")}{" "}
+              {(parseFloat(transferAmount || 0) * (1 - financeSummary.depositFee / 100)).toFixed(6)} USDT
             </div>
-            {error && <div className="text-red-400 mb-2">{error}</div>}
+            {error && <div className="modal-error">{error}</div>}
             <button
               onClick={handleFundToQuant}
-              className="w-full bg-yellow-500 text-black py-2 rounded font-semibold"
+              className="modal-submit-btn"
             >
               {t("tokenPurchase.submit")}
             </button>
@@ -374,12 +396,12 @@ export default function TokenPurchasePage() {
      )}
           {/* ─── 판매 카드 ───────────────────────────── */}
           {sales.length === 0 ? (
-            <div className="text-center text-gray-400 mt-12">
+            <div className="data-card-to">
               {t("tokenPurchase.noSales")}
             </div>
           ) : (
             // 여기에 스크롤 가능한 컨테이너 추가
-            <div className="space-y-4 max-h-[50vh] overflow-y-auto pr-2">
+            <div className="data-box-container-t1">
               {sales.map((sale, idx) => {
                 const now   = Date.now();
                 const canBuy = sale.is_active &&
@@ -387,76 +409,61 @@ export default function TokenPurchasePage() {
                   now <= new Date(sale.end_time);
 
                 return (
-                  <div key={sale.id} className="bg-[#3b2b15] rounded-md p-4">
+                  <div key={sale.id} className="data-card-to">
                     {/* 단계 / 이름 */}
-                    <div className="flex items-center mb-2">
-                      <img src="/img/item/usc.png" alt="USC" className="w-6 h-6 mr-2" />
+                    <div className="data-box-container-tt">
+                      <img src="/img/item/usc.png" alt="USC" className="data-card-to-title-img" />
                       <span className="font-bold text-lg">
                         {idx + 1}{t("tokenPurchase.phase")} – {sale.name}
                       </span>
                     </div>
 
                     {/* 공급량, 남은량 */}
-                    <div className="text-sm text-gray-300">
+                    <div className="data-row">
                       {t("tokenPurchase.totalSupply")}{" "}
-                      <span className="text-yellow-100">
-                        {sale.total_supply.toLocaleString()} USC
-                      </span>
+                      <span>{sale.total_supply.toLocaleString()} USC</span>
                     </div>
-                    <div className="text-sm text-gray-300">
+                    <div className="data-row">
                       {t("tokenPurchase.remainingSupply")}{" "}
-                      <span className="text-yellow-100">
-                        {sale.remaining_supply.toLocaleString()} USC
-                      </span>
+                      <span>{sale.remaining_supply.toLocaleString()} USC</span>
                     </div>
 
                     {/* 가격, 수수료 */}
-                    <div className="text-sm text-gray-300">
-                      {t("tokenPurchase.price")}:{" "}
-                      <span className="text-yellow-100">
-                        {sale.price.toFixed(6)} USDT
-                      </span>
+                    <div className="data-row">
+                      {t("tokenPurchase.price")}{" "}
+                      <span>{sale.price.toFixed(6)} USDT</span>
                     </div>
                     {/*
                     <div className="text-sm text-gray-300">
-                      {t("tokenPurchase.feeRate")}:{" "}
+                      {t("tokenPurchase.feeRate")}{" "}
                       <span className="text-yellow-100">
                         {sale.fee_rate}%
                       </span>
                     </div>*/}
 
                     {/* 최소/최대 구매, 락업 */}
-                    <div className="text-sm text-gray-300">
-                      {t("tokenPurchase.minPurchase")}:{" "}
-                      <span className="text-yellow-100">
-                        {sale.minimum_purchase} USC
-                      </span>
+                    <div className="data-row">
+                      {t("tokenPurchase.minPurchase")}{" "}
+                      <span>{sale.minimum_purchase} USC</span>
                     </div>
-                    <div className="text-sm text-gray-300">
-                      {t("tokenPurchase.maxPurchase")}:{" "}
-                      <span className="text-yellow-100">
-                        {sale.maximum_purchase} USC
-                      </span>
+
+                    <div className="data-row">
+                      {t("tokenPurchase.maxPurchase")}{" "}
+                      <span>{sale.maximum_purchase} USC</span>
                     </div>
-                    <div className="text-sm text-gray-300">
-                      {t("tokenPurchase.lockupPeriod")}:{" "}
-                      <span className="text-yellow-100">
-                        {sale.lockup_period} {t("tokenPurchase.days")}
-                      </span>
+                    <div className="data-row">
+                      {t("tokenPurchase.lockupPeriod")}{" "}
+                      <span>{sale.lockup_period} {t("tokenPurchase.days")}</span>
                     </div>
 
                     {/* 시작 / 종료 */}
-                    <div className="text-sm text-gray-300">
+                    <div className="data-row">
                       {t("tokenPurchase.startTime")}{" "}
-                      <span className="text-yellow-100">
-                        {new Date(sale.start_time).toLocaleString()}
-                      </span>
+                      <span>{new Date(sale.start_time).toLocaleString()}</span>
                     </div>
-                    <div className="text-sm text-gray-300">
+                    <div className="data-row">
                       {t("tokenPurchase.endTime")}{" "}
-                      <span className="text-yellow-100">
-                        {new Date(sale.end_time).toLocaleString()}
-                      </span>
+                      <span>{new Date(sale.end_time).toLocaleString()}</span>
                     </div>
 
                     {/* 구매 가능 여부 */}
