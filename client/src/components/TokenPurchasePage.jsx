@@ -104,7 +104,8 @@ export default function TokenPurchasePage() {
       const d = res.data.data;
       setFinanceSummary({
         ...financeSummary,
-        quantBalance: Number(d.quantBalance)
+        fundBalance: Number(d.fundBalance),
+        quantBalance: Number(d.quantBalance)  // quantBalance도 함께 업데이트
       });
     } catch {
       setError(t("tokenPurchase.errors.swapFail"));
@@ -122,16 +123,15 @@ export default function TokenPurchasePage() {
       return setError(t("tokenPurchase.errors.insufficientFund"));
     }
     try {
-      await axios.post("/api/wallet/transfer-to-quant", { amount: amt }, { withCredentials: true });
+      const res = await axios.post("/api/wallet/transfer-to-quant", { amount: amt }, { withCredentials: true });
       alert(t("tokenPurchase.depositSuccess"));
       setShowFundToQuantModal(false);
       setTransferAmount("");
-      const res = await axios.get("/api/wallet/finance-summary", { withCredentials: true });
-      const d = res.data.data;
-      setFinanceSummary({
-        ...financeSummary,
-        fundBalance: Number(d.fundBalance)
-      });
+      
+      // 전체 잔액 정보를 새로 가져와서 업데이트
+      const res2 = await axios.get("/api/wallet/finance-summary", { withCredentials: true });
+      setFinanceSummary(res2.data.data);  // 전체 데이터로 한번에 업데이트
+      
     } catch {
       setError(t("tokenPurchase.errors.depositFail"));
     }
@@ -242,32 +242,37 @@ export default function TokenPurchasePage() {
 
 
 
+  
       {/* ── Redeem 모달 ── */}
       {showRedeemModal && (
-        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-          <div className="bg-[#2c1f0f] w-80 p-6 rounded-lg relative text-yellow-100">
+        <div className="redeem-modal-overlay">
+          <div className="redeem-modal">
             <button
               onClick={() => setShowRedeemModal(false)}
-              className="absolute top-3 right-3 text-gray-400"
-            >✕</button>
-            <h3 className="text-lg font-semibold mb-4">
+              className="redeem-modal-close"
+            >
+              ✕
+            </button>
+            <h3 className="redeem-modal-title">
               {t("tokenPurchase.redeemTitle")}
             </h3>
-            <div className="text-sm text-gray-300 mb-2">
+            <div className="redeem-modal-balance">
               {t("tokenPurchase.available")}{" "}
               {(wallet.balance - wallet.locked_amount).toFixed(6)} USC
             </div>
             <input
               type="number"
-              className="w-full bg-[#1a1109] p-2 rounded mb-2"
+              className="redeem-modal-input"
               placeholder={t("tokenPurchase.inputUsdc")}
               value={redeemAmount}
               onChange={e => setRedeemAmount(e.target.value)}
             />
-            {redeemError && <div className="text-red-400 mb-2">{redeemError}</div>}
+            {redeemError && (
+              <div className="redeem-modal-error">{redeemError}</div>
+            )}
             <button
               onClick={handleRedeem}
-              className="w-full bg-yellow-500 text-black py-2 rounded font-semibold"
+              className="redeem-modal-submit"
             >
               {t("tokenPurchase.redeemSubmit")}
             </button>

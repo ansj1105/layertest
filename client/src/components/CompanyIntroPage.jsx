@@ -1,6 +1,8 @@
 // 📁 src/components/CompanyIntroPage.jsx
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft } from 'lucide-react';
+import '../styles/CompanyIntroPage.css';
+import '../styles/topbar.css';
 
 export default function CompanyIntroPage() {
   const { t } = useTranslation();
@@ -8,28 +10,28 @@ export default function CompanyIntroPage() {
   const items = t('companyIntro.items', { returnObjects: true });
 
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
-      {/* 뒤로 가기 */}
-      <button
-        onClick={() => window.history.back()}
-        className="flex items-center mb-4 text-yellow-200 hover:text-yellow-100"
-      >
-        <ArrowLeft size={20} />
-        <span className="ml-2">{t('companyIntro.back')}</span>
-      </button>
+    <div className="company-intro-wrapper">
+      <div className="company-intro-top-bar">
+        {/* 뒤로 가기 */}
+        <button
+          onClick={() => window.history.back()}
+          className="company-intro-back-btn"
+        >
+        <ArrowLeft size={24} />
+        </button>
+          
+                {/* 타이틀 */}
+          <div className="company-intro-title">
+            {t('companyIntro.title')}
+          </div>
 
-      {/* 타이틀 */}
-      <h2 className="text-center text-xl font-semibold mb-4">
-        {t('companyIntro.title')}
-      </h2>
+      </div>
+ 
 
-      {/* 항목 리스트 */}
-      <ul className="space-y-2">
+
+      <ul className="company-intro-list">
         {items.map((line, idx) => (
-          <li
-            key={idx}
-            className="bg-[#2b1e0f] p-4 rounded shadow hover:bg-[#3a270e] cursor-default"
-          >
+          <li key={idx} className="company-intro-list-item">
             {line}
           </li>
         ))}

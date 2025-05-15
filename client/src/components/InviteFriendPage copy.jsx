@@ -6,6 +6,8 @@ import { ArrowLeftIcon } from "lucide-react"; // 아이콘 라이브러리 (shad
 import '../styles/InviteFriendPage.css';
 import '../styles/topbar.css';
 
+
+
 export default function InviteFriendPage() {
   const [referralCode, setReferralCode] = useState("");
   const [copied, setCopied] = useState(false);

@@ -2,7 +2,8 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeftIcon } from 'lucide-react';
-
+import '../styles/AgencyCooperationPage.css';
+import '../styles/topbar.css';
 export default function AgencyCooperationPage() {
   const { t } = useTranslation();
 
@@ -43,31 +44,30 @@ export default function AgencyCooperationPage() {
   const backLabel = t('agencyCooperation.back');
 
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
+  <div className="page-wrapper-ag">
+    <div className="page-container">
       {/* 상단 바 */}
-      <div className="flex items-center mb-4">
-        <button
-          onClick={handleBack}
-          className="p-2 text-yellow-100 hover:text-white"
-        >
+      <div className="top-bar">
+        <button onClick={handleBack} className="page-back-btn">
           <ArrowLeftIcon size={24} />
         </button>
-        <h1 className="flex-1 text-center text-lg font-semibold">
-          {title}
-        </h1>
-        {/* 빈 아이템으로 가운데 정렬 유지 */}
-        <div className="w-10" />
+        <h1 className="top-h-text">{title}</h1>
       </div>
-
-      {/* 부제목 */}
-      <h2 className="text-center text-sm mb-4">{subTitle}</h2>
+    <div className="page-header-spacer" />
 
       {/* 본문 내용 */}
-      <div className="bg-[#3a270e] p-4 rounded-lg space-y-2 text-xs leading-relaxed">
+          
+      <div className="page-content">
+        
+      
+
+      {/* 부제목 */}
+      <h2 className="page-subtitle">{subTitle}</h2>
         {lines.map((line, idx) => (
           <p key={idx}>{line}</p>
         ))}
       </div>
     </div>
+  </div>
   );
 }

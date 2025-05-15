@@ -4,7 +4,9 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Send } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-
+import '../styles/EmailBindingPage.css';
+import '../styles/topbar.css';
+ 
 axios.defaults.withCredentials = true;
 
 export default function EmailBindingPage() {
@@ -78,77 +80,73 @@ export default function EmailBindingPage() {
         alert('❌ ' + (e.response?.data?.error || t('security_p.update_failed')));
       });
   };
-
+ 
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
+    <div className="security-p-wrapper">
       {/* 상단 */}
-      <div className="flex items-center mb-4">
-        <button onClick={() => nav(-1)} className="mr-2">
-          <ArrowLeft size={24} className="text-yellow-200"/>
+      <div className="security-p-header">
+        <button onClick={() => nav(-1)} className="security-p-back-btn">
+          <ArrowLeft size={24} />
         </button>
-        <h1 className="text-lg font-semibold">{t('security_p.title')}</h1>
+        <h1 className="security-p-title">{t('security_p.title')}</h1>
       </div>
+
 
       {/* 오래된 사서함 */}
-      <label className="block mb-2 text-sm">{t('security_p.old_mailbox')}</label>
-      <input
-        type="text"
-        readOnly
-        className="w-full bg-[#2c1f0f] p-2 rounded mb-4"
-        value={mask(oldEmail)}
-      />
-
-      {/* 오래된 코드 입력 */}
-      <div className="flex mb-4">
+      <div className="security-label-wrapper">
+      <label className="security-label">{t('security_p.old_mailbox')}</label>
         <input
           type="text"
-          placeholder={t('security_p.enter_code')}
-          className="flex-1 bg-[#2c1f0f] p-2 rounded-l"
-          value={oldCode}
-          onChange={e => setOldCode(e.target.value)}
+          placeholder={t('security_p.enter_new_email')}
+          className="security-input"
+          value={mask(oldEmail)}
         />
-        <button
-          onClick={() => sendCode('old')}
-          className="bg-yellow-600 px-4 rounded-r flex items-center"
-        >
-          <Send className="mr-1"/> {t('security_p.send_code')}
-        </button>
-      </div>
 
-      {/* 새 우편함 */}
-      <label className="block mb-2 text-sm">{t('security_p.new_mailbox')}</label>
-      <input
-        type="email"
-        placeholder={t('security_p.enter_new_email')}
-        className="w-full bg-[#2c1f0f] p-2 rounded mb-4"
-        value={newEmail}
-        onChange={e => setNewEmail(e.target.value)}
-      />
+        <div className="security-code-group">
+          <input
+            type="text"
+            placeholder={t('security_p.enter_code')}
+            className="security-code-input"
+            value={oldCode}
+            onChange={e => setOldCode(e.target.value)}
+          />
+          <button
+            onClick={() => sendCode('old')}
+            className="security-send-btn"
+          >
+            <Send className="mr-1" /> {t('security_p.send_code')}
+          </button>
+        </div>
 
-      {/* 새 코드 입력 */}
-      <div className="flex mb-6">
+        <label className="security-label">{t('security_p.new_mailbox')}</label>
         <input
-          type="text"
-          placeholder={t('security_p.enter_code')}
-          className="flex-1 bg-[#2c1f0f] p-2 rounded-l"
-          value={newCode}
-          onChange={e => setNewCode(e.target.value)}
+          type="email"
+          placeholder={t('security_p.enter_new_email')}
+          className="security-input"
+          value={newEmail}
+          onChange={e => setNewEmail(e.target.value)}
         />
-        <button
-          onClick={() => sendCode('new')}
-          className="bg-yellow-600 px-4 rounded-r flex items-center"
-        >
-          <Send className="mr-1"/> {t('security_p.send_code')}
+
+        <div className="security-code-group">
+          <input
+            type="text"
+            placeholder={t('security_p.enter_code')}
+            className="security-code-input"
+            value={newCode}
+            onChange={e => setNewCode(e.target.value)}
+          />
+          <button
+            onClick={() => sendCode('new')}
+            className="security-send-btn"
+          >
+            <Send className="mr-1" /> {t('security_p.send_code')}
+          </button>
+        </div>
+
+        <button onClick={handleSubmit} className="security-submit-btn">
+          {t('security_p.submit')}
         </button>
       </div>
-
-      {/* 제출 */}
-      <button
-        onClick={handleSubmit}
-        className="w-full bg-yellow-700 py-3 rounded text-black font-semibold"
-      >
-        {t('security_p.submit')}
-      </button>
     </div>
   );
 }

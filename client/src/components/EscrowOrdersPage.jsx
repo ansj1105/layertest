@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { ArrowLeftIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
+import '../styles/EscrowOrdersPage.css';
+import '../styles/topbar.css';
 export default function EscrowOrdersPage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -19,41 +20,31 @@ export default function EscrowOrdersPage() {
       })
       .finally(() => setLoading(false));
   }, []);
-
+ 
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
-      {/* ← back button + title */}
-      <button
-        onClick={() => navigate(-1)}
-        className="flex items-center mb-6 text-yellow-200 hover:text-yellow-100"
-      >
-        <ArrowLeftIcon size={20} />
-        <span className="ml-2 font-semibold">에스크로 주문</span>
-      </button>
-
+    <div className="escrow-page-wrapper">
+      <div className="escrow-page-top-bar">
+        <button onClick={() => navigate(-1)} className="escrow-back-button">
+          <ArrowLeftIcon size={24} />
+        </button>
+        <h1 className="escrow-page-top-h-text">에스크로 주문</h1>
+      </div>
       {loading ? (
-        <p className="text-center text-gray-400">로딩 중...</p>
+        <p className="escrow-order-message">로딩 중...</p>
       ) : orders.length === 0 ? (
-        <p className="text-center text-gray-400">더 이상은 없어</p>
+        <p className="escrow-order-message">더 이상은 없어</p>
       ) : (
-        <ul className="space-y-4">
+        <ul className="escrow-order-list">
           {orders.map((o) => (
-            <li
-              key={o.id}
-              className="bg-[#2e1c10] p-4 rounded-lg shadow-sm"
-            >
-              <div className="font-semibold mb-1 text-white">
-                {o.project_name}
+            <li key={o.id} className="escrow-order-item">
+              <div className="escrow-order-title">{o.project_name}</div>
+              <div className="escrow-order-info">
+                <span>투자 금액:</span> {parseFloat(o.amount).toFixed(6)} USDT
               </div>
-              <div className="text-sm">
-                <span className="text-gray-300">투자 금액:</span>{" "}
-                {parseFloat(o.amount).toFixed(6)} USDT
+              <div className="escrow-order-info">
+                <span>수익:</span> {parseFloat(o.profit).toFixed(6)} USDT
               </div>
-              <div className="text-sm">
-                <span className="text-gray-300">수익:</span>{" "}
-                {parseFloat(o.profit).toFixed(6)} USDT
-              </div>
-              <div className="text-xs text-gray-500 mt-2">
+              <div className="escrow-order-date">
                 {new Date(o.createdAt).toLocaleString()}
               </div>
             </li>

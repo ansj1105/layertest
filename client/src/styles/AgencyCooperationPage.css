@@ -1,0 +1,137 @@
+
+.page-wrapper-ag {
+  position: relative;
+  max-width: 506px !important;
+  margin: 0 auto;
+  height: 100%;
+  flex-direction: column;
+  background-color: #0e0e11;
+  overflow: auto; /* 스크롤 활성화 */
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  z-index: 100;
+
+}
+
+
+/* 전체 페이지 */
+.page-container {
+  display: flex;
+  justify-content: center;   /* 가로 중앙 정렬 */
+  align-items: center;       /* 세로축 기준 가로 중앙 정렬 (하위 div들이 중앙에 배치됨) */
+  flex-direction: column;    /* 카드가 세로로 쌓이도록 */
+  width: 100%;
+  margin-top: 3px;
+  max-height: 90%;
+
+}
+
+/* 상단 바 */
+.page-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+
+/* 뒤로가기 버튼 */
+.page-back-btn {
+  color: #ffffff;
+  font-size: 30px !important;
+  font-weight: bold !important;              /* 글자 굵게 */
+  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;            /* 세로 가운데 정렬 */
+  justify-content: center;        /* 가로 가운데 정렬 */
+  height: 100%;                   /* 부모 요소 높이 기준 */
+  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+}
+
+.page-back-btn:hover {
+  color: #ffffff;
+}
+
+
+
+
+/* 제목 */
+.page-title {
+  flex: 1;
+  text-align: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+
+}
+
+/* 부제목 */
+.page-subtitle {
+  text-align: center;
+  font-size: 1.075rem;
+  margin-bottom: 1rem;
+  color: #fef9c3;
+}
+
+/* 본문 내용 */
+.page-content {
+  width: 97%;
+  background: #152221;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  color: #fef9c3;
+  margin: 8px auto;
+  padding: 13px;
+  box-shadow: 0 0 4px 2px #b8dfd9;
+  flex-direction: row;     /* ✅ 가로 배열 */
+  align-items: center;    /* ✅ 세로 중앙 정렬 */
+  justify-content: space-between; /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
+  gap: 16px;
+  margin-bottom: 13px;
+  
+}
+
+.page-content p {
+  font-size: 14px;
+}
+
+
+
+
+@media (max-width: 768px) {
+
+
+
+  .page-header {
+    margin-bottom: 0.75rem;
+  }
+
+  .page-back-btn {
+    font-size: 1.25rem !important; /* 작게 */
+    padding: 0.5rem;
+  }
+
+  .page-title {
+    font-size: 1rem;
+  }
+
+  .page-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    padding: 0 8px;
+  }
+
+  .page-content {
+    width: 90%;
+    padding: 12px;
+    margin: 8px auto 16px auto;
+    flex-direction: column;
+    gap: 8px;
+    text-align: left;
+    font-size: 0.85rem;
+  }
+
+  .page-content p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+}

@@ -1,0 +1,138 @@
+/* 전체 페이지 배경 및 기본 텍스트 색상 */
+.company-intro-wrapper {
+  position: relative;
+  max-width: 506px !important;
+  margin: 0 auto;
+  height: 100%;
+  flex-direction: column;
+  background-color: #0e0e11;
+  overflow: auto; /* 스크롤 활성화 */
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+/* 상단 바 영역 */
+.company-intro-top-bar {
+  margin-top: 0px;
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  width: 100%;
+  max-width: 500px;              /* ✅ container와 맞춤 */
+  height: 58.27px;
+  background: #1d1d27;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 1000;
+  margin-bottom: 8px;
+}
+
+/* 뒤로가기 버튼 */
+.company-intro-back-btn {
+  color: #ffffff;
+  font-size: 30px !important;
+  font-weight: bold !important;              /* 글자 굵게 */
+  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;            /* 세로 가운데 정렬 */
+  justify-content: center;        /* 가로 가운데 정렬 */
+  height: 100%;                   /* 부모 요소 높이 기준 */
+  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+}
+
+.company-intro-back-btn:hover {
+  color: #fef9c3;
+}
+
+/* 타이틀 텍스트 */
+.company-intro-title {
+  font-weight: bold;
+  color: #ffffff;
+  text-align: left;
+  font-size: 20px;
+  width: 100%;
+  height: 40%;
+  align-items: center;            /* 세로 가운데 정렬 */
+  justify-content: center;        /* 가로 가운데 정렬 */
+  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+}
+
+
+
+
+
+
+
+
+
+
+/* 항목 리스트 (ul) */
+.company-intro-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* space-y-2 */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  margin-top: 20px;
+}
+
+/* 각 리스트 항목 (li) */
+.company-intro-list-item {
+  padding: 1rem;
+  background-color: rgb(30, 54, 53);
+  border-radius: 3px;
+  width: 90%;
+  height: auto;
+  margin: 10px auto 5px auto;
+  display: flex;
+  flex-direction: column;  /* ✅ 세로 정렬로 바꿈 */
+  align-items: stretch;    /* ✅ 자식 요소 전체 너비 사용 */
+  justify-content: flex-start; /* ✅ 위쪽 정렬 */
+  color: #ffffff;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 4px 1px #b8dfd9 !important;
+}
+
+.company-intro-list-item:hover {
+  background-color: #3a270e;
+}
+
+
+@media screen and (max-width: 768px) {
+  .company-intro-wrapper {
+
+  }
+
+  .company-intro-top-bar {
+    height: auto;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .company-intro-back-btn {
+    font-size: 22px !important;
+  }
+
+  .company-intro-title {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .company-intro-list {
+    gap: 0.375rem;
+    margin-top: 16px;
+  }
+
+  .company-intro-list-item {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+    width: 90%;
+    margin: 8px auto;
+  }
+}

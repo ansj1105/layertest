@@ -2,6 +2,9 @@
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft } from 'lucide-react';
+import '../styles/QuantTutorialPage.css';
+import '../styles/topbar.css';
+
 
 export default function QuantTutorialPage() {
   const { t } = useTranslation();
@@ -17,25 +20,28 @@ export default function QuantTutorialPage() {
   const vipDaily    = t('quantTutorial.vipDaily',              { returnObjects: true });
 
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100">
+    <div className="quant-tutorial-wrapper">
       {/* 상단 바 */}
-      <div className="flex items-center bg-[#2c1f0f] p-3">
-        <button onClick={back} className="text-yellow-200 hover:text-yellow-100 mr-2">
+      <div className="quant-tutorial-header">
+        <button onClick={back} className="quant-tutorial-back-btn">
           <ArrowLeft size={24} />
         </button>
-        <h1 className="text-lg font-semibold">{t('quantTutorial.title')}</h1>
+        <h1 className="quant-tutorial-title">{t('quantTutorial.title')}</h1>
       </div>
 
-      <div className="p-4 space-y-6">
+
+      <div className="quant-tutorial-content">
         {/* 설명 */}
-        <p className="leading-relaxed">
+        <p className="quant-tutorial-description">
           {t('quantTutorial.description')}
         </p>
 
         {/* VIP 업그레이드 기준 */}
         <section>
-          <h2 className="text-md font-semibold mb-2">• {t('quantTutorial.title')} VIP 업그레이드 기준</h2>
-          <ul className="list-disc list-inside space-y-1 text-sm">
+          <h2 className="quant-tutorial-section-title">
+            • {t('quantTutorial.title')} VIP 업그레이드 기준
+          </h2>
+          <ul className="quant-tutorial-list">
             {vipCriteria.map((line, i) => (
               <li key={i}>{line}</li>
             ))}
@@ -44,24 +50,26 @@ export default function QuantTutorialPage() {
 
         {/* 개요 */}
         <section>
-          <h2 className="text-md font-semibold mb-2">• 개요</h2>
-          <p className="text-sm leading-relaxed">
+          <h2 className="quant-tutorial-section-title">• 개요</h2>
+          <p className="quant-tutorial-paragraph">
             {t('quantTutorial.overview')}
           </p>
         </section>
 
         {/* 거래 방법 */}
         <section>
-          <h2 className="text-md font-semibold mb-2">• {t('quantTutorial.method.title')}</h2>
-          <p className="text-sm leading-relaxed">
+          <h2 className="quant-tutorial-section-title">
+            • {t('quantTutorial.method.title')}
+          </h2>
+          <p className="quant-tutorial-paragraph">
             {t('quantTutorial.method.description')}
           </p>
         </section>
 
-        {/* VIP 일일 수익 */}
+        {/* VIP 일일 수익률 예시 */}
         <section>
-          <h2 className="text-md font-semibold mb-2">• VIP 일일 수익률 예시</h2>
-          <ul className="list-disc list-inside space-y-1 text-sm">
+          <h2 className="quant-tutorial-section-title">• VIP 일일 수익률 예시</h2>
+          <ul className="quant-tutorial-list">
             {vipDaily.map((line, i) => (
               <li key={i}>{line}</li>
             ))}

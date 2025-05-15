@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Send, Eye, EyeOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import '../styles/TradePasswordPage.css';
+import '../styles/topbar.css';
+
 
 axios.defaults.withCredentials = true;
 
@@ -50,88 +53,82 @@ export default function TradePasswordPage() {
       alert('❌ ' + (e.response?.data?.error || t('trade_pwd.failed')));
     }
   };
-
+ 
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
+    <div className="trade-pwd-wrapper">
       {/* 상단 바 */}
-      <div className="flex items-center mb-4">
-        <button onClick={() => nav(-1)} className="mr-2">
-          <ArrowLeft size={24} className="text-yellow-200" />
+      <div className="trade-pwd-header">
+        <button onClick={() => nav(-1)} className="trade-pwd-back-btn">
+          <ArrowLeft size={24}/>
         </button>
-        <h1 className="text-lg font-semibold">{t('trade_pwd.title')}</h1>
+        <div className="trade-pwd-title">{t('trade_pwd.title')}</div>
       </div>
+
 
       {/* 이메일 */}
-      <label className="block mb-2 text-sm">{t('trade_pwd.email_label')}</label>
-      <input
-        type="text"
-        className="w-full bg-[#2c1f0f] p-2 rounded mb-4"
-        readOnly
-        value={email}
-      />
-
-      {/* 인증 코드 */}
-      <label className="sr-only">{t('trade_pwd.code_label')}</label>
-      <div className="flex mb-4">
+      <div className="trade-label-wrapper">
+      <label className="trade-label">{t('trade_pwd.email_label')}</label>
         <input
           type="text"
-          placeholder={t('trade_pwd.code_placeholder')}
-          className="flex-1 bg-[#2c1f0f] p-2 rounded-l"
-          value={code}
-          onChange={e => setCode(e.target.value)}
+          placeholder={t('security_p.enter_new_email')}
+          className="trade-input"
+          readOnly
+          value={email}
         />
-        <button
-          onClick={sendCode}
-          className="bg-yellow-600 px-4 rounded-r flex items-center"
-        >
-          <Send className="mr-1" />
-          {t('trade_pwd.send_code')}
+
+        <label className="sr-only">{t('trade_pwd.code_label')}</label>
+        <div className="trade-code-group">
+          <input
+            type="text"
+            placeholder={t('trade_pwd.code_placeholder')}
+            className="trade-code-input"
+            value={code}
+            onChange={e => setCode(e.target.value)}
+          />
+          <button onClick={sendCode} className="trade-send-btn">
+            <Send className="mr-1" />
+            {t('trade_pwd.send_code')}
+          </button>
+        </div>
+
+        <label className="trade-label">{t('trade_pwd.new_pwd_label')}</label>
+        <div className="trade-password-group">
+          <input
+            type={showPwd ? 'text' : 'password'}
+            placeholder={t('trade_pwd.new_pwd_placeholder')}
+            className="trade-password-input"
+            value={newPwd}
+            onChange={e => setNewPwd(e.target.value)}
+          />
+          <button
+            onClick={() => setShowPwd(v => !v)}
+            className="trade-toggle-btn"
+          >
+            {showPwd ? <EyeOff /> : <Eye />}
+          </button>
+        </div>
+
+        <label className="trade-label">{t('trade_pwd.confirm_pwd_label')}</label>
+        <div className="trade-password-group">
+          <input
+            type={showConfirm ? 'text' : 'password'}
+            placeholder={t('trade_pwd.confirm_pwd_placeholder')}
+            className="trade-password-input"
+            value={confirmPwd}
+            onChange={e => setConfirmPwd(e.target.value)}
+          />
+          <button
+            onClick={() => setShowConfirm(v => !v)}
+            className="trade-toggle-btn"
+          >
+            {showConfirm ? <EyeOff /> : <Eye />}
+          </button>
+        </div>
+
+        <button onClick={handleSubmit} className="trade-submit-btn">
+          {t('trade_pwd.submit')}
         </button>
       </div>
-
-      {/* 새 비밀번호 */}
-      <label className="block mb-2 text-sm">{t('trade_pwd.new_pwd_label')}</label>
-      <div className="relative mb-4">
-        <input
-          type={showPwd ? 'text' : 'password'}
-          placeholder={t('trade_pwd.new_pwd_placeholder')}
-          className="w-full bg-[#2c1f0f] p-2 rounded"
-          value={newPwd}
-          onChange={e => setNewPwd(e.target.value)}
-        />
-        <button
-          onClick={() => setShowPwd(v => !v)}
-          className="absolute inset-y-0 right-2 top-2 text-yellow-300"
-        >
-          {showPwd ? <EyeOff /> : <Eye />}
-        </button>
-      </div>
-
-      {/* 비밀번호 확인 */}
-      <label className="block mb-2 text-sm">{t('trade_pwd.confirm_pwd_label')}</label>
-      <div className="relative mb-6">
-        <input
-          type={showConfirm ? 'text' : 'password'}
-          placeholder={t('trade_pwd.confirm_pwd_placeholder')}
-          className="w-full bg-[#2c1f0f] p-2 rounded"
-          value={confirmPwd}
-          onChange={e => setConfirmPwd(e.target.value)}
-        />
-        <button
-          onClick={() => setShowConfirm(v => !v)}
-          className="absolute inset-y-0 right-2 top-2 text-yellow-300"
-        >
-          {showConfirm ? <EyeOff /> : <Eye />}
-        </button>
-      </div>
-
-      {/* 제출 */}
-      <button
-        onClick={handleSubmit}
-        className="w-full bg-yellow-700 py-3 rounded text-black font-semibold"
-      >
-        {t('trade_pwd.submit')}
-      </button>
     </div>
   );
 }
