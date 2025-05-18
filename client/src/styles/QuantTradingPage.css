@@ -699,7 +699,8 @@
   gap: 16px;
   margin-bottom: 13px;
   box-shadow: 0 0 4px 2px #b8dfd9;
-  height: 85%;
+  height: 70% !important;
+
 }
 
 /* 상단 타이틀 영역 */
@@ -743,7 +744,7 @@
 
 /* 스크롤 영역 */
 .history-modal-scroll {
-  max-height: 90%;
+  max-height: 87% !important;
   overflow-y: auto;
   background-color: transparent; /* 배경 투명 */
   margin-bottom: 30px;

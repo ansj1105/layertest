@@ -198,7 +198,7 @@
 }
 
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 768px) {
   .page-wrapper-l,
   .login-box {
     width: 100%;
@@ -242,6 +242,7 @@
     color: #26ffe6;
     transition: color 0.3s, text-decoration 0.3s;
     margin-left: 0; /* 좌측 마진 제거 */
+    margin-left: 10px;
   }
 
   .auth-links-l a:hover {

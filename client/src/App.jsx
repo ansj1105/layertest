@@ -75,6 +75,7 @@ import UserChat from './pages/UserChat';
 import MainLanding from './pages/MainLanding';
 import BottomNav from './components/BottomNav';
 import LoginPage from './pages/auth/LoginPage';
+import ForgotPassword from './pages/auth/ForgotPassword';
 import LanguageSettingsPage from './components/LanguageSettingsPage';
 import RegisterPage from './pages/auth/RegisterPage'; // 추가!
 axios.defaults.withCredentials = true;
@@ -116,6 +117,12 @@ export default function App() {
   if (loc.pathname === '/register') {
     return <RegisterPage />;
   }
+  // 1) /register 경로면 오직 회원가입 페이지만
+  if (loc.pathname === '/forgot-password') {
+    return <ForgotPassword />;
+  }
+  
+
   if (loc.pathname === '/settings/language') {
     return <LanguageSettingsPage />;
   }

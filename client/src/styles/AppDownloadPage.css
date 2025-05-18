@@ -11,6 +11,7 @@
   height: 770px;
 
   color: #111827;
+  padding-bottom: 200px;
 }
  
 /* 뒤로가기 버튼 */
@@ -79,11 +80,12 @@
 /* 언어 선택 네비게이션 */
 .download-footer-nav {
   margin-top: auto;
-  padding-top: 3rem;
+  padding-top: 20px;
   display: flex;
   gap: 1rem;
   font-size: 0.875rem;
   color: #6b7280;
+
 }
 
 .download-footer-nav a {
@@ -102,7 +104,7 @@
   .download-page-wrapper {
     padding: 16px;
     height: 710px;
-
+    padding-bottom: 200px;
 
   }
 

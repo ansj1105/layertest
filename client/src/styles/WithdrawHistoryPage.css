@@ -12,8 +12,9 @@
   overflow-x: hidden;
   box-sizing: border-box;
   z-index: 100;
+  padding-bottom: 200px;
 }
-
+ 
 /* 상단 헤더 컨테이너 */
 .history-header {
   margin-top: 0px;
@@ -112,9 +113,8 @@
 }
 
 .tab-button.active {
-  background-color: #365754;
+  background-color: #365754; /* yellow-600 */
   color: #ffe695;
-  font-weight: 600;
 }
 
 .tab-button.inactive {
@@ -147,7 +147,9 @@
 }
 
 
-
+.scroll-wrapper{
+  padding-bottom: 150px;
+}
 
 /* 테이블 외부 래퍼 */
 .table-scroll-wrapper {
