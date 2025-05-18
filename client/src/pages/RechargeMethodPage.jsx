@@ -1,10 +1,13 @@
 // 📁 src/pages/RechargeMethodPage.jsx
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft as ArrowLeftIcon, ChevronRight as ChevronRightIcon } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import '../styles/RechargeMethodPage.css';
 import '../styles/topbar.css';
+
 export default function RechargeMethodPage() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
  
   return (
     <div className="charge-wrapper">
@@ -16,12 +19,12 @@ export default function RechargeMethodPage() {
         >
           <ArrowLeftIcon size={24} />
         </button>
-        <h1 className="charge-title">충전 방법</h1>
-{/* 출금 내역 버튼 (SVG 아이콘 포함) */}
+        <h1 className="charge-title">{t('rechargeMethod.title')}</h1>
+        {/* 출금 내역 버튼 (SVG 아이콘 포함) */}
         <button
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/withdraw/history")}
           className="charge-header-right"
-          title="출금 내역"
+          title={t('rechargeMethod.historyButtonTitle')}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -47,19 +50,16 @@ export default function RechargeMethodPage() {
       </div>
 
       {/* 본문 */}
-
       <div
-          className="charge-method-selector"
-          onClick={() => navigate('/recharge/usdt')}
-        >
+        className="charge-method-selector"
+        onClick={() => navigate('/recharge/usdt')}
+      >
         <div className="currency-label">
-          <img src="/img/usdt.png" alt="USDT" className="charge-method-icon" />
+          <img src="/img/usdt.png" alt={t('rechargeMethod.usdtLogoAlt')} className="charge-method-icon" />
           <span className="charge-method-label">USDT</span>
-
         </div>
         <span className="charge-method-chevron">{'>'}</span>
       </div>
     </div>
-
   );
 }

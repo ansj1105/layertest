@@ -1,9 +1,11 @@
 // 📁 src/components/OrderHistoryModal.jsx
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 import '../styles/TokenPurchasePage.css';
 
 export default function OrderHistoryModal({ onClose }) {
+  const { t } = useTranslation();
   const [orders, setOrders] = useState([]);
   const [redeemLogs, setRedeemLogs] = useState([]);
   const [loadingOrders, setLoadingOrders] = useState(true);
@@ -30,37 +32,31 @@ export default function OrderHistoryModal({ onClose }) {
   return (
     <div className="order-modal-overlay">
       <div className="order-modal">
-        {/* 닫기 버튼 */}
-
         <div className="order-modal-header">
-          <h3 className="order-modal-title">나의 주문 및 환매 내역</h3>
+          <h3 className="order-modal-title">{t('order_history.title')}</h3>
           <button onClick={onClose} className="order-modal-close-btn">✕</button>
         </div>
- 
-
-        {/* 모달 제목 */}
-        
 
         {/* 주문 내역 섹션 */}
         <section className="mb-6">
-          <h3 className="order-section-title">주문 내역</h3>
+          <h3 className="order-section-title">{t('order_history.orders.title')}</h3>
 
           {loadingOrders ? (
-            <p className="order-table-info">로딩 중...</p>
+            <p className="order-table-info">{t('common.loading')}</p>
           ) : orders.length === 0 ? (
-            <p className="order-table-info">주문 내역이 없습니다.</p>
+            <p className="order-table-info">{t('order_history.orders.no_orders')}</p>
           ) : (
             <table className="order-table">
               <thead>
                 <tr>
-                  <th>주문 ID</th>
-                  <th>토큰</th>
-                  <th>수량</th>
-                  <th>단가(USDT)</th>
-                  <th>총액(USDT)</th>
-                  <th>상태</th>
-                  <th>락업 해제일</th>
-                  <th>주문일</th>
+                  <th>{t('order_history.orders.table.order_id')}</th>
+                  <th>{t('order_history.orders.table.token')}</th>
+                  <th>{t('order_history.orders.table.amount')}</th>
+                  <th>{t('order_history.orders.table.price')}</th>
+                  <th>{t('order_history.orders.table.total')}</th>
+                  <th>{t('order_history.orders.table.status')}</th>
+                  <th>{t('order_history.orders.table.unlock_date')}</th>
+                  <th>{t('order_history.orders.table.order_date')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -71,7 +67,7 @@ export default function OrderHistoryModal({ onClose }) {
                     <td>{o.amount}</td>
                     <td>{o.price.toFixed(6)}</td>
                     <td>{o.total_price.toFixed(6)}</td>
-                    <td>{o.status}</td>
+                    <td>{t(`order_history.orders.status.${o.status.toLowerCase()}`)}</td>
                     <td>
                       {o.lockup_until
                         ? new Date(o.lockup_until).toLocaleDateString()
@@ -87,25 +83,25 @@ export default function OrderHistoryModal({ onClose }) {
 
         {/* 환매(교환) 로그 */}
         <section>
-          <h3 className="order-section-title">환매(교환) 내역</h3>
+          <h3 className="order-section-title">{t('order_history.redemptions.title')}</h3>
 
           {loadingRedeems ? (
-            <p className="order-table-info">로딩 중...</p>
+            <p className="order-table-info">{t('common.loading')}</p>
           ) : redeemLogs.length === 0 ? (
-            <p className="order-table-info">환매 내역이 없습니다.</p>
+            <p className="order-table-info">{t('order_history.redemptions.no_redemptions')}</p>
           ) : (
             <div className="order-table">
               <table className="redeem-table">
                 <thead>
                   <tr>
-                    <th>로그 ID</th>
-                    <th>날짜</th>
-                    <th>방향</th>
-                    <th>수량</th>
-                    <th>잔액</th>
-                    <th>참조 타입</th>
-                    <th>참조 ID</th>
-                    <th>설명</th>
+                    <th>{t('order_history.redemptions.table.log_id')}</th>
+                    <th>{t('order_history.redemptions.table.date')}</th>
+                    <th>{t('order_history.redemptions.table.direction')}</th>
+                    <th>{t('order_history.redemptions.table.amount')}</th>
+                    <th>{t('order_history.redemptions.table.balance')}</th>
+                    <th>{t('order_history.redemptions.table.ref_type')}</th>
+                    <th>{t('order_history.redemptions.table.ref_id')}</th>
+                    <th>{t('order_history.redemptions.table.description')}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -113,10 +109,10 @@ export default function OrderHistoryModal({ onClose }) {
                     <tr key={log.id}>
                       <td className="font-mono">{log.id}</td>
                       <td>{new Date(log.log_date).toLocaleString()}</td>
-                      <td>{log.direction}</td>
+                      <td>{t(`order_history.redemptions.direction.${log.direction}`)}</td>
                       <td>{parseFloat(log.amount).toFixed(6)}</td>
                       <td>{parseFloat(log.balance_after).toFixed(6)}</td>
-                      <td>{log.reference_type}</td>
+                      <td>{t(`order_history.redemptions.ref_type.${log.reference_type.toLowerCase().replace('token_', '')}`)}</td>
                       <td className="font-mono">{log.reference_id}</td>
                       <td>{log.description}</td>
                     </tr>
@@ -126,7 +122,6 @@ export default function OrderHistoryModal({ onClose }) {
             </div>
           )}
         </section>
-
       </div>
     </div>
   );

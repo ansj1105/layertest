@@ -22,44 +22,43 @@ export default function ForgotPassword() {
   const handleSendCode = async () => {
     try {
       await axios.post('/api/security/password/send-reset-code', { email });
-      alert('인증코드가 발송되었습니다.');
+      alert(t('forgotPassword.codeSent'));
       setError('');
     } catch (err) {
-      setError(err.response?.data?.error || '인증코드 발송 실패');
+      setError(err.response?.data?.error || t('forgotPassword.errors.sendCode'));
     }
   };
 
   const handleVerifyCode = async () => {
     if (!code) {
-      setError('인증코드를 입력해주세요.');
+      setError(t('forgotPassword.errors.codeRequired'));
       return;
     }
     try {
-      // 여기서는 실제 인증 확인만 하고 비밀번호는 변경하지 않습니다
       await axios.post('/api/security/password/verify-code', {
         email,
         code
       });
       setIsVerified(true);
       setError('');
-      alert('인증이 완료되었습니다.');
+      alert(t('forgotPassword.verificationSuccess'));
     } catch (err) {
-      setError(err.response?.data?.error || '인증코드가 유효하지 않습니다.');
+      setError(err.response?.data?.error || t('forgotPassword.errors.invalidCode'));
     }
   };
 
   const handleResetPassword = async () => {
     try {
       if (!isVerified) {
-        setError('먼저 인증코드 확인을 완료해주세요.');
+        setError(t('forgotPassword.errors.verifyFirst'));
         return;
       }
       if (newPassword.length < 6) {
-        setError('비밀번호는 최소 6자 이상이어야 합니다.');
+        setError(t('forgotPassword.errors.passwordLength'));
         return;
       }
       if (newPassword !== confirmPassword) {
-        setError('비밀번호가 일치하지 않습니다.');
+        setError(t('forgotPassword.errors.passwordMismatch'));
         return;
       }
 
@@ -69,10 +68,10 @@ export default function ForgotPassword() {
         newPassword
       });
 
-      alert('비밀번호가 성공적으로 변경되었습니다.');
+      alert(t('forgotPassword.resetSuccess'));
       nav('/login');
     } catch (err) {
-      setError(err.response?.data?.error || '비밀번호 재설정 실패');
+      setError(err.response?.data?.error || t('forgotPassword.errors.resetFailed'));
     }
   };
 
@@ -83,32 +82,32 @@ export default function ForgotPassword() {
         <button onClick={() => nav(-1)} className="trade-pwd-back-btn">
           <ArrowLeft size={24}/>
         </button>
-        <div className="trade-pwd-title">비밀번호 변경</div>
+        <div className="trade-pwd-title">{t('forgotPassword.title')}</div>
       </div>
 
       {/* 폼 */}
       <div className="trade-label-wrapper">
-        <label className="trade-label">이메일 주소</label>
+        <label className="trade-label">{t('forgotPassword.emailLabel')}</label>
         <input
           type="email"
-          placeholder="가입한 이메일을 입력하세요"
+          placeholder={t('forgotPassword.emailPlaceholder')}
           className="trade-input"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <label className="sr-only">인증코드</label>
+        <label className="sr-only">{t('forgotPassword.codeLabel')}</label>
         <div className="trade-code-group">
           <input
             type="text"
-            placeholder="인증코드 6자리"
+            placeholder={t('forgotPassword.codePlaceholder')}
             className="trade-code-input"
             value={code}
             onChange={(e) => setCode(e.target.value)}
           />
           <button onClick={handleSendCode} className="trade-send-btn">
             <Send className="mr-1" />
-            코드 전송
+            {t('forgotPassword.sendCode')}
           </button>
         </div>
 
@@ -117,14 +116,14 @@ export default function ForgotPassword() {
           className="trade-submit-btn mb-4"
           style={{ marginTop: '0.5rem' }}
         >
-          인증코드 확인
+          {t('forgotPassword.verifyCode')}
         </button>
 
-        <label className="trade-label">새 비밀번호</label>
+        <label className="trade-label">{t('forgotPassword.newPasswordLabel')}</label>
         <div className="trade-password-group">
           <input
             type={showPassword ? 'text' : 'password'}
-            placeholder="새 비밀번호를 입력하세요"
+            placeholder={t('forgotPassword.newPasswordPlaceholder')}
             className="trade-password-input"
             value={newPassword}
             onChange={(e) => setNewPassword(e.target.value)}
@@ -137,11 +136,11 @@ export default function ForgotPassword() {
           </button>
         </div>
 
-        <label className="trade-label">비밀번호 확인</label>
+        <label className="trade-label">{t('forgotPassword.confirmPasswordLabel')}</label>
         <div className="trade-password-group">
           <input
             type={showConfirmPassword ? 'text' : 'password'}
-            placeholder="비밀번호를 다시 입력하세요"
+            placeholder={t('forgotPassword.confirmPasswordPlaceholder')}
             className="trade-password-input"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -159,7 +158,7 @@ export default function ForgotPassword() {
         )}
 
         <button onClick={handleResetPassword} className="trade-submit-btn">
-          비밀번호 재설정
+          {t('forgotPassword.resetButton')}
         </button>
       </div>
     </div>

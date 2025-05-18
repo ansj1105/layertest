@@ -109,7 +109,7 @@ export default function LoginPage() {
         {success && <p className="text-green-400 text-center">{success}</p>}
 
         <div className="auth-links-l">
-          <span>Don't you have an account?</span>
+          <span>{t("login.no_account")}</span>
           <Link to="/register">{t("login.register")}</Link>
           <Link to="/forgot-password">{t("login.forgot")}</Link>
         </div>

@@ -1,4 +1,3 @@
-
 /*
 // 📁 src/App.jsx// 📁 src/App.jsx
 import { useEffect, useState } from 'react';
@@ -147,7 +146,7 @@ export default function App() {
             <button className="avatar-button" onClick={() => setSidebarOpen(true)}>
               <img 
                 src="/img/item/top/avatar.png" 
-                alt="User Avatar"
+                alt={t('app.userAvatarAlt')}
                 className="avatar-img"
               />
             </button>
@@ -156,7 +155,7 @@ export default function App() {
           {/* 로고 */}
           <img
             src="/img/item/logo/logo.png"
-            alt="Upstart"
+            alt={t('app.logoAlt')}
             className="top-logo"
           />
 
@@ -164,7 +163,7 @@ export default function App() {
           <div className="avatar-mase">
             <img
               src="/img/item/top/envelope.png"
-              alt="Mail Icon"
+              alt={t('app.mailIconAlt')}
               className="avatar-img"
             />
           </div>
@@ -187,6 +186,7 @@ export default function App() {
             <button
               className="sidebar-close-btn"
               onClick={() => setSidebarOpen(false)}
+              aria-label={t('app.closeButton')}
             >
               <CloseIcon size={20} />
             </button>
@@ -199,7 +199,7 @@ export default function App() {
               <div className="flex-1">
                 <p className="sidebar-username">{user.name}</p>
                 <div className="sidebar-id">
-                  <span>ID: {encodeId(user.id)}</span>
+                  <span>{t('app.idLabel')}: {encodeId(user.id)}</span>
                   <ClipboardCopy
                     size={14}
                     className="cursor-pointer hover:text-white"
@@ -207,7 +207,7 @@ export default function App() {
                   />
                 </div>
                 {copySuccess && (
-                  <p className="sidebar-copy-success">복사되었습니다!</p>
+                  <p className="sidebar-copy-success">{t('app.idCopied')}</p>
                 )}
               </div>
             </div>
@@ -218,15 +218,15 @@ export default function App() {
             <div className="sidebar-grid">
               <Link to="/recharge" onClick={() => setSidebarOpen(false)}>
                 <RefreshCw size={24} className="mb-1" />
-                <span className="text-xs">재충전</span>
+                <span className="text-xs">{t('app.recharge')}</span>
               </Link>
               <Link to="/withdraw" onClick={() => setSidebarOpen(false)}>
                 <ArrowDownCircle size={24} className="mb-1" />
-                <span className="text-xs">출금하기</span>
+                <span className="text-xs">{t('app.withdraw')}</span>
               </Link>
               <Link to="/support" onClick={() => setSidebarOpen(false)}>
                 <Headphones size={24} className="mb-1" />
-                <span className="text-xs">고객 서비스</span>
+                <span className="text-xs">{t('app.customerService')}</span>
               </Link>
             </div>
 

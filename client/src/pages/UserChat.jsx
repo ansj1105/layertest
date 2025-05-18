@@ -2,6 +2,7 @@
 import { useEffect, useState, useRef } from 'react';
 import io from 'socket.io-client';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 import '../styles/topnav.css';
 
 const socket = io("http://54.85.128.211:4000", {
@@ -9,6 +10,7 @@ const socket = io("http://54.85.128.211:4000", {
 });
 
 export default function UserChat({ userId }) {
+  const { t } = useTranslation();
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -55,7 +57,7 @@ export default function UserChat({ userId }) {
           from: 'admin',
           text: msg.message,
           time,
-          read: isOpen ? true : false // 👈 즉시 읽음 처리 반영
+          read: isOpen ? true : false
         };
       
         setMessages(prev => [...prev, newMsg]);
@@ -65,7 +67,6 @@ export default function UserChat({ userId }) {
           setPopupVisible(true);
           setTimeout(() => setPopupVisible(false), 3000);
         } else {
-          // ✅ 이 메시지에 대해서는 DB 업데이트도 바로 반영
           axios.patch(`/api/auth/messages/${userId}/read`, {}, { withCredentials: true }).catch(console.error);
         }
       });
@@ -84,7 +85,7 @@ export default function UserChat({ userId }) {
     try {
       await axios.post("/api/auth/message", { message: input }, { withCredentials: true });
     } catch (err) {
-      console.error("❌ 메시지 저장 실패:", err);
+      console.error(t('userChat.errors.messageSaveFailed'), err);
     }
 
     setInput("");
@@ -99,26 +100,24 @@ export default function UserChat({ userId }) {
   if (!isOpen) {
     return (
       <>
-
-<button
-  id="fixed-bell"
-  onClick={() => {
-    setIsOpen(true);
-    markMessagesAsRead();
-  }}
->
-  <img 
-    src="/img/item/top/headphones.svg" 
-    alt="Notification" 
-  />
-</button>
+        <button
+          id="fixed-bell"
+          onClick={() => {
+            setIsOpen(true);
+            markMessagesAsRead();
+          }}
+        >
+          <img 
+            src="/img/item/top/headphones.svg" 
+            alt={t('userChat.notificationAlt')} 
+          />
+        </button>
 
         {popupVisible && (
-  <div className="fixed bottom-[130px] right-4 bg-yellow-200 text-black px-4 py-2 rounded shadow-lg animate-bounce z-50">
-    📩 새 메시지가 도착했어요!
-  </div>
-)}
-
+          <div className="fixed bottom-[130px] right-4 bg-yellow-200 text-black px-4 py-2 rounded shadow-lg animate-bounce z-50">
+            {t('userChat.newMessageNotification')}
+          </div>
+        )}
       </>
     );
   }
@@ -126,7 +125,7 @@ export default function UserChat({ userId }) {
   return (
     <div className="fixed bottom-12 right-4 w-96 bg-white p-4 rounded shadow-lg flex flex-col z-50" style={{ maxHeight: 600, height: '500px', width: '500px',overflowY: 'auto'  }}>
       <div className="flex justify-between items-center border-b pb-2 mb-2">
-        <h2 className="text-lg font-semibold">고객센터 채팅</h2>
+        <h2 className="text-lg font-semibold">{t('userChat.title')}</h2>
         <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-gray-800">✕</button>
       </div>
 
@@ -135,7 +134,7 @@ export default function UserChat({ userId }) {
           <div key={idx} className={`text-sm p-2 rounded max-w-xs ${msg.from === 'user' ? 'bg-blue-100 self-end ml-auto' : 'bg-gray-100 self-start mr-auto'}`}>
             <div>
               <span className="block text-xs font-semibold text-gray-600 mb-1">
-                [ {msg.from === 'user' ? '나' : '관리자'} || {msg.time} {msg.from === 'admin' && !msg.read ? '(안읽음)' : ''}]
+                [ {msg.from === 'user' ? t('userChat.me') : t('userChat.admin')} || {msg.time} {msg.from === 'admin' && !msg.read ? t('userChat.unread') : ''}]
               </span>
             </div>
             {msg.text}
@@ -145,21 +144,20 @@ export default function UserChat({ userId }) {
       </div>
 
       <div className="flex gap-2 mt-2">
-  <input
-    type="text"
-    value={input}
-    onChange={(e) => setInput(e.target.value)}
-    className="border px-3 h-10 rounded flex-1" // ✅ 높이 고정 + 가로 확장
-    placeholder="메시지를 입력하세요"
-  />
-  <button
-    onClick={sendMessage}
-    className="bg-blue-500 text-white px-4 h-10 rounded hover:bg-blue-600 whitespace-nowrap" // ✅ 높이 고정 + 줄바꿈 방지
-  >
-    보내기
-  </button>
-</div>
-
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          className="border px-3 h-10 rounded flex-1"
+          placeholder={t('userChat.inputPlaceholder')}
+        />
+        <button
+          onClick={sendMessage}
+          className="bg-blue-500 text-white px-4 h-10 rounded hover:bg-blue-600 whitespace-nowrap"
+        >
+          {t('userChat.sendButton')}
+        </button>
+      </div>
     </div>
   );
 }

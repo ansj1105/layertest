@@ -1,12 +1,13 @@
 // 📁 src/pages/SystemNotices.jsx
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import { Trash2, ArrowLeft, Mail, MailOpen,ArrowLeftIcon } from 'lucide-react';
+import { Trash2, ArrowLeft, Mail, MailOpen, ArrowLeftIcon } from 'lucide-react';
 import '../styles/topbar.css';
 import '../styles/SystemNotices.css';
 
-
 export default function SystemNotices() {
+  const { t } = useTranslation();
   const [tab, setTab]         = useState('notices'); // 'notices' | 'inbox'
   const [notices, setNotices] = useState([]);
   const [inbox, setInbox]     = useState([]);
@@ -85,7 +86,7 @@ export default function SystemNotices() {
   };
 
   if (loading) {
-    return <div className="p-4 text-center text-yellow-100">⏳ 로딩 중...</div>;
+    return <div className="p-4 text-center text-yellow-100">{t('common.loading')}</div>;
   }
 
   const list = tab === 'notices' ? notices : inbox;
@@ -93,11 +94,10 @@ export default function SystemNotices() {
   return (
     <div className="page-wrapper-mass">
       <div className="top-bar">
-
         <button onClick={() => window.history.back()} className="top-tran-sys">
           <ArrowLeftIcon size={24} />
         </button>
-        <h2 className="top-h-text-sys">메시지 센터</h2>
+        <h2 className="top-h-text-sys">{t('systemNotices.title')}</h2>
       </div>  
 
       <div className="tab-bar">
@@ -105,74 +105,77 @@ export default function SystemNotices() {
           onClick={() => setTab('notices')}
           className={`tab-button ${tab === 'notices' ? 'active-button' : 'inactive-button'}`}
         >
-          공고
+          {t('systemNotices.tabs.notices')}
         </button>
         <button
           onClick={() => setTab('inbox')}
           className={`tab-button ${tab === 'inbox' ? 'active-button' : 'inactive-button'}`}
         >
-          시스템 알림
+          {t('systemNotices.tabs.inbox')}
         </button>
       </div>
 
-      {/* 리스트 */}
+      {/* List */}
       <div className="message-list">
-        {list.map(item => (
-          <div
-            key={item.id}
-            className={`message-item ${!item.is_read ? 'unread' : 'read'}`}
-            onClick={() => {
-              if (tab === 'notices') markNoticeRead(item);
-              else markInboxRead(item);
-              setDetail(item);
-            }}
-          >
-            <div className="message-content">
-              {item.is_read
-                ? <MailOpen className="message-icon" size={18} />
-                : <Mail className="message-icon" size={18} />
-              }
-              <div>
-                <p className="message-title">{item.title || item.content}</p>
-                <span className="message-date">
-                  {new Date(item.created_at).toLocaleString()}
-                </span>
-              </div>
-            </div>
-            <Trash2
-              size={16}
-              className="message-delete"
-              onClick={e => {
-                e.stopPropagation();
-                deleteItem(item.id, tab);
+        {list.length === 0 ? (
+          <div className="no-messages">{t('systemNotices.noMessages')}</div>
+        ) : (
+          list.map(item => (
+            <div
+              key={item.id}
+              className={`message-item ${!item.is_read ? 'unread' : 'read'}`}
+              onClick={() => {
+                if (tab === 'notices') markNoticeRead(item);
+                else markInboxRead(item);
+                setDetail(item);
               }}
-            />
-          </div>
-        ))}
+            >
+              <div className="message-content">
+                {item.is_read
+                  ? <MailOpen className="message-icon" size={18} />
+                  : <Mail className="message-icon" size={18} />
+                }
+                <div>
+                  <p className="message-title">{item.title || item.content}</p>
+                  <span className="message-date">
+                    {new Date(item.created_at).toLocaleString()}
+                  </span>
+                </div>
+              </div>
+              <Trash2
+                size={16}
+                className="message-delete"
+                onClick={e => {
+                  e.stopPropagation();
+                  deleteItem(item.id, tab);
+                }}
+              />
+            </div>
+          ))
+        )}
       </div>
 
-      {/* 하단 버튼 */}
+      {/* Bottom buttons */}
       <div className="bottom-action-bar">
         <button onClick={deleteAll} className="bottom-action-btn">
-          모두 삭제
+          {t('systemNotices.actions.deleteAll')}
         </button>
         <button onClick={markAllRead} className="bottom-action-btn">
-          모두 읽기
+          {t('systemNotices.actions.markAllRead')}
         </button>
       </div>
 
-      {/* 상세 보기 오버레이 */}
+      {/* Detail overlay */}
       {detail && (
         <div className="detail-overlay">
           <div className="detail-header">
-          <button
+            <button
               onClick={() => setDetail(null)}
               className="detail-back-btn"
             >
               <ArrowLeft size={24} />
             </button>
-            <span className="detail-title">세부</span>
-
+            <span className="detail-title">{t('systemNotices.detail.title')}</span>
           </div>
           <div className="detail-body">
             <h1>{detail.title}</h1>
