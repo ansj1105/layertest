@@ -12,7 +12,7 @@
   box-sizing: border-box;
   z-index: 100;
 }
-
+ 
 /* 상단 바 */
 .common-problems-header {
   margin-top: 0px;
@@ -170,9 +170,9 @@
   }
 
   .problems-content-wrapper {
-    width: 100%;
+    width: 90%;
     padding: 15px;
-    height: 590px;
+    height: 580px;
     font-size: 0.875rem;
     gap: 12px;
     

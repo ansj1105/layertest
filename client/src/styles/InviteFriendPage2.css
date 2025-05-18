@@ -146,7 +146,7 @@
   border-radius: 8px;
   background-color: #152221;
   box-shadow: 0 0 1px 1px #b8dfd9;
-  
+
   display: flex;
   flex-direction: column;       /* 세로로 쌓이게 */
   align-items: center;          /* 가로 중앙 정렬 */
@@ -159,7 +159,7 @@
 .referral-box-description {
   color: #fcd34d; /* text-yellow-300 */
   font-size: 0.875rem;
-
+  margin-bottom: 1rem;
 }
 
 /* QR코드 박스 */
@@ -1249,12 +1249,6 @@
     top: 0.5rem;
     right: 0.5rem;
   }
-
-  .referral-box-container{
-    margin-top: -10px;
-    height: 380px;
-  }
-
 
 
 

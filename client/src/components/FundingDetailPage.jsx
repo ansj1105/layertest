@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-
+import '../styles/topbar.css';
+import '../styles/FundingDetailPage.css';
 export default function FundingDetailPage() {
   const { t } = useTranslation();
   const { id } = useParams();
@@ -31,7 +32,7 @@ export default function FundingDetailPage() {
       }
     })();
   }, [id, t]);
-
+ 
   const handleSubscribe = async () => {
     setError("");
     const amt = parseFloat(amount);
@@ -68,64 +69,63 @@ export default function FundingDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
-      <button onClick={() => navigate(-1)} className="text-white text-xl mb-4">
-        ←
-      </button>
-      <h2 className="text-2xl font-bold mb-2">{project.name}</h2>
-      <p className="mb-2">
+  <div className="funding-wrapper">
+    <div className="funding-top-bar1">  
+      <button onClick={() => navigate(-1)} className="back-button">←</button>
+
+      <h2 className="project-title">{project.name}</h2>
+    </div>
+    <div className="funding-top-bar2">  
+      <p className="project-info">
         {t("funding.detail2.descriptionLabel")} {project.description}
       </p>
-      <p className="mb-2">
+      <p className="project-info">
         {t("funding.detail2.cycleLabel", { cycle: project.cycle })}
       </p>
-      <p className="mb-2">
+      <p className="project-info">
         {t("funding.detail2.dailyRateLabel", { rate: project.dailyRate })}
       </p>
-      <p className="mb-2">
+      <p className="project-info">
         {t("funding.detail2.minMaxLabel", { min: project.minAmount, max: project.maxAmount })}
       </p>
-      <p className="mb-2">
+      <p className="project-info">
         {t("funding.detail2.targetLabel", { target: project.targetAmount })}
       </p>
-      <p className="mb-2">
+      <p className="project-info">
         {t("funding.detail2.currentLabel", { current: project.currentAmount })}
       </p>
-      <p className="mb-4 text-green-300">
+      <p className="project-available">
         {t("funding.detail2.availableLabel", { balance: availableBalance })}
       </p>
 
       <input
         type="number"
-        className="w-full p-2 mb-2 bg-[#1a1109] rounded text-yellow-200 placeholder-yellow-500"
+        className="amount-input"
         placeholder={t("funding.detail2.amountPlaceholder")}
         value={amount}
         onChange={(e) => setAmount(e.target.value)}
       />
-      {error && <p className="text-red-400 mb-2 text-sm">{error}</p>}
+      {error && <p className="error-text">{error}</p>}
 
-      <button
-        className="w-full py-2 bg-yellow-500 text-black font-semibold rounded"
-        onClick={handleSubscribe}
-      >
+      <button className="subscribe-button" onClick={handleSubscribe}>
         {t("funding.detail2.subscribe")}
       </button>
-
-      <h3 className="text-lg font-bold mt-8 mb-2">
-        {t("funding.detail2.investorsTitle")}
-      </h3>
+    </div>
+    <div className="funding-top-bar3">  
+      <h3 className="investor-title">{t("funding.detail2.investorsTitle")}</h3>
       {investors.length === 0 ? (
-        <p className="text-sm text-gray-400">{t("funding.detail2.noInvestors")}</p>
+        <p className="no-investors">{t("funding.detail2.noInvestors")}</p>
       ) : (
-        <ul className="space-y-1 text-sm">
+        <ul className="investor-list">
           {investors.map((inv) => (
-            <li key={inv.id} className="border-b border-gray-700 pb-1">
+            <li key={inv.id} className="investor-item">
               📧 {inv.email} - 💰 {inv.amount} USDT - 🕒{' '}
               {new Date(inv.created_at).toLocaleString()}
             </li>
           ))}
         </ul>
       )}
+    </div>
     </div>
   );
 }

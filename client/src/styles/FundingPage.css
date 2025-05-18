@@ -14,7 +14,7 @@
   box-sizing: border-box;
   z-index: 100;
 }
- 
+  
 .project-list-container {
   display: flex;
   justify-content: center;   /* 가로 중앙 정렬 */
@@ -654,6 +654,7 @@
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
+
 }
 
 /* 입력 필드 */
@@ -666,6 +667,7 @@
   color: #fef9c3;
   font-size: 0.875rem;
   border: none;
+  box-shadow: 0 0 1px 1px #b8dfd9;
 }
 
 
@@ -751,7 +753,7 @@
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  color: #9ca3af; /* text-gray-400 */
+  color: #fef08a; /* text-gray-400 */
   font-size: 1.25rem;
   cursor: pointer;
 }
@@ -777,6 +779,7 @@
   color: #fef9c3;
   font-size: 0.875rem;
   border: none;
+  box-shadow: 0 0 1px 1px #b8dfd9;
 }
 
 .withdraw-modal-input::placeholder {
@@ -930,20 +933,22 @@
     width: 100%;
   }
 
-
+  .withdraw-modal-title{
+    text-align: left !important; /* 🔥 왼쪽 정렬 */
+  }
 
 
 
 
 
   .info-modal-overlay {
-    padding-top: 60px;
+
   }
 
   .info-modal-content {
-    width: 90%;
+    width: 88%;
     padding: 12px;
-    height: auto;
+  
     flex-direction: column; /* 모바일에선 세로 정렬 */
     gap: 12px;
   }
@@ -982,16 +987,11 @@
 
 
   .withdraw-modal-overlay {
-    padding: 40px 12px; /* 위쪽 여백 줄이고 좌우 여백 확보 */
-    align-items: flex-start; /* 가운데 정렬 → 위로 */
+
   }
 
   .withdraw-modal-box {
-    width: 100%;
-    max-width: 92%;
-    padding: 1.25rem;
-    border-radius: 0.75rem;
-    font-size: 0.875rem;
+
   }
 
   .withdraw-modal-title {

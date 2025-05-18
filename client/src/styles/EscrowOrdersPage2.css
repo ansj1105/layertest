@@ -151,21 +151,11 @@
   color: #fef9c3;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* 연한 밑줄 */
   padding: 4px 0; /* 위아래 여백 */
-  width: 100%;
-
 }
-.escrow-order-info font{
-
-}
-
-
 
 .escrow-order-info span {
   color: #d1d5db; /* text-gray-300 */
   margin-right: 0.25rem;
-  width: 50%;
-  max-width: 100%;
-
 }
 
 /* 날짜 */

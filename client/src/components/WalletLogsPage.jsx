@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeftIcon } from 'lucide-react';
-
+import '../styles/WalletLogsPage.css';
+import '../styles/topbar.css';
 export default function WalletLogsPage() {
   const { t } = useTranslation();
   const [tab, setTab]         = useState('transfer');
@@ -162,80 +163,89 @@ export default function WalletLogsPage() {
     </div>
   );
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-4">
+  <div className="back-button-page">
+    <div className="back-button-top-bar">
       {/* 뒤로가기 */}
-      <button
-        onClick={() => window.history.back()}
-        className="flex items-center mb-4 text-yellow-200 hover:text-yellow-100"
-      >
-        <ArrowLeftIcon size={20} />
-        <span className="ml-1">{t('walletLogs.back')}</span>
+      <button onClick={() => window.history.back()} className="back-button">
+        <ArrowLeftIcon size={24} />
       </button>
 
       {/* 제목 */}
-      <h1 className="text-xl font-semibold mb-4">
+      <h1 className="page-title">
         {t('walletLogs.title')}
       </h1>
+    </div>
+
+
 
       {/* 탭 */}
-      <div className="flex space-x-2 mb-4">
-        {['transfer','walletEarnings','financeIncome'].map(key => (
-          <button
-            key={key}
-            onClick={() => setTab(key)}
-            className={`flex-1 py-2 rounded ${
-              tab === key
-                ? 'bg-yellow-600 text-black'
-                : 'bg-[#2c1f0f]'
-            }`}
-          >
-            {t(`walletLogs.tabs.${key}`)}
-          </button>
-        ))}
-      </div>
-      {/* 테이블 공통 */}
-      <table className="w-full bg-[#2c1f0f] rounded overflow-hidden">
-        <thead className="bg-[#3a270e]">
-          {tab === 'transfer' && (
-            <tr>
-              <th className="p-2">{t('walletLogs.columns.type')}</th>
-              <th className="p-2">{t('walletLogs.columns.amount')}</th>
-              <th className="p-2">{t('walletLogs.columns.fee')}</th>
-              <th className="p-2">{t('walletLogs.columns.net')}</th>
-              <th className="p-2">{t('walletLogs.columns.date')}</th>
-            </tr>
-          )}
-          {tab === 'walletEarnings' && (
-            <tr>
-              <th className="p-2">{t('walletLogs.columns.date')}</th>
-              <th className="p-2">{t('walletLogs.columns.amount')}</th>
-              <th className="p-2">{t('walletLogs.columns.category')}</th>
-            </tr>
-          )}
-          {tab === 'financeIncome' && (
-            <tr>
-            <th className="p-2">{t('walletLogs.columns.date')}</th>
-            <th className="p-2">{t('walletLogs.columns.amount')}</th>
-            <th className="p-2">{t('walletLogs.columns.description')}</th>
-          </tr>
-        )}
-        </thead>
-        <tbody>
-          {loading
-            ? (
+      <div className="wallet-logs">
+  {/* 탭 버튼 */}
+  <div className="tab-group">
+    {['transfer','walletEarnings','financeIncome'].map(key => (
+      <button
+        key={key}
+        onClick={() => setTab(key)}
+        className={`tab-button ${tab === key ? 'active' : ''}`}
+      >
+        {t(`walletLogs.tabs.${key}`)}
+      </button>
+    ))}
+  </div>
+
+    {/* 테이블 */}
+      <div className="scroll-wrapper">
+        <table className="logs-table">
+          <thead>
+            {tab === 'transfer' && (
               <tr>
-                <td colSpan={tab === 'financeIncome' ? 3 : 5} className="text-center py-4">
+                <th>{t('walletLogs.columns.type')}</th>
+                <th>{t('walletLogs.columns.amount')}</th>
+                <th>{t('walletLogs.columns.fee')}</th>
+                <th>{t('walletLogs.columns.net')}</th>
+                <th>{t('walletLogs.columns.date')}</th>
+              </tr>
+            )}
+            {tab === 'walletEarnings' && (
+              <tr>
+                <th>{t('walletLogs.columns.date')}</th>
+                <th>{t('walletLogs.columns.amount')}</th>
+                <th>{t('walletLogs.columns.category')}</th>
+              </tr>
+            )}
+            {tab === 'financeIncome' && (
+              <tr>
+                <th>{t('walletLogs.columns.date')}</th>
+                <th>{t('walletLogs.columns.amount')}</th>
+                <th>{t('walletLogs.columns.description')}</th>
+              </tr>
+            )}
+          </thead>
+          <tbody>
+            {loading ? (
+              <tr>
+                <td
+                  colSpan={tab === 'financeIncome' ? 3 : 5}
+                  className="logs-loading"
+                >
                   {t('walletLogs.loading')}
                 </td>
               </tr>
-            )
-            : renderRows(pagedData, tab === 'transfer')
-          }
-        </tbody>
-      </table>
+            ) : (
+              renderRows(pagedData, tab === 'transfer')
+            )}
+          </tbody>
+        </table>
 
-      {/* 페이지네이션 */}
-      {!loading && data.length > pageSize && <Pagination />}
+        {/* 페이지네이션 */}
+        {!loading && data.length > pageSize && (
+          <div className="pagination-container">
+            <Pagination />
+          </div>
+        )}
+      </div>
     </div>
+  </div>
+
   );
 }

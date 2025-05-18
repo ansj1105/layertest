@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-
+import '../styles/TokenPurchasePage.css';
 export default function PurchaseModal({ sale, walletBalance, onClose, onPurchased }) {
   const { t } = useTranslation();
 
@@ -34,7 +34,7 @@ export default function PurchaseModal({ sale, walletBalance, onClose, onPurchase
     setError('');
     return true;
   };
-
+ 
   // 수량이 바뀔 때마다 검사
   useEffect(() => {
     validate();
@@ -84,46 +84,52 @@ export default function PurchaseModal({ sale, walletBalance, onClose, onPurchase
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center">
-      <div className="bg-[#2c1f0f] text-yellow-100 rounded-lg w-11/12 max-w-md p-6 relative">
-        <button
-          onClick={onClose}
-          className="absolute top-3 right-3 text-yellow-300 hover:text-yellow-100"
-        >✕</button>
+    <div className="modal-overlay">
+      <div className="modal-content">
+        {/* 닫기 버튼 */}
+        <button onClick={onClose} className="modal-close-btn">
+          ✕
+        </button>
 
-        {/* 1. 토큰당 가격 */}
-        <div className="mb-2 text-sm text-gray-300">
-          1 {t('tokenPurchase.token')} = <strong className="text-yellow-100">{pricePer.toFixed(6)} USDT</strong>
-        </div>
-
-        <h3 className="text-xl font-bold mb-4">
-          {sale.name} {t('tokenPurchase.phase')}
+        {/* 제목 */}
+        <h3 className="modal-title">
+          {sale.name} {t("tokenPurchase.phase")}
         </h3>
 
-        {/* 숫자 입력박스 + Max 버튼 */}
-        <div className="mb-4 relative">
-          <label className="block text-sm mb-1">{t('tokenPurchase.quantity')}</label>
-          <input
-            type="number"
-            className="w-full bg-[#1a1109] p-2 rounded text-yellow-100 pr-16"
-            min={minAmount}
-            max={maxAmount}
-            step="1"
-            value={inputValue}
-            onChange={handleQuantityChange}
-            onBlur={handleQuantityBlur}
-          />
-          <button
-            type="button"
-            onClick={handleSetMax}
-            className="absolute right-2 top-8 bg-yellow-600 hover:bg-yellow-700 text-black px-2 py-1 rounded text-sm"
-          >
-            {t('tokenPurchase.maxAll', { max: maxAmount })}
-          </button>
+        {/* 1. 토큰당 가격 */}
+        <div className="modal-price-info">
+          1 {t("tokenPurchase.token")} ={" "}
+          <strong className="text-highlight">{pricePer.toFixed(6)} USDT</strong>
+        </div>
+
+
+
+        {/* 입력박스 */}
+        <div className="modal-input-group">
+          <label className="modal-label">{t("tokenPurchase.quantity")}</label>
+          <div style={{ position: "relative" }}>
+            <input
+              type="number"
+              className="modal-input"
+              min={minAmount}
+              max={maxAmount}
+              step="1"
+              value={inputValue}
+              onChange={handleQuantityChange}
+              onBlur={handleQuantityBlur}
+            />
+            <button
+              type="button"
+              className="modal-max-btn"
+              onClick={handleSetMax}
+            >
+              {t("tokenPurchase.maxAll", { max: maxAmount })}
+            </button>
+          </div>
         </div>
 
         {/* 슬라이더 */}
-        <div className="mb-4">
+        <div className="modal-slider-group">
           <input
             type="range"
             min={minAmount}
@@ -131,36 +137,37 @@ export default function PurchaseModal({ sale, walletBalance, onClose, onPurchase
             step="1"
             value={quantity}
             onChange={handleSliderChange}
-            className="w-full"
+            className="modal-slider"
           />
         </div>
 
-        {/* 수량·범위 */}
-        <div className="flex justify-between text-sm mb-2 text-gray-300">
-          <span>{t('tokenPurchase.min')}: {minAmount}</span>
-          <span>{t('tokenPurchase.selected')}: {quantity}</span>
-          <span>{t('tokenPurchase.max')}: {maxAmount}</span>
+        {/* 수량/범위 */}
+        <div className="modal-range-info">
+          <span>{t("tokenPurchase.min")}: {minAmount}</span>
+          <span>{t("tokenPurchase.selected")}: {quantity}</span>
+          <span>{t("tokenPurchase.max")}: {maxAmount}</span>
         </div>
 
         {/* 총 비용 */}
-        <div className="mb-2 text-sm">
-          {t('tokenPurchase.totalCost')}: <span className="text-yellow-100">{totalCost} USDT</span>
+        <div className="modal-summary">
+          {t("tokenPurchase.totalCost")}: <span className="text-highlight">{totalCost} USDT</span>
         </div>
 
         {/* 잔액 */}
-        <div className="mb-4 text-sm">
-          {t('tokenPurchase.yourBalance')}: <span className="text-yellow-100">{walletBalance.toFixed(6)} USDT</span>
+        <div className="modal-summary mb">
+          {t("tokenPurchase.yourBalance")}: <span className="text-highlight">{walletBalance.toFixed(6)} USDT</span>
         </div>
 
-        {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
+        {/* 에러 */}
+        {error && <p className="modal-error">{error}</p>}
 
+        {/* 제출 버튼 */}
         <button
           onClick={handleSubmit}
           disabled={!!error}
-          className={`w-full py-2 rounded font-semibold 
-            ${error ? 'bg-gray-600 cursor-not-allowed' : 'bg-yellow-500 text-black hover:bg-yellow-600'}`}
+          className={`modal-submit-btn ${error ? "disabled" : "enabled"}`}
         >
-          {t('tokenPurchase.buy')}
+          {t("tokenPurchase.buy")}
         </button>
       </div>
     </div>

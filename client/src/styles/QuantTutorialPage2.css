@@ -162,9 +162,9 @@
   }
 
   .quant-tutorial-content {
-    width: 90%;
+    width: 100%;
     padding: 15px;
-    height: 580px; /* 더 작게 조정 */
+    height: 590px; /* 더 작게 조정 */
     font-size: 0.875rem;
     gap: 12px;
   }
