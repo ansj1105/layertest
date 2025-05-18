@@ -172,6 +172,9 @@
       }
     },
     "quantTrading": {
+      "processing": "取引中...",
+      "tradingCountdown": "取引中... {{seconds}}秒",
+      "warningMessage": "取引中にページを閉じたり更新しないでください",
       "leaderboardTitle": "リーダーボード",
       "leaderboard": {
         "name": "メンバー",

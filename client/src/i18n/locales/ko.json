@@ -25,6 +25,9 @@
     },  
     "quantTrading": {
          "leaderboardTitle": "리더보드",
+         "processing": "거래 진행 중...",
+    "tradingCountdown": "거래 중... {{seconds}}초",
+    "warningMessage": "거래가 진행되는 동안 페이지를 닫거나 새로고침하지 마세요",
    "leaderboard": {
      "name": "멤버 이름",
      "earnings": "소득",

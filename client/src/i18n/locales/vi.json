@@ -173,6 +173,9 @@
     },
     "quantTrading": {
       "leaderboardTitle": "Bảng xếp hạng",
+      "processing": "Đang xử lý giao dịch...",
+      "tradingCountdown": "Đang xử lý giao dịch... {{seconds}}s",
+      "warningMessage": "Vui lòng không đóng hoặc tải lại trang trong khi giao dịch đang diễn ra",
       "leaderboard": {
         "name": "Thành viên",
         "earnings": "Thu nhập",

@@ -199,6 +199,9 @@
   },
   "quantTrading": {
     "leaderboardTitle": "Таблица Лидеров",
+    "processing": "Обработка торговли...",
+    "tradingCountdown": "Обработка торговли... {{seconds}}с",
+    "warningMessage": "Пожалуйста, не закрывайте или не обновляйте страницу во время торговли",
     "leaderboard": {
       "name": "Участник",
       "earnings": "Доход",

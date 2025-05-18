@@ -149,7 +149,10 @@
   "start": "Start Trading",
   "confirmStart": "Start quant trading?",
   "tradeError": "Trade failed: ",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "processing": "Processing trade...",
+  "tradingCountdown": "Trading... {{seconds}}s",
+  "warningMessage": "Please do not close or refresh the page while trading is in progress."
 },
 "history": {
   "title": "Transaction History",
@@ -407,12 +410,12 @@
     "title": "Agency Cooperation",
     "subTitle": "Counselor Partnership",
     "lines": [
-      "Join the Upstart team program and earn commissions by promoting Upstart. Enjoy Upstart’s convenience and sustained growth like no one else.",
+      "Join the Upstart team program and earn commissions by promoting Upstart. Enjoy Upstart's convenience and sustained growth like no one else.",
       "Upstart offers every user a generous team-commission reward mechanism.",
-      "You can receive commission rewards in three tiers (these are extra rewards from Upstart and do not reduce your team members’ earnings).",
-      "1. When Friend A shares and becomes your Level-1 member, you earn 21% of A’s daily profit.",
-      "2. When A’s Friend B becomes your Level-2 member, you earn 7% of B’s daily profit.",
-      "3. When B’s Friend C becomes your Level-3 member, you earn 1% of C’s daily profit.",
+      "You can receive commission rewards in three tiers (these are extra rewards from Upstart and do not reduce your team members' earnings).",
+      "1. When Friend A shares and becomes your Level-1 member, you earn 21% of A's daily profit.",
+      "2. When A's Friend B becomes your Level-2 member, you earn 7% of B's daily profit.",
+      "3. When B's Friend C becomes your Level-3 member, you earn 1% of C's daily profit.",
       "Example: If each A, B, and C member earns $100 per day, you receive:",
       "• Level-A member commission: $100 × 21% = $21",
       "• Level-B member commission: $100 × 7%  = $7",
@@ -478,7 +481,7 @@
     ],
     "feesTitle": "Fee Information",
     "fees": [
-      "Upstart’s quantitative system and automated guarantee process may incur additional withdrawal fees (0%–5%).",
+      "Upstart's quantitative system and automated guarantee process may incur additional withdrawal fees (0%–5%).",
       "Fee rates are subject to change without notice.",
       "Standard processing time is about 5 minutes; with guarantee processing, it may take up to 30 minutes.",
       "Exchange rates are automatically updated based on market conditions."
@@ -581,7 +584,7 @@
     },
     "privacy": {
       "title": "Privacy Policy",
-      "content": "1. **Introduction**\n\nUpstart (“we,” “our,” or “us”) respects your privacy and is committed to protecting it.\n\n2. **Information We Collect**\n\n- **Personal Data**: name, email, phone number, wallet addresses.\n- **Usage Data**: pages visited, actions taken.\n\n3. **How We Use Information**\n\nWe use your data to provide, maintain, and improve our services, to communicate with you, and to comply with legal obligations.\n\n4. **Data Sharing**\n\nWe do not sell personal data. We may share with service providers under strict confidentiality.\n\n5. **Security**\n\nWe implement industry‑standard measures to protect your information.\n\n6. **Your Rights**\n\nYou may access, correct, or delete your personal data by contacting support.\n\n7. **Changes**\n\nWe may revise this policy; we’ll notify you of significant changes."
+      "content": "1. **Introduction**\n\nUpstart (""we,"" ""our,"" or ""us") respects your privacy and is committed to protecting it.\n\n2. **Information We Collect**\n\n- **Personal Data**: name, email, phone number, wallet addresses.\n- **Usage Data**: pages visited, actions taken.\n\n3. **How We Use Information**\n\nWe use your data to provide, maintain, and improve our services, to communicate with you, and to comply with legal obligations.\n\n4. **Data Sharing**\n\nWe do not sell personal data. We may share with service providers under strict confidentiality.\n\n5. **Security**\n\nWe implement industry‑standard measures to protect your information.\n\n6. **Your Rights**\n\nYou may access, correct, or delete your personal data by contacting support.\n\n7. **Changes**\n\nWe may revise this policy; we'll notify you of significant changes."
     }
   },
   "profile": {
@@ -592,9 +595,9 @@
     "summary": {
       "totalBalance":      "Total Balance",
       "totalEarnings":     "Total Earnings",
-      "todayCommission":   "Today’s Commission",
-      "todayIncome":       "Today’s Income",
-      "yesterdayIncome":   "Yesterday’s Income"
+      "todayCommission":   "Today's Commission",
+      "todayIncome":       "Today's Income",
+      "yesterdayIncome":   "Yesterday's Income"
     },
     "actions": {
       "recharge":          "Recharge",
@@ -651,7 +654,7 @@
     "vip":                   "VIP",
     "teamSize":              "Team Size",
     "contrib": {
-      "todayEarnings":       "Today’s Earnings",
+      "todayEarnings":       "Today's Earnings",
       "totalEarnings":       "Total Earnings"
     },
     "table": {
