@@ -3,8 +3,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { ArrowLeftIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import '../styles/WithdrawMethodPage.css';
-import '../styles/topbar.css';
+
 export default function WithdrawMethodPage() {
   const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
@@ -86,23 +85,20 @@ export default function WithdrawMethodPage() {
   };
 
   return (
-    <div className="withdraw-ww-wrapper">
-      <div className="withdraw-ww-header">
-        <button
-          onClick={() => window.history.back()}
-          className="withdraw-ww-back-button"
-        >
-          <ArrowLeftIcon size={24} />
-
-        </button>
-        <h2 className="withdraw-title">{t("withdraw.title")}</h2>
-      </div>
-
-
-    <div className="withdraw-www-wrapper">
-      <form onSubmit={handleSubmit} className="withdraw-ww-form">
+    <div className="min-h-screen bg-[#1a1109] text-yellow-100 p-6">
+      <button
+        onClick={() => window.history.back()}
+        className="flex items-center space-x-1 mb-4 text-yellow-200 hover:text-yellow-100"
+      >
+        <ArrowLeftIcon size={20} />
+        <span>{t("common.back")}</span>
+      </button>
+  
+      <h2 className="text-xl font-bold mb-4 text-center">{t("withdraw.title")}</h2>
+  
+      <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
         <div>
-          <label className="withdraw-ww-label">{t("withdraw.addressLabel")}</label>
+          <label className="block text-sm mb-1">{t("withdraw.addressLabel")}</label>
           <input
             value={address}
             onChange={(e) => {
@@ -110,45 +106,44 @@ export default function WithdrawMethodPage() {
               setAddressValid(null);
             }}
             onBlur={validateAddress}
-            className="withdraw-ww-input"
+            className="w-full p-2 bg-[#2f1f10] rounded text-white"
             placeholder={t("withdraw.addressPlaceholder")}
           />
           {addressValid === false && (
-            <p className="withdraw-ww-error">{t("withdraw.invalidAddress")}</p>
+            <p className="text-red-400 text-sm mt-1">{t("withdraw.invalidAddress")}</p>
           )}
           {addressValid === true && (
-            <p className="withdraw-ww-success">{t("withdraw.validAddress")}</p>
+            <p className="text-green-400 text-sm mt-1">{t("withdraw.validAddress")}</p>
           )}
         </div>
-
+  
         <div>
-          <label className="withdraw-ww-label">{t("withdraw.amountLabel")}</label>
+          <label className="block text-sm mb-1">{t("withdraw.amountLabel")}</label>
           <input
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
-            className="withdraw-ww-input"
+            className="w-full p-2 bg-[#2f1f10] rounded text-white"
             placeholder={t("withdraw.amountPlaceholder")}
           />
         </div>
-
-        <div className="withdraw-ww-info">
+  
+        <div className="text-sm space-y-1">
           <p>{t("withdraw.feeRate")}: {(feeRate * 100).toFixed(2)}%</p>
           <p>{t("withdraw.estimatedFee")}: {(parseFloat(amount) * feeRate || 0).toFixed(6)} USDT</p>
           <p>{t("withdraw.netAmount")}: {netAmount.toFixed(6)} USDT</p>
         </div>
-
-        {error && <p className="withdraw-ww-error">{t(error)}</p>}
-        {success && <p className="withdraw-ww-success">{t(success)}</p>}
-
+  
+        {error && <p className="text-red-500 text-center">{t(error)}</p>}
+        {success && <p className="text-green-500 text-center">{t(success)}</p>}
+  
         <button
           type="submit"
           disabled={submitting}
-          className="withdraw-ww-button"
+          className="w-full py-2 bg-yellow-500 text-black rounded disabled:opacity-50"
         >
           {submitting ? t("withdraw.submitting") : t("withdraw.submit")}
         </button>
       </form>
     </div>
-  </div>
   );
 }

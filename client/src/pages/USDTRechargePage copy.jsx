@@ -5,7 +5,6 @@ import { QRCodeCanvas as QRCode } from 'qrcode.react';
 import { ArrowLeft as ArrowLeftIcon, ClipboardCopy } from 'lucide-react';
 import '../styles/USDTRechargePage.css';
 import '../styles/topbar.css';
-
 export default function USDTRechargePage() {
   const [address, setAddress] = useState('');
   const [copied, setCopied] = useState(false);
@@ -30,35 +29,16 @@ export default function USDTRechargePage() {
     })();
   }, []);
 
-  const handleCopy = async () => {
+  const handleCopy = () => {
     if (!address) {
       alert('지갑이 없습니다. 생성해주세요.');
       return;
     }
-  
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(address);
-      } else {
-        // 폴백: execCommand
-        const textarea = document.createElement("textarea");
-        textarea.value = address;
-        textarea.style.position = "fixed";
-        textarea.style.top = "-9999px";
-        document.body.appendChild(textarea);
-        textarea.select();
-        document.execCommand("copy");
-        document.body.removeChild(textarea);
-      }
-  
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("주소 복사 실패:", err);
-      alert("복사에 실패했습니다.");
-    }
+    navigator.clipboard.writeText(address);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   };
-  
+
   if (loading) {
     return (
       <div className="min-h-screen bg-[#1a1109] text-yellow-100 flex items-center justify-center">

@@ -104,7 +104,8 @@ export default function TokenPurchasePage() {
       const d = res.data.data;
       setFinanceSummary({
         ...financeSummary,
-        quantBalance: Number(d.quantBalance)
+        fundBalance: Number(d.fundBalance),
+        quantBalance: Number(d.quantBalance)  // quantBalance도 함께 업데이트
       });
     } catch {
       setError(t("tokenPurchase.errors.swapFail"));
@@ -122,16 +123,15 @@ export default function TokenPurchasePage() {
       return setError(t("tokenPurchase.errors.insufficientFund"));
     }
     try {
-      await axios.post("/api/wallet/transfer-to-quant", { amount: amt }, { withCredentials: true });
+      const res = await axios.post("/api/wallet/transfer-to-quant", { amount: amt }, { withCredentials: true });
       alert(t("tokenPurchase.depositSuccess"));
       setShowFundToQuantModal(false);
       setTransferAmount("");
-      const res = await axios.get("/api/wallet/finance-summary", { withCredentials: true });
-      const d = res.data.data;
-      setFinanceSummary({
-        ...financeSummary,
-        fundBalance: Number(d.fundBalance)
-      });
+      
+      // 전체 잔액 정보를 새로 가져와서 업데이트
+      const res2 = await axios.get("/api/wallet/finance-summary", { withCredentials: true });
+      setFinanceSummary(res2.data.data);  // 전체 데이터로 한번에 업데이트
+      
     } catch {
       setError(t("tokenPurchase.errors.depositFail"));
     }
@@ -242,6 +242,7 @@ export default function TokenPurchasePage() {
 
 
 
+  
       {/* ── Redeem 모달 ── */}
       {showRedeemModal && (
         <div className="redeem-modal-overlay">

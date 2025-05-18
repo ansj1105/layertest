@@ -482,14 +482,6 @@ display: inline-flex;
     max-height: 60vh;
     overflow-y: auto;
     padding-right: 0.5rem;
-    /* ✅ 스크롤바 숨기기 */
-    scrollbar-width: none;         /* Firefox */
-    -ms-overflow-style: none;      /* IE 10+ */
-
-}
-
-.notification-item p::-webkit-scrollbar {
-    display: none;                 /* Chrome, Safari, Opera */
 }
 
 /* 닫기 버튼 */
@@ -584,20 +576,18 @@ display: inline-flex;
 
 
   .notification-overlay {
-    padding-top: 90px;
+    padding-top: 60px;
     align-items: flex-start;
-
   }
 
   .notification-popup {
     width: 92%;
-    max-width: 82%;
+    max-width: 92%;
     padding: 1rem;
     border-radius: 10px;
     flex-direction: column;
     gap: 12px;
-    height: 80%;
-    
+    height: auto;
     margin: 0 auto 16px auto;
   }
 
@@ -612,7 +602,7 @@ display: inline-flex;
 
   .notification-item {
     margin-bottom: 16px;
-    padding-bottom: 2.5rem;
+    padding-bottom: 0.5rem;
   }
 
   .notification-item h4 {
@@ -622,16 +612,10 @@ display: inline-flex;
 
   .notification-item p {
     font-size: 0.8125rem;
-    max-height: 51vh;
+    max-height: 40vh;
     line-height: 1.6;
     padding-right: 0.25rem;
-    /* ✅ 스크롤바 숨기기 */
-    scrollbar-width: none;         /* Firefox */
-    -ms-overflow-style: none;      /* IE 10+ */
   }
-  .notification-item p::-webkit-scrollbar {
-    display: none;                 /* Chrome, Safari, Opera */
-}
 
   .notification-close-btn {
     font-size: 1rem;

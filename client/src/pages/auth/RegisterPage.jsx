@@ -15,7 +15,7 @@ const countryCodes = [
   { code: '+81', label: '🇯🇵 JP (+81)' },
   { code: '+86', label: '🇨🇳 CN (+86)' },
 ];
- 
+
 export default function RegisterPage() {
   const [countryCode, setCountryCode] = useState('+82');
   const { t } = useTranslation();
@@ -80,183 +80,188 @@ export default function RegisterPage() {
     <div className="page-wrapper-r">
       <div className="r-box">
         {/* 상단 */}
-
-          <div className="top-nav-bar-r">
-            <button onClick={() => navigate(-1)}>
-              <ArrowLeft size={20} className="top-tran" />
-            </button>
-            <h1 className="login-h-text-r">
-              {t("register.title")}
-            </h1>
-            <button onClick={() => navigate("/settings/language")}>
-              <Globe size={20} className="top-tran" />
-            </button>
-          </div>
-          {/* 로고 */}
-          <img
-          src="/img/item/logo/logo.png"
-          alt="Upstart"
-          className="login-logo-r"
+        <div className="top-nav-bar-r">
+          <button onClick={() => navigate(-1)}>
+            <ArrowLeft size={20} className="top-tran" />
+          </button>
+          <h1 className="login-h-text-r">
+            {t("register.title")}
+          </h1>
+          <button onClick={() => navigate("/settings/language")}>
+            <Globe size={20} className="top-tran" />
+          </button>
+        </div>
+        {/* 로고 */}
+        <img
+        src="/img/item/logo/logo.png"
+        alt="Upstart"
+        className="login-logo-r"
+        />
+        {/* 탭 */}
+        <div className="flex01">
+        <button
+          onClick={() => setMethod("phone")}
+          className={`v-token-r-m ${method === "phone" ? "active-button" : "inactive-button"}`}
+        >
+          {t("register.by_phone")}
+        </button>
+        <button
+          onClick={() => setMethod("email")}
+          className={`v-token-r-m ${method === "email" ? "active-button" : "inactive-button"}`}
+        >
+          {t("register.by_email")}
+        </button>
+          
+        </div>
+      {/* 국적 선택 드롭다운 추가 */}
+      <div className="flex0">
+        <label className="v-token-r0">Nationality</label>
+        <select
+          value={form.nationality}
+          onChange={e => setForm(f => ({ ...f, nationality: e.target.value }))}
+          className="v-token-r00"
+        >
+          {LANGUAGES.map(lang => (
+            <option key={lang.code} value={lang.code}>
+              {lang.label}
+            </option>
+          ))}
+        </select>
+      </div>
+        {/* 입력 폼 */}
+        <div className="r-box1">
+          <input
+            type="text"
+            placeholder={t("register.name")}
+            className="v-token-r"
+            value={form.name}
+            onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
           />
-          {/* 탭 */}
-          <div className="flex01">
-          <button
-            onClick={() => setMethod("phone")}
-            className={`v-token-r-m ${method === "phone" ? "active-button" : "inactive-button"}`}
-          >
-            {t("register.by_phone")}
-          </button>
-          <button
-            onClick={() => setMethod("email")}
-            className={`v-token-r-m ${method === "email" ? "active-button" : "inactive-button"}`}
-          >
-            {t("register.by_email")}
-          </button>
-            
+          {method === "email" ? (
+            <input
+              type="email"
+              placeholder={t("register.email")}
+              className="v-token-r"
+              value={form.email}
+              onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+            />
+          ) : (
+            <div className="flex1">
+              <select
+                className="v-token-r1"
+                value={countryCode}
+                onChange={e => setCountryCode(e.target.value)}
+              >
+                {countryCodes.map(country => (
+                  <option key={country.code} value={country.code}>
+                    {country.code}  {/* ✅ 숫자만 표시하고, 앞에 + 추가 */}
+                  </option>
+                ))}
+              </select>
+
+            <input
+              type="tel"
+              placeholder={t("register.phone")}
+              className="v-token-r2"
+              value={form.phone}
+              onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+            />
           </div>
-        {/* 국적 선택 드롭다운 추가 */}
-        <div className="flex0">
-          <label className="v-token-r0">Nationality</label>
-          <select
-            value={form.nationality}
-            onChange={e => setForm(f => ({ ...f, nationality: e.target.value }))}
-            className="v-token-r00"
+          )}
+          <input
+            type="password"
+            placeholder={t("register.password")}
+            className="v-token-r"
+            value={form.password}
+            onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
+          />
+          <input
+            type="password"
+            placeholder={t("register.confirmPassword")}
+            className="v-token-r"
+            value={form.confirmPassword}
+            onChange={e => setForm(f => ({ ...f, confirmPassword: e.target.value }))}
+          />
+          <input
+            type="text"
+            placeholder={t("register.referral")}
+            className="v-token-r-ex"
+            value={form.referral}
+            onChange={e => setForm(f => ({ ...f, referral: e.target.value.toUpperCase() }))}
+          />
+
+          <div className="chptcha-r custom-recaptcha">
+            <ReCAPTCHA
+              sitekey={RECAPTCHA_SITE_KEY}
+              onChange={token => setCaptchaToken(token)}
+            />
+          </div>
+
+          {error   && <p className="text-red-400 text-center">{error}</p>}
+          {success && <p className="text-green-400 text-center">{success}</p>}
+
+          <button
+            onClick={handleSubmit}
+            className="r-button"
           >
-            {LANGUAGES.map(lang => (
-              <option key={lang.code} value={lang.code}>
-                {lang.label}
-              </option>
-            ))}
-          </select>
-        </div>
-          {/* 입력 폼 */}
-          <div className="r-box1">
-            <input
-              type="text"
-              placeholder={t("register.name")}
-              className="v-token-r"
-              value={form.name}
-              onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-            />
-            {method === "email" ? (
-              <input
-                type="email"
-                placeholder={t("register.email")}
-                className="v-token-r"
-                value={form.email}
-                onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+            {t("register.submit")}
+          </button>
+
+          <div className="auth-links-r">
+          <span>Do you already have an account?&nbsp;&nbsp;</span>
+
+            <Link to="/login" className="auth-links-r">
+              login
+            </Link>
+          </div>
+ 
+      
+          {/* 약관 동의 */}
+          <div className="auth-links-r">
+            <Trans i18nKey="register.agree">
+              {/*
+                The two child <button> tags below will
+                replace <0>…</0> and <1>…</1> in your JSON.
+              */}
+              
+              <button
+                className="auth-links-r-t"
+                onClick={() => setOpenTerms(true)}
               />
-            ) : (
-              <div className="flex1">
-                <select
-                  className="v-token-r1"
-                  value={countryCode}
-                  onChange={e => setCountryCode(e.target.value)}
-                >
-                  {countryCodes.map(country => (
-                    <option key={country.code} value={country.code}>
-                      {country.code}  {/* ✅ 숫자만 표시하고, 앞에 + 추가 */}
-                    </option>
-                  ))}
-                </select>
-
-              <input
-                type="tel"
-                placeholder={t("register.phone")}
-                className="v-token-r2"
-                value={form.phone}
-                onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+              <button
+                className="auth-links-r-t"
+                onClick={() => setOpenPrivacy(true)}
               />
-            </div>
-            )}
-            <input
-              type="password"
-              placeholder={t("register.password")}
-              className="v-token-r"
-              value={form.password}
-              onChange={e => setForm(f => ({ ...f, password: e.target.value }))}
-            />
-            <input
-              type="password"
-              placeholder={t("register.confirmPassword")}
-              className="v-token-r"
-              value={form.confirmPassword}
-              onChange={e => setForm(f => ({ ...f, confirmPassword: e.target.value }))}
-            />
-            <input
-              type="text"
-              placeholder={t("register.referral")}
-              className="v-token-r-ex"
-              value={form.referral}
-              onChange={e => setForm(f => ({ ...f, referral: e.target.value.toUpperCase() }))}
-            />
-
-            <div className="chptcha-r custom-recaptcha">
-              <ReCAPTCHA
-                sitekey={RECAPTCHA_SITE_KEY}
-                onChange={token => setCaptchaToken(token)}
-              />
-            </div>
-
-            {error   && <p className="text-red-400 text-center">{error}</p>}
-            {success && <p className="text-green-400 text-center">{success}</p>}
-
-            <button
-              onClick={handleSubmit}
-              className="r-button"
-            >
-              {t("register.submit")}
-            </button>
-
-            <div className="auth-links-r">
-            <span>Do you already have an account?&nbsp;&nbsp;</span>
-
-              <Link to="/login" className="auth-links-r">
-                login
-              </Link>
-            </div>
-
-        
-            {/* 약관 동의 */}
-            <div className="auth-links-r">
-              <Trans i18nKey="register.agree">
-                {/*
-                  The two child <button> tags below will
-                  replace <0>…</0> and <1>…</1> in your JSON.
-                */}
-                
-                <button
-                  className="auth-links-r-t"
-                  onClick={() => setOpenTerms(true)}
-                />
-                <button
-                  className="auth-links-r-t"
-                  onClick={() => setOpenPrivacy(true)}
-                />
-              </Trans>
-            </div>
+            </Trans>
           </div>
         </div>
+      </div>
 
       {/* ─── 약관 팝업 ─── */}
       {openTerms && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+          className="terms-modal-overlay"
           onClick={() => setOpenTerms(false)}
         >
+          
           <div
-            className="bg-[#2c1f0f] text-yellow-100 p-6 rounded max-w-lg w-full mx-4 relative"
+            className="terms-modal"
             onClick={e => e.stopPropagation()}
           >
             <button
-              className="absolute top-2 right-2 text-yellow-300"
+              className="terms-close-btn"
               onClick={() => setOpenTerms(false)}
             >
               <CloseIcon size={20} />
             </button>
-            <h2 className="text-xl font-semibold mb-4">{t("agreement.terms.title")}</h2>
-            <div className="text-sm whitespace-pre-line leading-relaxed max-h-60 overflow-y-auto">
-              {t("agreement.terms.content")}
+            <h2 className="terms-title">{t("agreement.terms.title")}</h2>
+            {/* 줄바꿈 적용 */}
+            <div className="terms-content">
+              {t("agreement.terms.content")
+                .split('\n')
+                .map((line, idx) => (
+                  <p key={idx}>{line}</p>
+                ))}
             </div>
           </div>
         </div>
@@ -265,27 +270,31 @@ export default function RegisterPage() {
       {/* ─── 개인정보 팝업 ─── */}
       {openPrivacy && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+          className="privacy-modal-overlay"
           onClick={() => setOpenPrivacy(false)}
         >
           <div
-            className="bg-[#2c1f0f] text-yellow-100 p-6 rounded max-w-lg w-full mx-4 relative"
+            className="privacy-modal"
             onClick={e => e.stopPropagation()}
           >
             <button
-              className="absolute top-2 right-2 text-yellow-300"
+              className="privacy-close-btn"
               onClick={() => setOpenPrivacy(false)}
             >
               <CloseIcon size={20} />
             </button>
-            <h2 className="text-xl font-semibold mb-4">{t("agreement.privacy.title")}</h2>
-            <div className="text-sm whitespace-pre-line leading-relaxed max-h-60 overflow-y-auto">
-              {t("agreement.privacy.content")}
+            <h2 className="privacy-modal-title">{t("agreement.privacy.title")}</h2>
+            {/* 줄바꿈 적용 */}
+            <div className="privacy-modal-content">
+              {t("agreement.terms.content")
+                .split('\n')
+                .map((line, idx) => (
+                  <p key={idx}>{line}</p>
+                ))}
             </div>
           </div>
         </div>
       )}
     </div>
-
   );
 }

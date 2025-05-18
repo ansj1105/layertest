@@ -34,7 +34,6 @@
   right: 16px;
   color: #facc15; /* text-yellow-300 */
   cursor: pointer;
-  z-index: 10000
 }
 
 .sidebar-close-btn:hover {
