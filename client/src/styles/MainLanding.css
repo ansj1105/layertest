@@ -431,7 +431,7 @@ display: inline-flex;
 .notification-popup {
     background-color: #142b27;
     max-width: 480px;
-    width: 480px;
+    width: 450px;
     color: #fef9c3;
     margin-bottom: 24px;
     margin: 8px auto;

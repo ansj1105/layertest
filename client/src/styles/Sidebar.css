@@ -146,7 +146,7 @@
 }
 
 .sidebar-logout-btn {
-  margin-top: 150px;
+  margin-top: 80px !important;
   width: 100%;
   background-color: #ef4444;
   color: #ffffff;

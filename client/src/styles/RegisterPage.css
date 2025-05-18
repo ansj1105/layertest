@@ -730,22 +730,23 @@
 
 @media screen and (max-width: 768px) {
   /* 공통 오버레이 */
-  .terms-modal-overlay,
-  .privacy-modal-overlay {
-    padding-top: 60px; /* 상단 여백 축소 */
+  .terms-modal-overlay {
+
   }
 
   /* 공통 모달 컨테이너 */
   .terms-modal,
   .privacy-modal {
-    width: 92%;
+    width: 88%;
     max-width: 92%;
     padding: 16px;
-    height: 80%;
+    height: 70%;
     gap: 12px;
     border-radius: 6px;
     box-shadow: 0 0 8px 4px #b8dfd9;
   }
+
+
 
   /* 닫기 버튼 */
   .terms-close-btn,
@@ -781,4 +782,31 @@
     height: 0;
     background: transparent;
   }
+
+
+.r-box {
+  height: 900px;
+  overflow-y: auto;              /* ✅ 세로 스크롤만 활성화 */
+  max-height: 100vh;       /* 브라우저 뷰포트 전체 높이 */
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-bottom: 200px;    /* 바닥에 닿지 않도록 여유 공간 */
+  padding-bottom: 200px;
+  /* ✅ 스크롤바 숨기기 */
+  scrollbar-width: none;          /* Firefox */
+  -ms-overflow-style: none;       /* IE 10+ */
+}
+
+/* 스크롤바 스타일 (선택사항) */
+.r-box::-webkit-scrollbar {
+  width: 6px;
+  display: none;                  /* Chrome, Safari, Edge */
+}
+
+.r-box::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+
 }

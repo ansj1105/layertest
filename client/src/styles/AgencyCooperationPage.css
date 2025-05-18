@@ -1,4 +1,4 @@
-
+ 
 .page-wrapper-ag {
   position: relative;
   max-width: 506px !important;
@@ -11,6 +11,7 @@
   overflow-x: hidden;
   box-sizing: border-box;
   z-index: 100;
+  padding-bottom: 150px;
 
 }
 
@@ -51,7 +52,7 @@
   color: #ffffff;
 }
 
-
+ 
 
 
 /* 제목 */
@@ -87,7 +88,7 @@
   justify-content: space-between; /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
   gap: 16px;
   margin-bottom: 13px;
-  
+  height: 570px
 }
 
 .page-content p {

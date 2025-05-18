@@ -442,7 +442,7 @@
 .info-modal-content {
   background-color: #0e1817;
   max-width: 498px;
-  width: 485px;
+  width: 450px;
   color: #fef9c3;
   margin-bottom: 24px;
   margin: 8px auto;
@@ -458,6 +458,10 @@
   height: 70%;
 }
 
+
+.quant-tutorial-content{
+  padding-bottom: 150px;
+}
 
 
 /* 닫기 버튼 */
@@ -852,7 +856,14 @@
 
     padding: 0 8px;
 
+
+
   }
+
+  .quant-tutorial-wrapper{
+    padding-bottom: 200px !important;
+  }
+
 
   /* 카드 공통 */
   .funding-card, 
@@ -1033,6 +1044,9 @@
     right: 0.5rem;
   }
 
-
+  .quant-tutorial-content{
+    padding-bottom: 150px;
+    height: 550px !important;
+  }
 
 }

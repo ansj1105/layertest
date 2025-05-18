@@ -11,6 +11,7 @@
   overflow-x: hidden;
   box-sizing: border-box;
   z-index: 100;
+  padding-bottom: 150px;
 
 }
  
@@ -74,7 +75,7 @@
 
 /* 전체 컨텐츠 래퍼 */
 .quant-tutorial-content {
-  width: 97%;
+  width: 90%;
   background: #152221;
   border-radius: 8px;
   padding: 13px;
@@ -86,7 +87,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   gap: 16px;
-  height: 600px;
+  height: 550px;
   overflow-y: auto;                /* ✅ 스크롤 동작 */
   overflow-x: hidden;
   -ms-overflow-style: none;        /* IE/Edge */
