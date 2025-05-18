@@ -173,6 +173,9 @@
   },
   "quantTrading": {
     "leaderboardTitle": "Bestenliste",
+    "processing": "Handel wird verarbeitet...",
+    "tradingCountdown": "Handel wird verarbeitet... {{seconds}}s",
+    "warningMessage": "Bitte schließen oder aktualisieren Sie die Seite nicht, während der Handel in Arbeit ist",
     "leaderboard": {
       "name": "Mitglied",
       "earnings": "Erträge",

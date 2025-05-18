@@ -176,6 +176,9 @@
   }
 },  "quantTrading": {
      "leaderboardTitle": "Leaderboard",
+     "processing": "Processing trade...",
+     "tradingCountdown": "Trading... {{seconds}}s",
+     "warningMessage": "Please do not close or refresh the page while trading is in progress", 
    "leaderboard": {
      "name": "Member",
      "earnings": "Earnings",

@@ -199,6 +199,9 @@
   },
   "quantTrading": {
     "leaderboardTitle": "Classement",
+    "processing": "Traitement de la commande...",
+    "tradingCountdown": "Traitement de la commande... {{seconds}}s",
+    "warningMessage": "Veuillez ne pas fermer ou actualiser la page pendant le traitement de la commande",
     "leaderboard": {
       "name": "Membre",
       "earnings": "Gains",
