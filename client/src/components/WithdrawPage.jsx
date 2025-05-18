@@ -1,10 +1,13 @@
 // 📁 components/WithdrawPage.jsx
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { ArrowLeftIcon } from "lucide-react"; // 아이콘 라이브러리 (shadcn-ui)
 import '../styles/WithdrawPage.css';
 import '../styles/topbar.css';
+
 export default function WithdrawPage() {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   return (
     <div className="withdraw-wrapper">
@@ -19,13 +22,13 @@ export default function WithdrawPage() {
         </button>
 
         {/* 타이틀 */}
-        <div className="withdraw-title">출금방법</div>
+        <div className="withdraw-title">{t('withdrawPage.title')}</div>
 
         {/* 출금 내역 버튼 (SVG 아이콘 포함) */}
         <button
           onClick={() => navigate("/withdraw/history")}
           className="menu-button"
-          title="출금 내역"
+          title={t('withdrawPage.history')}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -50,15 +53,14 @@ export default function WithdrawPage() {
         </button>
       </div>
 
-
       {/* ✅ 디지털 화폐 선택 */}
       <div
         onClick={() => navigate("/withdraw/method")}
         className="currency-selector"
       >
         <div className="currency-label">
-          <img src="/img/usdt.png" className="currency-icon" alt="usdt" />
-          디지털 화폐
+          <img src="/img/usdt.png" className="currency-icon" alt="USDT" />
+          {t('withdrawPage.digitalCurrency')}
         </div>
         <span className="currency-arrow">{'>'}</span>
       </div>

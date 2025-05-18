@@ -5,29 +5,28 @@ import { LANGUAGES } from '../i18n/languages';
 import '../styles/topbar.css';
 import '../styles/LanguageSettingsPage.css';
 import { Check, Lock } from "lucide-react"; // 또는 Heroicons 등 사용 가능
+
 export default function LanguageSettingsPage() {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const current = i18n.language;
 
   const handleChange = (lang) => {
     if (!lang.implemented) {
-      alert('해당 언어는 현재 개발 중입니다.');
+      alert(t('language.not_implemented'));
       return;
     }
     i18n.changeLanguage(lang.code);
   };
 
   return (
-  <div className="page-wrapper-rang">
-    <div className="project-list-container-rang">
-      {/* 상단 */}
-
-      <div className="top-bar-rang">
-        <button className="language-back-button" onClick={() => window.history.back()}>
-          ←
-        </button>
-        <h2 className="language-title">언어 설정</h2>
-      </div>
+    <div className="page-wrapper-rang">
+      <div className="project-list-container-rang">
+        <div className="top-bar-rang">
+          <button className="language-back-button" onClick={() => window.history.back()}>
+            ←
+          </button>
+          <h2 className="language-title">{t('language.settings')}</h2>
+        </div>
         <ul className="language-list">
           {LANGUAGES.map((lang) => {
             const isActive = current.startsWith(lang.code);
@@ -60,6 +59,5 @@ export default function LanguageSettingsPage() {
         </ul>
       </div>
     </div>
-
   );
 }

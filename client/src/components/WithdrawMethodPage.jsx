@@ -5,6 +5,7 @@ import { ArrowLeftIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import '../styles/WithdrawMethodPage.css';
 import '../styles/topbar.css';
+
 export default function WithdrawMethodPage() {
   const [address, setAddress] = useState("");
   const [amount, setAmount] = useState("");
@@ -58,11 +59,11 @@ export default function WithdrawMethodPage() {
     setSuccess("");
 
     if (addressValid !== true) {
-      setError("유효한 주소를 입력해 주세요.");
+      setError("errors.invalidAddress");
       return;
     }
     if (!amount || parseFloat(amount) <= 0) {
-      setError("출금 수량을 올바르게 입력해 주세요.");
+      setError("errors.invalidAmount");
       return;
     }
 
@@ -73,13 +74,13 @@ export default function WithdrawMethodPage() {
         amount,
         method: "USDT",
       });
-      setSuccess("출금 요청이 성공적으로 접수되었습니다.");
+      setSuccess("success.submitted");
       setAddress("");
       setAmount("");
       setAddressValid(null);
     } catch (err) {
       console.error(err);
-      setError(err.response?.data?.error || "출금 요청에 실패했습니다.");
+      setError(err.response?.data?.error || "errors.submitFailed");
     } finally {
       setSubmitting(false);
     }
@@ -93,62 +94,60 @@ export default function WithdrawMethodPage() {
           className="withdraw-ww-back-button"
         >
           <ArrowLeftIcon size={24} />
-
         </button>
         <h2 className="withdraw-title">{t("withdraw.title")}</h2>
       </div>
 
+      <div className="withdraw-www-wrapper">
+        <form onSubmit={handleSubmit} className="withdraw-ww-form">
+          <div>
+            <label className="withdraw-ww-label">{t("withdraw.addressLabel")}</label>
+            <input
+              value={address}
+              onChange={(e) => {
+                setAddress(e.target.value);
+                setAddressValid(null);
+              }}
+              onBlur={validateAddress}
+              className="withdraw-ww-input"
+              placeholder={t("withdraw.addressPlaceholder")}
+            />
+            {addressValid === false && (
+              <p className="withdraw-ww-error">{t("withdraw.invalidAddress")}</p>
+            )}
+            {addressValid === true && (
+              <p className="withdraw-ww-success">{t("withdraw.validAddress")}</p>
+            )}
+          </div>
 
-    <div className="withdraw-www-wrapper">
-      <form onSubmit={handleSubmit} className="withdraw-ww-form">
-        <div>
-          <label className="withdraw-ww-label">{t("withdraw.addressLabel")}</label>
-          <input
-            value={address}
-            onChange={(e) => {
-              setAddress(e.target.value);
-              setAddressValid(null);
-            }}
-            onBlur={validateAddress}
-            className="withdraw-ww-input"
-            placeholder={t("withdraw.addressPlaceholder")}
-          />
-          {addressValid === false && (
-            <p className="withdraw-ww-error">{t("withdraw.invalidAddress")}</p>
-          )}
-          {addressValid === true && (
-            <p className="withdraw-ww-success">{t("withdraw.validAddress")}</p>
-          )}
-        </div>
+          <div>
+            <label className="withdraw-ww-label">{t("withdraw.amountLabel")}</label>
+            <input
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className="withdraw-ww-input"
+              placeholder={t("withdraw.amountPlaceholder")}
+            />
+          </div>
 
-        <div>
-          <label className="withdraw-ww-label">{t("withdraw.amountLabel")}</label>
-          <input
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="withdraw-ww-input"
-            placeholder={t("withdraw.amountPlaceholder")}
-          />
-        </div>
+          <div className="withdraw-ww-info">
+            <p>{t("withdraw.feeRate")}: {(feeRate * 100).toFixed(2)}%</p>
+            <p>{t("withdraw.estimatedFee")}: {(parseFloat(amount) * feeRate || 0).toFixed(6)} USDT</p>
+            <p>{t("withdraw.netAmount")}: {netAmount.toFixed(6)} USDT</p>
+          </div>
 
-        <div className="withdraw-ww-info">
-          <p>{t("withdraw.feeRate")}: {(feeRate * 100).toFixed(2)}%</p>
-          <p>{t("withdraw.estimatedFee")}: {(parseFloat(amount) * feeRate || 0).toFixed(6)} USDT</p>
-          <p>{t("withdraw.netAmount")}: {netAmount.toFixed(6)} USDT</p>
-        </div>
+          {error && <p className="withdraw-ww-error">{t(error)}</p>}
+          {success && <p className="withdraw-ww-success">{t(success)}</p>}
 
-        {error && <p className="withdraw-ww-error">{t(error)}</p>}
-        {success && <p className="withdraw-ww-success">{t(success)}</p>}
-
-        <button
-          type="submit"
-          disabled={submitting}
-          className="withdraw-ww-button"
-        >
-          {submitting ? t("withdraw.submitting") : t("withdraw.submit")}
-        </button>
-      </form>
+          <button
+            type="submit"
+            disabled={submitting}
+            className="withdraw-ww-button"
+          >
+            {submitting ? t("withdraw.submitting") : t("withdraw.submit")}
+          </button>
+        </form>
+      </div>
     </div>
-  </div>
   );
 }

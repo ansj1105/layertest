@@ -1,0 +1,889 @@
+{
+    "order_history": {
+      "title": "注文履歴と引き出し",
+      "orders": {
+        "title": "注文履歴",
+        "no_orders": "注文が見つかりません",
+        "table": {
+          "order_id": "注文ID",
+          "token": "トークン",
+          "amount": "数量",
+          "price": "価格 (USDT)",
+          "total": "合計 (USDT)",
+          "status": "ステータス",
+          "unlock_date": "ロック解除日",
+          "order_date": "注文日"
+        },
+        "status": {
+          "pending": "保留中",
+          "completed": "完了",
+          "cancelled": "キャンセル"
+        }
+      },
+      "redemptions": {
+        "ref_type": {
+          "exchange": "交換",
+          "purchase": "購入",
+          "redeem": "引き出し",
+          "transfer": "送金",
+          "token_exchange": "交換",
+          "token_purchase": "購入",
+          "token_redeem": "引き出し",
+          "token_transfer": "送金"
+        }
+      }
+    },
+    "Wallet": "ウォレット",
+    "Balance": "残高",
+    "Transfer": "送金",
+    "Transactions": "取引",
+    "Register": "登録",
+    "Home": "ホーム",
+    "coin_list": {
+      "trading_pair": "取引ペア",
+      "latest_price": "最新価格",
+      "change_percent": "変動率 (%)"
+    },
+    "escrow": {
+      "title": "エスクロー",
+      "investment_amount": "投資額",
+      "profit": "利益"
+    },
+    "invite": {
+      "title": "友達を招待",
+      "invite_link": "招待リンク",
+      "copy_invite_link": "招待リンクをコピー",
+      "product_description": "世界水準の定量プロダクト、すべての人に無料提供",
+      "referral_code": "紹介コード",
+      "copy_referral_code": "紹介コードをコピー",
+      "copy_success": "コピーに成功しました",
+      "error": {
+        "load_failed": "招待コードの読み込みに失敗しました",
+        "copy_failed": "クリップボードへのコピーに失敗しました",
+        "fallback_copy_failed": "代替方法でのコピーに失敗しました"
+      }
+    },
+    "language": {
+      "settings": "言語設定",
+      "not_implemented": "この言語は現在開発中です。"
+    },
+    "lockup": {
+      "title": "ロック詳細",
+      "total_balance": "合計残高",
+      "total_locked": "ロック中合計",
+      "no_active_lockups": "ロック中の資産はありません",
+      "table": {
+        "id": "ロックID",
+        "amount": "数量",
+        "unlock_date": "ロック解除日"
+      }
+    },
+    "register": {
+      "title": "サインアップ",
+      "by_phone": "電話で登録",
+      "by_email": "メールで登録",
+      "name": "名前",
+      "phone": "電話番号",
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "confirmPassword": "パスワード確認",
+      "referral": "紹介コード (任意)",
+      "submit": "登録",
+      "name_error": "名前は2文字以上で入力してください。",
+      "email_error": "有効なメール形式を入力してください。",
+      "phone_error": "有効な電話番号を入力してください。",
+      "password_error": "パスワードは6文字以上で入力してください。",
+      "confirm_error": "パスワードが一致しません。",
+      "captcha_required": "CAPTCHAを完了してください。",
+      "success": "登録に成功しました！ログインしてください。",
+      "fail": "登録に失敗しました。",
+      "no_account": "すでにアカウントをお持ちですか？",
+      "login": "ログイン",
+      "agree": "登録することで、<0>利用規約</0>と<1>プライバシーポリシー</1>に同意したものとみなします。",
+      "terms": "利用規約",
+      "privacy": "プライバシーポリシー"
+    },
+    "login": {
+      "title": "ユーザーログイン",
+      "email": "メールまたはユーザー名",
+      "password": "パスワード",
+      "submit": "ログイン",
+      "identifier_error": "有効なメールまたは電話番号を入力してください",
+      "email_error": "有効なメールアドレスを入力してください",
+      "password_error": "パスワードを入力してください",
+      "captcha_required": "reCAPTCHAを完了してください",
+      "success": "ログインに成功しました！",
+      "fail": "ログインに失敗しました",
+      "no_account": "アカウントをお持ちでないですか？",
+      "register": "サインアップ",
+      "forgot_password": "パスワードをお忘れですか？",
+      "identifier": "ID",
+      "forgot": "パスワードを探す"
+    },
+    "walletLogs": {
+      "prev": "前へ",
+      "next": "次へ",
+      "back": "戻る",
+      "title": "送金履歴",
+      "tabs": {
+        "transfer": "送金",
+        "walletEarnings": "ウォレット収益",
+        "financeIncome": "金融収益"
+      },
+      "columns": {
+        "description": "説明",
+        "type": "種類",
+        "amount": "数量",
+        "fee": "手数料",
+        "net": "ネット",
+        "date": "日付"
+      },
+      "types": {
+        "fund_to_quant": "Fund → Quant",
+        "quant_to_fund": "Quant → Fund"
+      },
+      "loading": "読み込み中...",
+      "noRecords": "記録が見つかりません。"
+    },
+    "common": {
+      "faqTitle": "よくある質問",
+      "back": "戻る",
+      "loading": "読み込み中...",
+      "no_data": "データがありません",
+      "problem1": {
+        "question": "ファンディングプロダクトとは何で、どうやって稼ぐのですか？",
+        "answer": "金融管理プロダクトは、ユーザーが報酬を迅速に獲得できるように開発されたツールおよびソリューションです。\nブロックチェーンネットワークでデジタル資産をステーキングすることで、Proof of Stakeメカニズムに基づく報酬を得られます。\nこの仕組みでは、ユーザーがデジタル資産をノードに委任し、そのノードがブロック生成やトランザクション処理の権利を得て報酬を受け取ります。\nユーザーはステーキング量に応じてノードの報酬を分配されます。"
+      },
+      "problem2": {
+        "question": "期待利回りはどう計算されますか？",
+        "answer": "期待収益は、購読量とプロダクトの年利参考計算に基づく日次推定値であり、情報提供のみを目的としています。"
+      },
+      "problem3": {
+        "question": "利息の計上はいつ始まりますか？",
+        "answer": "利息計上はT+1日の00:00から開始します。"
+      },
+      "problem4": {
+        "question": "支払いはいつ行われますか？",
+        "answer": "T+1日から利息が計上され、満期後に元本とともに分配されます。"
+      },
+      "problem5": {
+        "question": "プロダクトの満期後はどうなりますか？",
+        "answer": "定期プロダクトは満期時に自動的に引き出されます。"
+      }
+    },
+    "quantTrading": {
+      "leaderboardTitle": "リーダーボード",
+      "leaderboard": {
+        "name": "メンバー",
+        "earnings": "収益",
+        "status": "ステータス"
+      },
+      "confirmText": "{{amount}} USDTを取引します。よろしいですか？",
+      "errorMinHolding": "取引には最低{{min}} USDTの保有が必要です。",
+      "errorMaxInvestment": "1取引あたりの最大投資額は{{max}} USDTです。",
+      "cooldownMessage": "{{min}}分{{sec}}秒後に再度取引可能です",
+      "tradeButton": "{{remaining}}/{{dailyLimit}} 回 · {{start}}",
+      "cooldownAlert": "再度取引するまで{{min}}分{{sec}}秒お待ちください。",
+      "confirmTitle": "取引確認",
+      "partnersTitle": "主要パートナー",
+      "history": "履歴",
+      "time": "時間",
+      "status": "ステータス",
+      "success": "成功",
+      "position": "ポジションサイズ",
+      "maxAll": "全額",
+      "buyPlatform": "購入プラットフォーム",
+      "buyPrice": "購入価格",
+      "sellPlatform": "売却プラットフォーム",
+      "sellPrice": "売却価格",
+      "serviceFee": "サービス手数料",
+      "profit": "利益",
+      "commissionRate": "手数料率",
+      "noHistory": "履歴がありません",
+      "currentLevel": "現在のVIPランク",
+      "enterAmount": "金額を入力",
+      "cancel": "キャンセル",
+      "confirm": "確認",
+      "back": "戻る",
+      "title": "クオンツ取引",
+      "available": "利用可能資産",
+      "todayEarning": "本日の収益",
+      "totalEarning": "総収益",
+      "level": "レベル",
+      "progress": "{{current}}/{{total}}",
+      "intro": "クオンツ取引のご紹介",
+      "invite": "友達を招待",
+      "dailyLimit": "1日あたりの取引制限",
+      "times": "回",
+      "feeRate": "利益率",
+      "maxInvestment": "最大投資額",
+      "minHoldings": "最低保有量",
+      "conditions": "条件",
+      "start": "取引開始",
+      "confirmStart": "クオンツ取引を開始しますか？",
+      "tradeError": "取引失敗: ",
+      "loading": "読み込み中..."
+    },
+    "history": {
+        "title": "取引履歴",
+        "back": "戻る",
+        "loading": "読み込み中…",
+        "tabs": {
+          "all": "すべて",
+          "deposit": "入金",
+          "withdraw": "出金",
+          "pending": "保留中",
+          "success": "成功",
+          "failed": "失敗"
+        },
+        "table": {
+          "id": "ID",
+          "amount": "数量",
+          "flow": "フロー",
+          "method": "方法",
+          "status": "ステータス",
+          "date": "日付"
+        },
+        "flow": {
+          "deposit": "入金",
+          "withdrawal": "出金"
+        },
+        "status": {
+          "pending": "保留中",
+          "processing": "処理中",
+          "success": "成功",
+          "failed": "失敗"
+        },
+        "noData": "記録が見つかりません。",
+        "noDataAlt": "データなし",
+        "errorLoad": "履歴の読み込みに失敗しました。"
+      },
+      "tokenPurchase": {
+        "title": "USCトークン",
+        "redeemSuccess": "引き出し成功",
+        "available": "利用可能USC",
+        "inputUsdc": "USC を入力",
+        "redeemTitle": "引き出し",
+        "redeemSubmit": "送信",
+        "quantity": "数量",
+        "token": "トークン当たり",
+        "totalCost": "総USDTコスト",
+        "yourBalance": "USDT残高",
+        "price": "USCトークン価格",
+        "min": "最小",
+        "selected": "選択済み",
+        "max": "最大",
+        "feeRate": "手数料率",
+        "minPurchase": "最小購入",
+        "maxPurchase": "最大購入",
+        "lockupPeriod": "ロック期間",
+        "days": "日間",
+        "canBuy": "購入可能",
+        "cannotBuy": "購入不可",
+        "back": "戻る",
+        "details": "詳細",
+        "quantWallet": "Quantウォレット (USDT)",
+        "uscWallet": "USCウォレット",
+        "swap": "スワップ",
+        "recharge": "チャージ",
+        "deposit": "入金",
+        "redeem": "引き出し",
+        "orderDetails": "注文詳細",
+        "swapQuantToFundTitle": "Quant → Fund へスワップ",
+        "swapFundToQuantTitle": "Fund → Quant へスワップ",
+        "inputUsdt": "USDTを入力",
+        "balance": "残高：",
+        "fee": "手数料 ({{rate}}％)",
+        "afterSwap": "スワップ後：",
+        "submit": "送信",
+        "noSales": "現在アクティブなUSC販売はありません。",
+        "phase": " フェーズ",
+        "totalSupply": "総供給量：",
+        "remainingSupply": "残り供給量：",
+        "startTime": "開始時刻：",
+        "endTime": "終了時刻：",
+        "buy": "購入",
+        "promptAmount": "購入するUSC数量を入力してください：",
+        "purchaseSuccess": "購入に成功しました！",
+        "errors": {
+          "invalidAmount": "有効な数量を入力してください。",
+          "insufficientQuant": "Quant残高が不足しています。",
+          "insufficientFund": "Fund残高が不足しています。",
+          "swapFail": "スワップに失敗しました。",
+          "depositFail": "入金に失敗しました。",
+          "purchaseFail": "購入に失敗しました。"
+        }
+      },
+      "token": {
+        "header": "USCトークン",
+        "recharge": "チャージ",
+        "withdraw": "出金",
+        "agent": "代理店",
+        "invite": "友達を招待"
+      },
+      "bottomNav": {
+        "home": "ホーム",
+        "team": "マイチーム",
+        "quant": "クオンツ",
+        "funding": "ファンディング",
+        "mine": "マイページ"
+      },
+      "withdraw": {
+        "title": "USDT出金",
+        "addressLabel": "出金先アドレス",
+        "addressPlaceholder": "TRC20 USDTアドレス",
+        "invalidAddress": "無効なアドレスです。",
+        "validAddress": "有効なアドレスです。",
+        "amountLabel": "出金額",
+        "amountPlaceholder": "例: 10.5",
+        "feeRate": "手数料率",
+        "estimatedFee": "推定手数料",
+        "netAmount": "受取額",
+        "submitting": "送信中…",
+        "submit": "送信"
+      },
+      "errors": {
+        "invalidAddress": "有効なアドレスを入力してください。",
+        "invalidAmount": "有効な出金額を入力してください。",
+        "submitFailed": "出金リクエストの送信に失敗しました。"
+      },
+      "success": {
+        "submitted": "出金リクエストが正常に送信されました。"
+      },
+      "funding": {
+        "active_projects": "進行中のプロジェクト",
+        "expired_projects": "終了したプロジェクト",
+        "no_active_projects": "進行中のプロジェクトはありません。",
+        "no_expired_projects": "終了したプロジェクトはありません。",
+        "expired_label": "終了したプロジェクト",
+        "detail2": {
+          "loading": "読み込み中...",
+          "loadError": "プロジェクト情報の読み込みに失敗しました：",
+          "invalidAmount": "有効な数量を入力してください。",
+          "amountRange": "{{min}}〜{{max}}の範囲で入力してください。",
+          "insufficientBalance": "残高が不足しています。",
+          "exceedRemaining": "プロジェクト残高 {{remaining}} USDT を超えています。",
+          "subscribe": "参加する",
+          "subscribeSuccess": "参加に成功しました。",
+          "subscribeError": "参加中にエラーが発生しました。",
+          "descriptionLabel": "説明：",
+          "cycleLabel": "期間：{{cycle}}日",
+          "dailyRateLabel": "日利：{{rate}}％",
+          "minMaxLabel": "最小：{{min}} USDT、最大：{{max}} USDT",
+          "targetLabel": "目標：{{target}} USDT",
+          "currentLabel": "現在の投資額：{{current}} USDT",
+          "availableLabel": "利用可能残高：{{balance}} USDT",
+          "amountPlaceholder": "数量を入力",
+          "investorsTitle": "投資家",
+          "noInvestors": "投資家はまだいません。"
+        },
+        "transfer_fail": "転送に失敗しました",
+        "deposit_modal": {
+          "success": "成功",
+          "title": "入金",
+          "net_amount": "入金後残高：{{net}} (残り：{{remain}})",
+          "amount_placeholder": "数量を入力",
+          "fund_wallet": "投資ウォレット：{{balance}}",
+          "max_label": "全額入金",
+          "real_account": "メインアカウント：{{balance}}",
+          "balance": "残高：{{balance}}",
+          "fee": "手数料：{{fee}} (現在の率：{{rate}}％)",
+          "submit": "送信"
+        },
+        "withdraw_modal": {
+          "title": "出金",
+          "success": "成功",
+          "net_amount": "出金後残高：{{net}} (残り：{{remain}})",
+          "amount_placeholder": "数量を入力",
+          "quant_wallet": "Quantウォレット：{{balance}}",
+          "max_label": "全額出金",
+          "real_account": "メインアカウント：{{balance}}",
+          "fee": "手数料：{{fee}} (現在の率：{{rate}}％)",
+          "submit": "送信"
+        }
+      },
+      "info": {
+        "title": "金融商品とは？",
+        "definition": "金融商品は、一定期間資金をロックして報酬を得る仕組みです。Upstartが管理する複数のパッケージがあり、それぞれ利率と期間が異なります。",
+        "settlement": "決済は毎日00:00 UTCに行われ、T日目の収益はT+1日から利用可能です。",
+        "tradingTitle": "取引の仕組み",
+        "trade1": "1. **購入**：商品に申し込むと指定期間資金がロックされます。",
+        "trade2": "2. **報酬**：日利に基づく報酬が24時間ごとに付与されます。",
+        "trade3": "3. **引き出し**：保有期間終了後、元本と報酬がファイナンスウォレットに戻ります。",
+        "trade4": "4. **早期解約**：現在は未対応です。将来対応予定です。"
+      },
+      "header": "ファンディング管理",
+      "loading": "読み込み中...",
+      "wallet_balance": "ファイナンスウォレット残高",
+      "detail": "詳細",
+      "deposit_request": "入金リクエスト",
+      "withdraw_request": "出金リクエスト",
+      "recharge": "チャージ",
+      "all_transactions": "すべての取引",
+      "today_income": "本日の収益",
+      "total_income": "総収益",
+      "no_projects": "アクティブなプロジェクトはありません。",
+      "project": {
+        "description": "説明：{{description}}",
+        "available": "利用可能：{{min}}〜{{max}} USDT",
+        "daily_rate": "日利：{{rate}}％",
+        "duration": "期間：{{cycle}}日（〜{{end}}）",
+        "apply": "今すぐ参加"
+      },
+      "charge_modal": {
+        "title": "チャージ方法",
+        "usdt_alert": "指定されたウォレットアドレスにUSDTを送信してください。"
+      },
+      "Upstart": {
+        "title": "Upstartの概要",
+        "vip_upgrade_criteria": "VIP昇格条件",
+        "vip": {
+          "vip1": "VIP1：暗号資産35 USDT以上の保有が必要です。",
+          "vip2": "VIP2：暗号資産300 USDT以上＋Aレベル2名、Bレベル2名、Cレベル2名の招待・アクティブ化が必要です。",
+          "vip3": "VIP3：暗号資産1000 USDT以上＋Aレベル5名、Bレベル5名、Cレベル5名の招待・アクティブ化が必要です。",
+          "vip4": "VIP4：暗号資産5000 USDT以上＋Aレベル15名、Bレベル15名、Cレベル15名の招待・アクティブ化が必要です。",
+          "vip5": "VIP5：暗号資産20000 USDT以上＋Aレベル30名、Bレベル30名、Cレベル30名の招待・アクティブ化が必要です。",
+          "vip6": "VIP6：暗号資産50000 USDT以上＋Aレベル60名、Bレベル60名、Cレベル60名の招待・アクティブ化が必要です。"
+        },
+        "overview": {
+          "description": "Upstartの定量トレーディングは主要な暗号取引所データを収集・分析し、高確率の取引をアルゴリズムで実行します。",
+          "advantages": "手動取引と比べ、より正確かつ効率的に利益を追求できます。",
+          "assets": "BTC、ETH、USDTなど、さまざまな暗号資産を対象とします。",
+          "automation": "自動エントリー、エグジット、利益確定、損失軽減をサポートします。",
+          "no_manual": "手動での取引判断は不要。効率的かつ安定して稼げます。"
+        },
+        "method": {
+          "title": "定量取引の方法",
+          "step": "ボタンをクリックすると、1～3分以内に自動取引を開始・完了します。",
+          "profit_share": "利益の50％がプラットフォームに、50％がユーザーに還元されます。",
+          "example": "例：CoinEaseで1000 USDT分のBTCを購入し、OKXで1050 USDTで売却。25 USDTがプラットフォームに、25 USDTがユーザーに戻ります。"
+        },
+        "vip_daily": {
+          "vip1": "VIP1：1日最大5回の取引、日次利益率1.8～2.1％。",
+          "vip2": "VIP2：1日最大6回の取引、日次利益率2.3～2.6％。",
+          "vip3": "VIP3：1日最大7回の取引、日次利益率3.9～4.3％。",
+          "vip4": "VIP4：1日最大8回の取引、日次利益率5.9～6.4％。",
+          "vip5": "VIP5：1日最大9回の取引、日次利益率8.6～9.4％。",
+          "vip6": "VIP6：1日最大10回の取引、日次利益率9.5～10.5％。"
+        }
+      },
+      "agencyCooperation": {
+        "back": "戻る",
+        "title": "代理店連携",
+        "subTitle": "カウンセラーパートナーシップ",
+        "lines": [
+          "Upstartチームプログラムに参加し、Upstartを紹介してコミッションを獲得しましょう。誰よりも便利で持続的な成長を享受できます。",
+          "Upstartは全ユーザーに寛大なチームコミッション報酬を提供します。",
+          "コミッションは3階層で受け取れます（チームメンバーの報酬を減らすことはありません）。",
+          "1. 友人Aがあなたのレベル1メンバーになると、Aの日次利益の21％を獲得します。",
+          "2. Aの友人Bがレベル2メンバーになると、Bの日次利益の7％を獲得します。",
+          "3. Bの友人Cがレベル3メンバーになると、Cの日次利益の1％を獲得します。",
+          "例：A、B、C各メンバーが1日100ドルを獲得した場合：",
+          "• Aレベルコミッション：100 × 21％ = 21ドル",
+          "• Bレベルコミッション：100 × 7％  = 7ドル",
+          "• Cレベルコミッション：100 × 1％  = 1ドル",
+          "総コミッションは21％＋7％＋1％＝29％、29ドルとなります。",
+          "たとえばAメンバー10人、Bメンバー100人、Cメンバー1000人がそれぞれ100ドルを稼ぐと：",
+          "Aレベル収入 = 100 × 21％ × 10  = 210ドル",
+          "Bレベル収入 = 100 × 7％  × 100 = 700ドル",
+          "Cレベル収入 = 100 × 1％  × 1000 = 1000ドル",
+          "あなたの1日チーム収入 = 210 + 700 + 1000 = 1910ドル",
+          "非常に大きな収入となります。"
+        ]
+      },
+      "companyIntro": {
+        "back": "戻る",
+        "title": "会社紹介",
+        "items": [
+          "定量取引",
+          "ファンディングプロジェクト",
+          "ブロックチェーン基盤",
+          "完璧なセキュリティ"
+        ]
+      },
+      "quantTutorial": {
+        "title": "定量取引チュートリアル",
+        "description": "Upstartをより理解いただくため、自動定量システムの利益生成プロセスと使い方を詳細に解説します。",
+        "sections": {
+          "vipCriteria": "VIP昇格条件",
+          "overview": "概要",
+          "dailyReturns": "日次収益例"
+        },
+        "vipUpgradeCriteria": [
+          "VIP1：暗号資産35 USDT以上の保有が必要です。",
+          "VIP2：暗号資産300 USDT以上＋Aレベル2名、Bレベル2名、Cレベル2名の招待・アクティブ化が必要です。",
+          "VIP3：暗号資産1000 USDT以上＋Aレベル5名、Bレベル5名、Cレベル5名の招待・アクティブ化が必要です。",
+          "VIP4：暗号資産5000 USDT以上＋Aレベル15名、Bレベル15名、Cレベル15名の招待・アクティブ化が必要です。",
+          "VIP5：暗号資産20000 USDT以上＋Aレベル30名、Bレベル30名、Cレベル30名の招待・アクティブ化が必要です。",
+          "VIP6：暗号資産50000 USDT以上＋Aレベル60名、Bレベル60名、Cレベル60名の招待・アクティブ化が必要です。"
+        ],
+        "overview": "Upstart定量取引の概要：ボタンをクリックすると重要なマーケットデータを用い、1～3分で取引を完了して利益を得ます。",
+        "method": {
+          "title": "取引方法",
+          "description": "ボタンをクリックして自動取引を開始し、1～3分で完了します。生成された利益の50％がプラットフォームに、50％があなたに還元されます。"
+        },
+        "vipDaily": [
+          "VIP1：1日最大5回の取引、日次利益率1.8％–2.1％で、500 USDTステークで9–10.5 USDTを獲得。",
+          "VIP2：1日最大6回の取引、日次利益率2.3％–2.6％で、2000 USDTステークで46–52 USDTを獲得。",
+          "VIP3：1日最大7回の取引、日次利益率3.9％–4.3％で、5000 USDTステークで195–215 USDTを獲得。",
+          "VIP4：1日最大8回の取引、日次利益率5.9％–6.4％で、10000 USDTステークで590–640 USDTを獲得。",
+          "VIP5：1日最大9回の取引、日次利益率8.6％–9.4％で、20000 USDTステークで1720–1880 USDTを獲得。",
+          "VIP6：1日最大10回の取引、日次利益率9.5％–10.5％で、20000 USDTステークで1900–2100 USDTを獲得。"
+        ]
+      },
+      "commonProblems": {
+        "title": "よくある問題",
+        "lines": [
+          "Upstartプログラム参加時に注意すべき一般的な問題です。",
+          "1. 新規ユーザーは取引開始に最低30 USDTの入金が必要です。",
+          "2. 出金には合計20 USDT以上の定量取引完了が必要です。",
+          "3. 最低出金額は50 USDTです。",
+          "4. 出金処理には9–16時間かかる場合がありますのでご注意ください。",
+          "5. 入金時にはVIPレベルに応じてレートが自動的に上がります。",
+          "6. 為替レートは市場価格に基づきます。",
+          "7. すべての条件は市場分析により変動します。",
+          "8. 承認された入金方法と市場規則に従ってください。",
+          "9. 取引履歴を定期的に確認してください。",
+          "10. いつでもカスタマーサポートにお問い合わせできます。"
+        ],
+        "feesTitle": "手数料情報",
+        "fees": [
+          "Upstartの定量システムおよび自動保証処理には追加出金手数料（0％–5％）がかかる場合があります。",
+          "手数料率は予告なく変更されることがあります。",
+          "標準処理時間は約5分、保証処理で最大30分かかる場合があります。",
+          "為替レートは市場状況に応じて自動更新されます。"
+        ]
+      },
+      "security": {
+        "title": "セキュリティセンター",
+        "email": "メールアドレス",
+        "tradePwd": "取引PIN",
+        "loginPwd": "ログインパスワード",
+        "withdrawAddr": "出金アドレス"
+      },
+      "security_p": {
+        "title": "メールアドレス連携",
+        "old_mailbox": "旧メールアドレス",
+        "new_mailbox": "新メールアドレス",
+        "enter_code": "認証コードを入力してください",
+        "send_code": "コード送信",
+        "enter_new_email": "新しいメールアドレスを入力してください",
+        "invalid_email": "有効なメールアドレスを入力してください。",
+        "code_sent": "認証コードを送信しました。",
+        "code_failed": "コードの送信に失敗しました。",
+        "update_warning": "無効なメールアドレスの場合、パスワードリセットやアカウント復旧に問題が発生する可能性があります。",
+        "update_success": "メールアドレスを正常に更新しました。",
+        "update_failed": "メールアドレスの更新に失敗しました。",
+        "submit": "送信"
+      },
+      "trade_pwd": {
+        "title": "取引パスワード変更",
+        "email_label": "メールアドレス",
+        "code_label": "認証コード",
+        "code_placeholder": "認証コードを入力",
+        "send_code": "コード送信",
+        "new_pwd_label": "新しい取引パスワード",
+        "new_pwd_placeholder": "新しいパスワードを入力",
+        "confirm_pwd_label": "パスワード確認",
+        "confirm_pwd_placeholder": "再度パスワードを入力",
+        "confirm_warning": "無効なメールアドレスの場合、取引パスワードのリセットに問題が生じる可能性があります。続行しますか？",
+        "code_sent": "認証コードを送信しました。",
+        "code_failed": "認証コードの送信に失敗しました。",
+        "success": "取引パスワードを正常に変更しました。",
+        "failed": "取引パスワードの変更に失敗しました。",
+        "submit": "送信"
+      },
+      "security_login": {
+        "title": "ログインパスワード変更",
+        "old_password": "現在のパスワード",
+        "new_password": "新しいパスワード",
+        "confirm_password": "パスワード確認",
+        "enter_old": "現在のパスワードを入力してください",
+        "enter_new": "新しいパスワードを入力してください",
+        "enter_confirm": "新しいパスワードを再入力してください",
+        "submit": "送信",
+        "mismatch_old": "現在のパスワードが正しくありません。",
+        "mismatch_new": "新しいパスワードが一致しません。",
+        "length_error": "パスワードは6文字以上必要です。",
+        "confirm_warning": "パスワードを変更してよろしいですか？",
+        "success": "✅ パスワードを正常に変更しました。",
+        "fail": "❌ パスワードの変更に失敗しました。"
+      },
+      "task": {
+        "title": "タスクセンター",
+        "invite_reward": {
+          "title": "招待報酬",
+          "description": "レベル1直下のアクティブ招待数達成時に報酬を獲得します",
+          "required": "{{level}}レベル ({{required}} 招待)",
+          "reward": "成功後に{{amount}} USDTを受け取ります。",
+          "claim": "受け取る",
+          "claimed": "受け取り済み",
+          "claim_fail": "報酬の受け取りに失敗しました。"
+        },
+        "join_reward": {
+          "title": "登録報酬",
+          "description": "新規登録成功後に{{amount}} USDTを受け取ります。",
+          "claim": "受け取る",
+          "claimed": "受け取り済み",
+          "claim_fail": "報酬の受け取りに失敗しました。"
+        }
+      },
+      "app": {
+        "userAvatarAlt": "ユーザーアバター",
+        "logoAlt": "Upstartロゴ",
+        "mailIconAlt": "メールアイコン",
+        "closeButton": "メニューを閉じる",
+        "idLabel": "ID",
+        "idCopied": "IDをコピーしました！",
+        "recharge": "チャージ",
+        "withdraw": "出金",
+        "customerService": "カスタマーサービス",
+        "task_center": "タスクセンター",
+        "wallets": "ファイナンスウォレット",
+        "faq": "FAQ",
+        "security_center": "セキュリティセンター",
+        "tutorial": "クオンツチュートリアル",
+        "language": "言語設定",
+        "company": "会社情報",
+        "download": "アプリダウンロード",
+        "logout": "ログアウト",
+        "confirm_logout": "ログアウトしてもよろしいですか？",
+        "navigation": {
+          "home": "ホーム",
+          "team": "マイチーム",
+          "quant": "クオンツ",
+          "funding": "ファンディング",
+          "mine": "マイページ"
+        }
+      },
+      "agreement": {
+        "terms": {
+          "title": "利用規約",
+          "content": "1. **総則**\n\nUpstartへようこそ。本サービスを利用することで、本利用規約に同意したものとみなされます。\n\n2. **アカウント**\n\nユーザーは正確な情報で登録し、自身の認証情報を管理する責任があります。\n\n3. **利用制限**\n\nハッキング、リバースエンジニアリング、その他の不正行為を含むサービスの誤用は禁止されています。\n\n4. **データとプライバシー**\n\nサービス提供および改善のため、個人情報を収集します。詳細はプライバシーポリシーをご確認ください。\n\n5. **規約の変更**\n\n本利用規約は随時更新される可能性があります。引き続き利用することで、変更後の規約に同意したものとみなされます。\n\n6. **準拠法**\n\n本規約はユーザーの管轄法に従って解釈されます。"
+        },
+        "privacy": {
+          "title": "プライバシーポリシー",
+          "content": "1. **はじめに**\n\nUpstart（以下「当社」「当社の」「当社へ」）は、ユーザーのプライバシーを尊重し、保護に努めます。\n\n2. **収集する情報**\n\n- **個人データ**：氏名、メールアドレス、電話番号、ウォレットアドレスなど\n- **利用データ**：閲覧ページ、実行アクションなど\n\n3. **情報の利用目的**\n\nサービスの提供・維持・改善、ユーザーとのコミュニケーション、法令遵守のために利用します。\n\n4. **情報共有**\n\n個人データを販売することはありません。厳格な機密保持契約のもとでサービス提供者と共有する場合があります。\n\n5. **セキュリティ**\n\n業界標準の対策を講じて、ユーザー情報を保護します。\n\n6. **ユーザーの権利**\n\nサポートに連絡することで、個人データの閲覧、訂正、削除を請求できます。\n\n7. **ポリシーの変更**\n\n必要に応じて本ポリシーを改訂します。重要な変更は通知します。"
+        }
+      },
+      "profile": {
+        "loading": "⏳ 読み込み中...",
+        "greeting": "こんにちは、{{name}}さん",
+        "vipLevel": "VIP{{level}}",
+        "idLabel": "ID",
+        "summary": {
+          "totalBalance": "総残高",
+          "totalEarnings": "総収益",
+          "todayCommission": "本日のコミッション",
+          "todayIncome": "本日の収益",
+          "yesterdayIncome": "昨日の収益"
+        },
+        "actions": {
+          "recharge": "チャージ",
+          "withdraw": "出金",
+          "details": "詳細"
+        },
+        "referral": {
+          "level1": "レベル1",
+          "level2": "レベル2",
+          "level3": "レベル3"
+        },
+        "menu": {
+          "taskCenter": "タスクセンター",
+          "faq": "FAQ",
+          "securityCenter": "セキュリティセンター",
+          "quantTutorial": "クオンツチュートリアル",
+          "language": "言語設定",
+          "aboutCompany": "会社情報",
+          "downloadApp": "アプリダウンロード"
+        },
+        "logout": "ログアウト",
+        "copySuccess": "IDをクリップボードにコピーしました！",
+        "logoutConfirmMessage": "本当にログアウトしますか？",
+        "logoutCancel": "キャンセル",
+        "logoutConfirm": "確認"
+      },
+      "team": {
+        "todayJoinedCount": "本日の新規参加",
+        "title": "マイチーム",
+        "loading": "⏳ 読み込み中...",
+        "errorLoad": "紹介データの読み込みに失敗しました",
+        "errorLoadContrib": "貢献データの読み込みに失敗しました",
+        "tabs": {
+          "members": "メンバー",
+          "contrib": "貢献"
+        },
+        "filter": {
+          "level": "レベルでフィルター：",
+          "period": "期間："
+        },
+        "level": {
+          "A": "レベルA (1)",
+          "B": "レベルB (2)",
+          "C": "レベルC (3)"
+        },
+        "period": {
+          "today": "今日",
+          "week": "今週",
+          "month": "今月"
+        },
+        "noMembers": "紹介されたユーザーはいません。",
+        "noRecords": "記録がありません。",
+        "registered": "登録済み",
+        "vip": "VIP",
+        "teamSize": "チーム規模",
+        "contrib": {
+          "todayEarnings": "本日の収益",
+          "totalEarnings": "総収益"
+        },
+        "table": {
+          "account": "アカウント",
+          "level": "レベル",
+          "time": "時間",
+          "earning": "収益"
+        }
+      },
+      "referral2": {
+        "loading": "📡 読み込み中...",
+        "totalEarnings": "チーム総収益",
+        "todayEarnings": "本日の収益",
+        "totalMembers": "チーム総メンバー数",
+        "todayJoined": "本日の新メンバー",
+        "members": "メンバー"
+      },
+      "messages": {
+        "title": "個人メッセージ",
+        "no_messages": "メッセージがありません"
+      },
+      "systemNotices": {
+        "title": "メッセージセンター",
+        "tabs": {
+          "notices": "お知らせ",
+          "inbox": "システム通知"
+        },
+        "noMessages": "メッセージがありません",
+        "actions": {
+          "deleteAll": "すべて削除",
+          "markAllRead": "すべて既読にする"
+        },
+        "detail": {
+          "title": "詳細"
+        }
+      },
+      "withdrawPage": {
+        "title": "出金方法",
+        "history": "出金履歴",
+        "digitalCurrency": "デジタル通貨"
+      },
+      "appDownload": {
+        "back": "戻る",
+        "logoAlt": "Upstartロゴ",
+        "version": "バージョン：{{version}}",
+        "qrCodeInstruction": "またはQRコードをスマホでスキャンしてインストール",
+        "androidAlt": "Androidでダウンロード",
+        "iosAlt": "App Storeでダウンロード",
+        "comingSoon": "近日公開",
+        "downloadNow": "今すぐダウンロード"
+      },
+      "languages": {
+        "english": "English",
+        "french": "Français",
+        "german": "Deutsch",
+        "korean": "한국어"
+      },
+      "forgotPassword": {
+        "title": "パスワードリセット",
+        "emailLabel": "メールアドレス",
+        "emailPlaceholder": "登録済みのメールを入力",
+        "codeLabel": "認証コード",
+        "codePlaceholder": "6桁のコードを入力",
+        "sendCode": "コード送信",
+        "verifyCode": "コード確認",
+        "newPasswordLabel": "新しいパスワード",
+        "newPasswordPlaceholder": "新しいパスワードを入力",
+        "confirmPasswordLabel": "パスワード確認",
+        "confirmPasswordPlaceholder": "再度パスワードを入力",
+        "resetButton": "パスワードをリセット",
+        "codeSent": "認証コードを送信しました。",
+        "verificationSuccess": "認証に成功しました。",
+        "resetSuccess": "パスワードをリセットしました。",
+        "errors": {
+          "sendCode": "認証コードの送信に失敗しました",
+          "codeRequired": "認証コードを入力してください",
+          "invalidCode": "無効な認証コードです",
+          "verifyFirst": "まずコードを確認してください",
+          "passwordLength": "パスワードは6文字以上必要です",
+          "passwordMismatch": "パスワードが一致しません",
+          "resetFailed": "パスワードリセットに失敗しました"
+        }
+      },
+      "rechargeMethod": {
+        "title": "チャージ方法",
+        "historyButtonTitle": "取引履歴",
+        "usdtLogoAlt": "USDTロゴ",
+        "back": "戻る",
+        "methods": {
+          "usdt": {
+            "title": "USDT",
+            "description": "USDTで入金",
+            "select": "USDTを選択"
+          }
+        },
+        "navigation": {
+          "toHistory": "履歴を見る",
+          "toDeposit": "入金へ"
+        }
+      },
+      "usdtRecharge": {
+        "title": "チャージ",
+        "loading": "⏳ 読み込み中...",
+        "scanQRCode": "QRコードをスキャンしてチャージ",
+        "addressCopied": "アドレスをコピーしました！",
+        "copyAddress": "アドレスをコピー",
+        "walletAddress": "ウォレットアドレス",
+        "protocol": {
+          "title": "プロトコル",
+          "type": "TRC-20"
+        },
+        "errors": {
+          "noWallet": "ウォレットがありません。作成してください。",
+          "copyFailed": "コピーに失敗しました。",
+          "loadFailed": "USDTチャージ情報の読み込みに失敗しました"
+        },
+        "qr": {
+          "title": "QRコード",
+          "instruction": "QRコードをスキャンしてチャージ",
+          "noAddress": "ウォレットアドレスがありません"
+        },
+        "buttons": {
+          "back": "戻る",
+          "copy": "コピー"
+        },
+        "messages": {
+          "copied": "アドレスをコピーしました！",
+          "copyFailed": "コピーに失敗しました"
+        }
+      },
+      "userChat": {
+        "title": "カスタマーサポートチャット",
+        "me": "私",
+        "admin": "管理者",
+        "unread": "（未読）",
+        "sendButton": "送信",
+        "inputPlaceholder": "メッセージを入力…",
+        "notificationAlt": "カスタマーサポート",
+        "newMessageNotification": "📩 新しいメッセージが届きました！",
+        "closeButton": "閉じる",
+        "errors": {
+          "messageSaveFailed": "メッセージの保存に失敗しました",
+          "connectionFailed": "チャットサーバーへの接続に失敗しました",
+          "loadFailed": "メッセージの読み込みに失敗しました"
+        },
+        "status": {
+          "connecting": "接続中…",
+          "connected": "接続されました",
+          "disconnected": "切断されました"
+        }
+      }
+  }
+  

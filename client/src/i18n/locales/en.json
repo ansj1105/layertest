@@ -1,10 +1,85 @@
 {
+  "order_history": {
+    "title": "My Orders and Redemptions",
+    "orders": {
+      "title": "Order History",
+      "no_orders": "No orders found",
+      "table": {
+        "order_id": "Order ID",
+        "token": "Token",
+        "amount": "Amount",
+        "price": "Price (USDT)",
+        "total": "Total (USDT)",
+        "status": "Status",
+        "unlock_date": "Unlock Date",
+        "order_date": "Order Date"
+      },
+      "status": {
+        "pending": "Pending",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+      }
+    },
+    "redemptions": {
+      "ref_type": {
+        "exchange": "Exchange",
+        "purchase": "Purchase",
+        "redeem": "Redeem",
+        "transfer": "Transfer",
+        "token_exchange": "Exchange",
+        "token_purchase": "Purchase",
+        "token_redeem": "Redeem",
+        "token_transfer": "Transfer"
+      }
+    }
+    
+  },
     "Wallet": "Wallet",
     "Balance": "Balance",
     "Transfer": "Transfer",
     "Transactions": "Transactions",
     "Register": "Register",
 "Home": "Home",
+"coin_list": {
+  "trading_pair": "Trading pair",
+  "latest_price": "Latest price",
+  "change_percent": "Change(%)"
+},
+"escrow": {
+  "title": "Escrow",
+  "investment_amount": "Investment Amount",
+  "profit": "Profit"
+},
+"invite": {
+  "title": "Invite Friends",
+  "invite_link": "Invitation Link",
+  "copy_invite_link": "Copy Invitation Link",
+  "product_description": "World-class quantitative products, free for everyone",
+  "referral_code": "Referral Code",
+  "copy_referral_code": "Copy Referral Code",
+  "copy_success": "Successfully copied",
+  "error": {
+    "load_failed": "Failed to load invitation code",
+    "copy_failed": "Failed to copy to clipboard",
+    "fallback_copy_failed": "Failed to copy using fallback method"
+  }
+},
+"language": {
+  "settings": "Language Settings",
+  "not_implemented": "This language is currently under development."
+},
+"lockup": {
+  "title": "Lockup Details",
+  "total_balance": "Total Balance",
+  "total_locked": "Total Locked",
+  "no_active_lockups": "No active lockups",
+  "table": {
+    "id": "Lockup ID",
+    "amount": "Amount",
+    "unlock_date": "Unlock Date"
+  }
+},
+
 "register": {
   "title": "Sign Up",
   "by_phone": "By Phone",
@@ -31,7 +106,6 @@
   "terms": "Terms of Service",
   "privacy": "Privacy Policy"
 },
-
 "login": {
   "title": "User Login",
   "email": "Email or Username",
@@ -77,6 +151,8 @@
 "common": {
   "faqTitle": "Common Questions",
   "back" : "back",
+    "loading": "Loading...",
+  "no_data": "No data",
   "problem1": {
     "question": "What is Funding Product and how do I earn?",
     "answer": "The financial management products are tools and solutions developed by the company to help users receive rewards quickly.\nBy staking digital assets on a blockchain network, users can earn rewards based on the POS (Proof of Stake) mechanism.\nIn this mechanism, users delegate their digital assets to a node, which then gains the right to perform actions like block creation and transaction packaging on the blockchain and receives rewards.\nUsers share the rewards obtained by the node in proportion to the number of staked positions."
@@ -271,9 +347,7 @@
     "submitting": "Submitting…",
     "submit": "Submit"
   },
-  "common": {
-    "back": "Back"
-  },
+
   "errors": {
     "invalidAddress": "Please enter a valid address.",
     "invalidAmount": "Please enter a valid withdrawal amount.",
@@ -281,8 +355,7 @@
   },
   "success": {
     "submitted": "Withdrawal request submitted successfully."
-  }
-,
+  },
 "funding": {
   "active_projects": "Projects go on",
   "expired_projects": "Projects expired",
@@ -408,12 +481,12 @@
     "title": "Agency Cooperation",
     "subTitle": "Counselor Partnership",
     "lines": [
-      "Join the Upstart team program and earn commissions by promoting Upstart. Enjoy Upstart’s convenience and sustained growth like no one else.",
+      "Join the Upstart team program and earn commissions by promoting Upstart. Enjoy Upstart's convenience and sustained growth like no one else.",
       "Upstart offers every user a generous team-commission reward mechanism.",
-      "You can receive commission rewards in three tiers (these are extra rewards from Upstart and do not reduce your team members’ earnings).",
-      "1. When Friend A shares and becomes your Level-1 member, you earn 21% of A’s daily profit.",
-      "2. When A’s Friend B becomes your Level-2 member, you earn 7% of B’s daily profit.",
-      "3. When B’s Friend C becomes your Level-3 member, you earn 1% of C’s daily profit.",
+      "You can receive commission rewards in three tiers (these are extra rewards from Upstart and do not reduce your team members' earnings).",
+      "1. When Friend A shares and becomes your Level-1 member, you earn 21% of A's daily profit.",
+      "2. When A's Friend B becomes your Level-2 member, you earn 7% of B's daily profit.",
+      "3. When B's Friend C becomes your Level-3 member, you earn 1% of C's daily profit.",
       "Example: If each A, B, and C member earns $100 per day, you receive:",
       "• Level-A member commission: $100 × 21% = $21",
       "• Level-B member commission: $100 × 7%  = $7",
@@ -440,6 +513,11 @@
   "quantTutorial": {
     "title": "Quantitative Trading Tutorial",
     "description": "To help you better understand Upstart, this tutorial explains in detail how the automated quantitative system generates profits and how to use it.",
+    "sections": {
+      "vipCriteria": "VIP Upgrade Criteria",
+      "overview": "Overview",
+      "dailyReturns": "VIP Daily Returns Example"
+    },
     "vipUpgradeCriteria": [
       "VIP1: Requires a minimum of 35 USDT in crypto assets.",
       "VIP2: Requires at least 300 USDT in crypto assets plus inviting and activating 2 A-level, 2 B-level, and 2 C-level members.",
@@ -479,7 +557,7 @@
     ],
     "feesTitle": "Fee Information",
     "fees": [
-      "Upstart’s quantitative system and automated guarantee process may incur additional withdrawal fees (0%–5%).",
+      "Upstart's quantitative system and automated guarantee process may incur additional withdrawal fees (0%–5%).",
       "Fee rates are subject to change without notice.",
       "Standard processing time is about 5 minutes; with guarantee processing, it may take up to 30 minutes.",
       "Exchange rates are automatically updated based on market conditions."
@@ -561,19 +639,32 @@
     }
   },
   "app": {
-    "confirm_logout": "Are you sure you want to log out?",
+    "userAvatarAlt": "User Avatar",
+    "logoAlt": "Upstart Logo",
+    "mailIconAlt": "Mail Icon",
+    "closeButton": "Close Menu",
+    "idLabel": "ID",
+    "idCopied": "ID copied!",
     "recharge": "Recharge",
     "withdraw": "Withdraw",
-    "customer_service": "Customer Service",
+    "customerService": "Customer Service",
     "task_center": "Task Center",
     "wallets": "Finance Wallet",
-    "faq": "General Issues",
+    "faq": "FAQ",
     "security_center": "Security Center",
     "tutorial": "Quant Tutorial",
     "language": "Language Settings",
     "company": "About Company",
     "download": "App Download",
-    "logout": "Logout"
+    "logout": "Logout",
+    "confirm_logout": "Are you sure you want to log out?",
+    "navigation": {
+      "home": "Home",
+      "team": "My Team",
+      "quant": "Quant",
+      "funding": "Funding",
+      "mine": "Mine"
+    }
   },
   "agreement": {
     "terms": {
@@ -582,7 +673,7 @@
     },
     "privacy": {
       "title": "Privacy Policy",
-      "content": "1. **Introduction**\n\nUpstart (“we,” “our,” or “us”) respects your privacy and is committed to protecting it.\n\n2. **Information We Collect**\n\n- **Personal Data**: name, email, phone number, wallet addresses.\n- **Usage Data**: pages visited, actions taken.\n\n3. **How We Use Information**\n\nWe use your data to provide, maintain, and improve our services, to communicate with you, and to comply with legal obligations.\n\n4. **Data Sharing**\n\nWe do not sell personal data. We may share with service providers under strict confidentiality.\n\n5. **Security**\n\nWe implement industry‑standard measures to protect your information.\n\n6. **Your Rights**\n\nYou may access, correct, or delete your personal data by contacting support.\n\n7. **Changes**\n\nWe may revise this policy; we’ll notify you of significant changes."
+      "content": "1. **Introduction**\n\nUpstart (\"we,\" \"our,\" or \"us\") respects your privacy and is committed to protecting it.\n\n2. **Information We Collect**\n\n- **Personal Data**: name, email, phone number, wallet addresses.\n- **Usage Data**: pages visited, actions taken.\n\n3. **How We Use Information**\n\nWe use your data to provide, maintain, and improve our services, to communicate with you, and to comply with legal obligations.\n\n4. **Data Sharing**\n\nWe do not sell personal data. We may share with service providers under strict confidentiality.\n\n5. **Security**\n\nWe implement industry‑standard measures to protect your information.\n\n6. **Your Rights**\n\nYou may access, correct, or delete your personal data by contacting support.\n\n7. **Changes**\n\nWe may revise this policy; we'll notify you of significant changes."
     }
   },
   "profile": {
@@ -593,9 +684,9 @@
     "summary": {
       "totalBalance":      "Total Balance",
       "totalEarnings":     "Total Earnings",
-      "todayCommission":   "Today’s Commission",
-      "todayIncome":       "Today’s Income",
-      "yesterdayIncome":   "Yesterday’s Income"
+      "todayCommission":   "Today's Commission",
+      "todayIncome":       "Today's Income",
+      "yesterdayIncome":   "Yesterday's Income"
     },
     "actions": {
       "recharge":          "Recharge",
@@ -652,7 +743,7 @@
     "vip":                   "VIP",
     "teamSize":              "Team Size",
     "contrib": {
-      "todayEarnings":       "Today’s Earnings",
+      "todayEarnings":       "Today's Earnings",
       "totalEarnings":       "Total Earnings"
     },
     "table": {
@@ -669,8 +760,140 @@
     "totalMembers": "Total Team Members",
     "todayJoined": "New Members Today",
     "members": "members"
+  },
+  "messages": {
+    "title": "Personal Messages",
+    "no_messages": "No messages found"
+  },
+  "systemNotices": {
+    "title": "Message Center",
+    "tabs": {
+      "notices": "Announcements",
+      "inbox": "System Notifications"
+    },
+    "noMessages": "No messages found",
+    "actions": {
+      "deleteAll": "Delete All",
+      "markAllRead": "Mark All Read"
+    },
+    "detail": {
+      "title": "Details"
+    }
+  },
+  "withdrawPage": {
+    "title": "Withdrawal Method",
+    "history": "Withdrawal History",
+    "digitalCurrency": "Digital Currency"
+  },
+  "appDownload": {
+    "back": "Back",
+    "logoAlt": "Upstart Logo",
+    "version": "Version: {{version}}",
+    "qrCodeInstruction": "Or scan the QR code with your mobile phone to install",
+    "androidAlt": "Download on Android",
+    "iosAlt": "Download on App Store",
+    "comingSoon": "Coming Soon",
+    "downloadNow": "Download Now"
+  },
+  "languages": {
+    "english": "English",
+    "french": "Français",
+    "german": "Deutsch",
+    "korean": "한국어"
+  },
+  "forgotPassword": {
+    "title": "Reset Password",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "Enter your registered email",
+    "codeLabel": "Verification Code",
+    "codePlaceholder": "Enter 6-digit code",
+    "sendCode": "Send Code",
+    "verifyCode": "Verify Code",
+    "newPasswordLabel": "New Password",
+    "newPasswordPlaceholder": "Enter new password",
+    "confirmPasswordLabel": "Confirm Password",
+    "confirmPasswordPlaceholder": "Re-enter new password",
+    "resetButton": "Reset Password",
+    "codeSent": "Verification code has been sent.",
+    "verificationSuccess": "Verification successful.",
+    "resetSuccess": "Password has been successfully reset.",
+    "errors": {
+      "sendCode": "Failed to send verification code",
+      "codeRequired": "Please enter the verification code",
+      "invalidCode": "Invalid verification code",
+      "verifyFirst": "Please verify the code first",
+      "passwordLength": "Password must be at least 6 characters",
+      "passwordMismatch": "Passwords do not match",
+      "resetFailed": "Failed to reset password"
+    }
+  },
+  "rechargeMethod": {
+    "title": "Recharge Methods",
+    "historyButtonTitle": "Transaction History",
+    "usdtLogoAlt": "USDT Logo",
+    "back": "Back",
+    "methods": {
+      "usdt": {
+        "title": "USDT",
+        "description": "Deposit using USDT",
+        "select": "Select USDT"
+      }
+    },
+    "navigation": {
+      "toHistory": "View History",
+      "toDeposit": "Go to Deposit"
+    }
+  },
+  "usdtRecharge": {
+    "title": "Recharge",
+    "loading": "⏳ Loading...",
+    "scanQRCode": "Scan QR code to recharge",
+    "addressCopied": "Address has been copied!",
+    "copyAddress": "Copy address",
+    "walletAddress": "Wallet Address",
+    "protocol": {
+      "title": "Protocol",
+      "type": "TRC-20"
+    },
+    "errors": {
+      "noWallet": "No wallet available. Please create one.",
+      "copyFailed": "Failed to copy address.",
+      "loadFailed": "Failed to load USDT recharge information"
+    },
+    "qr": {
+      "title": "QR Code",
+      "instruction": "Scan QR code to recharge",
+      "noAddress": "No wallet address available"
+    },
+    "buttons": {
+      "back": "Back",
+      "copy": "Copy"
+    },
+    "messages": {
+      "copied": "Address copied!",
+      "copyFailed": "Failed to copy"
+    }
+  },
+  "userChat": {
+    "title": "Customer Support Chat",
+    "me": "Me",
+    "admin": "Admin",
+    "unread": "(Unread)",
+    "sendButton": "Send",
+    "inputPlaceholder": "Type your message...",
+    "notificationAlt": "Customer Support",
+    "newMessageNotification": "📩 New message arrived!",
+    "closeButton": "Close",
+    "errors": {
+      "messageSaveFailed": "Failed to save message",
+      "connectionFailed": "Failed to connect to chat server",
+      "loadFailed": "Failed to load messages"
+    },
+    "status": {
+      "connecting": "Connecting...",
+      "connected": "Connected",
+      "disconnected": "Disconnected"
+    }
   }
-  
-  
-  }
+}
   

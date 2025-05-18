@@ -5,7 +5,6 @@ import { ArrowLeft } from 'lucide-react';
 import '../styles/QuantTutorialPage.css';
 import '../styles/topbar.css';
 
-
 export default function QuantTutorialPage() {
   const { t } = useTranslation();
 
@@ -17,7 +16,7 @@ export default function QuantTutorialPage() {
   const back = () => window.history.back();
 
   const vipCriteria = t('quantTutorial.vipUpgradeCriteria', { returnObjects: true });
-  const vipDaily    = t('quantTutorial.vipDaily',              { returnObjects: true });
+  const vipDaily = t('quantTutorial.vipDaily', { returnObjects: true });
 
   return (
     <div className="quant-tutorial-wrapper">
@@ -29,7 +28,6 @@ export default function QuantTutorialPage() {
         <h1 className="quant-tutorial-title">{t('quantTutorial.title')}</h1>
       </div>
 
-
       <div className="quant-tutorial-content">
         {/* 설명 */}
         <p className="quant-tutorial-description">
@@ -39,7 +37,7 @@ export default function QuantTutorialPage() {
         {/* VIP 업그레이드 기준 */}
         <section>
           <h2 className="quant-tutorial-section-title">
-            • {t('quantTutorial.title')} VIP 업그레이드 기준
+            • {t('quantTutorial.sections.vipCriteria')}
           </h2>
           <ul className="quant-tutorial-list">
             {vipCriteria.map((line, i) => (
@@ -50,7 +48,9 @@ export default function QuantTutorialPage() {
 
         {/* 개요 */}
         <section>
-          <h2 className="quant-tutorial-section-title">• 개요</h2>
+          <h2 className="quant-tutorial-section-title">
+            • {t('quantTutorial.sections.overview')}
+          </h2>
           <p className="quant-tutorial-paragraph">
             {t('quantTutorial.overview')}
           </p>
@@ -68,7 +68,9 @@ export default function QuantTutorialPage() {
 
         {/* VIP 일일 수익률 예시 */}
         <section>
-          <h2 className="quant-tutorial-section-title">• VIP 일일 수익률 예시</h2>
+          <h2 className="quant-tutorial-section-title">
+            • {t('quantTutorial.sections.dailyReturns')}
+          </h2>
           <ul className="quant-tutorial-list">
             {vipDaily.map((line, i) => (
               <li key={i}>{line}</li>

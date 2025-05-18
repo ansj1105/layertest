@@ -1,10 +1,12 @@
 // 📁 src/components/CoinList.jsx
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 import '../styles/MainLanding.css';
 
 export default function CoinList() {
+  const { t } = useTranslation();
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -31,16 +33,16 @@ export default function CoinList() {
         
         {/* 헤더 */}
         <div className="v-main-bottom-list-one-head">
-          <div className="v-main-bottom-list-one-head-item-name">Trading pair</div>
-          <div className="v-main-bottom-list-one-head-item-price">Latest price</div>
-          <div className="v-main-bottom-list-one-head-item-zhangfu">Change(%)</div>
+          <div className="v-main-bottom-list-one-head-item-name">{t('coin_list.trading_pair')}</div>
+          <div className="v-main-bottom-list-one-head-item-price">{t('coin_list.latest_price')}</div>
+          <div className="v-main-bottom-list-one-head-item-zhangfu">{t('coin_list.change_percent')}</div>
         </div>
 
         {/* 바디 */}
         {loading ? (
-          <div className="text-center py-6 text-gray-500">Loading...</div>
+          <div className="text-center py-6 text-gray-500">{t('common.loading')}</div>
         ) : coins.length === 0 ? (
-          <div className="text-center py-6 text-gray-500">No data</div>
+          <div className="text-center py-6 text-gray-500">{t('common.no_data')}</div>
         ) : (
           coins.map(coin => {
             const up = coin.price_change_percentage_24h >= 0;
@@ -73,6 +75,5 @@ export default function CoinList() {
         )}
       </div>
     </div>
-
   );
 }

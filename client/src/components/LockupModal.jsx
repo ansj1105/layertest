@@ -1,8 +1,11 @@
 // 📁 src/components/LockupModal.jsx
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 import '../styles/TokenPurchasePage.css';
+
 export default function LockupModal({ onClose }) {
+  const { t } = useTranslation();
   const [walletDetails, setWalletDetails] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -19,7 +22,7 @@ export default function LockupModal({ onClose }) {
     <div className="lockup-modal-overlay">
       <div className="lockup-modal">
         <div className="lockup-modal-header">
-          <h3 className="lockup-modal-title">락업 상세 내역</h3>
+          <h3 className="lockup-modal-title">{t('lockup.title')}</h3>
           <button
             onClick={onClose}
             className="lockup-modal-close-btn"
@@ -28,29 +31,29 @@ export default function LockupModal({ onClose }) {
           </button>
         </div>
 
-      {/* 본문 */}
-      {loading ? (
-        <p className="text-center">로딩 중…</p>
-      ) : (
-        <>
+        {/* 본문 */}
+        {loading ? (
+          <p className="text-center">{t('common.loading')}</p>
+        ) : (
+          <>
             <div className="lockup-summary">
               <div>
-                총 잔액: <span className="font-semibold">{walletDetails.wallet.balance.toFixed(6)} USC</span>
+                {t('lockup.total_balance')}: <span className="font-semibold">{walletDetails.wallet.balance.toFixed(6)} USC</span>
               </div>
               <div>
-                전체 락업: <span className="font-semibold">{walletDetails.wallet.locked_amount.toFixed(6)} USC</span>
+                {t('lockup.total_locked')}: <span className="font-semibold">{walletDetails.wallet.locked_amount.toFixed(6)} USC</span>
               </div>
             </div>
 
             {walletDetails.lockups.length === 0 ? (
-              <p className="text-center">진행 중인 락업이 없습니다.</p>
+              <p className="text-center">{t('lockup.no_active_lockups')}</p>
             ) : (
               <table className="lockup-table">
                 <thead>
                   <tr>
-                    <th>락업 ID</th>
-                    <th>수량</th>
-                    <th>해제일</th>
+                    <th>{t('lockup.table.id')}</th>
+                    <th>{t('lockup.table.amount')}</th>
+                    <th>{t('lockup.table.unlock_date')}</th>
                   </tr>
                 </thead>
                 <tbody>

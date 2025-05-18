@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { QRCodeCanvas as QRCode } from 'qrcode.react';
 import { ArrowLeft as ArrowLeftIcon, ClipboardCopy } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import '../styles/USDTRechargePage.css';
 import '../styles/topbar.css';
 
 export default function USDTRechargePage() {
+  const { t } = useTranslation();
   const [address, setAddress] = useState('');
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -18,21 +20,20 @@ export default function USDTRechargePage() {
         if (res.data.success) {
           setAddress(res.data.data.address);
         } else {
-          // API는 success=false 로 내려오지 않지만 혹시 대비
-          alert('지갑이 없습니다. 생성해주세요.');
+          alert(t('usdtRecharge.errors.noWallet'));
         }
       } catch (err) {
         console.error('❌ USDT 충전 정보 로드 실패', err);
-        alert('지갑이 없습니다. 생성해주세요.');
+        alert(t('usdtRecharge.errors.noWallet'));
       } finally {
         setLoading(false);
       }
     })();
-  }, []);
+  }, [t]);
 
   const handleCopy = async () => {
     if (!address) {
-      alert('지갑이 없습니다. 생성해주세요.');
+      alert(t('usdtRecharge.errors.noWallet'));
       return;
     }
   
@@ -55,14 +56,14 @@ export default function USDTRechargePage() {
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error("주소 복사 실패:", err);
-      alert("복사에 실패했습니다.");
+      alert(t('usdtRecharge.errors.copyFailed'));
     }
   };
   
   if (loading) {
     return (
       <div className="min-h-screen bg-[#1a1109] text-yellow-100 flex items-center justify-center">
-        ⏳ 로딩 중...
+        {t('usdtRecharge.loading')}
       </div>
     );
   }
@@ -77,9 +78,8 @@ export default function USDTRechargePage() {
         >
           <ArrowLeftIcon size={24} />
         </button>
-        <h2 className="charge-title">충전</h2>
+        <h2 className="charge-title">{t('usdtRecharge.title')}</h2>
       </div>
-
 
       {/* 체인 표시 */}
       <div className="charge-protocol-box">
@@ -89,13 +89,13 @@ export default function USDTRechargePage() {
       <div className="charge-qr-box">
         {address ? (
           <>
-            <p className="charge-qr-label">QR코드를 스캔하여 충전하기</p>
+            <p className="charge-qr-label">{t('usdtRecharge.scanQRCode')}</p>
             <div className="charge-qr-wrapper">
               <QRCode value={address} size={180} fgColor="#000000" />
             </div>
           </>
         ) : (
-          <p className="charge-wallet-missing">지갑이 없습니다. 생성해주세요.</p>
+          <p className="charge-wallet-missing">{t('usdtRecharge.errors.noWallet')}</p>
         )}
 
         <div className="charge-wallet-line">
@@ -108,10 +108,9 @@ export default function USDTRechargePage() {
         </div>
 
         {copied && (
-          <div className="charge-copy-success">주소가 복사되었습니다!</div>
+          <div className="charge-copy-success">{t('usdtRecharge.addressCopied')}</div>
         )}
       </div>
-
     </div>
   );
 }

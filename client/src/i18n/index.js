@@ -5,6 +5,12 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 import en from './locales/en.json';
 import ko from './locales/ko.json';
+import fr from './locales/fr.json';
+import de from './locales/de.json';
+import ru from './locales/ru.json';
+import ja from './locales/ja.json';
+import vi from './locales/vi.json';
+
 
 i18n
   // 브라우저 언어 감지기 (querystring, cookie, localStorage, navigator)
@@ -13,9 +19,9 @@ i18n
   .use(initReactI18next)
   .init({
     // 지원하는 언어들
-    supportedLngs: ['en', 'ko'],
+    supportedLngs: ['en', 'ko', 'fr', 'de', 'ru', 'ja', 'vi'],
     // 지원하지 않는 언어 감지 시 fallback
-    fallbackLng: 'ko',
+    fallbackLng: 'en',
 
     debug: true,
 
@@ -31,7 +37,13 @@ i18n
     resources: {
       en: { translation: en },
       ko: { translation: ko },
+      fr: { translation: fr },
+      de: { translation: de },
+      ru: { translation: ru },
+      ja: { translation: ja },
+      vi: { translation: vi },
     },
+
 
     interpolation: {
       escapeValue: false, // react already safe

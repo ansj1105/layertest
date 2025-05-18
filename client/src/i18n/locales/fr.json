@@ -1,0 +1,861 @@
+{
+  "order_history": {
+    "title": "Mes Commandes et Remboursements",
+    "orders": {
+      "title": "Historique des Commandes",
+      "no_orders": "Aucune commande trouvée",
+      "table": {
+        "order_id": "ID de Commande",
+        "token": "Jeton",
+        "amount": "Montant",
+        "price": "Prix (USDT)",
+        "total": "Total (USDT)",
+        "status": "Statut",
+        "unlock_date": "Date de Déblocage",
+        "order_date": "Date de Commande"
+      },
+      "status": {
+        "pending": "En Attente",
+        "completed": "Terminé",
+        "cancelled": "Annulé"
+      }
+    },
+    "redemptions": {
+      "ref_type": {
+        "exchange": "Échange",
+        "purchase": "Achat",
+        "redeem": "Racheter",
+        "transfer": "Transfert",
+        "token_exchange": "Échange",
+        "token_purchase": "Achat",
+        "token_redeem": "Racheter",
+        "token_transfer": "Transfert"
+      }
+    }
+  },
+  "Wallet": "Portefeuille",
+  "Balance": "Solde",
+  "Transfer": "Transfert",
+  "Transactions": "Transactions",
+  "Register": "S'inscrire",
+  "Home": "Accueil",
+  "coin_list": {
+    "trading_pair": "Paire de trading",
+    "latest_price": "Dernier prix",
+    "change_percent": "Variation(%)"
+  },
+  "escrow": {
+    "title": "Séquestre",
+    "investment_amount": "Montant d'investissement",
+    "profit": "Profit"
+  },
+  "invite": {
+    "title": "Inviter des Amis",
+    "invite_link": "Lien d'invitation",
+    "copy_invite_link": "Copier le lien d'invitation",
+    "product_description": "Produits quantitatifs de classe mondiale, gratuits pour tous",
+    "referral_code": "Code de parrainage",
+    "copy_referral_code": "Copier le code de parrainage",
+    "copy_success": "Copié avec succès",
+    "error": {
+      "load_failed": "Échec du chargement du code d'invitation",
+      "copy_failed": "Échec de la copie dans le presse-papiers",
+      "fallback_copy_failed": "Échec de la copie par méthode alternative"
+    }
+  },
+  "language": {
+    "settings": "Paramètres de langue",
+    "not_implemented": "Cette langue est actuellement en développement."
+  },
+  "lockup": {
+    "title": "Détails du Verrouillage",
+    "total_balance": "Solde Total",
+    "total_locked": "Total Verrouillé",
+    "no_active_lockups": "Aucun verrouillage actif",
+    "table": {
+      "id": "ID de Verrouillage",
+      "amount": "Montant",
+      "unlock_date": "Date de Déverrouillage"
+    }
+  },
+  "register": {
+    "title": "Inscription",
+    "by_phone": "Par Téléphone",
+    "by_email": "Par Email",
+    "name": "Nom",
+    "phone": "Téléphone",
+    "email": "Email",
+    "password": "Mot de passe",
+    "confirmPassword": "Confirmer le mot de passe",
+    "referral": "Code de parrainage (Optionnel)",
+    "submit": "S'inscrire",
+    "name_error": "Le nom doit contenir au moins 2 caractères.",
+    "email_error": "Format d'email invalide.",
+    "phone_error": "Numéro de téléphone invalide.",
+    "password_error": "Le mot de passe doit contenir au moins 6 caractères.",
+    "confirm_error": "Les mots de passe ne correspondent pas.",
+    "captcha_required": "Veuillez compléter le CAPTCHA.",
+    "success": "Inscription réussie ! Veuillez vous connecter.",
+    "fail": "Échec de l'inscription.",
+    "no_account": "Vous avez déjà un compte ?",
+    "login": "Se connecter",
+    "agree": "En vous inscrivant, vous acceptez nos <0>conditions</0> et notre <1>politique de confidentialité</1>.",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité"
+  },
+  "login": {
+    "title": "Connexion Utilisateur",
+    "email": "Email ou Nom d'utilisateur",
+    "password": "Mot de passe",
+    "submit": "Se Connecter",
+    "identifier_error": "Veuillez entrer un email ou téléphone valide",
+    "email_error": "Veuillez entrer un email valide",
+    "password_error": "Veuillez entrer votre mot de passe",
+    "captcha_required": "Veuillez compléter le reCAPTCHA",
+    "success": "Connexion réussie !",
+    "fail": "Échec de la connexion",
+    "no_account": "Vous n'avez pas de compte ?",
+    "register": "S'inscrire",
+    "forgot_password": "Mot de passe oublié ?",
+    "identifier": "Identifiant",
+    "forgot": "Retrouver le mot de passe"
+  },
+  "forgotPassword": {
+    "title": "Réinitialiser le mot de passe",
+    "emailLabel": "Adresse email",
+    "emailPlaceholder": "Entrez votre email enregistré",
+    "codeLabel": "Code de vérification",
+    "codePlaceholder": "Entrez le code à 6 chiffres",
+    "sendCode": "Envoyer le code",
+    "verifyCode": "Vérifier le code",
+    "newPasswordLabel": "Nouveau mot de passe",
+    "newPasswordPlaceholder": "Entrez le nouveau mot de passe",
+    "confirmPasswordLabel": "Confirmer le mot de passe",
+    "confirmPasswordPlaceholder": "Ré-entrez le nouveau mot de passe",
+    "resetButton": "Réinitialiser le mot de passe",
+    "codeSent": "Le code de vérification a été envoyé.",
+    "verificationSuccess": "Vérification réussie.",
+    "resetSuccess": "Le mot de passe a été réinitialisé avec succès.",
+    "errors": {
+      "sendCode": "Échec de l'envoi du code de vérification",
+      "codeRequired": "Veuillez entrer le code de vérification",
+      "invalidCode": "Code de vérification invalide",
+      "verifyFirst": "Veuillez d'abord vérifier le code",
+      "passwordLength": "Le mot de passe doit contenir au moins 6 caractères",
+      "passwordMismatch": "Les mots de passe ne correspondent pas",
+      "resetFailed": "Échec de la réinitialisation du mot de passe"
+    }
+  },
+  "walletLogs": {
+    "prev": "précédent",
+    "next": "suivant",
+    "back": "Retour",
+    "title": "Journaux de transfert",
+    "tabs": {
+      "transfer": "Transferts",
+      "walletEarnings": "Gains du portefeuille",
+      "financeIncome": "Revenus financiers"
+    },
+    "columns": {
+      "description": "description",
+      "type": "Type",
+      "amount": "Montant",
+      "fee": "Frais",
+      "net": "Net",
+      "date": "Date"
+    },
+    "types": {
+      "fund_to_quant": "Fonds → Quant",
+      "quant_to_fund": "Quant → Fonds"
+    },
+    "loading": "Chargement...",
+    "noRecords": "Aucun enregistrement trouvé."
+  },
+  "common": {
+    "faqTitle": "Questions Fréquentes",
+    "back": "retour",
+    "loading": "Chargement...",
+    "no_data": "Aucune donnée",
+    "problem1": {
+      "question": "Qu'est-ce qu'un Produit Financier et comment puis-je gagner ?",
+      "answer": "Les produits de gestion financière sont des outils et solutions développés par l'entreprise pour aider les utilisateurs à recevoir des récompenses rapidement.\nEn misant des actifs numériques sur un réseau blockchain, les utilisateurs peuvent gagner des récompenses basées sur le mécanisme POS (Proof of Stake).\nDans ce mécanisme, les utilisateurs délèguent leurs actifs numériques à un nœud, qui obtient alors le droit d'effectuer des actions comme la création de blocs et l'empaquetage de transactions sur la blockchain et reçoit des récompenses.\nLes utilisateurs partagent les récompenses obtenues par le nœud proportionnellement au nombre de positions misées."
+    },
+    "problem2": {
+      "question": "Comment le rendement attendu est-il calculé ?",
+      "answer": "Le revenu attendu est une estimation quotidienne projetée basée sur votre quantité de souscription et le calcul de référence annualisé du produit, fourni à titre informatif uniquement."
+    },
+    "problem3": {
+      "question": "Quand les intérêts commencent-ils à s'accumuler ?",
+      "answer": "L'accumulation des intérêts commence à 00:00 le jour T+1."
+    },
+    "problem4": {
+      "question": "Quand les paiements sont-ils effectués ?",
+      "answer": "Les intérêts commencent à s'accumuler à partir de T+1, et les gains sont distribués avec le principal après l'échéance."
+    },
+    "problem5": {
+      "question": "Que se passe-t-il après l'échéance du produit ?",
+      "answer": "Les produits à terme fixe sont automatiquement rachetés à l'échéance."
+    }
+  },
+  "quantTrading": {
+    "leaderboardTitle": "Classement",
+    "leaderboard": {
+      "name": "Membre",
+      "earnings": "Gains",
+      "status": "Statut"
+    },
+    "confirmText": "Vous êtes sur le point d'échanger {{amount}} USDT. Continuer ?",
+    "errorMinHolding": "Vous devez détenir au moins {{min}} USDT pour trader.",
+    "errorMaxInvestment": "L'investissement maximum par trade est de {{max}} USDT.",
+    "cooldownMessage": "Vous pourrez trader à nouveau dans {{min}}m {{sec}}s",
+    "tradeButton": "{{remaining}}/{{dailyLimit}} {{times}} · {{start}}",
+    "cooldownAlert": "Veuillez attendre {{min}}m {{sec}}s avant de trader à nouveau.",
+    "confirmTitle": "Confirmer le Trade",
+    "partnersTitle": "Partenaires Clés",
+    "history": "historique",
+    "time": "Temps",
+    "status": "Statut",
+    "success": "Succès",
+    "position": "Taille de Position",
+    "maxAll": "Tout",
+    "buyPlatform": "Plateforme d'Achat",
+    "buyPrice": "Prix d'Achat",
+    "sellPlatform": "Plateforme de Vente",
+    "sellPrice": "Prix de Vente",
+    "serviceFee": "Frais de Service",
+    "profit": "Profit",
+    "commissionRate": "Taux de Commission",
+    "noHistory": "pas d'historique",
+    "currentLevel": "Grade VIP actuel",
+    "enterAmount": "entrer le montant",
+    "cancel": "annuler",
+    "confirm": "confirmer",
+    "back": "Retour",
+    "title": "Trading Quantitatif",
+    "available": "Actif Disponible",
+    "todayEarning": "Gains du Jour",
+    "totalEarning": "Gains Totaux",
+    "level": "Niveau",
+    "progress": "{{current}}/{{total}}",
+    "intro": "Introduction au Trading Quantitatif",
+    "invite": "Inviter des Amis",
+    "dailyLimit": "Limite Quotidienne de Trade",
+    "times": "fois",
+    "feeRate": "Taux de Profit",
+    "maxInvestment": "Investissement Maximum",
+    "minHoldings": "Détention Minimum",
+    "conditions": "Conditions",
+    "start": "Commencer le Trading",
+    "confirmStart": "Commencer le trading quantitatif ?",
+    "tradeError": "Échec du trade : ",
+    "loading": "Chargement..."
+  },
+  "history": {
+    "title": "Historique des Transactions",
+    "back": "Retour",
+    "loading": "Chargement…",
+    "tabs": {
+      "all": "Tout",
+      "deposit": "Dépôt",
+      "withdraw": "Retrait",
+      "pending": "En attente",
+      "success": "Succès",
+      "failed": "Échec"
+    },
+    "table": {
+      "id": "ID",
+      "amount": "Montant",
+      "flow": "Flux",
+      "method": "Méthode",
+      "status": "Statut",
+      "date": "Date"
+    },
+    "flow": {
+      "deposit": "Dépôt",
+      "withdrawal": "Retrait"
+    },
+    "status": {
+      "pending": "En attente",
+      "processing": "En cours",
+      "success": "Succès",
+      "failed": "Échec"
+    },
+    "noData": "Aucun enregistrement trouvé.",
+    "noDataAlt": "Aucune donnée",
+    "errorLoad": "Échec du chargement de l'historique."
+  },
+  "tokenPurchase": {
+    "title": "Token USC",
+    "redeemSuccess": "rachat réussi",
+    "available": "USC disponible",
+    "inputUsdc": "USC",
+    "redeemTitle": "Racheter",
+    "redeemSubmit": "Soumettre",
+    "quantity": "quantité",
+    "token": "token PER",
+    "totalCost": "coût total en USDT",
+    "yourBalance": "Solde USDT",
+    "price": "Prix du token USC",
+    "min": "min",
+    "selected": "sélectionné",
+    "max": "max",
+    "feeRate": "taux de frais",
+    "minPurchase": "achat minimum",
+    "maxPurchase": "achat maximum",
+    "lockupPeriod": "période de blocage",
+    "days": "jours",
+    "canBuy": "peut acheter",
+    "cannotBuy": "ne peut pas acheter",
+    "back": "Retour",
+    "details": "Détails",
+    "quantWallet": "Portefeuille Quant (USDT)",
+    "uscWallet": "Portefeuille USC",
+    "swap": "Échanger",
+    "recharge": "Recharger",
+    "deposit": "Dépôt",
+    "redeem": "Racheter",
+    "orderDetails": "Détails de la commande",
+    "swapQuantToFundTitle": "Échanger Quant → Fonds",
+    "swapFundToQuantTitle": "Échanger Fonds → Quant",
+    "inputUsdt": "Entrer USDT",
+    "balance": "Solde :",
+    "fee": "Frais ({{rate}}%)",
+    "afterSwap": "Après échange :",
+    "submit": "Soumettre",
+    "noSales": "Aucune vente USC active.",
+    "phase": "Phase",
+    "totalSupply": "Offre totale :",
+    "remainingSupply": "Offre restante :",
+    "startTime": "Heure de début :",
+    "endTime": "Heure de fin :",
+    "buy": "Acheter",
+    "promptAmount": "Entrez le montant USC à acheter :",
+    "purchaseSuccess": "Achat réussi !",
+    "errors": {
+      "invalidAmount": "Veuillez entrer un montant valide.",
+      "insufficientQuant": "Solde Quant insuffisant.",
+      "insufficientFund": "Solde Fonds insuffisant.",
+      "swapFail": "Échec de l'échange.",
+      "depositFail": "Échec du dépôt.",
+      "purchaseFail": "Échec de l'achat."
+    }
+  },
+  "token": {
+    "header": "Token USC",
+    "recharge": "Recharger",
+    "withdraw": "Retirer",
+    "agent": "Agent",
+    "invite": "Inviter des Amis"
+  },
+  "bottomNav": {
+    "home": "Accueil",
+    "team": "Mon équipe",
+    "quant": "Quantifier",
+    "funding": "Finance",
+    "mine": "Mon compte"
+  },
+  "withdraw": {
+    "title": "Retirer des USDT",
+    "addressLabel": "Adresse de Retrait",
+    "addressPlaceholder": "Adresse USDT TRC20",
+    "invalidAddress": "Adresse invalide.",
+    "validAddress": "Adresse valide.",
+    "amountLabel": "Montant à Retirer",
+    "amountPlaceholder": "ex. 10.5",
+    "feeRate": "Taux de Frais",
+    "estimatedFee": "Frais Estimés",
+    "netAmount": "Montant Net",
+    "submitting": "Soumission...",
+    "submit": "Soumettre"
+  },
+  "errors": {
+    "invalidAddress": "Veuillez entrer une adresse valide.",
+    "invalidAmount": "Veuillez entrer un montant de retrait valide.",
+    "submitFailed": "Échec de la soumission de la demande de retrait."
+  },
+  "success": {
+    "submitted": "Demande de retrait soumise avec succès."
+  },
+  "funding": {
+    "active_projects": "Projets en cours",
+    "expired_projects": "Projets expirés",
+    "no_active_projects": "Aucun projet en cours.",
+    "no_expired_projects": "Aucun projet expiré.",
+    "expired_label": "Projets expirés",
+    "detail2": {
+      "loading": "Chargement...",
+      "loadError": "Échec du chargement des informations du projet :",
+      "invalidAmount": "Veuillez entrer un montant valide.",
+      "amountRange": "Veuillez entrer un montant entre {{min}} et {{max}}.",
+      "insufficientBalance": "Solde insuffisant.",
+      "exceedRemaining": "Capacité restante du projet {{remaining}} USDT dépassée.",
+      "subscribe": "Souscrire",
+      "subscribeSuccess": "Souscription réussie.",
+      "subscribeError": "Erreur lors de la souscription.",
+      "descriptionLabel": "Description :",
+      "cycleLabel": "Cycle : {{cycle}} jours",
+      "dailyRateLabel": "Taux journalier : {{rate}}%",
+      "minMaxLabel": "Min : {{min}} USDT, Max : {{max}} USDT",
+      "targetLabel": "Objectif : {{target}} USDT",
+      "currentLabel": "Investissement actuel : {{current}} USDT",
+      "availableLabel": "Solde disponible : {{balance}} USDT",
+      "amountPlaceholder": "Entrer le montant",
+      "investorsTitle": "Investisseurs",
+      "noInvestors": "Aucun investisseur pour le moment."
+    }
+  },
+  "profile": {
+    "title": "Mon Profil",
+    "back": "Retour",
+    "loading": "Chargement...",
+    "loadError": "Échec du chargement des informations du profil",
+    "updateSuccess": "Profil mis à jour avec succès",
+    "updateError": "Échec de la mise à jour du profil",
+    "avatar": {
+      "title": "Avatar",
+      "upload": "Télécharger",
+      "remove": "Supprimer",
+      "error": "Échec du téléchargement de l'image"
+    },
+    "name": {
+      "title": "Nom",
+      "placeholder": "Entrez votre nom",
+      "error": "Le nom doit contenir au moins 2 caractères"
+    },
+    "email": {
+      "title": "Email",
+      "placeholder": "Entrez votre email",
+      "error": "Format d'email invalide"
+    },
+    "phone": {
+      "title": "Téléphone",
+      "placeholder": "Entrez votre numéro de téléphone",
+      "error": "Format de téléphone invalide"
+    },
+    "submit": "Mettre à jour"
+  },
+  "team": {
+    "title": "Mon Équipe",
+    "back": "Retour",
+    "loading": "Chargement...",
+    "loadError": "Échec du chargement des informations de l'équipe",
+    "members": {
+      "title": "Membres",
+      "empty": "Aucun membre trouvé",
+      "table": {
+        "name": "Nom",
+        "level": "Niveau",
+        "joinDate": "Date d'inscription",
+        "status": "Statut"
+      }
+    },
+    "stats": {
+      "title": "Statistiques",
+      "totalMembers": "Total des Membres",
+      "activeMembers": "Membres Actifs",
+      "totalEarnings": "Gains Totaux",
+      "thisMonth": "Ce Mois"
+    },
+    "commission": {
+      "title": "Commission",
+      "rate": "Taux de Commission",
+      "earnings": "Gains de Commission",
+      "history": "Historique des Commissions"
+    }
+  },
+  "security": {
+    "title": "Sécurité",
+    "back": "Retour",
+    "loading": "Chargement...",
+    "settings": {
+      "title": "Paramètres de Sécurité",
+      "2fa": {
+        "title": "Authentification à Deux Facteurs",
+        "status": "Statut",
+        "enabled": "Activé",
+        "disabled": "Désactivé",
+        "enable": "Activer",
+        "disable": "Désactiver",
+        "setup": {
+          "title": "Configuration de l'A2F",
+          "step1": "1. Installez une application d'authentification",
+          "step2": "2. Scannez le code QR",
+          "step3": "3. Entrez le code à 6 chiffres",
+          "confirm": "Confirmer",
+          "success": "A2F activée avec succès",
+          "error": "Échec de l'activation de l'A2F"
+        }
+      },
+      "password": {
+        "title": "Changer le Mot de Passe",
+        "current": "Mot de passe actuel",
+        "new": "Nouveau mot de passe",
+        "confirm": "Confirmer le nouveau mot de passe",
+        "submit": "Mettre à jour",
+        "success": "Mot de passe mis à jour avec succès",
+        "error": "Échec de la mise à jour du mot de passe"
+      }
+    },
+    "activity": {
+      "title": "Activité Récente",
+      "empty": "Aucune activité récente",
+      "table": {
+        "action": "Action",
+        "ip": "Adresse IP",
+        "location": "Localisation",
+        "date": "Date"
+      }
+    }
+  },
+  "messages": {
+    "title": "Messages",
+    "back": "Retour",
+    "loading": "Chargement...",
+    "empty": "Aucun message",
+    "unread": "Non lu",
+    "all": "Tous",
+    "system": "Système",
+    "personal": "Personnel",
+    "markRead": "Marquer comme lu",
+    "delete": "Supprimer",
+    "confirmDelete": "Êtes-vous sûr de vouloir supprimer ce message ?",
+    "deleteSuccess": "Message supprimé avec succès",
+    "deleteError": "Échec de la suppression du message"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "back": "Retour",
+    "language": {
+      "title": "Langue",
+      "current": "Langue actuelle",
+      "available": "Langues disponibles",
+      "select": "Sélectionner une langue"
+    },
+    "theme": {
+      "title": "Thème",
+      "light": "Clair",
+      "dark": "Sombre",
+      "system": "Système"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "push": "Notifications push",
+      "email": "Notifications par email",
+      "sms": "Notifications SMS"
+    },
+    "privacy": {
+      "title": "Confidentialité",
+      "analytics": "Autoriser l'analyse des données",
+      "marketing": "Recevoir des emails marketing"
+    }
+  },
+  "agreement": {
+    "title": "Conditions d'utilisation",
+    "back": "Retour",
+    "accept": "J'accepte",
+    "decline": "Je refuse",
+    "version": "Version {{version}}",
+    "lastUpdated": "Dernière mise à jour : {{date}}",
+    "sections": {
+      "intro": {
+        "title": "Introduction",
+        "content": "Veuillez lire attentivement ces conditions d'utilisation avant d'utiliser notre service."
+      },
+      "terms": {
+        "title": "Conditions générales",
+        "content": "En utilisant notre service, vous acceptez d'être lié par ces conditions."
+      },
+      "privacy": {
+        "title": "Politique de confidentialité",
+        "content": "Nous nous engageons à protéger vos données personnelles conformément à notre politique de confidentialité."
+      },
+      "liability": {
+        "title": "Limitation de responsabilité",
+        "content": "Notre responsabilité est limitée conformément aux lois applicables."
+      }
+    }
+  },
+  "Upstart": {
+    "title": "Aperçu d'Upstart",
+    "vip_upgrade_criteria": "Critères de Mise à Niveau VIP",
+    "vip": {
+      "vip1": "VIP1 : Nécessite un minimum de 35 USDT d'actifs crypto.",
+      "vip2": "VIP2 : Au moins 300 USDT d'actifs + inviter 2 membres actifs de niveau A, 2 de niveau B et 2 de niveau C.",
+      "vip3": "VIP3 : Au moins 1000 USDT d'actifs + inviter et activer 5 membres de niveau A, 5 de niveau B et 5 de niveau C.",
+      "vip4": "VIP4 : Au moins 5000 USDT d'actifs + inviter et activer 15 membres de niveau A, 15 de niveau B et 15 de niveau C.",
+      "vip5": "VIP5 : Au moins 20000 USDT d'actifs + inviter et activer 30 membres de niveau A, 30 de niveau B et 30 de niveau C.",
+      "vip6": "VIP6 : Au moins 50000 USDT d'actifs + inviter et activer 60 membres de niveau A, 60 de niveau B et 60 de niveau C."
+    },
+    "overview": {
+      "description": "Le trading quantitatif Upstart collecte et analyse les données majeures des échanges crypto, exécutant des trades à haute probabilité via des algorithmes.",
+      "advantages": "Offre une rentabilité plus précise et efficace par rapport au trading manuel.",
+      "assets": "Cible diverses cryptomonnaies comme BTC, ETH et USDT.",
+      "automation": "Prend en charge l'entrée, la sortie, la prise de profit et la réduction des pertes automatiques.",
+      "no_manual": "Pas besoin de décisions de trading manuelles. Gagnez efficacement et de manière stable."
+    },
+    "method": {
+      "title": "Méthode Quantitative",
+      "step": "Cliquez sur le bouton pour démarrer et compléter un trade automatisé en 1-3 minutes.",
+      "profit_share": "50% du profit va à la plateforme, 50% revient à l'utilisateur.",
+      "example": "Exemple : Achat de BTC d'une valeur de 1000 USDT sur CoinEase, vente à 1050 USDT sur OKX. 25 USDT vont à la plateforme, 25 USDT reviennent à l'utilisateur."
+    },
+    "vip_daily": {
+      "vip1": "VIP1 : Jusqu'à 5 trades par jour, taux de profit journalier entre 1,8%-2,1%.",
+      "vip2": "VIP2 : Jusqu'à 6 trades par jour, taux de profit journalier entre 2,3%-2,6%.",
+      "vip3": "VIP3 : Jusqu'à 7 trades par jour, taux de profit journalier entre 3,9%-4,3%.",
+      "vip4": "VIP4 : Jusqu'à 8 trades par jour, taux de profit journalier entre 5,9%-6,4%.",
+      "vip5": "VIP5 : Jusqu'à 9 trades par jour, taux de profit journalier entre 8,6%-9,4%.",
+      "vip6": "VIP6 : Jusqu'à 10 trades par jour, taux de profit journalier entre 9,5%-10,5%."
+    }
+  },
+  "agencyCooperation": {
+    "back": "Retour",
+    "title": "Coopération d'Agence",
+    "subTitle": "Partenariat de Conseiller",
+    "lines": [
+      "Rejoignez le programme d'équipe Upstart et gagnez des commissions en promouvant Upstart. Profitez de la commodité d'Upstart et d'une croissance soutenue comme personne d'autre.",
+      "Upstart offre à chaque utilisateur un mécanisme généreux de récompense de commission d'équipe.",
+      "Vous pouvez recevoir des récompenses de commission sur trois niveaux (ce sont des récompenses supplémentaires d'Upstart et ne réduisent pas les gains de vos membres d'équipe).",
+      "1. Lorsque l'Ami A partage et devient votre membre de Niveau 1, vous gagnez 21% du profit quotidien de A.",
+      "2. Lorsque l'Ami B de A devient votre membre de Niveau 2, vous gagnez 7% du profit quotidien de B.",
+      "3. Lorsque l'Ami C de B devient votre membre de Niveau 3, vous gagnez 1% du profit quotidien de C.",
+      "Exemple : Si chaque membre A, B et C gagne 100$ par jour, vous recevez :",
+      "• Commission membre Niveau A : 100$ × 21% = 21$",
+      "• Commission membre Niveau B : 100$ × 7% = 7$",
+      "• Commission membre Niveau C : 100$ × 1% = 1$",
+      "Votre commission d'équipe totale est de 21% + 7% + 1% = 29%, soit 29$.",
+      "Si vous avez 10 membres A, 100 membres B et 1000 membres C gagnant chacun 100$ par jour, alors :",
+      "Revenu équipe niveau A = 100 × 21% × 10 = 210$",
+      "Revenu équipe niveau B = 100 × 7% × 100 = 700$",
+      "Revenu équipe niveau C = 100 × 1% × 1000 = 1000$",
+      "Votre revenu quotidien d'équipe = 210 + 700 + 1000 = 1910$",
+      "C'est un revenu très significatif."
+    ]
+  },
+  "companyIntro": {
+    "back": "Retour",
+    "title": "Présentation de l'Entreprise",
+    "items": [
+      "Trading Quantitatif",
+      "Projets de Financement",
+      "Basé sur la Blockchain",
+      "Sécurité Parfaite"
+    ]
+  },
+  "quantTutorial": {
+    "title": "Tutoriel de Trading Quantitatif",
+    "description": "Pour vous aider à mieux comprendre Upstart, ce tutoriel explique en détail comment le système quantitatif automatisé génère des profits et comment l'utiliser.",
+    "sections": {
+      "vipCriteria": "Critères de Mise à Niveau VIP",
+      "overview": "Aperçu",
+      "dailyReturns": "Exemple de Rendements VIP Quotidiens"
+    },
+    "vipUpgradeCriteria": [
+      "VIP1 : Nécessite un minimum de 35 USDT en actifs crypto.",
+      "VIP2 : Nécessite au moins 300 USDT en actifs plus l'invitation et l'activation de 2 membres de niveau A, 2 de niveau B et 2 de niveau C.",
+      "VIP3 : Nécessite au moins 1000 USDT en actifs plus l'invitation et l'activation de 5 membres de niveau A, 5 de niveau B et 5 de niveau C.",
+      "VIP4 : Nécessite au moins 5000 USDT en actifs plus l'invitation et l'activation de 15 membres de niveau A, 15 de niveau B et 15 de niveau C.",
+      "VIP5 : Nécessite au moins 20000 USDT en actifs plus l'invitation et l'activation de 30 membres de niveau A, 30 de niveau B et 30 de niveau C.",
+      "VIP6 : Nécessite au moins 50000 USDT en actifs plus l'invitation et l'activation de 60 membres de niveau A, 60 de niveau B et 60 de niveau C."
+    ],
+    "overview": "Aperçu Quantitatif Upstart : Cliquez sur le bouton pour démarrer le trading automatisé, qui utilise les données clés du marché pour compléter les trades en 1-3 minutes et générer des profits.",
+    "method": {
+      "title": "Méthode de Trading",
+      "description": "Cliquez sur le bouton pour initier le trading automatisé et le compléter en 1-3 minutes. Des profits générés, 50% vont à la plateforme et 50% vous reviennent."
+    },
+    "vipDaily": [
+      "VIP1 : Jusqu'à 5 trades par jour avec un taux de profit journalier de 1,8%-2,1%, gagnant 9-10,5 USDT par jour sur une mise de 500 USDT.",
+      "VIP2 : Jusqu'à 6 trades par jour avec un taux de profit journalier de 2,3%-2,6%, gagnant 46-52 USDT par jour sur une mise de 2000 USDT.",
+      "VIP3 : Jusqu'à 7 trades par jour avec un taux de profit journalier de 3,9%-4,3%, gagnant 195-215 USDT par jour sur une mise de 5000 USDT.",
+      "VIP4 : Jusqu'à 8 trades par jour avec un taux de profit journalier de 5,9%-6,4%, gagnant 590-640 USDT par jour sur une mise de 10000 USDT.",
+      "VIP5 : Jusqu'à 9 trades par jour avec un taux de profit journalier de 8,6%-9,4%, gagnant 1720-1880 USDT par jour sur une mise de 20000 USDT.",
+      "VIP6 : Jusqu'à 10 trades par jour avec un taux de profit journalier de 9,5%-10,5%, gagnant 1900-2100 USDT par jour sur une mise de 20000 USDT."
+    ]
+  },
+  "commonProblems": {
+    "title": "Problèmes Courants",
+    "lines": [
+      "Voici quelques problèmes courants à connaître lors de la participation au programme Upstart.",
+      "1. Les nouveaux utilisateurs doivent déposer au moins 30 USDT pour commencer à trader.",
+      "2. Pour retirer des fonds, vous devez effectuer des trades quantitatifs totalisant au moins 20 USDT.",
+      "3. Le montant minimum de retrait est de 50 USDT.",
+      "4. Le traitement des retraits peut prendre 9-16 heures ; veuillez être patient.",
+      "5. Lors du dépôt, le taux correspondant à votre niveau VIP augmentera automatiquement.",
+      "6. Les taux de change sont basés sur les prix actuels du marché.",
+      "7. Tous les critères peuvent varier selon l'analyse du marché.",
+      "8. Vous devez suivre les méthodes de dépôt approuvées et les réglementations du marché.",
+      "9. Veuillez vérifier régulièrement vos journaux de transactions.",
+      "10. Vous pouvez contacter le support client à tout moment."
+    ],
+    "feesTitle": "Informations sur les Frais",
+    "fees": [
+      "Le système quantitatif d'Upstart et le processus de garantie automatisé peuvent entraîner des frais de retrait supplémentaires (0%-5%).",
+      "Les taux de frais sont sujets à modification sans préavis.",
+      "Le temps de traitement standard est d'environ 5 minutes ; avec le traitement de garantie, cela peut prendre jusqu'à 30 minutes.",
+      "Les taux de change sont automatiquement mis à jour en fonction des conditions du marché."
+    ]
+  },
+  "security_p": {
+    "title": "Liaison de la Boîte Mail",
+    "old_mailbox": "Ancienne Boîte Mail",
+    "new_mailbox": "Nouvelle Boîte Mail",
+    "enter_code": "Veuillez entrer le code de vérification",
+    "send_code": "Envoyer le Code",
+    "enter_new_email": "Veuillez entrer votre adresse email",
+    "invalid_email": "Veuillez entrer une adresse email valide.",
+    "code_sent": "Le code de vérification a été envoyé.",
+    "code_failed": "Échec de l'envoi du code.",
+    "update_warning": "Si l'email est invalide, vous pourriez avoir des problèmes avec la réinitialisation du mot de passe ou la récupération du compte.",
+    "update_success": "Votre email a été mis à jour avec succès.",
+    "update_failed": "Échec de la mise à jour de l'email.",
+    "submit": "Soumettre"
+  },
+  "trade_pwd": {
+    "title": "Changer le Mot de Passe de Trading",
+    "email_label": "Adresse Email",
+    "code_label": "Code de Vérification",
+    "code_placeholder": "Entrer le code de vérification",
+    "send_code": "Envoyer le Code",
+    "new_pwd_label": "Nouveau Mot de Passe de Trading",
+    "new_pwd_placeholder": "Entrer le nouveau mot de passe",
+    "confirm_pwd_label": "Confirmer le Mot de Passe",
+    "confirm_pwd_placeholder": "Ré-entrer le nouveau mot de passe",
+    "confirm_warning": "Si votre email est invalide, vous pourriez rencontrer des problèmes pour réinitialiser votre mot de passe de trading. Continuer ?",
+    "code_sent": "Le code de vérification a été envoyé.",
+    "code_failed": "Échec de l'envoi du code de vérification.",
+    "success": "Mot de passe de trading changé avec succès.",
+    "failed": "Échec du changement du mot de passe de trading.",
+    "submit": "Soumettre"
+  },
+  "security_login": {
+    "title": "Changer le Mot de Passe de Connexion",
+    "old_password": "Mot de Passe Actuel",
+    "new_password": "Nouveau Mot de Passe",
+    "confirm_password": "Confirmer le Mot de Passe",
+    "enter_old": "Entrez votre mot de passe actuel",
+    "enter_new": "Entrez un nouveau mot de passe",
+    "enter_confirm": "Ré-entrez le nouveau mot de passe",
+    "submit": "Soumettre",
+    "mismatch_old": "Le mot de passe actuel est incorrect.",
+    "mismatch_new": "Les nouveaux mots de passe ne correspondent pas.",
+    "length_error": "Le mot de passe doit contenir au moins 6 caractères.",
+    "confirm_warning": "Êtes-vous sûr de vouloir changer votre mot de passe ?",
+    "success": "✅ Mot de passe changé avec succès.",
+    "fail": "❌ Échec du changement de mot de passe."
+  },
+  "task": {
+    "title": "Centre des Tâches",
+    "invite_reward": {
+      "title": "Récompenses d'Invitation",
+      "description": "Récompense lorsque vous atteignez le nombre requis de parrainages actifs juste en dessous du Niveau 1",
+      "required": "{{level}}ème Niveau ({{required}} parrainages)",
+      "reward": "Recevez une récompense de {{amount}} USDT après succès.",
+      "claim": "Réclamer",
+      "claimed": "Réclamé",
+      "claim_fail": "Échec de la réclamation de la récompense."
+    },
+    "join_reward": {
+      "title": "Récompenses d'Inscription",
+      "description": "Recevez une récompense de {{amount}} USDT après une nouvelle inscription réussie.",
+      "claim": "Réclamer",
+      "claimed": "Réclamé",
+      "claim_fail": "Échec de la réclamation de la récompense"
+    }
+  },
+  "referral2": {
+    "loading": "📡 Chargement...",
+    "totalEarnings": "Gains Totaux de l'Équipe",
+    "todayEarnings": "Gains du Jour",
+    "totalMembers": "Membres Totaux de l'Équipe",
+    "todayJoined": "Nouveaux Membres Aujourd'hui",
+    "members": "membres"
+  },
+  "systemNotices": {
+    "title": "Centre de Messages",
+    "tabs": {
+      "notices": "Annonces",
+      "inbox": "Notifications Système"
+    },
+    "noMessages": "Aucun message trouvé",
+    "actions": {
+      "deleteAll": "Tout Supprimer",
+      "markAllRead": "Tout Marquer comme Lu"
+    },
+    "detail": {
+      "title": "Détails"
+    }
+  },
+  "withdrawPage": {
+    "title": "Méthode de Retrait",
+    "history": "Historique des Retraits",
+    "digitalCurrency": "Monnaie Numérique"
+  },
+  "rechargeMethod": {
+    "title": "Méthodes de Recharge",
+    "historyButtonTitle": "Historique des Transactions",
+    "usdtLogoAlt": "Logo USDT",
+    "back": "Retour",
+    "methods": {
+      "usdt": {
+        "title": "USDT",
+        "description": "Dépôt en utilisant USDT",
+        "select": "Sélectionner USDT"
+      }
+    },
+    "navigation": {
+      "toHistory": "Voir l'Historique",
+      "toDeposit": "Aller au Dépôt"
+    }
+  },
+  "usdtRecharge": {
+    "title": "Recharge",
+    "loading": "⏳ Chargement...",
+    "scanQRCode": "Scanner le QR code pour recharger",
+    "addressCopied": "L'adresse a été copiée !",
+    "copyAddress": "Copier l'adresse",
+    "walletAddress": "Adresse du Portefeuille",
+    "protocol": {
+      "title": "Protocole",
+      "type": "TRC-20"
+    },
+    "errors": {
+      "noWallet": "Aucun portefeuille disponible. Veuillez en créer un.",
+      "copyFailed": "Échec de la copie de l'adresse.",
+      "loadFailed": "Échec du chargement des informations de recharge USDT"
+    },
+    "qr": {
+      "title": "Code QR",
+      "instruction": "Scanner le code QR pour recharger",
+      "noAddress": "Aucune adresse de portefeuille disponible"
+    },
+    "buttons": {
+      "back": "Retour",
+      "copy": "Copier"
+    },
+    "messages": {
+      "copied": "Adresse copiée !",
+      "copyFailed": "Échec de la copie"
+    }
+  },
+  "userChat": {
+    "title": "Chat du Support Client",
+    "me": "Moi",
+    "admin": "Admin",
+    "unread": "(Non lu)",
+    "sendButton": "Envoyer",
+    "inputPlaceholder": "Tapez votre message...",
+    "notificationAlt": "Support Client",
+    "newMessageNotification": "📩 Nouveau message reçu !",
+    "closeButton": "Fermer",
+    "errors": {
+      "messageSaveFailed": "Échec de l'enregistrement du message",
+      "connectionFailed": "Échec de la connexion au serveur de chat",
+      "loadFailed": "Échec du chargement des messages"
+    },
+    "status": {
+      "connecting": "Connexion...",
+      "connected": "Connecté",
+      "disconnected": "Déconnecté"
+    }
+  }
+} 
