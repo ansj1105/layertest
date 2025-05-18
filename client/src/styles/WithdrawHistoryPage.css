@@ -1,0 +1,301 @@
+/* 전체 페이지 배경 및 텍스트 */
+.history-page {
+  position: relative;
+  max-width: 506px !important;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #0e0e11;
+  overflow: auto; /* 스크롤 활성화 */
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+/* 상단 헤더 컨테이너 */
+.history-header {
+  margin-top: 0px;
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  width: 100%;
+  max-width: 500px;              /* ✅ container와 맞춤 */
+  height: 58.27px;
+  background: #1d1d27;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 1000;
+  margin-bottom: 8px;
+}
+
+/* 뒤로가기 버튼 */
+.history-back-button {
+  color: #ffffff;
+  font-size: 30px !important;
+  font-weight: bold !important;              /* 글자 굵게 */
+  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;            /* 세로 가운데 정렬 */
+  justify-content: center;        /* 가로 가운데 정렬 */
+  height: 100%;                   /* 부모 요소 높이 기준 */
+  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+}
+.history-back-button:hover {
+  color: #fef08a; /* hover:text-yellow-100 */
+}
+
+/* 제목 */
+.history-title {
+  font-weight: bold;
+  color: #ffffff;
+  text-align: left;
+  font-size: 20px;
+  width: 100%;
+  height: 40%;
+  align-items: center;            /* 세로 가운데 정렬 */
+  justify-content: center;        /* 가로 가운데 정렬 */
+  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+}
+
+/* 오른쪽 공간 확보용 빈 span */
+.history-spacer {
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* 탭 바 래퍼 */
+.tab-bar {
+  width: 100%;
+  display: flex;
+  justify-content: center;   /* Flex 아이템 가로 중앙 정렬 */
+  margin: 0 auto;            /* 컨테이너 자체를 중앙에 배치 */
+
+  z-index: 100;
+}
+
+/* 개별 탭 버튼 공통 */
+.tab-button {
+  width: 90%;
+  height: 34px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  background: #152221;
+  border-radius: 3px;
+  color: #ffffff;
+  transition: all 0.4s ease; /* 부드럽게 전환 */
+  box-shadow: 0 0 1px 1px #366b65 !important;
+}
+
+/* 활성 탭 */
+
+
+.tab-button:hover {
+  color: #ffe695; /* 조금 더 밝은 노란색으로 hover 효과 */
+}
+
+.tab-button.active {
+  background-color: #365754;
+  color: #ffe695;
+  font-weight: 600;
+}
+
+.tab-button.inactive {
+  background-color: #152221;
+  color: #ffffff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* 로딩 및 에러 메시지 */
+.text-center {
+  text-align: center;
+}
+
+.text-red-400 {
+  color: #f87171;
+}
+
+.text-gray-400 {
+  color: #9ca3af;
+}
+
+
+
+
+/* 테이블 외부 래퍼 */
+.table-scroll-wrapper {
+  position: relative;
+  max-width: 506px !important;
+
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #0e0e11;
+  overflow: auto; /* 스크롤 활성화 */
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  z-index: 100;
+  margin-bottom: 30px;
+  
+
+
+}
+
+/* 테이블 */
+.table-auto {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  table-layout: auto;
+  min-width: 100%;
+  color: #fde68a;
+  max-height: 100%;
+  margin-bottom: 30px;
+
+
+  
+
+}
+
+/* 테이블 헤더 */
+.table-auto thead {
+  background-color: #1f2937; /* bg-gray-800 */
+  color: #ffffff;            /* text-yellow-200 */
+}
+
+.table-auto th,
+.table-auto td {
+  text-align: center; /* ✅ 가운데 정렬 */
+  padding: 4px 8px;
+  height: 35px;
+  
+}
+
+/* 테이블 바디 행 구분선 */
+.table-auto tbody tr {
+  border-top: 1px solid #808ea5; /* border-gray-700 */
+  
+}
+
+/* "데이터 없음" 상태 */
+.no-data {
+  text-align: center;
+  margin-top: 80px;
+  
+}
+
+.no-data img {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 8px auto;
+}
+
+.no-data-text {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+  .history-page {
+
+  }
+
+  .history-header {
+
+  }
+
+  .history-back-button {
+    font-size: 22px !important;
+  }
+
+  .history-title {
+    font-size: 16px;
+  }
+
+  .tab-bar {
+
+    align-items: center;
+  }
+
+  .tab-button {
+    width: 100%;
+    height: 32px;
+    font-size: 13px;
+    padding: 4px;
+    margin-top: 4px;
+    margin-bottom: 8px;
+  }
+
+  .table-scroll-wrapper {
+    padding: 0 4px;
+    margin-bottom: 24px;
+  }
+
+  .table-auto {
+    font-size: 11px;
+    word-break: break-word;
+  }
+
+  .table-auto th,
+  .table-auto td {
+    padding: 4px 6px;
+    font-size: 11px;
+    height: 35px;
+  }
+
+  .no-data {
+    margin-top: 60px;
+  }
+
+  .no-data img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .no-data-text {
+    font-size: 13px;
+  }
+
+  .text-center {
+    font-size: 13px;
+  }
+
+  .text-red-400,
+  .text-gray-400 {
+    font-size: 13px;
+  }
+}

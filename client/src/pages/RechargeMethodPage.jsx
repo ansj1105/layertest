@@ -1,43 +1,65 @@
 // 📁 src/pages/RechargeMethodPage.jsx
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft as ArrowLeftIcon, ChevronRight as ChevronRightIcon } from 'lucide-react';
-
+import '../styles/RechargeMethodPage.css';
+import '../styles/topbar.css';
 export default function RechargeMethodPage() {
   const navigate = useNavigate();
-
+ 
   return (
-    <div className="min-h-screen bg-[#1a1109] text-yellow-100">
+    <div className="charge-wrapper">
       {/* 헤더 */}
-      <div className="flex items-center p-4">
+      <div className="charge-header">
         <button
           onClick={() => navigate(-1)}
-          className="text-yellow-200 hover:text-yellow-100"
+          className="charge-back-button"
         >
           <ArrowLeftIcon size={24} />
         </button>
-        <h1 className="flex-1 text-center text-lg font-semibold">충전 방법</h1>
-        {/* 우측 아이콘 자리 비워두거나 필요 시 추가 */}
-        <div className="w-6" />
+        <h1 className="charge-title">충전 방법</h1>
+{/* 출금 내역 버튼 (SVG 아이콘 포함) */}
+        <button
+          onClick={() => navigate("/")}
+          className="charge-header-right"
+          title="출금 내역"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth="2"
+          >
+            {/* 문서 테두리 */}
+            <rect x="4" y="3" width="16" height="18" rx="2" ry="2" />
+
+            {/* 내역 라인들 */}
+            <line x1="8" y1="8" x2="16" y2="8" strokeLinecap="round" />
+            <line x1="8" y1="12" x2="16" y2="12" strokeLinecap="round" />
+            <line x1="8" y1="16" x2="12" y2="16" strokeLinecap="round" />
+
+            {/* 출금 화살표 */}
+            <path d="M12 18v3m0 0l-2-2m2 2l2-2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
       </div>
 
       {/* 본문 */}
-      <div className="px-4">
-        <h2 className="text-sm text-yellow-300 mb-2">충전 방법 선택</h2>
 
-        {/* USDT 항목 */}
-        <div
-          className="flex items-center bg-[#2c1f0f] rounded-lg p-4 mb-2 cursor-pointer hover:bg-[#3a270e]"
+      <div
+          className="charge-method-selector"
           onClick={() => navigate('/recharge/usdt')}
         >
-          <img
-            src="/img/usdt.png"
-            alt="USDT"
-            className="w-6 h-6 mr-4"
-          />
-          <span className="flex-1">USDT</span>
-          <ChevronRightIcon size={20} className="text-yellow-300" />
+        <div className="currency-label">
+          <img src="/img/usdt.png" alt="USDT" className="charge-method-icon" />
+          <span className="charge-method-label">USDT</span>
+
         </div>
+        <span className="charge-method-chevron">{'>'}</span>
       </div>
     </div>
+
   );
 }
