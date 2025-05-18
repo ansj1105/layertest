@@ -55,7 +55,7 @@ export default function App() {
 import './styles/Sidebar.css';
 import './styles/topnav.css';
 import { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Link,Routes,Route,useLocation  } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
   UserIcon,
@@ -76,7 +76,7 @@ import BottomNav from './components/BottomNav';
 import LoginPage from './pages/auth/LoginPage';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import LanguageSettingsPage from './components/LanguageSettingsPage';
-import RegisterPage from './pages/auth/RegisterPage'; // 추가!
+import RegisterPage from './pages/auth/RegisterPage';
 axios.defaults.withCredentials = true;
 /** 간단한 가역 인코딩 (XOR → 16진수, 8자리) */
 function encodeId(id) {
@@ -90,6 +90,7 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const loc = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     axios.get("/api/auth/me")
       .then(res => setUser(res.data.user))
@@ -160,14 +161,13 @@ export default function App() {
           />
 
           {/* 메일 아이콘 */}
-          <div className="avatar-mase">
+          <div className="avatar-mase" onClick={() => navigate('/taskcenter')}>
             <img
               src="/img/item/top/envelope.png"
               alt={t('app.mailIconAlt')}
               className="avatar-img"
             />
           </div>
-          
         </div>
 
 
