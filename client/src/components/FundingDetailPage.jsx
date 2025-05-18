@@ -119,7 +119,7 @@ export default function FundingDetailPage() {
         <ul className="investor-list">
           {investors.map((inv) => (
             <li key={inv.id} className="investor-item">
-              📧 {inv.email.replace(/^(.{3})(.*)(@.*)$/, '$1***$3')} - 💰 {inv.amount} USDT - 🕒{' '}
+              📧 {inv.email.replace(/^(.{2})(.*)(@.*)$/, '$1***$3')} - 💰 {inv.amount} USDT - 🕒{' '}
               {new Date(inv.created_at).toLocaleString()}
             </li>
           ))}

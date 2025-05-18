@@ -339,7 +339,6 @@ router.post('/projects/:id/invest', async (req, res) => {
 // 📁 routes/wallet.js
 // ▶ 금융지갑 + 펀딩수익 요약 조회
 // 📁 routes/wallet.js
-
 router.get('/finance-summary', async (req, res) => {
     const userId = req.session.user?.id;
     if (!userId) return res.status(401).json({ error: 'Unauthorized' });
@@ -357,11 +356,14 @@ router.get('/finance-summary', async (req, res) => {
         fund_balance  = 0
       } = walletRows[0] || {};
   
-      // 2) 오늘 펀딩 수익
+      // 2) 오늘 펀딩 수익 - wallets_log 테이블에서 조회
       const [[{ todayProjectIncome = 0 }]] = await db.query(
-        `SELECT IFNULL(SUM(profit),0) AS todayProjectIncome
-         FROM funding_investments
-         WHERE user_id = ? AND DATE(created_at) = CURDATE()`,
+        `SELECT IFNULL(SUM(amount), 0) AS todayProjectIncome
+         FROM wallets_log 
+         WHERE user_id = ? 
+         AND DATE(log_date) = CURDATE()
+         AND reference_type = 'funding_investment'
+         AND direction = 'in'`,
         [userId]
       );
   
@@ -372,20 +374,23 @@ router.get('/finance-summary', async (req, res) => {
          WHERE user_id = ?`,
         [userId]
       );
-        // 4) 디포짓수수료료
+
+      // 4) 디포짓수수료료
       const [[{ depositFee = 0 }]] = await db.query(
         `SELECT deposit_fee_rate AS depositFee
          FROM wallet_settings
         `,
         [userId]
       );
-              // 4) 출금짓수수료료
+
+      // 4) 출금짓수수료료
       const [[{ withdrawFee = 0 }]] = await db.query(
         `SELECT withdraw_fee_rate AS withdrawFee
          FROM wallet_settings
         `,
         [userId]
       );
+
       res.json({
         success: true,
         data: {
