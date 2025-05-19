@@ -1,0 +1,211 @@
+.chatbox-wrapper {
+  position: fixed;
+  top: 0;
+  left: 50%;                          /* 가로 가운데 정렬 시작점 */
+  transform: translateX(-50%);        /* 가운데 정렬 완성 */
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;                      /* 상하 전체 덮기 */
+  background-color: #0e0e11;
+  z-index: 9999;                      /* 상단바/하단바보다 위 */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+ 
+.chatbox-header {
+  margin-top: 0px;
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  width: 100%;
+  max-width: 500px;              /* ✅ container와 맞춤 */
+  height: 58.27px;
+  background: #126d5f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  z-index: 1000;
+  margin-bottom: 8px;
+}
+
+.chatbox-title {
+  font-weight: bold;
+  color: #ffffff;
+  text-align: left;
+  font-size: 20px;
+  width: 100%;
+  height: 40%;
+  align-items: center;            /* 세로 가운데 정렬 */
+  justify-content: center;        /* 가로 가운데 정렬 */
+  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  margin-left: 16px;
+}
+
+.chatbox-close-btn {
+  color: #ffffff;
+  font-size: 19px !important;
+  font-weight: bold !important;              /* 글자 굵게 */
+  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;            /* 세로 가운데 정렬 */
+  justify-content: center;        /* 가로 가운데 정렬 */
+  height: 100%;                   /* 부모 요소 높이 기준 */
+  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+}
+
+.chatbox-close-btn:hover {
+  color: #ffe695;
+}
+
+.chatbox-body {
+  flex: 1;
+  margin: auto;
+  padding: 5px 16px;
+  background: #cdf0ee;
+  border-radius: 3px;
+  color: #000000;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 2px 2px #b8dfd9 !important;
+  overflow-y: auto;
+  width: 98%;
+}
+
+.chatbox-msg {
+  font-size: 0.875rem;
+  padding: 8px;
+  border-radius: 8px;
+  max-width: 70%;
+  word-wrap: break-word;
+  margin-top: 13px;
+}
+
+.chatbox-msg-user {
+  background-color: #91f0e1;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.chatbox-msg-admin {
+  background-color: #d1d1d1;
+  align-self: flex-start;
+  margin-right: auto;
+  margin-top: 13px;
+}
+
+.chatbox-meta {
+  font-size: 0.8rem;
+  color: #000000;
+  margin-bottom: 8px;
+  display: block;
+  font-weight: 500;
+}
+
+.chatbox-input-group {
+  display: flex;
+  gap: 1px;
+  border: 2px solid #868686;  
+
+}
+
+.chatbox-input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+
+  font-size: 0.875rem;
+  outline: none;
+  width: 100%;
+}
+
+.chatbox-send-btn {
+  background-color: #4da59e;
+  color: white;
+  padding: 10px 16px;
+
+  font-weight: 500;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: auto;
+}
+
+.chatbox-send-btn:hover {
+  background-color: #34706b;
+}
+
+/* Scrollbar hide on Webkit */
+.chatbox-body::-webkit-scrollbar {
+  width: 6px;
+}
+.chatbox-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+
+@media (max-width: 768px) {
+  .chatbox-wrapper {
+    width: 100%;
+    height: 100vh;
+    max-width: 100%;
+    border-radius: 0;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+
+  .chatbox-header {
+    height: 50px;
+    padding: 0 12px;
+    width: 100%;
+  }
+
+  .chatbox-title {
+    font-size: 16px;
+    margin-left: 8px;
+  }
+
+  .chatbox-close-btn {
+    font-size: 20px;
+  }
+
+  .chatbox-body {
+    width: 92%;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .chatbox-msg {
+    font-size: 14px;
+    padding: 6px;
+    max-width: 6%;
+    border-radius: 6px;
+  }
+
+  .chatbox-meta {
+    font-size: 0.75rem;
+  }
+
+  .chatbox-input-group {
+    flex-direction: row;
+    gap: 4px;
+    padding: 4px;
+  }
+
+  .chatbox-input {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .chatbox-send-btn {
+    padding: 8px 12px;
+    width: auto;
+    font-size: 14px;
+  }
+}
