@@ -5,7 +5,7 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import '../styles/topbar.css';
 import '../styles/UserChat.css';
-const socket = io("http://localhost:4000", {
+const socket = io("http://54.180.103.100:4000", {
   withCredentials: true
 });
 
