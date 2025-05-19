@@ -155,7 +155,7 @@ export default function AdminContentManager({ onLogout }) {
             {banners.length > 0 ? banners.map((b) => (
               <li key={b.id} className="flex flex-col items-center bg-white p-2 rounded shadow">
                 <img
-                  src={`http://localhost:4000${b.file_path}`}
+                  src={`http://54.85.128.211:4000${b.file_path}`}
                   alt="banner-thumb"
                   className="h-24 w-full object-cover rounded mb-2"
                 />
@@ -200,7 +200,7 @@ export default function AdminContentManager({ onLogout }) {
                 <video
                   controls
                   className="w-full max-w-lg rounded mb-2"
-                  src={`http://localhost:4000${v.file_path}`}
+                  src={`http://54.85.128.211:4000${v.file_path}`}
                 />
                 <span className="block text-xs text-gray-600 mb-2">{v.file_path.split('/').pop()}</span>
                 <button
@@ -243,7 +243,7 @@ export default function AdminContentManager({ onLogout }) {
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium">PDF 문서</span>
                   <a
-                    href={`http://localhost:4000${p.file_path}`}
+                    href={`http://54.85.128.211:4000${p.file_path}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:text-blue-700 text-sm"
