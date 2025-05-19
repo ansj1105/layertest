@@ -3,9 +3,9 @@ import { useEffect, useState, useRef } from 'react';
 import io from 'socket.io-client';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-import '../styles/topnav.css';
-
-const socket = io("http://54.85.128.211:4000", {
+import '../styles/topbar.css';
+import '../styles/UserChat.css';
+const socket = io("http://localhost:4000", {
   withCredentials: true
 });
 
@@ -121,41 +121,40 @@ export default function UserChat({ userId }) {
       </>
     );
   }
-
+ 
   return (
-    <div className="fixed bottom-12 right-4 w-96 bg-white p-4 rounded shadow-lg flex flex-col z-50" style={{ maxHeight: 600, height: '500px', width: '500px',overflowY: 'auto'  }}>
-      <div className="flex justify-between items-center border-b pb-2 mb-2">
-        <h2 className="text-lg font-semibold">{t('userChat.title')}</h2>
-        <button onClick={() => setIsOpen(false)} className="text-gray-500 hover:text-gray-800">✕</button>
+    <div className="chatbox-wrapper">
+      <div className="chatbox-header">
+        <h2 className="chatbox-title">{t("userChat.title")}</h2>
+        <button onClick={() => setIsOpen(false)} className="chatbox-close-btn">✕</button>
       </div>
 
-      <div className="flex-1 overflow-y-auto space-y-2 mb-4">
+      <div className="chatbox-body">
         {messages.map((msg, idx) => (
-          <div key={idx} className={`text-sm p-2 rounded max-w-xs ${msg.from === 'user' ? 'bg-blue-100 self-end ml-auto' : 'bg-gray-100 self-start mr-auto'}`}>
-            <div>
-              <span className="block text-xs font-semibold text-gray-600 mb-1">
-                [ {msg.from === 'user' ? t('userChat.me') : t('userChat.admin')} || {msg.time} {msg.from === 'admin' && !msg.read ? t('userChat.unread') : ''}]
-              </span>
-            </div>
+          <div
+            key={idx}
+            className={`chatbox-msg ${msg.from === "user" ? "chatbox-msg-user" : "chatbox-msg-admin"}`}
+          >
+            <span className="chatbox-meta">
+              [ {msg.from === "user" ? t("userChat.me") : t("userChat.admin")} || {msg.time}{" "}
+              {msg.from === "admin" && !msg.read ? t("userChat.unread") : ""}]
+            </span>
             {msg.text}
           </div>
         ))}
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="flex gap-2 mt-2">
+      <div className="chatbox-input-group">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="border px-3 h-10 rounded flex-1"
-          placeholder={t('userChat.inputPlaceholder')}
+          className="chatbox-input"
+          placeholder={t("userChat.inputPlaceholder")}
         />
-        <button
-          onClick={sendMessage}
-          className="bg-blue-500 text-white px-4 h-10 rounded hover:bg-blue-600 whitespace-nowrap"
-        >
-          {t('userChat.sendButton')}
+        <button onClick={sendMessage} className="chatbox-send-btn">
+          {t("userChat.sendButton")}
         </button>
       </div>
     </div>
