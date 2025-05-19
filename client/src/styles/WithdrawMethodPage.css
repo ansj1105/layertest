@@ -178,7 +178,193 @@
   box-shadow: 0 0 16px 6px #81f5e9;
 }
 
+.keypad-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
+.keypad-container {
+  background: #1d1d27;
+  padding: 24px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid #1ad3b7;
+  box-shadow: 0 0 20px rgba(26, 211, 183, 0.3);
+}
+
+.keypad-container h3 {
+  margin: 0 0 20px;
+  text-align: center;
+  color: #fef9c3;
+  font-size: 18px;
+}
+
+.password-input-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.password-toggle-button {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.password-toggle-button:hover {
+  color: #1ad3b7;
+}
+
+.keypad-input {
+  width: 100%;
+  padding: 12px;
+  padding-right: 40px; /* 눈 모양 버튼을 위한 공간 */
+  background: #191c29;
+  border: 1px solid #1ad3b7;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #fef9c3;
+}
+
+.keypad-input::placeholder {
+  color: #666;
+}
+
+.keypad-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.keypad-cancel,
+.keypad-submit {
+  flex: 1;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.keypad-cancel {
+  background: #2d2d3a;
+  color: #fef9c3;
+  border: 1px solid #666;
+}
+
+.keypad-submit {
+  background: #206D7F;
+  color: white;
+  border: 1px solid #1ad3b7;
+}
+
+.keypad-cancel:hover {
+  background: #3d3d4a;
+}
+
+.keypad-submit:hover {
+  background: #26ffe61f;
+  border-color: #26ffe6;
+  box-shadow: 0 0 16px 6px rgba(129, 245, 233, 0.2);
+}
+
+.withdraw-ww-warning {
+  background: #1d1d27;
+  color: #fef9c3;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 1px solid #1ad3b7;
+  box-shadow: 0 0 12px 2px rgba(26, 211, 183, 0.2);
+}
+
+.withdraw-ww-warning p {
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+
+.withdraw-ww-setup-button {
+  background: #206D7F;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid #1ad3b7;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.withdraw-ww-setup-button:hover {
+  background: #26ffe61f;
+  border-color: #26ffe6;
+  box-shadow: 0 0 16px 6px rgba(129, 245, 233, 0.2);
+}
+
+.withdraw-ww-info-box {
+  background: #1d1d27;
+  color: #fef9c3;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 1px solid #1ad3b7;
+  box-shadow: 0 0 12px 2px rgba(26, 211, 183, 0.2);
+}
+
+.withdraw-ww-info-box p {
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: #4ade80;
+}
+
+.withdraw-ww-setup-button-disabled {
+  background: #2d2d3a !important;
+  color: #666 !important;
+  border-color: #666 !important;
+  cursor: not-allowed !important;
+  opacity: 0.7;
+}
+
+.withdraw-ww-setup-button-disabled:hover {
+  background: #2d2d3a !important;
+  border-color: #666 !important;
+  box-shadow: none !important;
+}
+
+.withdraw-ww-balance {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-weight: 500;
+}
+
+.withdraw-ww-balance-after {
+  margin-top: 5px;
+  color: #4CAF50;
+  font-weight: 500;
+}
 
 @media (max-width: 768px) {
   .withdraw-ww-wrapper {

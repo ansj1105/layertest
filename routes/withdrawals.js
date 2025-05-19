@@ -8,6 +8,7 @@ const { getTronBalance } = require('../routes/tron');
 const USDT_CONTRACT = process.env.USDT_CONTRACT;
 // 📁 routes/tron.js (기존 라우터 맨 아래에 추가)
 const { getTronWeb } = require("../utils/tron");
+const bcrypt = require('bcrypt');
 // polling intervals
 const DEPOSIT_POLL_INTERVAL    = 2 * 60 * 1000;   // 2분
 const REAL_AMOUNT_INTERVAL     = 2 * 60 * 60 * 1000; // 2시간
@@ -572,7 +573,7 @@ router.get('/admin/wallet-settings', async (_req, res) => {
   try {
     const [[settings]] = await db.query(
       `SELECT id, deposit_fee_rate, withdraw_fee_rate, real_withdraw_fee,
-              auto_approve, token_to_quant_rate, updated_at
+              auto_approve, token_to_quant_rate, minimum_deposit_amount, updated_at
          FROM wallet_settings
        ORDER BY id DESC
        LIMIT 1`
@@ -591,7 +592,8 @@ router.put('/admin/wallet-settings', async (req, res) => {
     withdraw_fee_rate,
     real_withdraw_fee,
     auto_approve,
-    token_to_quant_rate
+    token_to_quant_rate,
+    minimum_deposit_amount
   } = req.body;
 
   // 필수값 검사
@@ -599,6 +601,7 @@ router.put('/admin/wallet-settings', async (req, res) => {
     deposit_fee_rate == null ||
     withdraw_fee_rate == null ||
     token_to_quant_rate == null ||
+    minimum_deposit_amount == null ||
     !['auto','manual'].includes(auto_approve)
   ) {
     return res.status(400).json({ success: false, error: 'Missing or invalid fields' });
@@ -617,6 +620,7 @@ router.put('/admin/wallet-settings', async (req, res) => {
                real_withdraw_fee    = ?,
                auto_approve         = ?,
                token_to_quant_rate  = ?,
+               minimum_deposit_amount = ?,
                updated_at           = NOW()
          WHERE id = ?`,
         [
@@ -625,6 +629,7 @@ router.put('/admin/wallet-settings', async (req, res) => {
           real_withdraw_fee || null,
           auto_approve,
           token_to_quant_rate,
+          minimum_deposit_amount,
           existing.id
         ]
       );
@@ -633,14 +638,15 @@ router.put('/admin/wallet-settings', async (req, res) => {
       const [result] = await db.query(
         `INSERT INTO wallet_settings
            (deposit_fee_rate, withdraw_fee_rate, real_withdraw_fee,
-            auto_approve, token_to_quant_rate, updated_at)
-         VALUES (?, ?, ?, ?, ?, NOW())`,
+            auto_approve, token_to_quant_rate, minimum_deposit_amount, updated_at)
+         VALUES (?, ?, ?, ?, ?, ?, NOW())`,
         [
           deposit_fee_rate,
           withdraw_fee_rate,
           real_withdraw_fee || null,
           auto_approve,
-          token_to_quant_rate
+          token_to_quant_rate,
+          minimum_deposit_amount
         ]
       );
       res.json({ success: true, data: { id: result.insertId } });
@@ -688,4 +694,107 @@ router.get('/history', async (req, res) => {
     res.status(500).json({ success: false, error: 'Failed to fetch history' });
   }
 });
+
+// ▶ 거래 비밀번호 설정
+// POST /api/withdrawals/set-trade-password
+router.post('/set-trade-password', async (req, res) => {
+  const userId = req.session.user?.id;
+  if (!userId) {
+    return res.status(401).json({ success: false, error: 'Not authenticated' });
+  }
+
+  const { trade_password } = req.body;
+  if (!trade_password || trade_password.length < 6) {
+    return res.status(400).json({ success: false, error: 'Invalid trade password' });
+  }
+
+  try {
+    // 1) 현재 거래 비밀번호 확인
+    const [[user]] = await db.query(
+      'SELECT trade_password FROM users WHERE id = ?',
+      [userId]
+    );
+
+    if (user.trade_password) {
+      return res.status(400).json({ success: false, error: 'Trade password already set' });
+    }
+
+    // 2) 거래 비밀번호 해시
+    const hash = await bcrypt.hash(trade_password, 10);
+
+    // 3) 해시된 거래 비밀번호 저장
+    await db.query(
+      'UPDATE users SET trade_password = ? WHERE id = ?',
+      [hash, userId]
+    );
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error('❌ 거래 비밀번호 설정 실패:', err);
+    res.status(500).json({ success: false, error: 'Failed to set trade password' });
+  }
+});
+
+// ▶ 거래 비밀번호 설정 여부 확인
+// GET /api/withdrawals/verify-trade-password
+router.get('/verify-trade-password', async (req, res) => {
+  const userId = req.session.user?.id;
+  if (!userId) {
+    return res.status(401).json({ success: false, error: 'Not authenticated' });
+  }
+
+  try {
+    const [[user]] = await db.query(
+      'SELECT trade_password FROM users WHERE id = ?',
+      [userId]
+    );
+
+    // 거래 비밀번호가 설정되어 있는지 확인
+    if (!user.trade_password) {
+      return res.json({ success: false, error: 'Trade password not set' });
+    }
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error('❌ 거래 비밀번호 확인 실패:', err);
+    res.status(500).json({ success: false, error: 'Failed to verify trade password' });
+  }
+});
+
+// ▶ 거래 비밀번호 확인 (POST - 실제 비밀번호 검증용)
+// POST /api/withdrawals/verify-trade-password
+router.post('/verify-trade-password', async (req, res) => {
+  const userId = req.session.user?.id;
+  if (!userId) {
+    return res.status(401).json({ success: false, error: 'Not authenticated' });
+  }
+
+  const { trade_password } = req.body;
+  if (!trade_password) {
+    return res.status(400).json({ success: false, error: 'Trade password required' });
+  }
+
+  try {
+    const [[user]] = await db.query(
+      'SELECT trade_password FROM users WHERE id = ?',
+      [userId]
+    );
+
+    if (!user.trade_password) {
+      return res.status(400).json({ success: false, error: 'Trade password not set' });
+    }
+
+    // 해시된 비밀번호 비교
+    const match = await bcrypt.compare(trade_password, user.trade_password);
+    if (!match) {
+      return res.status(400).json({ success: false, error: 'Invalid trade password' });
+    }
+
+    res.json({ success: true });
+  } catch (err) {
+    console.error('❌ 거래 비밀번호 확인 실패:', err);
+    res.status(500).json({ success: false, error: 'Failed to verify trade password' });
+  }
+});
+
 module.exports = router;

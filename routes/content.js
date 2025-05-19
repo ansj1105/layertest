@@ -6,6 +6,28 @@ const fs = require('fs/promises');
 const db = require('../db');
 const router = express.Router();
 
+// 테이블 구조 업데이트를 위한 초기화 함수
+async function initializeTable() {
+  try {
+    // type enum에 'pdf' 추가
+    await db.query(`
+      ALTER TABLE content_files 
+      MODIFY COLUMN type ENUM('banner', 'video', 'pdf') NOT NULL
+    `);
+
+    // status enum에 'inactive' 추가
+    await db.query(`
+      ALTER TABLE content_files 
+      MODIFY COLUMN status ENUM('active', 'inactive', 'deleted') NOT NULL DEFAULT 'active'
+    `);
+  } catch (err) {
+    console.error('Table initialization error:', err);
+  }
+}
+
+// 서버 시작시 테이블 초기화
+initializeTable();
+
 const UPLOAD_DIR = path.join(__dirname, '..', 'public', 'uploads');
 fs.mkdir(UPLOAD_DIR, { recursive: true });
 
@@ -16,10 +38,10 @@ const storage = multer.diskStorage({
 });
 const upload = multer({
   storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // 5MB
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
   fileFilter: (req, file, cb) => {
     const ext = path.extname(file.originalname).toLowerCase();
-    const allowed = ['.jpg','.jpeg','.png','.mp4','.mov'];
+    const allowed = ['.jpg','.jpeg','.png','.mp4','.mov','.pdf'];
     if (!allowed.includes(ext)) {
       return cb(new Error('지원하지 않는 파일 형식입니다'));
     }
@@ -70,6 +92,15 @@ router.post(
   (req, res, next) => handleUpload(req, res, 'video')
 );
 
+// PDF 업로드
+router.post(
+  '/upload/pdf',
+  upload.single('pdf'),
+  body('type').optional().isIn(['pdf']),
+  validate,
+  (req, res, next) => handleUpload(req, res, 'pdf')
+);
+
 // 리스트 조회(활성된 것만)
 router.get('/content-files', async (req, res, next) => {
   try {
@@ -85,35 +116,84 @@ router.get('/content-files', async (req, res, next) => {
   }
 });
 
-// 소프트 삭제 API
-router.delete(
+// PDF 파일 상세 조회
+router.get(
   '/content-files/:id',
+  param('id').isInt(),
+  validate,
+  async (req, res, next) => {
+    try {
+      const [rows] = await db.query(
+        `SELECT id, type, file_path, created_at, status
+         FROM content_files
+         WHERE id = ?`,
+        [req.params.id]
+      );
+      
+      if (rows.length === 0) {
+        return res.status(404).json({ error: '파일을 찾을 수 없습니다' });
+      }
+      
+      res.json(rows[0]);
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+// PDF 파일 수정 (상태 변경)
+router.patch(
+  '/content-files/:id',
+  param('id').isInt(),
+  body('status').isIn(['active', 'inactive', 'deleted']),
+  validate,
+  async (req, res, next) => {
+    try {
+      const [result] = await db.query(
+        `UPDATE content_files
+         SET status = ?
+         WHERE id = ?`,
+        [req.body.status, req.params.id]
+      );
+
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ error: '파일을 찾을 수 없습니다' });
+      }
+
+      res.json({ success: true, message: '상태가 업데이트되었습니다' });
+    } catch (err) {
+      next(err);
+    }
+  }
+);
+
+// PDF 파일 영구 삭제
+router.delete(
+  '/content-files/:id/permanent',
   param('id').isInt(),
   validate,
   async (req, res, next) => {
     const id = req.params.id;
     try {
-      // 1) 상태 변경
-      const [result] = await db.query(
-        `UPDATE content_files
-         SET status = 'deleted'
-         WHERE id = ? AND status = 'active'`,
-        [id]
-      );
-      if (result.affectedRows === 0) {
-        return res.status(404).json({ error: '파일을 찾을 수 없거나 이미 삭제됨' });
-      }
-
-      // 2) 실제 파일 삭제(optional)
+      // 1) 파일 정보 조회
       const [[file]] = await db.query(
         'SELECT file_path FROM content_files WHERE id = ?',
         [id]
       );
-      if (file?.file_path) {
+
+      if (!file) {
+        return res.status(404).json({ error: '파일을 찾을 수 없습니다' });
+      }
+
+      // 2) DB에서 삭제
+      await db.query('DELETE FROM content_files WHERE id = ?', [id]);
+
+      // 3) 실제 파일 삭제
+      if (file.file_path) {
         await fs.unlink(path.join(__dirname, '..', 'public', file.file_path)).catch(()=>{});
       }
 
-      res.json({ success: true });
+      res.json({ success: true, message: '파일이 영구적으로 삭제되었습니다' });
     } catch (err) {
       next(err);
     }
