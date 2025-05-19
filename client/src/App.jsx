@@ -25,12 +25,29 @@ axios.defaults.withCredentials = true;
 export default function App() {
   const { t, i18n } = useTranslation();
   const [user, setUser] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [copySuccess, setCopySuccess] = useState(false);
+  const [pdfs, setPdfs] = useState([]);
+  const loc = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios.get("/api/auth/me")
       .then(res => setUser(res.data.user))
       .catch(() => setUser(null));
   }, []);
+
+  // PDF 파일 목록 가져오기
+  useEffect(() => {
+    if (user) {
+      axios.get('/api/content-files')
+        .then(res => {
+          const pdfFiles = res.data.filter(f => f.type === 'pdf');
+          setPdfs(pdfFiles);
+        })
+        .catch(console.error);
+    }
+  }, [user]);
 
   const handleLogout = async () => {
     await axios.post("/api/auth/logout");
@@ -89,6 +106,7 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
+  const [pdfs, setPdfs] = useState([]);
   const loc = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
@@ -96,6 +114,18 @@ export default function App() {
       .then(res => setUser(res.data.user))
       .catch(() => setUser(null));
   }, []);
+
+  // PDF 파일 목록 가져오기
+  useEffect(() => {
+    if (user) {
+      axios.get('/api/content-files')
+        .then(res => {
+          const pdfFiles = res.data.filter(f => f.type === 'pdf');
+          setPdfs(pdfFiles);
+        })
+        .catch(console.error);
+    }
+  }, [user]);
 
   const handleLogout = async () => {
     await axios.post("/api/auth/logout");
@@ -161,12 +191,19 @@ export default function App() {
           />
 
           {/* 메일 아이콘 */}
-          <div className="avatar-mase" onClick={() => navigate('/taskcenter')}>
-            <img
-              src="/img/item/top/envelope.png"
-              alt={t('app.mailIconAlt')}
-              className="avatar-img"
-            />
+          <div className="avatar-mase">
+            <a 
+              href={pdfs.length > 0 ? `http://localhost:4000${pdfs[0].file_path}` : '#'}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={pdfs.length === 0 ? 'cursor-not-allowed opacity-50' : ''}
+            >
+              <img
+                src="/img/item/top/envelope.png"
+                alt={t('app.mailIconAlt')}
+                className="avatar-img"
+              />
+            </a>
           </div>
         </div>
 
