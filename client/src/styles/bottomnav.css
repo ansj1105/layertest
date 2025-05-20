@@ -287,12 +287,12 @@ html *::after {
   .menu__border {
     position: absolute;
     bottom: 100%;
-    width: 9.8em;
+    width: 8.8em;
     height: 2.0em;
     clip-path: url(#menu);
     background-color: var(--bgColorMenu, #1d1d27);
     transition: transform 0.5s ease;
-    left: -9% !important ; /* ✅ PC 기준 유지 */
+    left: -11.9% !important ; /* ✅ PC 기준 유지 */
     transform-origin: center;
 
   }
