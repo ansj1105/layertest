@@ -38,7 +38,7 @@ export default function TestPingPage() {
           className="bg-green-500 text-white px-4 py-2 rounded"
           onClick={handleLocalPing}
         >
-          localhost:4000에 Ping
+          54.85.128.211:4000에 Ping
         </button>
         <p className="text-lg">{localRes}</p>
       </div>

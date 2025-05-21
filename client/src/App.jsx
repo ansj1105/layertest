@@ -193,7 +193,7 @@ export default function App() {
           {/* 메일 아이콘 */}
           <div className="avatar-mase">
             <a 
-              href={pdfs.length > 0 ? `http://localhost:4000${pdfs[0].file_path}` : '#'}
+              href={pdfs.length > 0 ? `http://54.85.128.211:4000${pdfs[0].file_path}` : '#'}
               target="_blank"
               rel="noopener noreferrer"
               className={pdfs.length === 0 ? 'cursor-not-allowed opacity-50' : ''}
