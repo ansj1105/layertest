@@ -184,10 +184,7 @@
         <div className="flex-1">
             <Routes>
             // ... Routes 내부
-            <Route
-            path="/funding"
-            element={<ProtectedRoute><FundingPage /></ProtectedRoute>}
-            />
+            <Route path="/funding" element={<ProtectedRoute><FundingPage /></ProtectedRoute>} />
             <Route path="/funding/logs" element={<ProtectedRoute><WalletLogsPage /></ProtectedRoute>}/>
             <Route path="/funding/detail/:id" element={<ProtectedRoute><FundingDetailPage /></ProtectedRoute>}/>
             <Route path="/commonproblem" element={<ProtectedRoute><CommonProblemsPage   /></ProtectedRoute>} />

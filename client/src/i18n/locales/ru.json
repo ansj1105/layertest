@@ -655,6 +655,9 @@
     "title": "Центр Задач",
     "invite_reward": {
       "title": "Награды за Приглашения",
+      "success": "Успех",
+      "reward_claimed": "{{level}}th level reward {{amount}} USDT has been credited.",
+      "error": "Ошибка",
       "description": "Награда при достижении необходимого количества активных рефералов прямо под Уровнем 1",
       "required": "{{level}}-й Уровень ({{required}} рефералов)",
       "reward": "Получите награду {{amount}} USDT после успеха.",
@@ -664,6 +667,9 @@
     },
     "join_reward": {
       "title": "Награды за Регистрацию",
+      "success": "Успех",
+      "reward_claimed": "Регистрационный бонус {{amount}} USDT был начислен.",
+      "error": "Ошибка",
       "description": "Получите награду {{amount}} USDT после успешной регистрации.",
       "claim": "Получить",
       "claimed": "Получено",

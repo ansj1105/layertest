@@ -616,6 +616,9 @@
         "title": "Trung tâm Nhiệm vụ",
         "invite_reward": {
           "title": "Thưởng Mời",
+          "success": "Thành công",
+          "reward_claimed": "{{level}}th level reward {{amount}} USDT has been credited.",
+          "error": "Lỗi",
           "description": "Nhận thưởng khi đạt số giới thiệu hoạt động cấp 1",
           "required": "Cấp {{level}} ({{required}} lượt giới thiệu)",
           "reward": "Nhận {{amount}} USDT khi thành công.",
@@ -625,6 +628,9 @@
         },
         "join_reward": {
           "title": "Thưởng Đăng ký",
+          "success": "Thành công",
+          "reward_claimed": "Register bonus {{amount}} USDT has been credited.",
+          "error": "Lỗi",
           "description": "Nhận {{amount}} USDT sau khi đăng ký thành công.",
           "claim": "Nhận",
           "claimed": "Đã nhận",

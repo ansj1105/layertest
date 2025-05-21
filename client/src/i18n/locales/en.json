@@ -639,7 +639,9 @@
     "invite_reward": {
       "title": "Invite Rewards",
       "description": "Reward when you reach the required number of active referrals just below Level 1",
-
+      "success": "Success",
+      "reward_claimed": "{{level}}th level reward {{amount}} USDT has been credited.",
+      "error": "Error",
       "required": "{{level}}th Level ({{required}} referrals)",
       "reward": "Receive reward of {{amount}} USDT after success.",
       "claim": "Claim",
@@ -649,6 +651,9 @@
     "join_reward": {
       "title": "Register Rewards",
       "description": "Receive reward of  {{amount}} USDT after new register success.",
+      "success": "Success",
+      "reward_claimed": "Register bonus {{amount}} USDT has been credited.",
+      "error": "Error",
       "claim": "Claim",
       "claimed": "Claimed",
       "claim_fail": "Failed to claim reward"

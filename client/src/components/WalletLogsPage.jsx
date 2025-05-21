@@ -48,21 +48,44 @@ export default function WalletLogsPage() {
           // quant-profits 호출
           setLoading(true);
           console.log('📡 fetching quant-profits…');
-         axios.get('/api/logs/quant-profits', { withCredentials:true })
-            .then(res => {
-              console.log('✅ quant-profits response', res.data.data);
-              setQuantProfits(res.data.data || []);
+          Promise.all([
+            // quant-profits 데이터
+            axios.get('/api/logs/quant-profits', { withCredentials:true }),
+            // invite_rewards 데이터
+            axios.get('/api/logs/wallets-log', { withCredentials:true })
+              .then(res => res.data.data.filter(r => 
+                r.referenceType === 'invite_rewards' || r.referenceType === 'join_rewards'
+              ))
+          ])
+            .then(([quantRes, rewards]) => {
+              console.log('✅ quant-profits response', quantRes.data.data);
+              console.log('✅ rewards response', rewards);
+              // 두 데이터 합치기
+              const combinedData = [
+                ...(quantRes.data.data || []),
+                ...rewards
+              ].sort((a, b) => {
+                const dateA = new Date(a.created_at || a.logDate);
+                const dateB = new Date(b.created_at || b.logDate);
+                return dateB - dateA; // 최신 날짜가 먼저 오도록 정렬
+              });
+              setQuantProfits(combinedData);
             })
             .catch(err => {
-              console.error('❌ quant-profits error', err);
+              console.error('❌ data fetch error', err);
             })
             .finally(() => setLoading(false));
                } else if (tab === 'financeIncome') {
                    // wallets_log 호출
                    axios.get('/api/logs/wallets-log', { withCredentials:true })
                      .then(res => {
-                       // in 방향만 필터
-                       setWalletLogs((res.data.data || []).filter(r => r.direction === 'in'));
+                       // funding 관련 항목 필터
+                       setWalletLogs((res.data.data || []).filter(r => 
+                         r.direction === 'in' && 
+                         r.category === 'funding' && 
+                         r.referenceType === 'funding_investment'
+                       ));
+
                      })
                      .catch(console.error)
                      .finally(() => setLoading(false));
@@ -112,9 +135,9 @@ export default function WalletLogsPage() {
           </>
         ) : tab === 'walletEarnings' ? (
           <>
-            <td className="p-2">{new Date(r.created_at).toLocaleDateString()}</td>
+            <td className="p-2">{new Date(r.created_at || r.logDate).toLocaleDateString()}</td>
             <td className="p-2">{parseFloat(r.amount).toFixed(6)} USDT</td>
-            <td className="p-2">{t(`walletLogs.quantTypes.${r.type}`)}</td>
+            <td className="p-2">{r.type ? t(`walletLogs.quantTypes.${r.type}`) : 'Invite Reward'}</td>
           </>
         ) : /* financeIncome */ (
           <>

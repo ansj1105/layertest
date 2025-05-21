@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeftIcon,HistoryIcon} from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import QuantHistoryModal from './QuantHistoryModal';
+import AlertPopup from './AlertPopup';
 import '../styles/QuantTradingPage.css';
 import '../styles/topbar.css';
 
@@ -32,6 +33,12 @@ export default function QuantTradingPage() {
     const [cooldownEnd, setCooldownEnd] = useState(0);
  
     const [isGlowing, setIsGlowing] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertInfo, setAlertInfo] = useState({
+      title: '',
+      message: '',
+      type: 'success'
+    });
 
     const handleButtonClick = () => {
       setIsGlowing(true);
@@ -50,9 +57,13 @@ export default function QuantTradingPage() {
   const handleStart = () => {
     // 기본 체크 (최소 보유량 등)
     if (finance.quantBalance < currentVIP.min_holdings) {
-      return alert(
-        t("quantTrading.errorMinHolding", { min: currentVIP.min_holdings })
-      );
+      setAlertInfo({
+        title: t('quantTrading.error'),
+        message: t("quantTrading.errorMinHolding", { min: currentVIP.min_holdings }),
+        type: 'error'
+      });
+      setShowAlert(true);
+      return;
     }
 
     // 거래 중복 방지
@@ -82,25 +93,35 @@ export default function QuantTradingPage() {
                 { amount: amt },
                 { withCredentials: true }
               );
-              alert(res.data.message);
+              
+              // 수익 알림 표시
+              setAlertInfo({
+                title: t('quantTrading.success'),
+                message: res.data.message,
+                type: 'success'
+              });
+              setShowAlert(true);
+
               // 잔액·수익 재조회
               const [finRes, sumRes] = await Promise.all([
                 axios.get("/api/wallet/finance-summary", { withCredentials: true }),
-                axios.get("/api/quant-profits/summary",    { withCredentials: true })
+                axios.get("/api/quant-profits/summary", { withCredentials: true })
               ]);
               setFinance({
                 quantBalance: Number(finRes.data.data.quantBalance),
-                fundBalance:  Number(finRes.data.data.fundBalance),
+                fundBalance: Number(finRes.data.data.fundBalance),
               });
               setSummary({
                 todayProfit: Number(sumRes.data.data.todayProfit),
                 totalProfit: Number(sumRes.data.data.totalProfit),
               });
             } catch (err) {
-              alert(
-                t("quantTrading.tradeError") +
-                  (err.response?.data?.error || "")
-              );
+              setAlertInfo({
+                title: t('quantTrading.error'),
+                message: t("quantTrading.tradeError") + (err.response?.data?.error || ""),
+                type: 'error'
+              });
+              setShowAlert(true);
             } finally {
               setIsTrading(false);
             }
@@ -624,6 +645,15 @@ const handleStart2 = async () => {
           </div>
         </div>
       )}
+
+      <AlertPopup
+        isOpen={showAlert}
+        onClose={() => setShowAlert(false)}
+        title={alertInfo.title}
+        message={alertInfo.message}
+        type={alertInfo.type}
+        duration={3000}
+      />
     </div>
   );
 }

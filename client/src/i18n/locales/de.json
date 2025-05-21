@@ -629,6 +629,9 @@
     "title": "Aufgabenzentrum",
     "invite_reward": {
       "title": "Einladungsbelohnungen",
+      "success": "Erfolg",
+      "reward_claimed": "{{level}}th level reward {{amount}} USDT has been credited.",
+      "error": "Fehler",
       "description": "Belohnung, wenn Sie die erforderliche Anzahl aktiver Empfehlungen direkt unter Level 1 erreichen",
       "required": "{{level}}. Stufe ({{required}} Empfehlungen)",
       "reward": "Belohnung von {{amount}} USDT nach Erfolg erhalten.",
@@ -638,6 +641,9 @@
     },
     "join_reward": {
       "title": "Registrierungsbelohnungen",
+      "success": "Erfolg",
+      "reward_claimed": "Registrierungsbonus {{amount}} USDT wurde gutgeschrieben.",
+      "error": "Fehler",
       "description": "Erhalten Sie nach erfolgreicher Neuregistrierung eine Belohnung von {{amount}} USDT.",
       "claim": "Einlösen",
       "claimed": "Eingelöst",
