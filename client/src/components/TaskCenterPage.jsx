@@ -155,40 +155,32 @@ export default function TaskCenterPage() {
         </div>
       )}
 
-      {/*** 가입 보너스 영역 ***/}
-      <div className="join-reward-container">
-        <div className="join-reward-header">
-          <span className="join-reward-title">{t('task.join_reward.title')}</span>
-          {joinRewards.map(jr => (
-            <span key={jr.id} className="join-reward-count">
-              ({jr.claimed ? 1 : 0}/1)
-            </span>
-          ))}
-        </div>
-
-        <p className="join-reward-description">
-          {joinRewards.map(jr =>
-            t('task.join_reward.description', { amount: jr.amount })
-          )}
-        </p>
-
-        <div className="join-reward-actions">
-          {joinRewards.map(jr => (
+      {/* 가입 보너스 영역 - 각 보상을 완전히 분리된 카드로 렌더링 */}
+      <div className="join-reward-header">
+        <span className="join-reward-title">{t('task.join_reward.title')}</span>
+      </div>
+      {joinRewards.map((jr, idx) => (
+        <div key={jr.id} className="join-reward-container">
+          <div className="join-reward-card">
+            <div className="join-reward-info">
+              <div className="join-reward-title-row">
+                <span className="join-reward-step">{t('task.join_reward.step', { step: idx + 1 })}</span>
+                <br/>
+              </div>
+              <div className="join-reward-desc">
+                {t('task.join_reward.description', { amount: jr.amount })}
+              </div>
+            </div>
             <button
-              key={jr.id}
               disabled={jr.claimed}
               onClick={() => claimJoin(jr.id)}
-              className={`join-reward-button ${
-                jr.claimed ? 'reward-btn-disabled' : 'reward-btn-active'
-              }`}
+              className={`join-reward-button ${jr.claimed ? 'reward-btn-disabled' : 'reward-btn-active'}`}
             >
-              {jr.claimed
-                ? t('task.join_reward.claimed')
-                : t('task.join_reward.claim')}
+              {jr.claimed ? t('task.join_reward.claimed') : t('task.join_reward.claim')}
             </button>
-          ))}
+          </div>
         </div>
-      </div>
+      ))}
 
       <AlertPopup
         isOpen={showAlert}

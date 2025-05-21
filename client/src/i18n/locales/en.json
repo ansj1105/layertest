@@ -124,17 +124,20 @@
   "forgot" : "Find Password"
   
 },  "walletLogs": {
+  "in" : "Deposit",
+  "out" : "Withdrawal",
   "prev" : "prev",
   "next" : "next",
   "back": "Back",
   "title": "Transfer Logs",
   "tabs": {
     "transfer": "Transfers",
-    "walletEarnings": "Wallet Earnings",
-    "financeIncome": "Finance Income"
+    "walletEarnings": "Wallet Earnings Logs",
+    "financeIncome": "Finance Income Logs"
   },
   "columns": {
     "description" : "description",
+    "direction" : "direction",
     "type": "Type",
     "amount": "Amount",
     "fee": "Fee",
@@ -267,6 +270,9 @@
 
 "tokenPurchase": {
   "title":               "USC Token",
+  "purchaseSuccessTitle": "Purchase successful",
+  "purchaseSuccessWithAmount": "{{amount}} USDT purchased.",
+  "purchaseFailTitle": "Purchase failed",
    "redeemSuccess" : "redeemSuccess",
   "available":               "USC available",
   "inputUsdc":               "USC ",
@@ -378,8 +384,12 @@
   "no_active_projects": "No Projects exceeding.",
   "no_expired_projects": "No Projects expired.",
   "expired_label": "Projects expired",
+  "investing_amount": "Invested amount: {{amount}} USDT",
   "detail2": {
     "loading": "Loading...",
+    "subscribeSuccessTitle": "Investment successful",
+    "subscribeSuccessWithAmount": "{{amount}} USDT invested.",
+    "subscribeErrorTitle": "Investment failed",
     "loadError": "Failed to load project info:",
     "invalidAmount": "Please enter a valid amount.",
     "amountRange": "Please enter an amount between {{min}} and {{max}}.",
@@ -650,6 +660,7 @@
     },
     "join_reward": {
       "title": "Register Rewards",
+      "step" : "Register Rewards",
       "description": "Receive reward of  {{amount}} USDT after new register success.",
       "success": "Success",
       "reward_claimed": "Register bonus {{amount}} USDT has been credited.",

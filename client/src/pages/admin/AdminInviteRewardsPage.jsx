@@ -13,6 +13,8 @@ export default function AdminInviteRewardsPage() {
     reward_amount: ''
   });
   const [editing, setEditing] = useState(false);
+  const [activeTab, setActiveTab] = useState('rewards'); // 'rewards' | 'logs'
+  const [inviteLogs, setInviteLogs] = useState([]);
 
   useEffect(() => {
     fetchList();
@@ -59,6 +61,25 @@ export default function AdminInviteRewardsPage() {
     fetchList();
   };
 
+  // 초대보상 로그 불러오기
+  const fetchInviteLogs = async () => {
+    try {
+      const res = await axios.get('/api/logs/admin/wallets-log', { withCredentials: true });
+      // invite_rewards 로그만 필터링
+      const logs = (res.data.data || []).filter(log => log.referenceType === 'invite_rewards');
+      setInviteLogs(logs);
+    } catch (err) {
+      console.error('로그 로딩 실패', err);
+    }
+  };
+
+  // 탭 변경 시 로그 불러오기
+  useEffect(() => {
+    if (activeTab === 'logs') {
+      fetchInviteLogs();
+    }
+  }, [activeTab]);
+
   return (
     <div className="flex min-h-screen">
       {/* 좌측 네비 */}
@@ -76,41 +97,87 @@ export default function AdminInviteRewardsPage() {
           </button>
         </div>
 
-        {/* 보상 목록 테이블 */}
-        <div className="overflow-x-auto mb-8">
-          <table className="min-w-full bg-white border">
-            <thead>
-              <tr className="bg-gray-100">
-                <th className="px-4 py-2 text-left">단계</th>
-                <th className="px-4 py-2 text-left">필요 추천인 수</th>
-                <th className="px-4 py-2 text-left">보상 (USDT)</th>
-                <th className="px-4 py-2 text-left">액션</th>
-              </tr>
-            </thead>
-            <tbody>
-              {list.map((item, idx) => (
-                <tr
-                  key={item.id}
-                  className={idx % 2 === 0 ? 'bg-gray-50' : ''}
-                >
-                  <td className="px-4 py-2">{item.referral_level}</td>
-                  <td className="px-4 py-2">{item.required_referrals}</td>
-                  <td className="px-4 py-2">
-                    {parseFloat(item.reward_amount || 0).toFixed(2)}
-                  </td>
-                  <td className="px-4 py-2 space-x-3">
-                    <button onClick={() => openEdit(item)}>
-                      <Edit2 size={16} className="text-blue-500 hover:text-blue-700"/>
-                    </button>
-                    <button onClick={() => handleDelete(item.id)}>
-                      <Trash2 size={16} className="text-red-500 hover:text-red-700"/>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {/* 탭 UI */}
+        <div className="flex space-x-4 mb-6">
+          <button
+            className={`px-4 py-2 rounded ${activeTab === 'rewards' ? 'bg-yellow-400 text-white' : 'bg-gray-200'}`}
+            onClick={() => setActiveTab('rewards')}
+          >
+            보상 목록
+          </button>
+          <button
+            className={`px-4 py-2 rounded ${activeTab === 'logs' ? 'bg-yellow-400 text-white' : 'bg-gray-200'}`}
+            onClick={() => setActiveTab('logs')}
+          >
+            초대보상 로그
+          </button>
         </div>
+
+        {/* 보상 목록 */}
+        {activeTab === 'rewards' && (
+          <div className="overflow-x-auto mb-8">
+            <table className="min-w-full bg-white border">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="px-4 py-2 text-left">단계</th>
+                  <th className="px-4 py-2 text-left">필요 추천인 수</th>
+                  <th className="px-4 py-2 text-left">보상 (USDT)</th>
+                  <th className="px-4 py-2 text-left">액션</th>
+                </tr>
+              </thead>
+              <tbody>
+                {list.map((item, idx) => (
+                  <tr
+                    key={item.id}
+                    className={idx % 2 === 0 ? 'bg-gray-50' : ''}
+                  >
+                    <td className="px-4 py-2">{item.referral_level}</td>
+                    <td className="px-4 py-2">{item.required_referrals}</td>
+                    <td className="px-4 py-2">
+                      {parseFloat(item.reward_amount || 0).toFixed(2)}
+                    </td>
+                    <td className="px-4 py-2 space-x-3">
+                      <button onClick={() => openEdit(item)}>
+                        <Edit2 size={16} className="text-blue-500 hover:text-blue-700"/>
+                      </button>
+                      <button onClick={() => handleDelete(item.id)}>
+                        <Trash2 size={16} className="text-red-500 hover:text-red-700"/>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {/* 초대보상 로그 */}
+        {activeTab === 'logs' && (
+          <div className="overflow-x-auto mb-8">
+            <table className="min-w-full bg-white border">
+              <thead>
+                <tr className="bg-gray-100">
+                  <th className="px-4 py-2">유저ID</th>
+                  <th className="px-4 py-2">이메일</th>
+                  <th className="px-4 py-2">금액</th>
+                  <th className="px-4 py-2">날짜</th>
+                  <th className="px-4 py-2">설명</th>
+                </tr>
+              </thead>
+              <tbody>
+                {inviteLogs.map(log => (
+                  <tr key={log.id}>
+                    <td className="px-4 py-2">{log.user_id}</td>
+                    <td className="px-4 py-2">{log.email}</td>
+                    <td className="px-4 py-2">{log.amount}</td>
+                    <td className="px-4 py-2">{new Date(log.logDate).toLocaleString()}</td>
+                    <td className="px-4 py-2">{log.description}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
 
         {/* 추가/수정 폼 */}
         {editing && (

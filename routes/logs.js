@@ -129,6 +129,41 @@ router.get('/wallets-log', async (req, res) => {
   }
 });
 
+// 관리자용 전체 유저 지갑 로그 조회
+router.get('/admin/wallets-log', async (req, res) => {
+  const user = req.session.user;
+  if (!user?.id || !user.isAdmin) {
+    return res.status(401).json({ error: 'Not authenticated as admin' });
+  }
+
+  try {
+    const [rows] = await db.query(
+      `SELECT
+         wl.id,
+         wl.user_id,
+         u.email,
+         wl.category,
+         wl.log_date   AS logDate,
+         wl.direction,
+         wl.amount,
+         wl.balance_after   AS balanceAfter,
+         wl.reference_type  AS referenceType,
+         wl.reference_id    AS referenceId,
+         wl.description,
+         wl.created_at      AS createdAt
+       FROM wallets_log wl
+       LEFT JOIN users u ON wl.user_id = u.id
+       ORDER BY wl.log_date DESC
+       LIMIT 500` // 필요시 페이징/제한
+    );
+
+    return res.json({ data: rows });
+  } catch (err) {
+    console.error('Error fetching all wallets_log:', err);
+    return res.status(500).json({ error: 'Failed to fetch all wallet logs' });
+  }
+});
+
 router.get('/quant-profits2', async (req, res) => {
   const user = req.session.user;
   if (!user?.id) {

@@ -37,6 +37,13 @@ export default function MyProfilePage() {
     today: 0,
     yesterday: 0
   });
+  // 초대보상과 가입보상 집계용
+  const [rewardEarnings, setRewardEarnings] = useState({
+    total: 0,
+    today: 0,
+    yesterday: 0
+  });
+  const [investingAmount, setInvestingAmount] = useState(0);
 
   const navigate = useNavigate();
    // wallets_log 불러와서 funding in 항목 집계
@@ -44,9 +51,9 @@ export default function MyProfilePage() {
      if (!user?.id) return;
      axios.get('/api/logs/wallets-log', { withCredentials: true })
        .then(res => {
-        console.log('📥 wallets-log raw response:', res.data);
+   
         const logs = res.data.data || [];
-        console.log('🏷 parsed wallets-log entries:', logs);
+
          const now = new Date();
          const todayStr     = now.toISOString().slice(0,10);
          const yesterday    = new Date(now);
@@ -55,7 +62,12 @@ export default function MyProfilePage() {
   
          let total = 0, today = 0, yesterdaySum = 0;
          logs.forEach(log => {
-           if (log.category==='funding' && log.direction==='in') {
+           if (
+             log.category === 'funding' &&
+             log.direction === 'in' &&
+             log.referenceType === 'funding_investment' &&
+             log.description !== '만료 프로젝트 원금 반환'
+           ) {
              const amt = parseFloat(log.amount);
              total += amt;
              const logDate = new Date(log.logDate).toISOString().slice(0,10);
@@ -80,9 +92,9 @@ export default function MyProfilePage() {
     if (!user?.id) return;
     axios.get('/api/logs/quant-profits')
       .then(res => {
-        console.log('📥 wallets-log raw response:', res.data);
+       // console.log('📥 wallets-log raw response:', res.data);
         const rows = res.data.data || [];
-        console.log('🏷 parsed wallets-log entries:', rows);
+      //  console.log('🏷 parsed wallets-log entries:', rows);
         const now = new Date();
         const todayStr = now.toISOString().slice(0, 10);
         const yesterday = new Date(now);
@@ -109,6 +121,45 @@ export default function MyProfilePage() {
       .catch(console.error);
   }, [user]);
 
+  // 3) 초대보상과 가입보상 집계
+  useEffect(() => {
+    if (!user?.id) return;
+    axios.get('/api/logs/wallets-log', { withCredentials: true })
+      .then(res => {
+        const logs = res.data.data || [];
+        const now = new Date();
+        const todayStr = now.toISOString().slice(0, 10);
+        const yesterday = new Date(now);
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yesterdayStr = yesterday.toISOString().slice(0, 10);
+
+        let total = 0, today = 0, yesterdaySum = 0;
+        logs.forEach(log => {
+          if (
+            (log.category === 'referral' || log.category === 'funding') &&
+            log.direction === 'in' &&
+            (log.referenceType === 'invite_rewards' || log.referenceType === 'join_rewards')
+          ) {
+            // 안전하게 숫자 변환
+            const amt = Number(log.amount) || 0;
+            total += amt;
+            const logDate = new Date(log.logDate).toISOString().slice(0, 10);
+            if (logDate === todayStr) {
+              today += amt;
+            } else if (logDate === yesterdayStr) {
+              yesterdaySum += amt;
+            }
+          }
+        });
+        setRewardEarnings({
+          total,
+          today,
+          yesterday: yesterdaySum
+        });
+      })
+      .catch(console.error);
+  }, [user]);
+
   useEffect(() => {
     axios.get('/api/mydata/me')
       .then(res => setUser(res.data.user))
@@ -119,6 +170,13 @@ export default function MyProfilePage() {
         if (res.data.success) setSummary(res.data.data);
       })
       .catch(() => setSummary(null));
+
+    // 투자중인 금액도 별도 fetch
+    axios.get('/api/wallet/finance-summary', { withCredentials: true })
+      .then(res => {
+        setInvestingAmount(parseFloat(res.data.data.investingAmount) || 0);
+      })
+      .catch(() => setInvestingAmount(0));
   }, []);
 
 
@@ -126,8 +184,6 @@ export default function MyProfilePage() {
 
 
 
-console.log('오늘수익:',referralEarnings.today);  
-console.log('전체수익:',referralEarnings.total);
   const handleCopyId = () => {
     const encId = encodeId(user.id);
     navigator.clipboard.writeText(encId);
@@ -156,14 +212,17 @@ console.log('전체수익:',referralEarnings.total);
     // summary.earnings.investment.* 대신 우리가 계산한 investmentEarnings 사용
       const totalEarnings = referralEarnings.total
         + investmentEarnings.total
-        + summary.earnings.trade.total;
+     
+        + rewardEarnings.total;
       const todayIncome     = referralEarnings.today
         + investmentEarnings.today
-        + summary.earnings.trade.today;
+   
+        + rewardEarnings.today;
       const yesterdayIncome = referralEarnings.yesterday
         + investmentEarnings.yesterday
-        + summary.earnings.trade.yesterday;
-      const commit = referralEarnings.today;
+    
+        + rewardEarnings.yesterday;
+      const commit = referralEarnings.today + rewardEarnings.today;
     return (
       <div className="profile-container">
         <div className="profile-header">
@@ -199,7 +258,10 @@ console.log('전체수익:',referralEarnings.total);
           <div>
             <p className="profile-summary-balance-label">{t('profile.summary.totalBalance')}</p>
             <p className="profile-summary-balance-value">
-              {summary.balance.total.toFixed(2)} USDT
+              {(summary.balance.total + investingAmount).toFixed(2)} USDT
+              <span style={{ fontSize: '0.95em', color: '#ffd700', marginLeft: 8 }}>
+     
+              </span>
             </p>
           </div>
           <div>

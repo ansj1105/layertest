@@ -88,6 +88,9 @@
       "mine": "내 거"
     },
     "tokenPurchase": {
+      "purchaseSuccessTitle": "구매 성공",
+      "purchaseSuccessWithAmount": "{{amount}} USDT를 구매했습니다.",
+      "purchaseFailTitle": "구매 실패",
       "redeemSuccess" : "코인 환전 성공",
       "price":               "USC 당 가격",
       "totalCost":               "총 USDT 소모",
@@ -136,6 +139,7 @@
       "promptAmount":        "구매할 USC 수량을 입력하세요:",
       "purchaseSuccess":     "구매 완료!",
       "errors": {
+   
         "invalidAmount":     "유효한 금액을 입력해주세요.",
         "insufficientQuant": "Quant 지갑 잔액이 부족합니다.",
         "insufficientFund":  "Fund 지갑 잔액이 부족합니다.",
@@ -148,10 +152,14 @@
       "active_projects": "진행 중인 프로젝트",
       "expired_projects": "만료된 프로젝트",
       "no_active_projects": "진행 중인 프로젝트가 없습니다.",
+      "investing_amount": "투자 중인 금액: {{amount}} USDT",
       "no_expired_projects": "만료된 프로젝트가 없습니다.",
       "expired_label": "만료됨",
         "detail2": {
           "loading": "로딩 중...",
+          "subscribeSuccessTitle": "투자 성공",
+          "subscribeSuccessWithAmount": "{{amount}} USDT를 투자했습니다.",
+          "subscribeErrorTitle": "투자 실패",
           "loadError": "프로젝트 정보 로드 실패:",
           "invalidAmount": "유효한 금액을 입력하세요.",
           "amountRange": "금액은 {{min}} ~ {{max}} 사이여야 합니다.",
@@ -260,17 +268,20 @@
   
 ,  
   "walletLogs": {
+    "in" : "입금",
+    "out" : "출금",
     "back": "뒤로가기",
     "prev" : "이전",
     "next" : "다음",
     "title": "이관 내역",
     "tabs": {
       "transfer": "이체 내역",
-      "walletEarnings": "정량 수익",
-      "financeIncome": "펀딩 수익"
+      "walletEarnings": "정량 내역",
+      "financeIncome": "펀딩 내역"
     },
     "columns": {
       "description" : "설명",
+      "direction" : "입출금 구분",
       "date": "날짜",
       "amount": "수익",
       "category": "구분",
@@ -663,6 +674,7 @@
     
     "task": {
       "title": "테스크 센터",
+      
       "invite_reward": {
         "title": "초대 보상",
         "description": "레벨 1 바로 아래의 유효 인원 수에 도달한 경우 보상",
@@ -676,6 +688,7 @@
         "error": "오류"
       },
       "join_reward": {
+        "step" : "가입 보상",
         "title": "가입 보너스",
         "description": "성공적으로 등록하면 신규 회원 보상 {{amount}} USDT를 받을 수 있습니다.",
         "claim": "받기",

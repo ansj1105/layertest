@@ -349,9 +349,9 @@ router.post('/withdraw', async (req, res) => {
     );
     const feeRate = setting ? parseFloat(setting.real_withdraw_fee) : 0;
 
-    // 2) 현재 지갑 잔액 조회 (fund_balance)
+    // 2) 현재 지갑 잔액 조회 (quant_balance)
     const [[wallet]] = await conn.query(
-      `SELECT fund_balance
+      `SELECT quant_balance
          FROM wallets
         WHERE user_id = ?
           FOR UPDATE`,
@@ -364,15 +364,15 @@ router.post('/withdraw', async (req, res) => {
     const totalDeduct = parseFloat((amt + feeAmount).toFixed(6));
 
     // 4) 잔액 부족 체크
-    if (wallet.fund_balance < totalDeduct) {
-      return res.status(400).json({ success: false, error: 'Insufficient fund_balance (including fee)' });
+    if (wallet.quant_balance < totalDeduct) {
+      return res.status(400).json({ success: false, error: 'Insufficient quant_balance (including fee)' });
     }
 
-    // 5) fund_balance 차감
-    const newBal = parseFloat((wallet.fund_balance - totalDeduct).toFixed(6));
+    // 5) quant_balance 차감
+    const newBal = parseFloat((wallet.quant_balance - totalDeduct).toFixed(6));
     await conn.query(
       `UPDATE wallets
-          SET fund_balance = ?, updated_at = NOW()
+          SET quant_balance = ?, updated_at = NOW()
         WHERE user_id = ?`,
       [newBal, userId]
     );
@@ -389,7 +389,7 @@ router.post('/withdraw', async (req, res) => {
         to_address,
         method,
         `fee:${feeAmount}`,
-        wallet.fund_balance
+        wallet.quant_balance
       ]
     );
     const withdrawalId = result.insertId;
@@ -399,7 +399,7 @@ router.post('/withdraw', async (req, res) => {
       `INSERT INTO wallets_log
          (user_id, category, log_date, direction, amount, balance_after,
           reference_type, reference_id, description, created_at, updated_at)
-       VALUES (?, 'funding', NOW(), 'out', ?, ?, 'withdrawal_request', ?, ?, NOW(), NOW())`,
+       VALUES (?, 'quant', NOW(), 'out', ?, ?, 'withdrawal_request', ?, ?, NOW(), NOW())`,
       [
         userId,
         totalDeduct,
@@ -495,8 +495,8 @@ router.put('/:id/approve', async (req, res) => {
       `INSERT INTO wallets_log
          (user_id, category, log_date, direction, amount, balance_after,
           reference_type, reference_id, description, created_at, updated_at)
-       VALUES (?, 'funding', NOW(), 'out', ?, 
-               (SELECT fund_balance FROM wallets WHERE user_id = ?),
+       VALUES (?, 'quant', NOW(), 'out', ?, 
+               (SELECT quant_balance FROM wallets WHERE user_id = ?),
                'withdrawal', ?, 'Withdrawal approved', NOW(), NOW())`,
       [wd.user_id, wd.amount, wd.user_id, id]
     );
@@ -530,10 +530,10 @@ router.put('/:id/reject', async (req, res) => {
     );
     if (!wd) return res.status(404).json({ success: false, error: 'Withdrawal not found or not pending' });
 
-    // 2) wallets.fund_balance 환불
+    // 2) wallets.quant_balance 환불
     await conn.query(
       `UPDATE wallets 
-         SET fund_balance = fund_balance + ?, updated_at = NOW() 
+         SET quant_balance = quant_balance + ?, updated_at = NOW() 
        WHERE user_id = ?`,
       [wd.amount, wd.user_id]
     );
@@ -551,8 +551,8 @@ router.put('/:id/reject', async (req, res) => {
       `INSERT INTO wallets_log
          (user_id, category, log_date, direction, amount, balance_after,
           reference_type, reference_id, description, created_at, updated_at)
-       VALUES (?, 'funding', NOW(), 'in', ?, 
-               (SELECT fund_balance FROM wallets WHERE user_id = ?),
+       VALUES (?, 'quant', NOW(), 'in', ?, 
+               (SELECT quant_balance FROM wallets WHERE user_id = ?),
                'withdrawal_reject', ?, 'Withdrawal rejected', NOW(), NOW())`,
       [wd.user_id, wd.amount, wd.user_id, id]
     );

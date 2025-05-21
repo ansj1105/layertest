@@ -5,6 +5,8 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import '../styles/topbar.css';
 import '../styles/FundingDetailPage.css';
+import AlertPopup from './AlertPopup';
+
 export default function FundingDetailPage() {
   const { t } = useTranslation();
   const { id } = useParams();
@@ -15,6 +17,8 @@ export default function FundingDetailPage() {
   const [amount, setAmount] = useState("");
   const [availableBalance, setAvailableBalance] = useState(0);
   const [error, setError] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertInfo, setAlertInfo] = useState({ title: '', message: '', type: 'success' });
 
   useEffect(() => {
     (async () => {
@@ -46,7 +50,7 @@ export default function FundingDetailPage() {
     }
     const remaining = project.targetAmount - project.currentAmount;
     if (amt > remaining) {
-      return alert(t("funding.detail2.exceedRemaining", { remaining: remaining.toFixed(6) }));
+      return setError(t("funding.detail2.exceedRemaining", { remaining: remaining.toFixed(6) }));
     }
     if (amt > availableBalance) {
       return setError(t("funding.detail2.insufficientBalance"));
@@ -57,10 +61,19 @@ export default function FundingDetailPage() {
         { amount: amt },
         { withCredentials: true }
       );
-      alert(t("funding.detail2.subscribeSuccess"));
-      navigate("/funding");
+      setAlertInfo({
+        title: t('funding.detail2.subscribeSuccessTitle'),
+        message: t('funding.detail2.subscribeSuccessWithAmount', { amount: amt }),
+        type: 'success'
+      });
+      setShowAlert(true);
     } catch (err) {
-      setError(err.response?.data?.error || t("funding.detail2.subscribeError"));
+      setAlertInfo({
+        title: t('funding.detail2.subscribeErrorTitle'),
+        message: err.response?.data?.error || t('funding.detail2.subscribeError'),
+        type: 'error'
+      });
+      setShowAlert(true);
     }
   };
 
@@ -126,6 +139,18 @@ export default function FundingDetailPage() {
         </ul>
       )}
     </div>
+    {showAlert && (
+      <AlertPopup
+        isOpen={showAlert}
+        onClose={() => {
+          setShowAlert(false);
+          if (alertInfo.type === 'success') navigate('/funding');
+        }}
+        title={alertInfo.title}
+        message={alertInfo.message}
+        type={alertInfo.type}
+      />
+    )}
     </div>
   );
 }

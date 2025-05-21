@@ -121,17 +121,20 @@
       "forgot": "Tìm mật khẩu"
     },
     "walletLogs": {
+      "in" : "Gửi tiền",
+      "out" : "Rút tiền",
       "prev": "Trước",
       "next": "Tiếp",
       "back": "Quay lại",
       "title": "Lịch sử chuyển",
       "tabs": {
         "transfer": "Chuyển",
-        "walletEarnings": "Thu nhập Ví",
-        "financeIncome": "Thu nhập Tài chính"
+        "walletEarnings": "Thu nhập Ví-Logs",
+        "financeIncome": "Thu nhập Tài chính-Logs"
       },
       "columns": {
         "description": "Mô tả",
+        "direction" : "hướng",
         "type": "Loại",
         "amount": "Số lượng",
         "fee": "Phí",
@@ -250,6 +253,9 @@
       "errorLoad": "Không tải được lịch sử.",
       "tokenPurchase": {
         "title": "Token USC",
+        "purchaseSuccessTitle": "Mua thành công",
+        "purchaseSuccessWithAmount": "{{amount}} USDT đã mua.",
+        "purchaseFailTitle": "Mua thất bại",
         "redeemSuccess": "Đổi thưởng thành công",
         "available": "USC khả dụng",
         "inputUsdc": "USC",
@@ -357,11 +363,15 @@
         "active_projects": "Dự án đang diễn ra",
         "expired_projects": "Dự án đã kết thúc",
         "no_active_projects": "Không có dự án đang diễn ra.",
+        "investing_amount": "Số dư đang đầu tư: {{amount}} USDT",
         "no_expired_projects": "Không có dự án đã kết thúc.",
         "expired_label": "Dự án đã hết hạn",
         "detail2": {
           "loading": "Đang tải...",
           "loadError": "Không tải được thông tin dự án:",
+          "subscribeSuccessTitle": "Đầu tư thành công",
+          "subscribeSuccessWithAmount": "{{amount}} USDT đã đầu tư.",
+          "subscribeErrorTitle": "Đầu tư thất bại",
           "invalidAmount": "Vui lòng nhập số hợp lệ.",
           "amountRange": "Vui lòng nhập số trong khoảng {{min}} đến {{max}}.",
           "insufficientBalance": "Bạn không đủ số dư.",
@@ -627,6 +637,7 @@
           "claim_fail": "Nhận thưởng thất bại."
         },
         "join_reward": {
+          "step" : "Thưởng Đăng ký",
           "title": "Thưởng Đăng ký",
           "success": "Thành công",
           "reward_claimed": "Register bonus {{amount}} USDT has been credited.",

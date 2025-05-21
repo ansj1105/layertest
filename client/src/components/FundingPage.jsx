@@ -16,7 +16,8 @@ export default function FundingPage() {
     todayProjectIncome: 0,
     totalProjectIncome: 0,
     depositFee: 0,    // % 단위
-    withdrawFee: 0    // % 단위
+    withdrawFee: 0,    // % 단위
+    investingAmount: 0 // 투자중인 금액 추가
   });
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -42,7 +43,8 @@ export default function FundingPage() {
       todayProjectIncome: parseFloat(data.todayProjectIncome),
       totalProjectIncome: parseFloat(data.totalProjectIncome),
       depositFee: data.depositFee,
-      withdrawFee: data.withdrawFee
+      withdrawFee: data.withdrawFee,
+      investingAmount: parseFloat(data.investingAmount) || 0 // 투자중인 금액 추가
     };
   };
  
@@ -193,7 +195,11 @@ export default function FundingPage() {
             <div className="funding-balance-amount-ll">
 
               <div className="funding-balance-amount">
-                {financeBalance.toFixed(6)}&nbsp;&nbsp;USDT
+                {(financeBalance + summary.investingAmount).toFixed(6)}&nbsp;&nbsp;USDT
+                <br></br>
+                <span style={{ fontSize: '0.95em', color: '#ffd700', marginLeft: 8 }}>
+                  ({t('funding.investing_amount', { amount: summary.investingAmount.toFixed(6) })})
+                </span>
               </div>
                 <button
                   onClick={() => navigate("/funding/logs")}

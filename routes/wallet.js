@@ -267,9 +267,9 @@ router.post('/projects/:id/invest', async (req, res) => {
        // c) wallets_log에 수익(in) 내역 추가
        await db.query(
          `INSERT INTO wallets_log
-            (user_id, category, log_date, direction, amount, balance_after, reference_type, reference_id, description, created_at)
+            (user_id, category, log_date, direction, amount, balance_after, reference_type, reference_id, description, created_at, updated_at)
           VALUES
-            (?, 'funding', NOW(), 'in', ?, ?, 'funding_investment', ?, '프로젝트 초기 수익 지급', NOW())`,
+            (?, 'funding', NOW(), 'in', ?, ?, 'funding_investment', ?, '프로젝트 초기 수익 지급', NOW(), NOW())`,
          [userId, profit, balanceAfterForProfit, investmentId]
        );
     // 7) 지갑에서 금액 차감
@@ -286,12 +286,12 @@ router.post('/projects/:id/invest', async (req, res) => {
       [userId]
     );
 
-    // 8) wallets_log 에 “funding – out” 로그 추가
+    // 8) wallets_log 에 "funding – out" 로그 추가
     await db.query(
       `INSERT INTO wallets_log
-         (user_id, category, log_date, direction, amount, balance_after, reference_type, reference_id, description, created_at)
+         (user_id, category, log_date, direction, amount, balance_after, reference_type, reference_id, description, created_at, updated_at)
        VALUES
-         (?, 'funding', NOW(), 'out', ?, ?, 'funding_investment', ?, '프로젝트 투자 참여', NOW())`,
+         (?, 'funding', NOW(), 'out', ?, ?, 'funding_investment', ?, '프로젝트 투자 참여', NOW(), NOW())`,
       [userId, investAmount, balanceAfter, investmentId]
     );
 
@@ -391,6 +391,16 @@ router.get('/finance-summary', async (req, res) => {
         [userId]
       );
 
+      // 5) 투자 중인 금액 (진행 중인 프로젝트만)
+      const [[{ investingAmount = 0 }]] = await db.query(
+        `SELECT IFNULL(SUM(fi.amount), 0) AS investingAmount
+         FROM funding_investments fi
+         JOIN funding_projects fp ON fi.project_id = fp.id
+         WHERE fi.user_id = ?
+           AND fp.status != 'closed'`,
+        [userId]
+      );
+
       res.json({
         success: true,
         data: {
@@ -399,7 +409,8 @@ router.get('/finance-summary', async (req, res) => {
           todayProjectIncome,
           totalProjectIncome,
           depositFee,
-          withdrawFee
+          withdrawFee,
+          investingAmount
         }
       });
     } catch (err) {
@@ -703,6 +714,70 @@ router.put('/admin/wallet-settings',  async (req, res) => {
   } catch (err) {
     console.error('Error updating wallet settings:', err);
     return res.status(500).json({ error: 'Failed to update settings' });
+  }
+});
+
+// 관리자용 프로젝트 삭제 및 투자금 반환
+router.delete('/admin/projects/:id', async (req, res) => {
+  const user = req.session.user;
+  if (!user?.id || !user.isAdmin) {
+    return res.status(401).json({ error: 'Not authenticated as admin' });
+  }
+
+  const projectId = req.params.id;
+
+  const conn = await db.getConnection();
+  try {
+    await conn.beginTransaction();
+
+    // 1. 프로젝트 상태 확인
+    const [[proj]] = await conn.query(
+      'SELECT status FROM funding_projects WHERE id = ?',
+      [projectId]
+    );
+    if (!proj) {
+      await conn.rollback();
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    let refunded = 0;
+    if (proj.status === 'open') {
+      // 2. 투자 내역 조회
+      const [investments] = await conn.query(
+        'SELECT user_id, amount FROM funding_investments WHERE project_id = ?',
+        [projectId]
+      );
+
+      // 3. 각 투자자에게 투자금 반환
+      for (const inv of investments) {
+        await conn.query(
+          'UPDATE wallets SET fund_balance = fund_balance + ? WHERE user_id = ?',
+          [inv.amount, inv.user_id]
+        );
+        // 반환 로그 기록
+        await conn.query(
+          `INSERT INTO wallets_log
+            (user_id, category, log_date, direction, amount, balance_after, reference_type, reference_id, description, created_at, updated_at)
+           VALUES (?, 'funding', NOW(), 'in', ?, 
+             (SELECT fund_balance FROM wallets WHERE user_id = ?),
+             'funding_refund', ?, '프로젝트취소로인한반환', NOW(), NOW())`,
+          [inv.user_id, inv.amount, inv.user_id, projectId]
+        );
+      }
+      refunded = investments.length;
+    }
+
+    // 4. 프로젝트 삭제 (status 관계없이)
+    await conn.query('DELETE FROM funding_projects WHERE id = ?', [projectId]);
+
+    await conn.commit();
+    res.json({ success: true, refunded });
+  } catch (err) {
+    await conn.rollback();
+    console.error('프로젝트 삭제/환불 오류:', err);
+    res.status(500).json({ error: 'Project deletion/refund failed' });
+  } finally {
+    conn.release();
   }
 });
 

@@ -68,7 +68,7 @@ export default function WithdrawMethodPage() {
       try {
         const response = await axios.get("/api/wallet/finance-summary");
         if (response.data.success) {
-          setCurrentBalance(response.data.data.fundBalance);
+          setCurrentBalance(response.data.data.quantBalance);
         }
       } catch (err) {
         console.error("❌ 잔액 조회 실패:", err);

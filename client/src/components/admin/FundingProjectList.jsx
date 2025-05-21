@@ -32,7 +32,8 @@ export default function FundingProjectList() {
   }, []);
 
   const handleDelete = async (id) => {
-    const url = `/api/wallet/projects/${id}`;
+    if (!window.confirm("정말 삭제하시겠습니까?")) return;
+    const url = `/api/wallet/admin/projects/${id}`;
     console.log("[DEBUG] DELETE 요청 URL:", url);
     try {
       await axios.delete(url, { withCredentials: true });

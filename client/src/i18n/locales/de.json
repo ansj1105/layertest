@@ -121,17 +121,20 @@
     "forgot": "Passwort finden"
   },
   "walletLogs": {
+    "in" : "Einzahlung",
+    "out" : "Auszahlung",
     "prev": "Zurück",
     "next": "Weiter",
     "back": "Zurück",
     "title": "Überweisungsverlauf",
     "tabs": {
       "transfer": "Überweisungen",
-      "walletEarnings": "Wallet-Erträge",
-      "financeIncome": "Finanzeinnahmen"
+      "walletEarnings": "Wallet-Erträge-Logs",
+      "financeIncome": "Finanzeinnahmen-Logs"
     },
     "columns": {
       "description": "Beschreibung",
+      "direction" : "Richtung",
       "type": "Typ",
       "amount": "Betrag",
       "fee": "Gebühr",
@@ -263,6 +266,9 @@
   },
     "tokenPurchase": {
     "title": "USC-Token",
+    "purchaseSuccessTitle": "Kauf erfolgreich",
+    "purchaseSuccessWithAmount": "{{amount}} USDT gekauft.",
+    "purchaseFailTitle": "Kauf fehlgeschlagen",
     "redeemSuccess": "Einlösung erfolgreich",
     "available": "Verfügbar: USC",
     "inputUsdc": "USC ",
@@ -370,10 +376,14 @@
     "active_projects": "Laufende Projekte",
     "expired_projects": "Abgelaufene Projekte",
     "no_active_projects": "Keine laufenden Projekte.",
+    "investing_amount": "Investiertes Guthaben: {{amount}} USDT",
     "no_expired_projects": "Keine abgelaufenen Projekte.",
     "expired_label": "Abgelaufene Projekte",
     "detail2": {
       "loading": "Laden…",
+      "subscribeSuccessTitle": "Investition erfolgreich",
+      "subscribeSuccessWithAmount": "{{amount}} USDT investiert.",
+      "subscribeErrorTitle": "Investition fehlgeschlagen",
       "loadError": "Projektinformationen konnten nicht geladen werden:",
       "invalidAmount": "Bitte geben Sie einen gültigen Betrag ein.",
       "amountRange": "Bitte geben Sie einen Betrag zwischen {{min}} und {{max}} ein.",
@@ -640,6 +650,7 @@
       "claim_fail": "Einlösen der Belohnung fehlgeschlagen."
     },
     "join_reward": {
+      "step" : "Registrierungsbelohnungen",
       "title": "Registrierungsbelohnungen",
       "success": "Erfolg",
       "reward_claimed": "Registrierungsbonus {{amount}} USDT wurde gutgeschrieben.",

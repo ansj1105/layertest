@@ -147,17 +147,20 @@
     "privacy": "Политика Конфиденциальности"
   },
   "walletLogs": {
+    "in" : "Вывод",
+    "out" : "Вывод",
     "prev": "предыдущий",
     "next": "следующий",
     "back": "Назад",
     "title": "Журнал Переводов",
     "tabs": {
       "transfer": "Переводы",
-      "walletEarnings": "Доход с Кошелька",
-      "financeIncome": "Финансовый Доход"
+      "walletEarnings": "Доход с Кошелька-Logs",
+      "financeIncome": "Финансовый Доход-Logs"
     },
     "columns": {
       "description": "описание",
+      "direction" : "направление",
       "type": "Тип",
       "amount": "Сумма",
       "fee": "Комиссия",
@@ -289,6 +292,9 @@
   },
   "tokenPurchase": {
     "title": "USC Токен",
+    "purchaseSuccessTitle": "Покупка успешна",
+    "purchaseSuccessWithAmount": "{{amount}} USDT куплен.",
+    "purchaseFailTitle": "Покупка не удалась",
     "redeemSuccess": "Погашение успешно",
     "available": "USC доступно",
     "inputUsdc": "USC",
@@ -394,12 +400,16 @@
   },
   "funding": {
     "active_projects": "Текущие проекты",
+    "investing_amount": "Инвестированная сумма: {{amount}} USDT",
     "expired_projects": "Завершенные проекты",
     "no_active_projects": "Нет текущих проектов.",
     "no_expired_projects": "Нет завершенных проектов.",
     "expired_label": "Завершенные проекты",
     "detail2": {
       "loading": "Загрузка...",
+      "subscribeSuccessTitle": "Инвестиция успешна",
+      "subscribeSuccessWithAmount": "{{amount}} USDT инвестировано.",
+      "subscribeErrorTitle": "Инвестиция не удалась",
       "loadError": "Не удалось загрузить информацию о проекте:",
       "invalidAmount": "Пожалуйста, введите корректную сумму.",
       "amountRange": "Пожалуйста, введите сумму между {{min}} и {{max}}.",
@@ -667,6 +677,7 @@
     },
     "join_reward": {
       "title": "Награды за Регистрацию",
+      "step" : "Награды за Регистрацию",
       "success": "Успех",
       "reward_claimed": "Регистрационный бонус {{amount}} USDT был начислен.",
       "error": "Ошибка",

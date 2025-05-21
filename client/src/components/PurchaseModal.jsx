@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import '../styles/TokenPurchasePage.css';
+import AlertPopup from './AlertPopup';
+
 export default function PurchaseModal({ sale, walletBalance, onClose, onPurchased }) {
   const { t } = useTranslation();
 
@@ -16,6 +18,8 @@ export default function PurchaseModal({ sale, walletBalance, onClose, onPurchase
   const [inputValue, setInputValue] = useState(String(minAmount));
   // 전체 비용
   const totalCost = +(pricePer * quantity).toFixed(6);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertInfo, setAlertInfo] = useState({ title: '', message: '', type: 'success' });
 
   // 유효성 검사
   const validate = (q = quantity) => {
@@ -75,11 +79,20 @@ export default function PurchaseModal({ sale, walletBalance, onClose, onPurchase
         { withCredentials: true }
       );
       onPurchased();
-      onClose();
-      alert(t('tokenPurchase.purchaseSuccess'));
+      setAlertInfo({
+        title: t('tokenPurchase.purchaseSuccessTitle'),
+        message: t('tokenPurchase.purchaseSuccessWithAmount', { amount: quantity }),
+        type: 'success'
+      });
+      setShowAlert(true);
     } catch (e) {
       console.error(e);
-      alert(e.response?.data?.error || t('tokenPurchase.errors.purchaseFail'));
+      setAlertInfo({
+        title: t('tokenPurchase.purchaseFailTitle'),
+        message: e.response?.data?.error || t('tokenPurchase.errors.purchaseFail'),
+        type: 'error'
+      });
+      setShowAlert(true);
     }
   };
 
@@ -169,6 +182,16 @@ export default function PurchaseModal({ sale, walletBalance, onClose, onPurchase
         >
           {t("tokenPurchase.buy")}
         </button>
+        <AlertPopup
+          isOpen={showAlert}
+          onClose={() => {
+            setShowAlert(false);
+            onClose();
+          }}
+          title={alertInfo.title}
+          message={alertInfo.message}
+          type={alertInfo.type}
+        />
       </div>
     </div>
   );

@@ -121,17 +121,20 @@
       "forgot": "パスワードを探す"
     },
     "walletLogs": {
+      "in" : "入金",
+      "out" : "出金",
       "prev": "前へ",
       "next": "次へ",
       "back": "戻る",
       "title": "送金履歴",
       "tabs": {
         "transfer": "送金",
-        "walletEarnings": "ウォレット収益",
-        "financeIncome": "金融収益"
+        "walletEarnings": "ウォレット収益-Logs",
+        "financeIncome": "金融収益-Logs"
       },
       "columns": {
         "description": "説明",
+        "direction" : "方向",
         "type": "種類",
         "amount": "数量",
         "fee": "手数料",
@@ -263,6 +266,9 @@
       },
       "tokenPurchase": {
         "title": "USCトークン",
+        "purchaseSuccessTitle": "購入に成功しました！",
+        "purchaseSuccessWithAmount": "{{amount}} USDTを購入しました。",
+        "purchaseFailTitle": "購入に失敗しました。",
         "redeemSuccess": "引き出し成功",
         "available": "利用可能USC",
         "inputUsdc": "USC を入力",
@@ -368,12 +374,16 @@
       },
       "funding": {
         "active_projects": "進行中のプロジェクト",
+        "investing_amount": "投資額：{{amount}} USDT",
         "expired_projects": "終了したプロジェクト",
         "no_active_projects": "進行中のプロジェクトはありません。",
         "no_expired_projects": "終了したプロジェクトはありません。",
         "expired_label": "終了したプロジェクト",
         "detail2": {
           "loading": "読み込み中...",
+          "subscribeSuccessTitle": "投資に成功しました",
+          "subscribeSuccessWithAmount": "{{amount}} USDTを投資しました。",
+          "subscribeErrorTitle": "投資に失敗しました",
           "loadError": "プロジェクト情報の読み込みに失敗しました：",
           "invalidAmount": "有効な数量を入力してください。",
           "amountRange": "{{min}}〜{{max}}の範囲で入力してください。",
@@ -641,6 +651,7 @@
         },
         "join_reward": {
           "title": "登録報酬",
+          "step" : "登録報酬",
           "success": "成功",
           "reward_claimed": "新規登録成功後に{{amount}} USDTを受け取ります。",
           "error": "エラー",

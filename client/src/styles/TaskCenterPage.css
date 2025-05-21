@@ -86,20 +86,36 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem; /* p-3 */
+  padding: 0.75rem;
   background: #111b1b;
   border-radius: 0.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 1px 1px #b8dfd9;
-  border-radius: 0.5rem; /* rounded */
+  border-radius: 0.5rem;
   cursor: pointer;
   padding: 14px;
   border-radius: 8px;
   margin-top: 5px;
   margin-bottom: 5px !important;
+  gap: 24px; /* 설명과 버튼 사이 간격 추가 */
 }
 
+.join-reward-info {
+  flex: 1;
+  padding-right: 16px; /* 설명 오른쪽에 여백 */
+}
 
+.join-reward-desc {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: #fde68a;
+}
+
+.join-reward-button {
+  align-self: flex-start;
+  margin-left: auto;
+}
 
 /* 보상 텍스트 */
 .invite-reward-text {

@@ -296,12 +296,18 @@ router.post('/join-rewards/claim/:id', async (req, res) => {
     if (ujr?.claimed) return res.status(400).json({ error:'이미 수령하셨습니다.' });
 
     // 3) 지갑 잔액 조건 체크
+    console.log('지갑 잔액 조회 시작 - userId:', userId);
     const [[wallet]] = await db.query(
-      'SELECT fund_balance FROM wallets WHERE user_id=?',
+      'SELECT quant_balance FROM wallets WHERE user_id=?',
       [userId]
     );
-    if (!wallet || wallet.fund_balance < jr.required_balance) {
-      return res.status(400).json({ error:`펀드 잔액이 ${jr.required_balance} USDT 이상이어야 합니다.` });
+    console.log('지갑 잔액 조회 결과:', wallet);
+    
+    const userBalance = Number(wallet?.quant_balance || 0);
+    const requiredBalance = Number(jr.required_balance);
+    
+    if (!wallet || userBalance < requiredBalance) {
+      return res.status(400).json({ error:`퀀트 잔액이 ${requiredBalance} USDT 이상이어야 합니다.` });
     }
 
     // 4) 펀드 잔액 갱신 + 수령 기록

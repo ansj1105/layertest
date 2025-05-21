@@ -1,5 +1,6 @@
 {
   "order_history": {
+
     "title": "Mes Commandes et Remboursements",
     "orders": {
       "title": "Historique des Commandes",
@@ -147,17 +148,20 @@
     }
   },
   "walletLogs": {
+    "in" : "Dépôt",
+    "out" : "Retrait",
     "prev": "précédent",
     "next": "suivant",
     "back": "Retour",
     "title": "Journaux de transfert",
     "tabs": {
       "transfer": "Transferts",
-      "walletEarnings": "Gains du portefeuille",
-      "financeIncome": "Revenus financiers"
+      "walletEarnings": "Gains du portefeuille-Logs",
+      "financeIncome": "Revenus financiers-Logs"
     },
     "columns": {
       "description": "description",
+      "direction" : "direction",
       "type": "Type",
       "amount": "Montant",
       "fee": "Frais",
@@ -289,6 +293,9 @@
   },
   "tokenPurchase": {
     "title": "Token USC",
+    "purchaseSuccessTitle": "Achat réussi",
+    "purchaseSuccessWithAmount": "{{amount}} USDT acheté.",
+    "purchaseFailTitle": "Achat échoué",
     "redeemSuccess": "rachat réussi",
     "available": "USC disponible",
     "inputUsdc": "USC",
@@ -394,6 +401,7 @@
   },
   "funding": {
     "active_projects": "Projets en cours",
+    "investing_amount": "Montant investi : {{amount}} USDT",
     "expired_projects": "Projets expirés",
     "no_active_projects": "Aucun projet en cours.",
     "no_expired_projects": "Aucun projet expiré.",
@@ -775,6 +783,7 @@
     },
     "join_reward": {
       "title": "Récompenses d'Inscription",
+      "step" : "Récompenses d'Inscription",
       "success": "Succès",
       "reward_claimed": "Récompense d'inscription {{amount}} USDT a été créditée.",
       "error": "Erreur",

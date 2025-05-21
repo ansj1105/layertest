@@ -43,31 +43,26 @@ export default function WalletLogsPage() {
             .then(res => setLogs(res.data.data || []))
             .catch(console.error)
             .finally(() => setLoading(false));
+          setQuantProfits([]); // transfer 탭 이동시 초기화
       
         } else if (tab === 'walletEarnings') {
-          // quant-profits 호출
           setLoading(true);
-          console.log('📡 fetching quant-profits…');
+          setQuantProfits([]); // 탭 진입시 초기화
           Promise.all([
-            // quant-profits 데이터
             axios.get('/api/logs/quant-profits', { withCredentials:true }),
-            // invite_rewards 데이터
             axios.get('/api/logs/wallets-log', { withCredentials:true })
-              .then(res => res.data.data.filter(r => 
-                r.referenceType === 'invite_rewards' || r.referenceType === 'join_rewards'
-              ))
           ])
-            .then(([quantRes, rewards]) => {
-              console.log('✅ quant-profits response', quantRes.data.data);
-              console.log('✅ rewards response', rewards);
-              // 두 데이터 합치기
+            .then(([quantRes, walletsRes]) => {
+              const rewards = (walletsRes.data.data || []).filter(r =>
+                r.referenceType === 'invite_rewards' || r.referenceType === 'join_rewards'
+              );
               const combinedData = [
                 ...(quantRes.data.data || []),
                 ...rewards
               ].sort((a, b) => {
                 const dateA = new Date(a.created_at || a.logDate);
                 const dateB = new Date(b.created_at || b.logDate);
-                return dateB - dateA; // 최신 날짜가 먼저 오도록 정렬
+                return dateB - dateA;
               });
               setQuantProfits(combinedData);
             })
@@ -81,7 +76,7 @@ export default function WalletLogsPage() {
                      .then(res => {
                        // funding 관련 항목 필터
                        setWalletLogs((res.data.data || []).filter(r => 
-                         r.direction === 'in' && 
+                        // r.direction === 'in' && 
                          r.category === 'funding' && 
                          r.referenceType === 'funding_investment'
                        ));
@@ -89,10 +84,12 @@ export default function WalletLogsPage() {
                      })
                      .catch(console.error)
                      .finally(() => setLoading(false));
+                   setQuantProfits([]); // financeIncome 탭 이동시 초기화
       
         } else {
           // financeIncome or 기타
           setLoading(false);
+          setQuantProfits([]); // 기타 탭 이동시도 초기화
         }
   }, [tab]);
 
@@ -137,12 +134,13 @@ export default function WalletLogsPage() {
           <>
             <td className="p-2">{new Date(r.created_at || r.logDate).toLocaleDateString()}</td>
             <td className="p-2">{parseFloat(r.amount).toFixed(6)} USDT</td>
-            <td className="p-2">{r.type ? t(`walletLogs.quantTypes.${r.type}`) : 'Invite Reward'}</td>
+            <td className="p-2">{r.type ? t(`walletLogs.quantTypes.${r.type}`) : (r.referenceType === 'join_rewards' ? 'Join Reward' : 'Invite Reward')}</td>
           </>
         ) : /* financeIncome */ (
           <>
             <td className="p-2">{new Date(r.logDate).toLocaleDateString()}</td>
             <td className="p-2">{parseFloat(r.amount).toFixed(6)} USDT</td>
+            <td className="p-2">{r.direction === 'in' ? t('walletLogs.in') : t('walletLogs.out')}</td>
             <td className="p-2">{r.description}</td>
           </>
         )}
@@ -240,6 +238,7 @@ export default function WalletLogsPage() {
               <tr>
                 <th>{t('walletLogs.columns.date')}</th>
                 <th>{t('walletLogs.columns.amount')}</th>
+                <th>{t('walletLogs.columns.direction')}</th>
                 <th>{t('walletLogs.columns.description')}</th>
               </tr>
             )}
