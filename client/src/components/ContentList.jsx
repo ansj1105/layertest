@@ -6,6 +6,9 @@ import axios from 'axios';
 import VideoWithPreview from './VideoWithPreview';
 import '../styles/MainLanding.css';
 export default function ContentList() {
+  // 컴포넌트 최상단에
+const API_HOST = import.meta.env.VITE_API_HOST || 'http://localhost:4000';
+
   const [banners, setBanners] = useState([]);
   const [video, setVideo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -69,7 +72,7 @@ export default function ContentList() {
               {banners.map((banner, idx) => (
                 <div key={idx} className="h-[170px] overflow-hidden rounded">
                   <img
-                    src={`http://54.85.128.211:4000${banner.file_path}`}
+                    src={`${API_HOST}${banner.file_path}`}
                     alt={`banner-${idx}`}
                     className="w-full h-full object-cover"
                   />
@@ -82,10 +85,10 @@ export default function ContentList() {
           {/* 동영상: VideoWithPreview 컴포넌트 사용 */}
           {video && (
             <div className="w-full aspect-video">
-              <VideoWithPreview
-                src={`http://54.85.128.211:4000${video}`}
-              />
-            </div>
+            <VideoWithPreview
+              src={`${API_HOST}${video}`}
+            />
+          </div>
           )}
         </>
       )}

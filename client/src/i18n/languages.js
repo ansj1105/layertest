@@ -7,6 +7,7 @@ export const LANGUAGES = [
     { code: 'ru', label: 'Русский',  flag: '🇷🇺', implemented: true },
     { code: 'ja', label: '日本語',   flag: '🇯🇵', implemented: true },
     { code: 'vi', label: 'Tiếng Việt', flag: '🇻🇳', implemented: true },
+    { code: 'zh', label: '中文', flag: '🇨🇳', implemented: true },
     // …원하시는 만큼 추가…
   ];
   

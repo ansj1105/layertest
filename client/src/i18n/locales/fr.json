@@ -88,7 +88,7 @@
     "email": "Email",
     "password": "Mot de passe",
     "confirmPassword": "Confirmer le mot de passe",
-    "referral": "Code de parrainage (Optionnel)",
+    "referral": "Code de parrainage",
     "submit": "S'inscrire",
     "name_error": "Le nom doit contenir au moins 2 caractères.",
     "email_error": "Format d'email invalide.",

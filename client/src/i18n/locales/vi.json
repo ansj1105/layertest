@@ -87,7 +87,7 @@
       "email": "Email",
       "password": "Mật khẩu",
       "confirmPassword": "Xác nhận mật khẩu",
-      "referral": "Mã giới thiệu (Tùy chọn)",
+      "referral": "Mã giới thiệu",
       "submit": "Đăng ký",
       "name_error": "Tên phải có ít nhất 2 ký tự.",
       "email_error": "Định dạng email không hợp lệ.",

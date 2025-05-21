@@ -10,6 +10,7 @@ const axios = require("axios");
 const session = require("express-session"); // ✅ 세션 추가
 const { calculateFundingProfits } = require('./routes/fundingProfit');
 const { accrueDailyProfits, handleProjectExpiry } = require('./schedulers/projectScheduler');
+
 const app = express();
 
 app.use(
@@ -84,6 +85,15 @@ const tokenRoutes = require('./routes/token'); // ✅ QVC 토큰 관련 라우�
 const rechargeRoutes = require('./routes/recharge'); //코인충전관련
 const mydataRoutes = require('./routes/mydata');
 const logsRoutes = require('./routes/logs');
+const chatRoutes = require('./routes/chat');
+const { authenticateToken, isChatAdmin } = require('./middleware/auth');
+const { loginRouter, router: chatRouter, wss } = chatRoutes;
+
+
+// 로그인 라우트만 별도 등록 (라우터 인스턴스이므로 OK)
+app.use('/api/chat', chatRouter); // 인증 필요하면 미들웨어 추가
+app.use('/api/chat/admin/login', loginRouter); // 인증 없이
+
 const projectsRoutes = require('./routes/projects');
 app.use('/api/projects', projectsRoutes);
 app.use('/api/mydata', mydataRoutes);
@@ -266,8 +276,100 @@ cron.schedule('0 * * * *', async () => {
   }
 });
   // ✅ 서버 실행
-  const PORT = process.env.PORT || 4000;
-  app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
+  const server = app.listen(process.env.PORT || 4000, () => {
+    console.log(`Server is running on port ${process.env.PORT || 4000}`);
+  });
+
+  server.on('upgrade', (request, socket, head) => {
+    const pathname = new URL(request.url, `http://${request.headers.host}`).pathname;
+    console.log('WebSocket upgrade request:', { 
+      pathname, 
+      headers: request.headers,
+      url: request.url 
+    });
+
+    if (pathname === '/chat') {
+      wss.handleUpgrade(request, socket, head, (ws) => {
+        console.log('WebSocket connection established');
+        wss.emit('connection', ws, request);
+      });
+    } else {
+      console.log('WebSocket upgrade rejected - invalid path:', pathname);
+      socket.destroy();
+    }
+  });
+
+  // WebSocket 서버 이벤트 로깅 추가
+  wss.on('connection', async (ws, req) => {
+    console.log('New WebSocket connection attempt');
+    
+    const isAuthenticated = await authenticateWebSocket(ws, req);
+    if (!isAuthenticated) {
+      console.log('WebSocket authentication failed');
+      ws.close();
+      return;
+    }
+
+    console.log('WebSocket authenticated successfully');
+    const { userId, isAdmin, isGuest, guestId } = req.user;
+    
+    if (isAdmin) {
+      adminClients.set(userId, ws);
+      console.log('Admin client connected:', userId);
+    } else if (isGuest) {
+      guestClients.set(guestId, ws);
+      console.log('Guest client connected:', guestId);
+    } else {
+      clients.set(userId, ws);
+      console.log('User client connected:', userId);
+    }
+
+    ws.on('message', async raw => {
+      try {
+        console.log('Received WebSocket message:', raw.toString());
+        const data = JSON.parse(raw);
+        
+        if (data.type === 'init') {
+          console.log('Client initialization:', data);
+          return;
+        }
+        
+        switch (data.type) {
+          case 'chat':
+            console.log('Processing chat message:', data);
+            await handleChatMessage(data, req.user);
+            break;
+          case 'typing':
+            console.log('Processing typing status:', data);
+            handleTypingStatus(data, req.user);
+            break;
+          default:
+            console.log('Unknown message type:', data.type);
+        }
+      } catch (error) {
+        console.error('Error processing WebSocket message:', error);
+      }
+    });
+
+    ws.on('close', () => {
+      console.log('WebSocket connection closed');
+      if (isAdmin) {
+        adminClients.delete(userId);
+        console.log('Admin client disconnected:', userId);
+      } else if (isGuest) {
+        guestClients.delete(guestId);
+        console.log('Guest client disconnected:', guestId);
+      } else {
+        clients.delete(userId);
+        console.log('User client disconnected:', userId);
+      }
+    });
+
+    ws.on('error', (error) => {
+      console.error('WebSocket error:', error);
+    });
+  });
+
   // ✅ DB 연결 테스트 로그
 db.query('SELECT DATABASE() AS db')
 .then(([rows]) => {

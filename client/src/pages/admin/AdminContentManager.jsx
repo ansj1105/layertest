@@ -14,7 +14,7 @@ export default function AdminContentManager({ onLogout }) {
   const [bannerFile, setBannerFile] = useState(null);
   const [videoFile, setVideoFile] = useState(null);
   const [pdfFile, setPdfFile] = useState(null);
-
+  const API_HOST = import.meta.env.VITE_API_HOST || 'http://localhost:4000';
   // 서버에서 현재 파일 목록 가져오기
   const fetchContentFiles = async () => {
     try {
@@ -34,7 +34,7 @@ export default function AdminContentManager({ onLogout }) {
   const handleDelete = async (id) => {
     if (!window.confirm('정말 삭제하시겠습니까?')) return;
     try {
-      await axios.delete(`/api/content-files/${id}`);
+      await axios.delete(`/api/content-files/${id}/permanent`);
       fetchContentFiles();
     } catch {
       alert('삭제 실패');
@@ -155,7 +155,7 @@ export default function AdminContentManager({ onLogout }) {
             {banners.length > 0 ? banners.map((b) => (
               <li key={b.id} className="flex flex-col items-center bg-white p-2 rounded shadow">
                 <img
-                  src={`http://54.85.128.211:4000${b.file_path}`}
+                  src={`${API_HOST}${b.file_path}`}
                   alt="banner-thumb"
                   className="h-24 w-full object-cover rounded mb-2"
                 />
@@ -200,7 +200,7 @@ export default function AdminContentManager({ onLogout }) {
                 <video
                   controls
                   className="w-full max-w-lg rounded mb-2"
-                  src={`http://54.85.128.211:4000${v.file_path}`}
+                  src={`${API_HOST}${v.file_path}`}
                 />
                 <span className="block text-xs text-gray-600 mb-2">{v.file_path.split('/').pop()}</span>
                 <button
@@ -243,7 +243,7 @@ export default function AdminContentManager({ onLogout }) {
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium">PDF 문서</span>
                   <a
-                    href={`http://54.85.128.211:4000${p.file_path}`}
+                      href={`${API_HOST}${p.file_path}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:text-blue-700 text-sm"

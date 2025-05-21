@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 import AdminNav from '../../components/admin/AdminNav'; // ✅ 네비게이션 컴포넌트 추가
 
-const socket = io('http://54.85.128.211:4000', { withCredentials: true });
+const socket = io('http://localhost:4000', { withCredentials: true });
 
 export default function AdminChat({ onLogout }) {
   const [users, setUsers] = useState([]);

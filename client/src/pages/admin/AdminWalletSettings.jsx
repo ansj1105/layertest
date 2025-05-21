@@ -149,14 +149,14 @@ export default function AdminWalletSettings({ onLogout }) {
 
             {/* auto approve */}
             <div className="mb-4">
-              <label className="block mb-1 font-medium">자동 승인 모드</label>
+              <label className="block mb-1 font-medium">레퍼럴 승인 모드</label>
               <select
                 value={form.auto_approve}
                 onChange={e => handleChange('auto_approve', e.target.value)}
                 className="w-full border px-3 py-2 rounded"
               >
-                <option value="auto">Auto</option>
-                <option value="manual">Manual</option>
+                <option value="auto">자동</option>
+                <option value="manual">수동</option>
               </select>
             </div>
 

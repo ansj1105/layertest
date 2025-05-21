@@ -420,9 +420,33 @@ ORDER BY last_message DESC;
   }
 });
 // ✅ 세션 확인 API
-router.get("/me", (req, res) => {
+router.get("/me", async (req, res) => {
   if (req.session.user) {
-    return res.json({ user: req.session.user });
+    let user = req.session.user;
+    // roomId가 없으면 자동 생성
+    if (!user.roomId) {
+      try {
+        const db = require('../db');
+        // 1. 기존에 방이 있는지 확인
+        const [rooms] = await db.query('SELECT id FROM chat_rooms WHERE user_id = ? LIMIT 1', [user.id]);
+        let roomId;
+        if (rooms.length > 0) {
+          roomId = rooms[0].id;
+        } else {
+          // 2. 없으면 새로 생성
+          const [result] = await db.query('INSERT INTO chat_rooms (user_id, status, created_at) VALUES (?, ?, NOW())', [user.id, 'active']);
+          roomId = result.insertId;
+        }
+        user = { ...user, roomId };
+        req.session.user = user;
+        return res.json({ user });
+      } catch (err) {
+        console.error('채팅방 자동 생성 오류:', err);
+        return res.status(500).json({ error: 'Failed to create chat room' });
+      }
+    } else {
+      return res.json({ user });
+    }
   } else {
     return res.status(401).json({ error: "Not authenticated" });
   }

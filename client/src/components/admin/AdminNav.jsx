@@ -157,7 +157,7 @@ export default function AdminNav({ onLogout }) {
                 지갑 관리
               </Link>
               <Link to="/wallet-settings" className="block px-4 py-2 hover:bg-green-300 border-t">
-                출입금 수수료 설정
+                출입금 수수료 및 기타설정(레퍼럴승인모드)
               </Link>
             </div>
           )}

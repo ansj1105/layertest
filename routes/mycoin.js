@@ -1,47 +1,55 @@
-// 📁 scripts/check-tx.js
-import { getTronWeb } from '../utils/tron.js'; // ESM 쓰시는 경우
-// const { getTronWeb } = require('../utils/tron'); // CommonJS 쓰시는 경우
+// resend-tx.js
+// 간단한 스크립트로 저장된 rawTx JSON을 가져와 재브로드캐스트합니다.
+// 사용법: node resend-tx.js rawTx.json
 
-async function checkTx(txHash) {
-  const tronWeb = getTronWeb(); // .env에 풀/솔리디티/이벤트 서버 모두 설정돼 있어야 함
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+import path from 'path';
+import TronWeb from 'tronweb';
+import dotenv from 'dotenv';
 
-  try {
-    // 1) 풀노드에서 트랜잭션 기본 데이터 조회
-    const tx = await tronWeb.trx.getTransaction(txHash);
-    console.log('🔍 getTransaction →', tx);
+dotenv.config();
 
-    // 2) solidityNode에서 트랜잭션 실행 결과(컨펌 정보) 조회
-    const info = await tronWeb.trx.getTransactionInfo(txHash);
-    console.log('🔍 getTransactionInfo →', info);
+// __dirname 정의 (ESM 환경)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-    // 3) pending pool에도 있는지 확인 (풀노드 전용)
-    try {
-      const pending = await tronWeb.fullNode.request(
-        'wallet/getpendingtransactionbyid',
-        { value: txHash }
-      );
-      console.log('🔍 Pending pool contains:', pending.raw_data ? true : false);
-    } catch (e) {
-      console.log('🔍 Not in pending pool (or RPC not supported):', e.message);
-    }
+async function resendTransaction(rawTxFile) {
+  // 1) rawTx JSON 불러오기
+  const filePath = path.isAbsolute(rawTxFile)
+    ? rawTxFile
+    : path.join(__dirname, rawTxFile);
+  const raw = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
 
-    // 4) confirmed balance vs pending balance 비교 (optional)
-    const address = tx.raw_data.contract[0].parameter.value.owner_address;
-    const base58 = tronWeb.address.fromHex(address);
-    const confirmed = await tronWeb.solidityNode.request(
-      'walletsolidity/getaccount',
-      { address }
-    );
-    console.log(`💰 Confirmed TRX balance for ${base58}:`, tronWeb.fromSun(confirmed.balance || 0));
+  // 2) TronWeb 인스턴스 생성
+  const tronWeb = new TronWeb({
+    fullNode:     process.env.TRON_FULL_NODE     || 'http://localhost:8090',
+    solidityNode: process.env.TRON_SOLIDITY_NODE || 'http://localhost:8091',
+    eventServer:  process.env.TRON_EVENT_SERVER  || 'http://localhost:8092',
+    headers:      { 'TRON-PRO-API-KEY': process.env.TRON_API_KEY }
+  });
 
-    const pendingBal = await tronWeb.trx.getBalance(base58);
-    console.log(`💰 Pending TRX balance for ${base58}:`, tronWeb.fromSun(pendingBal));
+  // 3) 재브로드캐스트
+  console.log('🔄 Re-broadcasting transaction...');
+  const result = await tronWeb.trx.sendRawTransaction(raw);
+  console.log('📋 Broadcast result:', result);
 
-  } catch (err) {
-    console.error('❌ checkTx error:', err);
+  if (result.result === true) {
+    console.log('✅ Transaction successfully rebroadcasted.');
+    console.log('   New txHash:', result.txid);
+  } else {
+    console.error('❌ Broadcast failed:', result);
   }
 }
 
-// txHash는 실행 시 인자로 넘겨줄 수도 있고, 직접 코드에 박아도 됩니다.
-const txHash = process.argv[2] || 'd9dd5b0ac1a8b6b4a5e684838ef9752b22ecd2f979d978aea87624dcc4d9337a';
-checkTx(txHash);
+// CLI 인자 처리
+const [, , rawTxPath] = process.argv;
+if (!rawTxPath) {
+  console.error('Usage: node resend-tx.js <rawTx.json>');
+  process.exit(1);
+}
+
+resendTransaction(rawTxPath).catch(err => {
+  console.error('🚨 Error in resending transaction:', err);
+  process.exit(1);
+});
