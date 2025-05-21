@@ -1,0 +1,14 @@
+{
+  "task": {
+    "invite_reward": {
+      "success": "Success",
+      "reward_claimed": "{{level}}th level reward {{amount}} USDT has been credited.",
+      "error": "Error"
+    },
+    "join_reward": {
+      "success": "Success",
+      "reward_claimed": "Sign-up bonus {{amount}} USDT has been credited.",
+      "error": "Error"
+    }
+  }
+} 

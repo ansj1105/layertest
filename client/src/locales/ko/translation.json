@@ -1,0 +1,14 @@
+{
+  "task": {
+    "invite_reward": {
+      "success": "성공",
+      "reward_claimed": "{{level}}차 보상 {{amount}} USDT가 지급되었습니다.",
+      "error": "오류"
+    },
+    "join_reward": {
+      "success": "성공",
+      "reward_claimed": "가입 보너스 {{amount}} USDT가 지급되었습니다.",
+      "error": "오류"
+    }
+  }
+} 

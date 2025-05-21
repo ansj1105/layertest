@@ -629,6 +629,9 @@
         "title": "タスクセンター",
         "invite_reward": {
           "title": "招待報酬",
+          "success": "成功",
+          "reward_claimed": "{{level}}レベル報酬{{amount}} USDTが付与されました。",
+          "error": "エラー",
           "description": "レベル1直下のアクティブ招待数達成時に報酬を獲得します",
           "required": "{{level}}レベル ({{required}} 招待)",
           "reward": "成功後に{{amount}} USDTを受け取ります。",
@@ -638,6 +641,9 @@
         },
         "join_reward": {
           "title": "登録報酬",
+          "success": "成功",
+          "reward_claimed": "新規登録成功後に{{amount}} USDTを受け取ります。",
+          "error": "エラー",
           "description": "新規登録成功後に{{amount}} USDTを受け取ります。",
           "claim": "受け取る",
           "claimed": "受け取り済み",

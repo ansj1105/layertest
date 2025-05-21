@@ -233,7 +233,7 @@ router.get('/invite-rewards', async (req, res) => {
       // 2) wallets 업데이트
       await db.query(`
         UPDATE wallets
-        SET fund_balance = fund_balance + ?
+        SET quant_balance = quant_balance + ?
         WHERE user_id = ?
       `, [cfg.reward_amount, userId]);
 
@@ -244,7 +244,7 @@ router.get('/invite-rewards', async (req, res) => {
            balance_after, reference_type, reference_id, description,
            created_at, updated_at)
         VALUES (?, 'referral', NOW(), 'in', ?, 
-                (SELECT fund_balance FROM wallets WHERE user_id=?),
+                (SELECT quant_balance FROM wallets WHERE user_id=?),
                 'invite_rewards', ?, 'Invite reward claimed',
                 NOW(), NOW())
       `, [userId, cfg.reward_amount, userId, rewardId]);
@@ -308,7 +308,7 @@ router.post('/join-rewards/claim/:id', async (req, res) => {
     // 펀드 잔액 갱신
     await db.query(`
       UPDATE wallets
-      SET fund_balance = fund_balance + ?
+      SET quant_balance = quant_balance + ?
       WHERE user_id = ?
     `, [jr.amount, userId]);
 
@@ -326,7 +326,7 @@ router.post('/join-rewards/claim/:id', async (req, res) => {
          balance_after, reference_type, reference_id, description,
          created_at, updated_at)
       VALUES (?, 'funding', NOW(), 'in', ?,
-              (SELECT fund_balance FROM wallets WHERE user_id=?),
+              (SELECT quant_balance FROM wallets WHERE user_id=?),
               'join_rewards', ?, 'Join bonus claimed',
               NOW(), NOW())
     `, [userId, jr.amount, userId, rewardId]);

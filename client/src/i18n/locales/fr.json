@@ -763,6 +763,9 @@
     "title": "Centre des Tâches",
     "invite_reward": {
       "title": "Récompenses d'Invitation",
+      "success": "Succès",
+      "reward_claimed": "{{level}}ème niveau récompense {{amount}} USDT a été crédité.",
+      "error": "Erreur",
       "description": "Récompense lorsque vous atteignez le nombre requis de parrainages actifs juste en dessous du Niveau 1",
       "required": "{{level}}ème Niveau ({{required}} parrainages)",
       "reward": "Recevez une récompense de {{amount}} USDT après succès.",
@@ -772,6 +775,9 @@
     },
     "join_reward": {
       "title": "Récompenses d'Inscription",
+      "success": "Succès",
+      "reward_claimed": "Récompense d'inscription {{amount}} USDT a été créditée.",
+      "error": "Erreur",
       "description": "Recevez une récompense de {{amount}} USDT après une nouvelle inscription réussie.",
       "claim": "Réclamer",
       "claimed": "Réclamé",

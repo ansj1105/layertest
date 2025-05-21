@@ -4,8 +4,10 @@ import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, ChevronDown, ChevronUp } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import AlertPopup from './AlertPopup';
 import '../styles/TaskCenterPage.css';
 import '../styles/topbar.css';
+
 export default function TaskCenterPage() {
   const { t } = useTranslation();
   const nav = useNavigate();
@@ -16,6 +18,14 @@ export default function TaskCenterPage() {
 
   // 가입 보너스
   const [joinRewards, setJoinRewards] = useState([]);
+
+  // 알림 상태
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertInfo, setAlertInfo] = useState({
+    title: '',
+    message: '',
+    type: 'success'
+  });
 
   // 초대 보상 불러오기 (토글 시)
   useEffect(() => {
@@ -35,21 +45,52 @@ export default function TaskCenterPage() {
 
   const claimInvite = async id => {
     try {
+      const reward = inviteRewards.find(r => r.id === id);
       await axios.post(`/api/mydata/invite-rewards/claim/${id}`, {}, { withCredentials: true });
       setInviteRewards(rs => rs.map(x => x.id===id ? { ...x, claimed:true } : x));
-      alert(t('task.invite_reward.claimed'));
+      
+      // 알림 표시
+      setAlertInfo({
+        title: t('task.invite_reward.success'),
+        message: t('task.invite_reward.reward_claimed', { 
+          level: reward.level,
+          amount: reward.amount 
+        }),
+        type: 'success'
+      });
+      setShowAlert(true);
     } catch (e) {
-      alert(e.response?.data?.error || t('task.invite_reward.claim_fail'));
+      setAlertInfo({
+        title: t('task.invite_reward.error'),
+        message: e.response?.data?.error || t('task.invite_reward.claim_fail'),
+        type: 'error'
+      });
+      setShowAlert(true);
     }
   };
 
   const claimJoin = async id => {
     try {
+      const reward = joinRewards.find(r => r.id === id);
       await axios.post(`/api/mydata/join-rewards/claim/${id}`, {}, { withCredentials: true });
       setJoinRewards(rs => rs.map(x => x.id===id ? { ...x, claimed:true } : x));
-      alert(t('task.join_reward.claimed'));
+      
+      // 알림 표시
+      setAlertInfo({
+        title: t('task.join_reward.success'),
+        message: t('task.join_reward.reward_claimed', { 
+          amount: reward.amount 
+        }),
+        type: 'success'
+      });
+      setShowAlert(true);
     } catch (e) {
-      alert(e.response?.data?.error || t('task.join_reward.claim_fail'));
+      setAlertInfo({
+        title: t('task.join_reward.error'),
+        message: e.response?.data?.error || t('task.join_reward.claim_fail'),
+        type: 'error'
+      });
+      setShowAlert(true);
     }
   };
 
@@ -148,6 +189,14 @@ export default function TaskCenterPage() {
           ))}
         </div>
       </div>
+
+      <AlertPopup
+        isOpen={showAlert}
+        onClose={() => setShowAlert(false)}
+        title={alertInfo.title}
+        message={alertInfo.message}
+        type={alertInfo.type}
+      />
     </div>
   );
 }

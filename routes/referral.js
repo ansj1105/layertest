@@ -479,17 +479,20 @@ router.get('/stats', async (req, res) => {
             AND status = 'active' 
             AND DATE(created_at) = CURDATE()) AS todayJoined,
 
-        -- 3) 전체 정량 수익
-        (SELECT IFNULL(SUM(amount),0) 
-           FROM quant_profits 
-          WHERE user_id = ?) AS totalProfit,
+        -- 3) 전체 정량 수익 (quant_profits + wallets_log)
+        (
+          SELECT IFNULL(SUM(amount),0) FROM quant_profits WHERE user_id = ?
+        ) + (
+          SELECT IFNULL(SUM(amount),0) FROM wallets_log WHERE user_id = ? AND (reference_type = 'invite_rewards' OR reference_type = 'join_rewards')
+        ) AS totalProfit,
 
-        -- 4) 오늘 정량 수익
-        (SELECT IFNULL(SUM(amount),0) 
-           FROM quant_profits 
-          WHERE user_id = ? 
-            AND DATE(created_at) = CURDATE()) AS todayProfit
-    `, [userId, userId, userId, userId]);
+        -- 4) 오늘 정량 수익 (quant_profits + wallets_log)
+        (
+          SELECT IFNULL(SUM(amount),0) FROM quant_profits WHERE user_id = ? AND DATE(created_at) = CURDATE()
+        ) + (
+          SELECT IFNULL(SUM(amount),0) FROM wallets_log WHERE user_id = ? AND (reference_type = 'invite_rewards' OR reference_type = 'join_rewards') AND DATE(log_date) = CURDATE()
+        ) AS todayProfit
+    `, [userId, userId, userId, userId, userId, userId, userId, userId]);
 
     res.json({ success: true, data: stats });
   } catch (err) {
