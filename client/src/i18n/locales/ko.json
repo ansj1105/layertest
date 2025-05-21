@@ -476,7 +476,7 @@
     "email": "이메일",
     "password": "비밀번호",
     "confirmPassword": "비밀번호 확인",
-    "referral": "추천 코드 (선택사항)",
+    "referral": "추천 코드",
     "submit": "회원가입",
     "name_error": "이름은 최소 2자 이상이어야 합니다.",
     "email_error": "올바른 이메일 형식이 아닙니다.",

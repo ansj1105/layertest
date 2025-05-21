@@ -69,6 +69,17 @@ router.post("/register", async (req, res) => {
     return res.status(400).json({ error: "이메일 또는 전화번호 중 하나를 입력해주세요." });
   }
 
+  // 2-1) wallet_settings에서 auto_approve 조회
+  const [[settings]] = await db.query(
+    `SELECT auto_approve FROM wallet_settings ORDER BY id DESC LIMIT 1`
+  );
+  const autoApprove = settings?.auto_approve || 'auto';
+
+  // 2-2) 추천인 코드 필수 여부 결정
+  if (autoApprove === 'manual' && !referral) {
+    return res.status(400).json({ error: "추천 코드는 필수 입력입니다." });
+  }
+
   // 3) CAPTCHA 서버 측 검증
   try {
     const verifyUrl = `https://www.google.com/recaptcha/api/siteverify` +

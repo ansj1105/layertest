@@ -1,6 +1,6 @@
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import AdminChat from './pages/admin/AdminChat';
+//import AdminChat from './pages/admin/AdminChat';
 import AdminLogin from './pages/admin/AdminLogin';
 import AdminInviteRewardsPage from './pages/admin/AdminInviteRewardsPage';
 import AdminJoinRewardsPage from './pages/admin/AdminJoinRewardsPage';
@@ -21,30 +21,60 @@ import AdminWithdrawalsPage from './pages/admin/AdminWithdrawalsPage';
 import TokenSalesAdminPage from './pages/admin/TokenSalesAdminPage';
 import TokensAdminPage from './pages/admin/TokensAdminPage';
 import TokenLogsPage from './pages/admin/TokenLogsPage';
-
+import ChatAdminLoginPage from './pages/chat/ChatAdminLoginPage';
+import ChatAdminUserListPage from './pages/chat/ChatAdminUserListPage';
 
 import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
 export default function AdminApp() {
+  const [admin, setAdmin] = useState(null);
+  const [isChecking, setCheck] = useState(true);
 
-    const [admin, setAdmin]       = useState(null);
-    const [isChecking, setCheck]  = useState(true);
-  
-    // 1) 마운트 직후에만 한 번 세션 확인
-    useEffect(() => {
-      axios.get("/api/auth/admin/me")
-        .then(res => setAdmin(res.data.user || null))
-        .catch(() => setAdmin(null))
-        .finally(() => setCheck(false));
-    }, []);
-  
-    // 2) 세션 확인 중에는 로딩 화면
-    if (isChecking) {
-      return <div className="text-center mt-20">Loading…</div>;
+  // 세션 체크 함수
+  const checkSession = async () => {
+    try {
+      const res = await axios.get("/api/auth/admin/me");
+      setAdmin(res.data.user || null);
+    } catch {
+      setAdmin(null);
+    } finally {
+      setCheck(false);
     }
-  
+  };
+
+  useEffect(() => {
+    // location이 바뀔 때마다 세션 체크 (관리자 페이지에서만)
+    // 또는 최초 마운트 시 한 번만 체크
+    checkSession();
+  }, []);
+
+  // location을 사용해서 현재 경로 확인
+  const location = window.location.hash.replace(/^#/, '');
+
+  // 세션 체크가 필요 없는 경로
+  const noSessionCheckRoutes = [
+    '/login',
+    '/chat-admin/login'
+  ];
+
+  // 세션 체크가 필요 없는 경로는 바로 렌더링
+  if (noSessionCheckRoutes.includes(location)) {
+    return (
+      <Router>
+        <Routes>
+          <Route path="/login" element={<AdminLogin onLoginSuccess={user => { setAdmin(user); window.location.hash = '/dashboard'; }} />} />
+          <Route path="/chat-admin/login" element={<ChatAdminLoginPage />} />
+        </Routes>
+      </Router>
+    );
+  }
+
+  // 세션 체크 중에는 로딩 화면
+  if (isChecking) {
+    return <div className="text-center mt-20">Loading…</div>;
+  }
 
   const handleLoginSuccess = (user) => {
     setAdmin(user);
@@ -62,10 +92,18 @@ export default function AdminApp() {
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path="/login" element={<AdminLogin onLoginSuccess={handleLoginSuccess} />} />
+        
+        {/* Chat Admin Routes */}
+        <Route path="/chat-admin/login" element={<ChatAdminLoginPage />} />
+        <Route 
+          path="/chat-admin/users" 
+          element={admin ? <ChatAdminUserListPage /> : <Navigate to="/chat-admin/login" replace />} 
+        />
+        {/* 
         <Route
           path="/chat"
           element={admin ? <AdminChat onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-        />
+        />*/}
                 <Route
           path="/popup"
           element={admin ? <AdminPopupManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}

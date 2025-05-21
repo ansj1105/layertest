@@ -190,7 +190,13 @@ router.delete(
 
       // 3) 실제 파일 삭제
       if (file.file_path) {
-        await fs.unlink(path.join(__dirname, '..', 'public', file.file_path)).catch(()=>{});
+        const absPath = path.join(__dirname, '..', 'public', file.file_path);
+        try {
+          await fs.unlink(absPath);
+        } catch (err) {
+          console.error('파일 삭제 실패:', absPath, err.message);
+          // 필요하다면 return res.status(500).json({ error: '파일 삭제 실패' });
+        }
       }
 
       res.json({ success: true, message: '파일이 영구적으로 삭제되었습니다' });

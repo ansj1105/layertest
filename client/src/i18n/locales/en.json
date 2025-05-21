@@ -89,7 +89,7 @@
   "email": "Email",
   "password": "Password",
   "confirmPassword": "Confirm Password",
-  "referral": "Referral Code (Optional)",
+  "referral": "Referral Code",
   "submit": "Register",
   "name_error": "Name must be at least 2 characters.",
   "email_error": "Invalid email format.",

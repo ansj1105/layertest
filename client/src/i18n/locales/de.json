@@ -87,7 +87,7 @@
       "email": "E-Mail",
       "password": "Passwort",
       "confirmPassword": "Passwort bestätigen",
-      "referral": "Empfehlungscode (Optional)",
+      "referral": "Empfehlungscode",
       "submit": "Registrieren",
       "name_error": "Name muss mindestens 2 Zeichen lang sein.",
       "email_error": "Ungültiges E-Mail-Format.",

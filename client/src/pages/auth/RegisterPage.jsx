@@ -7,6 +7,7 @@ import { ArrowLeft, Globe, X as CloseIcon } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
 import { LANGUAGES } from '../../i18n/languages';  // ➊
 import '../../styles/RegisterPage.css';
+import AlertPopup from '../../components/AlertPopup';
 const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 const countryCodes = [
   { code: '+82', label: '🇰🇷 KR (+82)' },
@@ -37,6 +38,8 @@ export default function RegisterPage() {
   // 팝업 열림 상태
   const [openTerms, setOpenTerms] = useState(false);
   const [openPrivacy, setOpenPrivacy] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertInfo, setAlertInfo] = useState({ title: '', message: '', type: 'error' });
 
   // URL에 ?ref= 코드가 있으면 referral 필드 자동 채우기
   useEffect(() => {
@@ -52,13 +55,34 @@ export default function RegisterPage() {
   const handleSubmit = async () => {
     setError(""); setSuccess("");
     const fullPhone = `${countryCode}${form.phone}`; // 국가코드 결합
-    if (!isValidName(form.name))                              return setError(t("register.name_error"));
-    if (method === "email" && !isValidEmail(form.email))      return setError(t("register.email_error"));
-    if (method === "phone" && !isValidPhone(fullPhone)) return setError(t("register.phone_error")); // <- 변경됨
-    if (form.password.length < 6)                             return setError(t("register.password_error"));
-    if (form.password !== form.confirmPassword)               return setError(t("register.confirm_error"));
-    if (!captchaToken)                                        return setError(t("register.captcha_required"));
-    if (!form.nationality) return setError("국적을 선택해주세요.");
+    if (!isValidName(form.name))                              {
+      setAlertInfo({ title: t('register.title'), message: t('register.name_error'), type: 'error' });
+      setShowAlert(true); return;
+    }
+    if (method === "email" && !isValidEmail(form.email))      {
+      setAlertInfo({ title: t('register.title'), message: t('register.email_error'), type: 'error' });
+      setShowAlert(true); return;
+    }
+    if (method === "phone" && !isValidPhone(fullPhone)) {
+      setAlertInfo({ title: t('register.title'), message: t('register.phone_error'), type: 'error' });
+      setShowAlert(true); return;
+    }
+    if (form.password.length < 6)                             {
+      setAlertInfo({ title: t('register.title'), message: t('register.password_error'), type: 'error' });
+      setShowAlert(true); return;
+    }
+    if (form.password !== form.confirmPassword)               {
+      setAlertInfo({ title: t('register.title'), message: t('register.confirm_error'), type: 'error' });
+      setShowAlert(true); return;
+    }
+    if (!captchaToken)                                        {
+      setAlertInfo({ title: t('register.title'), message: t('register.captcha_required'), type: 'error' });
+      setShowAlert(true); return;
+    }
+    if (!form.nationality) {
+      setAlertInfo({ title: t('register.title'), message: '국적을 선택해주세요.', type: 'error' });
+      setShowAlert(true); return;
+    }
     try {
       await axios.post("/api/auth/register", {
         name: form.name,
@@ -72,7 +96,9 @@ export default function RegisterPage() {
       setSuccess(t("register.success"));
       setTimeout(() => navigate("/login"), 1500);
     } catch (err) {
-      setError(err.response?.data?.error || t("register.fail"));
+      const msg = err.response?.data?.error || t("register.fail");
+      setAlertInfo({ title: t('register.title'), message: msg, type: 'error' });
+      setShowAlert(true);
     }
   };
 
@@ -294,6 +320,16 @@ export default function RegisterPage() {
             </div>
           </div>
         </div>
+      )}
+
+      {showAlert && (
+        <AlertPopup
+          isOpen={showAlert}
+          onClose={() => setShowAlert(false)}
+          title={alertInfo.title}
+          message={alertInfo.message}
+          type={alertInfo.type}
+        />
       )}
     </div>
   );

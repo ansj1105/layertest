@@ -87,7 +87,7 @@
       "email": "メールアドレス",
       "password": "パスワード",
       "confirmPassword": "パスワード確認",
-      "referral": "紹介コード (任意)",
+      "referral": "紹介コード",
       "submit": "登録",
       "name_error": "名前は2文字以上で入力してください。",
       "email_error": "有効なメール形式を入力してください。",

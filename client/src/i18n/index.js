@@ -10,7 +10,7 @@ import de from './locales/de.json';
 import ru from './locales/ru.json';
 import ja from './locales/ja.json';
 import vi from './locales/vi.json';
-
+import zh from './locales/zh.json';
 
 i18n
   // 브라우저 언어 감지기 (querystring, cookie, localStorage, navigator)
@@ -19,7 +19,7 @@ i18n
   .use(initReactI18next)
   .init({
     // 지원하는 언어들
-    supportedLngs: ['en', 'ko', 'fr', 'de', 'ru', 'ja', 'vi'],
+    supportedLngs: ['en', 'ko', 'fr', 'de', 'ru', 'ja', 'vi', 'zh'],
     // 지원하지 않는 언어 감지 시 fallback
     fallbackLng: 'en',
 
@@ -42,8 +42,8 @@ i18n
       ru: { translation: ru },
       ja: { translation: ja },
       vi: { translation: vi },
+      zh: { translation: zh },
     },
-
 
     interpolation: {
       escapeValue: false, // react already safe
