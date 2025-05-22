@@ -10,6 +10,7 @@ const axios = require("axios");
 const session = require("express-session"); // ✅ 세션 추가
 const { calculateFundingProfits } = require('./routes/fundingProfit');
 const { accrueDailyProfits, handleProjectExpiry } = require('./schedulers/projectScheduler');
+const { authenticateToken, isChatAdmin, authenticateWebSocket } = require('./middleware/auth');
 
 const app = express();
 
@@ -86,7 +87,6 @@ const rechargeRoutes = require('./routes/recharge'); //코인충전관련
 const mydataRoutes = require('./routes/mydata');
 const logsRoutes = require('./routes/logs');
 const chatRoutes = require('./routes/chat');
-const { authenticateToken, isChatAdmin } = require('./middleware/auth');
 const { loginRouter, router: chatRouter, wss } = chatRoutes;
 
 
@@ -285,12 +285,13 @@ cron.schedule('0 * * * *', async () => {
     console.log('WebSocket upgrade request:', { 
       pathname, 
       headers: request.headers,
-      url: request.url 
+      url: request.url,
+      ip: request.socket.remoteAddress
     });
 
     if (pathname === '/chat') {
       wss.handleUpgrade(request, socket, head, (ws) => {
-        console.log('WebSocket connection established');
+        console.log('WebSocket connection established (upgrade handler)');
         wss.emit('connection', ws, request);
       });
     } else {
@@ -301,16 +302,25 @@ cron.schedule('0 * * * *', async () => {
 
   // WebSocket 서버 이벤트 로깅 추가
   wss.on('connection', async (ws, req) => {
-    console.log('New WebSocket connection attempt');
+    console.log('New WebSocket connection attempt', {
+      ip: req.socket?.remoteAddress,
+      cookie: req.headers.cookie
+    });
     
     const isAuthenticated = await authenticateWebSocket(ws, req);
     if (!isAuthenticated) {
-      console.log('WebSocket authentication failed');
+      console.log('WebSocket authentication failed', {
+        ip: req.socket?.remoteAddress,
+        cookie: req.headers.cookie
+      });
       ws.close();
       return;
     }
 
-    console.log('WebSocket authenticated successfully');
+    console.log('WebSocket authenticated successfully', {
+      user: req.user,
+      ip: req.socket?.remoteAddress
+    });
     const { userId, isAdmin, isGuest, guestId } = req.user;
     
     if (isAdmin) {
@@ -326,7 +336,9 @@ cron.schedule('0 * * * *', async () => {
 
     ws.on('message', async raw => {
       try {
-        console.log('Received WebSocket message:', raw.toString());
+        console.log('Received WebSocket message:', raw.toString(), {
+          user: req.user
+        });
         const data = JSON.parse(raw);
         
         if (data.type === 'init') {
@@ -336,11 +348,11 @@ cron.schedule('0 * * * *', async () => {
         
         switch (data.type) {
           case 'chat':
-            console.log('Processing chat message:', data);
+            console.log('Processing chat message:', data, { user: req.user });
             await handleChatMessage(data, req.user);
             break;
           case 'typing':
-            console.log('Processing typing status:', data);
+            console.log('Processing typing status:', data, { user: req.user });
             handleTypingStatus(data, req.user);
             break;
           default:
@@ -352,7 +364,10 @@ cron.schedule('0 * * * *', async () => {
     });
 
     ws.on('close', () => {
-      console.log('WebSocket connection closed');
+      console.log('WebSocket connection closed', {
+        user: req.user,
+        ip: req.socket?.remoteAddress
+      });
       if (isAdmin) {
         adminClients.delete(userId);
         console.log('Admin client disconnected:', userId);
@@ -366,7 +381,10 @@ cron.schedule('0 * * * *', async () => {
     });
 
     ws.on('error', (error) => {
-      console.error('WebSocket error:', error);
+      console.error('WebSocket error:', error, {
+        user: req.user,
+        ip: req.socket?.remoteAddress
+      });
     });
   });
 

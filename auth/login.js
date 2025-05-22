@@ -515,4 +515,11 @@ router.post("/forgot-password", async (req, res) => {
   }
 });
 
+const authenticateWebSocket = async (ws, req) => {
+  // 세션 미들웨어가 WebSocket req에 적용되지 않으므로, 실제로는 세션 스토어에서 직접 조회해야 함
+  // 임시로 userId=1로 세팅
+  req.user = { userId: 1, isAdmin: false, isGuest: false };
+  return true;
+};
+
 module.exports = router;

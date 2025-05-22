@@ -51,10 +51,10 @@ export default function UserChat() {
   useEffect(() => {
     const checkSession = async () => {
       try {
-        // 세션 체크
         const sessionRes = await axios.get('/api/auth/me', { withCredentials: true });
         setIsGuest(false);
-        setRoomId(sessionRes.data.roomId);
+        console.log('auth/me 응답:', sessionRes.data);
+        setRoomId(sessionRes.data.user.roomId);
       } catch (error) {
         // 세션이 없으면 비회원으로 처리
         setIsGuest(true);
@@ -158,8 +158,9 @@ export default function UserChat() {
   };
 
   const sendMessage = async () => {
+    console.log('sendMessage called:', { input, roomId, isConnecting });
     if (!input.trim() || !roomId) {
-      console.log('Cannot send message: input empty or no roomId');
+      console.log('Cannot send message: input empty or no roomId', { input, roomId });
       return;
     }
 
@@ -322,7 +323,10 @@ export default function UserChat() {
         <input
           type="text"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => {
+            setInput(e.target.value);
+            console.log('input changed:', e.target.value);
+          }}
           className="chatbox-input"
           placeholder={isConnecting ? "연결중..." : t("userChat.inputPlaceholder")}
           disabled={isConnecting}

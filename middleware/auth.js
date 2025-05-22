@@ -1,5 +1,18 @@
 const jwt = require('jsonwebtoken');
 const pool = require('../db');
+const session = require('express-session');
+const fs = require('fs');
+
+// 서버에서 사용한 세션 스토어를 불러옵니다 (server.js에서 app.use(session({ store }))에 사용한 store 인스턴스)
+// MemoryStore 예시 (실제 서비스에서는 RedisStore 등으로 교체)
+let sessionStore;
+try {
+  // server.js에서 세션 스토어를 별도 파일로 export한 경우 require로 불러올 수 있음
+  sessionStore = require('../sessionStore');
+} catch (e) {
+  // fallback: express-session의 기본 MemoryStore 사용
+  sessionStore = new session.MemoryStore();
+}
 
 // JWT 토큰 검증 미들웨어
 const authenticateToken = async (req, res, next) => {
@@ -54,41 +67,30 @@ const isChatAdmin = async (req, res, next) => {
   }
 };
 
-// WebSocket 인증 미들웨어
+// WebSocket 인증 미들웨어 (세션 기반)
 const authenticateWebSocket = async (ws, req) => {
-  try {
-    const token = req.headers['sec-websocket-protocol']?.split(', ')[1];
-    
-    if (!token) {
-      // 비회원 WebSocket 연결 처리
-      const guestId = req.headers.cookie?.split('; ')
-        .find(row => row.startsWith('guestId='))
-        ?.split('=')[1];
+  // 1. 쿠키에서 connect.sid 추출
+  const cookie = req.headers.cookie;
+  if (!cookie) return false;
+  const sidMatch = cookie.match(/connect\.sid=s%3A([^.;]+)[.;]?/);
+  if (!sidMatch) return false;
+  const sid = 's:' + sidMatch[1];
 
-      if (guestId) {
-        const result = await pool.query(
-          'SELECT * FROM chat_guests WHERE id = $1',
-          [guestId]
-        );
-        
-        if (result.rows.length > 0) {
-          req.user = {
-            isGuest: true,
-            guestId: guestId
-          };
-          return true;
-        }
+  // 2. 세션 스토어에서 세션 조회
+  return new Promise((resolve) => {
+    sessionStore.get(sid, (err, session) => {
+      if (err || !session || !session.user) {
+        resolve(false);
+      } else {
+        req.user = {
+          userId: session.user.id,
+          isAdmin: session.user.isAdmin,
+          isGuest: false
+        };
+        resolve(true);
       }
-      return false;
-    }
-
-    // 회원/관리자 WebSocket 연결 처리
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    return true;
-  } catch (error) {
-    return false;
-  }
+    });
+  });
 };
 
 // 채팅방 접근 권한 체크 미들웨어
