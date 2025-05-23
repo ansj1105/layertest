@@ -890,6 +890,11 @@
     }
   },
   "userChat": {
+    "guestTitle" : "Чат Гостя",
+    "guestName" : "Имя",
+    "guestEmail" : "Email",
+    "startChat" : "Начать Чат",
+    "guestChat" : "Чат Гостя",
     "title": "Чат с Поддержкой",
     "me": "Я",
     "admin": "Админ",

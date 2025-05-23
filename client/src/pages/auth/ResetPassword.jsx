@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import UserChat from '../UserChat';
+
 
 export default function ResetPassword() {
   const { t } = useTranslation();
@@ -38,6 +40,10 @@ export default function ResetPassword() {
         {t('resetPassword.resetButton')}
       </button>
       {result && <p>{result}</p>}
+      <UserChat userId={user.id} />
     </div>
+    
   );
+
+  
 }

@@ -1,9 +1,24 @@
 const jwt = require('jsonwebtoken');
 const pool = require('../db');
+const session = require('express-session');
+const fs = require('fs');
+const sessionStore = require('../sessionStore');
+const cookie = require('cookie');
+const signature = require('cookie-signature');
 
-// JWT 토큰 검증 미들웨어
+// 서버에서 사용한 세션 스토어를 불러옵니다 (server.js에서 app.use(session({ store }))에 사용한 store 인스턴스)
+// MemoryStore 예시 (실제 서비스에서는 RedisStore 등으로 교체)
+
+// HTTP 요청용 토큰 인증
 const authenticateToken = async (req, res, next) => {
   try {
+    // 세션에서 사용자 정보 확인
+    if (req.session && req.session.user) {
+      req.user = req.session.user;
+      return next();
+    }
+
+    // 토큰 확인
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
 
@@ -15,7 +30,8 @@ const authenticateToken = async (req, res, next) => {
     req.user = decoded;
     next();
   } catch (error) {
-    return res.status(403).json({ error: 'Invalid token' });
+    console.error('Token verification error:', error);
+    res.status(403).json({ error: 'Invalid token' });
   }
 };
 
@@ -33,60 +49,76 @@ const isAdmin = async (req, res, next) => {
 
 // 채팅 관리자 권한 체크 미들웨어
 const isChatAdmin = async (req, res, next) => {
-  try {
-    if (!req.user || !req.user.isAdmin) {
-      return res.status(403).json({ error: 'Chat admin access required' });
-    }
-
-    // DB에서 채팅 관리자 권한 확인
-    const result = await pool.query(
-      'SELECT * FROM chat_admins WHERE id = $1 AND is_active = true',
-      [req.user.id]
-    );
-
-    if (result.rows.length === 0) {
-      return res.status(403).json({ error: 'Not a chat admin' });
-    }
-
-    next();
-  } catch (error) {
-    return res.status(500).json({ error: 'Server error' });
+  if (!req.user || !req.user.isAdmin) {
+    return res.status(403).json({ error: 'Admin access required' });
   }
+  next();
 };
 
-// WebSocket 인증 미들웨어
+// WebSocket 인증
 const authenticateWebSocket = async (ws, req) => {
   try {
-    const token = req.headers['sec-websocket-protocol']?.split(', ')[1];
-    
-    if (!token) {
-      // 비회원 WebSocket 연결 처리
-      const guestId = req.headers.cookie?.split('; ')
-        .find(row => row.startsWith('guestId='))
-        ?.split('=')[1];
+    const cookies = cookie.parse(req.headers.cookie || '');
+    let rawSid = cookies['connect.sid'];
 
-      if (guestId) {
-        const result = await pool.query(
-          'SELECT * FROM chat_guests WHERE id = $1',
-          [guestId]
-        );
-        
-        if (result.rows.length > 0) {
-          req.user = {
-            isGuest: true,
-            guestId: guestId
-          };
-          return true;
-        }
+    // 1. 회원/관리자: connect.sid로 인증
+    if (rawSid) {
+      if (rawSid.startsWith('s:')) {
+        rawSid = rawSid.slice(2);
+        rawSid = signature.unsign(rawSid, process.env.SESSION_SECRET || "default_secret_key");
       }
-      return false;
+      if (!rawSid) {
+        console.log('Session ID signature invalid');
+        return false;
+      }
+      return new Promise((resolve) => {
+        sessionStore.get(rawSid, (err, session) => {
+          if (err || !session) {
+            console.log('Session not found:', rawSid);
+            resolve(false);
+          } else {
+            req.session = session;
+            req.user = session.user || session.guest || null;
+            resolve(true);
+          }
+        });
+      });
     }
 
-    // 회원/관리자 WebSocket 연결 처리
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    return true;
-  } catch (error) {
+    // 2. 관리자: JWT 토큰으로 인증 (쿠키 또는 Authorization 헤더)
+    let token = null;
+    if (cookies['admin_token']) {
+      token = cookies['admin_token'];
+    } else if (req.headers['authorization']) {
+      const authHeader = req.headers['authorization'];
+      if (authHeader.startsWith('Bearer ')) {
+        token = authHeader.split(' ')[1];
+      }
+    }
+    if (token) {
+      try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        if (decoded && decoded.isAdmin) {
+          req.user = decoded;
+          return true;
+        }
+      } catch (e) {
+        console.log('Admin JWT invalid:', e.message);
+      }
+    }
+
+    // 3. 게스트: guestId 쿠키로 인증
+    const guestId = cookies['guestId'];
+    if (guestId) {
+      req.user = { isGuest: true, guestId };
+      return true;
+    }
+
+    // 둘 다 없으면 인증 실패
+    console.log('No connect.sid, admin_token, or guestId cookie found');
+    return false;
+  } catch (e) {
+    console.error('WebSocket session parse error:', e);
     return false;
   }
 };

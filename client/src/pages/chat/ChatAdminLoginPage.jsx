@@ -18,7 +18,7 @@ export default function ChatAdminLoginPage() {
         localStorage.setItem('chatAdminToken', res.data.token);
         setAlertInfo({ title: 'Success', message: '로그인 성공', type: 'success' });
         setShowAlert(true);
-        setTimeout(() => navigate('/chat/admin/users'), 1000);
+        setTimeout(() => navigate('/chat-admin/users'), 1000);
       } else {
         setAlertInfo({ title: 'Error', message: '로그인 실패', type: 'error' });
         setShowAlert(true);

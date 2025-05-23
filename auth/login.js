@@ -264,9 +264,16 @@ router.post("/login", async (req, res) => {
       isAdmin: false  // 여기서는 항상 일반 사용자
     };
 
-    return res.json({
-      message: "login.success",
-      user: req.session.user
+    // 세션 저장 후 응답
+    req.session.save((err) => {
+      if (err) {
+        console.error("세션 저장 에러:", err);
+        return res.status(500).json({ error: "login.fail" });
+      }
+      return res.json({
+        message: "login.success",
+        user: req.session.user
+      });
     });
   } catch (err) {
     console.error("로그인 에러:", err);
@@ -514,5 +521,12 @@ router.post("/forgot-password", async (req, res) => {
     res.status(500).json({ error: "메일 전송에 실패했습니다." });
   }
 });
+
+const authenticateWebSocket = async (ws, req) => {
+  // 세션 미들웨어가 WebSocket req에 적용되지 않으므로, 실제로는 세션 스토어에서 직접 조회해야 함
+  // 임시로 userId=1로 세팅
+  req.user = { userId: 1, isAdmin: false, isGuest: false };
+  return true;
+};
 
 module.exports = router;

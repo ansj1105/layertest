@@ -869,6 +869,11 @@
     }
   },
   "userChat": {
+    "guestTitle" : "Chat Invité",
+    "guestName" : "Nom",
+    "guestEmail" : "Email",
+    "startChat" : "Démarrer le Chat",
+    "guestChat" : "Chat Invité",
     "title": "Chat du Support Client",
     "me": "Moi",
     "admin": "Admin",

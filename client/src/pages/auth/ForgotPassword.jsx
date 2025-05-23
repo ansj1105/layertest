@@ -5,6 +5,7 @@ import { ArrowLeft, Send, Eye, EyeOff } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import '../../styles/ForgotPassword.css';
 import '../../styles/topbar.css';
+import UserChat from '../UserChat';
  
 export default function ForgotPassword() {
   const { t } = useTranslation();
@@ -164,6 +165,7 @@ export default function ForgotPassword() {
         <button onClick={handleResetPassword} className="trade-submit-btn">
           {t('forgotPassword.resetButton')}
         </button>
+        <UserChat />
       </div>
     </div>
   );

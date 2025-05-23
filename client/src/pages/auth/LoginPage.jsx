@@ -5,7 +5,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft, Globe } from "lucide-react";
 import { useNavigate, Link } from "react-router-dom";
-
+import UserChat from '../UserChat';
 import '../../styles/login.css';
 
 axios.defaults.withCredentials = true;
@@ -112,6 +112,7 @@ export default function LoginPage() {
           <span>{t("login.no_account")}</span>
           <Link to="/register">{t("login.register")}</Link>
           <Link to="/forgot-password">{t("login.forgot")}</Link>
+          <UserChat />
         </div>
       </div>
     </div>

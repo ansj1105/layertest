@@ -1,19 +1,19 @@
 .chatbox-wrapper {
   position: fixed;
-  top: 0;
-  left: 50%;                          /* 가로 가운데 정렬 시작점 */
-  transform: translateX(-50%);        /* 가운데 정렬 완성 */
-  width: 100%;
-  max-width: 500px;
-  height: 100vh;                      /* 상하 전체 덮기 */
+  bottom: 80px;
+  right: 24px;
+  width: 250px;
+  max-width: 95vw;
+  height: 480px;
+  max-height: 80vh;
   background-color: #0e0e11;
-  z-index: 9999;                      /* 상단바/하단바보다 위 */
+  z-index: 9999;
   display: flex;
   flex-direction: column;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: hidden;
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
 }
 
  
@@ -157,12 +157,15 @@
     max-width: 100%;
   }
   .chatbox-wrapper {
-    width: 100%;
-    height: 100vh;
-    max-width: 100%;
-    border-radius: 0;
-    top: 0;
-    left: 0;
+    width: 100vw;
+    height: 60vh;
+    max-width: 80vw;
+    max-height: 80vh;
+    bottom: 80px;
+    right: 0;
+    left: unset;
+    top: unset;
+    border-radius: 10px 10px 0 0;
     transform: none;
   }
 

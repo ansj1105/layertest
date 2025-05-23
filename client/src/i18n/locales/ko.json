@@ -954,6 +954,11 @@
     }
   },
   "userChat": {
+    "guestTitle" : "비회원 채팅",
+    "guestName" : "이름",
+    "guestEmail" : "이메일",
+    "startChat" : "채팅 시작",
+    "guestChat" : "비회원 채팅",
     "title": "고객센터 채팅",
     "me": "나",
     "admin": "관리자",
