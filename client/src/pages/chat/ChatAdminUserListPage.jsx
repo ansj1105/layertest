@@ -273,8 +273,10 @@ export default function ChatAdminUserListPage() {
                           headers: { Authorization: `Bearer ${token}` },
                           params: { userId: room.user_id }
                         });
-                        console.log('회원 채팅방 입장 시도:', { roomId: room.id, userId: room.user_id });
-                        console.log('API 응답:', res.data);
+                        // 읽음 처리 API 호출
+                        await axios.post('/api/chat/admin/chat-logs/read', { roomId: res.data.id }, {
+                          headers: { Authorization: `Bearer ${token}` }
+                        });
                         setSelectedRoom(res.data);
                       } catch (err) {
                         alert('채팅방 정보를 불러오지 못했습니다.');
@@ -319,6 +321,10 @@ export default function ChatAdminUserListPage() {
                         const res = await axios.get('/api/chat/admin/room-by-user-or-guest', {
                           headers: { Authorization: `Bearer ${token}` },
                           params: { guestId: room.guest_id }
+                        });
+                        // 읽음 처리 API 호출
+                        await axios.post('/api/chat/admin/chat-logs/read', { roomId: res.data.id }, {
+                          headers: { Authorization: `Bearer ${token}` }
                         });
                         setSelectedRoom(res.data);
                       } catch (err) {
