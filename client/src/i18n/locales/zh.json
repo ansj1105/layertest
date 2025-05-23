@@ -898,6 +898,11 @@
         }
       },
       "userChat": {
+        "guestTitle" : "客服聊天",
+        "guestName" : "名字",
+        "guestEmail" : "邮箱",
+        "startChat" : "开始聊天",
+        "guestChat" : "客服聊天",
         "title": "客服聊天",
         "me": "我",
         "admin": "客服",

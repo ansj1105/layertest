@@ -898,6 +898,11 @@
         }
       },
       "userChat": {
+        "guestTitle" : "ゲストチャット",
+        "guestName" : "名前",
+        "guestEmail" : "メールアドレス",
+        "startChat" : "チャットを開始",
+        "guestChat" : "ゲストチャット",
         "title": "カスタマーサポートチャット",
         "me": "私",
         "admin": "管理者",

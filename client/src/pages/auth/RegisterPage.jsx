@@ -8,6 +8,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { LANGUAGES } from '../../i18n/languages';  // ➊
 import '../../styles/RegisterPage.css';
 import AlertPopup from '../../components/AlertPopup';
+import UserChat from '../UserChat';
 const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY;
 const countryCodes = [
   { code: '+82', label: '🇰🇷 KR (+82)' },
@@ -235,7 +236,7 @@ export default function RegisterPage() {
 
           <div className="auth-links-r">
           <span>Do you already have an account?&nbsp;&nbsp;</span>
-
+          <UserChat />
             <Link to="/login" className="auth-links-r">
               login
             </Link>

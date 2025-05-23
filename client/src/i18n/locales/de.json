@@ -898,6 +898,11 @@
     }
   },
   "userChat": {
+    "guestTitle" : "Gästechat",
+    "guestName" : "Name",
+    "guestEmail" : "E-Mail",
+    "startChat" : "Chat starten",
+    "guestChat" : "Gästechat",
     "title": "Kundensupport-Chat",
     "me": "Ich",
     "admin": "Admin",

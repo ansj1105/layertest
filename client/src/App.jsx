@@ -112,9 +112,7 @@ export default function App() {
   useEffect(() => {
     axios.get("/api/auth/me")
       .then(res => setUser(res.data.user))
-      .catch(() => {
-        setUser(null);
-      });
+      .catch(() => setUser(null));
   }, []);
 
   // PDF 파일 목록 가져오기

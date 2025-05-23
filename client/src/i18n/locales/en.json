@@ -907,6 +907,11 @@
     }
   },
   "userChat": {
+    "guestTitle" : "Guest Chat",
+    "guestName" : "Name",
+    "guestEmail" : "Email",
+    "startChat" : "Start Chat",
+    "guestChat" : "Guest Chat",
     "title": "Customer Support Chat",
     "me": "Me",
     "admin": "Admin",

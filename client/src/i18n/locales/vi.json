@@ -885,6 +885,11 @@
         }
       },
       "userChat": {
+        "guestTitle" : "Chat Khách",
+        "guestName" : "Tên",
+        "guestEmail" : "Email",
+        "startChat" : "Bắt đầu Chat",
+        "guestChat" : "Chat Khách",
         "title": "Chat Hỗ trợ Khách hàng",
         "me": "Tôi",
         "admin": "Quản trị",

@@ -7,7 +7,8 @@ const mysql = require("mysql2/promise");
 const cors = require("cors");
 const path = require('path');
 const axios = require("axios");
-const session = require("express-session"); // ✅ 세션 추가
+const session = require("express-session");
+const sessionStore = require('./sessionStore');
 const { calculateFundingProfits } = require('./routes/fundingProfit');
 const { accrueDailyProfits, handleProjectExpiry } = require('./schedulers/projectScheduler');
 const { authenticateToken, isChatAdmin, authenticateWebSocket } = require('./middleware/auth');
@@ -16,6 +17,7 @@ const app = express();
 
 app.use(
     session({
+      store: sessionStore,
       secret: process.env.SESSION_SECRET || "default_secret_key",
       resave: false,
       saveUninitialized: false,
@@ -280,72 +282,86 @@ cron.schedule('0 * * * *', async () => {
     console.log(`Server is running on port ${process.env.PORT || 4000}`);
   });
 
-  server.on('upgrade', (request, socket, head) => {
+  server.on('upgrade', async (request, socket, head) => {
     const pathname = new URL(request.url, `http://${request.headers.host}`).pathname;
+    // 상세한 로깅 추가
     console.log('WebSocket upgrade request:', { 
       pathname, 
       headers: request.headers,
       url: request.url,
-      ip: request.socket.remoteAddress
+      ip: request.socket.remoteAddress,
+      cookie: request.headers.cookie
     });
-
+  
     if (pathname === '/chat') {
-      wss.handleUpgrade(request, socket, head, (ws) => {
-        console.log('WebSocket connection established (upgrade handler)');
-        wss.emit('connection', ws, request);
-      });
+      try {
+        // WebSocket 인증
+        console.log('Attempting WebSocket authentication...');
+        const isAuthenticated = await authenticateWebSocket(null, request);
+        
+        if (!isAuthenticated) {
+          console.log('WebSocket authentication failed:', {
+            ip: request.socket.remoteAddress,
+            cookie: request.headers.cookie
+          });
+          socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n');
+          socket.destroy();
+          return;
+        }
+  
+        console.log('WebSocket authentication successful:', {
+          user: request.user,
+          ip: request.socket.remoteAddress
+        });
+  
+        wss.handleUpgrade(request, socket, head, (ws) => {
+          console.log('WebSocket connection established (upgrade handler)');
+          wss.emit('connection', ws, request);
+        });
+      } catch (error) {
+        console.error('WebSocket upgrade error:', error);
+        socket.write('HTTP/1.1 500 Internal Server Error\r\n\r\n');
+        socket.destroy();
+      }
     } else {
       console.log('WebSocket upgrade rejected - invalid path:', pathname);
+      socket.write('HTTP/1.1 404 Not Found\r\n\r\n');
       socket.destroy();
     }
   });
-
-  // WebSocket 서버 이벤트 로깅 추가
   wss.on('connection', async (ws, req) => {
     console.log('New WebSocket connection attempt', {
       ip: req.socket?.remoteAddress,
-      cookie: req.headers.cookie
+      cookie: req.headers.cookie,
+      user: req.user
     });
-    
-    const isAuthenticated = await authenticateWebSocket(ws, req);
-    if (!isAuthenticated) {
-      console.log('WebSocket authentication failed', {
-        ip: req.socket?.remoteAddress,
-        cookie: req.headers.cookie
-      });
-      ws.close();
-      return;
-    }
-
-    console.log('WebSocket authenticated successfully', {
-      user: req.user,
-      ip: req.socket?.remoteAddress
+  
+    // 연결 상태 모니터링
+    ws.isAlive = true;
+    ws.on('pong', () => {
+      ws.isAlive = true;
     });
-    const { userId, isAdmin, isGuest, guestId } = req.user;
-    
-    if (isAdmin) {
-      adminClients.set(userId, ws);
-      console.log('Admin client connected:', userId);
-    } else if (isGuest) {
-      guestClients.set(guestId, ws);
-      console.log('Guest client connected:', guestId);
-    } else {
-      clients.set(userId, ws);
-      console.log('User client connected:', userId);
-    }
-
+  
+    // 클라이언트 초기화 메시지 처리 및 채팅 메시지 처리
     ws.on('message', async raw => {
       try {
-        console.log('Received WebSocket message:', raw.toString(), {
-          user: req.user
-        });
         const data = JSON.parse(raw);
-        
+        console.log('Received WebSocket message:', data, {
+          user: req.user,
+          ip: req.socket?.remoteAddress
+        });
+  
         if (data.type === 'init') {
           console.log('Client initialization:', data);
+          ws.send(JSON.stringify({
+            type: 'init',
+            status: 'success',
+            userId: req.user?.userId,
+            isGuest: req.user?.isGuest
+          }));
           return;
         }
-        
+  
         switch (data.type) {
           case 'chat':
             console.log('Processing chat message:', data, { user: req.user });
@@ -360,32 +376,44 @@ cron.schedule('0 * * * *', async () => {
         }
       } catch (error) {
         console.error('Error processing WebSocket message:', error);
+        ws.send(JSON.stringify({
+          type: 'error',
+          message: 'Failed to process message'
+        }));
       }
     });
-
+  
     ws.on('close', () => {
       console.log('WebSocket connection closed', {
         user: req.user,
         ip: req.socket?.remoteAddress
       });
-      if (isAdmin) {
-        adminClients.delete(userId);
-        console.log('Admin client disconnected:', userId);
-      } else if (isGuest) {
-        guestClients.delete(guestId);
-        console.log('Guest client disconnected:', guestId);
-      } else {
-        clients.delete(userId);
-        console.log('User client disconnected:', userId);
-      }
+      ws.isAlive = false;
     });
-
+  
     ws.on('error', (error) => {
       console.error('WebSocket error:', error, {
         user: req.user,
         ip: req.socket?.remoteAddress
       });
     });
+  });
+  
+  // 주기적인 연결 상태 체크 (30초마다)
+  const interval = setInterval(() => {
+    wss.clients.forEach((ws) => {
+      if (ws.isAlive === false) {
+        console.log('Terminating inactive WebSocket connection');
+        return ws.terminate();
+      }
+      ws.isAlive = false;
+      ws.ping();
+    });
+  }, 30000);
+  
+  // 서버 종료 시 정리
+  wss.on('close', () => {
+    clearInterval(interval);
   });
 
   // ✅ DB 연결 테스트 로그

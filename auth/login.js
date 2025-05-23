@@ -264,9 +264,16 @@ router.post("/login", async (req, res) => {
       isAdmin: false  // 여기서는 항상 일반 사용자
     };
 
-    return res.json({
-      message: "login.success",
-      user: req.session.user
+    // 세션 저장 후 응답
+    req.session.save((err) => {
+      if (err) {
+        console.error("세션 저장 에러:", err);
+        return res.status(500).json({ error: "login.fail" });
+      }
+      return res.json({
+        message: "login.success",
+        user: req.session.user
+      });
     });
   } catch (err) {
     console.error("로그인 에러:", err);

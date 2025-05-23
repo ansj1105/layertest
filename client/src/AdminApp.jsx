@@ -1,4 +1,4 @@
-import { HashRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 //import AdminChat from './pages/admin/AdminChat';
 import AdminLogin from './pages/admin/AdminLogin';
@@ -28,9 +28,10 @@ import axios from 'axios';
 
 axios.defaults.withCredentials = true;
 
-export default function AdminApp() {
+function AdminAppInner() {
   const [admin, setAdmin] = useState(null);
   const [isChecking, setCheck] = useState(true);
+  const navigate = useNavigate();
 
   // 세션 체크 함수
   const checkSession = async () => {
@@ -45,10 +46,16 @@ export default function AdminApp() {
   };
 
   useEffect(() => {
-    // location이 바뀔 때마다 세션 체크 (관리자 페이지에서만)
-    // 또는 최초 마운트 시 한 번만 체크
     checkSession();
   }, []);
+
+  useEffect(() => {
+    const token = localStorage.getItem('chatAdminToken');
+    if (!token) {
+      navigate('/chat-admin/login', { replace: true });
+      return;
+    }
+  }, [navigate]);
 
   // location을 사용해서 현재 경로 확인
   const location = window.location.hash.replace(/^#/, '');
@@ -56,29 +63,31 @@ export default function AdminApp() {
   // 세션 체크가 필요 없는 경로
   const noSessionCheckRoutes = [
     '/login',
-    '/chat-admin/login'
+    '/chat-admin/login',
+    '/chat-admin/users',
+    '/chat-admin'
   ];
 
-  // 세션 체크가 필요 없는 경로는 바로 렌더링
+  if (location === '/chat-admin') {
+    return <ChatAdminUserListPage />;
+  }
+
   if (noSessionCheckRoutes.includes(location)) {
     return (
-      <Router>
-        <Routes>
-          <Route path="/login" element={<AdminLogin onLoginSuccess={user => { setAdmin(user); window.location.hash = '/dashboard'; }} />} />
-          <Route path="/chat-admin/login" element={<ChatAdminLoginPage />} />
-        </Routes>
-      </Router>
+      <Routes>
+        <Route path="/login" element={<AdminLogin onLoginSuccess={user => { setAdmin(user); window.location.hash = '/dashboard'; }} />} />
+        <Route path="/chat-admin/login" element={<ChatAdminLoginPage />} />
+        <Route path="/chat-admin/users" element={<ChatAdminUserListPage />} />
+      </Routes>
     );
   }
 
-  // 세션 체크 중에는 로딩 화면
   if (isChecking) {
     return <div className="text-center mt-20">Loading…</div>;
   }
 
   const handleLoginSuccess = (user) => {
     setAdmin(user);
-    // 로그인 후 대시보드로 이동
     window.location.hash = "/dashboard";
   };
   const handleLogout = async () => {
@@ -88,92 +97,97 @@ export default function AdminApp() {
   };
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path="/login" element={<AdminLogin onLoginSuccess={handleLoginSuccess} />} />
-        
-        {/* Chat Admin Routes */}
-        <Route path="/chat-admin/login" element={<ChatAdminLoginPage />} />
-        <Route 
-          path="/chat-admin/users" 
-          element={admin ? <ChatAdminUserListPage /> : <Navigate to="/chat-admin/login" replace />} 
-        />
-        {/* 
-        <Route
-          path="/chat"
-          element={admin ? <AdminChat onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-        />*/}
-                <Route
-          path="/popup"
-          element={admin ? <AdminPopupManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-        />
-        <Route
-          path="/dashboard"
-          element={admin ? <AdminDashboard onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-        />
-                <Route
-          path="/quantpage"
-          element={admin ? <TeamManagementPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-        />
-         <Route
-          path="/quantrank"
-          element={admin ? <QuantLeaderboardPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-        />
-
-        <Route
-          path="/content"
-          element={admin ? <AdminContentManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-        />
-                <Route
-          path="/invite-rewards"
-          element={admin ? <AdminInviteRewardsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-        />
-                <Route
-          path="/token"
-          element={admin ? <TokensAdminPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-        />
-                        <Route
-          path="/tokensales"
-          element={admin ? <TokenSalesAdminPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-        />
-                                <Route
-          path="/tokenlogs"
-          element={admin ? <TokenLogsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-        />
-        
-                        <Route
-          path="/admin-rewards"
-          element={admin ? <AdminJoinRewardsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-        />
-        <Route path="/users/info" element={admin ? <AdminUserInfoPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
-<Route path="/users/level" element={admin ? <AdminUserLevelPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
-<Route path="/users/referral" element={admin ? <AdminUserReferralPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
-
-<Route
-    path="/wallet-admin"
-    element={admin ? <WalletAdminPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
-  />
-  <Route
-    path="/wallet-settings"
-    element={admin ? <AdminWalletSettings onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
-  />
-    <Route
-    path="/wallet-deposits"
-    element={admin ? <AdminWalletsPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
-  />
+    <Routes>
+      <Route path="/" element={<Navigate to="/login" replace />} />
+      <Route path="/login" element={<AdminLogin onLoginSuccess={handleLoginSuccess} />} />
+      {/* Chat Admin Routes */}
+      <Route path="/chat-admin/login" element={<ChatAdminLoginPage />} />
+      <Route 
+        path="/chat-admin/users" 
+        element={admin ? <ChatAdminUserListPage /> : <Navigate to="/chat-admin/login" replace />} 
+      />
+      {/* 
       <Route
-    path="/wallet-withdrawals"
-    element={admin ? <AdminWalletPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
-  />
-        <Route
-    path="/wallet-withdraw"
-    element={admin ? <AdminWithdrawalsPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
-  />
+        path="/chat"
+        element={admin ? <AdminChat onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+      />*/}
+      <Route
+        path="/popup"
+        element={admin ? <AdminPopupManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+      />
+      <Route
+        path="/dashboard"
+        element={admin ? <AdminDashboard onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+      />
+      <Route
+        path="/quantpage"
+        element={admin ? <TeamManagementPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+      />
+      <Route
+        path="/quantrank"
+        element={admin ? <QuantLeaderboardPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+      />
 
-        <Route path="/users" element={admin ? <AdminUserManager /> : <Navigate to="/login" />} />
+      <Route
+        path="/content"
+        element={admin ? <AdminContentManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+      />
+      <Route
+        path="/invite-rewards"
+        element={admin ? <AdminInviteRewardsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+      />
+      <Route
+        path="/token"
+        element={admin ? <TokensAdminPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+      />
+      <Route
+        path="/tokensales"
+        element={admin ? <TokenSalesAdminPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+      />
+      <Route
+        path="/tokenlogs"
+        element={admin ? <TokenLogsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+      />
+      
+      <Route
+        path="/admin-rewards"
+        element={admin ? <AdminJoinRewardsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+      />
+      <Route path="/users/info" element={admin ? <AdminUserInfoPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
+      <Route path="/users/level" element={admin ? <AdminUserLevelPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
+      <Route path="/users/referral" element={admin ? <AdminUserReferralPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
 
-      </Routes>
+      <Route
+        path="/wallet-admin"
+        element={admin ? <WalletAdminPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+      />
+      <Route
+        path="/wallet-settings"
+        element={admin ? <AdminWalletSettings onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+      />
+      <Route
+        path="/wallet-deposits"
+        element={admin ? <AdminWalletsPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+      />
+      <Route
+        path="/wallet-withdrawals"
+        element={admin ? <AdminWalletPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+      />
+      <Route
+        path="/wallet-withdraw"
+        element={admin ? <AdminWithdrawalsPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+      />
+
+      <Route path="/users" element={admin ? <AdminUserManager /> : <Navigate to="/login" />} />
+
+    </Routes>
+  );
+}
+
+export default function AdminApp() {
+  return (
+    <Router>
+      <AdminAppInner />
     </Router>
   );
 }
