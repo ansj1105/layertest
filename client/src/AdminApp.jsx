@@ -23,6 +23,7 @@ import TokensAdminPage from './pages/admin/TokensAdminPage';
 import TokenLogsPage from './pages/admin/TokenLogsPage';
 import ChatAdminLoginPage from './pages/chat/ChatAdminLoginPage';
 import ChatAdminUserListPage from './pages/chat/ChatAdminUserListPage';
+import AdminTopNav from './components/admin/AdminTopNav';
 
 import axios from 'axios';
 
@@ -97,90 +98,93 @@ function AdminAppInner() {
   };
 
   return (
-    <Routes>
-      <Route path="/" element={<Navigate to="/login" replace />} />
-      <Route path="/login" element={<AdminLogin onLoginSuccess={handleLoginSuccess} />} />
-      {/* Chat Admin Routes */}
-      <Route path="/chat-admin/login" element={<ChatAdminLoginPage />} />
-      <Route 
-        path="/chat-admin/users" 
-        element={admin ? <ChatAdminUserListPage /> : <Navigate to="/chat-admin/login" replace />} 
-      />
-      {/* 
-      <Route
-        path="/chat"
-        element={admin ? <AdminChat onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-      />*/}
-      <Route
-        path="/popup"
-        element={admin ? <AdminPopupManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-      />
-      <Route
-        path="/dashboard"
-        element={admin ? <AdminDashboard onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-      />
-      <Route
-        path="/quantpage"
-        element={admin ? <TeamManagementPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-      />
-      <Route
-        path="/quantrank"
-        element={admin ? <QuantLeaderboardPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-      />
+    <>
+      {admin && <AdminTopNav />}
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<AdminLogin onLoginSuccess={handleLoginSuccess} />} />
+        {/* Chat Admin Routes */}
+        <Route path="/chat-admin/login" element={<ChatAdminLoginPage />} />
+        <Route 
+          path="/chat-admin/users" 
+          element={admin ? <ChatAdminUserListPage /> : <Navigate to="/chat-admin/login" replace />} 
+        />
+        {/* 
+        <Route
+          path="/chat"
+          element={admin ? <AdminChat onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />*/}
+        <Route
+          path="/popup"
+          element={admin ? <AdminPopupManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/dashboard"
+          element={admin ? <AdminDashboard onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/quantpage"
+          element={admin ? <TeamManagementPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/quantrank"
+          element={admin ? <QuantLeaderboardPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
 
-      <Route
-        path="/content"
-        element={admin ? <AdminContentManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-      />
-      <Route
-        path="/invite-rewards"
-        element={admin ? <AdminInviteRewardsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-      />
-      <Route
-        path="/token"
-        element={admin ? <TokensAdminPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-      />
-      <Route
-        path="/tokensales"
-        element={admin ? <TokenSalesAdminPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-      />
-      <Route
-        path="/tokenlogs"
-        element={admin ? <TokenLogsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-      />
-      
-      <Route
-        path="/admin-rewards"
-        element={admin ? <AdminJoinRewardsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
-      />
-      <Route path="/users/info" element={admin ? <AdminUserInfoPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
-      <Route path="/users/level" element={admin ? <AdminUserLevelPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
-      <Route path="/users/referral" element={admin ? <AdminUserReferralPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
+        <Route
+          path="/content"
+          element={admin ? <AdminContentManager onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/invite-rewards"
+          element={admin ? <AdminInviteRewardsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/token"
+          element={admin ? <TokensAdminPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/tokensales"
+          element={admin ? <TokenSalesAdminPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/tokenlogs"
+          element={admin ? <TokenLogsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+        
+        <Route
+          path="/admin-rewards"
+          element={admin ? <AdminJoinRewardsPage onLogout={handleLogout} /> : <Navigate to="/login" replace />}
+        />
+        <Route path="/users/info" element={admin ? <AdminUserInfoPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
+        <Route path="/users/level" element={admin ? <AdminUserLevelPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
+        <Route path="/users/referral" element={admin ? <AdminUserReferralPage onLogout={handleLogout} /> : <Navigate to="/login" />} />
 
-      <Route
-        path="/wallet-admin"
-        element={admin ? <WalletAdminPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
-      />
-      <Route
-        path="/wallet-settings"
-        element={admin ? <AdminWalletSettings onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
-      />
-      <Route
-        path="/wallet-deposits"
-        element={admin ? <AdminWalletsPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
-      />
-      <Route
-        path="/wallet-withdrawals"
-        element={admin ? <AdminWalletPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
-      />
-      <Route
-        path="/wallet-withdraw"
-        element={admin ? <AdminWithdrawalsPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
-      />
+        <Route
+          path="/wallet-admin"
+          element={admin ? <WalletAdminPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+        />
+        <Route
+          path="/wallet-settings"
+          element={admin ? <AdminWalletSettings onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+        />
+        <Route
+          path="/wallet-deposits"
+          element={admin ? <AdminWalletsPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+        />
+        <Route
+          path="/wallet-withdrawals"
+          element={admin ? <AdminWalletPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+        />
+        <Route
+          path="/wallet-withdraw"
+          element={admin ? <AdminWithdrawalsPage onLogout={handleLogout}/> : <Navigate to="/login" replace/>}
+        />
 
-      <Route path="/users" element={admin ? <AdminUserManager /> : <Navigate to="/login" />} />
+        <Route path="/users" element={admin ? <AdminUserManager /> : <Navigate to="/login" />} />
 
-    </Routes>
+      </Routes>
+    </>
   );
 }
 

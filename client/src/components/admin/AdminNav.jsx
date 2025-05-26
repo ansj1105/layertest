@@ -16,7 +16,7 @@ export default function AdminNav({ onLogout }) {
     <div className="w-64 h-screen p-4 bg-green-100 border-r-2 border-green-300 fixed top-0 left-0 overflow-y-auto">
       <div className="mb-4 space-y-2">
         <Link
-          to="/chat"
+          to="/chat-admin"
           className="block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
         >
           💬 채팅 관리
