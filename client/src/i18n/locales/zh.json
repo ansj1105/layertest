@@ -228,7 +228,10 @@
       "start": "开始交易",
       "confirmStart": "开始量化交易？",
       "tradeError": "交易失败：",
-      "loading": "加载中..."
+      "loading": "加载中...",
+      "progressOverview": "进度概览",
+      "previousLevel": "上一级",
+      "higherLevel": "更高级别"
     },
     "history": {
       "title": "交易历史",

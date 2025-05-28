@@ -177,7 +177,8 @@
     "question": "What happens after the product matures?",
     "answer": "Fixed-term products are automatically redeemed upon maturity."
   }
-},  "quantTrading": {
+},
+  "quantTrading": {
      "leaderboardTitle": "Leaderboard",
      "processing": "Processing trade...",
      "tradingCountdown": "Trading... {{seconds}}s",
@@ -231,7 +232,10 @@
   "start": "Start Trading",
   "confirmStart": "Start quant trading?",
   "tradeError": "Trade failed: ",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "progressOverview": "Progress Overview",
+  "previousLevel": "Previous Level",
+  "higherLevel": "Higher Level"
 },
 "history": {
   "title": "Transaction History",

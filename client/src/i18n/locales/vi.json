@@ -228,7 +228,10 @@
       "start": "Bắt đầu giao dịch",
       "confirmStart": "Bắt đầu Quant Trading?",
       "tradeError": "Giao dịch thất bại: ",
-      "loading": "Đang tải..."
+      "loading": "Đang tải...",
+      "progressOverview": "Tổng quan tiến trình",
+      "previousLevel": "Cấp độ trước",
+      "higherLevel": "Cấp độ cao hơn"
     },
     "table": {
         "id": "ID",

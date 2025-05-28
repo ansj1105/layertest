@@ -78,7 +78,10 @@
       "start": "수량화 시작",
       "confirmStart": "정량 거래를 시작하시겠습니까?",
       "tradeError": "거래 실패: ",
-      "loading": "불러오는 중..."
+      "loading": "불러오는 중...",
+      "progressOverview": "진행 상황",
+      "previousLevel": "이전 레벨",
+      "higherLevel": "높은 레벨"
     },
     "bottomNav": {
       "home": "첫 장",

@@ -255,7 +255,10 @@
     "start": "Commencer le Trading",
     "confirmStart": "Commencer le trading quantitatif ?",
     "tradeError": "Échec du trade : ",
-    "loading": "Chargement..."
+    "loading": "Chargement...",
+    "progressOverview": "Aperçu du Progrès",
+    "previousLevel": "Niveau Précédent",
+    "higherLevel": "Niveau Supérieur"
   },
   "history": {
     "title": "Historique des Transactions",

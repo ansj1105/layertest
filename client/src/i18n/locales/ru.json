@@ -254,7 +254,10 @@
     "start": "Начать Торговлю",
     "confirmStart": "Начать квантовую торговлю?",
     "tradeError": "Ошибка торговли: ",
-    "loading": "Загрузка..."
+    "loading": "Загрузка...",
+    "progressOverview": "Обзор Прогресса",
+    "previousLevel": "Предыдущий Уровень",
+    "higherLevel": "Выше Уровень"
   },
   "history": {
     "title": "История Транзакций",

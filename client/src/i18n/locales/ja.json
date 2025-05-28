@@ -228,7 +228,10 @@
       "start": "取引開始",
       "confirmStart": "クオンツ取引を開始しますか？",
       "tradeError": "取引失敗: ",
-      "loading": "読み込み中..."
+      "loading": "読み込み中...",
+      "progressOverview": "進捗概要",
+      "previousLevel": "前のレベル",
+      "higherLevel": "上位レベル"
     },
     "history": {
         "title": "取引履歴",
@@ -374,11 +377,11 @@
       },
       "funding": {
         "active_projects": "進行中のプロジェクト",
-        "investing_amount": "投資額：{{amount}} USDT",
         "expired_projects": "終了したプロジェクト",
         "no_active_projects": "進行中のプロジェクトはありません。",
         "no_expired_projects": "終了したプロジェクトはありません。",
         "expired_label": "終了したプロジェクト",
+        "investing_amount": "投資額：{{amount}} USDT",
         "detail2": {
           "loading": "読み込み中...",
           "subscribeSuccessTitle": "投資に成功しました",
@@ -426,39 +429,39 @@
           "real_account": "メインアカウント：{{balance}}",
           "fee": "手数料：{{fee}} (現在の率：{{rate}}％)",
           "submit": "送信"
+        },
+        "info": {
+          "title": "金融商品とは？",
+          "definition": "金融商品は、一定期間資金をロックして報酬を得る仕組みです。Upstartが管理する複数のパッケージがあり、それぞれ利率と期間が異なります。",
+          "settlement": "決済は毎日00:00 UTCに行われ、T日目の収益はT+1日から利用可能です。",
+          "tradingTitle": "取引の仕組み",
+          "trade1": "1. **購入**：商品に申し込むと指定期間資金がロックされます。",
+          "trade2": "2. **報酬**：日利に基づく報酬が24時間ごとに付与されます。",
+          "trade3": "3. **引き出し**：保有期間終了後、元本と報酬がファイナンスウォレットに戻ります。",
+          "trade4": "4. **早期解約**：現在は未対応です。将来対応予定です。"
+        },
+        "header": "ファンディング管理",
+        "loading": "読み込み中...",
+        "wallet_balance": "ファイナンスウォレット残高",
+        "detail": "詳細",
+        "deposit_request": "入金リクエスト",
+        "withdraw_request": "出金リクエスト",
+        "recharge": "チャージ",
+        "all_transactions": "すべての取引",
+        "today_income": "本日のファンディング収益",
+        "total_income": "総ファンディング収益",
+        "no_projects": "アクティブなファンディングプロジェクトはありません。",
+        "project": {
+          "description": "説明：{{description}}",
+          "available": "利用可能：{{min}}〜{{max}} USDT",
+          "daily_rate": "日利：{{rate}}％",
+          "duration": "期間：{{cycle}}日（〜{{end}}）",
+          "apply": "今すぐ参加"
+        },
+        "charge_modal": {
+          "title": "チャージ方法",
+          "usdt_alert": "指定されたウォレットアドレスにUSDTを送信してください。"
         }
-      },
-      "info": {
-        "title": "金融商品とは？",
-        "definition": "金融商品は、一定期間資金をロックして報酬を得る仕組みです。Upstartが管理する複数のパッケージがあり、それぞれ利率と期間が異なります。",
-        "settlement": "決済は毎日00:00 UTCに行われ、T日目の収益はT+1日から利用可能です。",
-        "tradingTitle": "取引の仕組み",
-        "trade1": "1. **購入**：商品に申し込むと指定期間資金がロックされます。",
-        "trade2": "2. **報酬**：日利に基づく報酬が24時間ごとに付与されます。",
-        "trade3": "3. **引き出し**：保有期間終了後、元本と報酬がファイナンスウォレットに戻ります。",
-        "trade4": "4. **早期解約**：現在は未対応です。将来対応予定です。"
-      },
-      "header": "ファンディング管理",
-      "loading": "読み込み中...",
-      "wallet_balance": "ファイナンスウォレット残高",
-      "detail": "詳細",
-      "deposit_request": "入金リクエスト",
-      "withdraw_request": "出金リクエスト",
-      "recharge": "チャージ",
-      "all_transactions": "すべての取引",
-      "today_income": "本日の収益",
-      "total_income": "総収益",
-      "no_projects": "アクティブなプロジェクトはありません。",
-      "project": {
-        "description": "説明：{{description}}",
-        "available": "利用可能：{{min}}〜{{max}} USDT",
-        "daily_rate": "日利：{{rate}}％",
-        "duration": "期間：{{cycle}}日（〜{{end}}）",
-        "apply": "今すぐ参加"
-      },
-      "charge_modal": {
-        "title": "チャージ方法",
-        "usdt_alert": "指定されたウォレットアドレスにUSDTを送信してください。"
       },
       "Upstart": {
         "title": "Upstartの概要",

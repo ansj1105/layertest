@@ -228,7 +228,10 @@
     "start": "Handel starten",
     "confirmStart": "Quant-Trading starten?",
     "tradeError": "Handel fehlgeschlagen: ",
-    "loading": "Laden..."
+    "loading": "Laden...",
+    "progressOverview": "Fortschritt Übersicht",
+    "previousLevel": "Vorherige Stufe",
+    "higherLevel": "Höhere Stufe"
   },
   "history": {
     "title": "Transaktionsverlauf",
