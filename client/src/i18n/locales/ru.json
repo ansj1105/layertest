@@ -1,4 +1,7 @@
 {
+  "notification": {
+    "title": "Системная Уведомление"
+  },
   "order_history": {
     "title": "Мои Заказы и Погашения",
     "orders": {
@@ -146,6 +149,17 @@
     "terms": "Условия Использования",
     "privacy": "Политика Конфиденциальности"
   },
+  "bnbRecharge": {
+  "title": "BNB Aufladen",
+  "loading": "⏳ BNB wird geladen...",
+  "back": "Zurück",
+  "protocol": "BEP-20",
+  "scanLabel": "Scannen Sie den QR-Code, um BNB aufzuladen",
+  "noWallet": "Kein BNB-Wallet gefunden. Bitte erstellen Sie eines.",
+  "address": "BNB-Adresse",
+  "copy": "Kopieren",
+  "copySuccess": "BNB-Adresse wurde kopiert!"
+},
   "walletLogs": {
     "in" : "Вывод",
     "out" : "Вывод",
@@ -153,6 +167,20 @@
     "next": "следующий",
     "back": "Назад",
     "title": "Журнал Переводов",
+    "fundingDescriptions": {
+      "initial_profit": "Начальная прибыль",
+      "investment": "Инвестиция в проект",
+      "expired_return": "Возврат инвестиций",
+      "daily_profit": "Ежедневная прибыль ({{days}} дней)"
+    },
+    "quantTypes" :{
+      "trade": "Торговля",
+      "referral": "Реферальная"
+    },
+    "rewardTypes": {
+      "join": "Реферальная",
+      "invite": "Реферальная"
+    },
     "tabs": {
       "transfer": "Переводы",
       "walletEarnings": "Доход с Кошелька-Logs",
@@ -165,7 +193,8 @@
       "amount": "Сумма",
       "fee": "Комиссия",
       "net": "Чистая Сумма",
-      "date": "Дата"
+      "date": "Дата",
+      "category": "Категория"
     },
     "types": {
       "fund_to_quant": "Фонд → Квант",
@@ -201,6 +230,7 @@
     }
   },
   "quantTrading": {
+    "vipLevel": "Уровень VIP",
     "leaderboardTitle": "Таблица Лидеров",
     "processing": "Обработка торговли...",
     "tradingCountdown": "Обработка торговли... {{seconds}}с",
@@ -295,7 +325,9 @@
   },
   "tokenPurchase": {
     "title": "USC Токен",
+    "lockupDetails": "Детали блокировки",
     "purchaseSuccessTitle": "Покупка успешна",
+    "maxAll": "Все",
     "purchaseSuccessWithAmount": "{{amount}} USDT куплен.",
     "purchaseFailTitle": "Покупка не удалась",
     "redeemSuccess": "Погашение успешно",
@@ -356,6 +388,7 @@
     "header": "USC Токен",
     "recharge": "Пополнить",
     "withdraw": "Вывести",
+    "more": "Подробнее",
     "agent": "Агент",
     "invite": "Пригласить Друзей"
   },

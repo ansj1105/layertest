@@ -1,4 +1,7 @@
 {
+  "notification": {
+    "title": "Systembenachrichtigung"
+  },
     "order_history": {
       "title": "Meine Bestellungen und Auszahlungen",
       "orders": {
@@ -120,6 +123,17 @@
     "identifier": "ID",
     "forgot": "Passwort finden"
   },
+  "bnbRecharge": {
+  "title": "BNB Aufladen",
+  "loading": "⏳ BNB wird geladen...",
+  "back": "Zurück",
+  "protocol": "BEP-20",
+  "scanLabel": "Scannen Sie den QR-Code, um BNB aufzuladen",
+  "noWallet": "Kein BNB-Wallet gefunden. Bitte erstellen Sie eines.",
+  "address": "BNB-Adresse",
+  "copy": "Kopieren",
+  "copySuccess": "BNB-Adresse wurde kopiert!"
+},
   "walletLogs": {
     "in" : "Einzahlung",
     "out" : "Auszahlung",
@@ -127,6 +141,20 @@
     "next": "Weiter",
     "back": "Zurück",
     "title": "Überweisungsverlauf",
+    "fundingDescriptions": {
+      "initial_profit": "Initiale Gewinnzahlung",
+      "investment": "Projektinvestition",
+      "expired_return": "Rückzahlung abgelaufener Projekt",
+      "daily_profit": "Tägliche Gewinnzahlung ({{days}} Tage)"
+    },
+    "rewardTypes": {
+      "join": "Beitritt",
+      "invite": "Einladung"
+    },
+    "quantTypes" :{
+      "trade": "Trade",
+      "referral": "Referral"
+    },
     "tabs": {
       "transfer": "Überweisungen",
       "walletEarnings": "Wallet-Erträge-Logs",
@@ -139,7 +167,8 @@
       "amount": "Betrag",
       "fee": "Gebühr",
       "net": "Netto",
-      "date": "Datum"
+      "date": "Datum",
+      "category": "Kategorie"
     },
     "types": {
       "fund_to_quant": "Fund → Quant",
@@ -175,6 +204,7 @@
     }
   },
   "quantTrading": {
+    "vipLevel": "VIP-Stufe",
     "leaderboardTitle": "Bestenliste",
     "processing": "Handel wird verarbeitet...",
     "tradingCountdown": "Handel wird verarbeitet... {{seconds}}s",
@@ -269,6 +299,7 @@
   },
     "tokenPurchase": {
     "title": "USC-Token",
+    "lockupDetails": "Sperrdetails",
     "purchaseSuccessTitle": "Kauf erfolgreich",
     "purchaseSuccessWithAmount": "{{amount}} USDT gekauft.",
     "purchaseFailTitle": "Kauf fehlgeschlagen",
@@ -277,6 +308,7 @@
     "inputUsdc": "USC ",
     "redeemTitle": "Einlösen",
     "redeemSubmit": "Absenden",
+    "maxAll": "Alles",
     "quantity": "Menge",
     "token": "Token pro",
     "totalCost": "Gesamtkosten (USDT)",
@@ -328,6 +360,7 @@
   },
   "token": {
     "header": "USC-Token",
+    "more": "Mehr",
     "recharge": "Aufladen",
     "withdraw": "Abheben",
     "agent": "Agent",

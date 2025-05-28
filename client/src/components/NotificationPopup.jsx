@@ -22,7 +22,7 @@ export default function NotificationPopup({ list, onClose }) {
         onClick={(e) => e.stopPropagation()} // 모달 바깥 클릭 시만 닫히게
       >
         <div className="notification-header">
-          <h3 className="notification-title">시스템 알림</h3>
+          <h3 className="notification-title">{t('notification.title')}</h3>
           <button className="notification-close-btn" onClick={onClose}>
             ✕
           </button>

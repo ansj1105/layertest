@@ -1,4 +1,7 @@
 {
+  "notification": {
+    "title": "Notification Système"
+  },
   "order_history": {
 
     "title": "Mes Commandes et Remboursements",
@@ -154,6 +157,10 @@
     "next": "suivant",
     "back": "Retour",
     "title": "Journaux de transfert",
+    "quantTypes" :{
+      "trade": "Trade",
+      "referral": "Referral"
+    },
     "tabs": {
       "transfer": "Transferts",
       "walletEarnings": "Gains du portefeuille-Logs",
@@ -165,8 +172,9 @@
       "type": "Type",
       "amount": "Montant",
       "fee": "Frais",
-      "net": "Net",
-      "date": "Date"
+      "net": "Net", 
+      "date": "Date",
+      "category": "Catégorie"
     },
     "types": {
       "fund_to_quant": "Fonds → Quant",
@@ -202,6 +210,7 @@
     }
   },
   "quantTrading": {
+    "vipLevel": "Niveau VIP",
     "leaderboardTitle": "Classement",
     "processing": "Traitement de la commande...",
     "tradingCountdown": "Traitement de la commande... {{seconds}}s",
@@ -294,8 +303,20 @@
     "noDataAlt": "Aucune donnée",
     "errorLoad": "Échec du chargement de l'historique."
   },
+  "bnbRecharge": {
+  "title": "Recharger BNB",
+  "loading": "⏳ Chargement de BNB...",
+  "back": "Retour",
+  "protocol": "BEP-20",
+  "scanLabel": "Scannez le QR code pour recharger du BNB",
+  "noWallet": "Aucun portefeuille BNB trouvé. Veuillez en créer un.",
+  "address": "Adresse BNB",
+  "copy": "Copier",
+  "copySuccess": "Adresse BNB copiée !"
+},
   "tokenPurchase": {
     "title": "Token USC",
+    "lockupDetails": "Détails du Verrouillage",
     "purchaseSuccessTitle": "Achat réussi",
     "purchaseSuccessWithAmount": "{{amount}} USDT acheté.",
     "purchaseFailTitle": "Achat échoué",
@@ -311,6 +332,7 @@
     "price": "Prix du token USC",
     "min": "min",
     "selected": "sélectionné",
+    "maxAll": "Tout",
     "max": "max",
     "feeRate": "taux de frais",
     "minPurchase": "achat minimum",
@@ -353,8 +375,9 @@
       "purchaseFail": "Échec de l'achat."
     }
   },
-  "token": {
+  "token": {  
     "header": "Token USC",
+    "more": "Plus",
     "recharge": "Recharger",
     "withdraw": "Retirer",
     "agent": "Agent",

@@ -1,4 +1,7 @@
 {
+  "notification": {
+    "title": "システム通知"
+  },
     "order_history": {
       "title": "注文履歴と引き出し",
       "orders": {
@@ -127,6 +130,20 @@
       "next": "次へ",
       "back": "戻る",
       "title": "送金履歴",
+      "quantTypes" :{
+        "trade": "Trade",
+        "referral": "Referral"
+      },
+      "rewardTypes": {
+        "join": "登録報酬",
+        "invite": "招待報酬"
+      },
+      "fundingDescriptions": {
+        "initial_profit": "プロジェクト初期収益配分",
+        "investment": "プロジェクト投資参加",
+        "expired_return": "満期プロジェクト元本返還",
+        "daily_profit": "日次収益積立（{{days}}日分補正）"
+      },
       "tabs": {
         "transfer": "送金",
         "walletEarnings": "ウォレット収益-Logs",
@@ -139,6 +156,7 @@
         "amount": "数量",
         "fee": "手数料",
         "net": "ネット",
+        "category": "カテゴリ",
         "date": "日付"
       },
       "types": {
@@ -175,6 +193,7 @@
       }
     },
     "quantTrading": {
+      "vipLevel": "VIPレベル",
       "processing": "取引中...",
       "tradingCountdown": "取引中... {{seconds}}秒",
       "warningMessage": "取引中にページを閉じたり更新しないでください",
@@ -269,6 +288,7 @@
       },
       "tokenPurchase": {
         "title": "USCトークン",
+        "lockupDetails": "ロックアップ詳細",
         "purchaseSuccessTitle": "購入に成功しました！",
         "purchaseSuccessWithAmount": "{{amount}} USDTを購入しました。",
         "purchaseFailTitle": "購入に失敗しました。",
@@ -277,6 +297,7 @@
         "inputUsdc": "USC を入力",
         "redeemTitle": "引き出し",
         "redeemSubmit": "送信",
+        "maxAll": "全額",
         "quantity": "数量",
         "token": "トークン当たり",
         "totalCost": "総USDTコスト",
@@ -329,6 +350,7 @@
       "token": {
         "header": "USCトークン",
         "recharge": "チャージ",
+        "more": "もっと見る",
         "withdraw": "出金",
         "agent": "代理店",
         "invite": "友達を招待"
@@ -706,7 +728,7 @@
       "profile": {
         "loading": "⏳ 読み込み中...",
         "greeting": "こんにちは、{{name}}さん",
-        "vipLevel": "VIP{{level}}",
+        "vipLevel": "VIPレベル：{{level}}",
         "idLabel": "ID",
         "summary": {
           "totalBalance": "総残高",
@@ -900,6 +922,17 @@
           "copied": "アドレスをコピーしました！",
           "copyFailed": "コピーに失敗しました"
         }
+      },
+      "bnbRecharge": {
+        "title": "BNBチャージ",
+        "loading": "⏳ BNB読み込み中...",
+        "back": "戻る",
+        "protocol": "BEP-20",
+        "scanLabel": "BNBチャージ用QRコードをスキャンしてください",
+        "noWallet": "BNBウォレットがありません。作成してください。",
+        "address": "BNBアドレス",
+        "copy": "コピー",
+        "copySuccess": "BNBアドレスがコピーされました！"
       },
       "userChat": {
         "guestTitle" : "ゲストチャット",

@@ -134,14 +134,28 @@ export default function WalletLogsPage() {
           <>
             <td className="p-2">{new Date(r.created_at || r.logDate).toLocaleDateString()}</td>
             <td className="p-2">{parseFloat(r.amount).toFixed(6)} USDT</td>
-            <td className="p-2">{r.type ? t(`walletLogs.quantTypes.${r.type}`) : (r.referenceType === 'join_rewards' ? 'Join Reward' : 'Invite Reward')}</td>
+            <td className="p-2">{r.type ? t(`walletLogs.quantTypes.${r.type}`) : (r.referenceType === 'join_rewards' ? t('walletLogs.rewardTypes.join') : t('walletLogs.rewardTypes.invite'))}</td>
           </>
         ) : /* financeIncome */ (
           <>
             <td className="p-2">{new Date(r.logDate).toLocaleDateString()}</td>
             <td className="p-2">{parseFloat(r.amount).toFixed(6)} USDT</td>
             <td className="p-2">{r.direction === 'in' ? t('walletLogs.in') : t('walletLogs.out')}</td>
-            <td className="p-2">{r.description}</td>
+            <td className="p-2">
+              {(() => {
+                if (r.description.includes('프로젝트 초기 수익 지급')) {
+                  return t('walletLogs.fundingDescriptions.initial_profit');
+                } else if (r.description.includes('프로젝트 투자 참여')) {
+                  return t('walletLogs.fundingDescriptions.investment');
+                } else if (r.description.includes('만료 프로젝트 원금 반환')) {
+                  return t('walletLogs.fundingDescriptions.expired_return');
+                } else if (r.description.includes('일일 수익 적립')) {
+                  const days = r.description.match(/\d+/)?.[0] || '0';
+                  return t('walletLogs.fundingDescriptions.daily_profit', { days });
+                }
+                return r.description;
+              })()}
+            </td>
           </>
         )}
       </tr>

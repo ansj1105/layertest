@@ -388,7 +388,7 @@ const handleStart2 = async () => {
       <div>{t('quantTrading.totalEarning')} <strong>{summary.totalProfit.toFixed(6)} USDT</strong></div>
       </div>
       <div className="referra-m-l">
-      <span className="font-semibold mr-2">VIP 등급 : </span>
+      <span className="font-semibold mr-2">{t('quantTrading.currentLevel')} : </span>
       <strong>{currentVIP.level}</strong>
     </div>
 

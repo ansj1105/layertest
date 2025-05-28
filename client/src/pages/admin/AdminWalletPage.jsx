@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import AdminNav from '../../components/admin/AdminNav';
+import { useTranslation } from 'react-i18next';
 
 export default function AdminWalletPage({ onLogout }) {
   const [wallets, setWallets] = useState([]);
@@ -33,7 +34,9 @@ export default function AdminWalletPage({ onLogout }) {
   const [adminUsdtAfter, setAdminUsdtAfter] = useState(null);
   const [fundTrxAmount, setFundTrxAmount] = useState(2.5); // 기본값 2.5 TRX
 
-  // 관리자 설정 불러오기
+  const { t } = useTranslation();
+
+  // Admin settings
   const loadAdminSettings = async () => {
     try {
       const res = await axios.get('/api/tron/reclaim-settings');
@@ -300,7 +303,7 @@ export default function AdminWalletPage({ onLogout }) {
           <section className="bg-white p-4 rounded shadow space-y-4">
             <h2 className="text-lg font-semibold">자금 회수 설정</h2>
             {/* 관리자 설정 입력 */}
-            <label className="block mb-1">관리자 지갑 (회수 대상)</label>
+            <label className="block mb-1">{t('wallet.vipLevel')}</label>
             <select
               className="w-full border px-3 py-2 rounded mb-2"
               value={selectedAdminWallet || ''}

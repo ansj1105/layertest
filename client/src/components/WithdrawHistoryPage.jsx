@@ -6,12 +6,20 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import '../styles/WithdrawHistoryPage.css';
 import '../styles/topbar.css';
+
 const tabs = [
   { key: "all",     labelKey: "history.tabs.all",      filter: null },
   { key: "pending", labelKey: "history.tabs.pending",  filter: "PENDING" },
   { key: "success", labelKey: "history.tabs.success",  filter: "SUCCESS" },
   { key: "failed",  labelKey: "history.tabs.failed",   filter: "FAILED" },
 ];
+
+// 날짜를 YYYY-MM-DD HH:mm:ss 포맷으로 변환하는 함수
+function formatDateTime(date) {
+  const d = new Date(date);
+  const pad = n => n.toString().padStart(2, '0');
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+}
 
 export default function WithdrawHistoryPage() {
   const { t } = useTranslation();
@@ -98,9 +106,9 @@ export default function WithdrawHistoryPage() {
                   <td>{t(`history.flow.${r.flow_type.toLowerCase()}`)}</td>
                   <td>{r.method}</td>
                   <td>{t(`history.status.${r.status.toLowerCase()}`)}</td>
-                  <td>{new Date(r.created_at).toLocaleString()}</td>
+                  <td>{formatDateTime(r.created_at)}</td>
                 </tr>
-              ))}
+              ))} 
             </tbody>
           </table>
         </div>
