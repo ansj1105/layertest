@@ -757,6 +757,7 @@
       "confirmTradePassword": "거래 비밀번호 확인",
       "addressLabel": "출금 주소",
       "addressPlaceholder": "TRC20 USDT 주소",
+      "addressPlaceholderBNB": "BNB 주소",
       "invalidAddress": "유효하지 않은 주소입니다.",
       "validAddress": "유효한 주소입니다.",
       "amountLabel": "출금 수량",

@@ -384,6 +384,7 @@
     "confirmTradePassword": "Confirmer le mot de passe de transaction",
     "addressLabel": "Adresse de Retrait",
     "addressPlaceholder": "Adresse USDT TRC20",
+    "addressPlaceholderBNB": "Adresse BNB",
     "invalidAddress": "Adresse invalide.",
     "validAddress": "Adresse valide.",
     "amountLabel": "Montant à Retirer",

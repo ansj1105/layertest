@@ -357,6 +357,7 @@
     "confirmTradePassword": "Handelskennwort bestätigen",
     "addressLabel": "Auszahlungsadresse",
     "addressPlaceholder": "TRC20-USDT-Adresse",
+    "addressPlaceholderBNB": "BNB-Adresse",
     "invalidAddress": "Ungültige Adresse.",
     "validAddress": "Gültige Adresse.",
     "amountLabel": "Abzuhebender Betrag",

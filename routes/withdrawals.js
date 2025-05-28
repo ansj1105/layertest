@@ -9,6 +9,7 @@ const USDT_CONTRACT = process.env.USDT_CONTRACT;
 // 📁 routes/tron.js (기존 라우터 맨 아래에 추가)
 const { getTronWeb } = require("../utils/tron");
 const bcrypt = require('bcrypt');
+const { ethers } = require('ethers');
 // polling intervals
 const DEPOSIT_POLL_INTERVAL    = 2 * 60 * 1000;   // 2분
 const REAL_AMOUNT_INTERVAL     = 2 * 60 * 60 * 1000; // 2시간
@@ -29,6 +30,7 @@ router.get('/wallets', async (req, res) => {
         w.quant_balance,
         w.fund_balance,
         w.real_amount,
+        w.real_bamount,
         w.updated_at
       FROM wallets w
       JOIN users u
@@ -436,6 +438,7 @@ processPendingDeposits();
 //updateAllRealAmounts();
 setInterval(processPendingDeposits, DEPOSIT_POLL_INTERVAL);
 setInterval(updateAllRealAmounts, REAL_AMOUNT_INTERVAL);
+setInterval(updateAllBNBAmounts, REAL_AMOUNT_INTERVAL);
 
 // ▶ 기존 스케줄러
 
@@ -794,6 +797,139 @@ router.post('/verify-trade-password', async (req, res) => {
   } catch (err) {
     console.error('❌ 거래 비밀번호 확인 실패:', err);
     res.status(500).json({ success: false, error: 'Failed to verify trade password' });
+  }
+});
+
+//이더리움관련
+
+// BNB 지갑 잔액 업데이트 헬퍼 함수
+async function updateBNBAmountFor(id, address, userId) {
+  try {
+    // 이전 real_bamount 조회
+    const [[prevRow]] = await db.query(
+      'SELECT real_bamount FROM wallets WHERE id = ?', [id]
+    );
+    const prevAmt = prevRow && prevRow.real_bamount ? Number(prevRow.real_bamount) : 0;
+
+    // BNB 잔액 조회 (BSC 메인넷)
+    const provider = new ethers.JsonRpcProvider('https://bsc-dataseed.binance.org/');
+    const balanceWei = await provider.getBalance(address);
+    const balanceBNB = Number(ethers.formatEther(balanceWei));
+    
+    console.log(`🔍 updateBNBAmountFor walletId=${id}, address=${address}, prevAmt=${prevAmt}, fetched=${balanceBNB}`);
+
+    // 차이(diff) 계산 및 업데이트
+    const diff = +(balanceBNB - prevAmt).toFixed(6);
+    await db.query(
+      'UPDATE wallets SET real_bamount = ?, updated_at = NOW() WHERE id = ?',
+      [balanceBNB.toFixed(6), id]
+    );
+
+    // real_bamount가 증가했으면 fund_balance에도 동일 금액만큼 추가
+    if (diff > 0) {
+      await db.query(
+        'UPDATE wallets SET fund_balance = fund_balance + ? WHERE id = ?',
+        [diff, id]
+      );
+    }
+
+    // balance_log에 기록
+    await db.query(
+      'INSERT INTO balance_log (address, balance_bnb) VALUES (?, ?)',
+      [address, balanceBNB.toFixed(6)]
+    );
+
+    // 변화가 있으면 withdrawals에 기록
+    if (diff !== 0) {
+      const flowType = diff > 0 ? 'DEPOSIT' : 'WITHDRAWAL';
+      const amount = Math.abs(diff);
+      await db.query(
+        `INSERT INTO withdrawals
+           (user_id, amount, to_address, method, status, flow_type,
+            initial_balance, retry_count, created_at)
+         VALUES (?, ?, ?, 'BEP-20', 'SUCCESS', ?, ?, 0, NOW())`,
+        [userId, amount, address, flowType, prevAmt]
+      );
+    }
+
+    return { id, address, real_bamount: balanceBNB.toFixed(6), diff };
+  } catch (err) {
+    console.error(`❌ updateBNBAmountFor 실패 (walletId=${id}):`, err);
+    return { id, address, error: err.message };
+  }
+}
+
+// 전체 BNB 지갑 잔액 업데이트
+async function updateAllBNBAmounts() {
+  try {
+    const [wallets] = await db.query(
+      'SELECT w.id, b.address, w.user_id FROM wallets w JOIN bnb_log b ON w.user_id = b.user_id'
+    );
+    console.log('📝 updateAllBNBAmounts - wallets to update:', wallets);
+    
+    const results = [];
+    for (const w of wallets) {
+      const result = await updateBNBAmountFor(w.id, w.address, w.user_id);
+      results.push(result);
+    }
+    return results;
+  } catch (err) {
+    console.error('❌ updateAllBNBAmounts 실패:', err);
+    throw err;
+  }
+}
+
+// ▶ API: 전체 BNB 지갑 real_bamount 조회/업데이트
+router.get('/real-bnb-amount/all', async (_req, res) => {
+  try {
+    const results = await updateAllBNBAmounts();
+    return res.json({ success: true, results });
+  } catch (err) {
+    console.error('❌ /real-bnb-amount/all 실패:', err);
+    return res.status(500).json({ success: false, error: 'Failed to update all BNB amounts' });
+  }
+});
+
+// ▶ API: 단일 BNB 지갑 real_bamount 조회/업데이트
+router.get('/real-bnb-amount/:id', async (req, res) => {
+  try {
+    const id = parseInt(req.params.id, 10);
+    // bnb_log와 wallets 테이블 조인하여 조회
+    const [[wallet]] = await db.query(
+      `SELECT w.id, b.address, w.user_id 
+       FROM wallets w 
+       JOIN bnb_log b ON w.user_id = b.user_id 
+       WHERE w.id = ?`, 
+      [id]
+    );
+    
+    if (!wallet) {
+      return res.status(404).json({ success: false, error: 'Wallet not found' });
+    }
+    
+    if (!wallet.user_id) {
+      return res.status(400).json({ 
+        success: false, 
+        error: '이 지갑은 사용자에 연결되어 있지 않습니다.' 
+      });
+    }
+
+    const result = await updateBNBAmountFor(wallet.id, wallet.address, wallet.user_id);
+    return res.json({ success: true, result });
+  } catch (err) {
+    console.error('❌ /real-bnb-amount/:id 실패:', err);
+    return res.status(500).json({ success: false, error: 'Failed to update BNB amount' });
+  }
+});
+
+//유저의 전체 bnb 주소조회
+router.get('/bnb-address/all', async (req, res) => {
+  try {
+    const [rows] = await db.query('SELECT user_id, address FROM bnb_log');
+    return res.json({ success: true, data: rows });
+  } catch (err) {
+    console.error('❌ /bnb-address/all 실패:', err);
+    return res.status(500).json({ success: false, error: 'Failed to fetch BNB addresses' });
   }
 });
 

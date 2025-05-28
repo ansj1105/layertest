@@ -1,6 +1,7 @@
 // 📁 src/pages/WithdrawMethodPage.jsx
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useSearchParams } from "react-router-dom";
 import { ArrowLeftIcon, EyeIcon, EyeOffIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import '../styles/WithdrawMethodPage.css';
@@ -27,6 +28,8 @@ export default function WithdrawMethodPage() {
   const [feeRate, setFeeRate] = useState(0);     // 관리자 설정에서 불러온 실출금 수수료율
   const [netAmount, setNetAmount] = useState(0); // 예상 수령액
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
+  const currency = searchParams.get('currency') || 'USDT';
   // 1) 마운트 시 관리자 수수료율 로드
   useEffect(() => {
     axios.get("/api/withdrawals/admin/wallet-settings")
@@ -351,7 +354,7 @@ export default function WithdrawMethodPage() {
             }}
             onBlur={validateAddress}
             className="withdraw-ww-input"
-            placeholder={t("withdraw.addressPlaceholder")}
+            placeholder={currency === 'BNB' ? t("withdraw.addressPlaceholderBNB") : t("withdraw.addressPlaceholder")}
           />
           {addressValid === false && (
             <p className="withdraw-ww-error">{t("withdraw.invalidAddress")}</p>

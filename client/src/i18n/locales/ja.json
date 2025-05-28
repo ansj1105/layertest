@@ -357,6 +357,7 @@
         "balanceAfter": "引き出し後の残高: USDT",
         "addressLabel": "出金先アドレス",
         "addressPlaceholder": "TRC20 USDTアドレス",
+        "addressPlaceholderBNB": "BNBアドレス",
         "invalidAddress": "無効なアドレスです。",
         "validAddress": "有効なアドレスです。",
         "amountLabel": "出金額",

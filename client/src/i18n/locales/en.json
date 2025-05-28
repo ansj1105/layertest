@@ -363,6 +363,7 @@
     "confirmTradePassword": "Confirm trade password",
     "addressLabel": "Withdrawal Address",
     "addressPlaceholder": "TRC20 USDT Address",
+    "addressPlaceholderBNB": "BNB Address",
     "invalidAddress": "Invalid address.",
     "validAddress": "Valid address.",
     "amountLabel": "Amount to Withdraw",

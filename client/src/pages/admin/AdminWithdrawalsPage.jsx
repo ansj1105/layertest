@@ -14,6 +14,9 @@ export default function AdminWithdrawalsPage({ onLogout }) {
   const [items, setItems]           = useState([]);
   const [loading, setLoading]       = useState(false);
   const [error, setError]           = useState("");
+  const [search, setSearch]         = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
   useEffect(() => {
     fetchList();
@@ -26,7 +29,10 @@ export default function AdminWithdrawalsPage({ onLogout }) {
       const res = await axios.get("/api/withdrawals", {
         params: { status: activeTab }
       });
-      setItems(res.data.data || []);
+      // ID 내림차순 정렬
+      const sorted = (res.data.data || []).sort((a, b) => b.id - a.id);
+      setItems(sorted);
+      setCurrentPage(1); // 탭 변경 시 첫 페이지로
     } catch (err) {
       console.error(err);
       setError("출금 내역을 불러오는 데 실패했습니다.");
@@ -44,6 +50,23 @@ export default function AdminWithdrawalsPage({ onLogout }) {
       alert(`${action === "approve" ? "승인" : "거절"} 처리에 실패했습니다.`);
     }
   }
+
+  // 검색 필터링
+  const filtered = items.filter(wd => {
+    const s = search.toLowerCase();
+    return (
+      wd.id.toString().includes(s) ||
+      (wd.username || wd.name || "").toLowerCase().includes(s) ||
+      (wd.to_address || "").toLowerCase().includes(s) ||
+      (wd.amount ? wd.amount.toString() : "").includes(s) ||
+      (wd.status || "").toLowerCase().includes(s) ||
+      (wd.method || "").toLowerCase().includes(s)
+    );
+  });
+
+  // 페이징 계산
+  const totalPages = Math.ceil(filtered.length / itemsPerPage);
+  const paged = filtered.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   return (
     <div className="min-h-screen bg-gray-100 flex">
@@ -68,16 +91,26 @@ export default function AdminWithdrawalsPage({ onLogout }) {
           ))}
         </div>
 
+        {/* 검색 */}
+        <div className="mb-2 flex justify-end">
+          <input
+            className="border px-2 py-1 rounded w-64"
+            placeholder="ID, 유저, 주소, 금액, 상태, 수단 검색"
+            value={search}
+            onChange={e => { setSearch(e.target.value); setCurrentPage(1); }}
+          />
+        </div>
+
         {/* List */}
         <section className="bg-white p-4 rounded shadow">
           {loading && <p className="text-center">로딩 중…</p>}
           {error   && <p className="text-center text-red-500">{error}</p>}
 
-          {!loading && !error && items.length === 0 && (
+          {!loading && !error && paged.length === 0 && (
             <p className="text-center text-gray-500">내역이 없습니다.</p>
           )}
 
-          {!loading && items.length > 0 && (
+          {!loading && paged.length > 0 && (
             <div className="overflow-auto">
               <table className="min-w-full table-auto text-sm">
                 <thead className="bg-gray-200">
@@ -93,10 +126,10 @@ export default function AdminWithdrawalsPage({ onLogout }) {
                   </tr>
                 </thead>
                 <tbody>
-                  {items.map(wd => (
+                  {paged.map(wd => (
                     <tr key={wd.id} className="border-t">
                       <td className="px-2 py-1">{wd.id}</td>
-                      <td className="px-2 py-1">{wd.username}</td>
+                      <td className="px-2 py-1">{wd.username || wd.name}</td>
                       <td className="px-2 py-1">{wd.amount}</td>
                       <td className="px-2 py-1">{wd.to_address}</td>
                       <td className="px-2 py-1">{wd.method}</td>
@@ -122,6 +155,35 @@ export default function AdminWithdrawalsPage({ onLogout }) {
                   ))}
                 </tbody>
               </table>
+            </div>
+          )}
+
+          {/* 페이징네이션 */}
+          {totalPages > 1 && (
+            <div className="flex justify-center items-center gap-2 mt-4">
+              <button
+                className="px-2 py-1 border rounded"
+                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                disabled={currentPage === 1}
+              >
+                이전
+              </button>
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                <button
+                  key={page}
+                  className={`px-2 py-1 border rounded ${currentPage === page ? 'bg-blue-500 text-white' : ''}`}
+                  onClick={() => setCurrentPage(page)}
+                >
+                  {page}
+                </button>
+              ))}
+              <button
+                className="px-2 py-1 border rounded"
+                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                disabled={currentPage === totalPages}
+              >
+                다음
+              </button>
             </div>
           )}
         </section>

@@ -344,6 +344,7 @@
         "confirmTradePassword": "Xác nhận mật khẩu giao dịch",
         "addressLabel": "Địa chỉ rút",
         "addressPlaceholder": "Địa chỉ TRC20 USDT",
+        "addressPlaceholderBNB": "Địa chỉ BNB",
         "invalidAddress": "Địa chỉ không hợp lệ.",
         "validAddress": "Địa chỉ hợp lệ.",
         "amountLabel": "Số tiền rút",

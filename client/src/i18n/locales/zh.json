@@ -357,6 +357,7 @@
         "confirmTradePassword": "确认交易密码",
         "addressLabel": "提取地址",
         "addressPlaceholder": "TRC20 USDT 地址",
+        "addressPlaceholderBNB": "BNB 地址",
         "invalidAddress": "地址无效。",
         "validAddress": "地址有效。",
         "amountLabel": "提取金额",
