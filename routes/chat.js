@@ -25,62 +25,108 @@ function generateGuestId() {
 }
 
 wss.on('connection', async (ws, req) => {
+  console.log('[WebSocket] 새로운 연결 시도:', {
+    ip: req.socket?.remoteAddress,
+    user: req.user
+  });
+
   const isAuthenticated = await authenticateWebSocket(ws, req);
   if (!isAuthenticated) {
+    console.log('[WebSocket] 인증 실패, 연결 종료');
     ws.close();
     return;
   }
 
-  const { userId, isAdmin, isGuest, guestId } = req.user;
+  const { id, isAdmin, isGuest, guestId } = req.user;
+  const userId = id;
+
+  console.log('[WebSocket] 인증 성공:', { userId, isAdmin, isGuest, guestId });
+
+  // 클라이언트 연결 관리
   if (isAdmin) {
     adminClients.set(userId, ws);
+    console.log('[WebSocket] 관리자 클라이언트 등록:', userId);
   } else if (isGuest) {
     guestClients.set(guestId, ws);
+    console.log('[WebSocket] 게스트 클라이언트 등록:', guestId);
   } else {
     clients.set(userId, ws);
+    console.log('[WebSocket] 유저 클라이언트 등록:', userId);
   }
 
   ws.on('message', async raw => {
-    const data = JSON.parse(raw);
-    switch (data.type) {
-      case 'chat':
-        await handleChatMessage(data, req.user);
-        break;
-      case 'typing':
-        handleTypingStatus(data, req.user);
-        break;
+    try {
+      const data = JSON.parse(raw);
+      console.log('[WebSocket] 메시지 수신:', data);
+
+      switch (data.type) {
+        case 'init':
+          console.log('[WebSocket] 클라이언트 초기화:', data);
+          ws.send(JSON.stringify({
+            type: 'init',
+            status: 'success',
+            userId: req.user?.id,
+            isGuest: req.user?.isGuest
+          }));
+          break;
+        case 'chat':
+          console.log('[WebSocket] 채팅 메시지 처리:', data);
+          await handleChatMessage(data, req.user);
+          break;
+        case 'typing':
+          console.log('[WebSocket] 타이핑 상태 처리:', data);
+          handleTypingStatus(data, req.user);
+          break;
+        default:
+          console.log('[WebSocket] 알 수 없는 메시지 타입:', data.type);
+      }
+    } catch (error) {
+      console.error('[WebSocket] 메시지 처리 오류:', error);
+      ws.send(JSON.stringify({
+        type: 'error',
+        message: 'Failed to process message'
+      }));
     }
   });
 
   ws.on('close', () => {
-    if (isAdmin) adminClients.delete(userId);
-    else if (isGuest) guestClients.delete(guestId);
-    else clients.delete(userId);
+    console.log('[WebSocket] 연결 종료:', { userId, isAdmin, isGuest, guestId });
+    if (isAdmin) {
+      adminClients.delete(userId);
+    } else if (isGuest) {
+      guestClients.delete(guestId);
+    } else {
+      clients.delete(userId);
+    }
+  });
+
+  ws.on('error', (error) => {
+    console.error('[WebSocket] 연결 오류:', error);
   });
 });
 
 async function handleChatMessage(data, user) {
-    const { roomId, message } = data;
-    const { id, isAdmin, isGuest, guestId } = user;
-    const userId = id; // 추가
-    // senderType 과 senderId 계산
-    const senderType = isAdmin ? 'admin' : isGuest ? 'guest' : 'user';
-    const senderId   = isGuest ? guestId : userId;
-  
-    // ★ senderId 유효성 검사 ★
-    if (!senderId) {
-      console.error('Invalid senderId, 메시지 저장을 건너뜁니다:', { senderType, senderId, data, user });
-      return;  // 또는 필요에 따라 클라이언트로 오류 응답 전송
-    }
-  
-    try {
-      // 1) 메시지 DB 저장
-      const [insertResult] = await pool.query(
-        `INSERT INTO chat_messages (room_id, sender_type, sender_id, message)
+  const { roomId, message } = data;
+  const { id, isAdmin, isGuest, guestId } = user;
+  const userId = id;
+  const senderType = isAdmin ? 'admin' : isGuest ? 'guest' : 'user';
+  const senderId = isGuest ? guestId : userId;
+
+  console.log('[handleChatMessage] 메시지 처리 시작:', { roomId, message, senderType, senderId, user });
+
+  if (!senderId) {
+    console.error('Invalid senderId, 메시지 저장을 건너뜁니다:', { senderType, senderId, data, user });
+    return;
+  }
+
+  try {
+    // 1) 메시지 DB 저장
+    const [insertResult] = await pool.query(
+      `INSERT INTO chat_messages (room_id, sender_type, sender_id, message)
          VALUES (?, ?, ?, ?)`,
-        [roomId, senderType, senderId, message]
-      );
-      console.log('DB 저장 성공:', insertResult);
+      [roomId, senderType, senderId, message]
+    );
+    console.log('[handleChatMessage] DB 저장 성공:', insertResult);
 
     // 2) 방 정보 조회
     const [rooms] = await pool.query(
@@ -90,42 +136,66 @@ async function handleChatMessage(data, user) {
       [roomId]
     );
     const room = rooms[0];
-    console.log('채팅방 정보:', room);
+    console.log('[handleChatMessage] 채팅방 정보:', room);
 
-    // 3) 대상 WebSocket 찾기
-    let targetWs;
+    // 3) 메시지 응답 데이터 생성
+    const responseData = {
+      type: 'chat',
+      roomId,
+      message: {
+        id: insertResult.insertId,
+        room_id: roomId,
+        sender_type: senderType,
+        sender_id: senderId,
+        message,
+        created_at: new Date()
+      },
+      sender: senderType
+    };
+
+    console.log('[handleChatMessage] 전송할 메시지:', responseData);
+
+    // 4) 대상 WebSocket 찾기 및 전송
+    let targetWs = null;
+
     if (isAdmin) {
-      targetWs = room.guest_id
-        ? guestClients.get(room.guest_id)
-        : clients.get(room.user_id);
+      // 관리자가 보낸 메시지 -> 유저/게스트에게 전송
+      if (room.guest_id) {
+        targetWs = guestClients.get(room.guest_id);
+        console.log('[handleChatMessage] 게스트 클라이언트 찾기:', room.guest_id, !!targetWs);
+      } else if (room.user_id) {
+        targetWs = clients.get(room.user_id);
+        console.log('[handleChatMessage] 유저 클라이언트 찾기:', room.user_id, !!targetWs);
+      }
     } else {
-      targetWs = adminClients.get(room.admin_id);
+      // 유저/게스트가 보낸 메시지 -> 관리자에게 전송
+      if (room.admin_id) {
+        targetWs = adminClients.get(room.admin_id);
+        console.log('[handleChatMessage] 관리자 클라이언트 찾기:', room.admin_id, !!targetWs);
+      }
     }
-    console.log('대상 WebSocket 찾음:', !!targetWs);
 
-    // 4) 전송
+    // 5) 메시지 전송
     if (targetWs && targetWs.readyState === WebSocket.OPEN) {
-      const responseData = {
-        type: 'chat',
-        roomId,
-        message: {
-          id: insertResult.insertId,
-          room_id: roomId,
-          sender_type: senderType,
-          sender_id: senderId,
-          message,
-          created_at: new Date()
-        },
-        sender: senderType
-      };
-      console.log('메시지 전송:', responseData);
+      console.log('[handleChatMessage] 메시지 전송 성공');
       targetWs.send(JSON.stringify(responseData));
     } else {
-      console.log('대상 WebSocket이 연결되지 않음');
+      console.log('[handleChatMessage] 대상 WebSocket이 연결되지 않음:', {
+        targetWs: !!targetWs,
+        readyState: targetWs?.readyState,
+        isAdmin,
+        room
+      });
     }
 
+    // 6) 채팅방 마지막 메시지 시간 업데이트
+    await pool.query(
+      'UPDATE chat_rooms SET last_message_at = CURRENT_TIMESTAMP WHERE id = ?',
+      [roomId]
+    );
+
   } catch (err) {
-    console.error('Chat message error:', err);
+    console.error('[handleChatMessage] Chat message error:', err);
   }
 }
 
@@ -409,7 +479,7 @@ router.post('/guest/rooms', async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7일
     });
     res.json({
-      room:  { id: roomResult.insertId },
+      room: { id: roomResult.insertId },
       guest: { id: guestId, name, email }
     });
   } catch (error) {
@@ -421,7 +491,7 @@ router.post('/guest/rooms', async (req, res) => {
 // 비회원 채팅방 조회
 router.get('/guest/rooms/:guestId', async (req, res) => {
   const { guestId } = req.params;
-  
+
   try {
     const [rows] = await pool.query(
       `SELECT r.*, g.name as guest_name, g.email as guest_email
@@ -514,7 +584,7 @@ cron.schedule('0 3 * * *', async () => {
     // 3) 로그 파일로 저장
     const logDir = path.join(__dirname, '../chat_logs');
     if (!fs.existsSync(logDir)) fs.mkdirSync(logDir);
-    const logFile = path.join(logDir, `chatlog_${cutoff.toISOString().slice(0,10)}.json`);
+    const logFile = path.join(logDir, `chatlog_${cutoff.toISOString().slice(0, 10)}.json`);
     fs.writeFileSync(logFile, JSON.stringify({ rooms: oldRooms, messages: oldMessages }, null, 2));
     // 4) 메시지/방 삭제
     await pool.query(`DELETE FROM chat_messages WHERE room_id IN (?)`, [roomIds]);
@@ -594,7 +664,7 @@ router.get('/admin/logs/:filename', authenticateToken, async (req, res) => {
     const { filename } = req.params;
     const logDir = path.join(__dirname, '../chat_logs');
     const filePath = path.join(logDir, filename);
-    
+
     if (!fs.existsSync(filePath)) {
       return res.status(404).json({ error: 'Log file not found' });
     }
@@ -619,16 +689,66 @@ router.get('/default-message', async (req, res) => {
 router.post('/admin/send', authenticateToken, async (req, res) => {
   const { roomId, message } = req.body;
   if (!roomId || !message) return res.status(400).json({ error: 'roomId, message required' });
+
   try {
-    // 관리자 메시지 저장
-    await pool.query(
+    console.log('[admin/send] 관리자 메시지 전송:', { roomId, message, adminId: req.user.id });
+
+    // 1) 관리자 메시지 저장
+    const [insertResult] = await pool.query(
       'INSERT INTO chat_messages (room_id, sender_type, sender_id, message) VALUES (?, ?, ?, ?)',
       [roomId, 'admin', req.user.id, message]
     );
-    // (선택) WebSocket 실시간 전송
-    // ... (생략)
-    res.json({ success: true });
+
+    // 2) 방 정보 조회
+    const [rooms] = await pool.query(
+      'SELECT user_id, admin_id, guest_id FROM chat_rooms WHERE id = ?',
+      [roomId]
+    );
+    const room = rooms[0];
+
+    // 3) 메시지 응답 데이터 생성
+    const responseData = {
+      type: 'chat',
+      roomId,
+      message: {
+        id: insertResult.insertId,
+        room_id: roomId,
+        sender_type: 'admin',
+        sender_id: req.user.id,
+        message,
+        created_at: new Date()
+      },
+      sender: 'admin'
+    };
+
+    console.log('[admin/send] 전송할 메시지:', responseData);
+
+    // 4) 클라이언트에게 실시간 전송
+    let targetWs = null;
+    if (room.guest_id) {
+      targetWs = guestClients.get(room.guest_id);
+      console.log('[admin/send] 게스트 클라이언트 찾기:', room.guest_id, !!targetWs);
+    } else if (room.user_id) {
+      targetWs = clients.get(room.user_id);
+      console.log('[admin/send] 유저 클라이언트 찾기:', room.user_id, !!targetWs);
+    }
+
+    if (targetWs && targetWs.readyState === WebSocket.OPEN) {
+      console.log('[admin/send] 메시지 전송 성공');
+      targetWs.send(JSON.stringify(responseData));
+    } else {
+      console.log('[admin/send] 대상 WebSocket이 연결되지 않음');
+    }
+
+    // 5) 채팅방 마지막 메시지 시간 업데이트
+    await pool.query(
+      'UPDATE chat_rooms SET last_message_at = CURRENT_TIMESTAMP WHERE id = ?',
+      [roomId]
+    );
+
+    res.json({ success: true, messageId: insertResult.insertId });
   } catch (err) {
+    console.error('[admin/send] 오류:', err);
     res.status(500).json({ error: 'Internal server error' });
   }
 });
@@ -723,19 +843,7 @@ router.post('/admin/chat-logs/read', authenticateToken, async (req, res) => {
     res.json({ success: true, affectedRows: result.affectedRows });
   } catch (err) {
     res.status(500).json({ error: 'Internal server error' });
-  }router.get('/admin/rooms/unread-counts', authenticateToken, async (req, res) => {
-    try {
-      const [rows] = await pool.query(
-        `SELECT room_id, COUNT(*) as unreadCount
-         FROM chat_messages
-         WHERE is_read = 0 AND sender_type IN ('user', 'guest')
-         GROUP BY room_id`
-      );
-      res.json(rows); // [{ room_id, unreadCount }, ...]
-    } catch (err) {
-      res.status(500).json({ error: 'Internal server error' });
-    }
-  });
+  }
 });
 
 

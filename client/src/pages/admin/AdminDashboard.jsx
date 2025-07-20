@@ -40,7 +40,7 @@ export default function AdminDashboard({ onLogout }) {
       params: { search, page, pageSize: 10 }
     })
       .then(res => {
-        //console.log('User list data:', res.data);
+        ////console.log('User list data:', res.data);
         setUsers(res.data.users);
         setTotal(res.data.total);
       })

@@ -1,7 +1,7 @@
-{   "notification": {
-  "title": "System Notification"
-},
-
+{
+  "notification": {
+    "title": "System Notification"
+  },
   "order_history": {
     "title": "My Orders and Redemptions",
     "orders": {
@@ -35,339 +35,334 @@
         "token_transfer": "Transfer"
       }
     }
-    
   },
-    "Wallet": "Wallet",
-    "Balance": "Balance",
-    "Transfer": "Transfer",
-    "Transactions": "Transactions",
-    "Register": "Register",
-"Home": "Home",
-"coin_list": {
-  "trading_pair": "Trading pair",
-  "latest_price": "Latest price",
-  "change_percent": "Change(%)"
-},
-"escrow": {
-  "title": "Escrow",
-  "investment_amount": "Investment Amount",
-  "profit": "Profit"
-},
-"invite": {
-  "title": "Invite Friends",
-  "invite_link": "Invitation Link",
-  "copy_invite_link": "Copy Invitation Link",
-  "product_description": "World-class quantitative products, free for everyone",
-  "referral_code": "Referral Code",
-  "copy_referral_code": "Copy Referral Code",
-  "copy_success": "Successfully copied",
-  "error": {
-    "load_failed": "Failed to load invitation code",
-    "copy_failed": "Failed to copy to clipboard",
-    "fallback_copy_failed": "Failed to copy using fallback method"
-  }
-},
-"language": {
-  "settings": "Language Settings",
-  "not_implemented": "This language is currently under development."
-},
-"lockup": {
-  "title": "Lockup Details",
-  "total_balance": "Total Balance",
-  "total_locked": "Total Locked",
-  "no_active_lockups": "No active lockups",
-  "table": {
-    "id": "Lockup ID",
-    "amount": "Amount",
-    "unlock_date": "Unlock Date"
-  }
-},
-
-"register": {
-  "title": "Sign Up",
-  "by_phone": "By Phone",
-  "by_email": "By Email",
-  "name": "Name",
-  "phone": "Phone",
-  "email": "Email",
-  "password": "Password",
-  "confirmPassword": "Confirm Password",
-  "referral": "Referral Code",
-  "submit": "Register",
-  "name_error": "Name must be at least 2 characters.",
-  "email_error": "Invalid email format.",
-  "phone_error": "Invalid phone number.",
-  "password_error": "Password must be at least 6 characters.",
-  "confirm_error": "Passwords do not match.",
-  "captcha_required": "Please complete the CAPTCHA.",
-  "success": "Registration successful! Please log in.",
-  "fail": "Registration failed.",
-  "no_account": "Already have an account?",
-  "login": "Log in",
-  "agree": "By registering, you agree to our <0>terms</0> and <1>privacy</1>.",
-
-  "terms": "Terms of Service",
-  "privacy": "Privacy Policy"
-},
-"login": {
-  "title": "User Login",
-  "email": "Email or Username",
-  "password": "Password",
-  "submit": "Log In",
-  "identifier_error": "Please enter a valid email or phone",
-  "email_error": "Please enter a valid email",
-  "password_error": "Please enter your password",
-  "captcha_required": "Please complete the reCAPTCHA",
-  "success": "Login successful!",
-  "fail": "Login failed",
-  "no_account": "Don't have an account?",
-  "register": "Sign up",
-  "forgot_password": "Forgot Password?",
-  "identifier": "ID",
-  "forgot" : "Find Password"
-  
-},  "walletLogs": {
-  "in" : "Deposit",
-  "out" : "Withdrawal",
-  "prev" : "prev",
-  "next" : "next",
-  "back": "Back",
-  "title": "Transfer Logs",
-  "quantTypes" :{
-    "trade": "Trade",
-    "referral": "Referral"
+  "Wallet": "Wallet",
+  "Balance": "Balance",
+  "Transfer": "Transfer",
+  "Transactions": "Transactions",
+  "Register": "Register",
+  "Home": "Home",
+  "coin_list": {
+    "trading_pair": "Trading pair",
+    "latest_price": "Latest price",
+    "change_percent": "Change(%)"
   },
-  "rewardTypes": {
-    "join": "Join Reward",
-    "invite": "Invite Reward"
+  "escrow": {
+    "title": "Escrow",
+    "investment_amount": "Investment Amount",
+    "profit": "Profit"
   },
-  "fundingDescriptions": {
-    "initial_profit": "Initial Project Profit Distribution",
-    "investment": "Project Investment Participation",
-    "expired_return": "Expired Project Principal Return",
-    "daily_profit": "Daily Profit Accumulation ({{days}} days compensation)"
+  "invite": {
+    "title": "Invite Friends",
+    "invite_link": "Invitation Link",
+    "copy_invite_link": "Copy Invitation Link",
+    "product_description": "World-class quantitative products, free for everyone",
+    "referral_code": "Referral Code",
+    "copy_referral_code": "Copy Referral Code",
+    "copy_success": "Successfully copied",
+    "error": {
+      "load_failed": "Failed to load invitation code",
+      "copy_failed": "Failed to copy to clipboard",
+      "fallback_copy_failed": "Failed to copy using fallback method"
+    }
   },
-  "tabs": {
-    "transfer": "Transfers",
-    "walletEarnings": "Wallet Earnings Logs",
-    "financeIncome": "Finance Income Logs"
+  "language": {
+    "settings": "Language Settings",
+    "not_implemented": "This language is currently under development."
   },
-  "columns": {
-    "description" : "description",
-    "direction" : "direction",
-    "type": "Type",
-    "category": "Category",
-    "amount": "Amount",
-    "fee": "Fee",
-    "net": "Net",
-    "date": "Date"
+  "lockup": {
+    "title": "Lockup Details",
+    "total_balance": "Total Balance",
+    "total_locked": "Total Locked",
+    "no_active_lockups": "No active lockups",
+    "table": {
+      "id": "Lockup ID",
+      "amount": "Amount",
+      "unlock_date": "Unlock Date"
+    }
   },
-  "types": {
-    "fund_to_quant": "Fund → Quant",
-    "quant_to_fund": "Quant → Fund"
+  "register": {
+    "title": "Sign Up",
+    "by_phone": "By Phone",
+    "by_email": "By Email",
+    "name": "Name",
+    "phone": "Phone",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "referral": "Referral Code",
+    "submit": "Register",
+    "name_error": "Name must be at least 2 characters.",
+    "email_error": "Invalid email format.",
+    "phone_error": "Invalid phone number.",
+    "password_error": "Password must be at least 6 characters.",
+    "confirm_error": "Passwords do not match.",
+    "captcha_required": "Please complete the CAPTCHA.",
+    "success": "Registration successful! Please log in.",
+    "fail": "Registration failed.",
+    "no_account": "Already have an account?",
+    "login": "Log in",
+    "agree": "By registering, you agree to our <0>terms</0> and <1>privacy</1>.",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
   },
-  "loading": "Loading...",
-  "noRecords": "No records found."
-},
-"common": {
-  "faqTitle": "Common Questions",
-  "back" : "back",
+  "login": {
+    "title": "User Login",
+    "email": "Email or Username",
+    "password": "Password",
+    "submit": "Log In",
+    "identifier_error": "Please enter a valid email or phone",
+    "email_error": "Please enter a valid email",
+    "password_error": "Please enter your password",
+    "captcha_required": "Please complete the reCAPTCHA",
+    "success": "Login successful!",
+    "fail": "Login failed",
+    "no_account": "Don't have an account?",
+    "register": "Sign up",
+    "forgot_password": "Forgot Password?",
+    "identifier": "ID",
+    "forgot": "Find Password"
+  },
+  "walletLogs": {
+    "in": "Deposit",
+    "out": "Withdrawal",
+    "prev": "prev",
+    "next": "next",
+    "back": "Back",
+    "title": "Transfer Logs",
+    "quantTypes": {
+      "trade": "Trade",
+      "referral": "Referral"
+    },
+    "rewardTypes": {
+      "join": "Join Reward",
+      "invite": "Invite Reward"
+    },
+    "fundingDescriptions": {
+      "initial_profit": "Initial Project Profit Distribution",
+      "investment": "Project Investment Participation",
+      "expired_return": "Expired Project Principal Return",
+      "daily_profit": "Daily Profit Accumulation ({{days}} days compensation)"
+    },
+    "tabs": {
+      "transfer": "Transfers",
+      "walletEarnings": "Wallet Earnings Logs",
+      "financeIncome": "Finance Income Logs"
+    },
+    "columns": {
+      "description": "description",
+      "direction": "direction",
+      "type": "Type",
+      "category": "Category",
+      "amount": "Amount",
+      "fee": "Fee",
+      "net": "Net",
+      "date": "Date"
+    },
+    "types": {
+      "fund_to_quant": "Fund → Quant",
+      "quant_to_fund": "Quant → Fund"
+    },
     "loading": "Loading...",
-  "no_data": "No data",
-  "problem1": {
-    "question": "What is Funding Product and how do I earn?",
-    "answer": "The financial management products are tools and solutions developed by the company to help users receive rewards quickly.\nBy staking digital assets on a blockchain network, users can earn rewards based on the POS (Proof of Stake) mechanism.\nIn this mechanism, users delegate their digital assets to a node, which then gains the right to perform actions like block creation and transaction packaging on the blockchain and receives rewards.\nUsers share the rewards obtained by the node in proportion to the number of staked positions."
+    "noRecords": "No records found."
   },
-  "problem2": {
-    "question": "How is expected yield calculated?",
-    "answer": "Expected income is a projected daily estimate based on your subscription quantity and the product's annualized reference calculation, provided for informational purposes only."
-
+  "common": {
+    "faqTitle": "Common Questions",
+    "back": "back",
+    "loading": "Loading...",
+    "no_data": "No data",
+    "problem1": {
+      "question": "What is Funding Product and how do I earn?",
+      "answer": "The financial management products are tools and solutions developed by the company to help users receive rewards quickly.\nBy staking digital assets on a blockchain network, users can earn rewards based on the POS (Proof of Stake) mechanism.\nIn this mechanism, users delegate their digital assets to a node, which then gains the right to perform actions like block creation and transaction packaging on the blockchain and receives rewards.\nUsers share the rewards obtained by the node in proportion to the number of staked positions."
+    },
+    "problem2": {
+      "question": "How is expected yield calculated?",
+      "answer": "Expected income is a projected daily estimate based on your subscription quantity and the product's annualized reference calculation, provided for informational purposes only."
+    },
+    "problem3": {
+      "question": "When does interest start accruing?",
+      "answer": "Interest accrual begins at 00:00 on T+1."
+    },
+    "problem4": {
+      "question": "When are payouts made?",
+      "answer": "Interest begins to accrue from T+1, and the earnings are distributed together with the principal after maturity."
+    },
+    "problem5": {
+      "question": "What happens after the product matures?",
+      "answer": "Fixed-term products are automatically redeemed upon maturity."
+    }
   },
-  "problem3": {
-    "question": "When does interest start accruing?",
-    "answer": "Interest accrual begins at 00:00 on T+1."
-  },
-  "problem4": {
-    "question": "When are payouts made?",
-    "answer": "Interest begins to accrue from T+1, and the earnings are distributed together with the principal after maturity."
-  },
-  "problem5": {
-    "question": "What happens after the product matures?",
-    "answer": "Fixed-term products are automatically redeemed upon maturity."
-  }
-},
   "quantTrading": {
-     "leaderboardTitle": "Leaderboard",
-     "processing": "Processing trade...",
-     "tradingCountdown": "Trading... {{seconds}}s",
-     "vipLevel": "VIP Level",
-     "warningMessage": "Please do not close or refresh the page while trading is in progress", 
-   "leaderboard": {
-     "name": "Member",
-     "earnings": "Earnings",
-     "status": "Status"
-   },
-   "confirmText": "You are about to trade {{amount}} USDT. Proceed?",
-   "errorMinHolding": "You must hold at least {{min}} USDT to trade.",
-   "errorMaxInvestment": "Max investment per trade is {{max}} USDT.",
-       "cooldownMessage": "You can trade again in {{min}}m {{sec}}s",
+    "dailyLimitReached": "Daily trade limit reached",
+    "leaderboardTitle": "Leaderboard",
+    "processing": "Processing trade...",
+    "tradingCountdown": "Trading... {{seconds}}s",
+    "vipLevel": "VIP Level",
+    "warningMessage": "Please do not close or refresh the page while trading is in progress",
+    "leaderboard": {
+      "name": "Member",
+      "earnings": "Earnings",
+      "status": "Status"
+    },
+    "confirmText": "You are about to trade {{amount}} USDT. Proceed?",
+    "errorMinHolding": "You must hold at least {{min}} USDT to trade.",
+    "errorMaxInvestment": "Max investment per trade is {{max}} USDT.",
+    "cooldownMessage": "You can trade again in {{min}}m {{sec}}s",
     "tradeButton": "{{remaining}}/{{dailyLimit}} {{times}} · {{start}}",
-   "cooldownAlert": "Please wait {{min}}m {{sec}}s before trading again.",
-   "confirmTitle": "Confirm Trade",
-   "partnersTitle": "Key Partners",
-  "history" : "history",
-     "time": "Time",
-        "status": "Status",
-  "success": "Success",
-  "position": "Position Size",
-  "maxAll":               "All",
-  "buyPlatform": "Buy Platform",
-  "buyPrice": "Buy Price",
-  "sellPlatform": "Sell Platform",
-  "sellPrice": "Sell Price",
-  "serviceFee": "Service Fee",
-  "profit": "Profit",
-  "commissionRate": "Commission Rate",
-  "noHistory" : "no history",
-  "currentLevel": "Now VIP grade",
-  "enterAmount": "enterAmount",
-  "cancel": "cancel",
-  "confirm": "confirm",
-  "back": "Back",
-  "title": "Quant Trading",
-  "available": "Available Asset",
-  "todayEarning": "Today's Earning",
-  "totalEarning": "Total Earning",
-  "level": "Level",
-  "progress": "{{current}}/{{total}}",
-  "intro": "Quant Trading Intro",
-  "invite": "Invite Friends",
-  "dailyLimit": "Daily Trade Limit",
-  "times": "times",
-  "feeRate": "Profit Rate",
-  "maxInvestment": "Max Investment",
-  "minHoldings": "Min Holdings",
-  "conditions": "Conditions",
-  "start": "Start Trading",
-  "confirmStart": "Start quant trading?",
-  "tradeError": "Trade failed: ",
-  "loading": "Loading...",
-  "progressOverview": "Progress Overview",
-  "previousLevel": "Previous Level",
-  "higherLevel": "Higher Level"
-},
-"history": {
-  "title": "Transaction History",
-  "back": "Back",
-  "loading": "Loading…",
-  "tabs": {
-    "all": "All",
-    "deposit": "Deposit",
-    "withdraw": "Withdrawal",
-    "pending": "Pending",
-    "success": "Success",
-    "failed": "Failed"
-  },
-  "table": {
-    "id": "ID",
-    "amount": "Amount",
-    "flow": "Flow",
-    "method": "Method",
+    "cooldownAlert": "Please wait {{min}}m {{sec}}s before trading again.",
+    "confirmTitle": "Confirm Trade",
+    "partnersTitle": "Key Partners",
+    "history": "history",
+    "time": "Time",
     "status": "Status",
-    "date": "Date"
-  },
-  "flow": {
-    "deposit": "Deposit",
-    "withdrawal": "Withdrawal"
-  },
-  "status": {
-    "pending": "Pending",
-    "processing": "Processing",
     "success": "Success",
-    "failed": "Failed"
+    "position": "Position Size",
+    "maxAll": "All",
+    "buyPlatform": "Buy Platform",
+    "buyPrice": "Buy Price",
+    "sellPlatform": "Sell Platform",
+    "sellPrice": "Sell Price",
+    "serviceFee": "Service Fee",
+    "profit": "Profit",
+    "commissionRate": "Commission Rate",
+    "noHistory": "no history",
+    "currentLevel": "Now VIP grade",
+    "enterAmount": "enterAmount",
+    "cancel": "cancel",
+    "confirm": "confirm",
+    "back": "Back",
+    "title": "Quant Trading",
+    "available": "Available Asset",
+    "todayEarning": "Today's Earning",
+    "totalEarning": "Total Earning",
+    "level": "Level",
+    "progress": "{{current}}/{{total}}",
+    "intro": "Quant Trading Intro",
+    "invite": "Invite Friends",
+    "dailyLimit": "Daily Trade Limit",
+    "times": "times",
+    "feeRate": "Profit Rate",
+    "maxInvestment": "Max Investment",
+    "minHoldings": "Min Holdings",
+    "conditions": "Conditions",
+    "start": "Start Trading",
+    "confirmStart": "Start quant trading?",
+    "tradeError": "Trade failed: ",
+    "loading": "Loading...",
+    "progressOverview": "Progress Overview",
+    "previousLevel": "Previous Level",
+    "higherLevel": "Higher Level"
   },
-  "noData": "No records found.",
-  "noDataAlt": "No data",
-  "errorLoad": "Failed to load history."
-}  ,
-
-"tokenPurchase": {
-  "title":               "USC Token",
-  "lockupDetails": "Lockup Details",
-  "purchaseSuccessTitle": "Purchase successful",
-  "maxAll": "All",
-  "purchaseSuccessWithAmount": "{{amount}} USDT purchased.",
-  "purchaseFailTitle": "Purchase failed",
-   "redeemSuccess" : "redeemSuccess",
-  "available":               "USC available",
-  "inputUsdc":               "USC ",
-  "redeemTitle":               "Redeem",
-  "redeemSubmit":               "Submit",
-  "quantity":               "quantity",
-  "token":               "token PER",
-  "totalCost":               "total USDT Cost",
-  "yourBalance":               "USDT Balance",
-  "price":               "USC Token per price",
-  "min":               "min",
-  "selected":               "selected",
-  "max":               "max",
-  "feeRate":               "feeRate",
-  "minPurchase":               "minPurchase",
-  "maxPurchase":               "maxPurchase",
-  "lockupPeriod":               "lockupPeriod",
-  "days":               "days",
-  "canBuy":               "canBuy",
-  "cannotBuy":               "cannotBuy",
-  "back":                "Back",
-  "details":             "Details",
-  "quantWallet":         "Quant Wallet (USDT)",
-  "uscWallet":           "USC Wallet",
-  "swap":                "Swap",
-  "recharge":            "Recharge",
-  "deposit":             "Deposit",
-  "redeem":              "Redeem",
-  "orderDetails":        "Order Details",
-  "swapQuantToFundTitle":"Swap Quant → Fund",
-  "swapFundToQuantTitle":"Swap Fund → Quant",
-  "inputUsdt":           "Enter USDT",
-  "balance":             "Balance:",
-  "fee":                 "Fee ({{rate}}%)",
-  "afterSwap":           "After swap:",
-  "submit":              "Submit",
-  "noSales":             "No active USC sales.",
-  "phase":               " Phase",
-  "totalSupply":         "Total Supply:",
-  "remainingSupply":     "Remaining Supply:",
-  "startTime":           "Start Time:",
-  "endTime":             "End Time:",
-  "buy":                 "Buy",
-  "promptAmount":        "Enter USC amount to purchase:",
-  "purchaseSuccess":     "Purchase successful!",
-  "errors": {
-    "invalidAmount":     "Please enter a valid amount.",
-    "insufficientQuant": "Not enough Quant balance.",
-    "insufficientFund":  "Not enough Fund balance.",
-    "swapFail":          "Swap failed.",
-    "depositFail":       "Deposit failed.",
-    "purchaseFail":      "Purchase failed."
-  }
-},
-"token": {
-  "header": "USC Token",
-  "more": "More",
-  "recharge": "Recharge",
-  "withdraw": "Withdraw",
-  "agent": "Agent",
-  "invite": "Invite Friends"
-},
-"bottomNav": {
-  "home": "Home",
-  "team": "My team",
-  "quant": "Quantify",
-  "funding": "Funding",
-  "mine": "Mine"
-},
-
+  "history": {
+    "title": "Transaction History",
+    "back": "Back",
+    "loading": "Loading…",
+    "tabs": {
+      "all": "All",
+      "deposit": "Deposit",
+      "withdraw": "Withdrawal",
+      "pending": "Pending",
+      "success": "Success",
+      "failed": "Failed"
+    },
+    "table": {
+      "id": "ID",
+      "amount": "Amount",
+      "flow": "Flow",
+      "method": "Method",
+      "status": "Status",
+      "date": "Date"
+    },
+    "flow": {
+      "deposit": "Deposit",
+      "withdrawal": "Withdrawal"
+    },
+    "status": {
+      "pending": "Pending",
+      "processing": "Processing",
+      "success": "Success",
+      "failed": "Failed"
+    },
+    "noData": "No records found.",
+    "noDataAlt": "No data",
+    "errorLoad": "Failed to load history."
+  },
+  "tokenPurchase": {
+    "title": "USC Token",
+    "lockupDetails": "Lockup Details",
+    "purchaseSuccessTitle": "Purchase successful",
+    "maxAll": "All",
+    "purchaseSuccessWithAmount": "{{amount}} USDT purchased.",
+    "purchaseFailTitle": "Purchase failed",
+    "redeemSuccess": "redeemSuccess",
+    "available": "USC available",
+    "inputUsdc": "USC ",
+    "redeemTitle": "Redeem",
+    "redeemSubmit": "Submit",
+    "quantity": "quantity",
+    "token": "token PER",
+    "totalCost": "total USDT Cost",
+    "yourBalance": "USDT Balance",
+    "price": "USC Token per price",
+    "min": "min",
+    "selected": "selected",
+    "max": "max",
+    "feeRate": "feeRate",
+    "minPurchase": "minPurchase",
+    "maxPurchase": "maxPurchase",
+    "lockupPeriod": "lockupPeriod",
+    "days": "days",
+    "canBuy": "canBuy",
+    "cannotBuy": "cannotBuy",
+    "back": "Back",
+    "details": "Details",
+    "quantWallet": "Quant Wallet (USDT)",
+    "uscWallet": "USC Wallet",
+    "swap": "Swap",
+    "recharge": "Recharge",
+    "deposit": "Deposit",
+    "redeem": "Redeem",
+    "orderDetails": "Order Details",
+    "swapQuantToFundTitle": "Swap Quant → Fund",
+    "swapFundToQuantTitle": "Swap Fund → Quant",
+    "inputUsdt": "Enter USDT",
+    "balance": "Balance:",
+    "fee": "Fee ({{rate}}%)",
+    "afterSwap": "After swap:",
+    "submit": "Submit",
+    "noSales": "No active USC sales.",
+    "phase": " Phase",
+    "totalSupply": "Total Supply:",
+    "remainingSupply": "Remaining Supply:",
+    "startTime": "Start Time:",
+    "endTime": "End Time:",
+    "buy": "Buy",
+    "promptAmount": "Enter USC amount to purchase:",
+    "purchaseSuccess": "Purchase successful!",
+    "errors": {
+      "invalidAmount": "Please enter a valid amount.",
+      "insufficientQuant": "Not enough Quant balance.",
+      "insufficientFund": "Not enough Fund balance.",
+      "swapFail": "Swap failed.",
+      "depositFail": "Deposit failed.",
+      "purchaseFail": "Purchase failed."
+    }
+  },
+  "token": {
+    "header": "USC Token",
+    "more": "More",
+    "recharge": "Recharge",
+    "withdraw": "Withdraw",
+    "agent": "Agent",
+    "invite": "Invite Friends"
+  },
+  "bottomNav": {
+    "home": "Home",
+    "team": "My team",
+    "quant": "Quantify",
+    "funding": "Funding",
+    "mine": "Mine"
+  },
   "withdraw": {
     "setTradePasswordFirst": "Please set your trade password first",
     "setupTradePassword": "Set trade password",
@@ -396,7 +391,6 @@
     "submitting": "Submitting…",
     "submit": "Submit"
   },
-
   "errors": {
     "invalidAddress": "Please enter a valid address.",
     "invalidAmount": "Please enter a valid withdrawal amount.",
@@ -405,96 +399,94 @@
   "success": {
     "submitted": "Withdrawal request submitted successfully."
   },
-"funding": {
-  "active_projects": "Projects go on",
-  "expired_projects": "Projects expired",
-  "no_active_projects": "No Projects exceeding.",
-  "no_expired_projects": "No Projects expired.",
-  "expired_label": "Projects expired",
-  "investing_amount": "Invested amount: {{amount}} USDT",
-  "detail2": {
+  "funding": {
+    "active_projects": "Projects go on",
+    "expired_projects": "Projects expired",
+    "no_active_projects": "No Projects exceeding.",
+    "no_expired_projects": "No Projects expired.",
+    "expired_label": "Projects expired",
+    "investing_amount": "Invested amount: {{amount}} USDT",
+    "detail2": {
+      "loading": "Loading...",
+      "subscribeSuccessTitle": "Investment successful",
+      "subscribeSuccessWithAmount": "{{amount}} USDT invested.",
+      "subscribeErrorTitle": "Investment failed",
+      "loadError": "Failed to load project info:",
+      "invalidAmount": "Please enter a valid amount.",
+      "amountRange": "Please enter an amount between {{min}} and {{max}}.",
+      "insufficientBalance": "You do not have enough balance.",
+      "exceedRemaining": "Project remaining capacity {{remaining}} USDT exceeded.",
+      "subscribe": "Subscribe",
+      "subscribeSuccess": "Subscription successful.",
+      "subscribeError": "Error during subscription.",
+      "descriptionLabel": "Description:",
+      "cycleLabel": "Cycle: {{cycle}} days",
+      "dailyRateLabel": "Daily rate: {{rate}}%",
+      "minMaxLabel": "Min: {{min}} USDT, Max: {{max}} USDT",
+      "targetLabel": "Target: {{target}} USDT",
+      "currentLabel": "Current invested: {{current}} USDT",
+      "availableLabel": "Available balance: {{balance}} USDT",
+      "amountPlaceholder": "Enter amount",
+      "investorsTitle": "Investors",
+      "noInvestors": "No investors yet."
+    },
+    "transfer_fail": "transfer fail",
+    "deposit_modal": {
+      "success": "success",
+      "title": "Transfer In",
+      "net_amount": "after amount : {{net}}(After balance : {{remain}})",
+      "amount_placeholder": "Enter amount",
+      "fund_wallet": "Investment Wallet: {{balance}}",
+      "max_label": "Transfer All",
+      "real_account": "Main Account: {{balance}}",
+      "balance": "Balance: {{balance}}",
+      "fee": "Processing Fee: {{fee}} Now Fee: {{rate}}%)",
+      "submit": "Submit"
+    },
+    "withdraw_modal": {
+      "title": "Transfer Out",
+      "success": "Success",
+      "net_amount": "after amount : {{net}}(After balance : {{remain}})",
+      "amount_placeholder": "Enter amount",
+      "quant_wallet": "Quant Wallet: {{balance}}",
+      "max_label": "Withdraw All",
+      "real_account": "Main Account: {{balance}}",
+      "fee": "Processing Fee: {{fee}} Now Fee: {{rate}}%)",
+      "submit": "Submit"
+    },
+    "info": {
+      "title": "What is a Financial Product?",
+      "definition": "Financial products allow users to lock in a certain amount over a set period to earn rewards. They include various packages managed by Upstart, each with its own rate and duration.",
+      "settlement": "Settlement occurs at 00:00 UTC each day, and income from 'T‑day' is available starting from T+1 day.",
+      "tradingTitle": "Transaction Explanation",
+      "trade1": "1. **Buying**: Subscribe to a product to lock funds for the specified duration.",
+      "trade2": "2. **Earnings**: Earn daily rewards at the advertised rate, credited every 24 hours.",
+      "trade3": "3. **Redemption**: After the holding period, principal and rewards are returned to your finance wallet.",
+      "trade4": "4. **Early exit**: Currently not supported. Future versions may allow early redemption with a fee."
+    },
+    "header": "Funding Management",
     "loading": "Loading...",
-    "subscribeSuccessTitle": "Investment successful",
-    "subscribeSuccessWithAmount": "{{amount}} USDT invested.",
-    "subscribeErrorTitle": "Investment failed",
-    "loadError": "Failed to load project info:",
-    "invalidAmount": "Please enter a valid amount.",
-    "amountRange": "Please enter an amount between {{min}} and {{max}}.",
-    "insufficientBalance": "You do not have enough balance.",
-    "exceedRemaining": "Project remaining capacity {{remaining}} USDT exceeded.",
-    "subscribe": "Subscribe",
-    "subscribeSuccess": "Subscription successful.",
-    "subscribeError": "Error during subscription.",
-    "descriptionLabel": "Description:",
-    "cycleLabel": "Cycle: {{cycle}} days",
-    "dailyRateLabel": "Daily rate: {{rate}}%",
-    "minMaxLabel": "Min: {{min}} USDT, Max: {{max}} USDT",
-    "targetLabel": "Target: {{target}} USDT",
-    "currentLabel": "Current invested: {{current}} USDT",
-    "availableLabel": "Available balance: {{balance}} USDT",
-    "amountPlaceholder": "Enter amount",
-    "investorsTitle": "Investors",
-    "noInvestors": "No investors yet."
+    "wallet_balance": "Finance Wallet Balance",
+    "detail": "Detail",
+    "deposit_request": "Fund Request",
+    "withdraw_request": "Quant Request",
+    "recharge": "Recharge",
+    "all_transactions": "All Transactions",
+    "today_income": "Today's Funding Income",
+    "total_income": "Total Funding Income",
+    "no_projects": "No active funding projects.",
+    "project": {
+      "description": "description : {{description}}",
+      "available": "Available: {{min}} ~ {{max}} USDT",
+      "daily_rate": "Daily Rate: {{rate}}%",
+      "duration": "Duration: {{cycle}} days (until {{end}})",
+      "apply": "Apply Now"
+    },
+    "charge_modal": {
+      "title": "How to Recharge",
+      "usdt_alert": "Please send USDT to the designated wallet address."
+    }
   },
-  "transfer_fail": "transfer fail",
-  "deposit_modal": {
-    "success" : "success",
-  "title": "Transfer In",
-  "net_amount":"after amount : {{net}}(After balance : {{remain}})",
-  "amount_placeholder": "Enter amount",
-  "fund_wallet": "Investment Wallet: {{balance}}",
-  "max_label": "Transfer All",
-  "real_account": "Main Account: {{balance}}",
-  "balance": "Balance: {{balance}}",
-  "fee": "Processing Fee: {{fee}} Now Fee: {{rate}}%)",
-  "submit": "Submit"
-},
-"withdraw_modal": {
-  "title": "Transfer Out",
-  "success": "Success",
-  "net_amount":"after amount : {{net}}(After balance : {{remain}})",
-  "amount_placeholder": "Enter amount",
-  "quant_wallet": "Quant Wallet: {{balance}}",
-  "max_label": "Withdraw All",
-  "real_account": "Main Account: {{balance}}",
-  "fee": "Processing Fee: {{fee}} Now Fee: {{rate}}%)",
-  "submit": "Submit"
-},
-"info": {
-  "title": "What is a Financial Product?",
-  "definition": "Financial products allow users to lock in a certain amount over a set period to earn rewards. They include various packages managed by Upstart, each with its own rate and duration.",
-  "settlement": "Settlement occurs at 00:00 UTC each day, and income from 'T‑day' is available starting from T+1 day.",
-  "tradingTitle": "Transaction Explanation",
-  "trade1": "1. **Buying**: Subscribe to a product to lock funds for the specified duration.",
-  "trade2": "2. **Earnings**: Earn daily rewards at the advertised rate, credited every 24 hours.",
-  "trade3": "3. **Redemption**: After the holding period, principal and rewards are returned to your finance wallet.",
-  "trade4": "4. **Early exit**: Currently not supported. Future versions may allow early redemption with a fee."
-},
-"header": "Funding Management",
-"loading": "Loading...",
-"wallet_balance": "Finance Wallet Balance",
-"detail": "Detail",
-"deposit_request": "Fund Request",
-"withdraw_request": "Quant Request",
-"recharge": "Recharge",
-"all_transactions": "All Transactions",
-"today_income": "Today's Funding Income",
-"total_income": "Total Funding Income",
-"no_projects": "No active funding projects.",
-"project": {
-  "description" : "description : {{description}}",
-  "available": "Available: {{min}} ~ {{max}} USDT",
-  "daily_rate": "Daily Rate: {{rate}}%",
-  "duration": "Duration: {{cycle}} days (until {{end}})",
-  "apply": "Apply Now"
-},
-
-"charge_modal": {
-  "title": "How to Recharge",
-  "usdt_alert": "Please send USDT to the designated wallet address."
-}
-}
-,
   "Upstart": {
     "title": "Upstart Overview",
     "vip_upgrade_criteria": "VIP Upgrade Criteria",
@@ -527,8 +519,7 @@
       "vip5": "VIP5: Up to 9 trades per day, daily profit rate between 8.6%-9.4%.",
       "vip6": "VIP6: Up to 10 trades per day, daily profit rate between 9.5%-10.5%."
     }
-  }
-,
+  },
   "agencyCooperation": {
     "back": "Back",
     "title": "Agency Cooperation",
@@ -687,7 +678,7 @@
     },
     "join_reward": {
       "title": "Register Rewards",
-      "step" : "Register Rewards",
+      "step": "Register Rewards",
       "description": "Receive reward of  {{amount}} USDT after new register success.",
       "success": "Success",
       "reward_claimed": "Register bonus {{amount}} USDT has been credited.",
@@ -736,80 +727,80 @@
     }
   },
   "profile": {
-    "loading":             "⏳ Loading...",
-    "greeting":            "Hi, {{name}}",
-    "vipLevel":            "VIP{{level}}",
-    "idLabel":             "ID",
+    "loading": "⏳ Loading...",
+    "greeting": "Hi, {{name}}",
+    "vipLevel": "VIP{{level}}",
+    "idLabel": "ID",
     "summary": {
-      "totalBalance":      "Total Balance",
-      "totalEarnings":     "Total Earnings",
-      "todayCommission":   "Today's Commission",
-      "todayIncome":       "Today's Income",
-      "yesterdayIncome":   "Yesterday's Income"
+      "totalBalance": "Total Balance",
+      "totalEarnings": "Total Earnings",
+      "todayCommission": "Today's Commission",
+      "todayIncome": "Today's Income",
+      "yesterdayIncome": "Yesterday's Income"
     },
     "actions": {
-      "recharge":          "Recharge",
-      "withdraw":          "Withdraw",
-      "details":           "Details"
+      "recharge": "Recharge",
+      "withdraw": "Withdraw",
+      "details": "Details"
     },
     "referral": {
-      "level1":            "Level 1",
-      "level2":            "Level 2",
-      "level3":            "Level 3"
+      "level1": "Level 1",
+      "level2": "Level 2",
+      "level3": "Level 3"
     },
     "menu": {
-      "taskCenter":        "Task Center",
-      "faq":               "FAQ",
-      "securityCenter":    "Security Center",
-      "quantTutorial":     "Quant Tutorial",
-      "language":          "Language Settings",
-      "aboutCompany":      "About Us",
-      "downloadApp":       "Download App"
+      "taskCenter": "Task Center",
+      "faq": "FAQ",
+      "securityCenter": "Security Center",
+      "quantTutorial": "Quant Tutorial",
+      "language": "Language Settings",
+      "aboutCompany": "About Us",
+      "downloadApp": "Download App"
     },
-    "logout":              "Logout",
-    "copySuccess":         "ID copied to clipboard!",
-    "logoutConfirmMessage":"Are you sure you want to log out?",
-    "logoutCancel":        "Cancel",
-    "logoutConfirm":       "Confirm"
+    "logout": "Logout",
+    "copySuccess": "ID copied to clipboard!",
+    "logoutConfirmMessage": "Are you sure you want to log out?",
+    "logoutCancel": "Cancel",
+    "logoutConfirm": "Confirm"
   },
   "team": {
-    "todayJoinedCount" : "Today Joined",
-    "title":                 "My Team",
-    "loading":               "⏳ Loading...",
-    "errorLoad":             "Failed to load referral data",
-    "errorLoadContrib":      "Failed to load contributions",
+    "todayJoinedCount": "Today Joined",
+    "title": "My Team",
+    "loading": "⏳ Loading...",
+    "errorLoad": "Failed to load referral data",
+    "errorLoadContrib": "Failed to load contributions",
     "tabs": {
-      "members":             "Members",
-      "contrib":             "Contributions"
+      "members": "Members",
+      "contrib": "Contributions"
     },
     "filter": {
-      "level":               "Filter Level:",
-      "period":              "Period:"
+      "level": "Filter Level:",
+      "period": "Period:"
     },
     "level": {
-      "A":                   "Level A (1st)",
-      "B":                   "Level B (2nd)",
-      "C":                   "Level C (3rd)"
+      "A": "Level A (1st)",
+      "B": "Level B (2nd)",
+      "C": "Level C (3rd)"
     },
     "period": {
-      "today":               "Today",
-      "week":                "This Week",
-      "month":               "This Month"
+      "today": "Today",
+      "week": "This Week",
+      "month": "This Month"
     },
-    "noMembers":             "No referred users.",
-    "noRecords":             "No records.",
-    "registered":            "Registered",
-    "vip":                   "VIP",
-    "teamSize":              "Team Size",
+    "noMembers": "No referred users.",
+    "noRecords": "No records.",
+    "registered": "Registered",
+    "vip": "VIP",
+    "teamSize": "Team Size",
     "contrib": {
-      "todayEarnings":       "Today's Earnings",
-      "totalEarnings":       "Total Earnings"
+      "todayEarnings": "Today's Earnings",
+      "totalEarnings": "Total Earnings"
     },
     "table": {
-      "account":             "Account",
-      "level":               "Level",
-      "time":                "Time",
-      "earning":             "Earnings"
+      "account": "Account",
+      "level": "Level",
+      "time": "Time",
+      "earning": "Earnings"
     }
   },
   "referral2": {
@@ -934,11 +925,11 @@
     }
   },
   "userChat": {
-    "guestTitle" : "Guest Chat",
-    "guestName" : "Name",
-    "guestEmail" : "Email",
-    "startChat" : "Start Chat",
-    "guestChat" : "Guest Chat",
+    "guestTitle": "Guest Chat",
+    "guestName": "Name",
+    "guestEmail": "Email",
+    "startChat": "Start Chat",
+    "guestChat": "Guest Chat",
     "title": "Customer Support Chat",
     "me": "Me",
     "admin": "Admin",
@@ -971,4 +962,3 @@
     "copySuccess": "BNB address copied!"
   }
 }
-  

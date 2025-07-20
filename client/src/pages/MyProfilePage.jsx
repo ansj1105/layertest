@@ -25,12 +25,12 @@ export default function MyProfilePage() {
   const [summary, setSummary] = useState(null);
   const [copySuccess, setCopySuccess] = useState(false);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
-   // 펀딩(투자) 수익 집계용
- const [investmentEarnings, setInvestmentEarnings] = useState({
-   total: 0,
-   today: 0,
-   yesterday: 0
- });
+  // 펀딩(투자) 수익 집계용
+  const [investmentEarnings, setInvestmentEarnings] = useState({
+    total: 0,
+    today: 0,
+    yesterday: 0
+  });
   // 레퍼럴 수익 집계용
   const [referralEarnings, setReferralEarnings] = useState({
     total: 0,
@@ -46,55 +46,55 @@ export default function MyProfilePage() {
   const [investingAmount, setInvestingAmount] = useState(0);
 
   const navigate = useNavigate();
-   // wallets_log 불러와서 funding in 항목 집계
-   useEffect(() => {
-     if (!user?.id) return;
-     axios.get('/api/logs/wallets-log', { withCredentials: true })
-       .then(res => {
-   
+  // wallets_log 불러와서 funding in 항목 집계
+  useEffect(() => {
+    if (!user?.id) return;
+    axios.get('/api/logs/wallets-log', { withCredentials: true })
+      .then(res => {
+
         const logs = res.data.data || [];
 
-         const now = new Date();
-         const todayStr     = now.toISOString().slice(0,10);
-         const yesterday    = new Date(now);
-         yesterday.setDate(yesterday.getDate()-1);
-         const yesterdayStr = yesterday.toISOString().slice(0,10);
-  
-         let total = 0, today = 0, yesterdaySum = 0;
-         logs.forEach(log => {
-           if (
-             log.category === 'funding' &&
-             log.direction === 'in' &&
-             log.referenceType === 'funding_investment' &&
-             log.description !== '만료 프로젝트 원금 반환'
-           ) {
-             const amt = parseFloat(log.amount);
-             total += amt;
-             const logDate = new Date(log.logDate).toISOString().slice(0,10);
-             if (logDate === todayStr) {
-               today += amt;
-             } else if (logDate === yesterdayStr) {
-               yesterdaySum += amt;
-             }
-           }
-         });
-         setInvestmentEarnings({
+        const now = new Date();
+        const todayStr = now.toISOString().slice(0, 10);
+        const yesterday = new Date(now);
+        yesterday.setDate(yesterday.getDate() - 1);
+        const yesterdayStr = yesterday.toISOString().slice(0, 10);
+
+        let total = 0, today = 0, yesterdaySum = 0;
+        logs.forEach(log => {
+          if (
+            log.category === 'funding' &&
+            log.direction === 'in' &&
+            log.referenceType === 'funding_investment' &&
+            log.description !== '만료 프로젝트 원금 반환'
+          ) {
+            const amt = parseFloat(log.amount);
+            total += amt;
+            const logDate = new Date(log.logDate).toISOString().slice(0, 10);
+            if (logDate === todayStr) {
+              today += amt;
+            } else if (logDate === yesterdayStr) {
+              yesterdaySum += amt;
+            }
+          }
+        });
+        setInvestmentEarnings({
           total,
-           today,
-           yesterday: yesterdaySum
-         });
-       })
-       .catch(console.error);
-   }, [user]);
+          today,
+          yesterday: yesterdaySum
+        });
+      })
+      .catch(console.error);
+  }, [user]);
 
   // 2) 레퍼럴 수익(referral type) 집계
   useEffect(() => {
     if (!user?.id) return;
     axios.get('/api/logs/quant-profits')
       .then(res => {
-       // console.log('📥 wallets-log raw response:', res.data);
+        // //console.log('📥 wallets-log raw response:', res.data);
         const rows = res.data.data || [];
-      //  console.log('🏷 parsed wallets-log entries:', rows);
+        //  //console.log('🏷 parsed wallets-log entries:', rows);
         const now = new Date();
         const todayStr = now.toISOString().slice(0, 10);
         const yesterday = new Date(now);
@@ -180,7 +180,7 @@ export default function MyProfilePage() {
   }, []);
 
 
-// quant-profits 불러와서 referral type 집계
+  // quant-profits 불러와서 referral type 집계
 
 
 
@@ -204,52 +204,52 @@ export default function MyProfilePage() {
     return (
       <div className="flex items-center justify-center h-screen bg-[#1a1109] text-yellow-100">
         {t('profile.loading')}
-        </div>
-      );
-    }
+      </div>
+    );
+  }
 
-    const encId = encodeId(user.id);
-    // summary.earnings.investment.* 대신 우리가 계산한 investmentEarnings 사용
-      const totalEarnings = referralEarnings.total
-        + investmentEarnings.total
-     
-        + rewardEarnings.total;
-      const todayIncome     = referralEarnings.today
-        + investmentEarnings.today
-   
-        + rewardEarnings.today;
-      const yesterdayIncome = referralEarnings.yesterday
-        + investmentEarnings.yesterday
-    
-        + rewardEarnings.yesterday;
-      const commit = referralEarnings.today + rewardEarnings.today;
-    return (
-      <div className="profile-container">
-        <div className="profile-header">
-          <div className="profile-user-info">
-            <div className="profile-avatar">
-              {user.name[0]?.toUpperCase()}
-            </div>
-            <div>
-              <p className="profile-username">
-                {t('profile.greeting', { name: user.name })}
-              </p>
-              <p className="profile-vip-level">
-                {t('profile.vipLevel', { level: user.vip_level })}
-              </p>
-            </div>
+  const encId = encodeId(user.id);
+  // summary.earnings.investment.* 대신 우리가 계산한 investmentEarnings 사용
+  const totalEarnings = referralEarnings.total
+    + investmentEarnings.total
+
+    + rewardEarnings.total;
+  const todayIncome = referralEarnings.today
+    + investmentEarnings.today
+
+    + rewardEarnings.today;
+  const yesterdayIncome = referralEarnings.yesterday
+    + investmentEarnings.yesterday
+
+    + rewardEarnings.yesterday;
+  const commit = referralEarnings.today + rewardEarnings.today;
+  return (
+    <div className="profile-container">
+      <div className="profile-header">
+        <div className="profile-user-info">
+          <div className="profile-avatar">
+            {user.name[0]?.toUpperCase()}
           </div>
-          <div className="profile-id-section">
-            <span>
-              {t('profile.idLabel')}: {encId}
-            </span>
-            <ClipboardCopy
-              size={16}
-              className="profile-clipboard-icon"
-              onClick={handleCopyId}
-            />
+          <div>
+            <p className="profile-username">
+              {t('profile.greeting', { name: user.name })}
+            </p>
+            <p className="profile-vip-level">
+              {t('profile.vipLevel', { level: user.vip_level })}
+            </p>
           </div>
         </div>
+        <div className="profile-id-section">
+          <span>
+            {t('profile.idLabel')}: {encId}
+          </span>
+          <ClipboardCopy
+            size={16}
+            className="profile-clipboard-icon"
+            onClick={handleCopyId}
+          />
+        </div>
+      </div>
 
 
       {/* ── 잔액 및 수익 카드 ───────────────────────────────────── */}
@@ -260,7 +260,7 @@ export default function MyProfilePage() {
             <p className="profile-summary-balance-value">
               {(summary.balance.total + investingAmount).toFixed(2)} USDT
               <span style={{ fontSize: '0.95em', color: '#ffd700', marginLeft: 8 }}>
-     
+
               </span>
             </p>
           </div>
@@ -331,13 +331,13 @@ export default function MyProfilePage() {
       {/* ── 메뉴 리스트 ───────────────────────────────────────── */}
       <div className="profile-menu-container">
         {[
-          { icon: '🏆', key: 'taskCenter',    to: '/taskcenter' },
-          { icon: '❓', key: 'faq',           to: '/commonproblem' },
-          { icon: '🔒', key: 'securityCenter',to: '/security' },
+          { icon: '🏆', key: 'taskCenter', to: '/taskcenter' },
+          { icon: '❓', key: 'faq', to: '/commonproblem' },
+          { icon: '🔒', key: 'securityCenter', to: '/security' },
           { icon: '📈', key: 'quantTutorial', to: '/quant-tutorial' },
-          { icon: '🌐', key: 'language',      to: '/settings/language' },
-          { icon: '🏢', key: 'aboutCompany',  to: '/company' },
-          { icon: '⬇️', key: 'downloadApp',   to: '/download' }
+          { icon: '🌐', key: 'language', to: '/settings/language' },
+          { icon: '🏢', key: 'aboutCompany', to: '/company' },
+          { icon: '⬇️', key: 'downloadApp', to: '/download' }
         ].map((item, i) => {
           const label = t(`profile.menu.${item.key}`);
           return (

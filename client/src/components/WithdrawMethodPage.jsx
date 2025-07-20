@@ -34,16 +34,16 @@ export default function WithdrawMethodPage() {
   useEffect(() => {
     axios.get("/api/withdrawals/admin/wallet-settings")
       .then(res => {
-        console.log("🔍 API 응답:", res.data);
+        //console.log("🔍 API 응답:", res.data);
         const rate = parseFloat(res.data.data.real_withdraw_fee) || 0;
-        console.log("💰 수수료율 로드 완료:", rate);
+        //console.log("💰 수수료율 로드 완료:", rate);
         setFeeRate(rate);
       })
       .catch(err => {
         console.error("❌ 수수료율 로드 실패:", err);
       });
   }, []);
-  
+
   // 거래 비밀번호 설정 여부 확인
   useEffect(() => {
     const checkTradePassword = async () => {
@@ -161,7 +161,7 @@ export default function WithdrawMethodPage() {
 
   const handleSetupTradePassword = async () => {
     setSetupError("");
-    
+
     if (!newTradePassword || !confirmTradePassword) {
       setSetupError("errors.passwordRequired");
       return;
@@ -181,7 +181,7 @@ export default function WithdrawMethodPage() {
       const response = await axios.post("/api/withdrawals/set-trade-password", {
         trade_password: newTradePassword
       });
-      
+
       if (response.data.success) {
         setHasTradePassword(true);
         setShowSetupModal(false);
@@ -315,8 +315,8 @@ export default function WithdrawMethodPage() {
         <h2 className="withdraw-title">{t("withdraw.title")}</h2>
       </div>
 
-    <div className="withdraw-www-wrapper">
-      <form onSubmit={handleSubmit} className="withdraw-ww-form">
+      <div className="withdraw-www-wrapper">
+        <form onSubmit={handleSubmit} className="withdraw-ww-form">
           <div className="withdraw-ww-input-container">
             {!hasTradePassword && (
               <div className="withdraw-ww-warning">
@@ -344,40 +344,40 @@ export default function WithdrawMethodPage() {
               </div>
             )}
 
-        <div>
-          <label className="withdraw-ww-label">{t("withdraw.addressLabel")}</label>
-          <input
-            value={address}
-            onChange={(e) => {
-              setAddress(e.target.value);
-              setAddressValid(null);
-            }}
-            onBlur={validateAddress}
-            className="withdraw-ww-input"
-            placeholder={currency === 'BNB' ? t("withdraw.addressPlaceholderBNB") : t("withdraw.addressPlaceholder")}
-          />
-          {addressValid === false && (
-            <p className="withdraw-ww-error">{t("withdraw.invalidAddress")}</p>
-          )}
-          {addressValid === true && (
-            <p className="withdraw-ww-success">{t("withdraw.validAddress")}</p>
-          )}
-        </div>
+            <div>
+              <label className="withdraw-ww-label">{t("withdraw.addressLabel")}</label>
+              <input
+                value={address}
+                onChange={(e) => {
+                  setAddress(e.target.value);
+                  setAddressValid(null);
+                }}
+                onBlur={validateAddress}
+                className="withdraw-ww-input"
+                placeholder={currency === 'BNB' ? t("withdraw.addressPlaceholderBNB") : t("withdraw.addressPlaceholder")}
+              />
+              {addressValid === false && (
+                <p className="withdraw-ww-error">{t("withdraw.invalidAddress")}</p>
+              )}
+              {addressValid === true && (
+                <p className="withdraw-ww-success">{t("withdraw.validAddress")}</p>
+              )}
+            </div>
 
-        <div>
-          <label className="withdraw-ww-label">{t("withdraw.amountLabel")}</label>
-          <input
-            value={amount}
-            onChange={(e) => setAmount(e.target.value)}
-            className="withdraw-ww-input"
-            placeholder={t("withdraw.amountPlaceholder")}
-          />
-        </div>
+            <div>
+              <label className="withdraw-ww-label">{t("withdraw.amountLabel")}</label>
+              <input
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                className="withdraw-ww-input"
+                placeholder={t("withdraw.amountPlaceholder")}
+              />
+            </div>
 
-        <div className="withdraw-ww-info">
-          <p>{t("withdraw.feeRate")}: {(feeRate * 100).toFixed(2)}%</p>
-          <p>{t("withdraw.estimatedFee")}: {(parseFloat(amount) * feeRate || 0).toFixed(6)} USDT</p>
-          <p>{t("withdraw.netAmount")}: {netAmount.toFixed(6)} USDT</p>
+            <div className="withdraw-ww-info">
+              <p>{t("withdraw.feeRate")}: {(feeRate * 100).toFixed(2)}%</p>
+              <p>{t("withdraw.estimatedFee")}: {(parseFloat(amount) * feeRate || 0).toFixed(6)} USDT</p>
+              <p>{t("withdraw.netAmount")}: {netAmount.toFixed(6)} USDT</p>
               <p className="withdraw-ww-balance">
                 {t("withdraw.currentBalance")}: {currentBalance.toFixed(6)} USDT
               </p>
@@ -386,24 +386,24 @@ export default function WithdrawMethodPage() {
                   {t("withdraw.balanceAfter")}: {(currentBalance - (parseFloat(amount) + (parseFloat(amount) * feeRate))).toFixed(6)} USDT
                 </p>
               )}
-        </div>
+            </div>
 
-        {error && <p className="withdraw-ww-error">{t(error)}</p>}
-        {success && <p className="withdraw-ww-success">{t(success)}</p>}
+            {error && <p className="withdraw-ww-error">{t(error)}</p>}
+            {success && <p className="withdraw-ww-success">{t(success)}</p>}
           </div>
 
-        <button
-          type="submit"
+          <button
+            type="submit"
             disabled={submitting || !hasTradePassword}
-          className="withdraw-ww-button"
-        >
-          {submitting ? t("withdraw.submitting") : t("withdraw.submit")}
-        </button>
-      </form>
-    </div>
+            className="withdraw-ww-button"
+          >
+            {submitting ? t("withdraw.submitting") : t("withdraw.submit")}
+          </button>
+        </form>
+      </div>
 
       {renderKeypad()}
       {renderSetupModal()}
-  </div>
+    </div>
   );
 }

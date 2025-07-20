@@ -19,16 +19,16 @@ export default function WithdrawMethodPage() {
   useEffect(() => {
     axios.get("/api/withdrawals/admin/wallet-settings")
       .then(res => {
-        console.log("🔍 API 응답:", res.data); // 전체 구조 확인
+        //console.log("🔍 API 응답:", res.data); // 전체 구조 확인
         const rate = parseFloat(res.data.data.real_withdraw_fee) || 0;
-        console.log("💰 수수료율 로드 완료:", rate);
+        //console.log("💰 수수료율 로드 완료:", rate);
         setFeeRate(rate);
       })
       .catch(err => {
         console.error("❌ 수수료율 로드 실패:", err);
       });
   }, []);
-  
+
 
   // 2) amount 또는 feeRate 변경 시 netAmount 다시 계산
   useEffect(() => {
@@ -93,9 +93,9 @@ export default function WithdrawMethodPage() {
         <ArrowLeftIcon size={20} />
         <span>{t("common.back")}</span>
       </button>
-  
+
       <h2 className="text-xl font-bold mb-4 text-center">{t("withdraw.title")}</h2>
-  
+
       <form onSubmit={handleSubmit} className="space-y-4 max-w-md mx-auto">
         <div>
           <label className="block text-sm mb-1">{t("withdraw.addressLabel")}</label>
@@ -116,7 +116,7 @@ export default function WithdrawMethodPage() {
             <p className="text-green-400 text-sm mt-1">{t("withdraw.validAddress")}</p>
           )}
         </div>
-  
+
         <div>
           <label className="block text-sm mb-1">{t("withdraw.amountLabel")}</label>
           <input
@@ -126,16 +126,16 @@ export default function WithdrawMethodPage() {
             placeholder={t("withdraw.amountPlaceholder")}
           />
         </div>
-  
+
         <div className="text-sm space-y-1">
           <p>{t("withdraw.feeRate")}: {(feeRate * 100).toFixed(2)}%</p>
           <p>{t("withdraw.estimatedFee")}: {(parseFloat(amount) * feeRate || 0).toFixed(6)} USDT</p>
           <p>{t("withdraw.netAmount")}: {netAmount.toFixed(6)} USDT</p>
         </div>
-  
+
         {error && <p className="text-red-500 text-center">{t(error)}</p>}
         {success && <p className="text-green-500 text-center">{t(success)}</p>}
-  
+
         <button
           type="submit"
           disabled={submitting}

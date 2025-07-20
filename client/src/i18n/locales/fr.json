@@ -3,7 +3,6 @@
     "title": "Notification Système"
   },
   "order_history": {
-
     "title": "Mes Commandes et Remboursements",
     "orders": {
       "title": "Historique des Commandes",
@@ -151,13 +150,13 @@
     }
   },
   "walletLogs": {
-    "in" : "Dépôt",
-    "out" : "Retrait",
+    "in": "Dépôt",
+    "out": "Retrait",
     "prev": "précédent",
     "next": "suivant",
     "back": "Retour",
     "title": "Journaux de transfert",
-    "quantTypes" :{
+    "quantTypes": {
       "trade": "Trade",
       "referral": "Referral"
     },
@@ -168,11 +167,11 @@
     },
     "columns": {
       "description": "description",
-      "direction" : "direction",
+      "direction": "direction",
       "type": "Type",
       "amount": "Montant",
       "fee": "Frais",
-      "net": "Net", 
+      "net": "Net",
       "date": "Date",
       "category": "Catégorie"
     },
@@ -210,6 +209,7 @@
     }
   },
   "quantTrading": {
+    "dailyLimitReached": "Limite quotidienne de trading atteinte",
     "vipLevel": "Niveau VIP",
     "leaderboardTitle": "Classement",
     "processing": "Traitement de la commande...",
@@ -304,16 +304,16 @@
     "errorLoad": "Échec du chargement de l'historique."
   },
   "bnbRecharge": {
-  "title": "Recharger BNB",
-  "loading": "⏳ Chargement de BNB...",
-  "back": "Retour",
-  "protocol": "BEP-20",
-  "scanLabel": "Scannez le QR code pour recharger du BNB",
-  "noWallet": "Aucun portefeuille BNB trouvé. Veuillez en créer un.",
-  "address": "Adresse BNB",
-  "copy": "Copier",
-  "copySuccess": "Adresse BNB copiée !"
-},
+    "title": "Recharger BNB",
+    "loading": "⏳ Chargement de BNB...",
+    "back": "Retour",
+    "protocol": "BEP-20",
+    "scanLabel": "Scannez le QR code pour recharger du BNB",
+    "noWallet": "Aucun portefeuille BNB trouvé. Veuillez en créer un.",
+    "address": "Adresse BNB",
+    "copy": "Copier",
+    "copySuccess": "Adresse BNB copiée !"
+  },
   "tokenPurchase": {
     "title": "Token USC",
     "lockupDetails": "Détails du Verrouillage",
@@ -375,7 +375,7 @@
       "purchaseFail": "Échec de l'achat."
     }
   },
-  "token": {  
+  "token": {
     "header": "Token USC",
     "more": "Plus",
     "recharge": "Recharger",
@@ -810,7 +810,7 @@
     },
     "join_reward": {
       "title": "Récompenses d'Inscription",
-      "step" : "Récompenses d'Inscription",
+      "step": "Récompenses d'Inscription",
       "success": "Succès",
       "reward_claimed": "Récompense d'inscription {{amount}} USDT a été créditée.",
       "error": "Erreur",
@@ -896,11 +896,11 @@
     }
   },
   "userChat": {
-    "guestTitle" : "Chat Invité",
-    "guestName" : "Nom",
-    "guestEmail" : "Email",
-    "startChat" : "Démarrer le Chat",
-    "guestChat" : "Chat Invité",
+    "guestTitle": "Chat Invité",
+    "guestName": "Nom",
+    "guestEmail": "Email",
+    "startChat": "Démarrer le Chat",
+    "guestChat": "Chat Invité",
     "title": "Chat du Support Client",
     "me": "Moi",
     "admin": "Admin",
@@ -921,4 +921,4 @@
       "disconnected": "Déconnecté"
     }
   }
-} 
+}

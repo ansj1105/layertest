@@ -1,5 +1,5 @@
 // 📁 src/pages/admin/AdminWalletsPage.jsx
-import { useState,useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import AdminNav from '../../components/admin/AdminNav';
 import DepositModal from '../../components/admin/DepositModal';
@@ -7,13 +7,13 @@ import DepositModal from '../../components/admin/DepositModal';
 // 주소를 축약하고 클릭 시 전체 주소를 보여주는 컴포넌트
 const ShortenedAddress = ({ address }) => {
   const [showFull, setShowFull] = useState(false);
-  
+
   if (!address) return null;
-  
+
   const shortened = `${address.slice(0, 5)}...${address.slice(-5)}`;
-  
+
   return (
-    <div 
+    <div
       className="cursor-pointer hover:text-blue-500 transition-colors"
       onClick={() => setShowFull(!showFull)}
       title="Click to show/hide full address"
@@ -42,7 +42,7 @@ export default function AdminWalletsPage({ onLogout }) {
           addressMap[item.user_id] = item.address;
         });
         setBnbAddresses(addressMap);
-      console.log('bnbAddresses:', addressMap);
+        //console.log('bnbAddresses:', addressMap);
       })
       .catch(console.error);
   }, []);
@@ -83,7 +83,7 @@ export default function AdminWalletsPage({ onLogout }) {
       ]);
 
       const walletsList = walletsRes.data.data || [];
-      
+
       // bnb 주소 포함하여 병합
       const merged = walletsList.map(w => ({
         ...w,
@@ -117,8 +117,8 @@ export default function AdminWalletsPage({ onLogout }) {
 
   // 검색어와 페이지에 따른 필터링된 지갑 목록
   const filteredWallets = wallets
-    .filter(w => 
-      searchTerm === '' || 
+    .filter(w =>
+      searchTerm === '' ||
       w.user_id.toString().includes(searchTerm) ||
       w.user_email.toLowerCase().includes(searchTerm.toLowerCase()) ||
       w.user_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -218,12 +218,12 @@ export default function AdminWalletsPage({ onLogout }) {
                   >
                     {refreshing === w.id ? '재조회 중...' : '재조회'}
                   </button>
-                                   <button
-                   onClick={() => setModalWallet(w)}
-                   className="px-2 py-1 bg-indigo-500 text-white rounded hover:bg-indigo-600"
-                 >
-                   유저입금
-                 </button>
+                  <button
+                    onClick={() => setModalWallet(w)}
+                    className="px-2 py-1 bg-indigo-500 text-white rounded hover:bg-indigo-600"
+                  >
+                    유저입금
+                  </button>
                 </td>
               </tr>
             ))}
@@ -240,21 +240,20 @@ export default function AdminWalletsPage({ onLogout }) {
             >
               이전
             </button>
-            
+
             {[...Array(totalPages)].map((_, i) => (
               <button
                 key={i + 1}
                 onClick={() => handlePageChange(i + 1)}
-                className={`px-3 py-1 border rounded ${
-                  currentPage === i + 1 
-                    ? 'bg-blue-500 text-white' 
+                className={`px-3 py-1 border rounded ${currentPage === i + 1
+                    ? 'bg-blue-500 text-white'
                     : 'hover:bg-gray-100'
-                }`}
+                  }`}
               >
                 {i + 1}
               </button>
             ))}
-            
+
             <button
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}

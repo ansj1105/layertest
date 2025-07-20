@@ -9,7 +9,7 @@ import '../styles/topbar.css';
 export default function FundingPage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
- 
+
   const [summary, setSummary] = useState({
     financeBalance: 0,
     quantBalance: 0,
@@ -24,18 +24,18 @@ export default function FundingPage() {
   const [showChargeModal, setShowChargeModal] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(false);
   // 모달 상태
-  const [showDepositModal, setShowDepositModal]   = useState(false);
+  const [showDepositModal, setShowDepositModal] = useState(false);
   const [showWithdrawModal, setShowWithdrawModal] = useState(false);
   const [depositAmt, setDepositAmt] = useState("");
   const [withdrawAmt, setWithdrawAmt] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [openFaq, setOpenFaq] = useState(null);
-  const activeProjects  = projects.filter(p => p.status === 'open');
+  const activeProjects = projects.filter(p => p.status === 'open');
   const expiredProjects = projects.filter(p => p.status === 'closed');
   // 요약 API
   const fetchFinanceSummary = async () => {
     const res = await axios.get("/api/wallet/finance-summary", { withCredentials: true });
-    console.log(res);
+    //console.log(res);
     const data = res.data.data;
     return {
       financeBalance: data.fundBalance,
@@ -47,7 +47,7 @@ export default function FundingPage() {
       investingAmount: parseFloat(data.investingAmount) || 0 // 투자중인 금액 추가
     };
   };
- 
+
   // 프로젝트 목록 API
   const fetchProjects = async () => {
     const res = await axios.get("/api/wallet/projects", { withCredentials: true });
@@ -75,12 +75,12 @@ export default function FundingPage() {
     return <div className="text-center mt-10 text-gray-500">{t("funding.loading")}</div>;
   }
   // 수수료 계산 헬퍼
-  const calcFee = (amt, rate) => +(amt * (rate/100)).toFixed(6);
+  const calcFee = (amt, rate) => +(amt * (rate / 100)).toFixed(6);
   const calcNet = (amt, rate) => +(amt - calcFee(amt, rate)).toFixed(6);
-  const financeBalance     = parseFloat(summary.financeBalance)     || 0;
-  const quantBalance     = parseFloat(summary.quantBalance)     || 0;
-  const depositFee     = parseFloat(summary.depositFee)     || 0;
-  const withdrawFee     = parseFloat(summary.withdrawFee)     || 0;
+  const financeBalance = parseFloat(summary.financeBalance) || 0;
+  const quantBalance = parseFloat(summary.quantBalance) || 0;
+  const depositFee = parseFloat(summary.depositFee) || 0;
+  const withdrawFee = parseFloat(summary.withdrawFee) || 0;
   const todayProjectIncome = parseFloat(summary.todayProjectIncome) || 0;
   const totalProjectIncome = parseFloat(summary.totalProjectIncome) || 0;
   // 입금(환송) 제출
@@ -192,24 +192,24 @@ export default function FundingPage() {
       <div className="funding-card">
         <div className="funding-balance-header">
           <div className="funding-balance-label">{t("funding.wallet_balance")}</div>
-            <div className="funding-balance-amount-ll">
+          <div className="funding-balance-amount-ll">
 
-              <div className="funding-balance-amount">
-                {(financeBalance + summary.investingAmount).toFixed(6)}&nbsp;&nbsp;USDT
-                <br></br>
-                <span style={{ fontSize: '0.95em', color: '#ffd700', marginLeft: 8 }}>
-                  ({t('funding.investing_amount', { amount: summary.investingAmount.toFixed(6) })})
-                </span>
-              </div>
-                <button
-                  onClick={() => navigate("/funding/logs")}
-                  className="funding-detail-btn"
-                >
-                  {t("funding.detail")} &gt;
-              </button>
+            <div className="funding-balance-amount">
+              {(financeBalance + summary.investingAmount).toFixed(6)}&nbsp;&nbsp;USDT
+              <br></br>
+              <span style={{ fontSize: '0.95em', color: '#ffd700', marginLeft: 8 }}>
+                ({t('funding.investing_amount', { amount: summary.investingAmount.toFixed(6) })})
+              </span>
             </div>
-
+            <button
+              onClick={() => navigate("/funding/logs")}
+              className="funding-detail-btn"
+            >
+              {t("funding.detail")} &gt;
+            </button>
           </div>
+
+        </div>
 
         <div className="funding-action-buttons">
           <button
@@ -372,110 +372,110 @@ export default function FundingPage() {
 
 
 
-            {/* ─── 펀딩 프로젝트 목록 ──────────────────────────── */}
-            <div className="project-list-container">
-              {/* 활성 프로젝트 */}
-              <h3 className="project-title">{t("funding.active_projects")}</h3>
-              {activeProjects.length === 0 ? (
-                <p className="text-center text-gray-500 py-4">
-                  {t("funding.no_active_projects")}
-                </p>
-              ) : (
-                activeProjects.map(proj => (
-                  <div key={proj.id} className="project-card">
-                    {/* 프로젝트 정보 */}
-                    <h3>{proj.name}</h3>
-                    <p className="project-description">
-                      {t("funding.project.description", { description: proj.description })}
-                    </p>
-                    <p className="project-description">
-                      {t("funding.project.available", { min: proj.minAmount, max: proj.maxAmount })}
-                    </p>
-                    <p className="project-description">
-                      {t("funding.project.daily_rate", { rate: proj.dailyRate })}
-                    </p>
-                    <p className="project-description">
-                      {t("funding.project.duration", { cycle: proj.cycle, end: new Date(proj.endDate).toLocaleDateString() })}
-                    </p>
-                    <button
-                      onClick={() => navigate(`/funding/detail/${proj.id}`)}
-                      className="project-apply-btn"
-                    >
-                      {t("funding.project.apply")}
-                    </button>
-                  </div>
-                ))
-              )}
-
-
-              {/* 만료된 프로젝트 */}
-              <h3 className="funding-expired-title">{t("funding.expired_projects")}</h3>
-                {expiredProjects.length === 0 ? (
-                  <p className="funding-empty-message">
-                    {t("funding.no_expired_projects")}
-                  </p>
-                ) : (
-                  expiredProjects.map(proj => (
-                    <div key={proj.id} className="funding-expired-card">
-                      <h3>
-                        {proj.name} <span className="funding-expired-label">({t("funding.expired_label")})</span>
-                      </h3>
-                      <p className="funding-expired-description">
-                        {t("funding.project.description", { description: proj.description })}
-                      </p>
-                      <p className="funding-expired-description">
-                        {t("funding.project.available", { min: proj.minAmount, max: proj.maxAmount })}
-                      </p>
-                      <p className="funding-expired-description">
-                        {t("funding.project.daily_rate", { rate: proj.dailyRate })}
-                      </p>
-                      <p className="funding-expired-description">
-                        {t("funding.project.duration", {
-                          cycle: proj.cycle,
-                          end: new Date(proj.endDate).toLocaleDateString(),
-                        })}
-                      </p>
-                      <button disabled className="funding-expired-btn">
-                      Project Expiration
-                      </button>
-                    </div>
-                  ))
-                )}
-
-        
-      {/* ─── 일반적인 문제 (FAQ) ──────────────────────────── */}
-      <div className="faq-section">
-        <h2 className="faq-title">{t("common.faqTitle")}</h2>
-        {["problem1", "problem2", "problem3", "problem4", "problem5"].map(key => {
-          const isOpen = openFaq === key;
-          return (
-            <div key={key} className="faq-card">
+      {/* ─── 펀딩 프로젝트 목록 ──────────────────────────── */}
+      <div className="project-list-container">
+        {/* 활성 프로젝트 */}
+        <h3 className="project-title">{t("funding.active_projects")}</h3>
+        {activeProjects.length === 0 ? (
+          <p className="text-center text-gray-500 py-4">
+            {t("funding.no_active_projects")}
+          </p>
+        ) : (
+          activeProjects.map(proj => (
+            <div key={proj.id} className="project-card">
+              {/* 프로젝트 정보 */}
+              <h3>{proj.name}</h3>
+              <p className="project-description">
+                {t("funding.project.description", { description: proj.description })}
+              </p>
+              <p className="project-description">
+                {t("funding.project.available", { min: proj.minAmount, max: proj.maxAmount })}
+              </p>
+              <p className="project-description">
+                {t("funding.project.daily_rate", { rate: proj.dailyRate })}
+              </p>
+              <p className="project-description">
+                {t("funding.project.duration", { cycle: proj.cycle, end: new Date(proj.endDate).toLocaleDateString() })}
+              </p>
               <button
-                onClick={() => setOpenFaq(isOpen ? null : key)}
-                className="faq-question-btn"
+                onClick={() => navigate(`/funding/detail/${proj.id}`)}
+                className="project-apply-btn"
               >
-                <span>{t(`common.${key}.question`)}</span>
-                <svg
-                  className={`faq-icon ${isOpen ? "rotate-180" : "rotate-0"}`}
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    clipRule="evenodd"
-                    d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z"
-                  />
-                </svg>
+                {t("funding.project.apply")}
               </button>
-              {isOpen && (
-                <div className="faq-answer">
-                  {t(`common.${key}.answer`)}
-                </div>
-              )}
             </div>
-          );
-        })}
-      </div>
+          ))
+        )}
+
+
+        {/* 만료된 프로젝트 */}
+        <h3 className="funding-expired-title">{t("funding.expired_projects")}</h3>
+        {expiredProjects.length === 0 ? (
+          <p className="funding-empty-message">
+            {t("funding.no_expired_projects")}
+          </p>
+        ) : (
+          expiredProjects.map(proj => (
+            <div key={proj.id} className="funding-expired-card">
+              <h3>
+                {proj.name} <span className="funding-expired-label">({t("funding.expired_label")})</span>
+              </h3>
+              <p className="funding-expired-description">
+                {t("funding.project.description", { description: proj.description })}
+              </p>
+              <p className="funding-expired-description">
+                {t("funding.project.available", { min: proj.minAmount, max: proj.maxAmount })}
+              </p>
+              <p className="funding-expired-description">
+                {t("funding.project.daily_rate", { rate: proj.dailyRate })}
+              </p>
+              <p className="funding-expired-description">
+                {t("funding.project.duration", {
+                  cycle: proj.cycle,
+                  end: new Date(proj.endDate).toLocaleDateString(),
+                })}
+              </p>
+              <button disabled className="funding-expired-btn">
+                Project Expiration
+              </button>
+            </div>
+          ))
+        )}
+
+
+        {/* ─── 일반적인 문제 (FAQ) ──────────────────────────── */}
+        <div className="faq-section">
+          <h2 className="faq-title">{t("common.faqTitle")}</h2>
+          {["problem1", "problem2", "problem3", "problem4", "problem5"].map(key => {
+            const isOpen = openFaq === key;
+            return (
+              <div key={key} className="faq-card">
+                <button
+                  onClick={() => setOpenFaq(isOpen ? null : key)}
+                  className="faq-question-btn"
+                >
+                  <span>{t(`common.${key}.question`)}</span>
+                  <svg
+                    className={`faq-icon ${isOpen ? "rotate-180" : "rotate-0"}`}
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.27a.75.75 0 01.02-1.06z"
+                    />
+                  </svg>
+                </button>
+                {isOpen && (
+                  <div className="faq-answer">
+                    {t(`common.${key}.answer`)}
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

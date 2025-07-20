@@ -68,7 +68,7 @@ export default function App() {
 */
 /*
   /* ✅ 네비게이션 */
-  
+
 import './styles/Sidebar.css';
 import './styles/topnav.css';
 import { useEffect, useState } from 'react';
@@ -97,6 +97,7 @@ import RegisterPage from './pages/auth/RegisterPage';
 import PWAInstallPrompt from './components/PWAInstallPrompt';
 import PWAStatus from './components/PWAStatus';
 axios.defaults.withCredentials = true;
+const API_HOST = import.meta.env.VITE_API_HOST || 'http://localhost:4000';
 /** 간단한 가역 인코딩 (XOR → 16진수, 8자리) */
 function encodeId(id) {
   const ob = id ^ 0xA5A5A5A5;
@@ -153,61 +154,61 @@ export default function App() {
   if (loc.pathname === '/forgot-password') {
     return <ForgotPassword />;
   }
-  
+
 
   if (loc.pathname === '/settings/language') {
     return <LanguageSettingsPage />;
   }
   // 2) /register 가 아니고, 로그인 안된 상태면 로그인 페이지만
-  if (!user ) {
+  if (!user) {
     return <LoginPage />;
   }
-/*
-  if (!user && !["//settings/language", "/test"].includes(window.location.pathname))  {
-    return <LoginPage />;
-  }
-  */
+  /*
+    if (!user && !["//settings/language", "/test"].includes(window.location.pathname))  {
+      return <LoginPage />;
+    }
+    */
 
   return (
 
     <div className="top-container" style={{ backgroundImage: "url('/bg.jpg')" }}>
-        {/* 상단 바 */}
-        <div className="top-nav-bar ">
-          
-          {/* 유저 버튼 */}
-          <div className="btn-avatar"> 
-            <button className="avatar-button" onClick={() => setSidebarOpen(true)}>
-              <img 
-                src="/img/item/top/avatar.png" 
-                alt={t('app.userAvatarAlt')}
-                className="avatar-img"
-              />
-            </button>
-          </div>
+      {/* 상단 바 */}
+      <div className="top-nav-bar ">
 
-          {/* 로고 */}
-          <img
-            src="/img/item/logo/logo.png"
-            alt={t('app.logoAlt')}
-            className="top-logo"
-          />
-
-          {/* 메일 아이콘 */}
-          <div className="avatar-mase">
-            <a 
-              href={pdfs.length > 0 ? `http://54.85.128.211:4000${pdfs[0].file_path}` : '#'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={pdfs.length === 0 ? 'cursor-not-allowed opacity-50' : ''}
-            >
-              <img
-                src="/img/item/top/envelope.png"
-                alt={t('app.mailIconAlt')}
-                className="avatar-img"
-              />
-            </a>
-          </div>
+        {/* 유저 버튼 */}
+        <div className="btn-avatar">
+          <button className="avatar-button" onClick={() => setSidebarOpen(true)}>
+            <img
+              src="/img/item/top/avatar.png"
+              alt={t('app.userAvatarAlt')}
+              className="avatar-img"
+            />
+          </button>
         </div>
+
+        {/* 로고 */}
+        <img
+          src="/img/item/logo/logo.png"
+          alt={t('app.logoAlt')}
+          className="top-logo"
+        />
+
+        {/* 메일 아이콘 */}
+        <div className="avatar-mase">
+          <a
+            href={pdfs.length > 0 ? `${API_HOST}${pdfs[0].file_path}` : '#'}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={pdfs.length === 0 ? 'cursor-not-allowed opacity-50' : ''}
+          >
+            <img
+              src="/img/item/top/envelope.png"
+              alt={t('app.mailIconAlt')}
+              className="avatar-img"
+            />
+          </a>
+        </div>
+      </div>
 
 
       {/* 사이드바 */}
@@ -305,22 +306,22 @@ export default function App() {
       )}
 
       {/* 메인 콘텐츠 */}
-  <div className="pt-16 ">
-      <UserChat userId={user.id} />
-      <MainLanding user={user} />
-      <BottomNav />
+      <div className="pt-16 ">
+        <UserChat userId={user.id} />
+        <MainLanding user={user} />
+        <BottomNav />
       </div>
-      
+
       {/* PWA 설치 프롬프트 */}
       <PWAInstallPrompt />
-      
+
       {/* PWA 상태 표시 */}
       <PWAStatus />
     </div>
 
-);
+  );
 }
-         {/* <div className="flex gap-4 flex-wrap justify-center text-sm md:text-base">
+{/* <div className="flex gap-4 flex-wrap justify-center text-sm md:text-base">
           <Link to="/">{t('Home')}</Link>
             <Link to="/wallet">{t('Wallet')}</Link>
             <Link to="/balance">{t('Balance')}</Link>

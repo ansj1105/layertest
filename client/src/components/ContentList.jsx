@@ -7,7 +7,7 @@ import VideoWithPreview from './VideoWithPreview';
 import '../styles/MainLanding.css';
 export default function ContentList() {
   // 컴포넌트 최상단에
-const API_HOST = import.meta.env.VITE_API_HOST || 'http://localhost:4000';
+  const API_HOST = import.meta.env.VITE_API_HOST || 'http://localhost:4000';
 
   const [banners, setBanners] = useState([]);
   const [video, setVideo] = useState(null);
@@ -45,50 +45,49 @@ const API_HOST = import.meta.env.VITE_API_HOST || 'http://localhost:4000';
           {/* 배너 슬라이더: h-[170px] 컨테이너 안에서 이미지를 object-cover */}
           {banners.length > 0 && (
             <div className="relative w-full h-[170px] rounded overflow-visible">
-            <Slider
-              dots
-              infinite
-              autoplay
-              autoplaySpeed={3000}
-              // ← 슬라이드가 바뀔 때마다 호출
-              afterChange={idx => setCurrentSlide(idx)}
-              // ← 각 dot 렌더링
-              customPaging={i => (
-                <div
-                  className={`w-2 h-2 rounded-full ${
-                    currentSlide === i ? 'bg-white' : 'bg-gray-400'
-                  }`}
-                />
-              )}
-              // ← dots를 이미지 위에 절대 위치
-              appendDots={dots => (
-                <div>
-                  <ul className="absolute bottom-6 left-0 right-0 flex justify-center space-x-0">
-                    {dots}
-                  </ul>
-                </div>
-              )}
-            >
-              {banners.map((banner, idx) => (
-                <div key={idx} className="h-[170px] overflow-hidden rounded">
-                  <img
-                    src={`${API_HOST}${banner.file_path}`}
-                    alt={`banner-${idx}`}
-                    className="w-full h-full object-cover"
+              <Slider
+                dots
+                infinite
+                autoplay
+                autoplaySpeed={3000}
+                // ← 슬라이드가 바뀔 때마다 호출
+                afterChange={idx => setCurrentSlide(idx)}
+                // ← 각 dot 렌더링
+                customPaging={i => (
+                  <div
+                    className={`w-2 h-2 rounded-full ${currentSlide === i ? 'bg-white' : 'bg-gray-400'
+                      }`}
                   />
-                </div>
-              ))}
-            </Slider>
-          </div>
-        )}
+                )}
+                // ← dots를 이미지 위에 절대 위치
+                appendDots={dots => (
+                  <div>
+                    <ul className="absolute bottom-6 left-0 right-0 flex justify-center space-x-0">
+                      {dots}
+                    </ul>
+                  </div>
+                )}
+              >
+                {banners.map((banner, idx) => (
+                  <div key={idx} className="h-[170px] overflow-hidden rounded">
+                    <img
+                      src={`${API_HOST}${banner.file_path}`}
+                      alt={`banner-${idx}`}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ))}
+              </Slider>
+            </div>
+          )}
 
           {/* 동영상: VideoWithPreview 컴포넌트 사용 */}
           {video && (
             <div className="w-full aspect-video">
-            <VideoWithPreview
-              src={`${API_HOST}${video}`}
-            />
-          </div>
+              <VideoWithPreview
+                src={`${API_HOST}${video}`}
+              />
+            </div>
           )}
         </>
       )}

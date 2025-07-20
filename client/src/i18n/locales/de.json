@@ -2,111 +2,111 @@
   "notification": {
     "title": "Systembenachrichtigung"
   },
-    "order_history": {
-      "title": "Meine Bestellungen und Auszahlungen",
-      "orders": {
-        "title": "Bestellverlauf",
-        "no_orders": "Keine Bestellungen gefunden",
-        "table": {
-          "order_id": "Bestell-ID",
-          "token": "Token",
-          "amount": "Betrag",
-          "price": "Preis (USDT)",
-          "total": "Gesamt (USDT)",
-          "status": "Status",
-          "unlock_date": "Freigabedatum",
-          "order_date": "Bestelldatum"
-        },
-        "status": {
-          "pending": "Ausstehend",
-          "completed": "Abgeschlossen",
-          "cancelled": "Storniert"
-        }
-      },
-      "redemptions": {
-        "ref_type": {
-          "exchange": "Tausch",
-          "purchase": "Kauf",
-          "redeem": "Einlösung",
-          "transfer": "Überweisung",
-          "token_exchange": "Token-Tausch",
-          "token_purchase": "Token-Kauf",
-          "token_redeem": "Token-Einlösung",
-          "token_transfer": "Token-Überweisung"
-        }
-      }
-    },
-    "Wallet": "Brieftasche",
-    "Balance": "Kontostand",
-    "Transfer": "Überweisung",
-    "Transactions": "Transaktionen",
-    "Register": "Registrieren",
-    "Home": "Startseite",
-    "coin_list": {
-      "trading_pair": "Handelspaar",
-      "latest_price": "Letzter Preis",
-      "change_percent": "Veränderung (%)"
-    },
-    "escrow": {
-      "title": "Treuhand",
-      "investment_amount": "Investitionsbetrag",
-      "profit": "Gewinn"
-    },
-    "invite": {
-      "title": "Freunde einladen",
-      "invite_link": "Einladungslink",
-      "copy_invite_link": "Einladungslink kopieren",
-      "product_description": "Quantitative Spitzenprodukte, kostenfrei für alle",
-      "referral_code": "Empfehlungscode",
-      "copy_referral_code": "Empfehlungscode kopieren",
-      "copy_success": "Erfolgreich kopiert",
-      "error": {
-        "load_failed": "Laden des Einladungscodes fehlgeschlagen",
-        "copy_failed": "Kopieren in die Zwischenablage fehlgeschlagen",
-        "fallback_copy_failed": "Kopieren mit alternativer Methode fehlgeschlagen"
-      }
-    },
-    "language": {
-      "settings": "Spracheinstellungen",
-      "not_implemented": "Diese Sprache wird momentan entwickelt."
-    },
-    "lockup": {
-      "title": "Sperrdetails",
-      "total_balance": "Gesamtsaldo",
-      "total_locked": "Gesamt gesperrt",
-      "no_active_lockups": "Keine aktiven Sperren",
+  "order_history": {
+    "title": "Meine Bestellungen und Auszahlungen",
+    "orders": {
+      "title": "Bestellverlauf",
+      "no_orders": "Keine Bestellungen gefunden",
       "table": {
-        "id": "Sperr-ID",
+        "order_id": "Bestell-ID",
+        "token": "Token",
         "amount": "Betrag",
-        "unlock_date": "Freigabedatum"
+        "price": "Preis (USDT)",
+        "total": "Gesamt (USDT)",
+        "status": "Status",
+        "unlock_date": "Freigabedatum",
+        "order_date": "Bestelldatum"
+      },
+      "status": {
+        "pending": "Ausstehend",
+        "completed": "Abgeschlossen",
+        "cancelled": "Storniert"
       }
     },
-    "register": {
-      "title": "Registrieren",
-      "by_phone": "Per Telefon",
-      "by_email": "Per E-Mail",
-      "name": "Name",
-      "phone": "Telefon",
-      "email": "E-Mail",
-      "password": "Passwort",
-      "confirmPassword": "Passwort bestätigen",
-      "referral": "Empfehlungscode",
-      "submit": "Registrieren",
-      "name_error": "Name muss mindestens 2 Zeichen lang sein.",
-      "email_error": "Ungültiges E-Mail-Format.",
-      "phone_error": "Ungültige Telefonnummer.",
-      "password_error": "Passwort muss mindestens 6 Zeichen lang sein.",
-      "confirm_error": "Passwörter stimmen nicht überein.",
-      "captcha_required": "Bitte vervollständigen Sie das CAPTCHA.",
-      "success": "Registrierung erfolgreich! Bitte melden Sie sich an.",
-      "fail": "Registrierung fehlgeschlagen.",
-      "no_account": "Sie haben bereits ein Konto?",
-      "login": "Anmelden",
-      "agree": "Mit der Registrierung stimmen Sie unseren <0>Nutzungsbedingungen</0> und der <1>Datenschutzerklärung</1> zu.",
-      "terms": "Nutzungsbedingungen",
-      "privacy": "Datenschutzrichtlinie"
-    },
-    "login": {
+    "redemptions": {
+      "ref_type": {
+        "exchange": "Tausch",
+        "purchase": "Kauf",
+        "redeem": "Einlösung",
+        "transfer": "Überweisung",
+        "token_exchange": "Token-Tausch",
+        "token_purchase": "Token-Kauf",
+        "token_redeem": "Token-Einlösung",
+        "token_transfer": "Token-Überweisung"
+      }
+    }
+  },
+  "Wallet": "Brieftasche",
+  "Balance": "Kontostand",
+  "Transfer": "Überweisung",
+  "Transactions": "Transaktionen",
+  "Register": "Registrieren",
+  "Home": "Startseite",
+  "coin_list": {
+    "trading_pair": "Handelspaar",
+    "latest_price": "Letzter Preis",
+    "change_percent": "Veränderung (%)"
+  },
+  "escrow": {
+    "title": "Treuhand",
+    "investment_amount": "Investitionsbetrag",
+    "profit": "Gewinn"
+  },
+  "invite": {
+    "title": "Freunde einladen",
+    "invite_link": "Einladungslink",
+    "copy_invite_link": "Einladungslink kopieren",
+    "product_description": "Quantitative Spitzenprodukte, kostenfrei für alle",
+    "referral_code": "Empfehlungscode",
+    "copy_referral_code": "Empfehlungscode kopieren",
+    "copy_success": "Erfolgreich kopiert",
+    "error": {
+      "load_failed": "Laden des Einladungscodes fehlgeschlagen",
+      "copy_failed": "Kopieren in die Zwischenablage fehlgeschlagen",
+      "fallback_copy_failed": "Kopieren mit alternativer Methode fehlgeschlagen"
+    }
+  },
+  "language": {
+    "settings": "Spracheinstellungen",
+    "not_implemented": "Diese Sprache wird momentan entwickelt."
+  },
+  "lockup": {
+    "title": "Sperrdetails",
+    "total_balance": "Gesamtsaldo",
+    "total_locked": "Gesamt gesperrt",
+    "no_active_lockups": "Keine aktiven Sperren",
+    "table": {
+      "id": "Sperr-ID",
+      "amount": "Betrag",
+      "unlock_date": "Freigabedatum"
+    }
+  },
+  "register": {
+    "title": "Registrieren",
+    "by_phone": "Per Telefon",
+    "by_email": "Per E-Mail",
+    "name": "Name",
+    "phone": "Telefon",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "confirmPassword": "Passwort bestätigen",
+    "referral": "Empfehlungscode",
+    "submit": "Registrieren",
+    "name_error": "Name muss mindestens 2 Zeichen lang sein.",
+    "email_error": "Ungültiges E-Mail-Format.",
+    "phone_error": "Ungültige Telefonnummer.",
+    "password_error": "Passwort muss mindestens 6 Zeichen lang sein.",
+    "confirm_error": "Passwörter stimmen nicht überein.",
+    "captcha_required": "Bitte vervollständigen Sie das CAPTCHA.",
+    "success": "Registrierung erfolgreich! Bitte melden Sie sich an.",
+    "fail": "Registrierung fehlgeschlagen.",
+    "no_account": "Sie haben bereits ein Konto?",
+    "login": "Anmelden",
+    "agree": "Mit der Registrierung stimmen Sie unseren <0>Nutzungsbedingungen</0> und der <1>Datenschutzerklärung</1> zu.",
+    "terms": "Nutzungsbedingungen",
+    "privacy": "Datenschutzrichtlinie"
+  },
+  "login": {
     "title": "Benutzer-Login",
     "email": "E-Mail oder Benutzername",
     "password": "Passwort",
@@ -124,19 +124,19 @@
     "forgot": "Passwort finden"
   },
   "bnbRecharge": {
-  "title": "BNB Aufladen",
-  "loading": "⏳ BNB wird geladen...",
-  "back": "Zurück",
-  "protocol": "BEP-20",
-  "scanLabel": "Scannen Sie den QR-Code, um BNB aufzuladen",
-  "noWallet": "Kein BNB-Wallet gefunden. Bitte erstellen Sie eines.",
-  "address": "BNB-Adresse",
-  "copy": "Kopieren",
-  "copySuccess": "BNB-Adresse wurde kopiert!"
-},
+    "title": "BNB Aufladen",
+    "loading": "⏳ BNB wird geladen...",
+    "back": "Zurück",
+    "protocol": "BEP-20",
+    "scanLabel": "Scannen Sie den QR-Code, um BNB aufzuladen",
+    "noWallet": "Kein BNB-Wallet gefunden. Bitte erstellen Sie eines.",
+    "address": "BNB-Adresse",
+    "copy": "Kopieren",
+    "copySuccess": "BNB-Adresse wurde kopiert!"
+  },
   "walletLogs": {
-    "in" : "Einzahlung",
-    "out" : "Auszahlung",
+    "in": "Einzahlung",
+    "out": "Auszahlung",
     "prev": "Zurück",
     "next": "Weiter",
     "back": "Zurück",
@@ -151,7 +151,7 @@
       "join": "Beitritt",
       "invite": "Einladung"
     },
-    "quantTypes" :{
+    "quantTypes": {
       "trade": "Trade",
       "referral": "Referral"
     },
@@ -162,7 +162,7 @@
     },
     "columns": {
       "description": "Beschreibung",
-      "direction" : "Richtung",
+      "direction": "Richtung",
       "type": "Typ",
       "amount": "Betrag",
       "fee": "Gebühr",
@@ -204,6 +204,7 @@
     }
   },
   "quantTrading": {
+    "dailyLimitReached": "Tägliches Handelslimit erreicht",
     "vipLevel": "VIP-Stufe",
     "leaderboardTitle": "Bestenliste",
     "processing": "Handel wird verarbeitet...",
@@ -297,7 +298,7 @@
     "noDataAlt": "Keine Daten",
     "errorLoad": "Laden des Verlaufs fehlgeschlagen."
   },
-    "tokenPurchase": {
+  "tokenPurchase": {
     "title": "USC-Token",
     "lockupDetails": "Sperrdetails",
     "purchaseSuccessTitle": "Kauf erfolgreich",
@@ -687,7 +688,7 @@
       "claim_fail": "Einlösen der Belohnung fehlgeschlagen."
     },
     "join_reward": {
-      "step" : "Registrierungsbelohnungen",
+      "step": "Registrierungsbelohnungen",
       "title": "Registrierungsbelohnungen",
       "success": "Erfolg",
       "reward_claimed": "Registrierungsbonus {{amount}} USDT wurde gutgeschrieben.",
@@ -935,11 +936,11 @@
     }
   },
   "userChat": {
-    "guestTitle" : "Gästechat",
-    "guestName" : "Name",
-    "guestEmail" : "E-Mail",
-    "startChat" : "Chat starten",
-    "guestChat" : "Gästechat",
+    "guestTitle": "Gästechat",
+    "guestName": "Name",
+    "guestEmail": "E-Mail",
+    "startChat": "Chat starten",
+    "guestChat": "Gästechat",
     "title": "Kundensupport-Chat",
     "me": "Ich",
     "admin": "Admin",
@@ -960,6 +961,4 @@
       "disconnected": "Getrennt"
     }
   }
-
 }
-  

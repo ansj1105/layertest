@@ -5,22 +5,22 @@ import FundingProjectForm from "./FundingProjectForm";
 
 export default function FundingProjectList() {
   const [projects, setProjects] = useState([]);
-  const [loading, setLoading]   = useState(true);
-  const [editing, setEditing]   = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [editing, setEditing] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
   const fetchProjects = async () => {
     const url = "/api/wallet/projects";
-    console.log("[DEBUG] 요청 URL:", url);
+    //console.log("[DEBUG] 요청 URL:", url);
     try {
       const res = await axios.get(url, { withCredentials: true });
-      console.log("[DEBUG] 응답 데이터:", res.data);
+      //console.log("[DEBUG] 응답 데이터:", res.data);
       setProjects(res.data);
     } catch (err) {
       console.error("프로젝트 목록 불러오기 실패:", err);
       if (err.response) {
-        console.log("[DEBUG] err.response.status:", err.response.status);
-        console.log("[DEBUG] err.response.data:", err.response.data);
+        //console.log("[DEBUG] err.response.status:", err.response.status);
+        //console.log("[DEBUG] err.response.data:", err.response.data);
       }
     } finally {
       setLoading(false);
@@ -34,15 +34,15 @@ export default function FundingProjectList() {
   const handleDelete = async (id) => {
     if (!window.confirm("정말 삭제하시겠습니까?")) return;
     const url = `/api/wallet/admin/projects/${id}`;
-    console.log("[DEBUG] DELETE 요청 URL:", url);
+    //console.log("[DEBUG] DELETE 요청 URL:", url);
     try {
       await axios.delete(url, { withCredentials: true });
       fetchProjects();
     } catch (err) {
       console.error("프로젝트 삭제 실패:", err);
       if (err.response) {
-        console.log("[DEBUG] err.response.status:", err.response.status);
-        console.log("[DEBUG] err.response.data:", err.response.data);
+        //console.log("[DEBUG] err.response.status:", err.response.status);
+        //console.log("[DEBUG] err.response.data:", err.response.data);
       }
     }
   };

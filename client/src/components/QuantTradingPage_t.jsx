@@ -1,7 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import { ArrowLeftIcon,HistoryIcon} from "lucide-react";
+import { ArrowLeftIcon, HistoryIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import QuantHistoryModal from './QuantHistoryModal';
 export default function QuantTradingPage() {
@@ -9,61 +9,61 @@ export default function QuantTradingPage() {
   const navigate = useNavigate();
   const [vipLevels, setVipLevels] = useState([]);
   const [user, setUser] = useState(null);
-  const [user2, setUser2] = useState(null); 
+  const [user2, setUser2] = useState(null);
   const [finance, setFinance] = useState({ quantBalance: 0, fundBalance: 0 });
   const [summary, setSummary] = useState({ todayProfit: 0, totalProfit: 0 });
   const [currentIndex, setCurrentIndex] = useState(0);
   const [loading, setLoading] = useState(true);
   const [showIntro, setShowIntro] = useState(false);
-   const [showTradeModal, setShowTradeModal] = useState(false);
-   const [tradeAmount, setTradeAmount] = useState(0);
-   const [tradesToday, setTradesToday] = useState(0);
-   // inside your component's state
-    // 즉시 거래 모달 상태
-    const [showInstantModal, setShowInstantModal] = useState(false);
-    // 쿨다운 만료 시각(timestamp in ms)
-    const [cooldownEnd, setCooldownEnd] = useState(0);
- 
-   //const COOLDOWN_MS = 5 * 60 * 1000; // 5분
-   
-const [showHistory, setShowHistory] = useState(false);
-   useEffect(() => {
+  const [showTradeModal, setShowTradeModal] = useState(false);
+  const [tradeAmount, setTradeAmount] = useState(0);
+  const [tradesToday, setTradesToday] = useState(0);
+  // inside your component's state
+  // 즉시 거래 모달 상태
+  const [showInstantModal, setShowInstantModal] = useState(false);
+  // 쿨다운 만료 시각(timestamp in ms)
+  const [cooldownEnd, setCooldownEnd] = useState(0);
+
+  //const COOLDOWN_MS = 5 * 60 * 1000; // 5분
+
+  const [showHistory, setShowHistory] = useState(false);
+  useEffect(() => {
     axios.get('/api/mydata/me')
       .then(res => setUser2(res.data.user))
       .catch(() => setUser2(null));
 
     // 수익 요약 조회
-      axios.get('/api/quant-profits/summary', { withCredentials: true })
-        .then(res => {
-          const { todayProfit, totalProfit } = res.data.data;
-          setSummary({
-            todayProfit: parseFloat(todayProfit),
-            totalProfit:  parseFloat(totalProfit)
-          });
-        })
-    .catch(() => setSummary({ todayProfit: 0, totalProfit: 0 }));
-       // fetch how many trades you've done today
-   axios
-    .get("/api/quant-trade/count-today", { withCredentials: true })
-     .then(res => setTradesToday(res.data.data.tradesToday || 0))
-     .catch(() => setTradesToday(0));
+    axios.get('/api/quant-profits/summary', { withCredentials: true })
+      .then(res => {
+        const { todayProfit, totalProfit } = res.data.data;
+        setSummary({
+          todayProfit: parseFloat(todayProfit),
+          totalProfit: parseFloat(totalProfit)
+        });
+      })
+      .catch(() => setSummary({ todayProfit: 0, totalProfit: 0 }));
+    // fetch how many trades you've done today
+    axios
+      .get("/api/quant-trade/count-today", { withCredentials: true })
+      .then(res => setTradesToday(res.data.data.tradesToday || 0))
+      .catch(() => setTradesToday(0));
   }, []);
 
   // 안전하게 찍기
-  console.log('수익합계 ',summary);
-  console.log('user2 vip_level:', user2?.vip_level);
+  //console.log('수익합계 ',summary);
+  //console.log('user2 vip_level:', user2?.vip_level);
   //
   // 1) Build & shuffle 30 fake leaderboard entries once
   //
-// find the VIP object that matches the user's real vip_level
-const myVip = vipLevels.find(v => v.level === user2?.vip_level) || {};
+  // find the VIP object that matches the user's real vip_level
+  const myVip = vipLevels.find(v => v.level === user2?.vip_level) || {};
 
-// now pull the daily limit directly from that
-const dailyLimit = myVip.daily_trade_limit || 0;
- const remaining   = Math.max(0, dailyLimit - tradesToday);
-  
- 
- const ALL_LEADERBOARD = useMemo(() => {
+  // now pull the daily limit directly from that
+  const dailyLimit = myVip.daily_trade_limit || 0;
+  const remaining = Math.max(0, dailyLimit - tradesToday);
+
+
+  const ALL_LEADERBOARD = useMemo(() => {
     const arr = [];
     for (let i = 0; i < 30; i++) {
       // random two‑letter uppercase prefix
@@ -83,8 +83,8 @@ const dailyLimit = myVip.daily_trade_limit || 0;
   // 2) Maintain a start index that jumps by 5 every 5s
   //
   const [lbStart, setLbStart] = useState(0);
-   
-  
+
+
   // 1) slide by 1, not by windowSize!
   useEffect(() => {
     const timer = setInterval(() => {
@@ -113,18 +113,18 @@ const dailyLimit = myVip.daily_trade_limit || 0;
   useEffect(() => {
     const fetchData = async () => {
       try {
-               const [vipRes, userRes, finRes] = await Promise.all([
-                   axios.get("/api/admin/vip-levels", { headers:{ 'Accept-Language': i18n.language } }),
-                   axios.get("/api/auth/me", { withCredentials:true }),
-                   axios.get("/api/wallet/finance-summary", { withCredentials:true })
-                 ]);
+        const [vipRes, userRes, finRes] = await Promise.all([
+          axios.get("/api/admin/vip-levels", { headers: { 'Accept-Language': i18n.language } }),
+          axios.get("/api/auth/me", { withCredentials: true }),
+          axios.get("/api/wallet/finance-summary", { withCredentials: true })
+        ]);
         const sortedLevels = vipRes.data.data || vipRes.data;
         sortedLevels.sort((a, b) => a.level - b.level);
         setVipLevels(sortedLevels);
-               setFinance({
-                   quantBalance: finRes.data.data.quantBalance,
-                   fundBalance: finRes.data.data.fundBalance
-                 });
+        setFinance({
+          quantBalance: finRes.data.data.quantBalance,
+          fundBalance: finRes.data.data.fundBalance
+        });
         setUser(userRes.data);
         const idx = sortedLevels.findIndex(v => v.level === userRes.data.vip_level);
         setCurrentIndex(idx < 0 ? 0 : idx);
@@ -141,140 +141,140 @@ const dailyLimit = myVip.daily_trade_limit || 0;
   if (loading) return <div className="text-center text-white">{t('quantTrading.loading')}</div>;
   const qamount = finance.quantBalance;
   const currentVIP = vipLevels.find(v => v.level === user2?.vip_level) || {};
-  console.log("test", currentVIP);
-  console.log("test2",currentVIP.min_holdings);
-   // Validate amount against VIP limits
-   const validateTrade = (amount) => {
-     if (qamount < currentVIP.min_holdings) {
-       alert(t('quantTrading.errorMinHolding', { min: currentVIP.min_holdings }));
-       return false;
-     }
-     if (amount > currentVIP.max_investment) {
-       alert(t('quantTrading.errorMaxInvestment', { max: currentVIP.max_investment }));
-       return false;
-     }
-     return true;
-   };
-  
-   const executeTrade_old = async () => {
-     if (!validateTrade(tradeAmount)) return;
-     try {
-      const res = await axios.post("/api/quant-trade", { amount: tradeAmount }, { withCredentials:true });
+  //console.log("test", currentVIP);
+  //console.log("test2",currentVIP.min_holdings);
+  // Validate amount against VIP limits
+  const validateTrade = (amount) => {
+    if (qamount < currentVIP.min_holdings) {
+      alert(t('quantTrading.errorMinHolding', { min: currentVIP.min_holdings }));
+      return false;
+    }
+    if (amount > currentVIP.max_investment) {
+      alert(t('quantTrading.errorMaxInvestment', { max: currentVIP.max_investment }));
+      return false;
+    }
+    return true;
+  };
+
+  const executeTrade_old = async () => {
+    if (!validateTrade(tradeAmount)) return;
+    try {
+      const res = await axios.post("/api/quant-trade", { amount: tradeAmount }, { withCredentials: true });
       alert(res.data.message);
       setShowTradeModal(false);
-      const finRes = await axios.get("/api/wallet/finance-summary", { withCredentials:true });
+      const finRes = await axios.get("/api/wallet/finance-summary", { withCredentials: true });
       setFinance({ quantBalance: finRes.data.data.quantBalance, fundBalance: finRes.data.data.fundBalance });
       // 수익 요약 새로고침
-      const sumRes = await axios.get('/api/quant-profits/summary', { withCredentials:true });
+      const sumRes = await axios.get('/api/quant-profits/summary', { withCredentials: true });
       setSummary(sumRes.data.data);
       window.location.reload();
-     } catch (err) {
-       alert(t('quantTrading.tradeError') + (err.response?.data?.error || ""));
-     }
-   };
+    } catch (err) {
+      alert(t('quantTrading.tradeError') + (err.response?.data?.error || ""));
+    }
+  };
 
   // 즉시 거래 모달
 
- // --- 아래 유틸: 1~5분 사이 랜덤 ms 생성
- function getRandomCooldownMs() {
-  const min = 1 * 60 * 1000;   // 1분
-  const max = 5 * 60 * 1000;   // 5분
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-// 현재 거래 가능 여부
-const now = Date.now();
-const canTrade = now >= cooldownEnd;
-const remainingMs = Math.max(0, cooldownEnd - now);
-const remainingMin = Math.floor(remainingMs / 60000);
-const remainingSec = Math.floor((remainingMs % 60000) / 1000);
-
-// 즉시 거래 버튼 클릭
-const handleStart = () => {
-  if (finance.quantBalance < currentVIP.min_holdings) {
-    return alert(
-      t("quantTrading.errorMinHolding", { min: currentVIP.min_holdings })
-    );
+  // --- 아래 유틸: 1~5분 사이 랜덤 ms 생성
+  function getRandomCooldownMs() {
+    const min = 1 * 60 * 1000;   // 1분
+    const max = 5 * 60 * 1000;   // 5분
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-  if (!canTrade) {
-    return alert(
-      t("quantTrading.cooldownAlert", { min: remainingMin, sec: remainingSec })
+
+  // 현재 거래 가능 여부
+  const now = Date.now();
+  const canTrade = now >= cooldownEnd;
+  const remainingMs = Math.max(0, cooldownEnd - now);
+  const remainingMin = Math.floor(remainingMs / 60000);
+  const remainingSec = Math.floor((remainingMs % 60000) / 1000);
+
+  // 즉시 거래 버튼 클릭
+  const handleStart = () => {
+    if (finance.quantBalance < currentVIP.min_holdings) {
+      return alert(
+        t("quantTrading.errorMinHolding", { min: currentVIP.min_holdings })
+      );
+    }
+    if (!canTrade) {
+      return alert(
+        t("quantTrading.cooldownAlert", { min: remainingMin, sec: remainingSec })
+      );
+    }
+    // 모달 띄우기 전, tradeAmount 셋팅 (잔고 vs max_investment)
+    const defaultAmount = Math.min(
+      finance.quantBalance,
+      currentVIP.max_investment
     );
-  }
-  // 모달 띄우기 전, tradeAmount 셋팅 (잔고 vs max_investment)
-  const defaultAmount = Math.min(
-    finance.quantBalance,
-    currentVIP.max_investment
-  );
-  setTradeAmount(defaultAmount);
-  setShowInstantModal(true);
-};
+    setTradeAmount(defaultAmount);
+    setShowInstantModal(true);
+  };
 
-// 거래 실행
-const executeTrade = async () => {
-  setShowInstantModal(false);
-  try {
-    const res = await axios.post(
-      "/api/quant-trade",
-      { amount: tradeAmount },
-      { withCredentials: true }
-    );
-    alert(res.data.message);
+  // 거래 실행
+  const executeTrade = async () => {
+    setShowInstantModal(false);
+    try {
+      const res = await axios.post(
+        "/api/quant-trade",
+        { amount: tradeAmount },
+        { withCredentials: true }
+      );
+      alert(res.data.message);
 
-     // 성공 시 랜덤 쿨다운 설정
-     const cooldownMs = getRandomCooldownMs();
-     setCooldownEnd(Date.now() + cooldownMs);
+      // 성공 시 랜덤 쿨다운 설정
+      const cooldownMs = getRandomCooldownMs();
+      setCooldownEnd(Date.now() + cooldownMs);
 
-    // 잔액 재조회
-    const finRes = await axios.get("/api/wallet/finance-summary", {
-      withCredentials: true,
-    });
-    setFinance({
-      quantBalance: Number(finRes.data.data.quantBalance),
-      fundBalance: Number(finRes.data.data.fundBalance),
-    });
-  } catch (err) {
-    alert(t("quantTrading.tradeError") + (err.response?.data?.error || ""));
-  }
-};
+      // 잔액 재조회
+      const finRes = await axios.get("/api/wallet/finance-summary", {
+        withCredentials: true,
+      });
+      setFinance({
+        quantBalance: Number(finRes.data.data.quantBalance),
+        fundBalance: Number(finRes.data.data.fundBalance),
+      });
+    } catch (err) {
+      alert(t("quantTrading.tradeError") + (err.response?.data?.error || ""));
+    }
+  };
   return (
     <div className="p-6 text-yellow-100 bg-[#1a1109] min-h-screen">
       {/* 뒤로가기 */}
       <div className="flex items-center justify-between mb-4">
-    {/* 뒤로가기 */}
-    <button
-      onClick={() => navigate(-1)}
-      className="flex items-center text-yellow-200 hover:text-yellow-100"
-    >
-      <ArrowLeftIcon size={20} />
-      <span className="ml-1">{t('quantTrading.back')}</span>
-    </button>
+        {/* 뒤로가기 */}
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center text-yellow-200 hover:text-yellow-100"
+        >
+          <ArrowLeftIcon size={20} />
+          <span className="ml-1">{t('quantTrading.back')}</span>
+        </button>
 
-    {/* 제목 */}
-    <h2 className="text-xl font-bold text-center flex-grow">
-      {t('quantTrading.title')}
-    </h2>
+        {/* 제목 */}
+        <h2 className="text-xl font-bold text-center flex-grow">
+          {t('quantTrading.title')}
+        </h2>
 
-    {/* 히스토리 버튼 */}
-    <button onClick={() => setShowHistory(true)}>
-      <HistoryIcon size={20} className="text-yellow-200 hover:text-yellow-100" />
-    </button>
-  </div>
+        {/* 히스토리 버튼 */}
+        <button onClick={() => setShowHistory(true)}>
+          <HistoryIcon size={20} className="text-yellow-200 hover:text-yellow-100" />
+        </button>
+      </div>
 
 
-{showHistory && <QuantHistoryModal onClose={() => setShowHistory(false)} />}
+      {showHistory && <QuantHistoryModal onClose={() => setShowHistory(false)} />}
       {/* 자산 정보 */}
       <div className="bg-[#2e1c10] rounded p-4 mb-4 text-sm">
-      <div>{t('quantTrading.available')}: <strong>{finance.quantBalance} USDT</strong></div>
-      <div>{t('quantTrading.todayEarning')}: <strong>{summary.todayProfit.toFixed(6)} USDT</strong></div>
-      <div>{t('quantTrading.totalEarning')}: <strong>{summary.totalProfit.toFixed(6)} USDT</strong></div>
+        <div>{t('quantTrading.available')}: <strong>{finance.quantBalance} USDT</strong></div>
+        <div>{t('quantTrading.todayEarning')}: <strong>{summary.todayProfit.toFixed(6)} USDT</strong></div>
+        <div>{t('quantTrading.totalEarning')}: <strong>{summary.totalProfit.toFixed(6)} USDT</strong></div>
       </div>
       <div className="bg-[#2e1c10] rounded p-4 mb-4 text-sm flex items-center">
-      <span className="font-semibold mr-2">{t('quantTrading.currentLevel')}:</span>
-      <strong>VIP {currentVIP.level}</strong>
-    </div>
-         {/* 레벨 카루셀 (VIP 관계없이 좌우 이동 가능) */}
-         <div className="bg-[#342410] p-4 rounded text-sm mb-2">
+        <span className="font-semibold mr-2">{t('quantTrading.currentLevel')}:</span>
+        <strong>VIP {currentVIP.level}</strong>
+      </div>
+      {/* 레벨 카루셀 (VIP 관계없이 좌우 이동 가능) */}
+      <div className="bg-[#342410] p-4 rounded text-sm mb-2">
         <div className="flex justify-between items-center mb-2">
           <button
             onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
@@ -319,8 +319,8 @@ const executeTrade = async () => {
         <div>{t('quantTrading.conditions')}: A-{vipLevels[currentIndex]?.min_A}, B-{vipLevels[currentIndex]?.min_B}, C-{vipLevels[currentIndex]?.min_C}</div>
       </div>
 
-          {/* ─── 1) LEADERBOARD ─────────────────────────── */}
-          {/* ─── 1) LEADERBOARD ─────────────────────────── */}
+      {/* ─── 1) LEADERBOARD ─────────────────────────── */}
+      {/* ─── 1) LEADERBOARD ─────────────────────────── */}
       <div className="bg-[#342410] rounded p-4 mb-6 text-sm">
         <h3 className="text-yellow-300 font-semibold mb-2">
           {t("quantTrading.leaderboardTitle")}
@@ -328,37 +328,37 @@ const executeTrade = async () => {
         <table className="w-full text-left">
           <thead>
             <tr className="text-gray-400">
-            <th className="pr-2 pb-2"></th>
+              <th className="pr-2 pb-2"></th>
               <th className="pb-2">{t("quantTrading.leaderboard.name")}</th>
               <th className="pb-2">{t("quantTrading.leaderboard.earnings")}</th>
               <th className="pb-2">{t("quantTrading.leaderboard.status")}</th>
             </tr>
           </thead>
           <tbody>
-                     {visibleLeaderboard.map((row, i) => {
-             // (lbStart + i) % ALL_LEADERBOARD.length + 1
-             // 또는 단순히 1~6 사이의 인덱스로 i+1
-             const displayIndex = i + 1;
-             return (
-               <tr key={i} className="border-t border-gray-700">
-                <td className="px-2 py-1 font-semibold">{displayIndex}</td>
-                 <td className="py-1">{row.name}</td>
-                 <td className="py-1">{row.earnings}</td>
-                 <td className="py-1">{row.status}</td>
-               </tr>
-             );
-           })}
+            {visibleLeaderboard.map((row, i) => {
+              // (lbStart + i) % ALL_LEADERBOARD.length + 1
+              // 또는 단순히 1~6 사이의 인덱스로 i+1
+              const displayIndex = i + 1;
+              return (
+                <tr key={i} className="border-t border-gray-700">
+                  <td className="px-2 py-1 font-semibold">{displayIndex}</td>
+                  <td className="py-1">{row.name}</td>
+                  <td className="py-1">{row.earnings}</td>
+                  <td className="py-1">{row.status}</td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
-      
+
       {/* ─── 2) PARTNERS ICON BAR ─────────────────────────── */}
       <div className="mt-8 text-center">
         <h3 className="text-gray-400 mb-2">{t('quantTrading.partnersTitle')}</h3>
         <div className="flex flex-wrap justify-center gap-4">
           {[
             '/icons/binance.png',
-           // '/icons/okx.png',
+            // '/icons/okx.png',
             '/icons/coinbase.png',
             '/icons/kraken.png',
             '/icons/kucoin.png',
@@ -378,7 +378,7 @@ const executeTrade = async () => {
         </div>
       </div>
       {/* 거래 버튼 및 모달 트리거() => setShowTradeModal(true) */}
-            <button
+      <button
         onClick={handleStart}
         disabled={!canTrade}
         className={`
@@ -388,20 +388,20 @@ const executeTrade = async () => {
             : 'bg-yellow-500 hover:bg-yellow-600 text-black'}
         `}
       >
-   { !canTrade
-     // 쿨다운 메시지도 i18n key로
-    ? t('quantTrading.cooldownMessage', {
-         min: remainingMin,
-         sec: remainingSec
-      })
-    : t('quantTrading.tradeButton', {
-         remaining,
-         dailyLimit,
-         times: t('quantTrading.times'),
-         start: t('quantTrading.start')
-       })
-   }
- </button>
+        {!canTrade
+          // 쿨다운 메시지도 i18n key로
+          ? t('quantTrading.cooldownMessage', {
+            min: remainingMin,
+            sec: remainingSec
+          })
+          : t('quantTrading.tradeButton', {
+            remaining,
+            dailyLimit,
+            times: t('quantTrading.times'),
+            start: t('quantTrading.start')
+          })
+        }
+      </button>
 
 
       {/* 즉시 거래 확인 모달 */}
@@ -425,30 +425,30 @@ const executeTrade = async () => {
       )}
 
 
-     {/* 거래 금액 입력 모달 */}
-     {showTradeModal && (
-       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-         <div className="bg-white text-black p-6 rounded w-3/4 max-w-sm">
-           <h3 className="text-lg font-bold mb-4">{t('quantTrading.enterAmount')}</h3>
-           <input
-             type="number"
-             value={tradeAmount}
-             onChange={e => setTradeAmount(parseFloat(e.target.value))}
-             className="w-full mb-4 p-2 border rounded"
-             min={0}
-             step="0.000001"
-           />
-          <div className="flex justify-between">
-             <button onClick={() => setShowTradeModal(false)} className="px-4 py-2 bg-gray-300 rounded">
-               {t('quantTrading.cancel')}
-             </button>
-             <button onClick={executeTrade} className="px-4 py-2 bg-yellow-500 text-black rounded">
-               {t('quantTrading.confirm')}
-             </button>
-           </div>
-         </div>
-       </div>
-  )}
+      {/* 거래 금액 입력 모달 */}
+      {showTradeModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white text-black p-6 rounded w-3/4 max-w-sm">
+            <h3 className="text-lg font-bold mb-4">{t('quantTrading.enterAmount')}</h3>
+            <input
+              type="number"
+              value={tradeAmount}
+              onChange={e => setTradeAmount(parseFloat(e.target.value))}
+              className="w-full mb-4 p-2 border rounded"
+              min={0}
+              step="0.000001"
+            />
+            <div className="flex justify-between">
+              <button onClick={() => setShowTradeModal(false)} className="px-4 py-2 bg-gray-300 rounded">
+                {t('quantTrading.cancel')}
+              </button>
+              <button onClick={executeTrade} className="px-4 py-2 bg-yellow-500 text-black rounded">
+                {t('quantTrading.confirm')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 소개 모달 */}
       {showIntro && (

@@ -230,6 +230,7 @@
     }
   },
   "quantTrading": {
+    "dailyLimitReached": "Достигнут дневной лимит торговли",
     "vipLevel": "Уровень VIP",
     "leaderboardTitle": "Таблица Лидеров",
     "processing": "Обработка торговли...",

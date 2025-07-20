@@ -13,7 +13,7 @@ const LEVELS = [
 
 const PERIODS = [
   { value: 'today', labelKey: 'team.period.today' },
-  { value: 'week',  labelKey: 'team.period.week' },
+  { value: 'week', labelKey: 'team.period.week' },
   { value: 'month', labelKey: 'team.period.month' },
 ];
 
@@ -23,22 +23,22 @@ export default function MyTeamPage() {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const [activeTab, setActiveTab]           = useState('members');
-  const [filterLevel, setFilterLevel]       = useState('A');
+  const [activeTab, setActiveTab] = useState('members');
+  const [filterLevel, setFilterLevel] = useState('A');
 
   // === 기여 탭용 state
-  const [period, setPeriod]                 = useState('today');
+  const [period, setPeriod] = useState('today');
   const [contribLoading, setContribLoading] = useState(false);
-  const [contribStats, setContribStats]     = useState(null);
-  const [contribList, setContribList]       = useState([]);
+  const [contribStats, setContribStats] = useState(null);
+  const [contribList, setContribList] = useState([]);
 
   // ▶ 멤버 목록 & 전체 통계 불러오기
   useEffect(() => {
     (async () => {
       try {
         const [teamRes, statsRes] = await Promise.all([
-          axios.get('/api/referral/my-team',    { withCredentials: true }),
-          axios.get('/api/referral/stats',      { withCredentials: true }),
+          axios.get('/api/referral/my-team', { withCredentials: true }),
+          axios.get('/api/referral/stats', { withCredentials: true }),
         ]);
         setTeam(teamRes.data.data);
         const { totalMembers, todayJoined, totalProfit, todayProfit } = statsRes.data.data;
@@ -59,24 +59,24 @@ export default function MyTeamPage() {
   // ▶ “기여” 탭을 켰을 때, period 변화나 처음 진입 시 불러오기
   useEffect(() => {
     if (activeTab !== 'contrib') return;
-        console.log('⏳ [contrib] fetching, period =', period);
-        setContribLoading(true);
-    
-        axios.get('/api/referral/contributions', {
-          params: { period },
-          withCredentials: true
-        })
-        .then(res => {
-          console.log('✅ [contrib] response.data:', res.data);
-          setContribStats(res.data.stats);
-          setContribList(res.data.list);
-        })
-        .catch(err => {
-          console.error('❌ [contrib] error:', err.response?.data || err.message);
-        })
-        .finally(() => {
-          setContribLoading(false);
-        });
+    //console.log('⏳ [contrib] fetching, period =', period);
+    setContribLoading(true);
+
+    axios.get('/api/referral/contributions', {
+      params: { period },
+      withCredentials: true
+    })
+      .then(res => {
+        //console.log('✅ [contrib] response.data:', res.data);
+        setContribStats(res.data.stats);
+        setContribList(res.data.list);
+      })
+      .catch(err => {
+        console.error('❌ [contrib] error:', err.response?.data || err.message);
+      })
+      .finally(() => {
+        setContribLoading(false);
+      });
   }, [activeTab, period, t]);
 
   const renderMemberCard = u => (
@@ -125,8 +125,8 @@ export default function MyTeamPage() {
         {/* 전체 통계 */}
         {stats && (
           <ReferralStatsBox stats={{
-            totalMembers:  stats.totalMembers,
-            todayJoined:   stats.todayJoined,
+            totalMembers: stats.totalMembers,
+            todayJoined: stats.todayJoined,
             totalEarnings: stats.totalEarnings,
             todayEarnings: stats.todayEarnings,
           }} />
@@ -136,25 +136,25 @@ export default function MyTeamPage() {
         <div className="flex bg-[#2c1f0f] rounded mb-4 overflow-hidden">
           <button
             onClick={() => setActiveTab('members')}
-            className={`flex-1 py-2 font-medium ${activeTab==='members'? 'bg-yellow-700 text-black':'text-yellow-300'}`}
+            className={`flex-1 py-2 font-medium ${activeTab === 'members' ? 'bg-yellow-700 text-black' : 'text-yellow-300'}`}
           >
             {t('team.tabs.members')}
           </button>
           <button
             onClick={() => setActiveTab('contrib')}
-            className={`flex-1 py-2 font-medium ${activeTab==='contrib'? 'bg-yellow-700 text-black':'text-yellow-300'}`}
+            className={`flex-1 py-2 font-medium ${activeTab === 'contrib' ? 'bg-yellow-700 text-black' : 'text-yellow-300'}`}
           >
             {t('team.tabs.contrib')}
           </button>
         </div>
-        
+
         {/* ── 팀 멤버 리스트 ── */}
         {activeTab === 'members' && (
           <>
             <div className="mb-4 flex justify-between items-center">
               {/* 왼쪽: 오늘 등록한 사람 수 */}
               <div className="text-yellow-100">
-                {t('team.todayJoinedCount', { count: stats?.todayJoined ?? 0  })}
+                {t('team.todayJoinedCount', { count: stats?.todayJoined ?? 0 })}
               </div>
               {stats?.todayJoined ?? 0}
               {/* 오른쪽: 레벨 필터 드롭다운 */}
@@ -188,42 +188,42 @@ export default function MyTeamPage() {
         {/* ── 팀 기여 리스트 ── */}
         {activeTab === 'contrib' && (
           <>
-            
+
             <div className="mb-4 flex justify-between items-center">
               {/* 왼쪽: 오늘 등록한 사람 수 */}
-    
-    {/* 1. 오늘/누적 수익 박스 */}
-    {contribStats && (
-      <div className="mb-4 bg-[#2c1f0f] p-2 rounded flex justify-between text-sm">
-        <div>
-          {t('team.contrib.todayEarnings')}:
-          <span className="text-red-500"> {contribStats.todayEarnings.toFixed(6)} USDT</span>
-        </div>
-        <div>
-          {t('team.contrib.totalEarnings')}:
-          <span> {contribStats.totalEarnings.toFixed(6)} USDT</span>
-        </div>
-      </div>
-    )}
 
-    {/* 2. Period 필터 (새 줄) */}
-    <div className="mb-4 flex items-center">
-      <label className="mr-2 text-yellow-200">{t('team.filter.period')}</label>
-      <select
-        className="bg-[#2c1f0f] text-yellow-100 p-2 rounded"
-        value={period}
-        onChange={e => setPeriod(e.target.value)}
-      >
-        {PERIODS.map(p => (
-          <option key={p.value} value={p.value}>
-            {t(p.labelKey)}
-          </option>
-        ))}
-      </select>
+              {/* 1. 오늘/누적 수익 박스 */}
+              {contribStats && (
+                <div className="mb-4 bg-[#2c1f0f] p-2 rounded flex justify-between text-sm">
+                  <div>
+                    {t('team.contrib.todayEarnings')}:
+                    <span className="text-red-500"> {contribStats.todayEarnings.toFixed(6)} USDT</span>
+                  </div>
+                  <div>
+                    {t('team.contrib.totalEarnings')}:
+                    <span> {contribStats.totalEarnings.toFixed(6)} USDT</span>
+                  </div>
+                </div>
+              )}
+
+              {/* 2. Period 필터 (새 줄) */}
+              <div className="mb-4 flex items-center">
+                <label className="mr-2 text-yellow-200">{t('team.filter.period')}</label>
+                <select
+                  className="bg-[#2c1f0f] text-yellow-100 p-2 rounded"
+                  value={period}
+                  onChange={e => setPeriod(e.target.value)}
+                >
+                  {PERIODS.map(p => (
+                    <option key={p.value} value={p.value}>
+                      {t(p.labelKey)}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
 
-           
+
 
 
             {contribLoading

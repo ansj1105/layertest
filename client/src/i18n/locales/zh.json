@@ -200,6 +200,7 @@
       }
     },
     "quantTrading": {
+      "dailyLimitReached" : "今日交易次数已超限",
       "vipLevel": "VIP等级",
       "leaderboardTitle": "排行榜",
       "processing": "交易处理中...",

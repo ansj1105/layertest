@@ -26,9 +26,9 @@ export default function UserReferralPage({ onLogout, userId }) {
     try {
       const { data } = await axios.get('/api/referral/users/all/my-teams', { withCredentials: true });
       setTeams(data.data);
-      console.log(data);
+      //console.log(data);
     } catch (err) {
-     
+
       console.error('전체 팀 조회 실패:', err);
       setTeams([]);
     }
@@ -149,7 +149,7 @@ export default function UserReferralPage({ onLogout, userId }) {
           <div className="space-y-4">
             {['levelA', 'levelB', 'levelC'].map((key, idx) => (
               <div key={key} className="flex items-center">
-                <label className="w-40">{`${idx+1}단계 보상 (%)`}</label>
+                <label className="w-40">{`${idx + 1}단계 보상 (%)`}</label>
                 <input
                   type="number"
                   className="border px-2 py-1 flex-1 rounded"

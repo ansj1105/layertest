@@ -8,11 +8,11 @@ import '../styles/SystemNotices.css';
 
 export default function SystemNotices() {
   const { t } = useTranslation();
-  const [tab, setTab]         = useState('notices'); // 'notices' | 'inbox'
+  const [tab, setTab] = useState('notices'); // 'notices' | 'inbox'
   const [notices, setNotices] = useState([]);
-  const [inbox, setInbox]     = useState([]);
+  const [inbox, setInbox] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [detail, setDetail]   = useState(null);
+  const [detail, setDetail] = useState(null);
 
   useEffect(() => {
     Promise.all([fetchNotices(), fetchInbox()])
@@ -22,7 +22,7 @@ export default function SystemNotices() {
   const fetchNotices = async () => {
     try {
       const { data } = await axios.get('/api/messages/notices', { withCredentials: true });
-      console.log('👀 fetchNotices →', data);
+      //console.log('👀 fetchNotices →', data);
       setNotices(data);
     } catch (err) {
       console.error('❌ fetchNotices error', err);
@@ -32,7 +32,7 @@ export default function SystemNotices() {
   const fetchInbox = async () => {
     try {
       const { data } = await axios.get('/api/messages/inbox', { withCredentials: true });
-      console.log('👀 fetchInbox →', data);
+      //console.log('👀 fetchInbox →', data);
       setInbox(data);
     } catch (err) {
       console.error('❌ fetchInbox error', err);
@@ -98,7 +98,7 @@ export default function SystemNotices() {
           <ArrowLeftIcon size={24} />
         </button>
         <h2 className="top-h-text-sys">{t('systemNotices.title')}</h2>
-      </div>  
+      </div>
 
       <div className="tab-bar">
         <button

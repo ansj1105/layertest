@@ -193,6 +193,7 @@
       }
     },
     "quantTrading": {
+      "dailyLimitReached" : "本日の取引制限に達しました",
       "vipLevel": "VIPレベル",
       "processing": "取引中...",
       "tradingCountdown": "取引中... {{seconds}}秒",

@@ -204,6 +204,7 @@
       }
     },
     "quantTrading": {
+      "dailyLimitReached" : "Số lần giao dịch hôm nay đã vượt quá giới hạn",
       "vipLevel": "Cấp VIP",
       "leaderboardTitle": "Bảng xếp hạng",
       "processing": "Đang xử lý giao dịch...",
