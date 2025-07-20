@@ -1,0 +1,56 @@
+-- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+--
+-- Host: 127.0.0.1    Database: vietcoin
+-- ------------------------------------------------------
+-- Server version	8.0.21
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `token_lockups`
+--
+
+DROP TABLE IF EXISTS `token_lockups`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `token_lockups` (
+  `id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `wallet_id` varchar(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` double NOT NULL,
+  `unlock_at` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `fk_lockup_wallet` (`wallet_id`),
+  CONSTRAINT `fk_lockup_wallet` FOREIGN KEY (`wallet_id`) REFERENCES `token_wallets` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `token_lockups`
+--
+
+LOCK TABLES `token_lockups` WRITE;
+/*!40000 ALTER TABLE `token_lockups` DISABLE KEYS */;
+INSERT INTO `token_lockups` VALUES ('3cee1e90-2ecb-11f0-a0c9-00d861e5dfb2','24b566ca-2ec7-11f0-a0c9-00d861e5dfb2',1223,'2025-09-14 09:51:28','2025-05-12 09:51:28'),('5c25bf95-3140-11f0-b211-0affc8a0b32f','24b59e88-2ec7-11f0-a0c9-00d861e5dfb2',2949,'2025-08-13 03:54:54','2025-05-15 03:54:54'),('645af66c-35e8-11f0-a9b7-38d275d3c45c','24b566ca-2ec7-11f0-a0c9-00d861e5dfb2',200,'2025-05-31 11:07:48','2025-05-21 11:07:48'),('74059193-2fc4-11f0-a0c9-00d861e5dfb2','24b566ca-2ec7-11f0-a0c9-00d861e5dfb2',25508,'2025-08-11 15:35:25','2025-05-13 15:35:25'),('848eb04e-322f-11f0-b211-0affc8a0b32f','24b566ca-2ec7-11f0-a0c9-00d861e5dfb2',2400,'2025-08-14 08:26:52','2025-05-16 08:26:51'),('967c11fe-35e7-11f0-a9b7-38d275d3c45c','24b566ca-2ec7-11f0-a0c9-00d861e5dfb2',200,'2025-05-31 11:02:03','2025-05-21 11:02:02'),('9b1907c6-35e7-11f0-a9b7-38d275d3c45c','24b566ca-2ec7-11f0-a0c9-00d861e5dfb2',249,'2025-05-31 11:02:10','2025-05-21 11:02:10'),('9c454832-2ec9-11f0-a0c9-00d861e5dfb2','24b566ca-2ec7-11f0-a0c9-00d861e5dfb2',100000,'2025-09-14 09:39:49','2025-05-12 09:39:49'),('bd24e8c5-30e1-11f0-b211-0affc8a0b32f','24b566ca-2ec7-11f0-a0c9-00d861e5dfb2',500,'2025-08-12 16:37:35','2025-05-14 16:37:34'),('cd269c10-35e7-11f0-a9b7-38d275d3c45c','24b566ca-2ec7-11f0-a0c9-00d861e5dfb2',200,'2025-05-31 11:03:34','2025-05-21 11:03:34'),('d7a1f23e-319f-11f0-b211-0affc8a0b32f','24b566ca-2ec7-11f0-a0c9-00d861e5dfb2',500,'2025-08-13 15:18:24','2025-05-15 15:18:23'),('deff95dc-35e6-11f0-a9b7-38d275d3c45c','24b566ca-2ec7-11f0-a0c9-00d861e5dfb2',281,'2025-05-31 10:56:55','2025-05-21 10:56:54'),('e7d4db6e-2ecb-11f0-a0c9-00d861e5dfb2','24b566ca-2ec7-11f0-a0c9-00d861e5dfb2',1000,'2025-09-14 09:56:15','2025-05-12 09:56:15'),('fc8aef1b-2ec7-11f0-a0c9-00d861e5dfb2','24b566ca-2ec7-11f0-a0c9-00d861e5dfb2',1234,'2025-09-14 09:28:12','2025-05-12 09:28:11');
+/*!40000 ALTER TABLE `token_lockups` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2025-07-20 23:43:03
