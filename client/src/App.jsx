@@ -94,6 +94,8 @@ import LoginPage from './pages/auth/LoginPage';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import LanguageSettingsPage from './components/LanguageSettingsPage';
 import RegisterPage from './pages/auth/RegisterPage';
+import PWAInstallPrompt from './components/PWAInstallPrompt';
+import PWAStatus from './components/PWAStatus';
 axios.defaults.withCredentials = true;
 /** 간단한 가역 인코딩 (XOR → 16진수, 8자리) */
 function encodeId(id) {
@@ -308,6 +310,12 @@ export default function App() {
       <MainLanding user={user} />
       <BottomNav />
       </div>
+      
+      {/* PWA 설치 프롬프트 */}
+      <PWAInstallPrompt />
+      
+      {/* PWA 상태 표시 */}
+      <PWAStatus />
     </div>
 
 );
