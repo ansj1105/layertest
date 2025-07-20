@@ -1,5 +1,3 @@
-
-
 /* 로그인 */
 /* 전체 래퍼: 사이드바가 절대위치로 들어가도 475px 범위내 */
 .page-wrapper-r {
@@ -10,21 +8,26 @@
   display: flex;
   flex-direction: column;
   background-color: #0e0e11;
-  overflow: auto; /* 스크롤 활성화 */
+  overflow: auto;
+  /* 스크롤 활성화 */
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
   margin-bottom: 200px;
   z-index: 100;
 }
- 
+
 /* 내부 스크롤 가능 영역 */
 .r-box-scrollable {
-  flex: 1;                       /* 상단/하단 외 남은 영역 */
-  overflow-y: auto;              /* 스크롤 가능 */
+  flex: 1;
+  /* 상단/하단 외 남은 영역 */
+  overflow-y: auto;
+  /* 스크롤 가능 */
   padding: 16px;
-  padding-top: 80px;             /* 상단바 공간 확보 */
-  padding-bottom: 100px;         /* 하단 버튼이 가리지 않도록 */
+  padding-top: 80px;
+  /* 상단바 공간 확보 */
+  padding-bottom: 100px;
+  /* 하단 버튼이 가리지 않도록 */
 }
 
 
@@ -33,9 +36,11 @@
   position: fixed;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  transform: translateX(-50%);
+  /* ✅ 가운데 정렬 */
   width: 100%;
-  max-width: 500px;              /* ✅ container와 맞춤 */
+  max-width: 500px;
+  /* ✅ container와 맞춤 */
   height: 58.27px;
   background: #1d1d27;
   display: flex;
@@ -52,11 +57,13 @@
   color: #ffffff;
   text-align: left;
   font-size: 20px;
-  font-weight: bold; /* 굵은 글씨 */
+  font-weight: bold;
+  /* 굵은 글씨 */
   margin-left: 10px;
-  }
+}
+
 /* 탑바 번역역 */
-.top-tran{
+.top-tran {
   color: #ffffff;
   width: 30px;
   height: 30px;
@@ -71,13 +78,18 @@
   max-width: 500px;
   height: 100%;
   background: #1d1d27;
-  display: flex;                /* ✅ Flexbox 적용 */
-  flex-direction: column;       /* ✅ 세로 방향 정렬 */
-  align-items: center;          /* ✅ 가로 가운데 정렬 */
+  display: flex;
+  /* ✅ Flexbox 적용 */
+  flex-direction: column;
+  /* ✅ 세로 방향 정렬 */
+  align-items: center;
+  /* ✅ 가로 가운데 정렬 */
   padding: 0 16px;
-  justify-content: flex-start;  /* ✅ 위쪽 정렬 */
+  justify-content: flex-start;
+  /* ✅ 위쪽 정렬 */
   z-index: 100;
 }
+
 .r-box1 {
 
   top: 0;
@@ -86,11 +98,15 @@
   max-width: 500px;
   height: 100%;
   background: #1d1d27;
-  display: flex;                /* ✅ Flexbox 적용 */
-  flex-direction: column;       /* ✅ 세로 방향 정렬 */
-  align-items: center;          /* ✅ 가로 가운데 정렬 */
+  display: flex;
+  /* ✅ Flexbox 적용 */
+  flex-direction: column;
+  /* ✅ 세로 방향 정렬 */
+  align-items: center;
+  /* ✅ 가로 가운데 정렬 */
   padding: 0 16px;
-  justify-content: flex-start;  /* ✅ 위쪽 정렬 */
+  justify-content: flex-start;
+  /* ✅ 위쪽 정렬 */
   z-index: 100;
 }
 
@@ -106,7 +122,8 @@
 
 /* 하단 섹션 */
 .v-token-r {
-  min-height: 55px;            /* ✅ 최소 높이 고정 */
+  min-height: 55px;
+  /* ✅ 최소 높이 고정 */
   width: 90%;
   height: 55px;
   margin-top: 6px;
@@ -121,18 +138,23 @@
   cursor: pointer;
   gap: 12px;
   color: #26ffe6;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   border: 1.1px solid #1ad3b7 !important;
   box-shadow: 0 0 12px 2px #b8dfd9 !important;
-  padding-left: 16px; /* 왼쪽에서 16px 만큼 떨어지게 */
-  flex-shrink: 0;              /* ✅ 크기 줄어드는 것 방지 */
-  
+  padding-left: 16px;
+  /* 왼쪽에서 16px 만큼 떨어지게 */
+  flex-shrink: 0;
+  /* ✅ 크기 줄어드는 것 방지 */
+
 
 }
 
 .v-token-r::placeholder {
-  color: #ccc;               /* 글자 색상 */
-  font-size: 14px;           /* 글자 크기 */
+  color: #ccc;
+  /* 글자 색상 */
+  font-size: 14px;
+  /* 글자 크기 */
 
 
 }
@@ -142,7 +164,8 @@
 
 /* 하단 섹션 */
 .v-token-r-ex {
-  min-height: 55px;            /* ✅ 최소 높이 고정 */
+  min-height: 55px;
+  /* ✅ 최소 높이 고정 */
   width: 90%;
   height: 55px;
   margin-top: 10px;
@@ -157,18 +180,23 @@
   cursor: pointer;
   gap: 12px;
   color: #26ffe6;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   border: 1.1px solid #1ad3b7 !important;
   box-shadow: 0 0 12px 2px #b8dfd9 !important;
-  padding-left: 16px; /* 왼쪽에서 16px 만큼 떨어지게 */
-  flex-shrink: 0;              /* ✅ 크기 줄어드는 것 방지 */
-  
+  padding-left: 16px;
+  /* 왼쪽에서 16px 만큼 떨어지게 */
+  flex-shrink: 0;
+  /* ✅ 크기 줄어드는 것 방지 */
+
 
 }
 
 .v-token-r-ex::placeholder {
-  color: #ccc;               /* 글자 색상 */
-  font-size: 14px;           /* 글자 크기 */
+  color: #ccc;
+  /* 글자 색상 */
+  font-size: 14px;
+  /* 글자 크기 */
 
 
 }
@@ -179,7 +207,7 @@
 
 
 .v-token-r-m {
-  
+
   width: 90%;
   height: 35px;
   margin-top: 5px;
@@ -191,14 +219,17 @@
   background: rgb(55, 119, 115);
   border-radius: 3px;
   color: #ffffff;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   box-shadow: 0 0 2px 2px #b8dfd9 !important;
 
-  
+
 
 }
+
 .v-token-r-m:hover {
-  color: #ffd54f; /* 조금 더 밝은 노란색으로 hover 효과 */
+  color: #ffd54f;
+  /* 조금 더 밝은 노란색으로 hover 효과 */
 }
 
 
@@ -211,7 +242,7 @@
 
 
 .v-token-r0 {
-  
+
   width: 45%;
   height: 55px;
   margin-top: 10px;
@@ -226,17 +257,21 @@
   cursor: pointer;
   gap: 12px;
   color: #ccc;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   border: 1.1px solid #1ad3b7 !important;
   box-shadow: 0 0 12px 2px #b8dfd9 !important;
-  padding-left: 16px; /* 왼쪽에서 16px 만큼 떨어지게 */
-  
+  padding-left: 16px;
+  /* 왼쪽에서 16px 만큼 떨어지게 */
+
 
 }
 
 .v-token-r0::placeholder {
-  color: #ccc;               /* 글자 색상 */
-  font-size: 14px;           /* 글자 크기 */
+  color: #ccc;
+  /* 글자 색상 */
+  font-size: 14px;
+  /* 글자 크기 */
 
 
 }
@@ -244,7 +279,7 @@
 
 
 .v-token-r00 {
-  
+
   width: 90%;
   height: 55px;
   margin-top: 10px;
@@ -259,49 +294,56 @@
   cursor: pointer;
   gap: 12px;
   color: #26ffe6;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   border: 1.1px solid #1ad3b7 !important;
   box-shadow: 0 0 12px 2px #b8dfd9 !important;
-  padding-left: 16px; /* 왼쪽에서 16px 만큼 떨어지게 */
-  
+  padding-left: 16px;
+  /* 왼쪽에서 16px 만큼 떨어지게 */
+
 
 }
 
 .v-token-r00::placeholder {
-  color: #ccc;               /* 글자 색상 */
-  font-size: 14px;           /* 글자 크기 */
+  color: #ccc;
+  /* 글자 색상 */
+  font-size: 14px;
+  /* 글자 크기 */
 
 
 }
 
 
-.flex01{
+.flex01 {
   width: 84%;
-  display: flex;                /* ✅ Flexbox 적용 */
+  display: flex;
+  /* ✅ Flexbox 적용 */
   z-index: 100;
   margin-bottom: 8px;
 
 }
 
 
-.flex0{
+.flex0 {
   width: 84%;
-  display: flex;                /* ✅ Flexbox 적용 */
+  display: flex;
+  /* ✅ Flexbox 적용 */
   z-index: 100;
 
 }
 
-.flex1{
+.flex1 {
   width: 90%;
-  display: flex;                /* ✅ Flexbox 적용 */
+  display: flex;
+  /* ✅ Flexbox 적용 */
   z-index: 100;
-  
+
 }
 
 
 
 .v-token-r1 {
-  
+
   width: 100%;
   height: 55px;
   margin-top: 10px;
@@ -316,24 +358,28 @@
   cursor: pointer;
   gap: 12px;
   color: #26ffe6;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   border: 1.1px solid #1ad3b7 !important;
   box-shadow: 0 0 12px 2px #b8dfd9 !important;
-  padding-left: 16px; /* 왼쪽에서 16px 만큼 떨어지게 */
-  
+  padding-left: 16px;
+  /* 왼쪽에서 16px 만큼 떨어지게 */
+
 
 }
 
 .v-token-r1::placeholder {
-  color: #ccc;               /* 글자 색상 */
-  font-size: 14px;           /* 글자 크기 */
-  
+  color: #ccc;
+  /* 글자 색상 */
+  font-size: 14px;
+  /* 글자 크기 */
+
 
 
 }
 
 .v-token-r11 {
-  
+
   width: 100%;
   height: 55px;
   margin-top: 10px;
@@ -346,26 +392,30 @@
   background: #191c29;
   border-radius: 13px;
   cursor: pointer;
-  
+
   gap: 12px;
   color: #26ffe6;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   border: 1.1px solid #1ad3b7 !important;
   box-shadow: 0 0 12px 2px #b8dfd9 !important;
-  padding-left: 16px; /* 왼쪽에서 16px 만큼 떨어지게 */
+  padding-left: 16px;
+  /* 왼쪽에서 16px 만큼 떨어지게 */
 
 }
 
 .v-token-r11::placeholder {
-  color: #ccc;               /* 글자 색상 */
-  font-size: 14px;           /* 글자 크기 */
+  color: #ccc;
+  /* 글자 색상 */
+  font-size: 14px;
+  /* 글자 크기 */
 
 
 }
 
 
 .v-token-r2 {
-  
+
   width: 200%;
   height: 55px;
   margin-top: 10px;
@@ -380,23 +430,28 @@
   cursor: pointer;
   gap: 12px;
   color: #26ffe6;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   border: 1.1px solid #1ad3b7 !important;
   box-shadow: 0 0 12px 2px #b8dfd9 !important;
-  padding-left: 16px; /* 왼쪽에서 16px 만큼 떨어지게 */
+  padding-left: 16px;
+  /* 왼쪽에서 16px 만큼 떨어지게 */
 
 }
 
 .v-token-r2::placeholder {
-  color: #ccc;               /* 글자 색상 */
-  font-size: 14px;           /* 글자 크기 */
+  color: #ccc;
+  /* 글자 색상 */
+  font-size: 14px;
+  /* 글자 크기 */
 
 
 }
 
 /* 하단 섹션 */
 .v-token-r-rr {
-  min-height: 55px;            /* ✅ 최소 높이 고정 */
+  min-height: 55px;
+  /* ✅ 최소 높이 고정 */
   width: 90%;
   height: 55px;
   margin-top: 10px;
@@ -411,17 +466,21 @@
   cursor: pointer;
   gap: 12px;
   color: #26ffe6;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   border: 1.1px solid #1ad3b7 !important;
   box-shadow: 0 0 12px 2px #b8dfd9 !important;
-  padding-left: 16px; /* 왼쪽에서 16px 만큼 떨어지게 */
-  flex-shrink: 0;              /* ✅ 크기 줄어드는 것 방지 */
-  
+  padding-left: 16px;
+  /* 왼쪽에서 16px 만큼 떨어지게 */
+  flex-shrink: 0;
+  /* ✅ 크기 줄어드는 것 방지 */
+
 
 }
 
-.v-token-r-p{
-  min-height: 55px;            /* ✅ 최소 높이 고정 */
+.v-token-r-p {
+  min-height: 55px;
+  /* ✅ 최소 높이 고정 */
   width: 90%;
   height: 55px;
   margin-top: 5px;
@@ -436,28 +495,33 @@
   cursor: pointer;
   gap: 12px;
   color: #26ffe6;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   border: 1.1px solid #1ad3b7 !important;
   box-shadow: 0 0 12px 2px #b8dfd9 !important;
-  padding-left: 16px; /* 왼쪽에서 16px 만큼 떨어지게 */
-  flex-shrink: 0;              /* ✅ 크기 줄어드는 것 방지 */
-  
+  padding-left: 16px;
+  /* 왼쪽에서 16px 만큼 떨어지게 */
+  flex-shrink: 0;
+  /* ✅ 크기 줄어드는 것 방지 */
+
 }
 
 
-.chptcha{
+.chptcha {
   margin-top: 30px;
   margin-bottom: 18px;
 }
 
 .custom-recaptcha iframe {
-  transform: scale(1.0); /* 크기 비율 조정 (0.5 ~ 1.0 추천) */
-  transform-origin: 0 0; /* 좌상단 기준으로 축소 */
-  
+  transform: scale(1.0);
+  /* 크기 비율 조정 (0.5 ~ 1.0 추천) */
+  transform-origin: 0 0;
+  /* 좌상단 기준으로 축소 */
+
 }
 
 
-.r-button{
+.r-button {
   width: 90%;
   height: 55px;
   margin-top: 10px;
@@ -472,18 +536,24 @@
   border-radius: 13px;
   cursor: pointer;
   gap: 12px;
-  font-size: 18px;       /* ✅ 글자 크기 */
-  font-weight: bold;     /* ✅ 글자 굵기 */
-  letter-spacing: 1px;   /* ✅ 글자 간격 */
-  text-transform: uppercase; /* ✅ 모두 대문자로 (옵션) */
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  font-size: 18px;
+  /* ✅ 글자 크기 */
+  font-weight: bold;
+  /* ✅ 글자 굵기 */
+  letter-spacing: 1px;
+  /* ✅ 글자 간격 */
+  text-transform: uppercase;
+  /* ✅ 모두 대문자로 (옵션) */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   border: 0.1px solid #1ad3b7 !important;
   box-shadow: 0 0 1px 1px #b8dfd9 !important;
   transition: background-color 0.3s ease;
 }
 
 .r-button:hover {
-  background: #26ffe61f; /* 어두운 청색 톤 */
+  background: #26ffe61f;
+  /* 어두운 청색 톤 */
   border-color: #26ffe6;
   box-shadow: 0 0 16px 6px #81f5e9;
 }
@@ -502,33 +572,35 @@
   font-weight: 400;
   font-size: 30px;
   color: #ffffff;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-  }
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
 
 
-.auth-links-r-t{
+.auth-links-r-t {
   color: #ffd54f;
 }
 
 .auth-links-r-t:hover {
   text-decoration: underline;
-  color: #7e7145; /* 조금 더 밝은 노란색으로 hover 효과 */
+  color: #7e7145;
+  /* 조금 더 밝은 노란색으로 hover 효과 */
 }
 
-  
+
 .auth-links-r {
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 14px;
   margin-right: 10;
-  color: #ffffff; /* 노란색 계열 (Tailwind: text-yellow-300) */
+  color: #ffffff;
+  /* 노란색 계열 (Tailwind: text-yellow-300) */
 }
 
-.auth-links-r span{
+.auth-links-r span {
   color: #ffffff;
 }
- 
+
 
 .auth-links-r a {
   text-decoration: none;
@@ -539,7 +611,8 @@
 
 .auth-links-r a:hover {
   text-decoration: underline;
-  color: #ffd54f; /* 조금 더 밝은 노란색으로 hover 효과 */
+  color: #ffd54f;
+  /* 조금 더 밝은 노란색으로 hover 효과 */
 }
 
 
@@ -579,7 +652,8 @@
 
 /* 모달 컨테이너 */
 .terms-modal {
-  position: relative; /* ✅ 닫기 버튼 위치 기준 */
+  position: relative;
+  /* ✅ 닫기 버튼 위치 기준 */
   background-color: #142b27;
   max-width: 480px;
   width: 90%;
@@ -597,9 +671,12 @@
 
 /* 닫기 버튼 */
 .terms-close-btn {
-  position: absolute;      /* ✅ 절대 위치로 설정 */
-  top: 12px;               /* 상단 여백 */
-  right: 12px;             /* 오른쪽 여백 */
+  position: absolute;
+  /* ✅ 절대 위치로 설정 */
+  top: 12px;
+  /* 상단 여백 */
+  right: 12px;
+  /* 오른쪽 여백 */
   color: #fde68a;
   background: none;
   border: none;
@@ -626,7 +703,7 @@
 /* 본문 */
 .terms-content {
   font-size: 13px;
-  white-space: pre-line;
+  white-space: pre-wrap;
   line-height: 1.6;
   overflow-y: auto;
   max-height: 100%;
@@ -663,7 +740,8 @@
 
 /* 모달 본체 */
 .privacy-modal {
-  position: relative; /* ✅ 닫기 버튼 위치 기준 */
+  position: relative;
+  /* ✅ 닫기 버튼 위치 기준 */
   background-color: #142b27;
   max-width: 480px;
   width: 90%;
@@ -680,9 +758,12 @@
 
 /* 닫기 버튼 */
 .privacy-close-btn {
-  position: absolute;      /* ✅ 절대 위치로 설정 */
-  top: 12px;               /* 상단 여백 */
-  right: 12px;             /* 오른쪽 여백 */
+  position: absolute;
+  /* ✅ 절대 위치로 설정 */
+  top: 12px;
+  /* 상단 여백 */
+  right: 12px;
+  /* 오른쪽 여백 */
   color: #fde68a;
   background: none;
   border: none;
@@ -709,7 +790,7 @@
 /* 내용 */
 .privacy-modal-content {
   font-size: 13px;
-  white-space: pre-line;
+  white-space: pre-wrap;
   line-height: 1.6;
   overflow-y: auto;
   max-height: 100%;
@@ -729,10 +810,9 @@
 
 
 @media screen and (max-width: 768px) {
-  /* 공통 오버레이 */
-  .terms-modal-overlay {
 
-  }
+  /* 공통 오버레이 */
+  .terms-modal-overlay {}
 
   /* 공통 모달 컨테이너 */
   .terms-modal,
@@ -784,29 +864,35 @@
   }
 
 
-.r-box {
-  height: 900px;
-  overflow-y: auto;              /* ✅ 세로 스크롤만 활성화 */
-  max-height: 100vh;       /* 브라우저 뷰포트 전체 높이 */
-  overflow-y: auto;
-  padding-right: 8px;
-  margin-bottom: 200px;    /* 바닥에 닿지 않도록 여유 공간 */
-  padding-bottom: 200px;
-  /* ✅ 스크롤바 숨기기 */
-  scrollbar-width: none;          /* Firefox */
-  -ms-overflow-style: none;       /* IE 10+ */
-}
+  .r-box {
+    height: 900px;
+    overflow-y: auto;
+    /* ✅ 세로 스크롤만 활성화 */
+    max-height: 100vh;
+    /* 브라우저 뷰포트 전체 높이 */
+    overflow-y: auto;
+    padding-right: 8px;
+    margin-bottom: 200px;
+    /* 바닥에 닿지 않도록 여유 공간 */
+    padding-bottom: 200px;
+    /* ✅ 스크롤바 숨기기 */
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+  }
 
-/* 스크롤바 스타일 (선택사항) */
-.r-box::-webkit-scrollbar {
-  width: 6px;
-  display: none;                  /* Chrome, Safari, Edge */
-}
+  /* 스크롤바 스타일 (선택사항) */
+  .r-box::-webkit-scrollbar {
+    width: 6px;
+    display: none;
+    /* Chrome, Safari, Edge */
+  }
 
-.r-box::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.3);
-  border-radius: 3px;
-}
+  .r-box::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+  }
 
 
 }

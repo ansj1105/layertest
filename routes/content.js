@@ -38,10 +38,10 @@ const storage = multer.diskStorage({
 });
 const upload = multer({
   storage,
-  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
+  limits: { fileSize: 100 * 1024 * 1024 }, // 100MB
   fileFilter: (req, file, cb) => {
     const ext = path.extname(file.originalname).toLowerCase();
-    const allowed = ['.jpg','.jpeg','.png','.mp4','.mov','.pdf'];
+    const allowed = ['.jpg', '.jpeg', '.png', '.mp4', '.mov', '.pdf'];
     if (!allowed.includes(ext)) {
       return cb(new Error('지원하지 않는 파일 형식입니다'));
     }
@@ -69,7 +69,7 @@ async function handleUpload(req, res, type) {
     res.status(201).json({ message: `${type} uploaded`, filePath });
   } catch (err) {
     // DB 삽입 실패 시 파일 삭제
-    await fs.unlink(path.join(UPLOAD_DIR, req.file.filename)).catch(()=>{});
+    await fs.unlink(path.join(UPLOAD_DIR, req.file.filename)).catch(() => { });
     next(err);
   }
 }
@@ -129,11 +129,11 @@ router.get(
          WHERE id = ?`,
         [req.params.id]
       );
-      
+
       if (rows.length === 0) {
         return res.status(404).json({ error: '파일을 찾을 수 없습니다' });
       }
-      
+
       res.json(rows[0]);
     } catch (err) {
       next(err);

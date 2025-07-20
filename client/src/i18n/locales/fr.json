@@ -601,28 +601,31 @@
     }
   },
   "agreement": {
-    "title": "Conditions d'utilisation",
-    "back": "Retour",
-    "accept": "J'accepte",
-    "decline": "Je refuse",
-    "version": "Version {{version}}",
-    "lastUpdated": "Dernière mise à jour : {{date}}",
-    "sections": {
-      "intro": {
-        "title": "Introduction",
-        "content": "Veuillez lire attentivement ces conditions d'utilisation avant d'utiliser notre service."
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "general": {
+        "title": "1. Principes Généraux\n\n",
+        "1_1": "1.1 Structure du Contrat\nCes Conditions d'utilisation (ci-après 'Accord') établissent tous les engagements applicables à l'utilisation par les utilisateurs du site web et des services d'Upstart (ci-après 'Plateforme'). Cet Accord comprend la politique de confidentialité, la politique KYC (Know Your Customer), la politique AML (Anti-Money Laundering), les règles d'utilisation technique, les précautions d'utilisation de la plateforme, les avertissements, les avis, les directives connexes, etc., qui peuvent être modifiés ou complétés à notre discrétion.\n\n",
+        "1_2": "1.2 Consentement et Compréhension de l'Accord\nLes utilisateurs ne peuvent utiliser les services qu'après avoir examiné et accepté les conditions de cet Accord. Si un contenu n'est pas clair ou n'est pas compris, les utilisateurs peuvent consulter un conseiller juridique, et les utilisateurs doivent continuer à utiliser la plateforme en acceptant toutes les conditions.\n\n",
+        "1_3": "1.3 Inscription des Membres et Signature Électronique\nLes informations saisies par les utilisateurs lors de l'inscription sur la plateforme doivent être véridiques, et le consentement sous forme de signature électronique est établi en cliquant sur le bouton 'Accepter' ou une indication similaire. Ceci est considéré comme un contrat juridiquement valide même sans signature manuscrite.\n\n"
       },
-      "terms": {
-        "title": "Conditions générales",
-        "content": "En utilisant notre service, vous acceptez d'être lié par ces conditions."
-      },
-      "privacy": {
-        "title": "Politique de confidentialité",
-        "content": "Nous nous engageons à protéger vos données personnelles conformément à notre politique de confidentialité."
+      "use": {
+        "title": "2. Utilisation du Service\n\n",
+        "2_1": "2.1 Création et Gestion de Compte\nLes utilisateurs ne peuvent créer qu'un seul compte, et toutes les activités doivent être menées sous leur propre responsabilité. Le vol d'identité, la fourniture de fausses informations et l'inscription via des scripts automatisés sont interdits.\n\n",
+        "2_2": "2.2 Actions Interdites\nLes utilisateurs ne doivent pas s'engager dans les activités suivantes :\n  - Accès non autorisé ou attaques sur les systèmes ou réseaux\n  - Collecte non autorisée d'informations de compte d'autres utilisateurs\n  - Tentatives de transferts d'actifs frauduleux ou illégaux\n  - Toute action qui interfère avec le fonctionnement normal du service\n\n",
+        "2_3": "2.3 Modifications et Interruptions de Service\nUpstart peut modifier, suspendre ou restreindre une partie ou l'ensemble des services après préavis. Cela peut être dû à la maintenance du système, à des problèmes de sécurité urgents, à la conformité réglementaire, etc., et nous ne sommes pas responsables des dommages qui en résultent.\n\n"
       },
       "liability": {
-        "title": "Limitation de responsabilité",
-        "content": "Notre responsabilité est limitée conformément aux lois applicables."
+        "title": "3. Responsabilités et Droits\n\n",
+        "3_1": "3.1 Responsabilité de l'Utilisateur\nToutes les transactions, activités et actions de gestion de portefeuille sont la responsabilité de l'utilisateur, et Upstart n'est pas responsable des dommages causés par la fuite ou la perte d'informations de compte personnelles.\n\n",
+        "3_2": "3.2 Clause de Non-responsabilité\nUpstart n'est pas responsable de :\n  - Interruptions dues au piratage externe, attaques DDoS, etc.\n  - Restrictions de service dues aux lois ou ordres gouvernementaux\n  - Erreurs ou retards du réseau blockchain\n\n",
+        "3_3": "3.3 Droits d'Auteur et Marque\nTout le contenu, les logos et le code source de la plateforme sont nos actifs, et la copie, la distribution ou l'utilisation non autorisée est strictement interdite.\n\n"
+      },
+      "etc": {
+        "4": "4. Restrictions d'Utilisation\nL'utilisation abusive des services tels que le piratage, l'ingénierie inverse et les activités illégales est interdite.\n\n",
+        "5": "5. Données et Informations Personnelles\nLes informations personnelles sont collectées pour la fourniture et l'amélioration des services. Veuillez consulter la Politique de Confidentialité pour plus de détails.\n\n",
+        "6": "6. Modifications des Conditions\nLes conditions peuvent être révisées après préavis, et la poursuite de l'utilisation implique l'accord des conditions révisées.\n\n",
+        "7": "7. Loi Applicable\nCes conditions sont régies par les lois de la juridiction du membre.\n"
       }
     }
   },

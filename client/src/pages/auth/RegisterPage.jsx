@@ -49,18 +49,18 @@ export default function RegisterPage() {
     if (ref) setForm(f => ({ ...f, referral: ref.toUpperCase() }));
   }, []);
 
-  const isValidName  = name  => /^[a-zA-Z가-힣0-9\s]{2,}$/.test(name);
+  const isValidName = name => /^[a-zA-Z가-힣0-9\s]{2,}$/.test(name);
   const isValidEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const isValidPhone = phone => /^\+\d{1,3}\s?\d{4,14}$/.test(phone);
 
   const handleSubmit = async () => {
     setError(""); setSuccess("");
     const fullPhone = `${countryCode}${form.phone}`; // 국가코드 결합
-    if (!isValidName(form.name))                              {
+    if (!isValidName(form.name)) {
       setAlertInfo({ title: t('register.title'), message: t('register.name_error'), type: 'error' });
       setShowAlert(true); return;
     }
-    if (method === "email" && !isValidEmail(form.email))      {
+    if (method === "email" && !isValidEmail(form.email)) {
       setAlertInfo({ title: t('register.title'), message: t('register.email_error'), type: 'error' });
       setShowAlert(true); return;
     }
@@ -68,15 +68,15 @@ export default function RegisterPage() {
       setAlertInfo({ title: t('register.title'), message: t('register.phone_error'), type: 'error' });
       setShowAlert(true); return;
     }
-    if (form.password.length < 6)                             {
+    if (form.password.length < 6) {
       setAlertInfo({ title: t('register.title'), message: t('register.password_error'), type: 'error' });
       setShowAlert(true); return;
     }
-    if (form.password !== form.confirmPassword)               {
+    if (form.password !== form.confirmPassword) {
       setAlertInfo({ title: t('register.title'), message: t('register.confirm_error'), type: 'error' });
       setShowAlert(true); return;
     }
-    if (!captchaToken)                                        {
+    if (!captchaToken) {
       setAlertInfo({ title: t('register.title'), message: t('register.captcha_required'), type: 'error' });
       setShowAlert(true); return;
     }
@@ -87,8 +87,8 @@ export default function RegisterPage() {
     try {
       await axios.post("/api/auth/register", {
         name: form.name,
-        email: method==="email" ? form.email : null,
-        phone: method==="phone" ? fullPhone : null,
+        email: method === "email" ? form.email : null,
+        phone: method === "phone" ? fullPhone : null,
         password: form.password,
         referral: form.referral || null,
         nationality: form.nationality,
@@ -120,41 +120,41 @@ export default function RegisterPage() {
         </div>
         {/* 로고 */}
         <img
-        src="/img/item/logo/logo.png"
-        alt="Upstart"
-        className="login-logo-r"
+          src="/img/item/logo/logo.png"
+          alt="Upstart"
+          className="login-logo-r"
         />
         {/* 탭 */}
         <div className="flex01">
-        <button
-          onClick={() => setMethod("phone")}
-          className={`v-token-r-m ${method === "phone" ? "active-button" : "inactive-button"}`}
-        >
-          {t("register.by_phone")}
-        </button>
-        <button
-          onClick={() => setMethod("email")}
-          className={`v-token-r-m ${method === "email" ? "active-button" : "inactive-button"}`}
-        >
-          {t("register.by_email")}
-        </button>
-          
+          <button
+            onClick={() => setMethod("phone")}
+            className={`v-token-r-m ${method === "phone" ? "active-button" : "inactive-button"}`}
+          >
+            {t("register.by_phone")}
+          </button>
+          <button
+            onClick={() => setMethod("email")}
+            className={`v-token-r-m ${method === "email" ? "active-button" : "inactive-button"}`}
+          >
+            {t("register.by_email")}
+          </button>
+
         </div>
-      {/* 국적 선택 드롭다운 추가 */}
-      <div className="flex0">
-        <label className="v-token-r0">Nationality</label>
-        <select
-          value={form.nationality}
-          onChange={e => setForm(f => ({ ...f, nationality: e.target.value }))}
-          className="v-token-r00"
-        >
-          {LANGUAGES.map(lang => (
-            <option key={lang.code} value={lang.code}>
-              {lang.label}
-            </option>
-          ))}
-        </select>
-      </div>
+        {/* 국적 선택 드롭다운 추가 */}
+        <div className="flex0">
+          <label className="v-token-r0">Nationality</label>
+          <select
+            value={form.nationality}
+            onChange={e => setForm(f => ({ ...f, nationality: e.target.value }))}
+            className="v-token-r00"
+          >
+            {LANGUAGES.map(lang => (
+              <option key={lang.code} value={lang.code}>
+                {lang.label}
+              </option>
+            ))}
+          </select>
+        </div>
         {/* 입력 폼 */}
         <div className="r-box1">
           <input
@@ -186,14 +186,14 @@ export default function RegisterPage() {
                 ))}
               </select>
 
-            <input
-              type="tel"
-              placeholder={t("register.phone")}
-              className="v-token-r2"
-              value={form.phone}
-              onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
-            />
-          </div>
+              <input
+                type="tel"
+                placeholder={t("register.phone")}
+                className="v-token-r2"
+                value={form.phone}
+                onChange={e => setForm(f => ({ ...f, phone: e.target.value }))}
+              />
+            </div>
           )}
           <input
             type="password"
@@ -224,7 +224,7 @@ export default function RegisterPage() {
             />
           </div>
 
-          {error   && <p className="text-red-400 text-center">{error}</p>}
+          {error && <p className="text-red-400 text-center">{error}</p>}
           {success && <p className="text-green-400 text-center">{success}</p>}
 
           <button
@@ -235,14 +235,14 @@ export default function RegisterPage() {
           </button>
 
           <div className="auth-links-r">
-          <span>Do you already have an account?&nbsp;&nbsp;</span>
-          <UserChat />
+            <span>{t("register.no_account")}?&nbsp;</span>
+            <UserChat />
             <Link to="/login" className="auth-links-r">
-              login
+              {t("register.login")}
             </Link>
           </div>
- 
-      
+
+
           {/* 약관 동의 */}
           <div className="auth-links-r">
             <Trans i18nKey="register.agree">
@@ -250,11 +250,12 @@ export default function RegisterPage() {
                 The two child <button> tags below will
                 replace <0>…</0> and <1>…</1> in your JSON.
               */}
-              
+
               <button
                 className="auth-links-r-t"
                 onClick={() => setOpenTerms(true)}
               />
+
               <button
                 className="auth-links-r-t"
                 onClick={() => setOpenPrivacy(true)}
@@ -270,7 +271,7 @@ export default function RegisterPage() {
           className="terms-modal-overlay"
           onClick={() => setOpenTerms(false)}
         >
-          
+
           <div
             className="terms-modal"
             onClick={e => e.stopPropagation()}
@@ -284,11 +285,25 @@ export default function RegisterPage() {
             <h2 className="terms-title">{t("agreement.terms.title")}</h2>
             {/* 줄바꿈 적용 */}
             <div className="terms-content">
-              {t("agreement.terms.content")
-                .split('\n')
-                .map((line, idx) => (
-                  <p key={idx}>{line}</p>
-                ))}
+              <p>{t("agreement.terms.general.title")}</p>
+              <p>{t("agreement.terms.general.1_1")}</p>
+              <p>{t("agreement.terms.general.1_2")}</p>
+              <p>{t("agreement.terms.general.1_3")}</p>
+
+              <p>{t("agreement.terms.use.title")}</p>
+              <p>{t("agreement.terms.use.2_1")}</p>
+              <p>{t("agreement.terms.use.2_2")}</p>
+              <p>{t("agreement.terms.use.2_3")}</p>
+
+              <p>{t("agreement.terms.liability.title")}</p>
+              <p>{t("agreement.terms.liability.3_1")}</p>
+              <p>{t("agreement.terms.liability.3_2")}</p>
+              <p>{t("agreement.terms.liability.3_3")}</p>
+
+              <p>{t("agreement.terms.etc.4")}</p>
+              <p>{t("agreement.terms.etc.5")}</p>
+              <p>{t("agreement.terms.etc.6")}</p>
+              <p>{t("agreement.terms.etc.7")}</p>
             </div>
           </div>
         </div>
@@ -313,11 +328,15 @@ export default function RegisterPage() {
             <h2 className="privacy-modal-title">{t("agreement.privacy.title")}</h2>
             {/* 줄바꿈 적용 */}
             <div className="privacy-modal-content">
-              {t("agreement.terms.content")
-                .split('\n')
-                .map((line, idx) => (
-                  <p key={idx}>{line}</p>
-                ))}
+              {t("agreement.privacy.1")}
+              {t("agreement.privacy.2")}
+              {t("agreement.privacy.3")}
+              {t("agreement.privacy.4")}
+              {t("agreement.privacy.5")}
+              {t("agreement.privacy.6")}
+              {t("agreement.privacy.7")}
+              {t("agreement.privacy.8")}
+              {t("agreement.privacy.contact")}
             </div>
           </div>
         </div>

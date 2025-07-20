@@ -730,7 +730,30 @@
   "agreement": {
     "terms": {
       "title": "Nutzungsbedingungen",
-      "content": "1. **Allgemeines**\n\nWillkommen bei Upstart. Durch die Nutzung unseres Services stimmen Sie diesen Nutzungsbedingungen zu.\n\n2. **Konten**\n\nNutzer müssen sich mit korrekten Angaben registrieren und sind für ihre Zugangsdaten verantwortlich.\n\n3. **Nutzung**\n\nSie dürfen den Service nicht missbrauchen, einschließlich, aber nicht beschränkt auf Hacking, Reverse Engineering oder andere rechtswidrige Aktivitäten.\n\n4. **Daten & Datenschutz**\n\nWir erheben personenbezogene Daten, um unsere Services bereitzustellen und zu verbessern. Details entnehmen Sie bitte unserer Datenschutzerklärung.\n\n5. **Änderungen**\n\nWir können diese Bedingungen aktualisieren; die fortgesetzte Nutzung impliziert die Zustimmung zu Änderungen.\n\n6. **Anwendbares Recht**\n\nDiese Bedingungen unterliegen den Gesetzen Ihrer Gerichtsbarkeit."
+      "general": {
+        "title": "1. Allgemeine Grundsätze\n\n",
+        "1_1": "1.1 Vertragsstruktur\nDiese Nutzungsbedingungen (im Folgenden „Vertrag“) regeln sämtliche Vereinbarungen, die bei der Nutzung der Website und der Dienste von Upstart (im Folgenden „Plattform“) durch den Nutzer gelten. Der Vertrag umfasst die Datenschutzrichtlinie, das KYC-Verfahren (Know Your Customer), die AML-Richtlinie (Anti-Geldwäsche), technische Nutzungsrichtlinien, Hinweise zur Plattformnutzung, Warnungen, Mitteilungen und sonstige Richtlinien. Diese können nach eigenem Ermessen von uns geändert oder ergänzt werden.\n\n",
+        "1_2": "1.2 Zustimmung und Verständnis des Vertrags\nDer Nutzer darf die Dienste nur in Anspruch nehmen, wenn er diesen Vertrag vollständig gelesen und akzeptiert hat. Wenn einzelne Inhalte unklar oder unverständlich sind, wird empfohlen, rechtlichen Rat einzuholen. Die Nutzung der Plattform gilt als Zustimmung zu allen Vertragsbedingungen.\n\n",
+        "1_3": "1.3 Registrierung und elektronische Signatur\nDie vom Nutzer während des Registrierungsprozesses bereitgestellten Informationen müssen der Wahrheit entsprechen. Durch das Klicken auf die Schaltfläche „Zustimmen“ oder eine ähnliche Kennzeichnung kommt eine elektronische Zustimmung zustande. Diese ist auch ohne handschriftliche Unterschrift rechtlich verbindlich.\n\n"
+      },
+      "use": {
+        "title": "2. Nutzung der Dienste\n\n",
+        "2_1": "2.1 Kontoerstellung und Verwaltung\nDer Nutzer darf nur ein einziges Konto erstellen. Für sämtliche Aktivitäten innerhalb des Kontos trägt der Nutzer die volle Verantwortung. Die Verwendung falscher Angaben, Identitätsdiebstahl oder automatisierte Anmeldeskripte sind untersagt.\n\n",
+        "2_2": "2.2 Verbotene Handlungen\nDem Nutzer ist Folgendes untersagt:\n  - Unbefugter Zugriff auf Systeme oder Netzwerke sowie Angriffe\n  - Unerlaubtes Sammeln von Kontoinformationen anderer Nutzer\n  - Täuschende oder illegale Vermögensübertragungen\n  - Jegliche Handlungen, die den ordnungsgemäßen Betrieb des Dienstes stören\n\n",
+        "2_3": "2.3 Änderungen und Unterbrechung des Dienstes\nUpstart behält sich das Recht vor, Teile oder den gesamten Dienst mit vorheriger Ankündigung zu ändern, einzuschränken oder einzustellen. Gründe dafür können Systemwartung, dringende Sicherheitsprobleme oder gesetzliche Anforderungen sein. Für dadurch entstehende Schäden übernimmt Upstart keine Haftung.\n\n"
+      },
+      "liability": {
+        "title": "3. Verantwortung und Rechte\n\n",
+        "3_1": "3.1 Verantwortung des Nutzers\nAlle Transaktionen, Aktivitäten und Wallet-Verwaltung liegen in der Verantwortung des Nutzers. Upstart haftet nicht für Schäden, die durch die Preisgabe oder den Verlust von Kontoinformationen entstehen.\n\n",
+        "3_2": "3.2 Haftungsausschluss\nUpstart übernimmt keine Haftung für folgende Fälle:\n  - Dienstunterbrechungen durch externe Angriffe wie Hacking oder DDoS\n  - Einschränkungen aufgrund gesetzlicher Vorschriften oder behördlicher Anordnungen\n  - Fehler oder Verzögerungen im Blockchain-Netzwerk\n\n",
+        "3_3": "3.3 Urheber- und Markenrechte\nAlle Inhalte, Logos und Quellcodes auf der Plattform sind Eigentum von Upstart. Jegliche Vervielfältigung, Verbreitung oder Nutzung ohne Genehmigung ist strengstens untersagt.\n\n"
+      },
+      "etc": {
+        "4": "4. Nutzungsbeschränkung\nMissbräuchliche Nutzung des Dienstes, einschließlich Hacking, Reverse Engineering oder rechtswidrige Handlungen, ist verboten.\n\n",
+        "5": "5. Daten und Datenschutz\nPersonenbezogene Daten werden zum Zweck der Bereitstellung und Verbesserung des Dienstes erhoben. Details finden Sie in unserer Datenschutzrichtlinie.\n\n",
+        "6": "6. Änderung der Bedingungen\nDiese Bedingungen können nach vorheriger Ankündigung geändert werden. Durch die fortgesetzte Nutzung gelten geänderte Bedingungen als akzeptiert.\n\n",
+        "7": "7. Anwendbares Recht\nDieser Vertrag unterliegt dem geltenden Recht des jeweiligen Nutzers.\n"
+      }
     },
     "privacy": {
       "title": "Datenschutzrichtlinie",

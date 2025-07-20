@@ -71,7 +71,7 @@ export default function App() {
 
 import './styles/Sidebar.css';
 import './styles/topnav.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Link, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
@@ -87,15 +87,20 @@ import {
 import { useTranslation } from 'react-i18next';
 import './i18n/index';
 import './index.css';
-import UserChat from './pages/UserChat';
-import MainLanding from './pages/MainLanding';
-import BottomNav from './components/BottomNav';
-import LoginPage from './pages/auth/LoginPage';
-import ForgotPassword from './pages/auth/ForgotPassword';
-import LanguageSettingsPage from './components/LanguageSettingsPage';
-import RegisterPage from './pages/auth/RegisterPage';
-import PWAInstallPrompt from './components/PWAInstallPrompt';
-import PWAStatus from './components/PWAStatus';
+
+// Lazy load components
+const UserChat = lazy(() => import('./pages/UserChat'));
+const MainLanding = lazy(() => import('./pages/MainLanding'));
+const BottomNav = lazy(() => import('./components/BottomNav'));
+const LoginPage = lazy(() => import('./pages/auth/LoginPage'));
+const ForgotPassword = lazy(() => import('./pages/auth/ForgotPassword'));
+const LanguageSettingsPage = lazy(() => import('./components/LanguageSettingsPage'));
+const RegisterPage = lazy(() => import('./pages/auth/RegisterPage'));
+const PWAInstallPrompt = lazy(() => import('./components/PWAInstallPrompt'));
+const PWAStatus = lazy(() => import('./components/PWAStatus'));
+const PerformanceMonitor = lazy(() => import('./components/PerformanceMonitor'));
+const AdvancedLoadingSpinner = lazy(() => import('./components/AdvancedLoadingSpinner'));
+
 axios.defaults.withCredentials = true;
 const API_HOST = import.meta.env.VITE_API_HOST || 'http://localhost:4000';
 /** 간단한 가역 인코딩 (XOR → 16진수, 8자리) */
@@ -148,20 +153,36 @@ export default function App() {
 
   // 1) /register 경로면 오직 회원가입 페이지만
   if (loc.pathname === '/register') {
-    return <RegisterPage />;
+    return (
+      <Suspense fallback={<AdvancedLoadingSpinner />}>
+        <RegisterPage />
+      </Suspense>
+    );
   }
   // 1) /register 경로면 오직 회원가입 페이지만
   if (loc.pathname === '/forgot-password') {
-    return <ForgotPassword />;
+    return (
+      <Suspense fallback={<AdvancedLoadingSpinner />}>
+        <ForgotPassword />
+      </Suspense>
+    );
   }
 
 
   if (loc.pathname === '/settings/language') {
-    return <LanguageSettingsPage />;
+    return (
+      <Suspense fallback={<AdvancedLoadingSpinner />}>
+        <LanguageSettingsPage />
+      </Suspense>
+    );
   }
   // 2) /register 가 아니고, 로그인 안된 상태면 로그인 페이지만
   if (!user) {
-    return <LoginPage />;
+    return (
+      <Suspense fallback={<AdvancedLoadingSpinner />}>
+        <LoginPage />
+      </Suspense>
+    );
   }
   /*
     if (!user && !["//settings/language", "/test"].includes(window.location.pathname))  {
@@ -307,16 +328,27 @@ export default function App() {
 
       {/* 메인 콘텐츠 */}
       <div className="pt-16 ">
-        <UserChat userId={user.id} />
-        <MainLanding user={user} />
-        <BottomNav />
+        <Suspense fallback={<AdvancedLoadingSpinner />}>
+          <UserChat userId={user.id} />
+          <MainLanding user={user} />
+          <BottomNav />
+        </Suspense>
       </div>
 
       {/* PWA 설치 프롬프트 */}
-      <PWAInstallPrompt />
+      <Suspense fallback={null}>
+        <PWAInstallPrompt />
+      </Suspense>
 
       {/* PWA 상태 표시 */}
-      <PWAStatus />
+      <Suspense fallback={null}>
+        <PWAStatus />
+      </Suspense>
+
+      {/* 성능 모니터링 (개발 환경에서만) */}
+      <Suspense fallback={null}>
+        <PerformanceMonitor />
+      </Suspense>
     </div>
 
   );

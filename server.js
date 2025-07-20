@@ -16,73 +16,74 @@ const { authenticateToken, isChatAdmin, authenticateWebSocket } = require('./mid
 const app = express();
 
 app.use(
-    session({
-      store: sessionStore,
-      secret: process.env.SESSION_SECRET || "default_secret_key",
-      resave: false,
-      saveUninitialized: false,
-      cookie: {
-        httpOnly: true,  //JS에서 쿠키 접근 금지 (보안 강화)
-        secure: process.env.NODE_ENV === "production", // 배포 시에만 HTTPS 전용 쿠키 	HTTPS 환경에서만 쿠키를 전달
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // CORS + 쿠키 지원용 CORS 요청에서도 쿠키 전달 허용 (프론트와 백엔드 도메인이 다를 경우
-        maxAge: 1000 * 60 * 60 * 3, // 3시간
-      },
-    })
-  );
-
-  /*
-  app.use(
   session({
+    store: sessionStore,
     secret: process.env.SESSION_SECRET || "default_secret_key",
     resave: false,
     saveUninitialized: false,
     cookie: {
-      httpOnly: true,
-      secure: false,          // ✅ HTTP에서도 쿠키 전달되도록 허용
-      sameSite: "lax",        // ✅ 크로스 사이트에서 최소한의 쿠키 전달
-      maxAge: 1000 * 60 * 60 * 3,
+      httpOnly: true,  //JS에서 쿠키 접근 금지 (보안 강화)
+      secure: process.env.NODE_ENV === "production", // 배포 시에만 HTTPS 전용 쿠키 	HTTPS 환경에서만 쿠키를 전달
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // CORS + 쿠키 지원용 CORS 요청에서도 쿠키 전달 허용 (프론트와 백엔드 도메인이 다를 경우
+      maxAge: 1000 * 60 * 60 * 3, // 3시간
     },
   })
 );
 
-  */
+/*
+app.use(
+session({
+  secret: process.env.SESSION_SECRET || "default_secret_key",
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: false,          // ✅ HTTP에서도 쿠키 전달되도록 허용
+    sameSite: "lax",        // ✅ 크로스 사이트에서 최소한의 쿠키 전달
+    maxAge: 1000 * 60 * 60 * 3,
+  },
+})
+);
+
+*/
 const allowedOrigins = [
-    'http://localhost:5173',         // 개발 환경
-    'https://yourdomain.com',  
-    'http://54.85.128.211:5173',
-  ];
-  
-  app.use(
-    cors({
-     /* origin: function (origin, callback) {
-        // 요청 origin이 허용된 도메인 목록에 있는 경우 허용
-        if (!origin || allowedOrigins.includes(origin)) {
-          callback(null, true);
-        } else {
-          callback(new Error("CORS 정책에 의해 차단됨"));
-        }
-      },*/
-      origin: true,
-      credentials: true,
-    })
-  );
-  
-app.use(express.json());
+  'http://localhost:5173',         // 개발 환경
+  'https://yourdomain.com',
+  'http://54.85.128.211:5173',
+];
+
+app.use(
+  cors({
+    /* origin: function (origin, callback) {
+       // 요청 origin이 허용된 도메인 목록에 있는 경우 허용
+       if (!origin || allowedOrigins.includes(origin)) {
+         callback(null, true);
+       } else {
+         callback(new Error("CORS 정책에 의해 차단됨"));
+       }
+     },*/
+    origin: true,
+    credentials: true,
+  })
+);
+
+app.use(express.json({ limit: '100mb' }));
+app.use(express.urlencoded({ extended: true, limit: '100mb' }));
 
 // ✅ DB 연결 설정
 const db = require("./db"); // 이걸로 사용
 // ✅ TronWeb 인스턴스 (기본 읽기용)
 
-  const USDT_CONTRACT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
-  const authRoutes = require('./auth/register'); //회원가입 및 토큰처리   
-  const loginRoutes = require('./auth/login');//로그인 라우터
-  const contentRoutes = require('./routes/content');
-  app.use('/api', contentRoutes );
-  const adminUserRoutes = require('./routes/adminUsers');
-  const messageRoutes = require('./routes/messages');
-  const popupMessageRoutes = require('./routes/popupMessages');
-  const referralRoutes = require('./routes/referral');
-  // 상단 import 구역에 추가
+const USDT_CONTRACT = "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t";
+const authRoutes = require('./auth/register'); //회원가입 및 토큰처리   
+const loginRoutes = require('./auth/login');//로그인 라우터
+const contentRoutes = require('./routes/content');
+app.use('/api', contentRoutes);
+const adminUserRoutes = require('./routes/adminUsers');
+const messageRoutes = require('./routes/messages');
+const popupMessageRoutes = require('./routes/popupMessages');
+const referralRoutes = require('./routes/referral');
+// 상단 import 구역에 추가
 const quantTradeRoutes = require('./routes/quanttrade');
 const tokenRoutes = require('./routes/token'); // ✅ QVC 토큰 관련 라우터
 const rechargeRoutes = require('./routes/recharge'); //코인충전관련
@@ -101,7 +102,7 @@ app.use('/api/projects', projectsRoutes);
 app.use('/api/mydata', mydataRoutes);
 app.use('/api/logs', logsRoutes);
 
- app.use('/api/recharge', rechargeRoutes);
+app.use('/api/recharge', rechargeRoutes);
 app.use('/api/token', tokenRoutes);
 // 상단 import
 const adminInviteRewards = require('./routes/admininviteRewards');
@@ -128,40 +129,40 @@ app.use('/api/referral', referralRoutes);
 const { router: tronRouter } = require('./routes/tron');
 app.use('/api/tron', tronRouter);
 app.use('/api/popups', popupMessageRoutes);
-app.use('/api/messages', messageRoutes);  
-  app.use('/api/admin', adminUserRoutes);
- 
-  app.use('/api/auth', loginRoutes); // ✅ 같은 prefix로 라우터 추가 등록 가능
+app.use('/api/messages', messageRoutes);
+app.use('/api/admin', adminUserRoutes);
+
+app.use('/api/auth', loginRoutes); // ✅ 같은 prefix로 라우터 추가 등록 가능
 app.use('/api/auth', authRoutes);
 app.use(
   '/uploads',
   express.static(path.join(__dirname, 'public', 'uploads'))
 );//업로드 경로로
 
-  // ✅ 간단한 API 엔드포인트
+// ✅ 간단한 API 엔드포인트
 app.get('/api/ping', (req, res) => {
   console.log("✅ [백엔드] 클라이언트로부터 ping 수신!");
   res.json({ message: "pong from server!" });
 });
 
-  //코인정보 달라하기 api~!
-  app.get('/api/market-data', async (req, res) => {
-    try {
-      const response = await axios.get(
-        'https://api.coingecko.com/api/v3/coins/markets',
-        {
-          params: {
-            vs_currency: 'usd',
-            ids: 'bitcoin,ethereum,binancecoin,ripple,solana,polkadot,litecoin,chainlink,cardano'
-          }
+//코인정보 달라하기 api~!
+app.get('/api/market-data', async (req, res) => {
+  try {
+    const response = await axios.get(
+      'https://api.coingecko.com/api/v3/coins/markets',
+      {
+        params: {
+          vs_currency: 'usd',
+          ids: 'bitcoin,ethereum,binancecoin,ripple,solana,polkadot,litecoin,chainlink,cardano'
         }
-      );
-      res.json(response.data);
-    } catch (err) {
-      console.error("❌ CoinGecko 호출 실패:", err.message);
-      res.status(500).json({ error: "Failed to fetch market data" });
-    }
-  });
+      }
+    );
+    res.json(response.data);
+  } catch (err) {
+    console.error("❌ CoinGecko 호출 실패:", err.message);
+    res.status(500).json({ error: "Failed to fetch market data" });
+  }
+});
 // 1️⃣ 기존 CRON 코드 안의 로직을 함수로 추출
 // 1️⃣ 기존 CRON 코드 안의 로직을 함수로 추출
 async function runVipUpdateJob() {
@@ -215,7 +216,7 @@ async function runVipUpdateJob() {
   }
 }
 
-  // 3️⃣ 서버 시작할 때 테스트 실행
+// 3️⃣ 서버 시작할 때 테스트 실행
 runVipUpdateJob(); //레벨정산
 accrueDailyProfits(); //펀딩수익정산
 handleProjectExpiry(); //만료 정산
@@ -278,151 +279,151 @@ cron.schedule('0 * * * *', async () => {
     console.error("❌ [CRON ERROR] VIP 갱신 실패:", err.message);
   }
 });
-  // ✅ 서버 실행
-  const server = app.listen(process.env.PORT || 4000, () => {
-    console.log(`Server is running on port ${process.env.PORT || 4000}`);
+// ✅ 서버 실행
+const server = app.listen(process.env.PORT || 4000, () => {
+  console.log(`Server is running on port ${process.env.PORT || 4000}`);
+});
+
+server.on('upgrade', async (request, socket, head) => {
+  const pathname = new URL(request.url, `http://${request.headers.host}`).pathname;
+  // 상세한 로깅 추가
+  console.log('WebSocket upgrade request:', {
+    pathname,
+    headers: request.headers,
+    url: request.url,
+    ip: request.socket.remoteAddress,
+    cookie: request.headers.cookie
   });
 
-  server.on('upgrade', async (request, socket, head) => {
-    const pathname = new URL(request.url, `http://${request.headers.host}`).pathname;
-    // 상세한 로깅 추가
-    console.log('WebSocket upgrade request:', { 
-      pathname, 
-      headers: request.headers,
-      url: request.url,
-      ip: request.socket.remoteAddress,
-      cookie: request.headers.cookie
-    });
-  
-    if (pathname === '/chat') {
-      try {
-        // WebSocket 인증
-        console.log('Attempting WebSocket authentication...');
-        const isAuthenticated = await authenticateWebSocket(null, request);
-        
-        if (!isAuthenticated) {
-          console.log('WebSocket authentication failed:', {
-            ip: request.socket.remoteAddress,
-            cookie: request.headers.cookie
-          });
-          socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n');
-          socket.destroy();
-          return;
-        }
-  
-        console.log('WebSocket authentication successful:', {
-          user: request.user,
-          ip: request.socket.remoteAddress
+  if (pathname === '/chat') {
+    try {
+      // WebSocket 인증
+      console.log('Attempting WebSocket authentication...');
+      const isAuthenticated = await authenticateWebSocket(null, request);
+
+      if (!isAuthenticated) {
+        console.log('WebSocket authentication failed:', {
+          ip: request.socket.remoteAddress,
+          cookie: request.headers.cookie
         });
-  
-        wss.handleUpgrade(request, socket, head, (ws) => {
-          console.log('WebSocket connection established (upgrade handler)');
-          wss.emit('connection', ws, request);
-        });
-      } catch (error) {
-        console.error('WebSocket upgrade error:', error);
-        socket.write('HTTP/1.1 500 Internal Server Error\r\n\r\n');
+        socket.write('HTTP/1.1 401 Unauthorized\r\n\r\n');
         socket.destroy();
+        return;
       }
-    } else {
-      console.log('WebSocket upgrade rejected - invalid path:', pathname);
-      socket.write('HTTP/1.1 404 Not Found\r\n\r\n');
+
+      console.log('WebSocket authentication successful:', {
+        user: request.user,
+        ip: request.socket.remoteAddress
+      });
+
+      wss.handleUpgrade(request, socket, head, (ws) => {
+        console.log('WebSocket connection established (upgrade handler)');
+        wss.emit('connection', ws, request);
+      });
+    } catch (error) {
+      console.error('WebSocket upgrade error:', error);
+      socket.write('HTTP/1.1 500 Internal Server Error\r\n\r\n');
       socket.destroy();
     }
-  });
-  wss.on('connection', async (ws, req) => {
-    console.log('New WebSocket connection attempt', {
-      ip: req.socket?.remoteAddress,
-      cookie: req.headers.cookie,
-      user: req.user
-    });
-  
-    // 연결 상태 모니터링
-    ws.isAlive = true;
-    ws.on('pong', () => {
-      ws.isAlive = true;
-    });
-  
-    // 클라이언트 초기화 메시지 처리 및 채팅 메시지 처리
-    ws.on('message', async raw => {
-      try {
-        const data = JSON.parse(raw);
-        console.log('Received WebSocket message:', data, {
-          user: req.user,
-          ip: req.socket?.remoteAddress
-        });
-  
-        if (data.type === 'init') {
-          console.log('Client initialization:', data);
-          ws.send(JSON.stringify({
-            type: 'init',
-            status: 'success',
-            userId: req.user?.userId,
-            isGuest: req.user?.isGuest
-          }));
-          return;
-        }
-  
-        switch (data.type) {
-          case 'chat':
-            console.log('Processing chat message:', data, { user: req.user });
-            await handleChatMessage(data, req.user);
-            break;
-          case 'typing':
-            console.log('Processing typing status:', data, { user: req.user });
-            handleTypingStatus(data, req.user);
-            break;
-          default:
-            console.log('Unknown message type:', data.type);
-        }
-      } catch (error) {
-        console.error('Error processing WebSocket message:', error);
-        ws.send(JSON.stringify({
-          type: 'error',
-          message: 'Failed to process message'
-        }));
-      }
-    });
-  
-    ws.on('close', () => {
-      console.log('WebSocket connection closed', {
-        user: req.user,
-        ip: req.socket?.remoteAddress
-      });
-      ws.isAlive = false;
-    });
-  
-    ws.on('error', (error) => {
-      console.error('WebSocket error:', error, {
-        user: req.user,
-        ip: req.socket?.remoteAddress
-      });
-    });
-  });
-  
-  // 주기적인 연결 상태 체크 (30초마다)
-  const interval = setInterval(() => {
-    wss.clients.forEach((ws) => {
-      if (ws.isAlive === false) {
-        console.log('Terminating inactive WebSocket connection');
-        return ws.terminate();
-      }
-      ws.isAlive = false;
-      ws.ping();
-    });
-  }, 30000);
-  
-  // 서버 종료 시 정리
-  wss.on('close', () => {
-    clearInterval(interval);
+  } else {
+    console.log('WebSocket upgrade rejected - invalid path:', pathname);
+    socket.write('HTTP/1.1 404 Not Found\r\n\r\n');
+    socket.destroy();
+  }
+});
+wss.on('connection', async (ws, req) => {
+  console.log('New WebSocket connection attempt', {
+    ip: req.socket?.remoteAddress,
+    cookie: req.headers.cookie,
+    user: req.user
   });
 
-  // ✅ DB 연결 테스트 로그
-db.query('SELECT DATABASE() AS db')
-.then(([rows]) => {
-  console.log(`✅ DB 연결 확인: 현재 연결된 DB - ${rows[0].db}`);
-})
-.catch((err) => {
-  console.error('❌ DB 연결 실패:', err.message);
+  // 연결 상태 모니터링
+  ws.isAlive = true;
+  ws.on('pong', () => {
+    ws.isAlive = true;
+  });
+
+  // 클라이언트 초기화 메시지 처리 및 채팅 메시지 처리
+  ws.on('message', async raw => {
+    try {
+      const data = JSON.parse(raw);
+      console.log('Received WebSocket message:', data, {
+        user: req.user,
+        ip: req.socket?.remoteAddress
+      });
+
+      if (data.type === 'init') {
+        console.log('Client initialization:', data);
+        ws.send(JSON.stringify({
+          type: 'init',
+          status: 'success',
+          userId: req.user?.userId,
+          isGuest: req.user?.isGuest
+        }));
+        return;
+      }
+
+      switch (data.type) {
+        case 'chat':
+          console.log('Processing chat message:', data, { user: req.user });
+          await handleChatMessage(data, req.user);
+          break;
+        case 'typing':
+          console.log('Processing typing status:', data, { user: req.user });
+          handleTypingStatus(data, req.user);
+          break;
+        default:
+          console.log('Unknown message type:', data.type);
+      }
+    } catch (error) {
+      console.error('Error processing WebSocket message:', error);
+      ws.send(JSON.stringify({
+        type: 'error',
+        message: 'Failed to process message'
+      }));
+    }
+  });
+
+  ws.on('close', () => {
+    console.log('WebSocket connection closed', {
+      user: req.user,
+      ip: req.socket?.remoteAddress
+    });
+    ws.isAlive = false;
+  });
+
+  ws.on('error', (error) => {
+    console.error('WebSocket error:', error, {
+      user: req.user,
+      ip: req.socket?.remoteAddress
+    });
+  });
 });
+
+// 주기적인 연결 상태 체크 (30초마다)
+const interval = setInterval(() => {
+  wss.clients.forEach((ws) => {
+    if (ws.isAlive === false) {
+      console.log('Terminating inactive WebSocket connection');
+      return ws.terminate();
+    }
+    ws.isAlive = false;
+    ws.ping();
+  });
+}, 30000);
+
+// 서버 종료 시 정리
+wss.on('close', () => {
+  clearInterval(interval);
+});
+
+// ✅ DB 연결 테스트 로그
+db.query('SELECT DATABASE() AS db')
+  .then(([rows]) => {
+    console.log(`✅ DB 연결 확인: 현재 연결된 DB - ${rows[0].db}`);
+  })
+  .catch((err) => {
+    console.error('❌ DB 연결 실패:', err.message);
+  });
 

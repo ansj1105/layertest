@@ -4,9 +4,11 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import path from 'path'
 
-export default ({ mode }) => {
+export default async ({ mode }) => {
   // 1) Load all .env files for this mode (development/production)
   const env = loadEnv(mode, process.cwd(), '')
+
+  const isAnalyze = mode === 'analyze';
 
   return defineConfig({
     plugins: [
@@ -90,7 +92,16 @@ export default ({ mode }) => {
             }
           ]
         }
-      })
+      }),
+      // Add visualizer plugin for analyze mode
+      ...(isAnalyze ? [
+        (await import('rollup-plugin-visualizer')).default({
+          filename: 'dist/stats.html',
+          open: true,
+          gzipSize: true,
+          brotliSize: true
+        })
+      ] : [])
     ],
     build: {
       rollupOptions: {
@@ -98,7 +109,31 @@ export default ({ mode }) => {
           main: path.resolve(__dirname, 'index.html'),
           admin: path.resolve(__dirname, 'admin.html'),
         },
+        output: {
+          manualChunks: {
+            vendor: ['react', 'react-dom'],
+            router: ['react-router-dom'],
+            ui: ['@headlessui/react', 'lucide-react'],
+            charts: ['react-chartjs-2'],
+            utils: ['axios', 'zustand', 'date-fns'],
+            i18n: ['react-i18next', 'i18next', 'i18next-browser-languagedetector'],
+            socket: ['socket.io-client'],
+            qr: ['qrcode.react'],
+            recaptcha: ['react-google-recaptcha'],
+            carousel: ['react-slick', 'slick-carousel'],
+            datepicker: ['react-datepicker']
+          }
+        }
       },
+      chunkSizeWarningLimit: 1000,
+      sourcemap: false,
+      minify: 'terser',
+      terserOptions: {
+        compress: {
+          drop_console: true,
+          drop_debugger: true
+        }
+      }
     },
     server: {
       host: '0.0.0.0',

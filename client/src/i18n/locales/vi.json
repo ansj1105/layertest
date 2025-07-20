@@ -2,951 +2,973 @@
   "notification": {
     "title": "Thông báo hệ thống"
   },
-    "order_history": {
-      "title": "Đơn hàng và Đổi thưởng của tôi",
-      "orders": {
-        "title": "Lịch sử Đơn hàng",
-        "no_orders": "Không tìm thấy đơn hàng nào",
-        "table": {
-          "order_id": "Mã Đơn hàng",
-          "token": "Token",
-          "amount": "Số lượng",
-          "price": "Giá (USDT)",
-          "total": "Tổng (USDT)",
-          "status": "Trạng thái",
-          "unlock_date": "Ngày mở khóa",
-          "order_date": "Ngày đặt"
-        },
-        "status": {
-          "pending": "Đang chờ",
-          "completed": "Hoàn thành",
-          "cancelled": "Đã hủy"
-        }
-      },
-      "redemptions": {
-        "ref_type": {
-          "exchange": "Đổi",
-          "purchase": "Mua",
-          "redeem": "Nhận thưởng",
-          "transfer": "Chuyển",
-          "token_exchange": "Đổi",
-          "token_purchase": "Mua",
-          "token_redeem": "Nhận thưởng",
-          "token_transfer": "Chuyển"
-        }
-      }
-    },
-    "Wallet": "Ví",
-    "Balance": "Số dư",
-    "Transfer": "Chuyển",
-    "Transactions": "Giao dịch",
-    "Register": "Đăng ký",
-    "Home": "Trang chủ",
-    "coin_list": {
-      "trading_pair": "Cặp giao dịch",
-      "latest_price": "Giá mới nhất",
-      "change_percent": "Biến động (%)"
-    },
-    "escrow": {
-      "title": "Ký quỹ",
-      "investment_amount": "Số tiền đầu tư",
-      "profit": "Lợi nhuận"
-    },
-    "invite": {
-      "title": "Mời bạn bè",
-      "invite_link": "Link mời",
-      "copy_invite_link": "Sao chép link mời",
-      "product_description": "Sản phẩm định lượng đẳng cấp thế giới, miễn phí cho mọi người",
-      "referral_code": "Mã giới thiệu",
-      "copy_referral_code": "Sao chép mã giới thiệu",
-      "copy_success": "Sao chép thành công",
-      "error": {
-        "load_failed": "Tải mã giới thiệu thất bại",
-        "copy_failed": "Sao chép vào clipboard thất bại",
-        "fallback_copy_failed": "Sao chép phương án dự phòng thất bại"
-      }
-    },
-    "language": {
-      "settings": "Cài đặt ngôn ngữ",
-      "not_implemented": "Ngôn ngữ này đang được phát triển."
-    },
-    "lockup": {
-      "title": "Chi tiết khóa",
-      "total_balance": "Tổng số dư",
-      "total_locked": "Tổng khóa",
-      "no_active_lockups": "Không có khóa nào",
+  "order_history": {
+    "title": "Đơn hàng và Đổi thưởng của tôi",
+    "orders": {
+      "title": "Lịch sử Đơn hàng",
+      "no_orders": "Không tìm thấy đơn hàng nào",
       "table": {
-        "id": "Mã khóa",
+        "order_id": "Mã Đơn hàng",
+        "token": "Token",
         "amount": "Số lượng",
-        "unlock_date": "Ngày mở khóa"
-      }
-    },
-    "register": {
-      "title": "Đăng ký",
-      "by_phone": "Qua điện thoại",
-      "by_email": "Qua email",
-      "name": "Họ tên",
-      "phone": "Số điện thoại",
-      "email": "Email",
-      "password": "Mật khẩu",
-      "confirmPassword": "Xác nhận mật khẩu",
-      "referral": "Mã giới thiệu",
-      "submit": "Đăng ký",
-      "name_error": "Tên phải có ít nhất 2 ký tự.",
-      "email_error": "Định dạng email không hợp lệ.",
-      "phone_error": "Số điện thoại không hợp lệ.",
-      "password_error": "Mật khẩu phải có ít nhất 6 ký tự.",
-      "confirm_error": "Mật khẩu không khớp.",
-      "captcha_required": "Vui lòng hoàn thành CAPTCHA.",
-      "success": "Đăng ký thành công! Vui lòng đăng nhập.",
-      "fail": "Đăng ký thất bại.",
-      "no_account": "Đã có tài khoản?",
-      "login": "Đăng nhập",
-      "agree": "Bằng cách đăng ký, bạn đồng ý với <0>điều khoản</0> và <1>chính sách bảo mật</1> của chúng tôi.",
-      "terms": "Điều khoản dịch vụ",
-      "privacy": "Chính sách bảo mật"
-    },
-    "login": {
-      "title": "Đăng nhập",
-      "email": "Email hoặc Tên đăng nhập",
-      "password": "Mật khẩu",
-      "submit": "Đăng nhập",
-      "identifier_error": "Vui lòng nhập email hoặc số điện thoại hợp lệ",
-      "email_error": "Vui lòng nhập email hợp lệ",
-      "password_error": "Vui lòng nhập mật khẩu",
-      "captcha_required": "Vui lòng hoàn thành reCAPTCHA",
-      "success": "Đăng nhập thành công!",
-      "fail": "Đăng nhập thất bại",
-      "no_account": "Chưa có tài khoản?",
-      "register": "Đăng ký",
-      "forgot_password": "Quên mật khẩu?",
-      "identifier": "ID",
-      "forgot": "Tìm mật khẩu"
-    },
-    "bnbRecharge": {
-  "title": "Nạp BNB",
-  "loading": "⏳ Đang tải BNB...",
-  "back": "Quay lại",
-  "protocol": "BEP-20",
-  "scanLabel": "Quét mã QR để nạp BNB",
-  "noWallet": "Không tìm thấy ví BNB. Vui lòng tạo ví mới.",
-  "address": "Địa chỉ BNB",
-  "copy": "Sao chép",
-  "copySuccess": "Đã sao chép địa chỉ BNB!"
-},
-    "walletLogs": {
-      "in" : "Gửi tiền",
-      "out" : "Rút tiền",
-      "prev": "Trước",
-      "next": "Tiếp",
-      "back": "Quay lại",
-      "title": "Lịch sử chuyển",
-      "fundingDescriptions": {
-        "initial_profit": "Phân phối lợi nhuận ban đầu",
-        "investment": "Tham gia đầu tư dự án",
-        "expired_return": "Hoàn trả vốn đầu tư",
-        "daily_profit": "Tích lũy lợi nhuận hàng ngày ({{days}} ngày)"
-      },
-      "quantTypes" :{
-        "trade": "Giao dịch",
-        "referral": "Giới thiệu"
-      },
-      "tabs": {
-        "transfer": "Chuyển",
-        "walletEarnings": "Thu nhập Ví-Logs",
-        "financeIncome": "Thu nhập Tài chính-Logs"
-      },
-      "columns": {
-        "description": "Mô tả",
-        "direction" : "hướng",
-        "type": "Loại",
-        "amount": "Số lượng",
-        "fee": "Phí",
-        "net": "Thực nhận",
-        "date": "Ngày",
-        "category": "Loại"
-      },
-      "rewardTypes": {
-        "join": "Thưởng đăng ký",
-        "invite": "Thưởng giới thiệu"
-      },
-      "types": {
-        "fund_to_quant": "Quỹ → Quant",
-        "quant_to_fund": "Quant → Quỹ"
-      },
-      "loading": "Đang tải...",
-      "noRecords": "Không có bản ghi nào."
-    },
-    "common": {
-      "faqTitle": "Câu hỏi thường gặp",
-      "back": "Quay lại",
-      "loading": "Đang tải...",
-      "no_data": "Không có dữ liệu",
-      "problem1": {
-        "question": "Sản phẩm Tài chính là gì và tôi kiếm được tiền như thế nào?",
-        "answer": "Sản phẩm quản lý tài chính là công cụ và giải pháp do công ty phát triển giúp người dùng nhận thưởng nhanh.\nBằng cách staking tài sản số trên mạng blockchain, người dùng có thể nhận phần thưởng dựa trên cơ chế POS (Proof of Stake).\nTrong cơ chế này, người dùng ủy quyền tài sản cho một node, node đó sẽ thực hiện nhiệm vụ tạo block và đóng gói giao dịch, nhận phần thưởng và chia sẻ cho người dùng theo tỷ lệ staking."
-      },
-      "problem2": {
-        "question": "Lợi nhuận kỳ vọng được tính như thế nào?",
-        "answer": "Lợi nhuận kỳ vọng là ước tính ngày dựa trên số lượng đăng ký và lãi suất tham khảo hàng năm của sản phẩm, chỉ mang tính chất tham khảo."
-      },
-      "problem3": {
-        "question": "Khi nào bắt đầu tính lãi?",
-        "answer": "Lãi bắt đầu tính từ 00:00 ngày T+1."
-      },
-      "problem4": {
-        "question": "Khi nào thanh toán?",
-        "answer": "Lãi tính từ T+1 và được trả cùng gốc khi đáo hạn."
-      },
-      "problem5": {
-        "question": "Sau khi sản phẩm đáo hạn thì sao?",
-        "answer": "Sản phẩm kỳ hạn sẽ tự động tất toán khi đáo hạn."
-      }
-    },
-    "quantTrading": {
-      "dailyLimitReached" : "Số lần giao dịch hôm nay đã vượt quá giới hạn",
-      "vipLevel": "Cấp VIP",
-      "leaderboardTitle": "Bảng xếp hạng",
-      "processing": "Đang xử lý giao dịch...",
-      "tradingCountdown": "Đang xử lý giao dịch... {{seconds}}s",
-      "warningMessage": "Vui lòng không đóng hoặc tải lại trang trong khi giao dịch đang diễn ra",
-      "leaderboard": {
-        "name": "Thành viên",
-        "earnings": "Thu nhập",
-        "status": "Trạng thái"
-      },
-      "confirmText": "Bạn sắp giao dịch {{amount}} USDT. Tiếp tục?",
-      "errorMinHolding": "Bạn phải giữ tối thiểu {{min}} USDT để giao dịch.",
-      "errorMaxInvestment": "Giao dịch tối đa mỗi lần là {{max}} USDT.",
-      "cooldownMessage": "Bạn có thể giao dịch lại sau {{min}}m {{sec}}s",
-      "tradeButton": "{{remaining}}/{{dailyLimit}} lần · {{start}}",
-      "cooldownAlert": "Vui lòng chờ {{min}}m {{sec}}s trước khi giao dịch lại.",
-      "confirmTitle": "Xác nhận giao dịch",
-      "partnersTitle": "Đối tác chính",
-      "history": "Lịch sử",
-      "time": "Thời gian",
-      "status": "Trạng thái",
-      "success": "Thành công",
-      "position": "Kích cỡ vị thế",
-      "maxAll": "Tất cả",
-      "buyPlatform": "Mua tại",
-      "buyPrice": "Giá mua",
-      "sellPlatform": "Bán tại",
-      "sellPrice": "Giá bán",
-      "serviceFee": "Phí dịch vụ",
-      "profit": "Lợi nhuận",
-      "commissionRate": "Tỷ lệ hoa hồng",
-      "noHistory": "Không có lịch sử",
-      "currentLevel": "Cấp VIP hiện tại",
-      "enterAmount": "Nhập số lượng",
-      "cancel": "Hủy",
-      "confirm": "Xác nhận",
-      "back": "Quay lại",
-      "title": "Giao dịch Quant",
-      "available": "Tài sản khả dụng",
-      "todayEarning": "Thu nhập hôm nay",
-      "totalEarning": "Tổng thu nhập",
-      "level": "Cấp độ",
-      "progress": "{{current}}/{{total}}",
-      "intro": "Giới thiệu Quant Trading",
-      "invite": "Mời bạn bè",
-      "dailyLimit": "Giới hạn giao dịch hàng ngày",
-      "times": "lần",
-      "feeRate": "Tỷ lệ lợi nhuận",
-      "maxInvestment": "Tối đa đầu tư",
-      "minHoldings": "Tối thiểu giữ",
-      "conditions": "Điều kiện",
-      "start": "Bắt đầu giao dịch",
-      "confirmStart": "Bắt đầu Quant Trading?",
-      "tradeError": "Giao dịch thất bại: ",
-      "loading": "Đang tải...",
-      "progressOverview": "Tổng quan tiến trình",
-      "previousLevel": "Cấp độ trước",
-      "higherLevel": "Cấp độ cao hơn"
-    },
-    "table": {
-        "id": "ID",
-        "amount": "Số lượng",
-        "flow": "Luồng",
-        "method": "Phương thức",
+        "price": "Giá (USDT)",
+        "total": "Tổng (USDT)",
         "status": "Trạng thái",
-        "date": "Ngày"
-      },
-      "flow": {
-        "deposit": "Gửi tiền",
-        "withdrawal": "Rút tiền"
+        "unlock_date": "Ngày mở khóa",
+        "order_date": "Ngày đặt"
       },
       "status": {
         "pending": "Đang chờ",
-        "processing": "Đang xử lý",
-        "success": "Thành công",
-        "failed": "Thất bại"
-      },
-      "noData": "Không tìm thấy bản ghi nào.",
-      "noDataAlt": "Không có dữ liệu",
-      "errorLoad": "Không tải được lịch sử.",
-      "tokenPurchase": {
-        "title": "Token USC",
-        "lockupDetails": "Chi tiết khóa",
-        "purchaseSuccessTitle": "Mua thành công",
-        "purchaseSuccessWithAmount": "{{amount}} USDT đã mua.",
-        "purchaseFailTitle": "Mua thất bại",
-        "redeemSuccess": "Đổi thưởng thành công",
-        "available": "USC khả dụng",
-        "inputUsdc": "USC",
-        "redeemTitle": "Đổi thưởng",
-        "maxAll": "Tất cả",
-        "redeemSubmit": "Gửi",
-        "quantity": "Số lượng",
-        "token": "Token mỗi",
-        "totalCost": "Tổng chi phí (USDT)",
-        "yourBalance": "Số dư USDT",
-        "price": "Giá mỗi Token USC",
-        "min": "Tối thiểu",
-        "selected": "Đã chọn",
-        "max": "Tối đa",
-        "feeRate": "Phí (%)",
-        "minPurchase": "Mua tối thiểu",
-        "maxPurchase": "Mua tối đa",
-        "lockupPeriod": "Thời gian khóa",
-        "days": "ngày",
-        "canBuy": "Có thể mua",
-        "cannotBuy": "Không thể mua",
-        "back": "Quay lại",
-        "details": "Chi tiết",
-        "quantWallet": "Ví Quant (USDT)",
-        "uscWallet": "Ví USC",
-        "swap": "Hoán đổi",
-        "recharge": "Nạp tiền",
-        "deposit": "Gửi tiền",
-        "redeem": "Đổi thưởng",
-        "orderDetails": "Chi tiết đơn hàng",
-        "swapQuantToFundTitle": "Hoán Quant → Fund",
-        "swapFundToQuantTitle": "Hoán Fund → Quant",
-        "inputUsdt": "Nhập USDT",
-        "balance": "Số dư:",
-        "fee": "Phí ({{rate}}%)",
-        "afterSwap": "Sau hoán đổi:",
-        "submit": "Gửi",
-        "noSales": "Không có đợt bán USC nào.",
-        "phase": " Giai đoạn",
-        "totalSupply": "Tổng cung:",
-        "remainingSupply": "Còn lại:",
-        "startTime": "Thời gian bắt đầu:",
-        "endTime": "Thời gian kết thúc:",
-        "buy": "Mua",
-        "promptAmount": "Nhập số USC muốn mua:",
-        "purchaseSuccess": "Mua thành công!",
-        "errors": {
-          "invalidAmount": "Vui lòng nhập số hợp lệ.",
-          "insufficientQuant": "Không đủ số dư Quant.",
-          "insufficientFund": "Không đủ số dư Fund.",
-          "swapFail": "Hoán đổi thất bại.",
-          "depositFail": "Gửi tiền thất bại.",
-          "purchaseFail": "Mua thất bại."
-        }
-      },
-      "token": {
-        "header": "Token USC",
-        "recharge": "Nạp tiền",
-        "withdraw": "Rút tiền",
-        "agent": "Đại lý",
-        "more": "Xem thêm",
-        "invite": "Mời bạn bè"
-      },
-      "bottomNav": {
-        "home": "Trang chủ",
-        "team": "Đội của tôi",
-        "quant": "Quantify",
-        "funding": "Tài trợ",
-        "mine": "Cá nhân"
-      },
-      "withdraw": {
-        "setTradePasswordFirst": "Vui lòng đặt mật khẩu giao dịch trước",
-        "setupTradePassword": "Đặt mật khẩu giao dịch",
-        "cancel": "Hủy",
-            "currentBalance": "Số dư hiện tại: USDT",
-    "balanceAfter": "Số dư sau khi rút: USDT",
-        "setup": "Xác nhận",
-        "title": "Rút USDT",
-        "newTradePassword": "Mật khẩu giao dịch mới",
-        "tradePasswordPlaceholder": "Nhập mật khẩu giao dịch",
-        "confirm": "Xác nhận",
-        "enterTradePassword": "Nhập mật khẩu giao dịch",
-        "tradePasswordSet": "Mật khẩu giao dịch đã được đặt",
-        "tradePasswordAlreadySet": "Mật khẩu giao dịch đã được đặt",
-        "confirmTradePassword": "Xác nhận mật khẩu giao dịch",
-        "addressLabel": "Địa chỉ rút",
-        "addressPlaceholder": "Địa chỉ TRC20 USDT",
-        "addressPlaceholderBNB": "Địa chỉ BNB",
-        "invalidAddress": "Địa chỉ không hợp lệ.",
-        "validAddress": "Địa chỉ hợp lệ.",
-        "amountLabel": "Số tiền rút",
-        "amountPlaceholder": "ví dụ: 10.5",
-        "feeRate": "Tỷ lệ phí",
-        "estimatedFee": "Phí ước tính",
-        "netAmount": "Số nhận",
-        "submitting": "Đang gửi…",
-        "submit": "Gửi"
-      },
-      "errors": {
-        "invalidAddress": "Vui lòng nhập địa chỉ hợp lệ.",
-        "invalidAmount": "Vui lòng nhập số tiền rút hợp lệ.",
-        "submitFailed": "Gửi yêu cầu rút tiền thất bại."
-      },
-      "success": {
-        "submitted": "Yêu cầu rút tiền đã được gửi thành công."
-      },
-      "funding": {
-        "active_projects": "Dự án đang diễn ra",
-        "expired_projects": "Dự án đã kết thúc",
-        "no_active_projects": "Không có dự án đang diễn ra.",
-        "investing_amount": "Số dư đang đầu tư: {{amount}} USDT",
-        "no_expired_projects": "Không có dự án đã kết thúc.",
-        "expired_label": "Dự án đã hết hạn",
-        "detail2": {
-          "loading": "Đang tải...",
-          "loadError": "Không tải được thông tin dự án:",
-          "subscribeSuccessTitle": "Đầu tư thành công",
-          "subscribeSuccessWithAmount": "{{amount}} USDT đã đầu tư.",
-          "subscribeErrorTitle": "Đầu tư thất bại",
-          "invalidAmount": "Vui lòng nhập số hợp lệ.",
-          "amountRange": "Vui lòng nhập số trong khoảng {{min}} đến {{max}}.",
-          "insufficientBalance": "Bạn không đủ số dư.",
-          "exceedRemaining": "Vượt quá năng lực còn lại {{remaining}} USDT.",
-          "subscribe": "Đăng ký",
-          "subscribeSuccess": "Đăng ký thành công.",
-          "subscribeError": "Lỗi khi đăng ký.",
-          "descriptionLabel": "Mô tả:",
-          "cycleLabel": "Chu kỳ: {{cycle}} ngày",
-          "dailyRateLabel": "Lãi hàng ngày: {{rate}}%",
-          "minMaxLabel": "Tối thiểu: {{min}} USDT, Tối đa: {{max}} USDT",
-          "targetLabel": "Mục tiêu: {{target}} USDT",
-          "currentLabel": "Đã đầu tư: {{current}} USDT",
-          "availableLabel": "Số dư khả dụng: {{balance}} USDT",
-          "amountPlaceholder": "Nhập số lượng",
-          "investorsTitle": "Nhà đầu tư",
-          "noInvestors": "Chưa có nhà đầu tư."
-        },
-        "transfer_fail": "Chuyển thất bại",
-        "deposit_modal": {
-          "success": "Thành công",
-          "title": "Chuyển vào",
-          "net_amount": "Sau chuyển: {{net}} (sau còn: {{remain}})",
-          "amount_placeholder": "Nhập số lượng",
-          "fund_wallet": "Ví đầu tư: {{balance}}",
-          "max_label": "Chuyển tất cả",
-          "real_account": "Tài khoản chính: {{balance}}",
-          "balance": "Số dư: {{balance}}",
-          "fee": "Phí xử lý: {{fee}} (Tại tỷ lệ: {{rate}}%)",
-          "submit": "Gửi"
-        },
-        "withdraw_modal": {
-          "title": "Chuyển ra",
-          "success": "Thành công",
-          "net_amount": "Sau chuyển: {{net}} (sau còn: {{remain}})",
-          "amount_placeholder": "Nhập số lượng",
-          "quant_wallet": "Ví Quant: {{balance}}",
-          "max_label": "Rút tất cả",
-          "real_account": "Tài khoản chính: {{balance}}",
-          "fee": "Phí xử lý: {{fee}} (Tại tỷ lệ: {{rate}}%)",
-          "submit": "Gửi"
-        }
-      },
-      "info": {
-        "title": "Sản phẩm Tài chính là gì?",
-        "definition": "Sản phẩm tài chính cho phép người dùng khóa một khoản tiền trong một khoảng thời gian để nhận thưởng. Chúng bao gồm nhiều gói do Upstart quản lý, mỗi gói có lãi suất và thời hạn riêng.",
-        "settlement": "Thanh toán vào 00:00 UTC hàng ngày, và thu nhập từ ngày T có thể truy cập từ ngày T+1.",
-        "tradingTitle": "Giải thích giao dịch",
-        "trade1": "1. **Mua**: Đăng ký sản phẩm để khóa tiền trong thời hạn quy định.",
-        "trade2": "2. **Thu nhập**: Nhận thưởng hàng ngày theo lãi suất công bố, được ghi có mỗi 24 giờ.",
-        "trade3": "3. **Đổi thưởng**: Sau kỳ hạn, vốn và thưởng được trả về ví tài chính của bạn.",
-        "trade4": "4. **Rút sớm**: Hiện chưa hỗ trợ. Phiên bản tương lai có thể cho phép rút sớm với phí."
-      },
-      "header": "Quản lý Tài trợ",
-      "loading": "Đang tải...",
-      "wallet_balance": "Số dư Ví Tài chính",
-      "detail": "Chi tiết",
-      "deposit_request": "Yêu cầu Gửi tiền",
-      "withdraw_request": "Yêu cầu Quant",
-      "recharge": "Nạp tiền",
-      "all_transactions": "Tất cả giao dịch",
-      "today_income": "Thu nhập hôm nay",
-      "total_income": "Tổng thu nhập",
-      "no_projects": "Không có dự án đang diễn ra.",
-      "project": {
-        "description": "Mô tả: {{description}}",
-        "available": "Khả dụng: {{min}} ~ {{max}} USDT",
-        "daily_rate": "Lãi hàng ngày: {{rate}}%",
-        "duration": "Thời gian: {{cycle}} ngày (đến {{end}})",
-        "apply": "Áp dụng ngay"
-      },
-      "charge_modal": {
-        "title": "Cách nạp tiền",
-        "usdt_alert": "Vui lòng gửi USDT đến địa chỉ ví được chỉ định."
-      },
-      "Upstart": {
-        "title": "Tổng quan Upstart",
-        "vip_upgrade_criteria": "Tiêu chí Nâng cấp VIP",
-        "vip": {
-          "vip1": "VIP1: Yêu cầu tối thiểu 35 USDT tài sản tiền mã hóa.",
-          "vip2": "VIP2: Ít nhất 300 USDT tài sản + mời 2 thành viên A-level, 2 B-level và 2 C-level hoạt động.",
-          "vip3": "VIP3: Ít nhất 1000 USDT tài sản + mời và kích hoạt 5 thành viên A-level, 5 B-level và 5 C-level.",
-          "vip4": "VIP4: Ít nhất 5000 USDT tài sản + mời và kích hoạt 15 thành viên A-level, 15 B-level và 15 C-level.",
-          "vip5": "VIP5: Ít nhất 20000 USDT tài sản + mời và kích hoạt 30 thành viên A-level, 30 B-level và 30 C-level.",
-          "vip6": "VIP6: Ít nhất 50000 USDT tài sản + mời và kích hoạt 60 thành viên A-level, 60 B-level và 60 C-level."
-        },
-        "overview": {
-          "description": "Giao dịch định lượng Upstart thu thập và phân tích dữ liệu chính từ các sàn tiền mã hóa, thực hiện giao dịch khả năng cao qua thuật toán.",
-          "advantages": "Cung cấp khả năng sinh lời chính xác và hiệu quả hơn so với giao dịch thủ công.",
-          "assets": "Nhắm đến nhiều loại tiền mã hóa như BTC, ETH và USDT.",
-          "automation": "Hỗ trợ tự động vào lệnh, thoát lệnh, chốt lời và cắt lỗ.",
-          "no_manual": "Không cần quyết định thủ công. Kiếm lợi hiệu quả và ổn định."
-        },
-        "method": {
-          "title": "Phương pháp Định lượng",
-          "step": "Nhấn nút để bắt đầu và hoàn thành giao dịch tự động trong 1–3 phút.",
-          "profit_share": "50% lợi nhuận trả cho nền tảng, 50% trả cho người dùng.",
-          "example": "Ví dụ: Mua BTC 1000 USDT trên CoinEase, bán 1050 USDT trên OKX. 25 USDT cho nền tảng, 25 USDT trả cho bạn."
-        },
-        "vip_daily": {
-          "vip1": "VIP1: Tối đa 5 giao dịch/ngày, lợi nhuận hàng ngày 1,8%–2,1%.",
-          "vip2": "VIP2: Tối đa 6 giao dịch/ngày, lợi nhuận hàng ngày 2,3%–2,6%.",
-          "vip3": "VIP3: Tối đa 7 giao dịch/ngày, lợi nhuận hàng ngày 3,9%–4,3%.",
-          "vip4": "VIP4: Tối đa 8 giao dịch/ngày, lợi nhuận hàng ngày 5,9%–6,4%.",
-          "vip5": "VIP5: Tối đa 9 giao dịch/ngày, lợi nhuận hàng ngày 8,6%–9,4%.",
-          "vip6": "VIP6: Tối đa 10 giao dịch/ngày, lợi nhuận hàng ngày 9,5%–10,5%."
-        }
-      },
-      "agencyCooperation": {
-        "back": "Quay lại",
-        "title": "Hợp tác Đại lý",
-        "subTitle": "Quan hệ Đối tác Tư vấn",
-        "lines": [
-          "Tham gia chương trình đội ngũ Upstart và kiếm hoa hồng khi quảng bá Upstart. Tận hưởng tiện lợi và tăng trưởng bền vững.",
-          "Upstart cung cấp cơ chế thưởng hoa hồng nhóm hào phóng cho người dùng.",
-          "Bạn có thể nhận hoa hồng ở ba cấp (không làm giảm thu nhập của thành viên nhóm).",
-          "1. Khi bạn A trở thành thành viên cấp 1, bạn nhận 21% lợi nhuận hàng ngày của A.",
-          "2. Khi bạn B của A trở thành thành viên cấp 2, bạn nhận 7% lợi nhuận hàng ngày của B.",
-          "3. Khi bạn C của B trở thành thành viên cấp 3, bạn nhận 1% lợi nhuận hàng ngày của C.",
-          "Ví dụ: Nếu mỗi A, B, C kiếm 100$/ngày, bạn nhận:",
-          "• Hoa hồng cấp A: 100 × 21% = 21$",
-          "• Hoa hồng cấp B: 100 × 7% = 7$",
-          "• Hoa hồng cấp C: 100 × 1% = 1$",
-          "Tổng hoa hồng nhóm = 21% + 7% + 1% = 29% = 29$.",
-          "Nếu bạn có 10 thành viên A, 100 B và 1000 C kiếm mỗi người 100$/ngày thì:",
-          "Thu nhập cấp A = 100 × 21% × 10 = 210$",
-          "Thu nhập cấp B = 100 × 7% × 100 = 700$",
-          "Thu nhập cấp C = 100 × 1% × 1000 = 1000$",
-          "Thu nhập nhóm/ngày = 210 + 700 + 1000 = 1910$",
-          "Đây là thu nhập rất đáng kể."
-        ]
-      },
-      "companyIntro": {
-        "back": "Quay lại",
-        "title": "Giới thiệu Công ty",
-        "items": [
-          "Giao dịch Định lượng",
-          "Dự án Tài trợ",
-          "Dựa trên Blockchain",
-          "Bảo mật Hoàn hảo"
-        ]
-      },
-      "quantTutorial": {
-        "title": "Hướng dẫn Giao dịch Định lượng",
-        "description": "Hướng dẫn chi tiết về cách hệ thống định lượng tự động tạo lợi nhuận và cách sử dụng Upstart.",
-        "sections": {
-          "vipCriteria": "Tiêu chí Nâng cấp VIP",
-          "overview": "Tổng quan",
-          "dailyReturns": "Ví dụ Lợi nhuận VIP hàng ngày"
-        },
-        "vipUpgradeCriteria": [
-          "VIP1: Ít nhất 35 USDT tài sản.",
-          "VIP2: Ít nhất 300 USDT tài sản + mời 2 A, 2 B, 2 C.",
-          "VIP3: Ít nhất 1000 USDT tài sản + mời 5 A, 5 B, 5 C.",
-          "VIP4: Ít nhất 5000 USDT tài sản + mời 15 A, 15 B, 15 C.",
-          "VIP5: Ít nhất 20000 USDT tài sản + mời 30 A, 30 B, 30 C.",
-          "VIP6: Ít nhất 50000 USDT tài sản + mời 60 A, 60 B, 60 C."
-        ],
-        "overview": "Tổng quan Định lượng Upstart: Nhấn nút để khởi động giao dịch tự động, hoàn thành trong 1–3 phút và tạo lợi nhuận.",
-        "method": {
-          "title": "Phương pháp Giao dịch",
-          "description": "Nhấn nút để bắt đầu giao dịch tự động trong 1–3 phút. 50% lợi nhuận cho nền tảng, 50% trả bạn."
-        },
-        "vipDaily": [
-          "VIP1: Tối đa 5 giao dịch/ngày, lãi 1,8%–2,1%, 500 USDT stake thu 9–10,5 USDT.",
-          "VIP2: Tối đa 6 giao dịch/ngày, lãi 2,3%–2,6%, 2000 USDT stake thu 46–52 USDT.",
-          "VIP3: Tối đa 7 giao dịch/ngày, lãi 3,9%–4,3%, 5000 USDT stake thu 195–215 USDT.",
-          "VIP4: Tối đa 8 giao dịch/ngày, lãi 5,9%–6,4%, 10000 USDT stake thu 590–640 USDT.",
-          "VIP5: Tối đa 9 giao dịch/ngày, lãi 8,6%–9,4%, 20000 USDT stake thu 1720–1880 USDT.",
-          "VIP6: Tối đa 10 giao dịch/ngày, lãi 9,5%–10,5%, 20000 USDT stake thu 1900–2100 USDT."
-        ]
-      },
-      "commonProblems": {
-        "title": "Các vấn đề Thường gặp",
-        "lines": [
-          "Các vấn đề thường gặp khi tham gia chương trình Upstart:",
-          "1. Người mới phải nạp ít nhất 30 USDT để giao dịch.",
-          "2. Để rút, phải hoàn thành giao dịch định lượng ít nhất 20 USDT.",
-          "3. Số tiền rút tối thiểu là 50 USDT.",
-          "4. Rút tiền có thể mất 9–16 giờ.",
-          "5. Nạp tiền tăng tỷ lệ tương ứng VIP tự động.",
-          "6. Tỷ giá theo giá thị trường.",
-          "7. Tiêu chí có thể thay đổi theo phân tích thị trường.",
-          "8. Tuân thủ phương pháp nạp và quy định thị trường.",
-          "9. Kiểm tra nhật ký giao dịch thường xuyên.",
-          "10. Liên hệ hỗ trợ bất cứ lúc nào."
-        ],
-        "feesTitle": "Thông tin Phí",
-        "fees": [
-          "Hệ thống định lượng và bảo đảm tự động có thể phát sinh phí rút (0%–5%).",
-          "Phí có thể thay đổi mà không báo trước.",
-          "Thời gian xử lý tiêu chuẩn ~5 phút; có bảo đảm có thể đến 30 phút.",
-          "Tỷ giá tự cập nhật theo thị trường."
-        ]
-      },
-      "security": {
-        "title": "Trung tâm Bảo mật",
-        "email": "Email",
-        "tradePwd": "PIN Giao dịch",
-        "loginPwd": "Mật khẩu Đăng nhập",
-        "withdrawAddr": "Địa chỉ Rút"
-      },
-      "security_p": {
-        "title": "Liên kết Email",
-        "old_mailbox": "Email cũ",
-        "new_mailbox": "Email mới",
-        "enter_code": "Nhập mã xác thực",
-        "send_code": "Gửi mã",
-        "enter_new_email": "Nhập email mới",
-        "invalid_email": "Vui lòng nhập email hợp lệ.",
-        "code_sent": "Đã gửi mã xác thực.",
-        "code_failed": "Gửi mã thất bại.",
-        "update_warning": "Email không hợp lệ có thể gây khó khăn khi reset mật khẩu.",
-        "update_success": "Cập nhật email thành công.",
-        "update_failed": "Cập nhật email thất bại.",
-        "submit": "Gửi"
-      },
-      "trade_pwd": {
-        "title": "Đổi Mật khẩu Giao dịch",
-        "email_label": "Email",
-        "code_label": "Mã xác thực",
-        "code_placeholder": "Nhập mã",
-        "send_code": "Gửi mã",
-        "new_pwd_label": "Mật khẩu Mới",
-        "new_pwd_placeholder": "Nhập mật khẩu mới",
-        "confirm_pwd_label": "Xác nhận mật khẩu",
-        "confirm_pwd_placeholder": "Nhập lại mật khẩu mới",
-        "confirm_warning": "Email không hợp lệ có thể gây lỗi reset. Tiếp tục?",
-        "code_sent": "Đã gửi mã xác thực.",
-        "code_failed": "Gửi mã thất bại.",
-        "success": "Đổi mật khẩu giao dịch thành công.",
-        "failed": "Đổi mật khẩu thất bại.",
-        "submit": "Gửi"
-      },
-      "security_login": {
-        "title": "Đổi Mật khẩu Đăng nhập",
-        "old_password": "Mật khẩu hiện tại",
-        "new_password": "Mật khẩu mới",
-        "confirm_password": "Xác nhận mật khẩu",
-        "enter_old": "Nhập mật khẩu hiện tại",
-        "enter_new": "Nhập mật khẩu mới",
-        "enter_confirm": "Nhập lại mật khẩu mới",
-        "submit": "Gửi",
-        "mismatch_old": "Mật khẩu hiện tại không đúng.",
-        "mismatch_new": "Mật khẩu mới không khớp.",
-        "length_error": "Mật khẩu phải ít nhất 6 ký tự.",
-        "confirm_warning": "Bạn có chắc muốn đổi mật khẩu không?",
-        "success": "✅ Đổi mật khẩu thành công.",
-        "fail": "❌ Đổi mật khẩu thất bại."
-      },
-      "task": {
-        "title": "Trung tâm Nhiệm vụ",
-        "invite_reward": {
-          "title": "Thưởng Mời",
-          "success": "Thành công",
-          "reward_claimed": "{{level}}th level reward {{amount}} USDT has been credited.",
-          "error": "Lỗi",
-          "description": "Nhận thưởng khi đạt số giới thiệu hoạt động cấp 1",
-          "required": "Cấp {{level}} ({{required}} lượt giới thiệu)",
-          "reward": "Nhận {{amount}} USDT khi thành công.",
-          "claim": "Nhận",
-          "claimed": "Đã nhận",
-          "claim_fail": "Nhận thưởng thất bại."
-        },
-        "join_reward": {
-          "step" : "Thưởng Đăng ký",
-          "title": "Thưởng Đăng ký",
-          "success": "Thành công",
-          "reward_claimed": "Register bonus {{amount}} USDT has been credited.",
-          "error": "Lỗi",
-          "description": "Nhận {{amount}} USDT sau khi đăng ký thành công.",
-          "claim": "Nhận",
-          "claimed": "Đã nhận",
-          "claim_fail": "Nhận thưởng thất bại."
-        }
-      },
-      "app": {
-        "userAvatarAlt": "Ảnh đại diện",
-        "logoAlt": "Logo Upstart",
-        "mailIconAlt": "Biểu tượng thư",
-        "closeButton": "Đóng menu",
-        "idLabel": "ID",
-        "idCopied": "Đã sao chép ID!",
-        "recharge": "Nạp tiền",
-        "withdraw": "Rút tiền",
-        "customerService": "Chăm sóc KH",
-        "task_center": "Trung tâm Nhiệm vụ",
-        "wallets": "Ví Tài chính",
-        "faq": "FAQ",
-        "security_center": "Trung tâm Bảo mật",
-        "tutorial": "Hướng dẫn Quant",
-        "language": "Cài đặt Ngôn ngữ",
-        "company": "Về Công ty",
-        "download": "Tải App",
-        "logout": "Đăng xuất",
-        "confirm_logout": "Bạn có chắc muốn đăng xuất không?",
-        "navigation": {
-          "home": "Trang chủ",
-          "team": "Đội của tôi",
-          "quant": "Quant",
-          "funding": "Tài trợ",
-          "mine": "Cá nhân"
-        }
-      },
-      "agreement": {
-        "terms": {
-          "title": "Điều khoản Dịch vụ",
-          "content": "1. **Chung**\n\nChào mừng đến với Upstart. Bằng cách sử dụng dịch vụ của chúng tôi, bạn đồng ý với các Điều khoản Dịch vụ này.\n\n2. **Tài khoản**\n\nNgười dùng phải đăng ký với thông tin chính xác và chịu trách nhiệm về thông tin xác thực của mình.\n\n3. **Sử dụng**\n\nBạn không được lạm dụng dịch vụ, bao gồm nhưng không giới hạn hack, phân tích ngược hoặc bất kỳ hoạt động bất hợp pháp nào.\n\n4. **Dữ liệu & Quyền riêng tư**\n\nChúng tôi thu thập dữ liệu cá nhân để cung cấp và cải thiện dịch vụ. Vui lòng xem Chính sách Quyền riêng tư để biết chi tiết.\n\n5. **Sửa đổi**\n\nChúng tôi có thể cập nhật các điều khoản này; việc tiếp tục sử dụng đồng nghĩa bạn chấp nhận các thay đổi.\n\n6. **Luật áp dụng**\n\nCác điều khoản này được điều chỉnh bởi luật pháp tại khu vực của bạn."
-        },
-        "privacy": {
-          "title": "Chính sách Quyền riêng tư",
-          "content": "1. **Giới thiệu**\n\nUpstart (\"chúng tôi\",\"của chúng tôi\" hoặc \"chúng tôi\") tôn trọng quyền riêng tư của bạn và cam kết bảo vệ nó.\n\n2. **Thông tin Chúng tôi Thu thập**\n\n- **Dữ liệu Cá nhân**: tên, email, số điện thoại, địa chỉ ví.\n- **Dữ liệu Sử dụng**: trang đã xem, hành động đã thực hiện.\n\n3. **Cách Chúng tôi Sử dụng Thông tin**\n\nChúng tôi sử dụng dữ liệu của bạn để cung cấp, duy trì và cải thiện dịch vụ, giao tiếp với bạn và tuân thủ nghĩa vụ pháp lý.\n\n4. **Chia sẻ Dữ liệu**\n\nChúng tôi không bán dữ liệu cá nhân. Có thể chia sẻ với nhà cung cấp dịch vụ dưới cam kết bảo mật nghiêm ngặt.\n\n5. **Bảo mật**\n\nChúng tôi áp dụng các biện pháp tiêu chuẩn ngành để bảo vệ thông tin của bạn.\n\n6. **Quyền của Bạn**\n\nBạn có thể truy cập, chỉnh sửa hoặc xóa dữ liệu cá nhân bằng cách liên hệ hỗ trợ.\n\n7. **Thay đổi**\n\nChúng tôi có thể sửa đổi chính sách này; sẽ thông báo cho bạn về các thay đổi quan trọng."
-        }
-      },
-      "profile": {
-        "loading": "⏳ Đang tải...",
-        "greeting": "Chào, {{name}}",
-        "vipLevel": "VIP{{level}}",
-        "idLabel": "ID",
-        "summary": {
-          "totalBalance": "Tổng Số dư",
-          "totalEarnings": "Tổng Thu nhập",
-          "todayCommission": "Hoa hồng hôm nay",
-          "todayIncome": "Thu nhập hôm nay",
-          "yesterdayIncome": "Thu nhập hôm qua"
-        },
-        "actions": {
-          "recharge": "Nạp tiền",
-          "withdraw": "Rút tiền",
-          "details": "Chi tiết"
-        },
-        "referral": {
-          "level1": "Cấp 1",
-          "level2": "Cấp 2",
-          "level3": "Cấp 3"
-        },
-        "menu": {
-          "taskCenter": "Trung tâm Nhiệm vụ",
-          "faq": "FAQ",
-          "securityCenter": "Trung tâm Bảo mật",
-          "quantTutorial": "Hướng dẫn Quant",
-          "language": "Cài đặt Ngôn ngữ",
-          "aboutCompany": "Về Chúng tôi",
-          "downloadApp": "Tải App"
-        },
-        "logout": "Đăng xuất",
-        "copySuccess": "Đã sao chép ID vào clipboard!",
-        "logoutConfirmMessage": "Bạn có chắc muốn đăng xuất không?",
-        "logoutCancel": "Hủy",
-        "logoutConfirm": "Xác nhận"
-      },
-      "team": {
-        "todayJoinedCount": "Tham gia hôm nay",
-        "title": "Đội của tôi",
-        "loading": "⏳ Đang tải...",
-        "errorLoad": "Tải dữ liệu giới thiệu thất bại",
-        "errorLoadContrib": "Tải dữ liệu đóng góp thất bại",
-        "tabs": {
-          "members": "Thành viên",
-          "contrib": "Đóng góp"
-        },
-        "filter": {
-          "level": "Lọc theo Cấp:",
-          "period": "Khoảng thời gian:"
-        },
-        "level": {
-          "A": "Cấp A (1)",
-          "B": "Cấp B (2)",
-          "C": "Cấp C (3)"
-        },
-        "period": {
-          "today": "Hôm nay",
-          "week": "Tuần này",
-          "month": "Tháng này"
-        },
-        "noMembers": "Không có người được giới thiệu.",
-        "noRecords": "Không có bản ghi.",
-        "registered": "Đã đăng ký",
-        "vip": "VIP",
-        "teamSize": "Quy mô Đội",
-        "contrib": {
-          "todayEarnings": "Thu nhập hôm nay",
-          "totalEarnings": "Tổng Thu nhập"
-        },
-        "table": {
-          "account": "Tài khoản",
-          "level": "Cấp",
-          "time": "Thời gian",
-          "earning": "Thu nhập"
-        }
-      },
-      "referral2": {
-        "loading": "📡 Đang tải...",
-        "totalEarnings": "Tổng Thu nhập Đội",
-        "todayEarnings": "Thu nhập hôm nay",
-        "totalMembers": "Tổng số Thành viên",
-        "todayJoined": "Tham gia hôm nay",
-        "members": "thành viên"
-      },
-      "messages": {
-        "title": "Tin nhắn Cá nhân",
-        "no_messages": "Không tìm thấy tin nhắn nào"
-      },
-      "systemNotices": {
-        "title": "Trung tâm Tin nhắn",
-        "tabs": {
-          "notices": "Thông báo",
-          "inbox": "Thông báo Hệ thống"
-        },
-        "noMessages": "Không có tin nhắn",
-        "actions": {
-          "deleteAll": "Xóa tất cả",
-          "markAllRead": "Đánh dấu tất cả là đã đọc"
-        },
-        "detail": {
-          "title": "Chi tiết"
-        }
-      },
-      "withdrawPage": {
-        "title": "Phương thức Rút tiền",
-        "history": "Lịch sử Rút tiền",
-        "digitalCurrency": "Tiền mã hóa"
-      },
-      "appDownload": {
-        "back": "Quay lại",
-        "logoAlt": "Logo Upstart",
-        "version": "Phiên bản: {{version}}",
-        "qrCodeInstruction": "Hoặc quét QR code bằng điện thoại để cài đặt",
-        "androidAlt": "Tải trên Android",
-        "iosAlt": "Tải trên App Store",
-        "comingSoon": "Sắp có",
-        "downloadNow": "Tải ngay"
-      },
-      "languages": {
-        "english": "English",
-        "french": "Français",
-        "german": "Deutsch",
-        "korean": "한국어"
-      },
-      "forgotPassword": {
-        "title": "Đặt lại Mật khẩu",
-        "emailLabel": "Email",
-        "emailPlaceholder": "Nhập email đã đăng ký",
-        "codeLabel": "Mã Xác thực",
-        "codePlaceholder": "Nhập mã 6 chữ số",
-        "sendCode": "Gửi mã",
-        "verifyCode": "Xác thực mã",
-        "newPasswordLabel": "Mật khẩu Mới",
-        "newPasswordPlaceholder": "Nhập mật khẩu mới",
-        "confirmPasswordLabel": "Xác nhận Mật khẩu",
-        "confirmPasswordPlaceholder": "Nhập lại mật khẩu mới",
-        "resetButton": "Đặt lại Mật khẩu",
-        "codeSent": "Mã xác thực đã được gửi.",
-        "verificationSuccess": "Xác thực thành công.",
-        "resetSuccess": "Đã đặt lại mật khẩu thành công.",
-        "errors": {
-          "sendCode": "Gửi mã xác thực thất bại",
-          "codeRequired": "Vui lòng nhập mã xác thực",
-          "invalidCode": "Mã xác thực không hợp lệ",
-          "verifyFirst": "Vui lòng xác thực mã trước",
-          "passwordLength": "Mật khẩu phải có ít nhất 6 ký tự",
-          "passwordMismatch": "Mật khẩu không khớp",
-          "resetFailed": "Đặt lại mật khẩu thất bại"
-        }
-      },
-      "rechargeMethod": {
-        "title": "Phương thức Nạp tiền",
-        "historyButtonTitle": "Lịch sử Giao dịch",
-        "usdtLogoAlt": "Logo USDT",
-        "back": "Quay lại",
-        "methods": {
-          "usdt": {
-            "title": "USDT",
-            "description": "Nạp bằng USDT",
-            "select": "Chọn USDT"
-          }
-        },
-        "navigation": {
-          "toHistory": "Xem lịch sử",
-          "toDeposit": "Đi đến Nạp tiền"
-        }
-      },
-      "usdtRecharge": {
-        "title": "Nạp tiền",
-        "loading": "⏳ Đang tải...",
-        "scanQRCode": "Quét QR code để nạp tiền",
-        "addressCopied": "Đã sao chép địa chỉ!",
-        "copyAddress": "Sao chép địa chỉ",
-        "walletAddress": "Địa chỉ Ví",
-        "protocol": {
-          "title": "Giao thức",
-          "type": "TRC-20"
-        },
-        "errors": {
-          "noWallet": "Không có ví. Vui lòng tạo ví.",
-          "copyFailed": "Sao chép địa chỉ thất bại.",
-          "loadFailed": "Tải thông tin nạp USDT thất bại"
-        },
-        "qr": {
-          "title": "QR Code",
-          "instruction": "Quét QR code để nạp tiền",
-          "noAddress": "Không có địa chỉ ví"
-        },
-        "buttons": {
-          "back": "Quay lại",
-          "copy": "Sao chép"
-        },
-        "messages": {
-          "copied": "Đã sao chép!",
-          "copyFailed": "Sao chép thất bại"
-        }
-      },
-      "userChat": {
-        "guestTitle" : "Chat Khách",
-        "guestName" : "Tên",
-        "guestEmail" : "Email",
-        "startChat" : "Bắt đầu Chat",
-        "guestChat" : "Chat Khách",
-        "title": "Chat Hỗ trợ Khách hàng",
-        "me": "Tôi",
-        "admin": "Quản trị",
-        "unread": "(Chưa đọc)",
-        "sendButton": "Gửi",
-        "inputPlaceholder": "Nhập tin nhắn...",
-        "notificationAlt": "Hỗ trợ Khách hàng", 
-        "newMessageNotification": "📩 Có tin nhắn mới!",
-        "closeButton": "Đóng",
-        "errors": {
-          "messageSaveFailed": "Lưu tin nhắn thất bại",
-          "connectionFailed": "Kết nối máy chủ chat thất bại",
-          "loadFailed": "Tải tin nhắn thất bại"
-        },
-        "status": {
-          "connecting": "Đang kết nối...",
-          "connected": "Đã kết nối",
-          "disconnected": "Đã ngắt kết nối"
-        }
+        "completed": "Hoàn thành",
+        "cancelled": "Đã hủy"
       }
+    },
+    "redemptions": {
+      "ref_type": {
+        "exchange": "Đổi",
+        "purchase": "Mua",
+        "redeem": "Nhận thưởng",
+        "transfer": "Chuyển",
+        "token_exchange": "Đổi",
+        "token_purchase": "Mua",
+        "token_redeem": "Nhận thưởng",
+        "token_transfer": "Chuyển"
+      }
+    }
+  },
+  "Wallet": "Ví",
+  "Balance": "Số dư",
+  "Transfer": "Chuyển",
+  "Transactions": "Giao dịch",
+  "Register": "Đăng ký",
+  "Home": "Trang chủ",
+  "coin_list": {
+    "trading_pair": "Cặp giao dịch",
+    "latest_price": "Giá mới nhất",
+    "change_percent": "Biến động (%)"
+  },
+  "escrow": {
+    "title": "Ký quỹ",
+    "investment_amount": "Số tiền đầu tư",
+    "profit": "Lợi nhuận"
+  },
+  "invite": {
+    "title": "Mời bạn bè",
+    "invite_link": "Link mời",
+    "copy_invite_link": "Sao chép link mời",
+    "product_description": "Sản phẩm định lượng đẳng cấp thế giới, miễn phí cho mọi người",
+    "referral_code": "Mã giới thiệu",
+    "copy_referral_code": "Sao chép mã giới thiệu",
+    "copy_success": "Sao chép thành công",
+    "error": {
+      "load_failed": "Tải mã giới thiệu thất bại",
+      "copy_failed": "Sao chép vào clipboard thất bại",
+      "fallback_copy_failed": "Sao chép phương án dự phòng thất bại"
+    }
+  },
+  "language": {
+    "settings": "Cài đặt ngôn ngữ",
+    "not_implemented": "Ngôn ngữ này đang được phát triển."
+  },
+  "lockup": {
+    "title": "Chi tiết khóa",
+    "total_balance": "Tổng số dư",
+    "total_locked": "Tổng khóa",
+    "no_active_lockups": "Không có khóa nào",
+    "table": {
+      "id": "Mã khóa",
+      "amount": "Số lượng",
+      "unlock_date": "Ngày mở khóa"
+    }
+  },
+  "register": {
+    "title": "Đăng ký",
+    "by_phone": "Qua điện thoại",
+    "by_email": "Qua email",
+    "name": "Họ tên",
+    "phone": "Số điện thoại",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "referral": "Mã giới thiệu",
+    "submit": "Đăng ký",
+    "name_error": "Tên phải có ít nhất 2 ký tự.",
+    "email_error": "Định dạng email không hợp lệ.",
+    "phone_error": "Số điện thoại không hợp lệ.",
+    "password_error": "Mật khẩu phải có ít nhất 6 ký tự.",
+    "confirm_error": "Mật khẩu không khớp.",
+    "captcha_required": "Vui lòng hoàn thành CAPTCHA.",
+    "success": "Đăng ký thành công! Vui lòng đăng nhập.",
+    "fail": "Đăng ký thất bại.",
+    "no_account": "Đã có tài khoản?",
+    "login": "Đăng nhập",
+    "agree": "Bằng cách đăng ký, bạn đồng ý với <0>điều khoản</0> và <1>chính sách bảo mật</1> của chúng tôi.",
+    "terms": "Điều khoản dịch vụ",
+    "privacy": "Chính sách bảo mật"
+  },
+  "login": {
+    "title": "Đăng nhập",
+    "email": "Email hoặc Tên đăng nhập",
+    "password": "Mật khẩu",
+    "submit": "Đăng nhập",
+    "identifier_error": "Vui lòng nhập email hoặc số điện thoại hợp lệ",
+    "email_error": "Vui lòng nhập email hợp lệ",
+    "password_error": "Vui lòng nhập mật khẩu",
+    "captcha_required": "Vui lòng hoàn thành reCAPTCHA",
+    "success": "Đăng nhập thành công!",
+    "fail": "Đăng nhập thất bại",
+    "no_account": "Chưa có tài khoản?",
+    "register": "Đăng ký",
+    "forgot_password": "Quên mật khẩu?",
+    "identifier": "ID",
+    "forgot": "Tìm mật khẩu"
+  },
+  "bnbRecharge": {
+    "title": "Nạp BNB",
+    "loading": "⏳ Đang tải BNB...",
+    "back": "Quay lại",
+    "protocol": "BEP-20",
+    "scanLabel": "Quét mã QR để nạp BNB",
+    "noWallet": "Không tìm thấy ví BNB. Vui lòng tạo ví mới.",
+    "address": "Địa chỉ BNB",
+    "copy": "Sao chép",
+    "copySuccess": "Đã sao chép địa chỉ BNB!"
+  },
+  "walletLogs": {
+    "in": "Gửi tiền",
+    "out": "Rút tiền",
+    "prev": "Trước",
+    "next": "Tiếp",
+    "back": "Quay lại",
+    "title": "Lịch sử chuyển",
+    "fundingDescriptions": {
+      "initial_profit": "Phân phối lợi nhuận ban đầu",
+      "investment": "Tham gia đầu tư dự án",
+      "expired_return": "Hoàn trả vốn đầu tư",
+      "daily_profit": "Tích lũy lợi nhuận hàng ngày ({{days}} ngày)"
+    },
+    "quantTypes": {
+      "trade": "Giao dịch",
+      "referral": "Giới thiệu"
+    },
+    "tabs": {
+      "transfer": "Chuyển",
+      "walletEarnings": "Thu nhập Ví-Logs",
+      "financeIncome": "Thu nhập Tài chính-Logs"
+    },
+    "columns": {
+      "description": "Mô tả",
+      "direction": "hướng",
+      "type": "Loại",
+      "amount": "Số lượng",
+      "fee": "Phí",
+      "net": "Thực nhận",
+      "date": "Ngày",
+      "category": "Loại"
+    },
+    "rewardTypes": {
+      "join": "Thưởng đăng ký",
+      "invite": "Thưởng giới thiệu"
+    },
+    "types": {
+      "fund_to_quant": "Quỹ → Quant",
+      "quant_to_fund": "Quant → Quỹ"
+    },
+    "loading": "Đang tải...",
+    "noRecords": "Không có bản ghi nào."
+  },
+  "common": {
+    "faqTitle": "Câu hỏi thường gặp",
+    "back": "Quay lại",
+    "loading": "Đang tải...",
+    "no_data": "Không có dữ liệu",
+    "problem1": {
+      "question": "Sản phẩm Tài chính là gì và tôi kiếm được tiền như thế nào?",
+      "answer": "Sản phẩm quản lý tài chính là công cụ và giải pháp do công ty phát triển giúp người dùng nhận thưởng nhanh.\nBằng cách staking tài sản số trên mạng blockchain, người dùng có thể nhận phần thưởng dựa trên cơ chế POS (Proof of Stake).\nTrong cơ chế này, người dùng ủy quyền tài sản cho một node, node đó sẽ thực hiện nhiệm vụ tạo block và đóng gói giao dịch, nhận phần thưởng và chia sẻ cho người dùng theo tỷ lệ staking."
+    },
+    "problem2": {
+      "question": "Lợi nhuận kỳ vọng được tính như thế nào?",
+      "answer": "Lợi nhuận kỳ vọng là ước tính ngày dựa trên số lượng đăng ký và lãi suất tham khảo hàng năm của sản phẩm, chỉ mang tính chất tham khảo."
+    },
+    "problem3": {
+      "question": "Khi nào bắt đầu tính lãi?",
+      "answer": "Lãi bắt đầu tính từ 00:00 ngày T+1."
+    },
+    "problem4": {
+      "question": "Khi nào thanh toán?",
+      "answer": "Lãi tính từ T+1 và được trả cùng gốc khi đáo hạn."
+    },
+    "problem5": {
+      "question": "Sau khi sản phẩm đáo hạn thì sao?",
+      "answer": "Sản phẩm kỳ hạn sẽ tự động tất toán khi đáo hạn."
+    }
+  },
+  "quantTrading": {
+    "dailyLimitReached": "Số lần giao dịch hôm nay đã vượt quá giới hạn",
+    "vipLevel": "Cấp VIP",
+    "leaderboardTitle": "Bảng xếp hạng",
+    "processing": "Đang xử lý giao dịch...",
+    "tradingCountdown": "Đang xử lý giao dịch... {{seconds}}s",
+    "warningMessage": "Vui lòng không đóng hoặc tải lại trang trong khi giao dịch đang diễn ra",
+    "leaderboard": {
+      "name": "Thành viên",
+      "earnings": "Thu nhập",
+      "status": "Trạng thái"
+    },
+    "confirmText": "Bạn sắp giao dịch {{amount}} USDT. Tiếp tục?",
+    "errorMinHolding": "Bạn phải giữ tối thiểu {{min}} USDT để giao dịch.",
+    "errorMaxInvestment": "Giao dịch tối đa mỗi lần là {{max}} USDT.",
+    "cooldownMessage": "Bạn có thể giao dịch lại sau {{min}}m {{sec}}s",
+    "tradeButton": "{{remaining}}/{{dailyLimit}} lần · {{start}}",
+    "cooldownAlert": "Vui lòng chờ {{min}}m {{sec}}s trước khi giao dịch lại.",
+    "confirmTitle": "Xác nhận giao dịch",
+    "partnersTitle": "Đối tác chính",
+    "history": "Lịch sử",
+    "time": "Thời gian",
+    "status": "Trạng thái",
+    "success": "Thành công",
+    "position": "Kích cỡ vị thế",
+    "maxAll": "Tất cả",
+    "buyPlatform": "Mua tại",
+    "buyPrice": "Giá mua",
+    "sellPlatform": "Bán tại",
+    "sellPrice": "Giá bán",
+    "serviceFee": "Phí dịch vụ",
+    "profit": "Lợi nhuận",
+    "commissionRate": "Tỷ lệ hoa hồng",
+    "noHistory": "Không có lịch sử",
+    "currentLevel": "Cấp VIP hiện tại",
+    "enterAmount": "Nhập số lượng",
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "back": "Quay lại",
+    "title": "Giao dịch Quant",
+    "available": "Tài sản khả dụng",
+    "todayEarning": "Thu nhập hôm nay",
+    "totalEarning": "Tổng thu nhập",
+    "level": "Cấp độ",
+    "progress": "{{current}}/{{total}}",
+    "intro": "Giới thiệu Quant Trading",
+    "invite": "Mời bạn bè",
+    "dailyLimit": "Giới hạn giao dịch hàng ngày",
+    "times": "lần",
+    "feeRate": "Tỷ lệ lợi nhuận",
+    "maxInvestment": "Tối đa đầu tư",
+    "minHoldings": "Tối thiểu giữ",
+    "conditions": "Điều kiện",
+    "start": "Bắt đầu giao dịch",
+    "confirmStart": "Bắt đầu Quant Trading?",
+    "tradeError": "Giao dịch thất bại: ",
+    "loading": "Đang tải...",
+    "progressOverview": "Tổng quan tiến trình",
+    "previousLevel": "Cấp độ trước",
+    "higherLevel": "Cấp độ cao hơn"
+  },
+  "table": {
+    "id": "ID",
+    "amount": "Số lượng",
+    "flow": "Luồng",
+    "method": "Phương thức",
+    "status": "Trạng thái",
+    "date": "Ngày"
+  },
+  "flow": {
+    "deposit": "Gửi tiền",
+    "withdrawal": "Rút tiền"
+  },
+  "status": {
+    "pending": "Đang chờ",
+    "processing": "Đang xử lý",
+    "success": "Thành công",
+    "failed": "Thất bại"
+  },
+  "noData": "Không tìm thấy bản ghi nào.",
+  "noDataAlt": "Không có dữ liệu",
+  "errorLoad": "Không tải được lịch sử.",
+  "tokenPurchase": {
+    "title": "Token USC",
+    "lockupDetails": "Chi tiết khóa",
+    "purchaseSuccessTitle": "Mua thành công",
+    "purchaseSuccessWithAmount": "{{amount}} USDT đã mua.",
+    "purchaseFailTitle": "Mua thất bại",
+    "redeemSuccess": "Đổi thưởng thành công",
+    "available": "USC khả dụng",
+    "inputUsdc": "USC",
+    "redeemTitle": "Đổi thưởng",
+    "maxAll": "Tất cả",
+    "redeemSubmit": "Gửi",
+    "quantity": "Số lượng",
+    "token": "Token mỗi",
+    "totalCost": "Tổng chi phí (USDT)",
+    "yourBalance": "Số dư USDT",
+    "price": "Giá mỗi Token USC",
+    "min": "Tối thiểu",
+    "selected": "Đã chọn",
+    "max": "Tối đa",
+    "feeRate": "Phí (%)",
+    "minPurchase": "Mua tối thiểu",
+    "maxPurchase": "Mua tối đa",
+    "lockupPeriod": "Thời gian khóa",
+    "days": "ngày",
+    "canBuy": "Có thể mua",
+    "cannotBuy": "Không thể mua",
+    "back": "Quay lại",
+    "details": "Chi tiết",
+    "quantWallet": "Ví Quant (USDT)",
+    "uscWallet": "Ví USC",
+    "swap": "Hoán đổi",
+    "recharge": "Nạp tiền",
+    "deposit": "Gửi tiền",
+    "redeem": "Đổi thưởng",
+    "orderDetails": "Chi tiết đơn hàng",
+    "swapQuantToFundTitle": "Hoán Quant → Fund",
+    "swapFundToQuantTitle": "Hoán Fund → Quant",
+    "inputUsdt": "Nhập USDT",
+    "balance": "Số dư:",
+    "fee": "Phí ({{rate}}%)",
+    "afterSwap": "Sau hoán đổi:",
+    "submit": "Gửi",
+    "noSales": "Không có đợt bán USC nào.",
+    "phase": " Giai đoạn",
+    "totalSupply": "Tổng cung:",
+    "remainingSupply": "Còn lại:",
+    "startTime": "Thời gian bắt đầu:",
+    "endTime": "Thời gian kết thúc:",
+    "buy": "Mua",
+    "promptAmount": "Nhập số USC muốn mua:",
+    "purchaseSuccess": "Mua thành công!",
+    "errors": {
+      "invalidAmount": "Vui lòng nhập số hợp lệ.",
+      "insufficientQuant": "Không đủ số dư Quant.",
+      "insufficientFund": "Không đủ số dư Fund.",
+      "swapFail": "Hoán đổi thất bại.",
+      "depositFail": "Gửi tiền thất bại.",
+      "purchaseFail": "Mua thất bại."
+    }
+  },
+  "token": {
+    "header": "Token USC",
+    "recharge": "Nạp tiền",
+    "withdraw": "Rút tiền",
+    "agent": "Đại lý",
+    "more": "Xem thêm",
+    "invite": "Mời bạn bè"
+  },
+  "bottomNav": {
+    "home": "Trang chủ",
+    "team": "Đội của tôi",
+    "quant": "Quantify",
+    "funding": "Tài trợ",
+    "mine": "Cá nhân"
+  },
+  "withdraw": {
+    "setTradePasswordFirst": "Vui lòng đặt mật khẩu giao dịch trước",
+    "setupTradePassword": "Đặt mật khẩu giao dịch",
+    "cancel": "Hủy",
+    "currentBalance": "Số dư hiện tại: USDT",
+    "balanceAfter": "Số dư sau khi rút: USDT",
+    "setup": "Xác nhận",
+    "title": "Rút USDT",
+    "newTradePassword": "Mật khẩu giao dịch mới",
+    "tradePasswordPlaceholder": "Nhập mật khẩu giao dịch",
+    "confirm": "Xác nhận",
+    "enterTradePassword": "Nhập mật khẩu giao dịch",
+    "tradePasswordSet": "Mật khẩu giao dịch đã được đặt",
+    "tradePasswordAlreadySet": "Mật khẩu giao dịch đã được đặt",
+    "confirmTradePassword": "Xác nhận mật khẩu giao dịch",
+    "addressLabel": "Địa chỉ rút",
+    "addressPlaceholder": "Địa chỉ TRC20 USDT",
+    "addressPlaceholderBNB": "Địa chỉ BNB",
+    "invalidAddress": "Địa chỉ không hợp lệ.",
+    "validAddress": "Địa chỉ hợp lệ.",
+    "amountLabel": "Số tiền rút",
+    "amountPlaceholder": "ví dụ: 10.5",
+    "feeRate": "Tỷ lệ phí",
+    "estimatedFee": "Phí ước tính",
+    "netAmount": "Số nhận",
+    "submitting": "Đang gửi…",
+    "submit": "Gửi"
+  },
+  "errors": {
+    "invalidAddress": "Vui lòng nhập địa chỉ hợp lệ.",
+    "invalidAmount": "Vui lòng nhập số tiền rút hợp lệ.",
+    "submitFailed": "Gửi yêu cầu rút tiền thất bại."
+  },
+  "success": {
+    "submitted": "Yêu cầu rút tiền đã được gửi thành công."
+  },
+  "funding": {
+    "active_projects": "Dự án đang diễn ra",
+    "expired_projects": "Dự án đã kết thúc",
+    "no_active_projects": "Không có dự án đang diễn ra.",
+    "investing_amount": "Số dư đang đầu tư: {{amount}} USDT",
+    "no_expired_projects": "Không có dự án đã kết thúc.",
+    "expired_label": "Dự án đã hết hạn",
+    "detail2": {
+      "loading": "Đang tải...",
+      "loadError": "Không tải được thông tin dự án:",
+      "subscribeSuccessTitle": "Đầu tư thành công",
+      "subscribeSuccessWithAmount": "{{amount}} USDT đã đầu tư.",
+      "subscribeErrorTitle": "Đầu tư thất bại",
+      "invalidAmount": "Vui lòng nhập số hợp lệ.",
+      "amountRange": "Vui lòng nhập số trong khoảng {{min}} đến {{max}}.",
+      "insufficientBalance": "Bạn không đủ số dư.",
+      "exceedRemaining": "Vượt quá năng lực còn lại {{remaining}} USDT.",
+      "subscribe": "Đăng ký",
+      "subscribeSuccess": "Đăng ký thành công.",
+      "subscribeError": "Lỗi khi đăng ký.",
+      "descriptionLabel": "Mô tả:",
+      "cycleLabel": "Chu kỳ: {{cycle}} ngày",
+      "dailyRateLabel": "Lãi hàng ngày: {{rate}}%",
+      "minMaxLabel": "Tối thiểu: {{min}} USDT, Tối đa: {{max}} USDT",
+      "targetLabel": "Mục tiêu: {{target}} USDT",
+      "currentLabel": "Đã đầu tư: {{current}} USDT",
+      "availableLabel": "Số dư khả dụng: {{balance}} USDT",
+      "amountPlaceholder": "Nhập số lượng",
+      "investorsTitle": "Nhà đầu tư",
+      "noInvestors": "Chưa có nhà đầu tư."
+    },
+    "transfer_fail": "Chuyển thất bại",
+    "deposit_modal": {
+      "success": "Thành công",
+      "title": "Chuyển vào",
+      "net_amount": "Sau chuyển: {{net}} (sau còn: {{remain}})",
+      "amount_placeholder": "Nhập số lượng",
+      "fund_wallet": "Ví đầu tư: {{balance}}",
+      "max_label": "Chuyển tất cả",
+      "real_account": "Tài khoản chính: {{balance}}",
+      "balance": "Số dư: {{balance}}",
+      "fee": "Phí xử lý: {{fee}} (Tại tỷ lệ: {{rate}}%)",
+      "submit": "Gửi"
+    },
+    "withdraw_modal": {
+      "title": "Chuyển ra",
+      "success": "Thành công",
+      "net_amount": "Sau chuyển: {{net}} (sau còn: {{remain}})",
+      "amount_placeholder": "Nhập số lượng",
+      "quant_wallet": "Ví Quant: {{balance}}",
+      "max_label": "Rút tất cả",
+      "real_account": "Tài khoản chính: {{balance}}",
+      "fee": "Phí xử lý: {{fee}} (Tại tỷ lệ: {{rate}}%)",
+      "submit": "Gửi"
+    }
+  },
+  "info": {
+    "title": "Sản phẩm Tài chính là gì?",
+    "definition": "Sản phẩm tài chính cho phép người dùng khóa một khoản tiền trong một khoảng thời gian để nhận thưởng. Chúng bao gồm nhiều gói do Upstart quản lý, mỗi gói có lãi suất và thời hạn riêng.",
+    "settlement": "Thanh toán vào 00:00 UTC hàng ngày, và thu nhập từ ngày T có thể truy cập từ ngày T+1.",
+    "tradingTitle": "Giải thích giao dịch",
+    "trade1": "1. **Mua**: Đăng ký sản phẩm để khóa tiền trong thời hạn quy định.",
+    "trade2": "2. **Thu nhập**: Nhận thưởng hàng ngày theo lãi suất công bố, được ghi có mỗi 24 giờ.",
+    "trade3": "3. **Đổi thưởng**: Sau kỳ hạn, vốn và thưởng được trả về ví tài chính của bạn.",
+    "trade4": "4. **Rút sớm**: Hiện chưa hỗ trợ. Phiên bản tương lai có thể cho phép rút sớm với phí."
+  },
+  "header": "Quản lý Tài trợ",
+  "loading": "Đang tải...",
+  "wallet_balance": "Số dư Ví Tài chính",
+  "detail": "Chi tiết",
+  "deposit_request": "Yêu cầu Gửi tiền",
+  "withdraw_request": "Yêu cầu Quant",
+  "recharge": "Nạp tiền",
+  "all_transactions": "Tất cả giao dịch",
+  "today_income": "Thu nhập hôm nay",
+  "total_income": "Tổng thu nhập",
+  "no_projects": "Không có dự án đang diễn ra.",
+  "project": {
+    "description": "Mô tả: {{description}}",
+    "available": "Khả dụng: {{min}} ~ {{max}} USDT",
+    "daily_rate": "Lãi hàng ngày: {{rate}}%",
+    "duration": "Thời gian: {{cycle}} ngày (đến {{end}})",
+    "apply": "Áp dụng ngay"
+  },
+  "charge_modal": {
+    "title": "Cách nạp tiền",
+    "usdt_alert": "Vui lòng gửi USDT đến địa chỉ ví được chỉ định."
+  },
+  "Upstart": {
+    "title": "Tổng quan Upstart",
+    "vip_upgrade_criteria": "Tiêu chí Nâng cấp VIP",
+    "vip": {
+      "vip1": "VIP1: Yêu cầu tối thiểu 35 USDT tài sản tiền mã hóa.",
+      "vip2": "VIP2: Ít nhất 300 USDT tài sản + mời 2 thành viên A-level, 2 B-level và 2 C-level hoạt động.",
+      "vip3": "VIP3: Ít nhất 1000 USDT tài sản + mời và kích hoạt 5 thành viên A-level, 5 B-level và 5 C-level.",
+      "vip4": "VIP4: Ít nhất 5000 USDT tài sản + mời và kích hoạt 15 thành viên A-level, 15 B-level và 15 C-level.",
+      "vip5": "VIP5: Ít nhất 20000 USDT tài sản + mời và kích hoạt 30 thành viên A-level, 30 B-level và 30 C-level.",
+      "vip6": "VIP6: Ít nhất 50000 USDT tài sản + mời và kích hoạt 60 thành viên A-level, 60 B-level và 60 C-level."
+    },
+    "overview": {
+      "description": "Giao dịch định lượng Upstart thu thập và phân tích dữ liệu chính từ các sàn tiền mã hóa, thực hiện giao dịch khả năng cao qua thuật toán.",
+      "advantages": "Cung cấp khả năng sinh lời chính xác và hiệu quả hơn so với giao dịch thủ công.",
+      "assets": "Nhắm đến nhiều loại tiền mã hóa như BTC, ETH và USDT.",
+      "automation": "Hỗ trợ tự động vào lệnh, thoát lệnh, chốt lời và cắt lỗ.",
+      "no_manual": "Không cần quyết định thủ công. Kiếm lợi hiệu quả và ổn định."
+    },
+    "method": {
+      "title": "Phương pháp Định lượng",
+      "step": "Nhấn nút để bắt đầu và hoàn thành giao dịch tự động trong 1–3 phút.",
+      "profit_share": "50% lợi nhuận trả cho nền tảng, 50% trả cho người dùng.",
+      "example": "Ví dụ: Mua BTC 1000 USDT trên CoinEase, bán 1050 USDT trên OKX. 25 USDT cho nền tảng, 25 USDT trả cho bạn."
+    },
+    "vip_daily": {
+      "vip1": "VIP1: Tối đa 5 giao dịch/ngày, lợi nhuận hàng ngày 1,8%–2,1%.",
+      "vip2": "VIP2: Tối đa 6 giao dịch/ngày, lợi nhuận hàng ngày 2,3%–2,6%.",
+      "vip3": "VIP3: Tối đa 7 giao dịch/ngày, lợi nhuận hàng ngày 3,9%–4,3%.",
+      "vip4": "VIP4: Tối đa 8 giao dịch/ngày, lợi nhuận hàng ngày 5,9%–6,4%.",
+      "vip5": "VIP5: Tối đa 9 giao dịch/ngày, lợi nhuận hàng ngày 8,6%–9,4%.",
+      "vip6": "VIP6: Tối đa 10 giao dịch/ngày, lợi nhuận hàng ngày 9,5%–10,5%."
+    }
+  },
+  "agencyCooperation": {
+    "back": "Quay lại",
+    "title": "Hợp tác Đại lý",
+    "subTitle": "Quan hệ Đối tác Tư vấn",
+    "lines": [
+      "Tham gia chương trình đội ngũ Upstart và kiếm hoa hồng khi quảng bá Upstart. Tận hưởng tiện lợi và tăng trưởng bền vững.",
+      "Upstart cung cấp cơ chế thưởng hoa hồng nhóm hào phóng cho người dùng.",
+      "Bạn có thể nhận hoa hồng ở ba cấp (không làm giảm thu nhập của thành viên nhóm).",
+      "1. Khi bạn A trở thành thành viên cấp 1, bạn nhận 21% lợi nhuận hàng ngày của A.",
+      "2. Khi bạn B của A trở thành thành viên cấp 2, bạn nhận 7% lợi nhuận hàng ngày của B.",
+      "3. Khi bạn C của B trở thành thành viên cấp 3, bạn nhận 1% lợi nhuận hàng ngày của C.",
+      "Ví dụ: Nếu mỗi A, B, C kiếm 100$/ngày, bạn nhận:",
+      "• Hoa hồng cấp A: 100 × 21% = 21$",
+      "• Hoa hồng cấp B: 100 × 7% = 7$",
+      "• Hoa hồng cấp C: 100 × 1% = 1$",
+      "Tổng hoa hồng nhóm = 21% + 7% + 1% = 29% = 29$.",
+      "Nếu bạn có 10 thành viên A, 100 B và 1000 C kiếm mỗi người 100$/ngày thì:",
+      "Thu nhập cấp A = 100 × 21% × 10 = 210$",
+      "Thu nhập cấp B = 100 × 7% × 100 = 700$",
+      "Thu nhập cấp C = 100 × 1% × 1000 = 1000$",
+      "Thu nhập nhóm/ngày = 210 + 700 + 1000 = 1910$",
+      "Đây là thu nhập rất đáng kể."
+    ]
+  },
+  "companyIntro": {
+    "back": "Quay lại",
+    "title": "Giới thiệu Công ty",
+    "items": [
+      "Giao dịch Định lượng",
+      "Dự án Tài trợ",
+      "Dựa trên Blockchain",
+      "Bảo mật Hoàn hảo"
+    ]
+  },
+  "quantTutorial": {
+    "title": "Hướng dẫn Giao dịch Định lượng",
+    "description": "Hướng dẫn chi tiết về cách hệ thống định lượng tự động tạo lợi nhuận và cách sử dụng Upstart.",
+    "sections": {
+      "vipCriteria": "Tiêu chí Nâng cấp VIP",
+      "overview": "Tổng quan",
+      "dailyReturns": "Ví dụ Lợi nhuận VIP hàng ngày"
+    },
+    "vipUpgradeCriteria": [
+      "VIP1: Ít nhất 35 USDT tài sản.",
+      "VIP2: Ít nhất 300 USDT tài sản + mời 2 A, 2 B, 2 C.",
+      "VIP3: Ít nhất 1000 USDT tài sản + mời 5 A, 5 B, 5 C.",
+      "VIP4: Ít nhất 5000 USDT tài sản + mời 15 A, 15 B, 15 C.",
+      "VIP5: Ít nhất 20000 USDT tài sản + mời 30 A, 30 B, 30 C.",
+      "VIP6: Ít nhất 50000 USDT tài sản + mời 60 A, 60 B, 60 C."
+    ],
+    "overview": "Tổng quan Định lượng Upstart: Nhấn nút để khởi động giao dịch tự động, hoàn thành trong 1–3 phút và tạo lợi nhuận.",
+    "method": {
+      "title": "Phương pháp Giao dịch",
+      "description": "Nhấn nút để bắt đầu giao dịch tự động trong 1–3 phút. 50% lợi nhuận cho nền tảng, 50% trả bạn."
+    },
+    "vipDaily": [
+      "VIP1: Tối đa 5 giao dịch/ngày, lãi 1,8%–2,1%, 500 USDT stake thu 9–10,5 USDT.",
+      "VIP2: Tối đa 6 giao dịch/ngày, lãi 2,3%–2,6%, 2000 USDT stake thu 46–52 USDT.",
+      "VIP3: Tối đa 7 giao dịch/ngày, lãi 3,9%–4,3%, 5000 USDT stake thu 195–215 USDT.",
+      "VIP4: Tối đa 8 giao dịch/ngày, lãi 5,9%–6,4%, 10000 USDT stake thu 590–640 USDT.",
+      "VIP5: Tối đa 9 giao dịch/ngày, lãi 8,6%–9,4%, 20000 USDT stake thu 1720–1880 USDT.",
+      "VIP6: Tối đa 10 giao dịch/ngày, lãi 9,5%–10,5%, 20000 USDT stake thu 1900–2100 USDT."
+    ]
+  },
+  "commonProblems": {
+    "title": "Các vấn đề Thường gặp",
+    "lines": [
+      "Các vấn đề thường gặp khi tham gia chương trình Upstart:",
+      "1. Người mới phải nạp ít nhất 30 USDT để giao dịch.",
+      "2. Để rút, phải hoàn thành giao dịch định lượng ít nhất 20 USDT.",
+      "3. Số tiền rút tối thiểu là 50 USDT.",
+      "4. Rút tiền có thể mất 9–16 giờ.",
+      "5. Nạp tiền tăng tỷ lệ tương ứng VIP tự động.",
+      "6. Tỷ giá theo giá thị trường.",
+      "7. Tiêu chí có thể thay đổi theo phân tích thị trường.",
+      "8. Tuân thủ phương pháp nạp và quy định thị trường.",
+      "9. Kiểm tra nhật ký giao dịch thường xuyên.",
+      "10. Liên hệ hỗ trợ bất cứ lúc nào."
+    ],
+    "feesTitle": "Thông tin Phí",
+    "fees": [
+      "Hệ thống định lượng và bảo đảm tự động có thể phát sinh phí rút (0%–5%).",
+      "Phí có thể thay đổi mà không báo trước.",
+      "Thời gian xử lý tiêu chuẩn ~5 phút; có bảo đảm có thể đến 30 phút.",
+      "Tỷ giá tự cập nhật theo thị trường."
+    ]
+  },
+  "security": {
+    "title": "Trung tâm Bảo mật",
+    "email": "Email",
+    "tradePwd": "PIN Giao dịch",
+    "loginPwd": "Mật khẩu Đăng nhập",
+    "withdrawAddr": "Địa chỉ Rút"
+  },
+  "security_p": {
+    "title": "Liên kết Email",
+    "old_mailbox": "Email cũ",
+    "new_mailbox": "Email mới",
+    "enter_code": "Nhập mã xác thực",
+    "send_code": "Gửi mã",
+    "enter_new_email": "Nhập email mới",
+    "invalid_email": "Vui lòng nhập email hợp lệ.",
+    "code_sent": "Đã gửi mã xác thực.",
+    "code_failed": "Gửi mã thất bại.",
+    "update_warning": "Email không hợp lệ có thể gây khó khăn khi reset mật khẩu.",
+    "update_success": "Cập nhật email thành công.",
+    "update_failed": "Cập nhật email thất bại.",
+    "submit": "Gửi"
+  },
+  "trade_pwd": {
+    "title": "Đổi Mật khẩu Giao dịch",
+    "email_label": "Email",
+    "code_label": "Mã xác thực",
+    "code_placeholder": "Nhập mã",
+    "send_code": "Gửi mã",
+    "new_pwd_label": "Mật khẩu Mới",
+    "new_pwd_placeholder": "Nhập mật khẩu mới",
+    "confirm_pwd_label": "Xác nhận mật khẩu",
+    "confirm_pwd_placeholder": "Nhập lại mật khẩu mới",
+    "confirm_warning": "Email không hợp lệ có thể gây lỗi reset. Tiếp tục?",
+    "code_sent": "Đã gửi mã xác thực.",
+    "code_failed": "Gửi mã thất bại.",
+    "success": "Đổi mật khẩu giao dịch thành công.",
+    "failed": "Đổi mật khẩu thất bại.",
+    "submit": "Gửi"
+  },
+  "security_login": {
+    "title": "Đổi Mật khẩu Đăng nhập",
+    "old_password": "Mật khẩu hiện tại",
+    "new_password": "Mật khẩu mới",
+    "confirm_password": "Xác nhận mật khẩu",
+    "enter_old": "Nhập mật khẩu hiện tại",
+    "enter_new": "Nhập mật khẩu mới",
+    "enter_confirm": "Nhập lại mật khẩu mới",
+    "submit": "Gửi",
+    "mismatch_old": "Mật khẩu hiện tại không đúng.",
+    "mismatch_new": "Mật khẩu mới không khớp.",
+    "length_error": "Mật khẩu phải ít nhất 6 ký tự.",
+    "confirm_warning": "Bạn có chắc muốn đổi mật khẩu không?",
+    "success": "✅ Đổi mật khẩu thành công.",
+    "fail": "❌ Đổi mật khẩu thất bại."
+  },
+  "task": {
+    "title": "Trung tâm Nhiệm vụ",
+    "invite_reward": {
+      "title": "Thưởng Mời",
+      "success": "Thành công",
+      "reward_claimed": "{{level}}th level reward {{amount}} USDT has been credited.",
+      "error": "Lỗi",
+      "description": "Nhận thưởng khi đạt số giới thiệu hoạt động cấp 1",
+      "required": "Cấp {{level}} ({{required}} lượt giới thiệu)",
+      "reward": "Nhận {{amount}} USDT khi thành công.",
+      "claim": "Nhận",
+      "claimed": "Đã nhận",
+      "claim_fail": "Nhận thưởng thất bại."
+    },
+    "join_reward": {
+      "step": "Thưởng Đăng ký",
+      "title": "Thưởng Đăng ký",
+      "success": "Thành công",
+      "reward_claimed": "Register bonus {{amount}} USDT has been credited.",
+      "error": "Lỗi",
+      "description": "Nhận {{amount}} USDT sau khi đăng ký thành công.",
+      "claim": "Nhận",
+      "claimed": "Đã nhận",
+      "claim_fail": "Nhận thưởng thất bại."
+    }
+  },
+  "app": {
+    "userAvatarAlt": "Ảnh đại diện",
+    "logoAlt": "Logo Upstart",
+    "mailIconAlt": "Biểu tượng thư",
+    "closeButton": "Đóng menu",
+    "idLabel": "ID",
+    "idCopied": "Đã sao chép ID!",
+    "recharge": "Nạp tiền",
+    "withdraw": "Rút tiền",
+    "customerService": "Chăm sóc KH",
+    "task_center": "Trung tâm Nhiệm vụ",
+    "wallets": "Ví Tài chính",
+    "faq": "FAQ",
+    "security_center": "Trung tâm Bảo mật",
+    "tutorial": "Hướng dẫn Quant",
+    "language": "Cài đặt Ngôn ngữ",
+    "company": "Về Công ty",
+    "download": "Tải App",
+    "logout": "Đăng xuất",
+    "confirm_logout": "Bạn có chắc muốn đăng xuất không?",
+    "navigation": {
+      "home": "Trang chủ",
+      "team": "Đội của tôi",
+      "quant": "Quant",
+      "funding": "Tài trợ",
+      "mine": "Cá nhân"
+    }
+  },
+  "agreement": {
+    "terms": {
+      "title": "Điều khoản Dịch vụ",
+      "general": {
+        "title": "1. Nguyên tắc Chung\n\n",
+        "1_1": "1.1 Cấu trúc Hợp đồng\nCác Điều khoản Dịch vụ này (sau đây gọi là 'Thỏa thuận') quy định tất cả các cam kết áp dụng cho việc sử dụng trang web và dịch vụ của Upstart (sau đây gọi là 'Nền tảng'). Thỏa thuận này bao gồm chính sách quyền riêng tư, chính sách Nhận biết Khách hàng (KYC), chính sách Chống Rửa tiền (AML), quy tắc sử dụng kỹ thuật, biện pháp phòng ngừa khi sử dụng nền tảng, cảnh báo, thông báo, hướng dẫn liên quan, v.v., có thể được sửa đổi hoặc bổ sung theo quyết định của chúng tôi.\n\n",
+        "1_2": "1.2 Đồng ý và Hiểu rõ Thỏa thuận\nNgười dùng chỉ có thể sử dụng dịch vụ sau khi xem xét và đồng ý với các điều khoản của Thỏa thuận này. Nếu có nội dung nào không rõ ràng hoặc không hiểu, người dùng có thể tìm kiếm tư vấn pháp lý, và người dùng phải tiếp tục sử dụng nền tảng trên cơ sở chấp nhận tất cả các điều kiện.\n\n",
+        "1_3": "1.3 Đăng ký Thành viên và Chữ ký Điện tử\nThông tin do người dùng nhập trong quá trình đăng ký nền tảng phải trung thực, và sự đồng ý dưới hình thức chữ ký điện tử được thiết lập bằng cách nhấp vào nút 'Đồng ý' hoặc chỉ định tương tự. Điều này được coi là hợp đồng hợp pháp ngay cả khi không có chữ ký tay.\n\n"
+      },
+      "use": {
+        "title": "2. Sử dụng Dịch vụ\n\n",
+        "2_1": "2.1 Tạo và Quản lý Tài khoản\nNgười dùng chỉ được tạo một tài khoản, và tất cả các hoạt động phải được thực hiện dưới trách nhiệm của chính họ. Nghiêm cấm đánh cắp danh tính, cung cấp thông tin sai lệch và đăng ký thông qua các script tự động.\n\n",
+        "2_2": "2.2 Hành vi Bị cấm\nNgười dùng không được tham gia vào các hành vi sau:\n  - Truy cập trái phép hoặc tấn công hệ thống hoặc mạng\n  - Thu thập trái phép thông tin tài khoản của người dùng khác\n  - Cố gắng chuyển tài sản gian lận hoặc bất hợp pháp\n  - Bất kỳ hành động nào cản trở hoạt động bình thường của dịch vụ\n\n",
+        "2_3": "2.3 Thay đổi và Gián đoạn Dịch vụ\nUpstart có thể thay đổi, tạm ngừng hoặc hạn chế một phần hoặc toàn bộ dịch vụ sau khi thông báo trước. Điều này có thể do bảo trì hệ thống, vấn đề bảo mật khẩn cấp, tuân thủ quy định, v.v., và chúng tôi không chịu trách nhiệm về bất kỳ thiệt hại nào do việc này gây ra.\n\n"
+      },
+      "liability": {
+        "title": "3. Trách nhiệm và Quyền hạn\n\n",
+        "3_1": "3.1 Trách nhiệm của Người dùng\nTất cả các giao dịch, hoạt động và hành động quản lý ví là trách nhiệm của người dùng, và Upstart không chịu trách nhiệm về thiệt hại do rò rỉ hoặc mất thông tin tài khoản cá nhân.\n\n",
+        "3_2": "3.2 Từ chối Trách nhiệm\nUpstart không chịu trách nhiệm về:\n  - Gián đoạn do hack từ bên ngoài, tấn công DDoS, v.v.\n  - Hạn chế dịch vụ do luật pháp hoặc lệnh của chính phủ\n  - Lỗi hoặc chậm trễ của mạng blockchain\n\n",
+        "3_3": "3.3 Bản quyền và Thương hiệu\nTất cả nội dung, logo và mã nguồn trong nền tảng là tài sản của chúng tôi, và nghiêm cấm sao chép, phân phối hoặc sử dụng trái phép.\n\n"
+      },
+      "etc": {
+        "4": "4. Hạn chế Sử dụng\nNghiêm cấm lạm dụng dịch vụ như hack, kỹ thuật đảo ngược và các hoạt động bất hợp pháp.\n\n",
+        "5": "5. Dữ liệu và Thông tin Cá nhân\nThông tin cá nhân được thu thập để cung cấp và cải thiện dịch vụ. Vui lòng kiểm tra Chính sách Quyền riêng tư để biết chi tiết.\n\n",
+        "6": "6. Thay đổi Điều khoản\nĐiều khoản có thể được sửa đổi sau khi thông báo trước, và việc tiếp tục sử dụng ngụ ý đồng ý với các điều khoản đã sửa đổi.\n\n",
+        "7": "7. Luật Điều chỉnh\nCác điều khoản này được điều chỉnh bởi luật pháp của khu vực tài phán của thành viên.\n"
+      }
+    },
+    "privacy": {
+      "title": "Chính sách Quyền riêng tư",
+      "content": "1. **Giới thiệu**\n\nUpstart (\"chúng tôi\",\"của chúng tôi\" hoặc \"chúng tôi\") tôn trọng quyền riêng tư của bạn và cam kết bảo vệ nó.\n\n2. **Thông tin Chúng tôi Thu thập**\n\n- **Dữ liệu Cá nhân**: tên, email, số điện thoại, địa chỉ ví.\n- **Dữ liệu Sử dụng**: trang đã xem, hành động đã thực hiện.\n\n3. **Cách Chúng tôi Sử dụng Thông tin**\n\nChúng tôi sử dụng dữ liệu của bạn để cung cấp, duy trì và cải thiện dịch vụ, giao tiếp với bạn và tuân thủ nghĩa vụ pháp lý.\n\n4. **Chia sẻ Dữ liệu**\n\nChúng tôi không bán dữ liệu cá nhân. Có thể chia sẻ với nhà cung cấp dịch vụ dưới cam kết bảo mật nghiêm ngặt.\n\n5. **Bảo mật**\n\nChúng tôi áp dụng các biện pháp tiêu chuẩn ngành để bảo vệ thông tin của bạn.\n\n6. **Quyền của Bạn**\n\nBạn có thể truy cập, chỉnh sửa hoặc xóa dữ liệu cá nhân bằng cách liên hệ hỗ trợ.\n\n7. **Thay đổi**\n\nChúng tôi có thể sửa đổi chính sách này; sẽ thông báo cho bạn về các thay đổi quan trọng."
+    }
+  },
+  "profile": {
+    "loading": "⏳ Đang tải...",
+    "greeting": "Chào, {{name}}",
+    "vipLevel": "VIP{{level}}",
+    "idLabel": "ID",
+    "summary": {
+      "totalBalance": "Tổng Số dư",
+      "totalEarnings": "Tổng Thu nhập",
+      "todayCommission": "Hoa hồng hôm nay",
+      "todayIncome": "Thu nhập hôm nay",
+      "yesterdayIncome": "Thu nhập hôm qua"
+    },
+    "actions": {
+      "recharge": "Nạp tiền",
+      "withdraw": "Rút tiền",
+      "details": "Chi tiết"
+    },
+    "referral": {
+      "level1": "Cấp 1",
+      "level2": "Cấp 2",
+      "level3": "Cấp 3"
+    },
+    "menu": {
+      "taskCenter": "Trung tâm Nhiệm vụ",
+      "faq": "FAQ",
+      "securityCenter": "Trung tâm Bảo mật",
+      "quantTutorial": "Hướng dẫn Quant",
+      "language": "Cài đặt Ngôn ngữ",
+      "aboutCompany": "Về Chúng tôi",
+      "downloadApp": "Tải App"
+    },
+    "logout": "Đăng xuất",
+    "copySuccess": "Đã sao chép ID vào clipboard!",
+    "logoutConfirmMessage": "Bạn có chắc muốn đăng xuất không?",
+    "logoutCancel": "Hủy",
+    "logoutConfirm": "Xác nhận"
+  },
+  "team": {
+    "todayJoinedCount": "Tham gia hôm nay",
+    "title": "Đội của tôi",
+    "loading": "⏳ Đang tải...",
+    "errorLoad": "Tải dữ liệu giới thiệu thất bại",
+    "errorLoadContrib": "Tải dữ liệu đóng góp thất bại",
+    "tabs": {
+      "members": "Thành viên",
+      "contrib": "Đóng góp"
+    },
+    "filter": {
+      "level": "Lọc theo Cấp:",
+      "period": "Khoảng thời gian:"
+    },
+    "level": {
+      "A": "Cấp A (1)",
+      "B": "Cấp B (2)",
+      "C": "Cấp C (3)"
+    },
+    "period": {
+      "today": "Hôm nay",
+      "week": "Tuần này",
+      "month": "Tháng này"
+    },
+    "noMembers": "Không có người được giới thiệu.",
+    "noRecords": "Không có bản ghi.",
+    "registered": "Đã đăng ký",
+    "vip": "VIP",
+    "teamSize": "Quy mô Đội",
+    "contrib": {
+      "todayEarnings": "Thu nhập hôm nay",
+      "totalEarnings": "Tổng Thu nhập"
+    },
+    "table": {
+      "account": "Tài khoản",
+      "level": "Cấp",
+      "time": "Thời gian",
+      "earning": "Thu nhập"
+    }
+  },
+  "referral2": {
+    "loading": "📡 Đang tải...",
+    "totalEarnings": "Tổng Thu nhập Đội",
+    "todayEarnings": "Thu nhập hôm nay",
+    "totalMembers": "Tổng số Thành viên",
+    "todayJoined": "Tham gia hôm nay",
+    "members": "thành viên"
+  },
+  "messages": {
+    "title": "Tin nhắn Cá nhân",
+    "no_messages": "Không tìm thấy tin nhắn nào"
+  },
+  "systemNotices": {
+    "title": "Trung tâm Tin nhắn",
+    "tabs": {
+      "notices": "Thông báo",
+      "inbox": "Thông báo Hệ thống"
+    },
+    "noMessages": "Không có tin nhắn",
+    "actions": {
+      "deleteAll": "Xóa tất cả",
+      "markAllRead": "Đánh dấu tất cả là đã đọc"
+    },
+    "detail": {
+      "title": "Chi tiết"
+    }
+  },
+  "withdrawPage": {
+    "title": "Phương thức Rút tiền",
+    "history": "Lịch sử Rút tiền",
+    "digitalCurrency": "Tiền mã hóa"
+  },
+  "appDownload": {
+    "back": "Quay lại",
+    "logoAlt": "Logo Upstart",
+    "version": "Phiên bản: {{version}}",
+    "qrCodeInstruction": "Hoặc quét QR code bằng điện thoại để cài đặt",
+    "androidAlt": "Tải trên Android",
+    "iosAlt": "Tải trên App Store",
+    "comingSoon": "Sắp có",
+    "downloadNow": "Tải ngay"
+  },
+  "languages": {
+    "english": "English",
+    "french": "Français",
+    "german": "Deutsch",
+    "korean": "한국어"
+  },
+  "forgotPassword": {
+    "title": "Đặt lại Mật khẩu",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Nhập email đã đăng ký",
+    "codeLabel": "Mã Xác thực",
+    "codePlaceholder": "Nhập mã 6 chữ số",
+    "sendCode": "Gửi mã",
+    "verifyCode": "Xác thực mã",
+    "newPasswordLabel": "Mật khẩu Mới",
+    "newPasswordPlaceholder": "Nhập mật khẩu mới",
+    "confirmPasswordLabel": "Xác nhận Mật khẩu",
+    "confirmPasswordPlaceholder": "Nhập lại mật khẩu mới",
+    "resetButton": "Đặt lại Mật khẩu",
+    "codeSent": "Mã xác thực đã được gửi.",
+    "verificationSuccess": "Xác thực thành công.",
+    "resetSuccess": "Đã đặt lại mật khẩu thành công.",
+    "errors": {
+      "sendCode": "Gửi mã xác thực thất bại",
+      "codeRequired": "Vui lòng nhập mã xác thực",
+      "invalidCode": "Mã xác thực không hợp lệ",
+      "verifyFirst": "Vui lòng xác thực mã trước",
+      "passwordLength": "Mật khẩu phải có ít nhất 6 ký tự",
+      "passwordMismatch": "Mật khẩu không khớp",
+      "resetFailed": "Đặt lại mật khẩu thất bại"
+    }
+  },
+  "rechargeMethod": {
+    "title": "Phương thức Nạp tiền",
+    "historyButtonTitle": "Lịch sử Giao dịch",
+    "usdtLogoAlt": "Logo USDT",
+    "back": "Quay lại",
+    "methods": {
+      "usdt": {
+        "title": "USDT",
+        "description": "Nạp bằng USDT",
+        "select": "Chọn USDT"
+      }
+    },
+    "navigation": {
+      "toHistory": "Xem lịch sử",
+      "toDeposit": "Đi đến Nạp tiền"
+    }
+  },
+  "usdtRecharge": {
+    "title": "Nạp tiền",
+    "loading": "⏳ Đang tải...",
+    "scanQRCode": "Quét QR code để nạp tiền",
+    "addressCopied": "Đã sao chép địa chỉ!",
+    "copyAddress": "Sao chép địa chỉ",
+    "walletAddress": "Địa chỉ Ví",
+    "protocol": {
+      "title": "Giao thức",
+      "type": "TRC-20"
+    },
+    "errors": {
+      "noWallet": "Không có ví. Vui lòng tạo ví.",
+      "copyFailed": "Sao chép địa chỉ thất bại.",
+      "loadFailed": "Tải thông tin nạp USDT thất bại"
+    },
+    "qr": {
+      "title": "QR Code",
+      "instruction": "Quét QR code để nạp tiền",
+      "noAddress": "Không có địa chỉ ví"
+    },
+    "buttons": {
+      "back": "Quay lại",
+      "copy": "Sao chép"
+    },
+    "messages": {
+      "copied": "Đã sao chép!",
+      "copyFailed": "Sao chép thất bại"
+    }
+  },
+  "userChat": {
+    "guestTitle": "Chat Khách",
+    "guestName": "Tên",
+    "guestEmail": "Email",
+    "startChat": "Bắt đầu Chat",
+    "guestChat": "Chat Khách",
+    "title": "Chat Hỗ trợ Khách hàng",
+    "me": "Tôi",
+    "admin": "Quản trị",
+    "unread": "(Chưa đọc)",
+    "sendButton": "Gửi",
+    "inputPlaceholder": "Nhập tin nhắn...",
+    "notificationAlt": "Hỗ trợ Khách hàng",
+    "newMessageNotification": "📩 Có tin nhắn mới!",
+    "closeButton": "Đóng",
+    "errors": {
+      "messageSaveFailed": "Lưu tin nhắn thất bại",
+      "connectionFailed": "Kết nối máy chủ chat thất bại",
+      "loadFailed": "Tải tin nhắn thất bại"
+    },
+    "status": {
+      "connecting": "Đang kết nối...",
+      "connected": "Đã kết nối",
+      "disconnected": "Đã ngắt kết nối"
+    }
   }
-  
+}

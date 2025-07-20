@@ -102,7 +102,7 @@
     "fail": "Registration failed.",
     "no_account": "Already have an account?",
     "login": "Log in",
-    "agree": "By registering, you agree to our <0>terms</0> and <1>privacy</1>.",
+    "agree": "By registering, you agree to our  <0>terms</0> and <1>privacy</1>.",
     "terms": "Terms of Service",
     "privacy": "Privacy Policy"
   },
@@ -719,7 +719,30 @@
   "agreement": {
     "terms": {
       "title": "Terms of Service",
-      "content": "1. **General**\n\nWelcome to Upstart. By using our service, you agree to these Terms of Service.\n\n2. **Accounts**\n\nUsers must register with accurate information and are responsible for their credentials.\n\n3. **Usage**\n\nYou may not misuse the service, including but not limited to hacking, reverse engineering, or any illegal activity.\n\n4. **Data & Privacy**\n\nWe collect personal data to provide and improve our services. Please review our Privacy Policy for details.\n\n5. **Modifications**\n\nWe may update these terms; continued use implies acceptance of any changes.\n\n6. **Governing Law**\n\nThese terms are governed by the laws of your jurisdiction."
+      "general": {
+        "title": "1. General Principles\n\n",
+        "1_1": "1.1 Contract Structure\nThese Terms of Service (hereinafter 'Agreement') set forth all commitments applicable to users' use of Upstart's website and services (hereinafter 'Platform'). This Agreement includes privacy policy, Know Your Customer (KYC), Anti-Money Laundering (AML) policy, technical usage rules, platform usage precautions, warnings, notices, related guidelines, etc., which may be amended or supplemented at our discretion.\n\n",
+        "1_2": "1.2 Agreement Consent and Understanding\nUsers may only use the services after reviewing and agreeing to the terms of this Agreement. If any content is unclear or not understood, users may seek legal counsel, and users must continue using the platform on the premise of accepting all conditions.\n\n",
+        "1_3": "1.3 Member Registration and Electronic Signature\nInformation entered by users during platform registration must be truthful, and consent in the form of electronic signature is established by clicking the 'Agree' button or similar indication. This is considered a legally valid contract even without a handwritten signature.\n\n"
+      },
+      "use": {
+        "title": "2. Service Usage\n\n",
+        "2_1": "2.1 Account Creation and Management\nUsers may create only one account, and all activities must be conducted under their own responsibility. Identity theft, providing false information, and registration through automated scripts are prohibited.\n\n",
+        "2_2": "2.2 Prohibited Actions\nUsers must not engage in the following:\n  - Unauthorized access or attacks on systems or networks\n  - Unauthorized collection of other users' account information\n  - Attempts at fraudulent or illegal asset transfers\n  - Any actions that interfere with normal service operation\n\n",
+        "2_3": "2.3 Service Changes and Interruptions\nUpstart may change, suspend, or restrict part or all of services after prior notice. This may be due to system maintenance, urgent security issues, regulatory compliance, etc., and we are not liable for any resulting damages.\n\n"
+      },
+      "liability": {
+        "title": "3. Responsibilities and Rights\n\n",
+        "3_1": "3.1 User Responsibility\nAll transactions, activities, and wallet management actions are the user's responsibility, and Upstart is not responsible for damages caused by the leakage or loss of personal account information.\n\n",
+        "3_2": "3.2 Disclaimer\nUpstart is not responsible for:\n  - Interruptions due to external hacking, DDoS attacks, etc.\n  - Service restrictions due to laws or government orders\n  - Blockchain network errors or delays\n\n",
+        "3_3": "3.3 Copyright and Trademark\nAll content, logos, and source code within the platform are our assets, and unauthorized copying, distribution, or use is strictly prohibited.\n\n"
+      },
+      "etc": {
+        "4": "4. Usage Restrictions\nMisuse of services such as hacking, reverse engineering, and illegal activities is prohibited.\n\n",
+        "5": "5. Data and Personal Information\nPersonal information is collected for service provision and improvement. Please check the Privacy Policy for details.\n\n",
+        "6": "6. Terms Changes\nTerms may be revised after prior notice, and continued use implies agreement to revised terms.\n\n",
+        "7": "7. Governing Law\nThese terms are governed by the laws of the member's jurisdiction.\n"
+      }
     },
     "privacy": {
       "title": "Privacy Policy",
