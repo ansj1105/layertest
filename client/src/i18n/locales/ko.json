@@ -1,4 +1,7 @@
 {
+  "notification": {
+    "title": "시스템 알림"
+  },
     "Wallet": "지갑",
     "Balance": "잔액",
     "Transfer": "송금",
@@ -24,6 +27,7 @@
   "forgot" : "비밀번호 찾기"
     },  
     "quantTrading": {
+        "vipLevel": "VIP 등급",
          "leaderboardTitle": "리더보드",
          "processing": "거래 진행 중...",
     "tradingCountdown": "거래 중... {{seconds}}초",
@@ -78,7 +82,10 @@
       "start": "수량화 시작",
       "confirmStart": "정량 거래를 시작하시겠습니까?",
       "tradeError": "거래 실패: ",
-      "loading": "불러오는 중..."
+      "loading": "불러오는 중...",
+      "progressOverview": "진행 상황",
+      "previousLevel": "이전 레벨",
+      "higherLevel": "높은 레벨"
     },
     "bottomNav": {
       "home": "첫 장",
@@ -88,6 +95,7 @@
       "mine": "내 거"
     },
     "tokenPurchase": {
+      "lockupDetails": "락업 상세",
       "purchaseSuccessTitle": "구매 성공",
       "purchaseSuccessWithAmount": "{{amount}} USDT를 구매했습니다.",
       "purchaseFailTitle": "구매 실패",
@@ -262,11 +270,19 @@
       "header": "USC 토큰",
       "recharge": "재충전",
       "withdraw": "출금",
+      "more": "더보기",
       "agent": "에이전트",
       "invite": "친구를 초대"
     }
   
 ,  
+"bnbRecharge": {
+  "title": "BNB 충전",
+  "copy": "복사",
+  "copySuccess": "주소가 복사되었습니다!",
+  "addressCopied": "주소가 복사되었습니다!",
+  "address": "BNB 주소"
+},
   "walletLogs": {
     "in" : "입금",
     "out" : "출금",
@@ -274,10 +290,21 @@
     "prev" : "이전",
     "next" : "다음",
     "title": "이관 내역",
+    "fundingDescriptions": {
+      "initial_profit": "초기 수익 지급",
+      "investment": "프로젝트 투자",
+      "expired_return": "만료 프로젝트 원금 반환",
+      "daily_profit": "일일 수익 적립 ({{days}} 일)"
+    },
+
     "tabs": {
       "transfer": "이체 내역",
       "walletEarnings": "정량 내역",
       "financeIncome": "펀딩 내역"
+    },
+    "rewardTypes": {
+      "join": "가입 보상",
+      "invite": "초대 보상"
     },
     "columns": {
       "description" : "설명",
@@ -754,6 +781,7 @@
       "confirmTradePassword": "거래 비밀번호 확인",
       "addressLabel": "출금 주소",
       "addressPlaceholder": "TRC20 USDT 주소",
+      "addressPlaceholderBNB": "BNB 주소",
       "invalidAddress": "유효하지 않은 주소입니다.",
       "validAddress": "유효한 주소입니다.",
       "amountLabel": "출금 수량",

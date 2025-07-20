@@ -5,6 +5,7 @@ const fetch = require("node-fetch");
 const TronWeb = require("tronweb");
 const { getTronWeb } = require("../models/tron");
 const db = require("../db");
+const { Wallet } = require('ethers');
 
 // ✅ 고유 추천 코드 생성 함수
 async function generateReferralCode() {
@@ -156,6 +157,20 @@ router.post("/register", async (req, res) => {
        VALUES (?, ?, ?, 0, 0)`,
       [newUserId, account.address.base58, account.privateKey]
     );
+
+    // (추가) BNB 지갑 생성 및 기록 (user_id 포함)
+    const bnbWallet = Wallet.createRandom();
+    // bnb_log 테이블 기록 (user_id 포함)
+    await db.query(
+      `INSERT INTO bnb_log (user_id, address, public_key, private_key, mnemonic) VALUES (?, ?, ?, ?, ?)`,
+      [newUserId, bnbWallet.address, bnbWallet.publicKey, bnbWallet.privateKey, bnbWallet.mnemonic.phrase]
+    );
+    // wallets 테이블에 BNB 주소/키도 저장 (address_bnb, private_key_bnb 등 컬럼이 있다면)
+    // await db.query(
+    //   `UPDATE wallets SET address_bnb=?, private_key_bnb=? WHERE user_id=?`,
+    //   [bnbWallet.address, bnbWallet.privateKey, newUserId]
+    // );
+
     // (10) 토큰 지갑 생성: token_wallets 테이블
     //    - id 컬럼은 UUID()
     //    - balance, locked_amount 은 0

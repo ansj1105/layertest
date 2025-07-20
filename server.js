@@ -109,7 +109,8 @@ const adminInviteRewards = require('./routes/admininviteRewards');
 app.use('/api/admin/invite-rewards', adminInviteRewards);
 const adminJoinRoutes = require('./routes/adminJoinRewards');
 app.use('/api/admin/join-rewards', adminJoinRoutes);
-
+const adminDashboardRoutes = require('./routes/adminDashboard');
+app.use('/api/admin/dashboard', adminDashboardRoutes);
 const { router: vipLevelRoutes } = require('./routes/vipLevels'); // ✅ router만 불러오기
 app.use('/api/admin/vip-levels', vipLevelRoutes);
 const securityRoutes = require('./routes/security');

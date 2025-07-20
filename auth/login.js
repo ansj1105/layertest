@@ -305,6 +305,8 @@ router.post("/admin-login", async (req, res) => {
       name: admin.name,
       isAdmin: true,
     };
+   req.session.admin=true;
+  
 
     return res.json({ message: "Admin login success", user: req.session.user });
   } catch (err) {

@@ -115,40 +115,40 @@ export default function AdminInviteRewardsPage() {
 
         {/* 보상 목록 */}
         {activeTab === 'rewards' && (
-          <div className="overflow-x-auto mb-8">
-            <table className="min-w-full bg-white border">
-              <thead>
-                <tr className="bg-gray-100">
-                  <th className="px-4 py-2 text-left">단계</th>
-                  <th className="px-4 py-2 text-left">필요 추천인 수</th>
-                  <th className="px-4 py-2 text-left">보상 (USDT)</th>
-                  <th className="px-4 py-2 text-left">액션</th>
+        <div className="overflow-x-auto mb-8">
+          <table className="min-w-full bg-white border">
+            <thead>
+              <tr className="bg-gray-100">
+                <th className="px-4 py-2 text-left">단계</th>
+                <th className="px-4 py-2 text-left">필요 추천인 수</th>
+                <th className="px-4 py-2 text-left">보상 (USDT)</th>
+                <th className="px-4 py-2 text-left">액션</th>
+              </tr>
+            </thead>
+            <tbody>
+              {list.map((item, idx) => (
+                <tr
+                  key={item.id}
+                  className={idx % 2 === 0 ? 'bg-gray-50' : ''}
+                >
+                  <td className="px-4 py-2">{item.referral_level}</td>
+                  <td className="px-4 py-2">{item.required_referrals}</td>
+                  <td className="px-4 py-2">
+                    {parseFloat(item.reward_amount || 0).toFixed(2)}
+                  </td>
+                  <td className="px-4 py-2 space-x-3">
+                    <button onClick={() => openEdit(item)}>
+                      <Edit2 size={16} className="text-blue-500 hover:text-blue-700"/>
+                    </button>
+                    <button onClick={() => handleDelete(item.id)}>
+                      <Trash2 size={16} className="text-red-500 hover:text-red-700"/>
+                    </button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {list.map((item, idx) => (
-                  <tr
-                    key={item.id}
-                    className={idx % 2 === 0 ? 'bg-gray-50' : ''}
-                  >
-                    <td className="px-4 py-2">{item.referral_level}</td>
-                    <td className="px-4 py-2">{item.required_referrals}</td>
-                    <td className="px-4 py-2">
-                      {parseFloat(item.reward_amount || 0).toFixed(2)}
-                    </td>
-                    <td className="px-4 py-2 space-x-3">
-                      <button onClick={() => openEdit(item)}>
-                        <Edit2 size={16} className="text-blue-500 hover:text-blue-700"/>
-                      </button>
-                      <button onClick={() => handleDelete(item.id)}>
-                        <Trash2 size={16} className="text-red-500 hover:text-red-700"/>
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
+        </div>
         )}
 
         {/* 초대보상 로그 */}

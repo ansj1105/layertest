@@ -53,16 +53,31 @@ export default function WithdrawPage() {
         </button>
       </div>
 
-      {/* ✅ 디지털 화폐 선택 */}
-      <div
-        onClick={() => navigate("/withdraw/method")}
-        className="currency-selector"
-      >
-        <div className="currency-label">
-          <img src="/img/usdt.png" className="currency-icon" alt="USDT" />
-          {t('withdrawPage.digitalCurrency')}
+      {/* 화폐 선택 영역 */}
+      <div className="currency-options">
+        {/* USDT 선택 */}
+        <div
+          onClick={() => navigate("/withdraw/method?currency=USDT")}
+          className="currency-selector"
+        >
+          <div className="currency-label">
+            <img src="/img/usdt.png" className="currency-icon" alt="USDT" />
+            <span>USDT</span>
+          </div>
+          <span className="currency-arrow">{'>'}</span>
         </div>
-        <span className="currency-arrow">{'>'}</span>
+
+        {/* BNB 선택 */}
+        <div
+          onClick={() => navigate("/withdraw/method?currency=BNB")}
+          className="currency-selector"
+        >
+          <div className="currency-label">
+            <img src="/img/bnb.png" className="currency-icon" alt="BNB" />
+            <span>BNB</span>
+          </div>
+          <span className="currency-arrow">{'>'}</span>
+        </div>
       </div>
     </div>
   );

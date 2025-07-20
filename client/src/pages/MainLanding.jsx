@@ -13,6 +13,7 @@
     import TransferPage from './TransferPage';
     import TransactionPage from './TransactionPage';
     import USDTRechargePage from './USDTRechargePage';
+    import BNBRechargePage from './BNBRechargePage';
     import SystemNotices from '../components/SystemNotices';
     import NotificationPopup from '../components/NotificationPopup';
     import PersonalMessages from '../components/PersonalMessages';
@@ -113,7 +114,7 @@
             </button>
                 <Link to="/messages/notices">
                 <span className="inline-flex items-center text-black text-xl text-sm">
-                    <span>MORE</span>
+                    <span>{t('token.more')}</span>
                     <ArrowRightIcon size={20} className="ml-1" />
                 </span>
                 </Link>
@@ -207,6 +208,7 @@
             <Route path="/reset-password" element={<ResetPassword />} />
             <Route path="/recharge" element={<ProtectedRoute><RechargeMethodPage /></ProtectedRoute>} />
             <Route path="/recharge/usdt" element={<ProtectedRoute><USDTRechargePage /></ProtectedRoute>} />
+            <Route path="/recharge/bnb" element={<ProtectedRoute><BNBRechargePage /></ProtectedRoute>} />
             <Route path="/team" element={<ProtectedRoute><MyTeamPage /></ProtectedRoute>} />
             <Route path="/token" element={<ProtectedRoute><TokenPurchasePage /></ProtectedRoute>} />
             <Route path="/myprofile" element={<ProtectedRoute><MyProfilePage /></ProtectedRoute>} />

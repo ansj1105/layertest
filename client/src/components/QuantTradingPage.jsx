@@ -388,7 +388,7 @@ const handleStart2 = async () => {
       <div>{t('quantTrading.totalEarning')} <strong>{summary.totalProfit.toFixed(6)} USDT</strong></div>
       </div>
       <div className="referra-m-l">
-      <span className="font-semibold mr-2">VIP 등급 : </span>
+      <span className="font-semibold mr-2">{t('quantTrading.currentLevel')} : </span>
       <strong>{currentVIP.level}</strong>
     </div>
 
@@ -453,7 +453,7 @@ const handleStart2 = async () => {
       >
         <path d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" />
       </svg>
-      Progress Overview
+      {t('quantTrading.progressOverview')}
     </span>
     <button
       onClick={() => navigate('/quant-tutorial')}
@@ -477,11 +477,11 @@ const handleStart2 = async () => {
           >
             ◀
           </button>
-          <span className="referra-left-align">Previous Level</span>
+          <span className="referra-left-align">{t('quantTrading.previousLevel')}</span>
           <div className="referra-level-title">
             VIP {vipLevels[currentIndex]?.level} {t('quantTrading.level')}
           </div>
-          <span className="referra-right-align">Higher level</span>
+          <span className="referra-right-align">{t('quantTrading.higherLevel')}</span>
           <button
             onClick={() => setCurrentIndex(prev => Math.min(vipLevels.length - 1, prev + 1))}
             className="referra-bold"

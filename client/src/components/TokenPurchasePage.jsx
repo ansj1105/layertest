@@ -196,7 +196,7 @@ export default function TokenPurchasePage() {
                 onClick={() => setShowLockup(true)}
                 className="funding-detail-btn"
               >
-                락업 상세
+                {t("tokenPurchase.lockupDetails")}
               </button>
             </div>
 

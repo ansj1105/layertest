@@ -1,4 +1,7 @@
 {
+  "notification": {
+    "title": "Thông báo hệ thống"
+  },
     "order_history": {
       "title": "Đơn hàng và Đổi thưởng của tôi",
       "orders": {
@@ -120,6 +123,17 @@
       "identifier": "ID",
       "forgot": "Tìm mật khẩu"
     },
+    "bnbRecharge": {
+  "title": "Nạp BNB",
+  "loading": "⏳ Đang tải BNB...",
+  "back": "Quay lại",
+  "protocol": "BEP-20",
+  "scanLabel": "Quét mã QR để nạp BNB",
+  "noWallet": "Không tìm thấy ví BNB. Vui lòng tạo ví mới.",
+  "address": "Địa chỉ BNB",
+  "copy": "Sao chép",
+  "copySuccess": "Đã sao chép địa chỉ BNB!"
+},
     "walletLogs": {
       "in" : "Gửi tiền",
       "out" : "Rút tiền",
@@ -127,6 +141,16 @@
       "next": "Tiếp",
       "back": "Quay lại",
       "title": "Lịch sử chuyển",
+      "fundingDescriptions": {
+        "initial_profit": "Phân phối lợi nhuận ban đầu",
+        "investment": "Tham gia đầu tư dự án",
+        "expired_return": "Hoàn trả vốn đầu tư",
+        "daily_profit": "Tích lũy lợi nhuận hàng ngày ({{days}} ngày)"
+      },
+      "quantTypes" :{
+        "trade": "Giao dịch",
+        "referral": "Giới thiệu"
+      },
       "tabs": {
         "transfer": "Chuyển",
         "walletEarnings": "Thu nhập Ví-Logs",
@@ -139,7 +163,12 @@
         "amount": "Số lượng",
         "fee": "Phí",
         "net": "Thực nhận",
-        "date": "Ngày"
+        "date": "Ngày",
+        "category": "Loại"
+      },
+      "rewardTypes": {
+        "join": "Thưởng đăng ký",
+        "invite": "Thưởng giới thiệu"
       },
       "types": {
         "fund_to_quant": "Quỹ → Quant",
@@ -175,6 +204,7 @@
       }
     },
     "quantTrading": {
+      "vipLevel": "Cấp VIP",
       "leaderboardTitle": "Bảng xếp hạng",
       "processing": "Đang xử lý giao dịch...",
       "tradingCountdown": "Đang xử lý giao dịch... {{seconds}}s",
@@ -228,7 +258,10 @@
       "start": "Bắt đầu giao dịch",
       "confirmStart": "Bắt đầu Quant Trading?",
       "tradeError": "Giao dịch thất bại: ",
-      "loading": "Đang tải..."
+      "loading": "Đang tải...",
+      "progressOverview": "Tổng quan tiến trình",
+      "previousLevel": "Cấp độ trước",
+      "higherLevel": "Cấp độ cao hơn"
     },
     "table": {
         "id": "ID",
@@ -253,6 +286,7 @@
       "errorLoad": "Không tải được lịch sử.",
       "tokenPurchase": {
         "title": "Token USC",
+        "lockupDetails": "Chi tiết khóa",
         "purchaseSuccessTitle": "Mua thành công",
         "purchaseSuccessWithAmount": "{{amount}} USDT đã mua.",
         "purchaseFailTitle": "Mua thất bại",
@@ -260,6 +294,7 @@
         "available": "USC khả dụng",
         "inputUsdc": "USC",
         "redeemTitle": "Đổi thưởng",
+        "maxAll": "Tất cả",
         "redeemSubmit": "Gửi",
         "quantity": "Số lượng",
         "token": "Token mỗi",
@@ -315,6 +350,7 @@
         "recharge": "Nạp tiền",
         "withdraw": "Rút tiền",
         "agent": "Đại lý",
+        "more": "Xem thêm",
         "invite": "Mời bạn bè"
       },
       "bottomNav": {
@@ -341,6 +377,7 @@
         "confirmTradePassword": "Xác nhận mật khẩu giao dịch",
         "addressLabel": "Địa chỉ rút",
         "addressPlaceholder": "Địa chỉ TRC20 USDT",
+        "addressPlaceholderBNB": "Địa chỉ BNB",
         "invalidAddress": "Địa chỉ không hợp lệ.",
         "validAddress": "Địa chỉ hợp lệ.",
         "amountLabel": "Số tiền rút",

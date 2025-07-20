@@ -1,4 +1,7 @@
-{
+{   "notification": {
+  "title": "System Notification"
+},
+
   "order_history": {
     "title": "My Orders and Redemptions",
     "orders": {
@@ -130,6 +133,20 @@
   "next" : "next",
   "back": "Back",
   "title": "Transfer Logs",
+  "quantTypes" :{
+    "trade": "Trade",
+    "referral": "Referral"
+  },
+  "rewardTypes": {
+    "join": "Join Reward",
+    "invite": "Invite Reward"
+  },
+  "fundingDescriptions": {
+    "initial_profit": "Initial Project Profit Distribution",
+    "investment": "Project Investment Participation",
+    "expired_return": "Expired Project Principal Return",
+    "daily_profit": "Daily Profit Accumulation ({{days}} days compensation)"
+  },
   "tabs": {
     "transfer": "Transfers",
     "walletEarnings": "Wallet Earnings Logs",
@@ -139,6 +156,7 @@
     "description" : "description",
     "direction" : "direction",
     "type": "Type",
+    "category": "Category",
     "amount": "Amount",
     "fee": "Fee",
     "net": "Net",
@@ -177,10 +195,12 @@
     "question": "What happens after the product matures?",
     "answer": "Fixed-term products are automatically redeemed upon maturity."
   }
-},  "quantTrading": {
+},
+  "quantTrading": {
      "leaderboardTitle": "Leaderboard",
      "processing": "Processing trade...",
      "tradingCountdown": "Trading... {{seconds}}s",
+     "vipLevel": "VIP Level",
      "warningMessage": "Please do not close or refresh the page while trading is in progress", 
    "leaderboard": {
      "name": "Member",
@@ -231,7 +251,10 @@
   "start": "Start Trading",
   "confirmStart": "Start quant trading?",
   "tradeError": "Trade failed: ",
-  "loading": "Loading..."
+  "loading": "Loading...",
+  "progressOverview": "Progress Overview",
+  "previousLevel": "Previous Level",
+  "higherLevel": "Higher Level"
 },
 "history": {
   "title": "Transaction History",
@@ -270,7 +293,9 @@
 
 "tokenPurchase": {
   "title":               "USC Token",
+  "lockupDetails": "Lockup Details",
   "purchaseSuccessTitle": "Purchase successful",
+  "maxAll": "All",
   "purchaseSuccessWithAmount": "{{amount}} USDT purchased.",
   "purchaseFailTitle": "Purchase failed",
    "redeemSuccess" : "redeemSuccess",
@@ -329,6 +354,7 @@
 },
 "token": {
   "header": "USC Token",
+  "more": "More",
   "recharge": "Recharge",
   "withdraw": "Withdraw",
   "agent": "Agent",
@@ -359,6 +385,7 @@
     "confirmTradePassword": "Confirm trade password",
     "addressLabel": "Withdrawal Address",
     "addressPlaceholder": "TRC20 USDT Address",
+    "addressPlaceholderBNB": "BNB Address",
     "invalidAddress": "Invalid address.",
     "validAddress": "Valid address.",
     "amountLabel": "Amount to Withdraw",
@@ -931,6 +958,17 @@
       "connected": "Connected",
       "disconnected": "Disconnected"
     }
+  },
+  "bnbRecharge": {
+    "title": "BNB Recharge",
+    "loading": "\u23F3 Loading BNB...",
+    "back": "Back",
+    "protocol": "BEP-20",
+    "scanLabel": "Scan the QR code to recharge BNB",
+    "noWallet": "No BNB wallet found. Please create one.",
+    "address": "BNB Address",
+    "copy": "Copy",
+    "copySuccess": "BNB address copied!"
   }
 }
   

@@ -1,4 +1,7 @@
 {
+  "notification": {
+    "title": "システム通知"
+  },
     "order_history": {
       "title": "注文履歴と引き出し",
       "orders": {
@@ -127,6 +130,20 @@
       "next": "次へ",
       "back": "戻る",
       "title": "送金履歴",
+      "quantTypes" :{
+        "trade": "Trade",
+        "referral": "Referral"
+      },
+      "rewardTypes": {
+        "join": "登録報酬",
+        "invite": "招待報酬"
+      },
+      "fundingDescriptions": {
+        "initial_profit": "プロジェクト初期収益配分",
+        "investment": "プロジェクト投資参加",
+        "expired_return": "満期プロジェクト元本返還",
+        "daily_profit": "日次収益積立（{{days}}日分補正）"
+      },
       "tabs": {
         "transfer": "送金",
         "walletEarnings": "ウォレット収益-Logs",
@@ -139,6 +156,7 @@
         "amount": "数量",
         "fee": "手数料",
         "net": "ネット",
+        "category": "カテゴリ",
         "date": "日付"
       },
       "types": {
@@ -175,6 +193,7 @@
       }
     },
     "quantTrading": {
+      "vipLevel": "VIPレベル",
       "processing": "取引中...",
       "tradingCountdown": "取引中... {{seconds}}秒",
       "warningMessage": "取引中にページを閉じたり更新しないでください",
@@ -228,7 +247,10 @@
       "start": "取引開始",
       "confirmStart": "クオンツ取引を開始しますか？",
       "tradeError": "取引失敗: ",
-      "loading": "読み込み中..."
+      "loading": "読み込み中...",
+      "progressOverview": "進捗概要",
+      "previousLevel": "前のレベル",
+      "higherLevel": "上位レベル"
     },
     "history": {
         "title": "取引履歴",
@@ -266,6 +288,7 @@
       },
       "tokenPurchase": {
         "title": "USCトークン",
+        "lockupDetails": "ロックアップ詳細",
         "purchaseSuccessTitle": "購入に成功しました！",
         "purchaseSuccessWithAmount": "{{amount}} USDTを購入しました。",
         "purchaseFailTitle": "購入に失敗しました。",
@@ -274,6 +297,7 @@
         "inputUsdc": "USC を入力",
         "redeemTitle": "引き出し",
         "redeemSubmit": "送信",
+        "maxAll": "全額",
         "quantity": "数量",
         "token": "トークン当たり",
         "totalCost": "総USDTコスト",
@@ -326,6 +350,7 @@
       "token": {
         "header": "USCトークン",
         "recharge": "チャージ",
+        "more": "もっと見る",
         "withdraw": "出金",
         "agent": "代理店",
         "invite": "友達を招待"
@@ -354,6 +379,7 @@
         "balanceAfter": "引き出し後の残高: USDT",
         "addressLabel": "出金先アドレス",
         "addressPlaceholder": "TRC20 USDTアドレス",
+        "addressPlaceholderBNB": "BNBアドレス",
         "invalidAddress": "無効なアドレスです。",
         "validAddress": "有効なアドレスです。",
         "amountLabel": "出金額",
@@ -374,11 +400,11 @@
       },
       "funding": {
         "active_projects": "進行中のプロジェクト",
-        "investing_amount": "投資額：{{amount}} USDT",
         "expired_projects": "終了したプロジェクト",
         "no_active_projects": "進行中のプロジェクトはありません。",
         "no_expired_projects": "終了したプロジェクトはありません。",
         "expired_label": "終了したプロジェクト",
+        "investing_amount": "投資額：{{amount}} USDT",
         "detail2": {
           "loading": "読み込み中...",
           "subscribeSuccessTitle": "投資に成功しました",
@@ -426,39 +452,39 @@
           "real_account": "メインアカウント：{{balance}}",
           "fee": "手数料：{{fee}} (現在の率：{{rate}}％)",
           "submit": "送信"
+        },
+        "info": {
+          "title": "金融商品とは？",
+          "definition": "金融商品は、一定期間資金をロックして報酬を得る仕組みです。Upstartが管理する複数のパッケージがあり、それぞれ利率と期間が異なります。",
+          "settlement": "決済は毎日00:00 UTCに行われ、T日目の収益はT+1日から利用可能です。",
+          "tradingTitle": "取引の仕組み",
+          "trade1": "1. **購入**：商品に申し込むと指定期間資金がロックされます。",
+          "trade2": "2. **報酬**：日利に基づく報酬が24時間ごとに付与されます。",
+          "trade3": "3. **引き出し**：保有期間終了後、元本と報酬がファイナンスウォレットに戻ります。",
+          "trade4": "4. **早期解約**：現在は未対応です。将来対応予定です。"
+        },
+        "header": "ファンディング管理",
+        "loading": "読み込み中...",
+        "wallet_balance": "ファイナンスウォレット残高",
+        "detail": "詳細",
+        "deposit_request": "入金リクエスト",
+        "withdraw_request": "出金リクエスト",
+        "recharge": "チャージ",
+        "all_transactions": "すべての取引",
+        "today_income": "本日のファンディング収益",
+        "total_income": "総ファンディング収益",
+        "no_projects": "アクティブなファンディングプロジェクトはありません。",
+        "project": {
+          "description": "説明：{{description}}",
+          "available": "利用可能：{{min}}〜{{max}} USDT",
+          "daily_rate": "日利：{{rate}}％",
+          "duration": "期間：{{cycle}}日（〜{{end}}）",
+          "apply": "今すぐ参加"
+        },
+        "charge_modal": {
+          "title": "チャージ方法",
+          "usdt_alert": "指定されたウォレットアドレスにUSDTを送信してください。"
         }
-      },
-      "info": {
-        "title": "金融商品とは？",
-        "definition": "金融商品は、一定期間資金をロックして報酬を得る仕組みです。Upstartが管理する複数のパッケージがあり、それぞれ利率と期間が異なります。",
-        "settlement": "決済は毎日00:00 UTCに行われ、T日目の収益はT+1日から利用可能です。",
-        "tradingTitle": "取引の仕組み",
-        "trade1": "1. **購入**：商品に申し込むと指定期間資金がロックされます。",
-        "trade2": "2. **報酬**：日利に基づく報酬が24時間ごとに付与されます。",
-        "trade3": "3. **引き出し**：保有期間終了後、元本と報酬がファイナンスウォレットに戻ります。",
-        "trade4": "4. **早期解約**：現在は未対応です。将来対応予定です。"
-      },
-      "header": "ファンディング管理",
-      "loading": "読み込み中...",
-      "wallet_balance": "ファイナンスウォレット残高",
-      "detail": "詳細",
-      "deposit_request": "入金リクエスト",
-      "withdraw_request": "出金リクエスト",
-      "recharge": "チャージ",
-      "all_transactions": "すべての取引",
-      "today_income": "本日の収益",
-      "total_income": "総収益",
-      "no_projects": "アクティブなプロジェクトはありません。",
-      "project": {
-        "description": "説明：{{description}}",
-        "available": "利用可能：{{min}}〜{{max}} USDT",
-        "daily_rate": "日利：{{rate}}％",
-        "duration": "期間：{{cycle}}日（〜{{end}}）",
-        "apply": "今すぐ参加"
-      },
-      "charge_modal": {
-        "title": "チャージ方法",
-        "usdt_alert": "指定されたウォレットアドレスにUSDTを送信してください。"
       },
       "Upstart": {
         "title": "Upstartの概要",
@@ -702,7 +728,7 @@
       "profile": {
         "loading": "⏳ 読み込み中...",
         "greeting": "こんにちは、{{name}}さん",
-        "vipLevel": "VIP{{level}}",
+        "vipLevel": "VIPレベル：{{level}}",
         "idLabel": "ID",
         "summary": {
           "totalBalance": "総残高",
@@ -896,6 +922,17 @@
           "copied": "アドレスをコピーしました！",
           "copyFailed": "コピーに失敗しました"
         }
+      },
+      "bnbRecharge": {
+        "title": "BNBチャージ",
+        "loading": "⏳ BNB読み込み中...",
+        "back": "戻る",
+        "protocol": "BEP-20",
+        "scanLabel": "BNBチャージ用QRコードをスキャンしてください",
+        "noWallet": "BNBウォレットがありません。作成してください。",
+        "address": "BNBアドレス",
+        "copy": "コピー",
+        "copySuccess": "BNBアドレスがコピーされました！"
       },
       "userChat": {
         "guestTitle" : "ゲストチャット",

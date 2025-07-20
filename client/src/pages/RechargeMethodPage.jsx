@@ -60,6 +60,13 @@ export default function RechargeMethodPage() {
         </div>
         <span className="charge-method-chevron">{'>'}</span>
       </div>
+      <div className="charge-method-selector" onClick={() => navigate('/recharge/bnb')}> 
+        <div className="currency-label">
+          <img src="/img/bnb.png" alt={t('rechargeMethod.bnbLogoAlt')} className="charge-method-icon" />
+          <span className="charge-method-label">BNB</span>
+        </div>
+        <span className="charge-method-chevron">{'>'}</span>
+      </div>
     </div>
   );
 }
