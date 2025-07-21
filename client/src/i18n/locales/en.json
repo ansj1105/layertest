@@ -479,7 +479,7 @@
       "description": "description : {{description}}",
       "available": "Available: {{min}} ~ {{max}} USDT",
       "daily_rate": "Daily Rate: {{rate}}%",
-      "duration": "Duration: {{cycle}} days (until {{end}})",
+      "duration": "Duration: {{cycle}} days ({{start}} ~ {{end}})",
       "apply": "Apply Now"
     },
     "charge_modal": {
@@ -550,9 +550,55 @@
     "items": [
       "Quantitative Trading",
       "Funding Projects",
-      "Blockchain-based",
-      "Perfect Security"
-    ]
+      "Blockchain Based",
+      "Complete Security"
+    ],
+    "details": {
+      "quantitative": {
+        "title": "Quantitative Trading",
+        "description": "Upstart generates stable profits through a quantitative analysis system based on artificial intelligence (AI) and algorithms that detect market inefficiencies and implement ultra-short and medium-term trading strategies.",
+        "features": [
+          "Automated profit structure utilizing market inefficiencies",
+          "High-frequency trading (HFT) and algorithmic portfolio management by strategy",
+          "Risk control-based asset diversification and scenario response system",
+          "Automated inter-exchange arbitrage"
+        ],
+        "conclusion": "Upstart goes beyond simple automated trading to implement 'intelligent' quantitative trading based on market data. Through AI-based analysis, we maximize price movement prediction accuracy and optimize strategies in real-time to actively respond to market conditions."
+      },
+      "funding": {
+        "title": "Funding Projects",
+        "description": "An innovative funding platform utilizing blockchain technology, providing a transparent and secure environment connecting investors and projects.",
+        "features": [
+          "Smart contract-based automated funding process",
+          "Transparent fund management and real-time monitoring",
+          "Various investment options and risk diversification",
+          "Global investor network connection"
+        ],
+        "conclusion": "Going beyond traditional funding limitations, we build a new investment ecosystem that ensures both transparency and efficiency through blockchain technology."
+      },
+      "blockchain": {
+        "title": "Blockchain Based",
+        "description": "We provide decentralized, secure, and transparent financial services using the latest blockchain technology.",
+        "features": [
+          "Data integrity guarantee based on Distributed Ledger Technology (DLT)",
+          "Automated transaction execution through smart contracts",
+          "Cross-chain compatibility supporting various blockchain networks",
+          "Decentralized governance structure"
+        ],
+        "conclusion": "We provide a future-oriented platform by perfectly integrating blockchain's core values of transparency, security, and efficiency into financial services."
+      },
+      "security": {
+        "title": "Complete Security",
+        "description": "We safely protect users' assets and information through top-level security technology and multi-layered security systems.",
+        "features": [
+          "Multi-signature wallet system",
+          "Cold storage-based asset custody",
+          "Real-time security monitoring and threat detection",
+          "Regular security audits and vulnerability checks"
+        ],
+        "conclusion": "By prioritizing security, the core of financial services, we provide an environment where users can use the service with peace of mind."
+      }
+    }
   },
   "quantTutorial": {
     "title": "Quantitative Trading Tutorial",

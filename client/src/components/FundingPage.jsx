@@ -385,17 +385,17 @@ export default function FundingPage() {
             <div key={proj.id} className="project-card">
               {/* 프로젝트 정보 */}
               <h3>{proj.name}</h3>
-              <p className="project-description">
+              <p className="project-description" style={{ whiteSpace: 'pre-line' }}>
                 {t("funding.project.description", { description: proj.description })}
               </p>
-              <p className="project-description">
+              <p className="project-description" style={{ whiteSpace: 'pre-line' }}>
                 {t("funding.project.available", { min: proj.minAmount, max: proj.maxAmount })}
               </p>
               <p className="project-description">
                 {t("funding.project.daily_rate", { rate: proj.dailyRate })}
               </p>
               <p className="project-description">
-                {t("funding.project.duration", { cycle: proj.cycle, end: new Date(proj.endDate).toLocaleDateString() })}
+                {t("funding.project.duration", { start: new Date(proj.startDate).toLocaleDateString(), cycle: proj.cycle, end: new Date(proj.endDate).toLocaleDateString() })}
               </p>
               <button
                 onClick={() => navigate(`/funding/detail/${proj.id}`)}

@@ -36,7 +36,7 @@ const connectWebSocket = (roomId, isGuest = false) => {
   return ws;
 };
 
-export default function UserChat() {
+export default function UserChat({ userId }) {
   const { t } = useTranslation();
   const [messages, setMessages] = useState([]);
   const [defaultMsg, setDefaultMsg] = useState(null);
@@ -59,6 +59,12 @@ export default function UserChat() {
   useEffect(() => {
     isOpenRef.current = isOpen;
   }, [isOpen]);
+
+  // 컴포넌트 로드 완료 알림
+  useEffect(() => {
+    // onLoad prop이 제거되었으므로, 이 부분은 제거됩니다.
+    // 채팅 컴포넌트가 마운트될 때 초기화 로직을 실행합니다.
+  }, []);
 
   // 세션 체크 및 초기화
   useEffect(() => {

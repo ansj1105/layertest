@@ -22,17 +22,17 @@ export default function FundingProjectForm({ project, onSaved }) {
   useEffect(() => {
     if (project) {
       setForm({
-        name:            project.name,
-        description:     project.description || "",
-        minAmount:       project.min_amount,
-        maxAmount:       project.max_amount,
-        targetAmount:    project.target_amount,
-        dailyRate:       project.daily_rate,
-        cycle:           project.cycle_days,
-        startDate:       project.start_date?.slice(0, 10) || "",
-        endDate:         project.end_date?.slice(0, 10) || "",
+        name: project.name,
+        description: project.description || "",
+        minAmount: project.min_amount,
+        maxAmount: project.max_amount,
+        targetAmount: project.target_amount,
+        dailyRate: project.daily_rate,
+        cycle: project.cycle_days,
+        startDate: project.start_date?.slice(0, 10) || "",
+        endDate: project.end_date?.slice(0, 10) || "",
         minParticipants: project.min_participants,
-        status:          project.status,
+        status: project.status,
       });
     }
   }, [project]);
@@ -69,17 +69,17 @@ export default function FundingProjectForm({ project, onSaved }) {
       }
 
       const payload = {
-        name:            form.name,
-        description:     form.description,
-        minAmount:       form.minAmount,
-        maxAmount:       form.maxAmount,
-        targetAmount:    form.targetAmount,
-        dailyRate:       form.dailyRate,
-        cycle:           form.cycle,
-        startDate:       form.startDate,
-        endDate:         form.endDate,
+        name: form.name,
+        description: form.description,
+        minAmount: form.minAmount,
+        maxAmount: form.maxAmount,
+        targetAmount: form.targetAmount,
+        dailyRate: form.dailyRate,
+        cycle: form.cycle,
+        startDate: form.startDate,
+        endDate: form.endDate,
         minParticipants: form.minParticipants,
-        status:          form.status,
+        status: form.status,
       };
 
       let res;
@@ -99,6 +99,7 @@ export default function FundingProjectForm({ project, onSaved }) {
 
       alert(isEdit ? "프로젝트가 수정되었습니다." : "프로젝트가 생성되었습니다.");
       onSaved();
+      window.location.reload();
     } catch (err) {
       console.error("프로젝트 저장 중 오류:", err);
       alert("프로젝트 저장 중 오류가 발생했습니다:\n" + (err.response?.data?.error || err.message));
@@ -106,17 +107,17 @@ export default function FundingProjectForm({ project, onSaved }) {
   };
 
   const labels = {
-    name:            "프로젝트 이름",
-    description:     "설명",
-    minAmount:       "최소 참여 금액",
-    maxAmount:       "최대 참여 금액",
-    targetAmount:    "목표 금액",
-    dailyRate:       "일일 수익률 (%)",
-    cycle:           "수익 기간 (일)",
-    startDate:       "시작일",
-    endDate:         "마감일",
+    name: "프로젝트 이름",
+    description: "설명",
+    minAmount: "최소 참여 금액",
+    maxAmount: "최대 참여 금액",
+    targetAmount: "목표 금액",
+    dailyRate: "일일 수익률 (%)",
+    cycle: "수익 기간 (일)",
+    startDate: "시작일",
+    endDate: "마감일",
     minParticipants: "최소 참여자 수",
-    status:          "상태",
+    status: "상태",
   };
 
   return (
@@ -132,7 +133,12 @@ export default function FundingProjectForm({ project, onSaved }) {
               <label className="block mb-1 font-medium">{labels[key]}</label>
               <textarea
                 value={value}
-                onChange={e => handleChange(key, e.target.value)}
+                onChange={e => {
+                  handleChange(key, e.target.value);
+                  if (key === "description") {
+                    console.log("입력값:", e.target.value, JSON.stringify(e.target.value));
+                  }
+                }}
                 className="w-full border px-2 py-1 rounded h-24"
               />
             </div>
@@ -155,8 +161,8 @@ export default function FundingProjectForm({ project, onSaved }) {
         }
         const type =
           key.includes("Date") ? "date" :
-          ["minAmount","maxAmount","targetAmount","dailyRate","cycle","minParticipants"].includes(key)
-            ? "number" : "text";
+            ["minAmount", "maxAmount", "targetAmount", "dailyRate", "cycle", "minParticipants"].includes(key)
+              ? "number" : "text";
 
         return (
           <div key={key} className="mb-4">

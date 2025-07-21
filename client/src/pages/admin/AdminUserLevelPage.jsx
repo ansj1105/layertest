@@ -22,7 +22,9 @@ export default function AdminUserLevelPage({ onLogout }) {
   };
 
   const saveChanges = async (level) => {
-    const updateData = editedLevels[level];
+    // 기존 값과 수정값을 합침
+    const original = levels.find(l => l.level === level);
+    const updateData = { ...original, ...editedLevels[level] };
     if (!updateData) return;
 
     await axios.put(`/api/admin/vip-levels/${level}`, updateData);
@@ -32,6 +34,7 @@ export default function AdminUserLevelPage({ onLogout }) {
       delete newData[level];
       return newData;
     });
+    alert('수정되었습니다');
   };
 
   useEffect(() => {

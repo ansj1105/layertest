@@ -7,7 +7,7 @@ import VideoWithPreview from './VideoWithPreview';
 import '../styles/MainLanding.css';
 export default function ContentList() {
   // 컴포넌트 최상단에
-  const API_HOST = import.meta.env.VITE_API_HOST || 'http://localhost:4000';
+  const API_HOST = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
 
   const [banners, setBanners] = useState([]);
   const [video, setVideo] = useState(null);

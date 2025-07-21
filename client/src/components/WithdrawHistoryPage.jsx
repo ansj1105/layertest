@@ -1,33 +1,33 @@
 // 📁 src/components/WithdrawHistoryPage.jsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeftIcon } from "lucide-react";
+import { ArrowLeftIcon, FileText, AlertCircle } from "lucide-react";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import '../styles/WithdrawHistoryPage.css';
 import '../styles/topbar.css';
 
 const tabs = [
-  { key: "all",     labelKey: "history.tabs.all",      filter: null },
-  { key: "pending", labelKey: "history.tabs.pending",  filter: "PENDING" },
-  { key: "success", labelKey: "history.tabs.success",  filter: "SUCCESS" },
-  { key: "failed",  labelKey: "history.tabs.failed",   filter: "FAILED" },
+  { key: "all", labelKey: "history.tabs.all", filter: null },
+  { key: "pending", labelKey: "history.tabs.pending", filter: "PENDING" },
+  { key: "success", labelKey: "history.tabs.success", filter: "SUCCESS" },
+  { key: "failed", labelKey: "history.tabs.failed", filter: "FAILED" },
 ];
 
 // 날짜를 YYYY-MM-DD HH:mm:ss 포맷으로 변환하는 함수
 function formatDateTime(date) {
   const d = new Date(date);
   const pad = n => n.toString().padStart(2, '0');
-  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
 }
 
 export default function WithdrawHistoryPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("all");
-  const [records, setRecords]   = useState([]);
-  const [loading, setLoading]   = useState(false);
-  const [error, setError]       = useState("");
+  const [records, setRecords] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     (async () => {
@@ -108,7 +108,7 @@ export default function WithdrawHistoryPage() {
                   <td>{t(`history.status.${r.status.toLowerCase()}`)}</td>
                   <td>{formatDateTime(r.created_at)}</td>
                 </tr>
-              ))} 
+              ))}
             </tbody>
           </table>
         </div>
@@ -117,7 +117,9 @@ export default function WithdrawHistoryPage() {
       {/* ✅ 데이터 없음일 때 */}
       {!loading && !error && filtered.length === 0 && (
         <div className="no-data">
-          <img src="/img/no-data.png" alt={t("history.noDataAlt")} />
+          <div className="no-data-icon">
+            <FileText size={64} className="text-gray-400" />
+          </div>
           <p className="no-data-text">{t("history.noData")}</p>
         </div>
       )}

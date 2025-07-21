@@ -478,7 +478,7 @@
     "description": "Mô tả: {{description}}",
     "available": "Khả dụng: {{min}} ~ {{max}} USDT",
     "daily_rate": "Lãi hàng ngày: {{rate}}%",
-    "duration": "Thời gian: {{cycle}} ngày (đến {{end}})",
+    "duration": "Thời gian: {{cycle}} ngày ({{start}} ~ {{end}})",
     "apply": "Áp dụng ngay"
   },
   "charge_modal": {
@@ -548,9 +548,55 @@
     "items": [
       "Giao dịch Định lượng",
       "Dự án Tài trợ",
-      "Dựa trên Blockchain",
-      "Bảo mật Hoàn hảo"
-    ]
+      "Nền tảng Blockchain",
+      "Bảo mật Toàn diện"
+    ],
+    "details": {
+      "quantitative": {
+        "title": "Giao dịch Định lượng",
+        "description": "Upstart tạo ra lợi nhuận ổn định thông qua hệ thống phân tích định lượng dựa trên trí tuệ nhân tạo (AI) và thuật toán phát hiện sự không hiệu quả của thị trường và thực hiện chiến lược giao dịch siêu ngắn hạn và trung hạn.",
+        "features": [
+          "Cơ cấu lợi nhuận tự động tận dụng sự không hiệu quả của thị trường",
+          "Giao dịch tần suất cao (HFT) và quản lý danh mục đầu tư theo thuật toán theo chiến lược",
+          "Hệ thống phân bổ tài sản và phản ứng theo kịch bản dựa trên kiểm soát rủi ro",
+          "Chênh lệch giá tự động giữa các sàn giao dịch"
+        ],
+        "conclusion": "Upstart vượt xa giao dịch tự động đơn giản để thực hiện giao dịch định lượng 'thông minh' dựa trên dữ liệu thị trường. Thông qua phân tích dựa trên AI, chúng tôi tối đa hóa độ chính xác dự đoán biến động giá và tối ưu hóa chiến lược theo thời gian thực để chủ động đáp ứng điều kiện thị trường."
+      },
+      "funding": {
+        "title": "Dự án Tài trợ",
+        "description": "Nền tảng tài trợ sáng tạo sử dụng công nghệ blockchain, cung cấp môi trường minh bạch và an toàn kết nối nhà đầu tư và dự án.",
+        "features": [
+          "Quy trình tài trợ tự động dựa trên hợp đồng thông minh",
+          "Quản lý quỹ minh bạch và giám sát thời gian thực",
+          "Nhiều lựa chọn đầu tư và đa dạng hóa rủi ro",
+          "Kết nối mạng lưới nhà đầu tư toàn cầu"
+        ],
+        "conclusion": "Vượt qua giới hạn tài trợ truyền thống, chúng tôi xây dựng hệ sinh thái đầu tư mới đảm bảo cả tính minh bạch và hiệu quả thông qua công nghệ blockchain."
+      },
+      "blockchain": {
+        "title": "Nền tảng Blockchain",
+        "description": "Chúng tôi cung cấp dịch vụ tài chính phi tập trung, an toàn và minh bạch sử dụng công nghệ blockchain mới nhất.",
+        "features": [
+          "Đảm bảo tính toàn vẹn dữ liệu dựa trên Công nghệ Sổ cái Phân tán (DLT)",
+          "Thực hiện giao dịch tự động thông qua hợp đồng thông minh",
+          "Khả năng tương thích chuỗi chéo hỗ trợ nhiều mạng blockchain",
+          "Cấu trúc quản trị phi tập trung"
+        ],
+        "conclusion": "Chúng tôi cung cấp nền tảng hướng tới tương lai bằng cách tích hợp hoàn hảo các giá trị cốt lõi của blockchain về tính minh bạch, bảo mật và hiệu quả vào dịch vụ tài chính."
+      },
+      "security": {
+        "title": "Bảo mật Toàn diện",
+        "description": "Chúng tôi bảo vệ an toàn tài sản và thông tin của người dùng thông qua công nghệ bảo mật cấp cao và hệ thống bảo mật đa lớp.",
+        "features": [
+          "Hệ thống ví đa chữ ký",
+          "Lưu ký tài sản dựa trên lưu trữ lạnh",
+          "Giám sát bảo mật thời gian thực và phát hiện mối đe dọa",
+          "Kiểm toán bảo mật và kiểm tra lỗ hổng thường xuyên"
+        ],
+        "conclusion": "Bằng cách ưu tiên bảo mật, yếu tố cốt lõi của dịch vụ tài chính, chúng tôi cung cấp môi trường nơi người dùng có thể sử dụng dịch vụ một cách yên tâm."
+      }
+    }
   },
   "quantTutorial": {
     "title": "Hướng dẫn Giao dịch Định lượng",

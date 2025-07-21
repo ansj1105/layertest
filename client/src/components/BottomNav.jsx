@@ -20,24 +20,24 @@ export default function BottomNav() {
   const handleNavClick = (index) => {
     setActiveIndex(index);
   };
- 
+
   useEffect(() => {
     const calculateWidths = () => {
       const container = document.querySelector('.menu');
       const containerWidth = container ? container.offsetWidth : 398;
       const itemWidth = containerWidth / navItems.length;
-  
+
       const isMobile = window.innerWidth <= 768;
-  
+
       // ✅ 이동 거리와 보정 값 다르게 설정
       const mobileStep = itemWidth * 0.95;    // 모바일에서는 더 많이 이동
       const pcStep = itemWidth * 1.2;        // PC에서는 덜 이동
       const correction = isMobile ? itemWidth * 0.42 : itemWidth / 2; // 중앙 정렬 보정
-  
+
       setItemWidthPx(isMobile ? mobileStep : pcStep);
       setOffsetCorrectionPx(correction);
     };
-  
+
     calculateWidths();
     window.addEventListener('resize', calculateWidths);
     return () => window.removeEventListener('resize', calculateWidths);
@@ -66,11 +66,11 @@ export default function BottomNav() {
           </NavLink>
         ))}
         {/* 움직이는 테두리 */}
-        <div 
-          className="menu__border" 
-          style={{ 
-            transform: `translateX(${activeIndex * itemWidthPx + offsetCorrectionPx}px)` 
-          }} 
+        <div
+          className="menu__border"
+          style={{
+            transform: `translateX(${activeIndex * itemWidthPx + offsetCorrectionPx}px)`
+          }}
         />
       </menu>
 

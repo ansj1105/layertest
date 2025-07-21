@@ -428,31 +428,90 @@
   },
   "funding": {
     "active_projects": "Projets en cours",
-    "investing_amount": "Montant investi : {{amount}} USDT",
     "expired_projects": "Projets expirés",
     "no_active_projects": "Aucun projet en cours.",
+    "investing_amount": "Montant investi : {{amount}} USDT",
     "no_expired_projects": "Aucun projet expiré.",
-    "expired_label": "Projets expirés",
+    "expired_label": "Expiré",
     "detail2": {
       "loading": "Chargement...",
+      "subscribeSuccessTitle": "Investissement réussi",
+      "subscribeSuccessWithAmount": "Vous avez investi {{amount}} USDT.",
+      "subscribeErrorTitle": "Échec de l'investissement",
       "loadError": "Échec du chargement des informations du projet :",
-      "invalidAmount": "Veuillez entrer un montant valide.",
-      "amountRange": "Veuillez entrer un montant entre {{min}} et {{max}}.",
+      "invalidAmount": "Veuillez saisir un montant valide.",
+      "amountRange": "Le montant doit être compris entre {{min}} et {{max}}.",
       "insufficientBalance": "Solde insuffisant.",
-      "exceedRemaining": "Capacité restante du projet {{remaining}} USDT dépassée.",
+      "exceedRemaining": "Vous avez dépassé le montant d'investissement restant de {{remaining}} USDT.",
       "subscribe": "Souscrire",
       "subscribeSuccess": "Souscription réussie.",
-      "subscribeError": "Erreur lors de la souscription.",
+      "subscribeError": "Une erreur s'est produite lors de la souscription.",
       "descriptionLabel": "Description :",
-      "cycleLabel": "Cycle : {{cycle}} jours",
-      "dailyRateLabel": "Taux journalier : {{rate}}%",
+      "cycleLabel": "Durée : {{cycle}} jours",
+      "dailyRateLabel": "Taux journalier : {{rate}}% / jour",
       "minMaxLabel": "Min : {{min}} USDT, Max : {{max}} USDT",
-      "targetLabel": "Objectif : {{target}} USDT",
-      "currentLabel": "Investissement actuel : {{current}} USDT",
+      "targetLabel": "Montant cible : {{target}} USDT",
+      "currentLabel": "Montant investi actuel : {{current}} USDT",
       "availableLabel": "Solde disponible : {{balance}} USDT",
-      "amountPlaceholder": "Entrer le montant",
-      "investorsTitle": "Investisseurs",
+      "amountPlaceholder": "Entrez le montant",
+      "investorsTitle": "Liste des investisseurs",
       "noInvestors": "Aucun investisseur pour le moment."
+    },
+    "transfer_fail": "Échec du transfert",
+    "deposit_modal": {
+      "title": "Dépôt",
+      "success": "Succès",
+      "amount_placeholder": "Veuillez saisir le montant",
+      "fund_wallet": "Portefeuille d'investissement : {{balance}}",
+      "max_label": "Tout déposer",
+      "real_account": "Compte principal : {{balance}}",
+      "balance": "Solde : {{balance}}",
+      "fee": "Frais de traitement : {{fee}} (Taux actuel : {{rate}}%)",
+      "submit": "Soumettre",
+      "net_amount": "Après transaction : {{net}} (solde restant : {{remain}})"
+    },
+    "withdraw_modal": {
+      "title": "Retrait",
+      "net_amount": "Après transaction : {{net}} (solde restant : {{remain}})",
+      "amount_placeholder": "Veuillez saisir le montant",
+      "quant_wallet": "Portefeuille Quant : {{balance}}",
+      "max_label": "Tout retirer",
+      "real_account": "Compte principal : {{balance}}",
+      "fee": "Frais de traitement : {{fee}} (Taux actuel : {{rate}}%)",
+      "submit": "Soumettre",
+      "success": "Succès"
+    },
+    "info": {
+      "title": "Qu'est-ce qu'un produit financier ?",
+      "definition": "Un produit financier permet à l'utilisateur de déposer un certain montant pendant une période donnée et de recevoir des récompenses. Différents forfaits sont proposés par Upstart, chacun ayant son propre taux de rendement et sa propre durée.",
+      "settlement": "Le règlement des revenus a lieu chaque jour à 00:00 UTC, et les revenus du jour T sont disponibles à partir du jour T+1.",
+      "tradingTitle": "Explication de l'investissement",
+      "trade1": "1. **Souscription** : Déposez des fonds dans le produit pour les bloquer pendant la période spécifiée.",
+      "trade2": "2. **Gains** : Les récompenses sont versées quotidiennement selon le taux de rendement annoncé.",
+      "trade3": "3. **Remboursement à l'échéance** : À la fin de la période, le capital et les récompenses sont retournés à votre portefeuille financier.",
+      "trade4": "4. **Rachat anticipé** : Non pris en charge actuellement. Cette fonctionnalité pourra être ajoutée ultérieurement."
+    },
+    "header": "Gestion financière",
+    "loading": "Chargement...",
+    "wallet_balance": "Solde du portefeuille financier",
+    "detail": "Détail",
+    "deposit_request": "Transfert vers le portefeuille financier",
+    "withdraw_request": "Transfert vers le portefeuille Quant",
+    "recharge": "Recharger",
+    "all_transactions": "Toutes les transactions",
+    "today_income": "Revenus de financement aujourd'hui",
+    "total_income": "Revenus de financement cumulés",
+    "no_projects": "Aucun projet de financement en cours.",
+    "project": {
+      "description": "Description : {{description}}",
+      "available": "Disponible : {{min}} ~ {{max}} USDT",
+      "daily_rate": "Taux journalier : {{rate}}%",
+      "duration": "Durée : {{cycle}} jours ({{start}} ~ {{end}})",
+      "apply": "Souscrire maintenant"
+    },
+    "charge_modal": {
+      "title": "Comment recharger",
+      "usdt_alert": "Veuillez envoyer des USDT à l'adresse de portefeuille financier indiquée."
     }
   },
   "profile": {
@@ -693,8 +752,54 @@
       "Trading Quantitatif",
       "Projets de Financement",
       "Basé sur la Blockchain",
-      "Sécurité Parfaite"
-    ]
+      "Sécurité Complète"
+    ],
+    "details": {
+      "quantitative": {
+        "title": "Trading Quantitatif",
+        "description": "Upstart génère des profits stables grâce à un système d'analyse quantitative basé sur l'intelligence artificielle (IA) et des algorithmes qui détectent les inefficacités du marché et mettent en œuvre des stratégies de trading à ultra-court et moyen terme.",
+        "features": [
+          "Structure de profit automatisée utilisant les inefficacités du marché",
+          "Trading haute fréquence (HFT) et gestion de portefeuille algorithmique par stratégie",
+          "Diversification des actifs basée sur le contrôle des risques et système de réponse aux scénarios",
+          "Arbitrage automatisé entre les plateformes d'échange"
+        ],
+        "conclusion": "Upstart va au-delà du simple trading automatisé pour mettre en œuvre un trading quantitatif 'intelligent' basé sur les données du marché. Grâce à l'analyse basée sur l'IA, nous maximisons la précision de la prédiction des mouvements de prix et optimisons les stratégies en temps réel pour répondre activement aux conditions du marché."
+      },
+      "funding": {
+        "title": "Projets de Financement",
+        "description": "Une plateforme de financement innovante utilisant la technologie blockchain, offrant un environnement transparent et sécurisé reliant investisseurs et projets.",
+        "features": [
+          "Processus de financement automatisé basé sur les smart contracts",
+          "Gestion transparente des fonds et surveillance en temps réel",
+          "Options d'investissement variées et diversification des risques",
+          "Connexion au réseau mondial d'investisseurs"
+        ],
+        "conclusion": "En dépassant les limites du financement traditionnel, nous construisons un nouvel écosystème d'investissement qui assure à la fois transparence et efficacité grâce à la technologie blockchain."
+      },
+      "blockchain": {
+        "title": "Basé sur la Blockchain",
+        "description": "Nous fournissons des services financiers décentralisés, sécurisés et transparents utilisant la dernière technologie blockchain.",
+        "features": [
+          "Garantie d'intégrité des données basée sur la technologie de registre distribué (DLT)",
+          "Exécution automatisée des transactions via les smart contracts",
+          "Compatibilité cross-chain supportant divers réseaux blockchain",
+          "Structure de gouvernance décentralisée"
+        ],
+        "conclusion": "Nous fournissons une plateforme orientée vers l'avenir en intégrant parfaitement les valeurs fondamentales de la blockchain - transparence, sécurité et efficacité - dans les services financiers."
+      },
+      "security": {
+        "title": "Sécurité Complète",
+        "description": "Nous protégeons en toute sécurité les actifs et les informations des utilisateurs grâce à une technologie de sécurité de haut niveau et des systèmes de sécurité multicouches.",
+        "features": [
+          "Système de portefeuille multi-signatures",
+          "Conservation des actifs basée sur le stockage à froid",
+          "Surveillance de sécurité en temps réel et détection des menaces",
+          "Audits de sécurité réguliers et vérifications des vulnérabilités"
+        ],
+        "conclusion": "En priorisant la sécurité, l'élément central des services financiers, nous fournissons un environnement où les utilisateurs peuvent utiliser le service en toute tranquillité."
+      }
+    }
   },
   "quantTutorial": {
     "title": "Tutoriel de Trading Quantitatif",

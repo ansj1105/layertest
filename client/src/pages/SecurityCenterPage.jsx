@@ -39,12 +39,12 @@ export default function SecurityCenterPage() {
   const goBack = () => navigate(-1);
 
   const items = [
-    { label: t('security.email'),       value: email,         onClick: () => navigate('/security/email') },
-    { label: t('security.tradePwd'),     value: '',            onClick: () => navigate('/security/trade-password') },
-    { label: t('security.loginPwd'),     value: '',            onClick: () => navigate('/security/login-password') },
-   {/* { label: t('security.withdrawAddr'), value: '',            onClick: () => navigate('/security/withdraw-address') },*/}
+    { label: t('security.email'), value: email, onClick: () => navigate('/security/email') },
+    { label: t('security.tradePwd'), value: '', onClick: () => navigate('/security/trade-password') },
+    { label: t('security.loginPwd'), value: '', onClick: () => navigate('/security/login-password') },
+
   ];
- 
+
   return (
     <div className="security-page-wrapper">
       {/* 상단바 */}
@@ -55,7 +55,7 @@ export default function SecurityCenterPage() {
         <h1 className="security-title">{t('security.title')}</h1>
       </div>
 
- 
+
       {/* 리스트 */}
       <div className="security-item-wrapper">
         {items.map((it, idx) => (

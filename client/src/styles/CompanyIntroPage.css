@@ -6,7 +6,8 @@
   height: 100%;
   flex-direction: column;
   background-color: #0e0e11;
-  overflow: auto; /* 스크롤 활성화 */
+  overflow: auto;
+  /* 스크롤 활성화 */
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -19,9 +20,11 @@
   position: relative;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  transform: translateX(-50%);
+  /* ✅ 가운데 정렬 */
   width: 100%;
-  max-width: 500px;              /* ✅ container와 맞춤 */
+  max-width: 500px;
+  /* ✅ container와 맞춤 */
   height: 58.27px;
   background: #1d1d27;
   display: flex;
@@ -36,12 +39,18 @@
 .company-intro-back-btn {
   color: #ffffff;
   font-size: 30px !important;
-  font-weight: bold !important;              /* 글자 굵게 */
-  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  height: 100%;                   /* 부모 요소 높이 기준 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  font-weight: bold !important;
+  /* 글자 굵게 */
+  display: flex;
+  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  height: 100%;
+  /* 부모 요소 높이 기준 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 .company-intro-back-btn:hover {
@@ -56,25 +65,20 @@
   font-size: 20px;
   width: 100%;
   height: 40%;
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
-
-
-
-
-
-
-
-
-
 
 /* 항목 리스트 (ul) */
 .company-intro-list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* space-y-2 */
+  gap: 0.5rem;
+  /* space-y-2 */
   padding: 0;
   margin: 0;
   list-style: none;
@@ -90,23 +94,84 @@
   height: auto;
   margin: 10px auto 5px auto;
   display: flex;
-  flex-direction: column;  /* ✅ 세로 정렬로 바꿈 */
-  align-items: stretch;    /* ✅ 자식 요소 전체 너비 사용 */
-  justify-content: flex-start; /* ✅ 위쪽 정렬 */
+  flex-direction: column;
+  /* ✅ 세로 정렬로 바꿈 */
+  align-items: stretch;
+  /* ✅ 자식 요소 전체 너비 사용 */
+  justify-content: flex-start;
+  /* ✅ 위쪽 정렬 */
   color: #ffffff;
   transition: all 0.4s ease;
   box-shadow: 0 0 4px 1px #b8dfd9 !important;
+  cursor: pointer;
+  /* 클릭 가능함을 표시 */
 }
 
 .company-intro-list-item:hover {
   background-color: #3a270e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px 2px #b8dfd9 !important;
 }
 
+/* 모달 스타일 (기존 스타일과 호환) */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1050;
+}
+
+.modal-content {
+  background: #1a3030;
+  color: #fef08a;
+  width: 320px;
+  padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 0.5rem;
+  position: relative;
+  box-shadow: 0 0 2px 2px #b8dfd9;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  color: #9ca3af;
+  font-size: 1.25rem;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn:hover {
+  color: #fef2c0;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.modal-text-row {
+  font-size: 0.875rem;
+  color: #d1d5db;
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+}
 
 @media screen and (max-width: 768px) {
-  .company-intro-wrapper {
-
-  }
+  .company-intro-wrapper {}
 
   .company-intro-top-bar {
     height: auto;
@@ -134,5 +199,10 @@
     font-size: 0.875rem;
     width: 90%;
     margin: 8px auto;
+  }
+
+  .modal-content {
+    width: 90%;
+    max-width: 320px;
   }
 }

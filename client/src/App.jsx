@@ -102,7 +102,7 @@ const PerformanceMonitor = lazy(() => import('./components/PerformanceMonitor'))
 const AdvancedLoadingSpinner = lazy(() => import('./components/AdvancedLoadingSpinner'));
 
 axios.defaults.withCredentials = true;
-const API_HOST = import.meta.env.VITE_API_HOST || 'http://localhost:4000';
+const API_HOST = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
 /** 간단한 가역 인코딩 (XOR → 16진수, 8자리) */
 function encodeId(id) {
   const ob = id ^ 0xA5A5A5A5;
@@ -115,12 +115,20 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const [pdfs, setPdfs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const loc = useLocation();
   const navigate = useNavigate();
+
   useEffect(() => {
     axios.get("/api/auth/me")
-      .then(res => setUser(res.data.user))
-      .catch(() => setUser(null));
+      .then(res => {
+        setUser(res.data.user);
+        setIsLoading(false);
+      })
+      .catch(() => {
+        setUser(null);
+        setIsLoading(false);
+      });
   }, []);
 
   // PDF 파일 목록 가져오기
@@ -140,62 +148,84 @@ export default function App() {
     setUser(null);
     window.location.href = "/login";
   };
+
   const handleCopyId = () => {
     const enc = encodeId(user.id);
-    navigator.clipboard.writeText(enc);
-    setCopySuccess(true);
-    setTimeout(() => setCopySuccess(false), 1500);
+    console.log('복사 시도:', enc);
+
+    navigator.clipboard.writeText(enc)
+      .then(() => {
+        console.log('복사 성공');
+        setCopySuccess(true);
+        setTimeout(() => setCopySuccess(false), 1500);
+      })
+      .catch((err) => {
+        console.error('복사 실패:', err);
+        alert(`ID: ${enc}\n\n복사가 실패했습니다. 위 ID를 수동으로 복사해주세요.`);
+      });
   };
 
   const changeLang = (lang) => {
     i18n.changeLanguage(lang);
   };
 
+  // 로딩 중이거나 모든 컴포넌트가 로드되지 않았으면 로딩 스피너 표시
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-cover bg-center flex flex-col" style={{ backgroundImage: "url('/bg.jpg')" }}>
+        <AdvancedLoadingSpinner text="Loading Vietcoin..." />
+      </div>
+    );
+  }
+
   // 1) /register 경로면 오직 회원가입 페이지만
   if (loc.pathname === '/register') {
     return (
-      <Suspense fallback={<AdvancedLoadingSpinner />}>
-        <RegisterPage />
-      </Suspense>
+      <div className="min-h-screen bg-cover bg-center flex flex-col" style={{ backgroundImage: "url('/bg.jpg')" }}>
+        <Suspense fallback={<AdvancedLoadingSpinner text="Loading..." />}>
+          <RegisterPage />
+        </Suspense>
+      </div>
     );
   }
-  // 1) /register 경로면 오직 회원가입 페이지만
+
+  // 2) /forgot-password 경로면 비밀번호 찾기 페이지만
   if (loc.pathname === '/forgot-password') {
     return (
-      <Suspense fallback={<AdvancedLoadingSpinner />}>
-        <ForgotPassword />
-      </Suspense>
+      <div className="min-h-screen bg-cover bg-center flex flex-col" style={{ backgroundImage: "url('/bg.jpg')" }}>
+        <Suspense fallback={<AdvancedLoadingSpinner text="Loading..." />}>
+          <ForgotPassword />
+        </Suspense>
+      </div>
     );
   }
 
-
+  // 3) /settings/language 경로면 언어 설정 페이지만
   if (loc.pathname === '/settings/language') {
     return (
-      <Suspense fallback={<AdvancedLoadingSpinner />}>
-        <LanguageSettingsPage />
-      </Suspense>
+      <div className="min-h-screen bg-cover bg-center flex flex-col" style={{ backgroundImage: "url('/bg.jpg')" }}>
+        <Suspense fallback={<AdvancedLoadingSpinner text="Loading..." />}>
+          <LanguageSettingsPage />
+        </Suspense>
+      </div>
     );
   }
-  // 2) /register 가 아니고, 로그인 안된 상태면 로그인 페이지만
+
+  // 4) 로그인 안된 상태면 로그인 페이지만
   if (!user) {
     return (
-      <Suspense fallback={<AdvancedLoadingSpinner />}>
-        <LoginPage />
-      </Suspense>
+      <div className="min-h-screen bg-cover bg-center flex flex-col" style={{ backgroundImage: "url('/bg.jpg')" }}>
+        <Suspense fallback={<AdvancedLoadingSpinner text="Loading..." />}>
+          <LoginPage />
+        </Suspense>
+      </div>
     );
   }
-  /*
-    if (!user && !["//settings/language", "/test"].includes(window.location.pathname))  {
-      return <LoginPage />;
-    }
-    */
 
   return (
-
     <div className="top-container" style={{ backgroundImage: "url('/bg.jpg')" }}>
       {/* 상단 바 */}
       <div className="top-nav-bar ">
-
         {/* 유저 버튼 */}
         <div className="btn-avatar">
           <button className="avatar-button" onClick={() => setSidebarOpen(true)}>
@@ -230,7 +260,6 @@ export default function App() {
           </a>
         </div>
       </div>
-
 
       {/* 사이드바 */}
       {sidebarOpen && (
@@ -328,7 +357,7 @@ export default function App() {
 
       {/* 메인 콘텐츠 */}
       <div className="pt-16 ">
-        <Suspense fallback={<AdvancedLoadingSpinner />}>
+        <Suspense fallback={<AdvancedLoadingSpinner text="Loading..." />}>
           <UserChat userId={user.id} />
           <MainLanding user={user} />
           <BottomNav />
@@ -346,11 +375,10 @@ export default function App() {
       </Suspense>
 
       {/* 성능 모니터링 (개발 환경에서만) */}
-      <Suspense fallback={null}>
+      {/* <Suspense fallback={null}>
         <PerformanceMonitor />
-      </Suspense>
+      </Suspense> */}
     </div>
-
   );
 }
 {/* <div className="flex gap-4 flex-wrap justify-center text-sm md:text-base">

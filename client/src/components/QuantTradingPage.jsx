@@ -531,7 +531,7 @@ export default function QuantTradingPage() {
 
       {/* 빨간 경고 문구 */}
       {isTrading && (
-        <p className="text-red-500 mt-2">
+        <p className="text-red-500 mt-2 text-center">
           {t("quantTrading.warningMessage")}
         </p>
       )}
