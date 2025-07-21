@@ -24,14 +24,14 @@ export default function FundingProjectForm({ project, onSaved }) {
       setForm({
         name: project.name,
         description: project.description || "",
-        minAmount: project.min_amount,
-        maxAmount: project.max_amount,
-        targetAmount: project.target_amount,
-        dailyRate: project.daily_rate,
-        cycle: project.cycle_days,
-        startDate: project.start_date?.slice(0, 10) || "",
-        endDate: project.end_date?.slice(0, 10) || "",
-        minParticipants: project.min_participants,
+        minAmount: project.minAmount,
+        maxAmount: project.maxAmount,
+        targetAmount: project.targetAmount,
+        dailyRate: project.dailyRate,
+        cycle: project.cycle,
+        startDate: project.startDate?.slice(0, 10) || "",
+        endDate: project.endDate?.slice(0, 10) || "",
+        minParticipants: project.minParticipants,
         status: project.status,
       });
     }
