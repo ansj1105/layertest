@@ -175,14 +175,16 @@ export default function FundingPage() {
               {t("funding.info.title")}
             </h3>
             <div className="info-modal-body">
-              <p>{t("funding.info.definition")}</p>
-              <p>{t("funding.info.settlement")}</p>
+              <p style={{ whiteSpace: 'pre-line' }}>{t("funding.info.definition")}</p>
+              <br></br>
+              <p style={{ whiteSpace: 'pre-line' }}>{t("funding.info.settlement")}</p>
               <h4 className="info-modal-subtitle">{t("funding.info.tradingTitle")}</h4>
               <ul className="info-modal-list">
-                <li>{t("funding.info.trade1")}</li>
-                <li>{t("funding.info.trade2")}</li>
-                <li>{t("funding.info.trade3")}</li>
-                <li>{t("funding.info.trade4")}</li>
+                <li style={{ listStyleType: 'none', whiteSpace: 'pre-line' }}>{t("funding.info.trade1")}</li>
+                <br></br>
+                <li style={{ listStyleType: 'none', whiteSpace: 'pre-line' }}>{t("funding.info.trade2")}</li>
+                <br></br>
+                <li style={{ listStyleType: 'none', whiteSpace: 'pre-line' }}>{t("funding.info.trade3")}</li>
               </ul>
             </div>
           </div>

@@ -23,14 +23,14 @@ export default function EscrowOrdersPage() {
       })
       .finally(() => setLoading(false));
   }, []);
- 
+
   return (
     <div className="escrow-page-wrapper">
       <div className="escrow-page-top-bar">
         <button onClick={() => navigate(-1)} className="escrow-back-button">
           <ArrowLeftIcon size={24} />
         </button>
-        <h1 className="escrow-page-top-h-text">{t('escrow.title')}</h1>
+        <h1 className="escrow-page-top-h-text">{t('common.escrow.title')}</h1>
       </div>
       {loading ? (
         <p className="escrow-order-message">{t('common.loading')}</p>

@@ -369,18 +369,33 @@ export default function MyProfilePage() {
       {/* ── 로그아웃 확인 모달 ─────────────────────────────────── */}
       {showLogoutConfirm && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50">
-          <div className="bg-[#2c1f0f] rounded-lg w-80 p-6 text-center space-y-4">
+          <div
+            className="w-80 p-6 text-center space-y-4 rounded-lg flex flex-col items-center shadow-lg border-2"
+            style={{
+              backgroundColor: '#0e1817',
+              color: '#rgb(53 179 168)',
+              borderColor: 'rgb(53 179 168)',
+              boxShadow: '0 0 24px 2pxrgb(24, 176, 130), 0 0 12px 1pxrgb(11, 168, 77)',
+            }}
+          >
             <p className="text-white text-lg">{t('profile.logoutConfirmMessage')}</p>
-            <div className="flex mt-4 divide-x divide-gray-600">
+            <div className="flex mt-4 gap-4 w-full">
               <button
                 onClick={() => setShowLogoutConfirm(false)}
-                className="flex-1 py-2 text-gray-300 hover:text-white"
+                className="flex-1 py-2 text-gray-300 hover:text-white rounded transition-all border border-transparent hover:border-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                style={{
+                  boxShadow: '0 0 8px 0rgb(30, 162, 129)',
+                  background: 'rgba(56,189,248,0.07)'
+                }}
               >
                 {t('profile.logoutCancel')}
               </button>
               <button
                 onClick={doLogout}
-                className="flex-1 py-2 text-yellow-400 hover:text-yellow-300"
+                className="flex-1 py-2 text-cyan-300 hover:text-cyan-100 rounded transition-all border border-cyan-400 bg-cyan-900/30 hover:bg-cyan-800/60 focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                style={{
+                  boxShadow: '0 0 12px 2pxrgb(33, 175, 87)',
+                }}
               >
                 {t('profile.logoutConfirm')}
               </button>

@@ -1,6 +1,8 @@
 {
   "notification": {
-    "title": "System Notification"
+    "title": "System Notification",
+    "subtitle": "Upstart Official Guide",
+    "official": "\nGrowth and opportunity center, new personalization work center opened!\n\nNow, Upstart platform is more precise and reliable through intelligent AI-based profit systems.\n\nThis program is open to everyone who participates in the profit structure and actively engages.\n\nThis journey is not just a reward, but an opportunity for growth.\nUpstart is your strongest partner to help you exceed your limits and design your future.\n\nJoin now and together build the future global financial ecosystem.\n\nWe look forward to your challenge."
   },
   "order_history": {
     "title": "My Orders and Redemptions",
@@ -289,6 +291,8 @@
   },
   "tokenPurchase": {
     "title": "USC Token",
+    "swapSuccess": "Swap successful",
+    "depositSuccess": "Deposit successful",
     "lockupDetails": "Lockup Details",
     "purchaseSuccessTitle": "Purchase successful",
     "maxAll": "All",
@@ -455,14 +459,13 @@
       "submit": "Submit"
     },
     "info": {
-      "title": "What is a Financial Product?",
-      "definition": "Financial products allow users to lock in a certain amount over a set period to earn rewards. They include various packages managed by Upstart, each with its own rate and duration.",
-      "settlement": "Settlement occurs at 00:00 UTC each day, and income from 'T‑day' is available starting from T+1 day.",
-      "tradingTitle": "Transaction Explanation",
-      "trade1": "1. **Buying**: Subscribe to a product to lock funds for the specified duration.",
-      "trade2": "2. **Earnings**: Earn daily rewards at the advertised rate, credited every 24 hours.",
-      "trade3": "3. **Redemption**: After the holding period, principal and rewards are returned to your finance wallet.",
-      "trade4": "4. **Early exit**: Currently not supported. Future versions may allow early redemption with a fee."
+      "title": "What are financial products?",
+      "definition": "Upstart's financial products are intelligent yield tools designed to help users manage digital assets more efficiently.\n\nThese products operate based on financial infrastructure partnered with Upstart and smart contracts, allowing users to deposit assets for a set period to earn interest or point rewards.",
+      "settlement": "Leveraging blockchain technology, these products are designed to transparently track the flow and returns of deposited assets, with rewards automatically distributed when certain conditions are met. Users can check their earnings in real time based on the performance of their deposited assets and will receive rewards at the end of the contract period.\n\nProfit and Loss Statement\nBased on the subscription success date (T day):\nInterest starts accruing from 00:00 on T+1 day,\nand settlement is reflected at 00:00 the following day.",
+      "tradingTitle": "Trading Explanation [Purchase Rules]",
+      "trade1": "1. You can participate directly in financial products using assets from your Quant Wallet or Profit Wallet. (The same withdrawal fee applies.)",
+      "trade2": "2. The returns of financial products are provided as variable, not fixed, rates. Daily earnings calculation starts two business days after the subscription date. If you withdraw within three days of the contract date, a 1% management fee applies.",
+      "trade3": "3. Both principal and returns are settled at the end of the period without automatic reinvestment. Early termination and withdrawal are not allowed."
     },
     "header": "Funding Management",
     "loading": "Loading...",
@@ -522,26 +525,34 @@
   },
   "agencyCooperation": {
     "back": "Back",
-    "title": "Agency Cooperation",
-    "subTitle": "Counselor Partnership",
+    "title": "Agent Partner",
+    "subTitle": "Agent Network Rewards",
     "lines": [
-      "Join the Upstart team program and earn commissions by promoting Upstart. Enjoy Upstart's convenience and sustained growth like no one else.",
-      "Upstart offers every user a generous team-commission reward mechanism.",
-      "You can receive commission rewards in three tiers (these are extra rewards from Upstart and do not reduce your team members' earnings).",
-      "1. When Friend A shares and becomes your Level-1 member, you earn 21% of A's daily profit.",
-      "2. When A's Friend B becomes your Level-2 member, you earn 7% of B's daily profit.",
-      "3. When B's Friend C becomes your Level-3 member, you earn 1% of C's daily profit.",
-      "Example: If each A, B, and C member earns $100 per day, you receive:",
-      "• Level-A member commission: $100 × 21% = $21",
-      "• Level-B member commission: $100 × 7%  = $7",
-      "• Level-C member commission: $100 × 1%  = $1",
-      "Your total team commission is 21% + 7% + 1% = 29%, which equals $29.",
-      "If you have 10 A-members, 100 B-members, and 1000 C-members each earning $100 daily, then:",
-      "A-level team income = 100 × 21% × 10  = $210",
-      "B-level team income = 100 × 7%  × 100 = $700",
-      "C-level team income = 100 × 1%  × 1000 = $1000",
-      "Your daily team income = 210 + 700 + 1000 = $1910",
-      "This is a very significant income."
+      "Upstart's agent program is a system for partners who help expand the platform and build trust in financial products worldwide.",
+      "Partners who bring in new users and help activate trading can receive regular profit-sharing commissions from Upstart.",
+      "",
+      "3-Tier Commission Structure",
+      "Upstart offers a transparent 3-tier commission system:",
+      "",
+      "Level 1 (directly invited members): 20% commission on the daily profit of each member",
+      "Level 2 (users invited by Level 1 members): 8% commission on their profit",
+      "Level 3 (users invited by Level 2 members): 4% commission on their profit",
+      "",
+      "※ All commissions are calculated based on actual profits generated. False invitations or abnormal activities are excluded.",
+      "",
+      "Example Scenario",
+      "If A, B, and C are your Level 1, 2, and 3 partners respectively, and each earns $100 daily:",
+      "- A's profit: $100 × 20% = $20",
+      "- B's profit: $100 × 8% = $8",
+      "- C's profit: $100 × 4% = $4",
+      "⇒ Your total daily commission: $32",
+      "",
+      "Team Commission Calculation Example",
+      "If all sub-accounts each earn $100 per day and the number of active members is as follows:",
+      "- Level 1: 10 people → $100 × 20% × 10 = $200",
+      "- Level 2: 100 people → $100 × 8% × 100 = $800",
+      "- Level 3: 1,000 people → $100 × 4% × 1,000 = $4,000",
+      "⇒ Expected total daily commission: $5,000"
     ]
   },
   "companyIntro": {
@@ -601,33 +612,41 @@
     }
   },
   "quantTutorial": {
-    "title": "Quantitative Trading Tutorial",
-    "description": "To help you better understand Upstart, this tutorial explains in detail how the automated quantitative system generates profits and how to use it.",
+    "title": "Smart Automated Quantitative Trading System Guide",
+    "description": "System Overview\n\nUpstart provides an automatic quantitative arbitrage system that combines the latest AI-based analysis technology and automated trading algorithms to exploit price inefficiencies in the digital asset market.\n\nThis system automatically detects price differences between major digital assets such as USDT, BTC, and ETH across global exchanges, and executes real-time buy and sell triggers to pursue stable profit generation.",
     "sections": {
+      "overview": "Smart Arbitrage System Principle",
+      "principle": "Smart Arbitrage System Principle",
+      "process": "Profit Realization Process",
       "vipCriteria": "VIP Upgrade Criteria",
-      "overview": "Overview",
-      "dailyReturns": "VIP Daily Returns Example"
+      "dailyReturns": "VIP Daily Return Examples",
+      "caution": "Cautions",
+      "suitability": "Who is this system suitable for?"
     },
-    "vipUpgradeCriteria": [
-      "VIP1: Requires a minimum of 35 USDT in crypto assets.",
-      "VIP2: Requires at least 300 USDT in crypto assets plus inviting and activating 2 A-level, 2 B-level, and 2 C-level members.",
-      "VIP3: Requires at least 1000 USDT in crypto assets plus inviting and activating 5 A-level, 5 B-level, and 5 C-level members.",
-      "VIP4: Requires at least 5000 USDT in crypto assets plus inviting and activating 15 A-level, 15 B-level, and 15 C-level members.",
-      "VIP5: Requires at least 20000 USDT in crypto assets plus inviting and activating 30 A-level, 30 B-level, and 30 C-level members.",
-      "VIP6: Requires at least 50000 USDT in crypto assets plus inviting and activating 60 A-level, 60 B-level, and 60 C-level members."
-    ],
-    "overview": "Upstart Quantitative Overview: Click the button to start automated trading, which uses key market data to complete trades within 1–3 minutes and generate profits.",
     "method": {
-      "title": "Trading Method",
-      "description": "Click the button to initiate automated trading and complete it within 1–3 minutes. Of the profits generated, 50% goes to the platform and 50% returns to you."
+      "title": "Cautions",
+      "title2": "Who is this system suitable for?",
+      "description": "-All returns may vary depending on market conditions, exchange liquidity, and system status.\n-This system only uses officially contracted exchange APIs and verified algorithms.\n-Fraudulent registrations, duplicate accounts, and abnormal trades will be immediately blocked and profits recovered.",
+      "description2": "-Smart investors aiming for short-term profits\n-Beginners in digital assets who lack market response capability\n-High-value investors seeking to utilize automated profit models"
     },
+    "overview": "-Market Monitoring: AI automatically monitors real-time price data from major global exchanges\n-Price Spread Analysis: When the price gap for the same asset between exchanges exceeds a certain level, buy/sell signals are triggered\n-Automatic Execution: Buy and sell trades are executed simultaneously, and the spread (profit) is automatically realized\n-Profit Distribution: 50% of the generated profit is taken as a platform fee, and 50% is returned to the investor\n\nExample: Buy BTC at OXX Exchange for 1000 USDT → Sell at CoinEase Exchange for 1050 USDT → Of the total profit of 50 USDT, 25 USDT is distributed to the user\n\nProfit Realization Process\n\n1. Click the button → Start automated trading\n2. The algorithm performs quantitative trading within 1–3 minutes\n3. Automatic execution up to high-price selling → Profits are generated and distributed\n4. Real-time profit reports are provided on the platform",
+    "vipUpgradeCriteria": [
+      "VIP1: Requires a minimum of 35 USDT in assets.",
+      "VIP2: Requires a minimum of 300 USDT + 2 active A-level invites + 2 B-level + 2 C-level.",
+      "VIP3: Minimum 1000 USDT + 5 A-level + 5 B-level + 5 C-level active invites.",
+      "VIP4: Minimum 3000 USDT + 15 A-level + 15 B-level + 15 C-level active invites.",
+      "VIP5: Minimum 5000 USDT + 30 A-level + 30 B-level + 30 C-level active invites.",
+      "VIP6: Minimum 50000 USDT + 60 A-level + 60 B-level + 60 C-level active invites.",
+      "",
+      "※ Each grade condition is based on active users; fraudulent accounts are invalid."
+    ],
     "vipDaily": [
-      "VIP1: Up to 5 trades per day with a daily profit rate of 1.8%–2.1%, earning 9–10.5 USDT daily on a 500 USDT stake.",
-      "VIP2: Up to 6 trades per day with a daily profit rate of 2.3%–2.6%, earning 46–52 USDT daily on a 2000 USDT stake.",
-      "VIP3: Up to 7 trades per day with a daily profit rate of 3.9%–4.3%, earning 195–215 USDT daily on a 5000 USDT stake.",
-      "VIP4: Up to 8 trades per day with a daily profit rate of 5.9%–6.4%, earning 590–640 USDT daily on a 10000 USDT stake.",
-      "VIP5: Up to 9 trades per day with a daily profit rate of 8.6%–9.4%, earning 1720–1880 USDT daily on a 20000 USDT stake.",
-      "VIP6: Up to 10 trades per day with a daily profit rate of 9.5%–10.5%, earning 1900–2100 USDT daily on a 20000 USDT stake."
+      "VIP1: Up to 5 trades per day, return rate 1.3% ~ 1.6%, based on 500 USDT → 6.5 ~ 8 USDT/day",
+      "VIP2: Up to 6 trades per day, return rate 1.8% ~ 2.1%, based on 2000 USDT → 36 ~ 42 USDT/day",
+      "VIP3: Up to 7 trades per day, return rate 2.2% ~ 2.5%, based on 5000 USDT → 110 ~ 125 USDT/day",
+      "VIP4: Up to 8 trades per day, return rate 2.8% ~ 3.2%, based on 20000 USDT → 560 ~ 640 USDT/day",
+      "VIP5: Up to 9 trades per day, return rate 3.3% ~ 3.8%, based on 100000 USDT → 3300 ~ 3800 USDT/day",
+      "VIP6: Up to 10 trades per day, return rate 4.5% ~ 5.0%, based on 200000 USDT → 9000 ~ 10000 USDT/day"
     ]
   },
   "commonProblems": {
@@ -818,7 +837,7 @@
       "level3": "Level 3"
     },
     "menu": {
-      "taskCenter": "Task Center",
+      "taskCenter": "New Member Signup Bonus",
       "faq": "FAQ",
       "securityCenter": "Security Center",
       "quantTutorial": "Quant Tutorial",

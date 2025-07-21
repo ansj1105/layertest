@@ -1,6 +1,8 @@
 {
   "notification": {
-    "title": "Systembenachrichtigung"
+    "title": "Systembenachrichtigung",
+    "subtitle": "Upstart offizielle Anleitung",
+    "official": "\nWachstum und Gelegenheiten zentrieren, neue individuelle Arbeitsstätte eröffnet!\n\nJetzt ist Upstart-Plattform durch intelligente KI-basierte Gewinnsysteme noch präziser und zuverlässiger. \n\nDieses Programm ist jedem offen, der an der Gewinnstruktur teilnimmt und aktiv handelt.\n\nDieser Weg ist nicht nur eine Belohnung, sondern eine Gelegenheit für das Wachstum.\nUpstart ist Ihr stärkster Partner, um Ihre Grenzen zu überschreiten und Ihre zukünftige Zukunft zu gestalten.\n\nJetzt teilnehmen und mit uns zusammen den zukünftigen globalen Finanzökosystem aufbauen.\n\nWir freuen uns auf Ihre Herausforderung."
   },
   "order_history": {
     "title": "Meine Bestellungen und Auszahlungen",
@@ -304,6 +306,8 @@
     "purchaseSuccessTitle": "Kauf erfolgreich",
     "purchaseSuccessWithAmount": "{{amount}} USDT gekauft.",
     "purchaseFailTitle": "Kauf fehlgeschlagen",
+    "swapSuccess": "Tausch erfolgreich",
+    "depositSuccess": "Einzahlung erfolgreich",
     "redeemSuccess": "Einlösung erfolgreich",
     "available": "Verfügbar: USC",
     "inputUsdc": "USC ",
@@ -467,14 +471,13 @@
     }
   },
   "info": {
-    "title": "Was ist ein Finanzprodukt?",
-    "definition": "Finanzprodukte ermöglichen es Nutzern, einen bestimmten Betrag für eine festgelegte Dauer zu sperren, um Belohnungen zu erhalten. Sie umfassen verschiedene Pakete, die von Upstart verwaltet werden, jedes mit eigenem Satz und Dauer.",
-    "settlement": "Abrechnung erfolgt täglich um 00:00 UTC, und Erträge ab Tag T sind ab dem T+1 Tag verfügbar.",
-    "tradingTitle": "Vorgangserklärung",
-    "trade1": "1. **Kauf**: Abonnieren Sie ein Produkt, um Gelder für die angegebene Dauer zu sperren.",
-    "trade2": "2. **Erträge**: Verdienen Sie tägliche Belohnungen zum angegebenen Satz, gutgeschrieben alle 24 Stunden.",
-    "trade3": "3. **Einlösung**: Nach Ablauf der Haltedauer werden Kapital und Erträge in Ihr Finanz-Wallet zurückgebucht.",
-    "trade4": "4. **Vorzeitige Ausstiege**: Derzeit nicht unterstützt. Zukünftige Versionen könnten vorzeitige Einlösungen mit Gebühr ermöglichen."
+    "title": "Was sind Finanzprodukte?",
+    "definition": "Die Finanzprodukte von Upstart sind intelligente Ertragswerkzeuge, die entwickelt wurden, um Nutzern zu helfen, digitale Vermögenswerte effizienter zu verwalten.\n\nDiese Produkte basieren auf einer mit Upstart kooperierenden Finanzinfrastruktur und Smart Contracts, wodurch Nutzer Vermögenswerte für einen festgelegten Zeitraum einzahlen können, um Zinsen oder Punktprämien zu erhalten.",
+    "settlement": "Durch den Einsatz von Blockchain-Technologie sind diese Produkte darauf ausgelegt, den Fluss und die Rendite der eingezahlten Vermögenswerte transparent zu verfolgen. Prämien werden automatisch ausgeschüttet, sobald bestimmte Bedingungen erfüllt sind. Nutzer können ihre Erträge in Echtzeit entsprechend der Performance ihrer Einlagen einsehen und erhalten die Prämien am Ende der Vertragslaufzeit.\n\nGewinn- und Verlustabrechnung\nBasierend auf dem Datum des erfolgreichen Abonnements (T-Tag):\nDie Verzinsung beginnt ab 00:00 Uhr am Tag T+1,\nund die Abrechnung wird am folgenden Tag um 00:00 Uhr reflektiert.",
+    "tradingTitle": "Handelserklärung [Kaufregeln]",
+    "trade1": "1. Sie können direkt mit Vermögenswerten aus Ihrem Quant-Wallet oder Profit-Wallet an Finanzprodukten teilnehmen. (Es gilt die gleiche Auszahlungsgebühr.)",
+    "trade2": "2. Die Renditen der Finanzprodukte werden als variable, nicht feste Sätze bereitgestellt. Die tägliche Ertragsberechnung beginnt zwei Werktage nach dem Abonnementdatum. Bei einer Auszahlung innerhalb von drei Tagen nach Vertragsabschluss fällt eine Verwaltungsgebühr von 1 % an.",
+    "trade3": "3. Sowohl das Kapital als auch die Erträge werden am Ende der Laufzeit abgerechnet, ohne automatische Reinvestition. Eine vorzeitige Kündigung oder Auszahlung ist nicht möglich."
   },
   "header": "Finanzmanagement",
   "loading": "Laden…",
@@ -533,26 +536,34 @@
   },
   "agencyCooperation": {
     "back": "Zurück",
-    "title": "Agenturkooperation",
-    "subTitle": "Berater-Partnerschaft",
+    "title": "Agenten-Partner",
+    "subTitle": "Netzwerk-Belohnungen für Agenten",
     "lines": [
-      "Treten Sie dem Upstart-Teamprogramm bei und verdienen Sie Provisionen, indem Sie Upstart bewerben. Genießen Sie den Komfort und das nachhaltige Wachstum wie niemand sonst.",
-      "Upstart bietet jedem Nutzer ein großzügiges Team-Provisions-Modell.",
-      "Sie können Provisionen in drei Stufen erhalten (diese zusätzlichen Belohnungen von Upstart mindern nicht die Einnahmen Ihrer Teammitglieder).",
-      "1. Wenn Freund A sich anmeldet und Ihr Level-1-Mitglied wird, erhalten Sie 21 % des Tagesgewinns von A.",
-      "2. Wenn B, ein Freund von A, Ihr Level-2-Mitglied wird, erhalten Sie 7 % des Tagesgewinns von B.",
-      "3. Wenn C, ein Freund von B, Ihr Level-3-Mitglied wird, erhalten Sie 1 % des Tagesgewinns von C.",
-      "Beispiel: Wenn jedes A-, B- und C-Mitglied täglich $100 verdient, erhalten Sie:",
-      "• Provision für Level-A-Mitglied: $100 × 21 % = $21",
-      "• Provision für Level-B-Mitglied: $100 × 7 % = $7",
-      "• Provision für Level-C-Mitglied: $100 × 1 % = $1",
-      "Ihre gesamte Team-Provision beträgt 21 % + 7 % + 1 % = 29 %, also $29.",
-      "Wenn Sie 10 A-Mitglieder, 100 B-Mitglieder und 1000 C-Mitglieder haben, die jeweils täglich $100 verdienen, dann:",
-      "Einkommen aus Level-A-Team = 100 × 21 % × 10 = 210 $",
-      "Einkommen aus Level-B-Team = 100 × 7 % × 100 = 700 $",
-      "Einkommen aus Level-C-Team = 100 × 1 % × 1000 = 1000 $",
-      "Ihr tägliches Team-Einkommen = 210 + 700 + 1000 = 1910 $",
-      "Dies ist ein sehr beträchtliches Einkommen."
+      "Das Agentenprogramm von Upstart ist ein System für Partner, die zur globalen Expansion der Plattform und zur Vertrauensbildung in Finanzprodukte beitragen.",
+      "Partner, die neue Nutzer gewinnen und den Handel auf der Plattform fördern, erhalten von Upstart regelmäßige Gewinnbeteiligungen als Provision.",
+      "",
+      "3-stufige Provisionsstruktur",
+      "Upstart bietet für maximale Transparenz ein dreistufiges Provisionssystem:",
+      "",
+      "Stufe 1 (direkt geworbene Mitglieder): 20 % Provision auf den Tagesgewinn des jeweiligen Mitglieds",
+      "Stufe 2 (von Stufe-1-Mitgliedern geworbene Nutzer): 8 % Provision auf deren Gewinn",
+      "Stufe 3 (von Stufe-2-Mitgliedern geworbene Nutzer): 4 % Provision auf deren Gewinn",
+      "",
+      "※ Alle Provisionen werden auf Basis tatsächlich erzielter Gewinne berechnet. Falsche Einladungen oder unregelmäßige Aktivitäten sind ausgeschlossen.",
+      "",
+      "Beispiel-Szenario",
+      "Wenn A, B und C jeweils Ihre Partner der Stufen 1, 2 und 3 sind und jeder $100 Tagesgewinn erzielt:",
+      "- Gewinn von A: $100 × 20 % = $20",
+      "- Gewinn von B: $100 × 8 % = $8",
+      "- Gewinn von C: $100 × 4 % = $4",
+      "⇒ Ihre gesamte Tagesprovision: $32",
+      "",
+      "Beispiel für Team-Provisionsabrechnung",
+      "Wenn alle Unterkonten jeweils $100 pro Tag verdienen und die Anzahl der aktiven Mitglieder wie folgt ist:",
+      "- Stufe 1: 10 Personen → $100 × 20 % × 10 = $200",
+      "- Stufe 2: 100 Personen → $100 × 8 % × 100 = $800",
+      "- Stufe 3: 1.000 Personen → $100 × 4 % × 1.000 = $4.000",
+      "⇒ Erwartete gesamte Tagesprovision: $5.000"
     ]
   },
   "companyIntro": {
@@ -612,33 +623,41 @@
     }
   },
   "quantTutorial": {
-    "title": "Tutorial: Quantitativer Handel",
-    "description": "Dieses Tutorial hilft Ihnen, Upstart besser zu verstehen, indem es detailliert erklärt, wie das automatisierte Quant-System Gewinne generiert und wie man es verwendet.",
+    "title": "Leitfaden für das Smart Automated Quantitative Trading System",
+    "description": "Systemübersicht\n\nUpstart bietet ein automatisiertes quantitatives Arbitragesystem, das modernste KI-basierte Analysetechnologie mit automatisierten Handelsalgorithmen kombiniert, um Preisineffizienzen auf dem digitalen Vermögensmarkt auszunutzen.\n\nDieses System erkennt automatisch Preisunterschiede zwischen wichtigen digitalen Vermögenswerten wie USDT, BTC und ETH auf globalen Börsen und löst in Echtzeit Kauf- und Verkaufssignale aus, um stabile Gewinne zu erzielen.",
     "sections": {
-      "vipCriteria": "VIP-Aufstiegs-Kriterien",
-      "overview": "Überblick",
-      "dailyReturns": "Beispiel für tägliche VIP-Erträge"
+      "overview": "Prinzip des Smart-Arbitrage-Systems",
+      "principle": "Prinzip des Smart-Arbitrage-Systems",
+      "process": "Gewinnrealisierungsprozess",
+      "vipCriteria": "VIP-Aufstiegsbedingungen",
+      "dailyReturns": "VIP-Beispielrechnungen für tägliche Rendite",
+      "caution": "Hinweise",
+      "suitability": "Für wen ist dieses System geeignet?"
     },
-    "vipUpgradeCriteria": [
-      "VIP1: Mindestens 35 USDT an Krypto-Vermögenswerten erforderlich.",
-      "VIP2: Mindestens 300 USDT an Krypto-Vermögenswerten + Einladung und Aktivierung von je 2 aktiven Mitgliedern der Level A, B und C.",
-      "VIP3: Mindestens 1000 USDT an Krypto-Vermögenswerten + Einladung und Aktivierung von je 5 aktiven Mitgliedern der Level A, B und C.",
-      "VIP4: Mindestens 5000 USDT an Krypto-Vermögenswerten + Einladung und Aktivierung von je 15 aktiven Mitgliedern der Level A, B und C.",
-      "VIP5: Mindestens 20000 USDT an Krypto-Vermögenswerten + Einladung und Aktivierung von je 30 aktiven Mitgliedern der Level A, B und C.",
-      "VIP6: Mindestens 50000 USDT an Krypto-Vermögenswerten + Einladung und Aktivierung von je 60 aktiven Mitgliedern der Level A, B und C."
-    ],
-    "overview": "Upstart quantitativer Überblick: Klicken Sie auf den Button, um den automatisierten Handel zu starten, der wichtige Marktdaten verwendet, um innerhalb von 1–3 Minuten Trades abzuschließen und Gewinne zu erzielen.",
     "method": {
-      "title": "Handelsmethode",
-      "description": "Klicken Sie auf den Button, um den automatisierten Handel zu starten und innerhalb von 1–3 Minuten abzuschließen. 50 % der erzielten Gewinne gehen an die Plattform, 50 % erhalten Sie zurück."
+      "title": "Hinweise",
+      "title2": "Für wen ist dieses System geeignet?",
+      "description": "- Alle Renditen können je nach Marktbedingungen, Börsenliquidität und Systemstatus variieren.\n- Dieses System verwendet ausschließlich offiziell lizenzierte Börsen-APIs und geprüfte Algorithmen.\n- Betrügerische Registrierungen, doppelte Konten und unregelmäßiger Handel werden sofort blockiert und Gewinne zurückgefordert.",
+      "description2": "- Smarte Investoren mit kurzfristigen Gewinnzielen\n- Einsteiger im Bereich digitale Vermögenswerte mit geringer Markterfahrung\n- Großinvestoren, die automatisierte Gewinnmodelle nutzen möchten"
     },
+    "overview": "- Marktüberwachung: KI überwacht automatisch Echtzeit-Preisdaten von großen globalen Börsen\n- Analyse von Preisunterschieden: Bei signifikanten Preisabweichungen desselben Vermögenswertes zwischen Börsen werden Kauf-/Verkaufssignale ausgelöst\n- Automatische Ausführung: Kauf- und Verkaufsgeschäfte werden gleichzeitig ausgeführt, und die Spanne (Gewinn) wird automatisch realisiert\n- Gewinnverteilung: 50 % des erzielten Gewinns wird als Plattformgebühr einbehalten, 50 % an den Investor zurückgegeben\n\nBeispiel: BTC bei OXX-Börse für 1000 USDT kaufen → bei CoinEase-Börse für 1050 USDT verkaufen → Von den 50 USDT Gesamtgewinn werden 25 USDT an den Nutzer ausgezahlt\n\nGewinnrealisierungsprozess\n\n1. Button klicken → automatischer Handel startet\n2. Algorithmus führt innerhalb von 1–3 Minuten den quantitativen Handel aus\n3. Automatischer Verkauf bei Höchstpreis → Gewinn wird generiert und verteilt\n4. Plattform bietet Echtzeit-Gewinnberichte",
+    "vipUpgradeCriteria": [
+      "VIP1: Erfordert ein Minimum von 35 USDT an Vermögenswerten.",
+      "VIP2: Erfordert mindestens 300 USDT + 2 aktive A-Stufen-Einladungen + 2 B-Stufen + 2 C-Stufen.",
+      "VIP3: Mindestens 1000 USDT + 5 aktive Einladungen pro A-, B- und C-Stufe.",
+      "VIP4: Mindestens 3000 USDT + 15 aktive Einladungen pro A-, B- und C-Stufe.",
+      "VIP5: Mindestens 5000 USDT + 30 aktive Einladungen pro A-, B- und C-Stufe.",
+      "VIP6: Mindestens 50000 USDT + 60 aktive Einladungen pro A-, B- und C-Stufe.",
+      "",
+      "※ Alle Bedingungen basieren auf aktiven Nutzern; betrügerische Konten sind ungültig."
+    ],
     "vipDaily": [
-      "VIP1: Bis zu 5 Trades pro Tag mit einer täglichen Gewinnrate von 1,8 %–2,1 %, was einem täglichen Ertrag von 9–10,5 USDT bei einem Einsatz von 500 USDT entspricht.",
-      "VIP2: Bis zu 6 Trades pro Tag mit einer täglichen Gewinnrate von 2,3 %–2,6 %, was einem täglichen Ertrag von 46–52 USDT bei einem Einsatz von 2000 USDT entspricht.",
-      "VIP3: Bis zu 7 Trades pro Tag mit einer täglichen Gewinnrate von 3,9 %–4,3 %, was einem täglichen Ertrag von 195–215 USDT bei einem Einsatz von 5000 USDT entspricht.",
-      "VIP4: Bis zu 8 Trades pro Tag mit einer täglichen Gewinnrate von 5,9 %–6,4 %, was einem täglichen Ertrag von 590–640 USDT bei einem Einsatz von 10000 USDT entspricht.",
-      "VIP5: Bis zu 9 Trades pro Tag mit einer täglichen Gewinnrate von 8,6 %–9,4 %, was einem täglichen Ertrag von 1720–1880 USDT bei einem Einsatz von 20000 USDT entspricht.",
-      "VIP6: Bis zu 10 Trades pro Tag mit einer täglichen Gewinnrate von 9,5 %–10,5 %, was einem täglichen Ertrag von 1900–2100 USDT bei einem Einsatz von 20000 USDT entspricht."
+      "VIP1: Bis zu 5 Trades pro Tag, Rendite 1,3 % ~ 1,6 %, basierend auf 500 USDT → 6,5 ~ 8 USDT/Tag",
+      "VIP2: Bis zu 6 Trades pro Tag, Rendite 1,8 % ~ 2,1 %, basierend auf 2000 USDT → 36 ~ 42 USDT/Tag",
+      "VIP3: Bis zu 7 Trades pro Tag, Rendite 2,2 % ~ 2,5 %, basierend auf 5000 USDT → 110 ~ 125 USDT/Tag",
+      "VIP4: Bis zu 8 Trades pro Tag, Rendite 2,8 % ~ 3,2 %, basierend auf 20000 USDT → 560 ~ 640 USDT/Tag",
+      "VIP5: Bis zu 9 Trades pro Tag, Rendite 3,3 % ~ 3,8 %, basierend auf 100000 USDT → 3300 ~ 3800 USDT/Tag",
+      "VIP6: Bis zu 10 Trades pro Tag, Rendite 4,5 % ~ 5,0 %, basierend auf 200000 USDT → 9000 ~ 10000 USDT/Tag"
     ]
   },
   "commonProblems": {
@@ -829,7 +848,7 @@
       "level3": "Level 3"
     },
     "menu": {
-      "taskCenter": "Aufgabenzentrum",
+      "taskCenter": "Neukunden-Bonus",
       "faq": "FAQ",
       "securityCenter": "Sicherheitszentrum",
       "quantTutorial": "Quant-Tutorial",

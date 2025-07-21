@@ -10,6 +10,7 @@ import LockupModal from "./LockupModal";
 import '../styles/TokenPurchasePage.css';
 import '../styles/topbar.css';
 import '../styles/bottomnav.css';
+import AlertPopup from "./AlertPopup";
 
 export default function TokenPurchasePage() {
   const { t } = useTranslation();
@@ -29,27 +30,31 @@ export default function TokenPurchasePage() {
   const [showOrderHistory, setShowOrderHistory] = useState(false);
   const [modalSale, setModalSale] = useState(null);
   const [showLockup, setShowLockup] = useState(false);
-    // Redeem 모달 상태
-    const [showRedeemModal, setShowRedeemModal] = useState(false);
-    const [redeemAmount, setRedeemAmount] = useState("");
-    const [redeemError, setRedeemError] = useState("");
- 
+  // Redeem 모달 상태
+  const [showRedeemModal, setShowRedeemModal] = useState(false);
+  const [redeemAmount, setRedeemAmount] = useState("");
+  const [redeemError, setRedeemError] = useState("");
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertTitle, setAlertTitle] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertType, setAlertType] = useState("info");
+
   // 페이지 진입 시 데이터 로드
   const loadAll = async () => {
     const [salesRes, walletRes, summaryRes] = await Promise.all([
       axios.get("/api/token/active-token-sales"),
       axios.get("/api/token/my/wallet-details", { withCredentials: true }),
-      
+
       axios.get("/api/wallet/finance-summary", { withCredentials: true }),
     ]);
     setSales(salesRes.data);
     if (walletRes.data.success) setWallet(walletRes.data.data.wallet);
     const d = summaryRes.data.data;
     setFinanceSummary({
-      fundBalance:   Number(d.fundBalance),
-      quantBalance:  Number(d.quantBalance),
-      depositFee:    parseFloat(d.depositFee),
-      withdrawFee:   parseFloat(d.withdrawFee),
+      fundBalance: Number(d.fundBalance),
+      quantBalance: Number(d.quantBalance),
+      depositFee: parseFloat(d.depositFee),
+      withdrawFee: parseFloat(d.withdrawFee),
     });
   };
 
@@ -74,7 +79,10 @@ export default function TokenPurchasePage() {
       await axios.post("/api/token/my/unlock-expired-lockups", {}, { withCredentials: true });
       // 2) 입력량만큼 Quant로 교환
       await axios.post("/api/token/my/exchange-token-to-quant", { tokenAmount: amt }, { withCredentials: true });
-      alert(t("tokenPurchase.redeemSuccess"));
+      setAlertTitle("");
+      setAlertMessage(t("tokenPurchase.redeemSuccess"));
+      setAlertType("success");
+      setAlertOpen(true);
       setShowRedeemModal(false);
       setRedeemAmount("");
       // 3) 데이터 리로드
@@ -96,7 +104,10 @@ export default function TokenPurchasePage() {
     }
     try {
       await axios.post("/api/wallet/transfer-to-fund", { amount: amt }, { withCredentials: true });
-      alert(t("tokenPurchase.swapSuccess"));
+      setAlertTitle("");
+      setAlertMessage(t("tokenPurchase.swapSuccess"));
+      setAlertType("success");
+      setAlertOpen(true);
       setShowQuantToFundModal(false);
       setTransferAmount("");
       // 재조회
@@ -124,14 +135,17 @@ export default function TokenPurchasePage() {
     }
     try {
       const res = await axios.post("/api/wallet/transfer-to-quant", { amount: amt }, { withCredentials: true });
-      alert(t("tokenPurchase.depositSuccess"));
+      setAlertTitle("");
+      setAlertMessage(t("tokenPurchase.depositSuccess"));
+      setAlertType("success");
+      setAlertOpen(true);
       setShowFundToQuantModal(false);
       setTransferAmount("");
-      
+
       // 전체 잔액 정보를 새로 가져와서 업데이트
       const res2 = await axios.get("/api/wallet/finance-summary", { withCredentials: true });
       setFinanceSummary(res2.data.data);  // 전체 데이터로 한번에 업데이트
-      
+
     } catch {
       setError(t("tokenPurchase.errors.depositFail"));
     }
@@ -141,19 +155,29 @@ export default function TokenPurchasePage() {
   const handlePurchase = async saleId => {
     const amt = prompt(t("tokenPurchase.promptAmount"));
     if (!amt || isNaN(amt)) {
-      return alert(t("tokenPurchase.errors.invalidAmount"));
+      setAlertTitle("");
+      setAlertMessage(t("tokenPurchase.errors.invalidAmount"));
+      setAlertType("error");
+      setAlertOpen(true);
+      return;
     }
     try {
-       await axios.post("/api/token/purchase-token", {
-           saleId,
-           amount: parseFloat(amt),
-        }, { withCredentials: true });
-      alert(t("tokenPurchase.purchaseSuccess"));
+      await axios.post("/api/token/purchase-token", {
+        saleId,
+        amount: parseFloat(amt),
+      }, { withCredentials: true });
+      setAlertTitle("");
+      setAlertMessage(t("tokenPurchase.purchaseSuccess"));
+      setAlertType("success");
+      setAlertOpen(true);
       // 재조회
       axios.get("/api/token/active-token-sales").then(res => setSales(res.data));
       axios.get("/api/token/users/1/token-wallet").then(res => setWallet(res.data));
     } catch {
-      alert(t("tokenPurchase.errors.purchaseFail"));
+      setAlertTitle("");
+      setAlertMessage(t("tokenPurchase.errors.purchaseFail"));
+      setAlertType("error");
+      setAlertOpen(true);
     }
   };
 
@@ -167,7 +191,7 @@ export default function TokenPurchasePage() {
           <ArrowLeftIcon size={30} />
         </button>
         <h2 className="top-h-text">{t("tokenPurchase.title")}</h2>
-        </div>
+      </div>
 
 
       {/* ─── 잔액 카드 ───────────────────────────── */}
@@ -185,20 +209,20 @@ export default function TokenPurchasePage() {
           >
             {t("tokenPurchase.details")} &gt;
           </button>
-          </div>
+        </div>
 
 
-          <div className="funding-balance-amount-token">
+        <div className="funding-balance-amount-token">
           <span className="funding-balance-amount-t">
             {wallet?.balance?.toFixed(6) || "0.000000"}&nbsp;&nbsp;USC</span>
-            
-              <button
-                onClick={() => setShowLockup(true)}
-                className="funding-detail-btn"
-              >
-                {t("tokenPurchase.lockupDetails")}
-              </button>
-            </div>
+
+          <button
+            onClick={() => setShowLockup(true)}
+            className="funding-detail-btn"
+          >
+            {t("tokenPurchase.lockupDetails")}
+          </button>
+        </div>
 
         <div className="funding-action-buttons">
           <button
@@ -224,25 +248,25 @@ export default function TokenPurchasePage() {
           </button>
 
           <button
-          onClick={() => setShowRedeemModal(true)}
-          className="funding-action-btn"
+            onClick={() => setShowRedeemModal(true)}
+            className="funding-action-btn"
           >
-          {t("tokenPurchase.redeem")}
+            {t("tokenPurchase.redeem")}
           </button>
         </div>
 
         <button
-          onClick={() => setShowOrderHistory(true)}  
+          onClick={() => setShowOrderHistory(true)}
           className="funding-income-button"
         >
           {t("tokenPurchase.orderDetails")}
         </button>
       </div>
-      
 
 
 
-  
+
+
       {/* ── Redeem 모달 ── */}
       {showRedeemModal && (
         <div className="redeem-modal-overlay">
@@ -287,10 +311,10 @@ export default function TokenPurchasePage() {
 
 
 
-           {/* ─── 주문 내역 모달 ─── */}
-     {showOrderHistory && (
-       <OrderHistoryModal onClose={() => setShowOrderHistory(false)} />
-     )}
+      {/* ─── 주문 내역 모달 ─── */}
+      {showOrderHistory && (
+        <OrderHistoryModal onClose={() => setShowOrderHistory(false)} />
+      )}
       {/* Quant → Fund 모달 */}
       {showQuantToFundModal && (
         <div className="modal-overlay">
@@ -334,8 +358,8 @@ export default function TokenPurchasePage() {
           </div>
         </div>
       )}
-     {/* ─── 락업 내역 모달 ─── */}
-     {showLockup && <LockupModal onClose={() => setShowLockup(false)} />} 
+      {/* ─── 락업 내역 모달 ─── */}
+      {showLockup && <LockupModal onClose={() => setShowLockup(false)} />}
       {/* Fund → Quant 모달 */}
       {showFundToQuantModal && (
         <div className="modal-overlay">
@@ -378,63 +402,63 @@ export default function TokenPurchasePage() {
         </div>
       )}
 
-     {/* Purchase Modal */}
-     {modalSale && (
-       <PurchaseModal
-         sale={modalSale}
-         walletBalance={financeSummary.quantBalance}
-         onClose={() => setModalSale(null)}
-         onPurchased={() => {
-          // 구매 후 재조회
-           axios.get("/api/token/active-token-sales").then(r=>setSales(r.data));
-           axios.get("/api/wallet/finance-summary", { withCredentials:true })
-             .then(r=>setFinanceSummary(d=>({
-               ...d,
-               quantBalance: Number(r.data.data.quantBalance)
-             })));
-         }}
-       />
-     )}
-          {/* ─── 판매 카드 ───────────────────────────── */}
-          {sales.length === 0 ? (
-            <div className="data-card-to">
-              {t("tokenPurchase.noSales")}
-            </div>
-          ) : (
-            // 여기에 스크롤 가능한 컨테이너 추가
-            <div className="data-box-container-t1">
-              {sales.map((sale, idx) => {
-                const now   = Date.now();
-                const canBuy = sale.is_active &&
-                  now >= new Date(sale.start_time) &&
-                  now <= new Date(sale.end_time);
+      {/* Purchase Modal */}
+      {modalSale && (
+        <PurchaseModal
+          sale={modalSale}
+          walletBalance={financeSummary.quantBalance}
+          onClose={() => setModalSale(null)}
+          onPurchased={() => {
+            // 구매 후 재조회
+            axios.get("/api/token/active-token-sales").then(r => setSales(r.data));
+            axios.get("/api/wallet/finance-summary", { withCredentials: true })
+              .then(r => setFinanceSummary(d => ({
+                ...d,
+                quantBalance: Number(r.data.data.quantBalance)
+              })));
+          }}
+        />
+      )}
+      {/* ─── 판매 카드 ───────────────────────────── */}
+      {sales.length === 0 ? (
+        <div className="data-card-to">
+          {t("tokenPurchase.noSales")}
+        </div>
+      ) : (
+        // 여기에 스크롤 가능한 컨테이너 추가
+        <div className="data-box-container-t1">
+          {sales.map((sale, idx) => {
+            const now = Date.now();
+            const canBuy = sale.is_active &&
+              now >= new Date(sale.start_time) &&
+              now <= new Date(sale.end_time);
 
-                return (
-                  <div key={sale.id} className="data-card-to">
-                    {/* 단계 / 이름 */}
-                    <div className="data-box-container-tt">
-                      <img src="/img/item/usc.png" alt="USC" className="data-card-to-title-img" />
-                      <span className="font-bold text-lg">
-                        {idx + 1}{t("tokenPurchase.phase")} – {sale.name}
-                      </span>
-                    </div>
+            return (
+              <div key={sale.id} className="data-card-to">
+                {/* 단계 / 이름 */}
+                <div className="data-box-container-tt">
+                  <img src="/img/item/usc.png" alt="USC" className="data-card-to-title-img" />
+                  <span className="font-bold text-lg">
+                    {idx + 1}{t("tokenPurchase.phase")} – {sale.name}
+                  </span>
+                </div>
 
-                    {/* 공급량, 남은량 */}
-                    <div className="data-row">
-                      {t("tokenPurchase.totalSupply")}{" "}
-                      <span>{sale.total_supply.toLocaleString()} USC</span>
-                    </div>
-                    <div className="data-row">
-                      {t("tokenPurchase.remainingSupply")}{" "}
-                      <span>{sale.remaining_supply.toLocaleString()} USC</span>
-                    </div>
+                {/* 공급량, 남은량 */}
+                <div className="data-row">
+                  {t("tokenPurchase.totalSupply")}{" "}
+                  <span>{sale.total_supply.toLocaleString()} USC</span>
+                </div>
+                <div className="data-row">
+                  {t("tokenPurchase.remainingSupply")}{" "}
+                  <span>{sale.remaining_supply.toLocaleString()} USC</span>
+                </div>
 
-                    {/* 가격, 수수료 */}
-                    <div className="data-row">
-                      {t("tokenPurchase.price")}{" "}
-                      <span>{sale.price.toFixed(6)} USDT</span>
-                    </div>
-                    {/*
+                {/* 가격, 수수료 */}
+                <div className="data-row">
+                  {t("tokenPurchase.price")}{" "}
+                  <span>{sale.price.toFixed(6)} USDT</span>
+                </div>
+                {/*
                     <div className="text-sm text-gray-300">
                       {t("tokenPurchase.feeRate")}{" "}
                       <span className="text-yellow-100">
@@ -442,56 +466,63 @@ export default function TokenPurchasePage() {
                       </span>
                     </div>*/}
 
-                    {/* 최소/최대 구매, 락업 */}
-                    <div className="data-row">
-                      {t("tokenPurchase.minPurchase")}{" "}
-                      <span>{sale.minimum_purchase} USC</span>
-                    </div>
+                {/* 최소/최대 구매, 락업 */}
+                <div className="data-row">
+                  {t("tokenPurchase.minPurchase")}{" "}
+                  <span>{sale.minimum_purchase} USC</span>
+                </div>
 
-                    <div className="data-row">
-                      {t("tokenPurchase.maxPurchase")}{" "}
-                      <span>{sale.maximum_purchase} USC</span>
-                    </div>
-                    <div className="data-row">
-                      {t("tokenPurchase.lockupPeriod")}{" "}
-                      <span>{sale.lockup_period} {t("tokenPurchase.days")}</span>
-                    </div>
+                <div className="data-row">
+                  {t("tokenPurchase.maxPurchase")}{" "}
+                  <span>{sale.maximum_purchase} USC</span>
+                </div>
+                <div className="data-row">
+                  {t("tokenPurchase.lockupPeriod")}{" "}
+                  <span>{sale.lockup_period} {t("tokenPurchase.days")}</span>
+                </div>
 
-                    {/* 시작 / 종료 */}
-                    <div className="data-row">
-                      {t("tokenPurchase.startTime")}{" "}
-                      <span>{new Date(sale.start_time).toLocaleString()}</span>
-                    </div>
-                    <div className="data-row">
-                      {t("tokenPurchase.endTime")}{" "}
-                      <span>{new Date(sale.end_time).toLocaleString()}</span>
-                    </div>
+                {/* 시작 / 종료 */}
+                <div className="data-row">
+                  {t("tokenPurchase.startTime")}{" "}
+                  <span>{new Date(sale.start_time).toLocaleString()}</span>
+                </div>
+                <div className="data-row">
+                  {t("tokenPurchase.endTime")}{" "}
+                  <span>{new Date(sale.end_time).toLocaleString()}</span>
+                </div>
 
-                    {/* 구매 가능 여부 */}
-                    <div className="mt-2 text-sm">
-                      {canBuy
-                        ? <span className="text-green-400">{t("tokenPurchase.canBuy")}</span>
-                        : <span className="text-red-400">{t("tokenPurchase.cannotBuy")}</span>
-                      }
-                    </div>
+                {/* 구매 가능 여부 */}
+                <div className="mt-2 text-sm">
+                  {canBuy
+                    ? <span className="text-green-400">{t("tokenPurchase.canBuy")}</span>
+                    : <span className="text-red-400">{t("tokenPurchase.cannotBuy")}</span>
+                  }
+                </div>
 
-                     {/* 구매 버튼 */}
-                     <button
+                {/* 구매 버튼 */}
+                <button
                   disabled={!canBuy}
                   onClick={() => canBuy && setModalSale(sale)}
                   className={`mt-3 w-full font-semibold py-2 rounded 
-                    ${canBuy 
-                      ? 'bg-yellow-500 text-black hover:bg-yellow-600' 
+                    ${canBuy
+                      ? 'bg-yellow-500 text-black hover:bg-yellow-600'
                       : 'bg-gray-600 cursor-not-allowed'}`}
                 >
                   {t("tokenPurchase.buy")}
                 </button>
-                  </div>
-                );
-              })}
-            </div>
-          )}
+              </div>
+            );
+          })}
+        </div>
+      )}
 
+      <AlertPopup
+        isOpen={alertOpen}
+        onClose={() => setAlertOpen(false)}
+        title={alertTitle}
+        message={alertMessage}
+        type={alertType}
+      />
 
     </div>
   );

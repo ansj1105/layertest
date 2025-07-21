@@ -13,7 +13,7 @@ export default function TaskCenterPage() {
   const nav = useNavigate();
 
   // 초대 보상
-  const [inviteOpen, setInviteOpen]   = useState(false);
+  const [inviteOpen, setInviteOpen] = useState(true);
   const [inviteRewards, setInviteRewards] = useState([]);
 
   // 가입 보너스
@@ -47,14 +47,14 @@ export default function TaskCenterPage() {
     try {
       const reward = inviteRewards.find(r => r.id === id);
       await axios.post(`/api/mydata/invite-rewards/claim/${id}`, {}, { withCredentials: true });
-      setInviteRewards(rs => rs.map(x => x.id===id ? { ...x, claimed:true } : x));
-      
+      setInviteRewards(rs => rs.map(x => x.id === id ? { ...x, claimed: true } : x));
+
       // 알림 표시
       setAlertInfo({
         title: t('task.invite_reward.success'),
-        message: t('task.invite_reward.reward_claimed', { 
+        message: t('task.invite_reward.reward_claimed', {
           level: reward.level,
-          amount: reward.amount 
+          amount: reward.amount
         }),
         type: 'success'
       });
@@ -73,13 +73,13 @@ export default function TaskCenterPage() {
     try {
       const reward = joinRewards.find(r => r.id === id);
       await axios.post(`/api/mydata/join-rewards/claim/${id}`, {}, { withCredentials: true });
-      setJoinRewards(rs => rs.map(x => x.id===id ? { ...x, claimed:true } : x));
-      
+      setJoinRewards(rs => rs.map(x => x.id === id ? { ...x, claimed: true } : x));
+
       // 알림 표시
       setAlertInfo({
         title: t('task.join_reward.success'),
-        message: t('task.join_reward.reward_claimed', { 
-          amount: reward.amount 
+        message: t('task.join_reward.reward_claimed', {
+          amount: reward.amount
         }),
         type: 'success'
       });
@@ -114,7 +114,7 @@ export default function TaskCenterPage() {
       </div>
 
       {/* 설명문구: 토글 전/후 항상 보임 */}
-      <p className="invite-reward-description">
+      <p className="invite-reward-description" style={{ whiteSpace: 'pre-line' }}>
         {t('task.invite_reward.description')}
       </p>
       {inviteOpen && (
@@ -138,13 +138,12 @@ export default function TaskCenterPage() {
               <button
                 disabled={r.claimed || r.count < r.required}
                 onClick={() => claimInvite(r.id)}
-                className={`invite-reward-button ${
-                  r.claimed
-                    ? 'reward-btn-claimed'
-                    : r.count < r.required
-                      ? 'reward-btn-disabled'
-                      : 'reward-btn-active'
-                }`}
+                className={`invite-reward-button ${r.claimed
+                  ? 'reward-btn-claimed'
+                  : r.count < r.required
+                    ? 'reward-btn-disabled'
+                    : 'reward-btn-active'
+                  }`}
               >
                 {r.claimed
                   ? t('task.invite_reward.claimed')
@@ -165,7 +164,7 @@ export default function TaskCenterPage() {
             <div className="join-reward-info">
               <div className="join-reward-title-row">
                 <span className="join-reward-step">{t('task.join_reward.step', { step: idx + 1 })}</span>
-                <br/>
+                <br />
               </div>
               <div className="join-reward-desc">
                 {t('task.join_reward.description', { amount: jr.amount })}

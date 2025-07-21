@@ -44,30 +44,25 @@ export default function AgencyCooperationPage() {
   const backLabel = t('agencyCooperation.back');
 
   return (
-  <div className="page-wrapper-ag">
-    <div className="page-container">
-      {/* 상단 바 */}
-      <div className="top-bar">
-        <button onClick={handleBack} className="page-back-btn">
-          <ArrowLeftIcon size={24} />
-        </button>
-        <h1 className="top-h-text">{title}</h1>
-      </div>
-    <div className="page-header-spacer" />
+    <div className="page-wrapper-ag">
+      <div className="page-container">
+        {/* 상단 바 */}
+        <div className="top-bar">
+          <button onClick={handleBack} className="page-back-btn">
+            <ArrowLeftIcon size={24} />
+          </button>
+          <h1 className="top-h-text">{title}</h1>
+        </div>
+        <div className="page-header-spacer" />
 
-      {/* 본문 내용 */}
-          
-      <div className="page-content">
-        
-      
-
-      {/* 부제목 */}
-      <h2 className="page-subtitle">{subTitle}</h2>
-        {lines.map((line, idx) => (
-          <p key={idx}>{line}</p>
-        ))}
+        {/* 본문 내용 */}
+        <div className="page-content agency-content-card">
+          <h2 className="page-subtitle">{subTitle}</h2>
+          {lines.map((line, idx) => (
+            <p key={idx}>{line}</p>
+          ))}
+        </div>
       </div>
     </div>
-  </div>
   );
 }

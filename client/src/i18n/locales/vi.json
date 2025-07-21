@@ -1,6 +1,8 @@
 {
   "notification": {
-    "title": "Thông báo hệ thống"
+    "title": "Thông báo hệ thống",
+    "subtitle": "Hướng dẫn chính thức Upstart",
+    "official": "\nTrung tâm công việc tùy chỉnh, cửa hàng công việc tùy chỉnh đã mở!\n\nBây giờ, nền tảng Upstart đã chính xác và tin cậy hơn bao giờ hết thông qua hệ thống lợi nhuận dựa trên AI thông minh.\n\nChương trình này được mở ra cho tất cả những người tham gia vào cấu trúc lợi nhuận và tích cực tham gia.\n\nChặng đường này không chỉ là một phần thưởng, mà là cơ hội cho sự phát triển.\nUpstart là đối tác mạnh mẽ nhất giúp bạn vượt qua giới hạn của mình và thiết kế tương lai của mình.\n\nTham gia ngay và cùng xây dựng hệ thống tài chính thế giới trong tương lai.\n\nChúng tôi đang chờ đợi thử thách của bạn."
   },
   "order_history": {
     "title": "Đơn hàng và Đổi thưởng của tôi",
@@ -287,6 +289,8 @@
   "errorLoad": "Không tải được lịch sử.",
   "tokenPurchase": {
     "title": "Token USC",
+    "swapSuccess": "Hoán đổi thành công",
+    "depositSuccess": "Nạp tiền thành công",
     "lockupDetails": "Chi tiết khóa",
     "purchaseSuccessTitle": "Mua thành công",
     "purchaseSuccessWithAmount": "{{amount}} USDT đã mua.",
@@ -454,14 +458,13 @@
     }
   },
   "info": {
-    "title": "Sản phẩm Tài chính là gì?",
-    "definition": "Sản phẩm tài chính cho phép người dùng khóa một khoản tiền trong một khoảng thời gian để nhận thưởng. Chúng bao gồm nhiều gói do Upstart quản lý, mỗi gói có lãi suất và thời hạn riêng.",
-    "settlement": "Thanh toán vào 00:00 UTC hàng ngày, và thu nhập từ ngày T có thể truy cập từ ngày T+1.",
-    "tradingTitle": "Giải thích giao dịch",
-    "trade1": "1. **Mua**: Đăng ký sản phẩm để khóa tiền trong thời hạn quy định.",
-    "trade2": "2. **Thu nhập**: Nhận thưởng hàng ngày theo lãi suất công bố, được ghi có mỗi 24 giờ.",
-    "trade3": "3. **Đổi thưởng**: Sau kỳ hạn, vốn và thưởng được trả về ví tài chính của bạn.",
-    "trade4": "4. **Rút sớm**: Hiện chưa hỗ trợ. Phiên bản tương lai có thể cho phép rút sớm với phí."
+    "title": "Sản phẩm tài chính là gì?",
+    "definition": "Sản phẩm tài chính của Upstart là các công cụ sinh lợi thông minh được thiết kế để giúp người dùng quản lý tài sản số hiệu quả hơn.\n\nNhững sản phẩm này hoạt động dựa trên hạ tầng tài chính hợp tác với Upstart và hợp đồng thông minh, cho phép người dùng gửi tài sản trong một khoảng thời gian nhất định để nhận lãi suất hoặc phần thưởng điểm.",
+    "settlement": "Ứng dụng công nghệ blockchain, các sản phẩm này được thiết kế để theo dõi minh bạch dòng tiền và lợi nhuận của tài sản đã gửi, với phần thưởng được phân phối tự động khi đáp ứng điều kiện nhất định. Người dùng có thể kiểm tra thu nhập theo thời gian thực dựa trên hiệu suất tài sản đã gửi và sẽ nhận thưởng vào cuối kỳ hợp đồng.\n\nBáo cáo Lãi/Lỗ\nDựa trên ngày đăng ký thành công (ngày T):\nLãi bắt đầu tính từ 00:00 ngày T+1,\nvà việc thanh toán được phản ánh vào 00:00 ngày tiếp theo.",
+    "tradingTitle": "Giải thích giao dịch [Quy tắc mua]",
+    "trade1": "1. Bạn có thể tham gia trực tiếp vào sản phẩm tài chính bằng tài sản từ Ví Quant hoặc Ví Lợi nhuận. (Áp dụng cùng mức phí rút tiền.)",
+    "trade2": "2. Lợi nhuận của sản phẩm tài chính là biến động, không cố định. Việc tính thu nhập hàng ngày bắt đầu sau hai ngày làm việc kể từ ngày đăng ký. Nếu bạn rút trong vòng ba ngày kể từ ngày hợp đồng, sẽ bị tính phí quản lý 1%.",
+    "trade3": "3. Cả gốc và lãi đều được thanh toán vào cuối kỳ mà không tự động tái đầu tư. Không cho phép kết thúc hoặc rút trước hạn."
   },
   "header": "Quản lý Tài trợ",
   "loading": "Đang tải...",
@@ -520,26 +523,34 @@
   },
   "agencyCooperation": {
     "back": "Quay lại",
-    "title": "Hợp tác Đại lý",
-    "subTitle": "Quan hệ Đối tác Tư vấn",
+    "title": "Đối tác đại lý",
+    "subTitle": "Phần thưởng mạng lưới đại lý",
     "lines": [
-      "Tham gia chương trình đội ngũ Upstart và kiếm hoa hồng khi quảng bá Upstart. Tận hưởng tiện lợi và tăng trưởng bền vững.",
-      "Upstart cung cấp cơ chế thưởng hoa hồng nhóm hào phóng cho người dùng.",
-      "Bạn có thể nhận hoa hồng ở ba cấp (không làm giảm thu nhập của thành viên nhóm).",
-      "1. Khi bạn A trở thành thành viên cấp 1, bạn nhận 21% lợi nhuận hàng ngày của A.",
-      "2. Khi bạn B của A trở thành thành viên cấp 2, bạn nhận 7% lợi nhuận hàng ngày của B.",
-      "3. Khi bạn C của B trở thành thành viên cấp 3, bạn nhận 1% lợi nhuận hàng ngày của C.",
-      "Ví dụ: Nếu mỗi A, B, C kiếm 100$/ngày, bạn nhận:",
-      "• Hoa hồng cấp A: 100 × 21% = 21$",
-      "• Hoa hồng cấp B: 100 × 7% = 7$",
-      "• Hoa hồng cấp C: 100 × 1% = 1$",
-      "Tổng hoa hồng nhóm = 21% + 7% + 1% = 29% = 29$.",
-      "Nếu bạn có 10 thành viên A, 100 B và 1000 C kiếm mỗi người 100$/ngày thì:",
-      "Thu nhập cấp A = 100 × 21% × 10 = 210$",
-      "Thu nhập cấp B = 100 × 7% × 100 = 700$",
-      "Thu nhập cấp C = 100 × 1% × 1000 = 1000$",
-      "Thu nhập nhóm/ngày = 210 + 700 + 1000 = 1910$",
-      "Đây là thu nhập rất đáng kể."
+      "Chương trình đại lý của Upstart là hệ thống dành cho các đối tác giúp mở rộng nền tảng và xây dựng niềm tin vào các sản phẩm tài chính trên toàn thế giới.",
+      "Đối tác giới thiệu người dùng mới và kích hoạt giao dịch sẽ nhận được hoa hồng chia sẻ lợi nhuận định kỳ từ Upstart.",
+      "",
+      "Cấu trúc hoa hồng 3 cấp",
+      "Upstart cung cấp hệ thống hoa hồng 3 cấp minh bạch:",
+      "",
+      "Cấp 1 (thành viên mời trực tiếp): Hoa hồng 20% trên lợi nhuận hàng ngày của mỗi thành viên",
+      "Cấp 2 (người dùng được mời bởi thành viên cấp 1): Hoa hồng 8% trên lợi nhuận của họ",
+      "Cấp 3 (người dùng được mời bởi thành viên cấp 2): Hoa hồng 4% trên lợi nhuận của họ",
+      "",
+      "※ Tất cả hoa hồng được tính dựa trên lợi nhuận thực tế phát sinh. Lời mời giả hoặc hoạt động bất thường sẽ bị loại trừ.",
+      "",
+      "Ví dụ minh họa",
+      "Nếu A, B và C lần lượt là đối tác cấp 1, 2, 3 của bạn và mỗi người kiếm được $100 mỗi ngày:",
+      "- Lợi nhuận của A: $100 × 20% = $20",
+      "- Lợi nhuận của B: $100 × 8% = $8",
+      "- Lợi nhuận của C: $100 × 4% = $4",
+      "⇒ Tổng hoa hồng hàng ngày của bạn: $32",
+      "",
+      "Ví dụ tính hoa hồng đội nhóm",
+      "Nếu tất cả các tài khoản phụ đều kiếm $100/ngày và số lượng thành viên hoạt động như sau:",
+      "- Cấp 1: 10 người → $100 × 20% × 10 = $200",
+      "- Cấp 2: 100 người → $100 × 8% × 100 = $800",
+      "- Cấp 3: 1.000 người → $100 × 4% × 1.000 = $4.000",
+      "⇒ Tổng hoa hồng hàng ngày dự kiến: $5.000"
     ]
   },
   "companyIntro": {
@@ -599,33 +610,41 @@
     }
   },
   "quantTutorial": {
-    "title": "Hướng dẫn Giao dịch Định lượng",
-    "description": "Hướng dẫn chi tiết về cách hệ thống định lượng tự động tạo lợi nhuận và cách sử dụng Upstart.",
+    "title": "Hướng dẫn Hệ thống Giao dịch Định lượng Tự động Thông minh",
+    "description": "Tổng quan hệ thống\n\nUpstart cung cấp hệ thống giao dịch chênh lệch định lượng tự động, kết hợp công nghệ phân tích dựa trên AI mới nhất và các thuật toán giao dịch tự động để khai thác sự chênh lệch giá trên thị trường tài sản số.\n\nHệ thống này tự động phát hiện sự chênh lệch giá giữa các tài sản số lớn như USDT, BTC và ETH trên các sàn giao dịch toàn cầu, và thực hiện lệnh mua/bán theo thời gian thực để tạo ra lợi nhuận ổn định.",
     "sections": {
-      "vipCriteria": "Tiêu chí Nâng cấp VIP",
-      "overview": "Tổng quan",
-      "dailyReturns": "Ví dụ Lợi nhuận VIP hàng ngày"
+      "overview": "Nguyên lý hệ thống chênh lệch thông minh",
+      "principle": "Nguyên lý hệ thống chênh lệch thông minh",
+      "process": "Quy trình hiện thực hóa lợi nhuận",
+      "vipCriteria": "Tiêu chí nâng cấp VIP",
+      "dailyReturns": "Ví dụ lợi nhuận hàng ngày VIP",
+      "caution": "Lưu ý",
+      "suitability": "Hệ thống này phù hợp với ai?"
     },
-    "vipUpgradeCriteria": [
-      "VIP1: Ít nhất 35 USDT tài sản.",
-      "VIP2: Ít nhất 300 USDT tài sản + mời 2 A, 2 B, 2 C.",
-      "VIP3: Ít nhất 1000 USDT tài sản + mời 5 A, 5 B, 5 C.",
-      "VIP4: Ít nhất 5000 USDT tài sản + mời 15 A, 15 B, 15 C.",
-      "VIP5: Ít nhất 20000 USDT tài sản + mời 30 A, 30 B, 30 C.",
-      "VIP6: Ít nhất 50000 USDT tài sản + mời 60 A, 60 B, 60 C."
-    ],
-    "overview": "Tổng quan Định lượng Upstart: Nhấn nút để khởi động giao dịch tự động, hoàn thành trong 1–3 phút và tạo lợi nhuận.",
     "method": {
-      "title": "Phương pháp Giao dịch",
-      "description": "Nhấn nút để bắt đầu giao dịch tự động trong 1–3 phút. 50% lợi nhuận cho nền tảng, 50% trả bạn."
+      "title": "Lưu ý",
+      "title2": "Hệ thống này phù hợp với ai?",
+      "description": "-Tất cả lợi nhuận có thể thay đổi tùy theo điều kiện thị trường, thanh khoản sàn và trạng thái hệ thống.\n-Hệ thống chỉ sử dụng API sàn giao dịch chính thức và thuật toán đã được kiểm chứng.\n-Đăng ký gian lận, tài khoản trùng lặp và giao dịch bất thường sẽ bị chặn ngay lập tức và thu hồi lợi nhuận.",
+      "description2": "-Nhà đầu tư thông minh hướng đến lợi nhuận ngắn hạn\n-Người mới tham gia tài sản số chưa có khả năng phản ứng thị trường\n-Nhà đầu tư giá trị lớn muốn sử dụng mô hình lợi nhuận tự động"
     },
+    "overview": "-Giám sát thị trường: AI tự động theo dõi dữ liệu giá theo thời gian thực từ các sàn giao dịch lớn toàn cầu\n-Phân tích chênh lệch giá: Khi chênh lệch giá của cùng một tài sản giữa các sàn vượt mức nhất định, tín hiệu mua/bán sẽ được kích hoạt\n-Thực hiện tự động: Lệnh mua và bán được thực hiện đồng thời, lợi nhuận (chênh lệch) được ghi nhận tự động\n-Phân phối lợi nhuận: 50% lợi nhuận tạo ra được giữ làm phí nền tảng, 50% trả lại cho nhà đầu tư\n\nVí dụ: Mua BTC tại sàn OXX với giá 1000 USDT → Bán tại sàn CoinEase với giá 1050 USDT → Tổng lợi nhuận 50 USDT, người dùng nhận 25 USDT\n\nQuy trình hiện thực hóa lợi nhuận\n\n1. Nhấn nút → Bắt đầu giao dịch tự động\n2. Thuật toán thực hiện giao dịch định lượng trong 1–3 phút\n3. Tự động thực hiện đến khi bán giá cao → Lợi nhuận được tạo ra và phân phối\n4. Báo cáo lợi nhuận theo thời gian thực trên nền tảng",
+    "vipUpgradeCriteria": [
+      "VIP1: Yêu cầu tối thiểu 35 USDT tài sản.",
+      "VIP2: Yêu cầu tối thiểu 300 USDT + 2 lời mời cấp A hoạt động + 2 cấp B + 2 cấp C.",
+      "VIP3: Tối thiểu 1000 USDT + 5 cấp A + 5 cấp B + 5 cấp C hoạt động.",
+      "VIP4: Tối thiểu 3000 USDT + 15 cấp A + 15 cấp B + 15 cấp C hoạt động.",
+      "VIP5: Tối thiểu 5000 USDT + 30 cấp A + 30 cấp B + 30 cấp C hoạt động.",
+      "VIP6: Tối thiểu 50000 USDT + 60 cấp A + 60 cấp B + 60 cấp C hoạt động.",
+      "",
+      "※ Mỗi điều kiện cấp dựa trên người dùng hoạt động; tài khoản gian lận không hợp lệ."
+    ],
     "vipDaily": [
-      "VIP1: Tối đa 5 giao dịch/ngày, lãi 1,8%–2,1%, 500 USDT stake thu 9–10,5 USDT.",
-      "VIP2: Tối đa 6 giao dịch/ngày, lãi 2,3%–2,6%, 2000 USDT stake thu 46–52 USDT.",
-      "VIP3: Tối đa 7 giao dịch/ngày, lãi 3,9%–4,3%, 5000 USDT stake thu 195–215 USDT.",
-      "VIP4: Tối đa 8 giao dịch/ngày, lãi 5,9%–6,4%, 10000 USDT stake thu 590–640 USDT.",
-      "VIP5: Tối đa 9 giao dịch/ngày, lãi 8,6%–9,4%, 20000 USDT stake thu 1720–1880 USDT.",
-      "VIP6: Tối đa 10 giao dịch/ngày, lãi 9,5%–10,5%, 20000 USDT stake thu 1900–2100 USDT."
+      "VIP1: Tối đa 5 giao dịch/ngày, lợi nhuận 1.3% ~ 1.6%, với 500 USDT → 6.5 ~ 8 USDT/ngày",
+      "VIP2: Tối đa 6 giao dịch/ngày, lợi nhuận 1.8% ~ 2.1%, với 2000 USDT → 36 ~ 42 USDT/ngày",
+      "VIP3: Tối đa 7 giao dịch/ngày, lợi nhuận 2.2% ~ 2.5%, với 5000 USDT → 110 ~ 125 USDT/ngày",
+      "VIP4: Tối đa 8 giao dịch/ngày, lợi nhuận 2.8% ~ 3.2%, với 20000 USDT → 560 ~ 640 USDT/ngày",
+      "VIP5: Tối đa 9 giao dịch/ngày, lợi nhuận 3.3% ~ 3.8%, với 100000 USDT → 3300 ~ 3800 USDT/ngày",
+      "VIP6: Tối đa 10 giao dịch/ngày, lợi nhuận 4.5% ~ 5.0%, với 200000 USDT → 9000 ~ 10000 USDT/ngày"
     ]
   },
   "commonProblems": {
@@ -816,7 +835,7 @@
       "level3": "Cấp 3"
     },
     "menu": {
-      "taskCenter": "Trung tâm Nhiệm vụ",
+      "taskCenter": "Thưởng đăng ký thành viên mới",
       "faq": "FAQ",
       "securityCenter": "Trung tâm Bảo mật",
       "quantTutorial": "Hướng dẫn Quant",

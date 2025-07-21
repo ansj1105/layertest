@@ -30,18 +30,18 @@ export default function QuantTutorialPage() {
 
       <div className="quant-tutorial-content">
         {/* 설명 */}
-        <p className="quant-tutorial-description">
+        <p className="quant-tutorial-description" style={{ whiteSpace: 'pre-line' }}>
           {t('quantTutorial.description')}
         </p>
 
         {/* VIP 업그레이드 기준 */}
         <section>
           <h2 className="quant-tutorial-section-title">
-            • {t('quantTutorial.sections.vipCriteria')}
+            {t('quantTutorial.sections.vipCriteria')}
           </h2>
           <ul className="quant-tutorial-list">
             {vipCriteria.map((line, i) => (
-              <li key={i}>{line}</li>
+              <li key={i} style={{ listStyle: 'none', whiteSpace: 'pre-line' }}>{line}</li>
             ))}
           </ul>
         </section>
@@ -49,32 +49,47 @@ export default function QuantTutorialPage() {
         {/* 개요 */}
         <section>
           <h2 className="quant-tutorial-section-title">
-            • {t('quantTutorial.sections.overview')}
+            {t('quantTutorial.sections.overview')}
           </h2>
-          <p className="quant-tutorial-paragraph">
-            {t('quantTutorial.overview')}
-          </p>
+          <ul className="quant-tutorial-list">
+            <p className="quant-tutorial-paragraph" style={{ whiteSpace: 'pre-line' }}>
+              {t('quantTutorial.overview')}
+            </p>
+          </ul>
         </section>
 
-        {/* 거래 방법 */}
-        <section>
-          <h2 className="quant-tutorial-section-title">
-            • {t('quantTutorial.method.title')}
-          </h2>
-          <p className="quant-tutorial-paragraph">
-            {t('quantTutorial.method.description')}
-          </p>
-        </section>
 
         {/* VIP 일일 수익률 예시 */}
         <section>
           <h2 className="quant-tutorial-section-title">
-            • {t('quantTutorial.sections.dailyReturns')}
+            {t('quantTutorial.sections.dailyReturns')}
           </h2>
           <ul className="quant-tutorial-list">
             {vipDaily.map((line, i) => (
-              <li key={i}>{line}</li>
+              <li key={i} style={{ listStyle: 'none' }}>{line}</li>
             ))}
+          </ul>
+        </section>
+        {/* 유의사항 */}
+        <section>
+          <h2 className="quant-tutorial-section-title">
+            {t('quantTutorial.method.title')}
+          </h2>
+          <ul className="quant-tutorial-list">
+            <p className="quant-tutorial-paragraph" style={{ whiteSpace: 'pre-line' }}>
+              {t('quantTutorial.method.description')}
+            </p>
+          </ul>
+        </section>
+        {/* 유의사항 */}
+        <section>
+          <h2 className="quant-tutorial-section-title">
+            {t('quantTutorial.method.title2')}
+          </h2>
+          <ul className="quant-tutorial-list">
+            <p className="quant-tutorial-paragraph" style={{ whiteSpace: 'pre-line' }}>
+              {t('quantTutorial.method.description2')}
+            </p>
           </ul>
         </section>
       </div>

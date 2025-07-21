@@ -1,5 +1,3 @@
-
-
 /* 전체 래퍼: 사이드바가 절대위치로 들어가도 475px 범위내 */
 .page-wrapper-f {
   position: relative;
@@ -8,26 +6,32 @@
   height: 100%;
   flex-direction: column;
   background-color: #0e0e11;
-  overflow: auto; /* 스크롤 활성화 */
+  overflow: auto;
+  /* 스크롤 활성화 */
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
   z-index: 100;
 }
-  
+
 .project-list-container {
   display: flex;
-  justify-content: center;   /* 가로 중앙 정렬 */
-  align-items: center;       /* 세로축 기준 가로 중앙 정렬 (하위 div들이 중앙에 배치됨) */
-  flex-direction: column;    /* 카드가 세로로 쌓이도록 */
+  justify-content: center;
+  /* 가로 중앙 정렬 */
+  align-items: center;
+  /* 세로축 기준 가로 중앙 정렬 (하위 div들이 중앙에 배치됨) */
+  flex-direction: column;
+  /* 카드가 세로로 쌓이도록 */
   width: 100%;
   margin-top: 3px;
 }
 
 .project-list-container::-webkit-scrollbar {
-  width: 0px; /* Chrome, Safari, Opera */
+  width: 0px;
+  /* Chrome, Safari, Opera */
   height: 0px;
-  background: transparent; /* Optional, just in case */
+  background: transparent;
+  /* Optional, just in case */
 }
 
 
@@ -43,9 +47,12 @@
   margin: 8px auto;
   padding: 13px;
   box-shadow: 0 0 4px 2px #b8dfd9;
-  flex-direction: row;     /* ✅ 가로 배열 */
-  align-items: center;    /* ✅ 세로 중앙 정렬 */
-  justify-content: space-between; /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
+  flex-direction: row;
+  /* ✅ 가로 배열 */
+  align-items: center;
+  /* ✅ 세로 중앙 정렬 */
+  justify-content: space-between;
+  /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
   gap: 16px;
   margin-bottom: 13px;
 }
@@ -55,11 +62,14 @@
 
 /* 상단 잔액 영역 */
 .funding-balance-header {
-  text-align: center; /* ✅ USDT 금액 중앙 배치 */
-  justify-content: space-between;  /* 좌우로 분산 배치 */
+  text-align: center;
+  /* ✅ USDT 금액 중앙 배치 */
+  justify-content: space-between;
+  /* 좌우로 분산 배치 */
   align-items: center;
   width: 100%;
-  margin-bottom: 12px; /* 아래 USDT 정보와 간격 */
+  margin-bottom: 12px;
+  /* 아래 USDT 정보와 간격 */
 }
 
 
@@ -69,8 +79,10 @@
 
 .funding-balance-amount-ll {
   display: flex;
-  justify-content: space-between; /* 좌우로 분산 배치 */
-  text-align: center !important; /* ✅ USDT 금액 중앙 배치 */
+  justify-content: space-between;
+  /* 좌우로 분산 배치 */
+  text-align: center !important;
+  /* ✅ USDT 금액 중앙 배치 */
   align-items: center;
   width: 100%;
   height: 100%;
@@ -88,7 +100,8 @@
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-left: auto; /* 버튼을 오른쪽으로 밀어냄 */
+  margin-left: auto;
+  /* 버튼을 오른쪽으로 밀어냄 */
 }
 
 .funding-detail-btn:hover {
@@ -118,7 +131,8 @@
   background: rgb(55, 119, 115);
   border-radius: 3px;
   color: #ffffff;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   box-shadow: 0 0 2px 2px #b8dfd9 !important;
 }
 
@@ -136,7 +150,7 @@
 
 
 
-  
+
   font-size: 14px;
   width: 100%;
   display: flex;
@@ -167,7 +181,7 @@
 }
 
 
-.funding-income-button{
+.funding-income-button {
   width: 100%;
   height: 55px;
   margin-top: 20px;
@@ -182,18 +196,24 @@
   border-radius: 13px;
   cursor: pointer;
   gap: 12px;
-  font-size: 18px;       /* ✅ 글자 크기 */
-  font-weight: bold;     /* ✅ 글자 굵기 */
-  letter-spacing: 1px;   /* ✅ 글자 간격 */
-  text-transform: uppercase; /* ✅ 모두 대문자로 (옵션) */
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  font-size: 18px;
+  /* ✅ 글자 크기 */
+  font-weight: bold;
+  /* ✅ 글자 굵기 */
+  letter-spacing: 1px;
+  /* ✅ 글자 간격 */
+  text-transform: uppercase;
+  /* ✅ 모두 대문자로 (옵션) */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   border: 0.1px solid #1ad3b7 !important;
   box-shadow: 0 0 1px 1px #b8dfd9 !important;
   transition: background-color 0.3s ease;
 }
 
 .funding-income-button:hover {
-  background: #26ffe61f; /* 어두운 청색 톤 */
+  background: #26ffe61f;
+  /* 어두운 청색 톤 */
   border-color: #26ffe6;
   box-shadow: 0 0 16px 6px #81f5e9;
 }
@@ -212,8 +232,8 @@
   font-weight: 400;
   font-size: 30px;
   color: #ffffff;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.4);
-  }
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
 
 
 
@@ -274,7 +294,7 @@
 .project-apply-btn:hover {
   background: #26ffe61f;
   transform: scale(1.02);
-  
+
 }
 
 
@@ -320,7 +340,8 @@
 }
 
 .funding-expired-label {
-  color: #f87171; /* 연한 빨간색 */
+  color: #f87171;
+  /* 연한 빨간색 */
   font-weight: bold;
 }
 
@@ -366,11 +387,11 @@
 
 /* 각 FAQ 카드 */
 .faq-card {
-  background: #2c1f0f;
+  background: #152221;
   border-radius: 8px;
   margin-bottom: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 
@@ -392,7 +413,7 @@
 }
 
 .faq-question-btn:hover {
-  background-color: #3b2b15;
+  background-color: #243e3c;
 }
 
 /* 아이콘 회전 애니메이션 */
@@ -409,7 +430,7 @@
   color: #cccccc;
   font-size: 12px;
   line-height: 1.5;
-  background-color: #2c1f0f;
+  background-color: #152221;
   padding-top: 2px;
 }
 
@@ -449,17 +470,20 @@
   border-radius: 8px;
   max-width: 640px;
   padding: 13px;
-  flex-direction: row;     /* ✅ 가로 배열 */
-  align-items: center;    /* ✅ 세로 중앙 정렬 */
-  justify-content: space-between; /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
+  flex-direction: row;
+  /* ✅ 가로 배열 */
+  align-items: center;
+  /* ✅ 세로 중앙 정렬 */
+  justify-content: space-between;
+  /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
   gap: 16px;
   margin-bottom: 13px;
   box-shadow: 0 0 4px 2px #b8dfd9;
-  height: 70%;
+  height: 85%;
 }
 
 
-.quant-tutorial-content{
+.quant-tutorial-content {
   padding-bottom: 150px;
 }
 
@@ -539,7 +563,8 @@
 /* 모달 본문 박스 */
 .charge-modal-box {
   background-color: #1c1c1c;
-  width: 320px; /* w-80 */
+  width: 320px;
+  /* w-80 */
   border-radius: 0.5rem;
   color: white;
   padding: 1rem;
@@ -575,7 +600,8 @@
 
 /* $ 아이콘 */
 .charge-option-symbol {
-  color: #86efac; /* Tailwind: text-green-300 */
+  color: #86efac;
+  /* Tailwind: text-green-300 */
   font-weight: bold;
 }
 
@@ -584,7 +610,8 @@
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  color: #9ca3af; /* Tailwind: text-gray-400 */
+  color: #9ca3af;
+  /* Tailwind: text-gray-400 */
   background: none;
   border: none;
   font-size: 1.1rem;
@@ -619,8 +646,9 @@
 /* 오버레이 */
 .deposit-modal-overlay {
   position: fixed;
-  
-  inset: 0; /* top, right, bottom, left = 0 */
+
+  inset: 0;
+  /* top, right, bottom, left = 0 */
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
@@ -631,7 +659,8 @@
 /* 모달 박스 */
 .deposit-modal-box {
   background: #1a3030;
-  color: #fef08a; /* text-yellow-100 */
+  color: #fef08a;
+  /* text-yellow-100 */
   width: 350px;
   padding: 1.5rem;
   border-radius: 0.5rem;
@@ -644,7 +673,8 @@
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  color: #9ca3af; /* text-gray-400 */
+  color: #9ca3af;
+  /* text-gray-400 */
   font-size: 1.25rem;
   cursor: pointer;
 }
@@ -731,8 +761,9 @@
 /* 모달 오버레이 */
 .withdraw-modal-overlay {
   position: fixed;
-  
-  inset: 0; /* top, right, bottom, left = 0 */
+
+  inset: 0;
+  /* top, right, bottom, left = 0 */
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
@@ -743,7 +774,8 @@
 /* 모달 박스 */
 .withdraw-modal-box {
   background: #1a3030;
-  color: #fef08a; /* text-yellow-100 */
+  color: #fef08a;
+  /* text-yellow-100 */
   width: 350px;
   padding: 1.5rem;
   border-radius: 0.5rem;
@@ -757,7 +789,8 @@
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  color: #fef08a; /* text-gray-400 */
+  color: #fef08a;
+  /* text-gray-400 */
   font-size: 1.25rem;
   cursor: pointer;
 }
@@ -840,6 +873,7 @@
 
 
 @media screen and (max-width: 768px) {
+
   /* 페이지 전체 */
   .page-wrapper-f {
     position: relative;
@@ -860,13 +894,13 @@
 
   }
 
-  .quant-tutorial-wrapper{
+  .quant-tutorial-wrapper {
     padding-bottom: 200px !important;
   }
 
 
   /* 카드 공통 */
-  .funding-card, 
+  .funding-card,
   .project-card {
     width: 95%;
     padding: 12px;
@@ -881,9 +915,9 @@
   }
 
   /* 버튼 */
-  .funding-action-btn, 
-  .funding-income-button, 
-  .project-apply-btn, 
+  .funding-action-btn,
+  .funding-income-button,
+  .project-apply-btn,
   .funding-expired-btn {
     width: 100%;
     font-size: 14px;
@@ -891,35 +925,36 @@
   }
 
   /* 수익 라벨과 금액 */
-  .funding-income-label, 
+  .funding-income-label,
   .funding-income-amount {
     font-size: 14px;
   }
 
   /* 프로젝트 설명 */
-  .project-description, 
+  .project-description,
   .funding-expired-description {
     font-size: 13px;
   }
 
   /* 타이틀들 */
-  .project-title, 
-  .funding-expired-title, 
+  .project-title,
+  .funding-expired-title,
   .faq-title {
     font-size: 18px;
     margin-left: 0;
   }
 
-  .funding-expired-title{
+  .funding-expired-title {
     margin-top: 12px;
   }
+
   /* FAQ */
   .faq-question-btn {
     padding: 12px;
     font-size: 13px;
     width: 100%;
   }
-  
+
   .faq-answer {
     font-size: 12px;
     padding: 0 12px 12px;
@@ -944,23 +979,23 @@
     width: 100%;
   }
 
-  .withdraw-modal-title{
-    text-align: left !important; /* 🔥 왼쪽 정렬 */
+  .withdraw-modal-title {
+    text-align: left !important;
+    /* 🔥 왼쪽 정렬 */
   }
 
 
 
 
 
-  .info-modal-overlay {
-
-  }
+  .info-modal-overlay {}
 
   .info-modal-content {
     width: 88%;
     padding: 12px;
-  
-    flex-direction: column; /* 모바일에선 세로 정렬 */
+
+    flex-direction: column;
+    /* 모바일에선 세로 정렬 */
     gap: 12px;
   }
 
@@ -997,13 +1032,9 @@
 
 
 
-  .withdraw-modal-overlay {
+  .withdraw-modal-overlay {}
 
-  }
-
-  .withdraw-modal-box {
-
-  }
+  .withdraw-modal-box {}
 
   .withdraw-modal-title {
     font-size: 1.1rem;
@@ -1044,7 +1075,7 @@
     right: 0.5rem;
   }
 
-  .quant-tutorial-content{
+  .quant-tutorial-content {
     padding-bottom: 150px;
     height: 550px !important;
   }
