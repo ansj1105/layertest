@@ -346,8 +346,9 @@
     "totalSupply": "总供应量：",
     "remainingSupply": "剩余供应量：",
     "startTime": "开始时间：",
-    "endTime": "结束时间：",
-    "buy": "购买",
+    "notStarted": "尚未开始",
+    "endedSales": "已结束的 USC 出售",
+    "ended": "已结束",
     "promptAmount": "请输入要购买的 USC 数量：",
     "purchaseSuccess": "购买成功！",
     "errors": {

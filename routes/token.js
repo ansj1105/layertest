@@ -155,7 +155,7 @@ router.put('/token-sales/:id', async (req, res) => {
 
     const oldTotal = Number(sale.total_supply);
     const newTotal = total_supply != null ? Number(total_supply) : oldTotal;
-    const diff     = newTotal - oldTotal;
+    const diff = newTotal - oldTotal;
 
     // 2) token_sales 업데이트
     await db.query(
@@ -178,7 +178,7 @@ router.put('/token-sales/:id', async (req, res) => {
         price,
         fee_rate || 0,
         start_time || null,
-        end_time   || null,
+        end_time || null,
         is_active ? 1 : 0,
         minimum_purchase || 0,
         maximum_purchase || null,
@@ -265,9 +265,9 @@ router.get("/users/:userId/token-transactions", async (req, res) => {
 });
 
 router.post("/token-deposit", async (req, res) => {
-    const userId = req.session.user?.id;
-    if (!userId) return res.status(401).json({ error: "Not authenticated" });
-    const { amount } = req.body;
+  const userId = req.session.user?.id;
+  if (!userId) return res.status(401).json({ error: "Not authenticated" });
+  const { amount } = req.body;
 
 
 
@@ -279,7 +279,7 @@ router.post("/token-deposit", async (req, res) => {
 });
 
 router.post("/token-withdrawal", async (req, res) => {
-    const userId = req.session.user?.id;
+  const userId = req.session.user?.id;
   if (!userId) return res.status(401).json({ error: "Not authenticated" });
   const { amount } = req.body;
 
@@ -295,7 +295,7 @@ router.post("/token-withdrawal", async (req, res) => {
 // 3.4 토큰 구매 및 판매
 // ------------------------
 router.get("/active-token-sales", async (_, res) => {
-  const [rows] = await db.query("SELECT * FROM token_sales WHERE is_active = TRUE AND NOW() BETWEEN start_time AND end_time");
+  const [rows] = await db.query("SELECT * FROM token_sales ORDER BY start_time DESC");
   res.json(rows);
 });
 // 📁 routes/token.js (or wherever you keep your token APIs)
@@ -623,12 +623,12 @@ router.post("/my/unlock-expired-lockups", async (req, res, next) => {
       }
 
       // 4) 처리된 내 락업 레코드만 삭제
-     /* await db.query(
-        `DELETE FROM token_lockups
-          WHERE unlock_at <= NOW()
-            AND wallet_id IN (?)`,
-        [walletIds]
-      );*/
+      /* await db.query(
+         `DELETE FROM token_lockups
+           WHERE unlock_at <= NOW()
+             AND wallet_id IN (?)`,
+         [walletIds]
+       );*/
     }
 
     return res.json({ success: true, unlockedWallets: unlockedCount });
@@ -643,7 +643,7 @@ router.post("/my/unlock-expired-lockups", async (req, res, next) => {
 // POST /api/my/exchange-token-to-quant
 // body: { tokenAmount: number }
 router.post("/my/exchange-token-to-quant", async (req, res, next) => {
-  const userId      = req.session.user?.id;
+  const userId = req.session.user?.id;
   const { tokenAmount } = req.body;
 
   if (!userId) {
@@ -711,11 +711,11 @@ router.post("/my/exchange-token-to-quant", async (req, res, next) => {
         WHERE id = ?`,
       [newTokenBalance, tokenWallet.id]
     );
-// 6) wallets.quant_balance 증가
-if (isNaN(newQuantBalance)) {
-  console.error("❌ newQuantBalance가 NaN입니다. 계산 로직 확인 필요.");
-  return res.status(400).json({ success: false, error: "계산된 잔액이 잘못되었습니다." });
-}
+    // 6) wallets.quant_balance 증가
+    if (isNaN(newQuantBalance)) {
+      console.error("❌ newQuantBalance가 NaN입니다. 계산 로직 확인 필요.");
+      return res.status(400).json({ success: false, error: "계산된 잔액이 잘못되었습니다." });
+    }
 
     // 6) wallets.quant_balance 증가
     await db.query(
@@ -748,16 +748,16 @@ if (isNaN(newQuantBalance)) {
       success: true,
       data: {
         tokenWallet: {
-          id:           tokenWallet.id,
-          newBalance:   newTokenBalance,
+          id: tokenWallet.id,
+          newBalance: newTokenBalance,
           lockedAmount: tokenWallet.locked_amount
         },
         wallet: {
-          id:             wallet.id,
+          id: wallet.id,
           newQuantBalance
         },
         transaction: {
-          id:          txnId,
+          id: txnId,
           tokenAmount,
           quantAmount: quantDelta
         }

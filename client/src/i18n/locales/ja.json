@@ -339,8 +339,9 @@
     "totalSupply": "総供給量：",
     "remainingSupply": "残り供給量：",
     "startTime": "開始時刻：",
-    "endTime": "終了時刻：",
-    "buy": "購入",
+    "notStarted": "まだ開始していません",
+    "endedSales": "終了したUSC販売",
+    "ended": "終了した",
     "promptAmount": "購入するUSC数量を入力してください：",
     "purchaseSuccess": "購入に成功しました！",
     "errors": {

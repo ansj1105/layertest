@@ -366,8 +366,9 @@
     "totalSupply": "Offre totale :",
     "remainingSupply": "Offre restante :",
     "startTime": "Heure de début :",
-    "endTime": "Heure de fin :",
-    "buy": "Acheter",
+    "notStarted": "Pas encore commencé",
+    "endedSales": "Ventes USC terminées",
+    "ended": "Terminé",
     "promptAmount": "Entrez le montant USC à acheter :",
     "purchaseSuccess": "Achat réussi !",
     "errors": {

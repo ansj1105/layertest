@@ -171,8 +171,12 @@ export default function TokenPurchasePage() {
       setAlertType("success");
       setAlertOpen(true);
       // 재조회
-      axios.get("/api/token/active-token-sales").then(res => setSales(res.data));
-      axios.get("/api/token/users/1/token-wallet").then(res => setWallet(res.data));
+      axios.get("/api/token/active-token-sales").then(res => setSales(r => [...r, res.data]));
+      axios.get("/api/wallet/finance-summary", { withCredentials: true })
+        .then(r => setFinanceSummary(d => ({
+          ...d,
+          quantBalance: Number(r.data.data.quantBalance)
+        })));
     } catch {
       setAlertTitle("");
       setAlertMessage(t("tokenPurchase.errors.purchaseFail"));
@@ -425,95 +429,191 @@ export default function TokenPurchasePage() {
           {t("tokenPurchase.noSales")}
         </div>
       ) : (
-        // 여기에 스크롤 가능한 컨테이너 추가
-        <div className="data-box-container-t1">
-          {sales.map((sale, idx) => {
-            const now = Date.now();
-            const canBuy = sale.is_active &&
-              now >= new Date(sale.start_time) &&
-              now <= new Date(sale.end_time);
-
-            return (
-              <div key={sale.id} className="data-card-to">
-                {/* 단계 / 이름 */}
-                <div className="data-box-container-tt">
-                  <img src="/img/item/usc.png" alt="USC" className="data-card-to-title-img" />
-                  <span className="font-bold text-lg">
-                    {idx + 1}{t("tokenPurchase.phase")} – {sale.name}
-                  </span>
-                </div>
-
-                {/* 공급량, 남은량 */}
-                <div className="data-row">
-                  {t("tokenPurchase.totalSupply")}{" "}
-                  <span>{sale.total_supply.toLocaleString()} USC</span>
-                </div>
-                <div className="data-row">
-                  {t("tokenPurchase.remainingSupply")}{" "}
-                  <span>{sale.remaining_supply.toLocaleString()} USC</span>
-                </div>
-
-                {/* 가격, 수수료 */}
-                <div className="data-row">
-                  {t("tokenPurchase.price")}{" "}
-                  <span>{sale.price.toFixed(6)} USDT</span>
-                </div>
-                {/*
-                    <div className="text-sm text-gray-300">
-                      {t("tokenPurchase.feeRate")}{" "}
-                      <span className="text-yellow-100">
-                        {sale.fee_rate}%
+        <>
+          {/* 판매중 */}
+          <h3 className="font-bold text-lg mb-2 text-white" style={{ paddingLeft: "5%" }}>
+            {t("tokenPurchase.onSale")}
+          </h3>
+          <div className="data-box-container-t1">
+            {sales.filter(sale => {
+              const now = Date.now();
+              return now >= new Date(sale.start_time) && now <= new Date(sale.end_time);
+            }).length === 0 ? (
+              <div className="data-card-to">{t("tokenPurchase.noSales")}</div>
+            ) : (
+              sales
+                .filter(sale => {
+                  const now = Date.now();
+                  return now >= new Date(sale.start_time) && now <= new Date(sale.end_time);
+                })
+                .map((sale, idx) => {
+                  const now = Date.now();
+                  const canBuy = sale.is_active && now >= new Date(sale.start_time) && now <= new Date(sale.end_time);
+                  return (
+                    <div key={sale.id} className="data-card-to">
+                      <div className="data-box-container-tt">
+                        <img src="/img/item/usc.png" alt="USC" className="data-card-to-title-img" />
+                        <span className="font-bold text-lg">
+                          {idx + 1}{t("tokenPurchase.phase")} – {sale.name}
+                        </span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.totalSupply")} <span>{sale.total_supply.toLocaleString()} USC</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.remainingSupply")} <span>{sale.remaining_supply.toLocaleString()} USC</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.price")} <span>{sale.price.toFixed(6)} USDT</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.minPurchase")} <span>{sale.minimum_purchase} USC</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.maxPurchase")} <span>{sale.maximum_purchase} USC</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.lockupPeriod")} <span>{sale.lockup_period} {t("tokenPurchase.days")}</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.startTime")} <span>{new Date(sale.start_time).toLocaleString()}</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.endTime")} <span>{new Date(sale.end_time).toLocaleString()}</span>
+                      </div>
+                      <div className="mt-2 text-sm">
+                        <span className="text-green-400">{t("tokenPurchase.canBuy")}</span>
+                      </div>
+                      <button
+                        disabled={!canBuy}
+                        onClick={() => canBuy && setModalSale(sale)}
+                        className={`mt-3 w-full font-semibold py-2 rounded 
+                          ${canBuy
+                            ? 'bg-yellow-500 text-black hover:bg-yellow-600'
+                            : 'bg-gray-600 cursor-not-allowed'}`}
+                      >
+                        {t("tokenPurchase.buy")}
+                      </button>
+                    </div>
+                  );
+                })
+            )}
+          </div>
+          {/* 판매예정 */}
+          <h3 className="font-bold text-lg mb-2 mt-8 text-white" style={{ paddingLeft: "5%" }}>{t("tokenPurchase.upcoming")}</h3>
+          <div className="data-box-container-t1">
+            {sales.filter(sale => {
+              const now = Date.now();
+              return now < new Date(sale.start_time);
+            }).length === 0 ? (
+              <div className="data-card-to">{t("tokenPurchase.noSales")}</div>
+            ) : (
+              sales
+                .filter(sale => {
+                  const now = Date.now();
+                  return now < new Date(sale.start_time);
+                })
+                .map((sale, idx) => {
+                  return (
+                    <div key={sale.id} className="data-card-to">
+                      <div className="data-box-container-tt">
+                        <img src="/img/item/usc.png" alt="USC" className="data-card-to-title-img" />
+                        <span className="font-bold text-lg">
+                          {idx + 1}{t("tokenPurchase.phase")} – {sale.name}
+                        </span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.totalSupply")} <span>{sale.total_supply.toLocaleString()} USC</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.remainingSupply")} <span>{sale.remaining_supply.toLocaleString()} USC</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.price")} <span>{sale.price.toFixed(6)} USDT</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.minPurchase")} <span>{sale.minimum_purchase} USC</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.maxPurchase")} <span>{sale.maximum_purchase} USC</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.lockupPeriod")} <span>{sale.lockup_period} {t("tokenPurchase.days")}</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.startTime")} <span>{new Date(sale.start_time).toLocaleString()}</span>
+                      </div>
+                      <div className="data-row">
+                        {t("tokenPurchase.endTime")} <span>{new Date(sale.end_time).toLocaleString()}</span>
+                      </div>
+                      <div className="mt-2 text-sm">
+                        <span className="text-cyan-400">{t("tokenPurchase.notStarted")}</span>
+                      </div>
+                      <button
+                        disabled
+                        className="mt-3 w-full font-semibold py-2 rounded bg-gray-600 cursor-not-allowed"
+                      >
+                        {t("tokenPurchase.notStarted")}
+                      </button>
+                    </div>
+                  );
+                })
+            )}
+          </div>
+          {/* 판매 종료된 토큰 */}
+          <h3 className="font-bold text-lg mb-2 mt-8 text-white" style={{ paddingLeft: "5%" }}>{t("tokenPurchase.endedSection")}</h3>
+          <div className="data-box-container-t1">
+            {sales.filter(sale => Date.now() > new Date(sale.end_time)).length === 0 ? (
+              <div className="data-card-to">{t("tokenPurchase.noSales")}</div>
+            ) : (
+              sales
+                .filter(sale => Date.now() > new Date(sale.end_time))
+                .map((sale, idx) => (
+                  <div key={sale.id} className="data-card-to opacity-60">
+                    <div className="data-box-container-tt">
+                      <img src="/img/item/usc.png" alt="USC" className="data-card-to-title-img" />
+                      <span className="font-bold text-lg">
+                        {idx + 1}{t("tokenPurchase.phase")} – {sale.name}
                       </span>
-                    </div>*/}
-
-                {/* 최소/최대 구매, 락업 */}
-                <div className="data-row">
-                  {t("tokenPurchase.minPurchase")}{" "}
-                  <span>{sale.minimum_purchase} USC</span>
-                </div>
-
-                <div className="data-row">
-                  {t("tokenPurchase.maxPurchase")}{" "}
-                  <span>{sale.maximum_purchase} USC</span>
-                </div>
-                <div className="data-row">
-                  {t("tokenPurchase.lockupPeriod")}{" "}
-                  <span>{sale.lockup_period} {t("tokenPurchase.days")}</span>
-                </div>
-
-                {/* 시작 / 종료 */}
-                <div className="data-row">
-                  {t("tokenPurchase.startTime")}{" "}
-                  <span>{new Date(sale.start_time).toLocaleString()}</span>
-                </div>
-                <div className="data-row">
-                  {t("tokenPurchase.endTime")}{" "}
-                  <span>{new Date(sale.end_time).toLocaleString()}</span>
-                </div>
-
-                {/* 구매 가능 여부 */}
-                <div className="mt-2 text-sm">
-                  {canBuy
-                    ? <span className="text-green-400">{t("tokenPurchase.canBuy")}</span>
-                    : <span className="text-red-400">{t("tokenPurchase.cannotBuy")}</span>
-                  }
-                </div>
-
-                {/* 구매 버튼 */}
-                <button
-                  disabled={!canBuy}
-                  onClick={() => canBuy && setModalSale(sale)}
-                  className={`mt-3 w-full font-semibold py-2 rounded 
-                    ${canBuy
-                      ? 'bg-yellow-500 text-black hover:bg-yellow-600'
-                      : 'bg-gray-600 cursor-not-allowed'}`}
-                >
-                  {t("tokenPurchase.buy")}
-                </button>
-              </div>
-            );
-          })}
-        </div>
+                    </div>
+                    <div className="data-row">
+                      {t("tokenPurchase.totalSupply")} <span>{sale.total_supply.toLocaleString()} USC</span>
+                    </div>
+                    <div className="data-row">
+                      {t("tokenPurchase.remainingSupply")} <span>{sale.remaining_supply.toLocaleString()} USC</span>
+                    </div>
+                    <div className="data-row">
+                      {t("tokenPurchase.price")} <span>{sale.price.toFixed(6)} USDT</span>
+                    </div>
+                    <div className="data-row">
+                      {t("tokenPurchase.minPurchase")} <span>{sale.minimum_purchase} USC</span>
+                    </div>
+                    <div className="data-row">
+                      {t("tokenPurchase.maxPurchase")} <span>{sale.maximum_purchase} USC</span>
+                    </div>
+                    <div className="data-row">
+                      {t("tokenPurchase.lockupPeriod")} <span>{sale.lockup_period} {t("tokenPurchase.days")}</span>
+                    </div>
+                    <div className="data-row">
+                      {t("tokenPurchase.startTime")} <span>{new Date(sale.start_time).toLocaleString()}</span>
+                    </div>
+                    <div className="data-row">
+                      {t("tokenPurchase.endTime")} <span>{new Date(sale.end_time).toLocaleString()}</span>
+                    </div>
+                    <div className="mt-2 text-sm">
+                      <span className="text-gray-400">{t("tokenPurchase.ended")}</span>
+                    </div>
+                    <button
+                      disabled
+                      className="mt-3 w-full font-semibold py-2 rounded bg-gray-700 text-gray-300 cursor-not-allowed"
+                    >
+                      {t("tokenPurchase.ended")}
+                    </button>
+                  </div>
+                ))
+            )}
+          </div>
+        </>
       )}
 
       <AlertPopup

@@ -376,8 +376,9 @@
     "totalSupply": "Общее предложение:",
     "remainingSupply": "Оставшееся предложение:",
     "startTime": "Время начала:",
-    "endTime": "Время окончания:",
-    "buy": "Купить",
+    "notStarted": "Еще не началось",
+    "endedSales": "Завершенные продажи USC",
+    "ended": "Завершено",
     "promptAmount": "Введите количество USC для покупки:",
     "purchaseSuccess": "Покупка успешна!",
     "errors": {

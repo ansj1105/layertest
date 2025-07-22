@@ -1,15 +1,18 @@
 .page-wrapper-token {
   position: relative;
   max-width: 506px;
-  width: 100%;               /* ✅ 너비 강제 제한 */
+  width: 100%;
+  /* ✅ 너비 강제 제한 */
   margin: 0 auto;
   height: 100%;
   display: flex;
   flex-direction: column;
   background-color: #0e0e11;
-  overflow-x: hidden;        /* ✅ 수평 스크롤 제거 */
+  overflow-x: hidden;
+  /* ✅ 수평 스크롤 제거 */
   overflow-y: auto;
-  box-sizing: border-box;    /* ✅ padding 포함한 너비 계산 */
+  box-sizing: border-box;
+  /* ✅ padding 포함한 너비 계산 */
   z-index: 100;
 }
 
@@ -17,7 +20,8 @@
 .summary-card {
   position: relative;
   background-color: #3b2b15;
-  border-radius: 0.375rem; /* rounded-md */
+  border-radius: 0.375rem;
+  /* rounded-md */
   padding: 1rem;
   text-align: center;
   margin-bottom: 1rem;
@@ -27,23 +31,28 @@
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  font-size: 0.875rem; /* text-sm */
-  color: #fde68a; /* text-yellow-200 */
+  font-size: 0.875rem;
+  /* text-sm */
+  color: #fde68a;
+  /* text-yellow-200 */
   cursor: pointer;
   transition: color 0.2s ease;
 }
 
 .summary-card .details-button:hover {
-  color: #fef08a; /* text-yellow-100 */
+  color: #fef08a;
+  /* text-yellow-100 */
 }
 
 .summary-card .label {
   font-size: 0.875rem;
-  color: #d1d5db; /* text-gray-300 */
+  color: #d1d5db;
+  /* text-gray-300 */
 }
- 
+
 .summary-card .value {
-  font-size: 1.5rem; /* text-2xl */
+  font-size: 1.5rem;
+  /* text-2xl */
   font-weight: bold;
 }
 
@@ -54,7 +63,8 @@
 .summary-card .lockup-button {
   margin-left: 1rem;
   padding: 0.25rem 0.5rem;
-  background-color: #10b981; /* emerald-500 */
+  background-color: #10b981;
+  /* emerald-500 */
   color: black;
   border-radius: 0.375rem;
   cursor: pointer;
@@ -62,15 +72,18 @@
 }
 
 .summary-card .lockup-button:hover {
-  background-color: #059669; /* emerald-600 */
+  background-color: #059669;
+  /* emerald-600 */
 }
 
 .summary-card .actions {
   display: flex;
   justify-content: space-around;
   margin-top: 1rem;
-  font-size: 0.875rem; /* text-sm */
-  color: #fde68a; /* text-yellow-200 */
+  font-size: 0.875rem;
+  /* text-sm */
+  color: #fde68a;
+  /* text-yellow-200 */
 }
 
 .summary-card .actions button {
@@ -83,20 +96,23 @@
 .summary-card .swap,
 .summary-card .deposit,
 .summary-card .redeem {
-  background-color: #a16207; /* yellow-700 */
+  background-color: #a16207;
+  /* yellow-700 */
   color: white;
 }
 
 .summary-card .recharge {
   padding: 0.25rem 1rem;
-  border: 1px solid #eab308; /* yellow-500 */
+  border: 1px solid #eab308;
+  /* yellow-500 */
   color: white;
   background-color: transparent;
 }
 
 .summary-card .order-details-button {
   margin-top: 0.75rem;
-  background-color: #eab308; /* yellow-500 */
+  background-color: #eab308;
+  /* yellow-500 */
   color: black;
   padding: 0.5rem 1rem;
   border-radius: 0.375rem;
@@ -114,17 +130,22 @@
 
 .project-list-container {
   display: flex;
-  justify-content: center;   /* 가로 중앙 정렬 */
-  align-items: center;       /* 세로축 기준 가로 중앙 정렬 (하위 div들이 중앙에 배치됨) */
-  flex-direction: column;    /* 카드가 세로로 쌓이도록 */
+  justify-content: center;
+  /* 가로 중앙 정렬 */
+  align-items: center;
+  /* 세로축 기준 가로 중앙 정렬 (하위 div들이 중앙에 배치됨) */
+  flex-direction: column;
+  /* 카드가 세로로 쌓이도록 */
   width: 100%;
   margin-top: 3px;
 }
 
 .project-list-container::-webkit-scrollbar {
-  width: 0px; /* Chrome, Safari, Opera */
+  width: 0px;
+  /* Chrome, Safari, Opera */
   height: 0px;
-  background: transparent; /* Optional, just in case */
+  background: transparent;
+  /* Optional, just in case */
 }
 
 
@@ -140,9 +161,12 @@
   margin: 8px auto;
   padding: 13px;
   box-shadow: 0 0 4px 2px #b8dfd9;
-  flex-direction: row;     /* ✅ 가로 배열 */
-  align-items: center;    /* ✅ 세로 중앙 정렬 */
-  justify-content: space-between; /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
+  flex-direction: row;
+  /* ✅ 가로 배열 */
+  align-items: center;
+  /* ✅ 세로 중앙 정렬 */
+  justify-content: space-between;
+  /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
   gap: 16px;
   margin-bottom: 13px;
 }
@@ -157,10 +181,13 @@
   font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
-  margin-left: auto; /* 버튼을 오른쪽으로 밀어냄 */
+  margin-left: auto;
+  /* 버튼을 오른쪽으로 밀어냄 */
   display: flex;
-  align-items: center; /* ✅ 세로 가운데 정렬 */
-  justify-content: flex-end; /* 필요 시 오른쪽 정렬 */
+  align-items: center;
+  /* ✅ 세로 가운데 정렬 */
+  justify-content: flex-end;
+  /* 필요 시 오른쪽 정렬 */
 
 }
 
@@ -169,11 +196,13 @@
 }
 
 
-.funding-balance-amount-token-1{
+.funding-balance-amount-token-1 {
   display: flex;
-  justify-content: space-between; /* 좌우로 분산 배치 */
-  text-align: center ; /* ✅ USDT 금액 중앙 배치 */
-  align-items: center ;
+  justify-content: space-between;
+  /* 좌우로 분산 배치 */
+  text-align: center;
+  /* ✅ USDT 금액 중앙 배치 */
+  align-items: center;
   width: 100%;
   height: 100%;
   margin-bottom: 15px;
@@ -182,22 +211,26 @@
 
 .funding-balance-amount-token {
   display: flex;
-  justify-content: space-between; /* 좌우로 분산 배치 */
-  text-align: center ; /* ✅ USDT 금액 중앙 배치 */
-  align-items: center ;
+  justify-content: space-between;
+  /* 좌우로 분산 배치 */
+  text-align: center;
+  /* ✅ USDT 금액 중앙 배치 */
+  align-items: center;
   width: 100%;
   height: 100%;
   margin-bottom: 15px;
-  
+
 }
 
 .funding-balance-amount-t {
-  text-align: center; /* ✅ USDT 금액 중앙 배치 */
+  text-align: center;
+  /* ✅ USDT 금액 중앙 배치 */
   font-size: 20px;
   font-weight: bold;
   display: flex;
   margin-left: 20px !important;
-  color: #fef9c3; /* text-yellow-100 */
+  color: #fef9c3;
+  /* text-yellow-100 */
   margin: 1px;
 }
 
@@ -212,9 +245,9 @@
 .data-box-container-t1 {
   height: 100%;
   margin: 0 auto;
-  width: 70%;
-  margin-bottom: 200px;
-  
+  width: 90%;
+
+
 }
 
 /* 카드 스타일 */
@@ -239,8 +272,8 @@
 
 }
 
-.data-box-container-tt font{
-  font-size: 15px ;
+.data-box-container-tt font {
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -251,21 +284,25 @@
 
 .data-card-to-sub {
   font-size: 0.85rem;
-  color: #fde68a; /* text-yellow-100 */
+  color: #fde68a;
+  /* text-yellow-100 */
 }
 
 .data-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.875rem; /* text-sm */
-  color: #d1d5db; /* text-gray-300 */
+  font-size: 0.875rem;
+  /* text-sm */
+  color: #d1d5db;
+  /* text-gray-300 */
   font-weight: bold;
   margin-bottom: 3px;
 }
 
 .data-row span {
-  color: #fef08a; /* text-yellow-100 */
+  color: #fef08a;
+  /* text-yellow-100 */
   font-weight: bold;
   font-size: 15px;
 }
@@ -282,7 +319,7 @@
 
 
 
-                        
+
 /* 펀딩 > 퀀 충전 */
 /* 모달 오버레이 (배경) */
 .modal-overlay {
@@ -299,17 +336,19 @@
 /* 모달 박스 */
 .modal-content-q {
   background: #1a3030;
-  color: #fef08a; /* text-yellow-100 */
+  color: #fef08a;
+  /* text-yellow-100 */
   width: 320px;
   padding: 1.5rem;
   border-radius: 0.5rem;
   position: relative;
   box-shadow: 0 0 2px 2px #b8dfd9;
 
-  padding: 2.5rem 1.5rem 1.5rem 1.5rem; /* 상단 여백 늘림 */
- 
+  padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+  /* 상단 여백 늘림 */
 
- 
+
+
 
 }
 
@@ -318,7 +357,8 @@
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  color: #9ca3af; /* text-gray-400 */
+  color: #9ca3af;
+  /* text-gray-400 */
   font-size: 1.25rem;
   cursor: pointer;
 
@@ -367,7 +407,7 @@
   margin-bottom: 5px;
   color: #fef9c3;
 }
-                                     
+
 /* 에러 메시지 */
 .modal-error {
   color: #f87171;
@@ -392,7 +432,7 @@
 }
 
 
-.modal-slider-group{
+.modal-slider-group {
   margin-top: 10px;
 }
 
@@ -417,12 +457,16 @@
 /* 모달 컨텐츠 박스 */
 .lockup-modal {
   background-color: #002b2b;
-  color: #99f6e4; /* emerald-200 */
+  color: #99f6e4;
+  /* emerald-200 */
   border-radius: 0.5rem;
-  width: 91.666667%;           /* w-11/12 */
-  max-width: 480px;            /* max-w-lg */
+  width: 91.666667%;
+  /* w-11/12 */
+  max-width: 480px;
+  /* max-w-lg */
   padding: 1.5rem;
-  border: 2px solid #34d399;   /* emerald-400 */
+  border: 2px solid #34d399;
+  /* emerald-400 */
   overflow-y: auto;
   max-height: 70vh;
   box-shadow: 0 0 12px #34d399;
@@ -474,14 +518,16 @@
 /* 테이블 기본 설정 */
 .lockup-table {
   width: 100%;
-  font-size: 0.875rem; /* text-sm */
+  font-size: 0.875rem;
+  /* text-sm */
   border-collapse: collapse;
   color: #e0f2f1;
 }
 
 /* 테이블 헤더 스타일 */
 .lockup-table thead tr {
-  border-bottom: 1px solid #34d399; /* emerald-400 */
+  border-bottom: 1px solid #34d399;
+  /* emerald-400 */
   background-color: #113c3c;
 
 }
@@ -497,7 +543,8 @@
 .lockup-table td {
   padding: 0.5rem;
   font-size: 12.5px;
-  border-bottom: 1px solid #374151; /* gray-700 */
+  border-bottom: 1px solid #374151;
+  /* gray-700 */
 }
 
 /* 락업 ID를 모노스페이스 폰트로 */
@@ -524,23 +571,25 @@
 /* 모달 컨테이너 */
 .order-modal {
   background-color: #002b2b;
-  color: #99f6e4; /* emerald-200 */
+  color: #99f6e4;
+  /* emerald-200 */
   border-radius: 0.5rem;
-  width: 91.666667%;           /* w-11/12 */
-  max-width: 480px;            /* max-w-lg */
+  width: 91.666667%;
+  /* w-11/12 */
+  max-width: 480px;
+  /* max-w-lg */
   padding: 1.5rem;
-  border: 2px solid #34d399;   /* emerald-400 */
+  border: 2px solid #34d399;
+  /* emerald-400 */
   overflow-y: auto;
   max-height: 70vh;
   box-shadow: 0 0 12px #34d399;
-    /* ✅ 스크롤 숨기기 */
+  /* ✅ 스크롤 숨기기 */
 
 }
 
 /* ✅ Webkit 브라우저용 스크롤 숨기기 */
-.order-modal::-webkit-scrollbar {
-
-}
+.order-modal::-webkit-scrollbar {}
 
 
 /* 상단 제목 및 닫기버튼 영역 */
@@ -601,19 +650,23 @@
 
 /* 테이블 헤더 */
 .order-table thead {
-  border-bottom: 1px solid #34d399; /* emerald-400 */
+  border-bottom: 1px solid #34d399;
+  /* emerald-400 */
   background-color: #113c3c;
 }
 
 .order-table th,
 .order-table td {
   padding: 0.5rem;
-  text-align: center;         /* 가로 중앙 정렬 */
-  vertical-align: middle;     /* 세로 중앙 정렬 */
-            /* 공간 확보 */
+  text-align: center;
+  /* 가로 중앙 정렬 */
+  vertical-align: middle;
+  /* 세로 중앙 정렬 */
+  /* 공간 확보 */
   white-space: nowrap;
 }
-.order-table td{
+
+.order-table td {
   color: #ffffff;
 }
 
@@ -648,8 +701,9 @@
 /* 오버레이 */
 .redeem-modal-overlay {
   position: fixed;
-  
-  inset: 0; /* top, right, bottom, left = 0 */
+
+  inset: 0;
+  /* top, right, bottom, left = 0 */
   background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
@@ -660,7 +714,8 @@
 /* 모달 박스 */
 .redeem-modal {
   background: #1a3030;
-  color: #fef08a; /* text-yellow-100 */
+  color: #fef08a;
+  /* text-yellow-100 */
   width: 320px;
   padding: 1.5rem;
   border-radius: 0.5rem;
@@ -673,7 +728,8 @@
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  color: #fef08a; /* text-gray-400 */
+  color: #fef08a;
+  /* text-gray-400 */
   font-size: 1.25rem;
   cursor: pointer;
 }
@@ -760,15 +816,18 @@
 }
 
 .redeem-table thead {
-  border-bottom: 1px solid #34d399; /* emerald-400 */
+  border-bottom: 1px solid #34d399;
+  /* emerald-400 */
   background-color: #113c3c;
 }
 
 .redeem-table thead th {
   padding: 0.5rem;
-  text-align: center;         /* 가로 중앙 정렬 */
-  vertical-align: middle;     /* 세로 중앙 정렬 */
-            /* 공간 확보 */
+  text-align: center;
+  /* 가로 중앙 정렬 */
+  vertical-align: middle;
+  /* 세로 중앙 정렬 */
+  /* 공간 확보 */
   white-space: nowrap;
 }
 
@@ -814,15 +873,19 @@
   margin: 8px auto;
   border-radius: 8px;
   padding: 20px;
-  flex-direction: row;     /* ✅ 가로 배열 */
-  align-items: center;    /* ✅ 세로 중앙 정렬 */
-  justify-content: space-between; /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
+  flex-direction: row;
+  /* ✅ 가로 배열 */
+  align-items: center;
+  /* ✅ 세로 중앙 정렬 */
+  justify-content: space-between;
+  /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
   gap: 16px;
   margin-bottom: 13px;
   box-shadow: 0 0 12px 2px #b8dfd9;
   height: 50%;
 
-  transform: scale(1.0); /* 선택사항: 조금 키움 */
+  transform: scale(1.0);
+  /* 선택사항: 조금 키움 */
 }
 
 /* 닫기 버튼 */
@@ -842,11 +905,11 @@
 }
 
 
-.modal-input-group{
+.modal-input-group {
   margin-top: 20px;
 }
 
-.modal-input-wrapper{
+.modal-input-wrapper {
   position: relative;
   width: 100%;
 }
@@ -857,7 +920,8 @@
   width: 100%;
   background-color: #1a1109;
   padding: 8px;
-  padding-right: 72px; /* ← 버튼 공간 확보 */
+  padding-right: 72px;
+  /* ← 버튼 공간 확보 */
   border-radius: 6px;
   color: #fef08a;
   border: none;
@@ -869,8 +933,10 @@
 .modal-max-btn {
   position: absolute;
   right: 8px;
-  top: 45%;                      /* 🔼 부모 기준 세로 중앙 */
-  transform: translateY(-50%);   /* 🔽 실제 버튼 높이만큼 보정 */
+  top: 45%;
+  /* 🔼 부모 기준 세로 중앙 */
+  transform: translateY(-50%);
+  /* 🔽 실제 버튼 높이만큼 보정 */
   background-color: #facc15;
   color: #000000;
   padding: 4px 8px;
@@ -879,7 +945,7 @@
   cursor: pointer;
   border: none;
   transition: background-color 0.2s ease;
-  
+
 }
 
 
@@ -897,7 +963,8 @@
   display: flex;
   justify-content: space-between;
   font-size: 14px;
-  color: #d1d5db; /* gray-300 */
+  color: #d1d5db;
+  /* gray-300 */
   margin-bottom: 15px;
 }
 
@@ -980,9 +1047,7 @@
 
 
 @media screen and (max-width: 768px) {
-  .page-wrapper-token {
-
-  }
+  .page-wrapper-token {}
 
   .summary-card {
     padding: 0.75rem;
@@ -990,7 +1055,8 @@
   }
 
   .summary-card .value {
-    font-size: 1.25rem; /* 좀 더 작게 */
+    font-size: 1.25rem;
+    /* 좀 더 작게 */
   }
 
   .summary-card .actions {
@@ -1014,7 +1080,7 @@
 
   .funding-card {
     width: 100%;
-  
+
     gap: 12px;
     padding: 12px;
   }
@@ -1088,11 +1154,12 @@
 
 
 
-  
+
 
   .redeem-modal {
 
-    padding: 1.25rem;              /* 패딩 약간 축소 */
+    padding: 1.25rem;
+    /* 패딩 약간 축소 */
     border-radius: 0.5rem;
     font-size: 0.9rem;
   }
@@ -1159,7 +1226,7 @@
 
 
 
-    /* 모달 전체 오버레이 */
+  /* 모달 전체 오버레이 */
   .modal-overlay {
     padding-top: 60px;
     padding-left: 15px;

@@ -148,6 +148,9 @@
     "startTime": "시작 시간:",
     "endTime": "종료 시간:",
     "buy": "구매하기",
+    "notStarted": "아직 시작되지 않음",
+    "endedSales": "판매가 종료된 토큰",
+    "ended": "판매 종료",
     "promptAmount": "구매할 USC 수량을 입력하세요:",
     "purchaseSuccess": "구매 완료!",
     "errors": {
@@ -157,7 +160,10 @@
       "swapFail": "환전에 실패했습니다.",
       "depositFail": "충전에 실패했습니다.",
       "purchaseFail": "구매에 실패했습니다."
-    }
+    },
+    "onSale": "판매중",
+    "upcoming": "판매예정",
+    "endedSection": "판매종료"
   },
   "funding": {
     "active_projects": "진행 중인 프로젝트",
