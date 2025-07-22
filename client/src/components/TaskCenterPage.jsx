@@ -158,14 +158,16 @@ export default function TaskCenterPage() {
         <p>{t('task.text2')}</p>
       </div>
 
-      <div className="text-box-container" style={{ whiteSpace: 'pre-line' }}>
-        <p>{t('task.text3')}</p>
-      </div>
 
+      <br></br>
       {/* 가입 보너스 영역 - invite-reward-card 구조로 통일 */}
-      <div className="join-reward-header">
-        <span className="join-reward-title">{t('task.join_reward.title')}</span>
+      <div
+        onClick={() => setInviteOpen(o => !o)}
+        className="invite-toggle-box"
+      >
+        <span className="invite-toggle-title">{t('task.join_reward.title')}</span>
       </div>
+      <br></br>
       <div className="invite-reward-list">
         {joinRewards.map((jr, idx) => (
           <div key={jr.id} className="invite-reward-card">
@@ -187,7 +189,9 @@ export default function TaskCenterPage() {
           </div>
         ))}
       </div>
-
+      <div className="text-box-container" style={{ whiteSpace: 'pre-line' }}>
+        <p>{t('task.text3')}</p>
+      </div>
       <AlertPopup
         isOpen={showAlert}
         onClose={() => setShowAlert(false)}

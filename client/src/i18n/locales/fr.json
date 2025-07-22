@@ -931,6 +931,8 @@
   },
   "task": {
     "title": "Centre des Tâches",
+    "text2": "Notes:\n\n - Toutes les récompenses sont payées uniquement aux utilisateurs valides qui ont réussi à compléter le programme Upstart.\n- Fraude, comptes en double et trading irrégulier sont immédiatement bloqués et les récompenses sont récupérées.\n- Les récompenses sont créditées dans les 24 heures après la fin du programme.",
+    "text3": "Pourquoi l'invitation est-elle si importante ?\n\nUpstart poursuit un approche de croissance modèle communautaire. Votre invitation active dépasse une simple récompense, devenant un partenaire dans notre vision pour le succès futur.",
     "invite_reward": {
       "title": "Récompenses d'Invitation",
       "success": "Succès",

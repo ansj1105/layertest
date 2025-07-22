@@ -735,6 +735,8 @@
   },
   "task": {
     "title": "Task Center",
+    "text2": "Notes:\n\n - All rewards are paid only to valid users who successfully complete the Upstart program.\n- Fraud, duplicate accounts, and irregular trading are immediately blocked and rewards are recovered.\n- Rewards are credited within 24 hours after program completion.",
+    "text3": "Why is the invitation so important?\n\nUpstart pursues a community-centered growth model. Your active invitation goes beyond a simple reward, becoming a partner in our vision for future success.",
     "invite_reward": {
       "title": "Invite Rewards",
       "description": "Reward when you reach the required number of active referrals just below Level 1",

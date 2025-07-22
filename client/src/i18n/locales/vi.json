@@ -728,6 +728,8 @@
   },
   "task": {
     "title": "Trung tâm Nhiệm vụ",
+    "text2": "Lưu ý:\n\n - Tất cả các thưởng được trả cho người dùng hợp lệ chỉ khi họ hoàn thành chương trình Upstart.\n- Chiêu trộm, tài khoản trùng lặp và giao dịch không hợp lệ bị chặn ngay lập tức và thưởng được thu hồi.\n- Thưởng được tín dụng trong vòng 24 giờ sau khi hoàn thành chương trình.",
+    "text3": "Tại sao lời mời lại quan trọng?\n\nUpstart theo đuổi mô hình tăng trưởng dựa trên cộng đồng. Lời mời của bạn vượt qua một phần thưởng đơn giản, trở thành đối tác trong tầm nhìn của chúng tôi cho sự thành công tương lai.",
     "invite_reward": {
       "title": "Thưởng Mời",
       "success": "Thành công",

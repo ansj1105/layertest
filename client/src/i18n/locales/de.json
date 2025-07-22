@@ -742,6 +742,8 @@
   },
   "task": {
     "title": "Aufgabenzentrum",
+    "text2": "Hinweise:\n\n - Alle Belohnungen werden nur an gültige Nutzer gezahlt, die das Upstart-Programm erfolgreich abschließen.\n- Betrug, Doppelkonten und unregelmäßige Handel werden sofort blockiert und Belohnungen zurückgefordert.\n- Die Belohnungen werden innerhalb von 24 Stunden nach Abschluss des Programms gutgeschrieben.",
+    "text3": "Warum ist die Einladung so wichtig?\n\nUpstart verfolgt einen zukunftsweisenden Ansatz: Wir bieten eine Plattform für zukunftsorientierte Finanzinnovationen an. Ihre aktive Einladung ist nicht nur eine Belohnung, sondern ein Partner in unserer Vision für den zukünftigen Erfolg.",
     "invite_reward": {
       "title": "Einladungsbelohnungen",
       "success": "Erfolg",
