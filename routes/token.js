@@ -295,7 +295,7 @@ router.post("/token-withdrawal", async (req, res) => {
 // 3.4 토큰 구매 및 판매
 // ------------------------
 router.get("/active-token-sales", async (_, res) => {
-  const [rows] = await db.query("SELECT * FROM token_sales ORDER BY start_time DESC");
+  const [rows] = await db.query("SELECT * FROM token_sales ORDER BY start_time ASC");
   res.json(rows);
 });
 // 📁 routes/token.js (or wherever you keep your token APIs)

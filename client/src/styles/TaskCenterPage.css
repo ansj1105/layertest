@@ -1,4 +1,4 @@
-.top-container{
+.top-container {
   height: 100%;
   background-color: #0e0e11;
 }
@@ -14,12 +14,15 @@
   display: flex;
   flex-direction: column;
   background-color: #0e0e11;
-  overflow: auto; /* 스크롤 활성화 */
+  overflow: auto;
+  /* 스크롤 활성화 */
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
-  justify-content: space-between;  /* 가로 방향 균등 배치 */
-  align-items: center;             /* 세로 가운데 정렬 */
+  justify-content: space-between;
+  /* 가로 방향 균등 배치 */
+  align-items: center;
+  /* 세로 가운데 정렬 */
   margin-bottom: 200px;
   z-index: 100;
 }
@@ -31,8 +34,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem; /* p-4 */
-  border-radius: 0.5rem; /* rounded */
+  padding: 1rem;
+  /* p-4 */
+  border-radius: 0.5rem;
+  /* rounded */
   margin-bottom: 0;
   cursor: pointer;
   background: #111b1b;
@@ -43,22 +48,30 @@
   box-shadow: 0 0 1px 1px #b8dfd9;
   margin-top: 5px;
   margin-bottom: 5px !important;
-  justify-content: space-between;  /* 가로 방향 균등 배치 */
-  align-items: center;             /* 세로 가운데 정렬 */
+  justify-content: space-between;
+  /* 가로 방향 균등 배치 */
+  align-items: center;
+  /* 세로 가운데 정렬 */
 }
 
 .invite-toggle-title {
-  font-weight: 500; /* font-medium */
+  font-weight: 500;
+  /* font-medium */
 }
 
 .invite-reward-description {
-  padding: 1rem; /* p-4 */
+  padding: 1rem;
+  /* p-4 */
   background-color: #0e0e11;
   border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem; /* rounded-b */
-  margin-bottom: 1px; /* mb-6 */
-  font-size: 0.875rem; /* text-sm */
-  color: #fde68a; /* text-yellow-300 */
+  border-bottom-right-radius: 0.5rem;
+  /* rounded-b */
+  margin-bottom: 1px;
+  /* mb-6 */
+  font-size: 0.875rem;
+  /* text-sm */
+  color: #fde68a;
+  /* text-yellow-300 */
 }
 
 
@@ -74,11 +87,13 @@
 .invite-reward-list {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* space-y-2 */
-  margin-bottom: 2rem; /* mb-8 */
+  gap: 0.5rem;
+  /* space-y-2 */
+  margin-bottom: 2rem;
+  /* mb-8 */
   width: 90%;
 
-  
+
 }
 
 /* 각 보상 카드 */
@@ -97,12 +112,34 @@
   border-radius: 8px;
   margin-top: 5px;
   margin-bottom: 5px !important;
-  gap: 24px; /* 설명과 버튼 사이 간격 추가 */
+  gap: 24px;
+  /* 설명과 버튼 사이 간격 추가 */
 }
+
+.join-reward-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem;
+  background: #111b1b;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 1px 1px #b8dfd9;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  padding: 14px;
+  border-radius: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px !important;
+  gap: 24px;
+  /* 설명과 버튼 사이 간격 추가 */
+}
+
 
 .join-reward-info {
   flex: 1;
-  padding-right: 16px; /* 설명 오른쪽에 여백 */
+  padding-right: 16px;
+  /* 설명 오른쪽에 여백 */
 }
 
 .join-reward-desc {
@@ -119,13 +156,16 @@
 
 /* 보상 텍스트 */
 .invite-reward-text {
-  font-size: 0.875rem; /* text-sm */
+  font-size: 0.875rem;
+  /* text-sm */
   color: #ffffff;
 }
 
 .invite-reward-subtext {
-  font-size: 0.75rem; /* text-xs */
-  color: #fde68a; /* text-yellow-300 */
+  font-size: 0.75rem;
+  /* text-xs */
+  color: #fde68a;
+  /* text-yellow-300 */
 }
 
 
@@ -141,19 +181,25 @@
 
 /* 상태별 버튼 색상 */
 .reward-btn-claimed {
-  background-color: #4b5563; /* bg-gray-600 */
-  color: #d1d5db;            /* text-gray-300 */
+  background-color: #4b5563;
+  /* bg-gray-600 */
+  color: #d1d5db;
+  /* text-gray-300 */
 }
 
 .reward-btn-disabled {
-  background-color: #374151; /* bg-gray-700 */
-  color: #6b7280;            /* text-gray-500 */
+  background-color: #374151;
+  /* bg-gray-700 */
+  color: #6b7280;
+  /* text-gray-500 */
   cursor: not-allowed;
 }
 
 .reward-btn-active {
-  background-color: #ca8a04; /* bg-yellow-600 */
-  color: #000000;            /* text-black */
+  background-color: #ca8a04;
+  /* bg-yellow-600 */
+  color: #000000;
+  /* text-black */
 }
 
 
@@ -172,15 +218,35 @@
   height: auto;
   margin: 10px auto 5px auto;
   display: flex;
-  flex-direction: column;  /* ✅ 세로 정렬로 바꿈 */
-  align-items: stretch;    /* ✅ 자식 요소 전체 너비 사용 */
-  justify-content: flex-start; /* ✅ 위쪽 정렬 */
+  flex-direction: column;
+  /* ✅ 세로 정렬로 바꿈 */
+  align-items: stretch;
+  /* ✅ 자식 요소 전체 너비 사용 */
+  justify-content: flex-start;
+  /* ✅ 위쪽 정렬 */
   color: #ffffff;
   transition: all 0.4s ease;
   box-shadow: 0 0 2px 2px #b8dfd9 !important;
 }
 
-
+.text-box-container {
+  padding: 1rem;
+  background-color: rgb(30, 54, 53);
+  border-radius: 3px;
+  width: 90%;
+  height: auto;
+  margin: 10px auto 5px auto;
+  display: flex;
+  flex-direction: column;
+  /* ✅ 세로 정렬로 바꿈 */
+  align-items: stretch;
+  /* ✅ 자식 요소 전체 너비 사용 */
+  justify-content: flex-start;
+  /* ✅ 위쪽 정렬 */
+  color: #ffffff;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 2px 2px #b8dfd9 !important;
+}
 
 /* 상단 제목 + 상태 표시 라인 */
 .join-reward-header {
@@ -188,6 +254,7 @@
   justify-content: space-between;
   align-items: center;
   font-size: 17px;
+  color: #ffffff;
 }
 
 /* 제목 텍스트 */
@@ -198,14 +265,16 @@
 /* 수령 횟수 */
 .join-reward-count {
   font-size: 15px;
-  color: #fde68a; /* text-yellow-300 */
+  color: #fde68a;
+  /* text-yellow-300 */
 }
 
 /* 설명 텍스트 */
 .join-reward-description {
   margin-top: 0.25rem;
   font-size: 15px;
-  color: #fde68a; /* text-yellow-300 */
+  color: #fde68a;
+  /* text-yellow-300 */
 }
 
 /* 버튼 영역 */
@@ -227,13 +296,16 @@
 
 /* 상태별 버튼 */
 .reward-btn-disabled {
-  background-color: #4b5563; /* bg-gray-600 */
-  color: #d1d5db;            /* text-gray-300 */
+  background-color: #4b5563;
+  /* bg-gray-600 */
+  color: #d1d5db;
+  /* text-gray-300 */
   cursor: not-allowed;
 }
 
 .reward-btn-active {
-  background-color: #ca8a04; /* bg-yellow-600 */
+  background-color: #ca8a04;
+  /* bg-yellow-600 */
   color: #000000;
 }
 
@@ -259,9 +331,11 @@
   position: fixed;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  transform: translateX(-50%);
+  /* ✅ 가운데 정렬 */
   width: 100%;
-  max-width: 500px;              /* ✅ container와 맞춤 */
+  max-width: 500px;
+  /* ✅ container와 맞춤 */
   height: 58.27px;
   background: #1d1d27;
   display: flex;
@@ -276,8 +350,10 @@
 .flex-my {
   width: 97%;
   display: flex;
-  justify-content: center;   /* Flex 아이템 가로 중앙 정렬 */
-  margin: 0 auto;            /* 컨테이너 자체를 중앙에 배치 */
+  justify-content: center;
+  /* Flex 아이템 가로 중앙 정렬 */
+  margin: 0 auto;
+  /* 컨테이너 자체를 중앙에 배치 */
 
   z-index: 100;
 }
@@ -285,7 +361,7 @@
 
 
 .v-token-r-my {
-  
+
   width: 90%;
   height: 40px;
   margin-top: 10px;
@@ -298,21 +374,25 @@
   background: rgb(55, 119, 115);
   border-radius: 3px;
   color: #ffffff;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   box-shadow: 0 0 2px 2px #b8dfd9 !important;
 
-  
+
 
 }
 
 .referra-t {
   width: 97%;
   height: 200px;
-  margin: auto;                /* 블록 요소 가로 세로 중앙 정렬 */
+  margin: auto;
+  /* 블록 요소 가로 세로 중앙 정렬 */
   display: flex;
   flex-direction: row;
-  align-items: center;          /* 세로 가운데 (내부 콘텐츠) */
-  justify-content: center;      /* 가로 가운데 (내부 콘텐츠) */
+  align-items: center;
+  /* 세로 가운데 (내부 콘텐츠) */
+  justify-content: center;
+  /* 가로 가운데 (내부 콘텐츠) */
   padding: 30px;
   background: #191c29;
   border-radius: 10px;
@@ -320,12 +400,14 @@
   transition: all 0.4s ease;
   box-shadow: 0 0 12px 2px #b8dfd9 !important;
   margin-bottom: 10px;
-  
-  gap: 16px; /* 상하 영역 간 간격 */
+
+  gap: 16px;
+  /* 상하 영역 간 간격 */
 }
 
 .v-token-r-my:hover {
-  color: #ffe695; /* 조금 더 밝은 노란색으로 hover 효과 */
+  color: #ffe695;
+  /* 조금 더 밝은 노란색으로 hover 효과 */
 }
 
 
@@ -356,10 +438,12 @@
   box-shadow: 0 0 4px 2px #b8dfd9;
   display: flex;
   flex-direction: column;
-  gap: 16px; /* 상하 영역 간 간격 */
+  gap: 16px;
+  /* 상하 영역 간 간격 */
 
-  justify-content: center;      /* 가로 가운데 (내부 콘텐츠) */
-  
+  justify-content: center;
+  /* 가로 가운데 (내부 콘텐츠) */
+
 }
 
 .referra-section {
@@ -378,7 +462,8 @@
 
 .referra-title {
   font-size: 17px;
-  color: #ffffff; /* text-yellow-300 */
+  color: #ffffff;
+  /* text-yellow-300 */
   font-weight: bold;
   margin-bottom: 1px;
 }
@@ -386,7 +471,8 @@
 .referra-value {
   font-size: 13.6px;
   font-weight: bold;
-  color: #fef9c3; /* text-yellow-100 */
+  color: #fef9c3;
+  /* text-yellow-100 */
   margin: 1px;
 }
 
@@ -398,8 +484,10 @@
   margin: 5px auto;
   color: #ffffff;
   display: flex;
-  justify-content: space-between;  /* 왼쪽, 오른쪽 정렬 */
-  align-items: center;             /* 세로 가운데 정렬 */
+  justify-content: space-between;
+  /* 왼쪽, 오른쪽 정렬 */
+  align-items: center;
+  /* 세로 가운데 정렬 */
   gap: 16px;
   margin-bottom: 10px;
 }
@@ -407,7 +495,8 @@
 
 .level-title {
   font-size: 14px;
-  color: #ffffff; /* text-yellow-300 */
+  color: #ffffff;
+  /* text-yellow-300 */
   font-weight: bold;
   margin-bottom: 1px;
   margin-left: 3px;
@@ -416,11 +505,12 @@
 .level-value {
   font-size: 13.6px;
   font-weight: bold;
-  color: #fef9c3; /* text-yellow-100 */
+  color: #fef9c3;
+  /* text-yellow-100 */
   margin: 1px;
 }
 
-.level-hierarchy{
+.level-hierarchy {
   background: #2c1f0f;
   color: #fef9c3;
   padding: 3px;
@@ -436,7 +526,8 @@
 
 
 .data-box-container {
-  padding-right: 8px;              /* 스크롤바와 내용 간 여백 */
+  padding-right: 8px;
+  /* 스크롤바와 내용 간 여백 */
   margin: 0 auto;
   width: 95%;
 
@@ -462,17 +553,19 @@
 .data-card-my-title {
   font-size: 1rem;
   font-weight: bold;
-  color: #facc15; /* text-yellow-300 */
+  color: #facc15;
+  /* text-yellow-300 */
 }
 
 .data-card-my-sub {
   font-size: 0.85rem;
-  color: #fde68a; /* text-yellow-100 */
+  color: #fde68a;
+  /* text-yellow-100 */
 }
 
 /* 스크롤바 커스텀 (크롬/엣지/사파리) */
 .data-box-container-m1 {
-  max-height: 350px ;
+  max-height: 350px;
   margin-bottom: 400px !important;
 
   margin: 0 auto;
@@ -525,8 +618,10 @@
   font-weight: 600;
   font-size: 14px;
   white-space: nowrap;
-  text-align: center;          /* 가로 가운데 정렬 */
-  vertical-align: middle;      /* 세로 가운데 정렬 */
+  text-align: center;
+  /* 가로 가운데 정렬 */
+  vertical-align: middle;
+  /* 세로 가운데 정렬 */
   padding: 12px 8px;
 
 }
@@ -538,8 +633,10 @@
   color: #a0a2a5 !important;
   border-bottom: 1px solid #528080;
   white-space: nowrap;
-  text-align: center;          /* 가로 가운데 정렬 */
-  vertical-align: middle;      /* 세로 가운데 정렬 */
+  text-align: center;
+  /* 가로 가운데 정렬 */
+  vertical-align: middle;
+  /* 세로 가운데 정렬 */
 }
 
 /* 행 hover 효과 */
@@ -558,7 +655,7 @@
 
 
 
-.ta-12{
+.ta-12 {
   color: #f5dc8b;
   background: #263a3a;
   border-bottom: 1px solid #2e2e2e;
@@ -577,19 +674,20 @@
 
 
 
-.page-wrapper {
-  position: relative;
-  max-width: 506px;
-  margin: 0 auto;
-  height: 100%;
-  max-width: 100%;
-  overflow-x: hidden;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  background-color: #0e0e11;
-  overflow: auto; /* 스크롤 활성화 */
-}
+  .page-wrapper {
+    position: relative;
+    max-width: 506px;
+    margin: 0 auto;
+    height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: #0e0e11;
+    overflow: auto;
+    /* 스크롤 활성화 */
+  }
 
 
 
@@ -620,7 +718,8 @@
 
 
 
-  .level-title, .level-value {
+  .level-title,
+  .level-value {
     font-size: 13px;
     margin-bottom: 0;
   }
@@ -648,16 +747,24 @@
   .data-card-my-sub {
     font-size: 12px;
   }
+
   .text-right {
     margin-left: auto;
-    display: block; /* 필요 시 */
+    display: block;
+    /* 필요 시 */
   }
+
   .data-card-my {
-    display: flex;               /* Flexbox 사용 */
-    flex-direction: row;         /* 가로로 배열 */
-    align-items: center;         /* 세로 중앙 정렬 */
-    justify-content: space-between; /* 필요에 따라 space-around, center 등 조정 */
-    gap: 12px;                   /* 요소 간 간격 추가 */
+    display: flex;
+    /* Flexbox 사용 */
+    flex-direction: row;
+    /* 가로로 배열 */
+    align-items: center;
+    /* 세로 중앙 정렬 */
+    justify-content: space-between;
+    /* 필요에 따라 space-around, center 등 조정 */
+    gap: 12px;
+    /* 요소 간 간격 추가 */
   }
-  
+
 }

@@ -154,32 +154,39 @@ export default function TaskCenterPage() {
         </div>
       )}
 
-      {/* 가입 보너스 영역 - 각 보상을 완전히 분리된 카드로 렌더링 */}
+      <div className="text-box-container" style={{ whiteSpace: 'pre-line' }}>
+        <p>{t('task.text2')}</p>
+      </div>
+
+      <div className="text-box-container" style={{ whiteSpace: 'pre-line' }}>
+        <p>{t('task.text3')}</p>
+      </div>
+
+      {/* 가입 보너스 영역 - invite-reward-card 구조로 통일 */}
       <div className="join-reward-header">
         <span className="join-reward-title">{t('task.join_reward.title')}</span>
       </div>
-      {joinRewards.map((jr, idx) => (
-        <div key={jr.id} className="join-reward-container">
-          <div className="join-reward-card">
-            <div className="join-reward-info">
-              <div className="join-reward-title-row">
-                <span className="join-reward-step">{t('task.join_reward.step', { step: idx + 1 })}</span>
-                <br />
-              </div>
-              <div className="join-reward-desc">
+      <div className="invite-reward-list">
+        {joinRewards.map((jr, idx) => (
+          <div key={jr.id} className="invite-reward-card">
+            <div>
+              <p className="invite-reward-text">
+                {t('task.join_reward.step', { step: idx + 1 })}
+              </p>
+              <p className="invite-reward-subtext">
                 {t('task.join_reward.description', { amount: jr.amount })}
-              </div>
+              </p>
             </div>
             <button
               disabled={jr.claimed}
               onClick={() => claimJoin(jr.id)}
-              className={`join-reward-button ${jr.claimed ? 'reward-btn-disabled' : 'reward-btn-active'}`}
+              className={`invite-reward-button ${jr.claimed ? 'reward-btn-disabled' : 'reward-btn-active'}`}
             >
               {jr.claimed ? t('task.join_reward.claimed') : t('task.join_reward.claim')}
             </button>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
       <AlertPopup
         isOpen={showAlert}
