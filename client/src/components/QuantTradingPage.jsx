@@ -475,9 +475,18 @@ export default function QuantTradingPage() {
       {showHistory && <QuantHistoryModal onClose={() => setShowHistory(false)} />}
       {/* 자산 정보 */}
       <div className="referra-jj">
-        <div>{t('quantTrading.available')} <strong>{finance.quantBalance} USDT</strong></div>
-        <div>{t('quantTrading.todayEarning')} <strong>{summary.todayProfit.toFixed(6)} USDT</strong></div>
-        <div>{t('quantTrading.totalEarning')} <strong>{summary.totalProfit.toFixed(6)} USDT</strong></div>
+        <div>
+          <div>{t('quantTrading.available')}</div>
+          <div><strong>{finance.quantBalance.toFixed(4)} USDT</strong></div>
+        </div>
+        <div>
+          <div>{t('quantTrading.todayEarning')}</div>
+          <div><strong>{summary.todayProfit.toFixed(4)} USDT</strong></div>
+        </div>
+        <div>
+          <div>{t('quantTrading.totalEarning')}</div>
+          <div><strong>{summary.totalProfit.toFixed(4)} USDT</strong></div>
+        </div>
       </div>
       <div className="referra-m-l">
         <span className="font-semibold mr-2">{t('quantTrading.currentLevel')} : </span>

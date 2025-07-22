@@ -202,6 +202,7 @@
     }
   },
   "quantTrading": {
+    "error": "交易失败",
     "dailyLimitReached": "今日交易次数已超限",
     "vipLevel": "VIP等级",
     "leaderboardTitle": "排行榜",
@@ -453,7 +454,8 @@
       "real_account": "主账户：{{balance}}",
       "balance": "余额：{{balance}}",
       "fee": "手续费：{{fee}}（当前费率：{{rate}}%）",
-      "submit": "提交"
+      "submit": "提交",
+      "exceed_balance": "余额不足。"
     },
     "withdraw_modal": {
       "title": "转出",
@@ -464,7 +466,8 @@
       "max_label": "全部转出",
       "real_account": "主账户：{{balance}}",
       "fee": "手续费：{{fee}}（当前费率：{{rate}}%）",
-      "submit": "提交"
+      "submit": "提交",
+      "exceed_balance": "余额不足。"
     }
   },
   "info": {
@@ -566,6 +569,7 @@
   "companyIntro": {
     "back": "返回",
     "title": "公司介绍",
+    "featuresTitle": "主要特征",
     "items": [
       "量化交易",
       "投资项目",
@@ -620,7 +624,7 @@
     }
   },
   "quantTutorial": {
-    "title": "智能自動量化交易系統指南",
+    "title": "量化交易系統指南",
     "description": "系統概述\n\nUpstart 提供一套結合最新 AI 分析技術與自動交易演算法的量化套利系統，專門利用數位資產市場中的價格低效率。\n\n該系統能自動偵測 USDT、BTC、ETH 等主要數位資產在全球交易所之間的價格差，並即時執行買賣操作，以追求穩定的利潤產出。",
     "sections": {
       "overview": "智能套利系統原理",
@@ -661,7 +665,7 @@
     "title": "常见问题",
     "lines": [
       "以下是在参与 Upstart 计划时需注意的一些常见问题：",
-      "1. 新用户需至少存入 30 USDT 才能开始交易。",
+      "1. 新用户需至少存入 35 USDT 才能开始交易。",
       "2. 要提现，您需完成合计至少 20 USDT 的量化交易。",
       "3. 最低提现金额为 50 USDT。",
       "4. 提现处理可能需要 9–16 小时，请耐心等待。",
@@ -674,7 +678,7 @@
     ],
     "feesTitle": "费用信息",
     "fees": [
-      "Upstart 的量化系统和自动担保流程可能产生额外提现费用（0%–5%）。",
+      "Upstart 的量化系统和自动担保流程可能产生额外提现费用（0%-12%）。",
       "费率如有调整，恕不另行通知。",
       "标准处理时间约 5 分钟；担保处理时可能延长至 30 分钟。",
       "汇率根据市场状况自动更新。"
@@ -682,10 +686,10 @@
   },
   "security": {
     "title": "安全中心",
-    "email": "邮箱",
-    "tradePwd": "交易 PIN",
-    "loginPwd": "登录密码",
-    "withdrawAddr": "提现地址"
+    "email": "邮箱(变更)",
+    "tradePwd": "交易 PIN(变更)",
+    "loginPwd": "登录密码(变更)",
+    "withdrawAddr": "提现地址(变更)"
   },
   "security_p": {
     "title": "邮箱绑定",

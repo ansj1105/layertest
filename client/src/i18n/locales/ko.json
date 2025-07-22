@@ -29,6 +29,7 @@
     "forgot": "비밀번호 찾기"
   },
   "quantTrading": {
+    "error": "트레이딩 실패",
     "dailyLimitReached": "당일 거래 횟수 초과",
     "vipLevel": "VIP 등급",
     "leaderboardTitle": "리더보드",
@@ -134,8 +135,8 @@
     "deposit": "충전",
     "redeem": "환매",
     "orderDetails": "주문 세부정보",
-    "swapQuantToFundTitle": "Quant → Fund 환전",
-    "swapFundToQuantTitle": "Fund → Quant 충전",
+    "swapQuantToFundTitle": "Wallet → Fund 환전",
+    "swapFundToQuantTitle": "Fund → Wallet 충전",
     "inputUsdt": "USDT 입력",
     "balance": "잔액:",
     "fee": "수수료({{rate}}%)",
@@ -155,7 +156,7 @@
     "purchaseSuccess": "구매 완료!",
     "errors": {
       "invalidAmount": "유효한 금액을 입력해주세요.",
-      "insufficientQuant": "Quant 지갑 잔액이 부족합니다.",
+      "insufficientQuant": "Wallet 지갑 잔액이 부족합니다.",
       "insufficientFund": "Fund 지갑 잔액이 부족합니다.",
       "swapFail": "환전에 실패했습니다.",
       "depositFail": "충전에 실패했습니다.",
@@ -207,7 +208,8 @@
       "balance": "균형: {{balance}}",
       "fee": "수수료 처리: {{fee}} (현재 수수료: {{rate}}%)",
       "submit": "제출하다",
-      "net_amount": "거래후 금액 : {{net}}(거래후 잔액 : {{remain}})"
+      "net_amount": "거래후 금액 : {{net}}(거래후 잔액 : {{remain}})",
+      "exceed_balance": "잔액이 부족합니다."
     },
     "withdraw_modal": {
       "title": "전출",
@@ -218,7 +220,8 @@
       "real_account": "실제 계정: {{balance}}",
       "fee": "수수료 처리: {{fee}} (현재 수수료: {{rate}}%)",
       "submit": "제출하다",
-      "success": "성공"
+      "success": "성공",
+      "exceed_balance": "잔액이 부족합니다."
     },
     "info": {
       "title": "금융상품이란 무엇인가요?",
@@ -583,6 +586,7 @@
   "companyIntro": {
     "back": "뒤로",
     "title": "회사 소개",
+    "featuresTitle": "주요 특징",
     "items": [
       "양적거래",
       "펀딩 프로젝트",
@@ -678,7 +682,7 @@
     "title": "일반적인 문제",
     "lines": [
       "Upstart 프로그램에 참여하는 데 도움이 되도록 알아두어야 할 일반적인 문제입니다.",
-      "1. 신규 사용자는 최소 30 USDT를 입금해야 거래를 시작할 수 있습니다.",
+      "1. 신규 사용자는 최소 35 USDT를 입금해야 거래를 시작할 수 있습니다.",
       "2. 현금을 인출하려면 최소 20 USDT 상당의 정량 거래를 완료해야 합니다.",
       "3. 최소 출금 금액은 50 USDT입니다.",
       "4. 출금 지연은 9~16시간이 걸릴 수 있으니 여유를 두고 기다려 주세요.",
@@ -691,7 +695,7 @@
     ],
     "feesTitle": "수수료 안내",
     "fees": [
-      "Upstart의 정량화 시스템과 자동 보증 과정은 추가 인출 수수료(0%~5%)를 발생시킬 수 있습니다.",
+      "Upstart의 정량화 시스템과 자동 보증 과정은 추가 인출 수수료(0%~12%)를 발생시킬 수 있습니다.",
       "수수료율은 상황에 따라 변경될 수 있으니 유의해 주세요.",
       "일반 처리 시간은 평균 5분이며, 자동 보증 처리 시 최대 30분까지 소요될 수 있습니다.",
       "환율은 시장 상황에 따라 자동으로 업데이트됩니다."
@@ -699,10 +703,10 @@
   },
   "security": {
     "title": "보안 센터",
-    "email": "우편",
-    "tradePwd": "거래 비밀번호",
-    "loginPwd": "로그인 비밀번호",
-    "withdrawAddr": "출금 주소"
+    "email": "우편(이메일) 변경",
+    "tradePwd": "거래 비밀번호 변경",
+    "loginPwd": "로그인 비밀번호 변경",
+    "withdrawAddr": "출금 주소 변경"
   },
   "security_p": {
     "title": "사서함 바인딩",

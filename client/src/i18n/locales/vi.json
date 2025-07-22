@@ -206,6 +206,7 @@
     }
   },
   "quantTrading": {
+    "error": "Giao dịch thất bại",
     "dailyLimitReached": "Số lần giao dịch hôm nay đã vượt quá giới hạn",
     "vipLevel": "Cấp VIP",
     "leaderboardTitle": "Bảng xếp hạng",
@@ -444,7 +445,8 @@
       "real_account": "Tài khoản chính: {{balance}}",
       "balance": "Số dư: {{balance}}",
       "fee": "Phí xử lý: {{fee}} (Tại tỷ lệ: {{rate}}%)",
-      "submit": "Gửi"
+      "submit": "Gửi",
+      "exceed_balance": "Số dư không đủ."
     },
     "withdraw_modal": {
       "title": "Chuyển ra",
@@ -455,7 +457,8 @@
       "max_label": "Rút tất cả",
       "real_account": "Tài khoản chính: {{balance}}",
       "fee": "Phí xử lý: {{fee}} (Tại tỷ lệ: {{rate}}%)",
-      "submit": "Gửi"
+      "submit": "Gửi",
+      "exceed_balance": "Số dư không đủ."
     }
   },
   "info": {
@@ -557,6 +560,7 @@
   "companyIntro": {
     "back": "Quay lại",
     "title": "Giới thiệu Công ty",
+    "featuresTitle": "Các tính năng chính",
     "items": [
       "Giao dịch Định lượng",
       "Dự án Tài trợ",
@@ -611,7 +615,7 @@
     }
   },
   "quantTutorial": {
-    "title": "Hướng dẫn Hệ thống Giao dịch Định lượng Tự động Thông minh",
+    "title": "Hướng dẫn Hệ thống Giao dịch",
     "description": "Tổng quan hệ thống\n\nUpstart cung cấp hệ thống giao dịch chênh lệch định lượng tự động, kết hợp công nghệ phân tích dựa trên AI mới nhất và các thuật toán giao dịch tự động để khai thác sự chênh lệch giá trên thị trường tài sản số.\n\nHệ thống này tự động phát hiện sự chênh lệch giá giữa các tài sản số lớn như USDT, BTC và ETH trên các sàn giao dịch toàn cầu, và thực hiện lệnh mua/bán theo thời gian thực để tạo ra lợi nhuận ổn định.",
     "sections": {
       "overview": "Nguyên lý hệ thống chênh lệch thông minh",
@@ -652,7 +656,7 @@
     "title": "Các vấn đề Thường gặp",
     "lines": [
       "Các vấn đề thường gặp khi tham gia chương trình Upstart:",
-      "1. Người mới phải nạp ít nhất 30 USDT để giao dịch.",
+      "1. Người mới phải nạp ít nhất 35 USDT để giao dịch.",
       "2. Để rút, phải hoàn thành giao dịch định lượng ít nhất 20 USDT.",
       "3. Số tiền rút tối thiểu là 50 USDT.",
       "4. Rút tiền có thể mất 9–16 giờ.",
@@ -665,7 +669,7 @@
     ],
     "feesTitle": "Thông tin Phí",
     "fees": [
-      "Hệ thống định lượng và bảo đảm tự động có thể phát sinh phí rút (0%–5%).",
+      "Hệ thống định lượng và bảo đảm tự động có thể phát sinh phí rút (0%-12%).",
       "Phí có thể thay đổi mà không báo trước.",
       "Thời gian xử lý tiêu chuẩn ~5 phút; có bảo đảm có thể đến 30 phút.",
       "Tỷ giá tự cập nhật theo thị trường."
@@ -673,10 +677,10 @@
   },
   "security": {
     "title": "Trung tâm Bảo mật",
-    "email": "Email",
-    "tradePwd": "PIN Giao dịch",
-    "loginPwd": "Mật khẩu Đăng nhập",
-    "withdrawAddr": "Địa chỉ Rút"
+    "email": "Email (thay đổi)",
+    "tradePwd": "PIN Giao dịch (thay đổi)",
+    "loginPwd": "Mật khẩu Đăng nhập (thay đổi)",
+    "withdrawAddr": "Địa chỉ Rút (thay đổi)"
   },
   "security_p": {
     "title": "Liên kết Email",

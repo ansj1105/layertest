@@ -206,6 +206,7 @@
     }
   },
   "quantTrading": {
+    "error": "Trading fehlgeschlagen",
     "dailyLimitReached": "Tägliches Handelslimit erreicht",
     "vipLevel": "VIP-Stufe",
     "leaderboardTitle": "Bestenliste",
@@ -458,7 +459,8 @@
       "real_account": "Hauptkonto: {{balance}}",
       "balance": "Kontostand: {{balance}}",
       "fee": "Bearbeitungsgebühr: {{fee}} (Aktueller Satz: {{rate}} %)",
-      "submit": "Absenden"
+      "submit": "Absenden",
+      "exceed_balance": "Guthaben ist nicht ausreichend."
     },
     "withdraw_modal": {
       "title": "Auszahlung",
@@ -469,7 +471,8 @@
       "max_label": "Alles abheben",
       "real_account": "Hauptkonto: {{balance}}",
       "fee": "Bearbeitungsgebühr: {{fee}} (Aktueller Satz: {{rate}} %)",
-      "submit": "Absenden"
+      "submit": "Absenden",
+      "exceed_balance": "Guthaben ist nicht ausreichend."
     }
   },
   "info": {
@@ -571,6 +574,7 @@
   "companyIntro": {
     "back": "Zurück",
     "title": "Unternehmensvorstellung",
+    "featuresTitle": "Hauptmerkmale",
     "items": [
       "Quantitativer Handel",
       "Finanzierungsprojekte",
@@ -625,7 +629,7 @@
     }
   },
   "quantTutorial": {
-    "title": "Leitfaden für das Smart Automated Quantitative Trading System",
+    "title": "Handelsleitfaden",
     "description": "Systemübersicht\n\nUpstart bietet ein automatisiertes quantitatives Arbitragesystem, das modernste KI-basierte Analysetechnologie mit automatisierten Handelsalgorithmen kombiniert, um Preisineffizienzen auf dem digitalen Vermögensmarkt auszunutzen.\n\nDieses System erkennt automatisch Preisunterschiede zwischen wichtigen digitalen Vermögenswerten wie USDT, BTC und ETH auf globalen Börsen und löst in Echtzeit Kauf- und Verkaufssignale aus, um stabile Gewinne zu erzielen.",
     "sections": {
       "overview": "Prinzip des Smart-Arbitrage-Systems",
@@ -666,7 +670,7 @@
     "title": "Häufige Probleme",
     "lines": [
       "Hier sind einige häufige Probleme, die Sie beim Upstart-Programm beachten sollten.",
-      "1. Neue Nutzer müssen mindestens 30 USDT einzahlen, um mit dem Handel zu beginnen.",
+      "1. Neue Nutzer müssen mindestens 35 USDT einzahlen, um mit dem Handel zu beginnen.",
       "2. Um Gelder abzuheben, müssen Sie quantitative Trades im Gesamtwert von mindestens 20 USDT abschließen.",
       "3. Der minimale Auszahlungsbetrag beträgt 50 USDT.",
       "4. Die Bearbeitung von Auszahlungen kann 9–16 Stunden dauern; bitte haben Sie Geduld.",
@@ -679,7 +683,7 @@
     ],
     "feesTitle": "Gebühreninformationen",
     "fees": [
-      "Das Upstart-Quant-System und der automatisierte Garantiebereich können zusätzliche Auszahlungsgebühren (0 %–5 %) verursachen.",
+      "Das Upstart-Quant-System und der automatisierte Garantiebereich können zusätzliche Auszahlungsgebühren (0 %–12 %) verursachen.",
       "Gebührensätze können ohne Vorankündigung geändert werden.",
       "Die Standardbearbeitungszeit beträgt etwa 5 Minuten; mit garantierter Bearbeitung kann es bis zu 30 Minuten dauern.",
       "Wechselkurse werden automatisch basierend auf den Marktbedingungen aktualisiert."
@@ -687,10 +691,10 @@
   },
   "security": {
     "title": "Sicherheitszentrum",
-    "email": "E-Mail",
-    "tradePwd": "Handels-PIN",
-    "loginPwd": "Login-Passwort",
-    "withdrawAddr": "Auszahlungsadresse"
+    "email": "E-Mail (ändern)",
+    "tradePwd": "Handels-PIN (ändern)",
+    "loginPwd": "Login-Passwort (ändern)",
+    "withdrawAddr": "Auszahlungsadresse (ändern)"
   },
   "security_p": {
     "title": "E-Mail-Verknüpfung",

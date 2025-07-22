@@ -74,7 +74,7 @@ export default function CompanyIntroPage() {
             {/* 주요 특징 */}
             <div className="modal-features">
               <h4 className="modal-text-row" style={{ color: '#fef08a', marginBottom: '10px' }}>
-                주요 특징
+                {t('companyIntro.featuresTitle')}
               </h4>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                 {selectedDetail.features.map((feature, idx) => (

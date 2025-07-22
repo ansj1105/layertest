@@ -162,8 +162,8 @@
       "date": "Date"
     },
     "types": {
-      "fund_to_quant": "Fund → Quant",
-      "quant_to_fund": "Quant → Fund"
+      "fund_to_quant": "Fund → Wallet",
+      "quant_to_fund": "Wallet → Fund"
     },
     "loading": "Loading...",
     "noRecords": "No records found."
@@ -195,6 +195,7 @@
     }
   },
   "quantTrading": {
+    "error": "Trading Failed",
     "dailyLimitReached": "Daily trade limit reached",
     "leaderboardTitle": "Leaderboard",
     "processing": "Processing trade...",
@@ -327,8 +328,8 @@
     "deposit": "Deposit",
     "redeem": "Redeem",
     "orderDetails": "Order Details",
-    "swapQuantToFundTitle": "Swap Quant → Fund",
-    "swapFundToQuantTitle": "Swap Fund → Quant",
+    "swapQuantToFundTitle": "Swap Wallet → Fund",
+    "swapFundToQuantTitle": "Swap Fund → Wallet",
     "inputUsdt": "Enter USDT",
     "balance": "Balance:",
     "fee": "Fee ({{rate}}%)",
@@ -348,7 +349,7 @@
     "purchaseSuccess": "Purchase successful!",
     "errors": {
       "invalidAmount": "Please enter a valid amount.",
-      "insufficientQuant": "Not enough Quant balance.",
+      "insufficientQuant": "Not enough Wallet balance.",
       "insufficientFund": "Not enough Fund balance.",
       "swapFail": "Swap failed.",
       "depositFail": "Deposit failed.",
@@ -451,7 +452,8 @@
       "real_account": "Main Account: {{balance}}",
       "balance": "Balance: {{balance}}",
       "fee": "Processing Fee: {{fee}} Now Fee: {{rate}}%)",
-      "submit": "Submit"
+      "submit": "Submit",
+      "exceed_balance": "Insufficient balance."
     },
     "withdraw_modal": {
       "title": "Transfer Out",
@@ -462,7 +464,8 @@
       "max_label": "Withdraw All",
       "real_account": "Main Account: {{balance}}",
       "fee": "Processing Fee: {{fee}} Now Fee: {{rate}}%)",
-      "submit": "Submit"
+      "submit": "Submit",
+      "exceed_balance": "Insufficient balance."
     },
     "info": {
       "title": "What are financial products?",
@@ -564,6 +567,7 @@
   "companyIntro": {
     "back": "Back",
     "title": "Company Introduction",
+    "featuresTitle": "Key Features",
     "items": [
       "Quantitative Trading",
       "Funding Projects",
@@ -618,7 +622,7 @@
     }
   },
   "quantTutorial": {
-    "title": "Smart Automated Quantitative Trading System Guide",
+    "title": "Trading System guide",
     "description": "System Overview\n\nUpstart provides an automatic quantitative arbitrage system that combines the latest AI-based analysis technology and automated trading algorithms to exploit price inefficiencies in the digital asset market.\n\nThis system automatically detects price differences between major digital assets such as USDT, BTC, and ETH across global exchanges, and executes real-time buy and sell triggers to pursue stable profit generation.",
     "sections": {
       "overview": "Smart Arbitrage System Principle",
@@ -659,7 +663,7 @@
     "title": "Common Issues",
     "lines": [
       "Here are some common issues to be aware of when participating in the Upstart program.",
-      "1. New users must deposit at least 30 USDT to begin trading.",
+      "1. New users must deposit at least 35 USDT to begin trading.",
       "2. To withdraw funds, you must complete quantitative trades totaling at least 20 USDT.",
       "3. The minimum withdrawal amount is 50 USDT.",
       "4. Withdrawal processing can take 9–16 hours; please be patient.",
@@ -672,7 +676,7 @@
     ],
     "feesTitle": "Fee Information",
     "fees": [
-      "Upstart's quantitative system and automated guarantee process may incur additional withdrawal fees (0%–5%).",
+      "Upstart's quantitative system and automated guarantee process may incur additional withdrawal fees (0%–12%).",
       "Fee rates are subject to change without notice.",
       "Standard processing time is about 5 minutes; with guarantee processing, it may take up to 30 minutes.",
       "Exchange rates are automatically updated based on market conditions."
@@ -680,10 +684,10 @@
   },
   "security": {
     "title": "Security Center",
-    "email": "Email",
-    "tradePwd": "Trade PIN",
-    "loginPwd": "Login Password",
-    "withdrawAddr": "Withdrawal Address"
+    "email": "Email (change)",
+    "tradePwd": "Trade PIN (change)",
+    "loginPwd": "Login Password (change)",
+    "withdrawAddr": "Withdrawal Address (change)"
   },
   "security_p": {
     "title": "Mailbox Binding",

@@ -91,7 +91,9 @@ export default function FundingPage() {
       setErrorMsg(t("funding.deposit_modal.invalid_amount"));
       return;
     }
-    if (amt > summary.fundBalance) {
+    const net = calcNet(amt, depositFee);
+    const remain = Number((financeBalance - net).toFixed(6));
+    if (amt > summary.fundBalance || remain < 0) {
       setErrorMsg(t("funding.deposit_modal.exceed_balance"));
       return;
     }
@@ -124,7 +126,9 @@ export default function FundingPage() {
       setErrorMsg(t("funding.withdraw_modal.invalid_amount"));
       return;
     }
-    if (amt > summary.quantBalance) {
+    const net = calcNet(amt, withdrawFee);
+    const remain = Number((quantBalance - net).toFixed(6));
+    if (amt > summary.quantBalance || remain < 0) {
       setErrorMsg(t("funding.withdraw_modal.exceed_balance"));
       return;
     }
@@ -312,9 +316,18 @@ export default function FundingPage() {
                 rate: depositFee
               })}</p>
               <p>{t("funding.deposit_modal.net_amount", {
-                net: calcNet(parseFloat(depositAmt) || 0, depositFee).toFixed(2),
-                remain: financeBalance - calcNet(parseFloat(depositAmt) || 0, depositFee).toFixed(2)
+                net: calcNet(parseFloat(depositAmt) || 0, depositFee).toFixed(6),
+                remain: Number((financeBalance - calcNet(parseFloat(depositAmt) || 0, depositFee)).toFixed(6))
               })}</p>
+              {(() => {
+                const amt = parseFloat(depositAmt);
+                const net = calcNet(amt, depositFee);
+                const remain = Number((financeBalance - net).toFixed(6));
+                if (!isNaN(amt) && amt > 0 && remain < 0) {
+                  return <p style={{ color: 'red', fontWeight: 'bold' }}>{t('funding.deposit_modal.exceed_balance')}</p>;
+                }
+                return null;
+              })()}
             </div>
 
             {errorMsg && <p className="deposit-modal-error">{errorMsg}</p>}
@@ -358,9 +371,18 @@ export default function FundingPage() {
                 rate: withdrawFee
               })}</p>
               <p>{t("funding.withdraw_modal.net_amount", {
-                net: calcNet(parseFloat(withdrawAmt) || 0, withdrawFee).toFixed(2),
-                remain: quantBalance - calcNet(parseFloat(withdrawAmt) || 0, withdrawFee).toFixed(2)
+                net: calcNet(parseFloat(withdrawAmt) || 0, withdrawFee).toFixed(6),
+                remain: Number((quantBalance - calcNet(parseFloat(withdrawAmt) || 0, withdrawFee)).toFixed(6))
               })}</p>
+              {(() => {
+                const amt = parseFloat(withdrawAmt);
+                const net = calcNet(amt, withdrawFee);
+                const remain = Number((quantBalance - net).toFixed(6));
+                if (!isNaN(amt) && amt > 0 && remain < 0) {
+                  return <p style={{ color: 'red', fontWeight: 'bold' }}>{t('funding.withdraw_modal.exceed_balance')}</p>;
+                }
+                return null;
+              })()}
             </div>
 
             {errorMsg && <p className="withdraw-modal-error">{errorMsg}</p>}

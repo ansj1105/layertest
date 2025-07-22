@@ -211,6 +211,7 @@
     }
   },
   "quantTrading": {
+    "error": "Échec du trading",
     "dailyLimitReached": "Limite quotidienne de trading atteinte",
     "vipLevel": "Niveau VIP",
     "leaderboardTitle": "Classement",
@@ -473,7 +474,8 @@
       "balance": "Solde : {{balance}}",
       "fee": "Frais de traitement : {{fee}} (Taux actuel : {{rate}}%)",
       "submit": "Soumettre",
-      "net_amount": "Après transaction : {{net}} (solde restant : {{remain}})"
+      "net_amount": "Après transaction : {{net}} (solde restant : {{remain}})",
+      "exceed_balance": "Solde insuffisant."
     },
     "withdraw_modal": {
       "title": "Retrait",
@@ -484,7 +486,8 @@
       "real_account": "Compte principal : {{balance}}",
       "fee": "Frais de traitement : {{fee}} (Taux actuel : {{rate}}%)",
       "submit": "Soumettre",
-      "success": "Succès"
+      "success": "Succès",
+      "exceed_balance": "Solde insuffisant."
     },
     "info": {
       "title": "Qu'est-ce qu'un produit financier ?",
@@ -767,6 +770,7 @@
   "companyIntro": {
     "back": "Retour",
     "title": "Présentation de l'Entreprise",
+    "featuresTitle": "Caractéristiques Clés",
     "items": [
       "Trading Quantitatif",
       "Projets de Financement",
@@ -821,7 +825,7 @@
     }
   },
   "quantTutorial": {
-    "title": "Guide du système de trading quantitatif automatisé intelligent",
+    "title": "Guide du système de trading",
     "description": "Aperçu du système\n\nUpstart propose un système d'arbitrage quantitatif automatique qui combine la toute dernière technologie d'analyse basée sur l'IA et des algorithmes de trading automatisés pour exploiter les inefficacités de prix sur le marché des actifs numériques.\n\nCe système détecte automatiquement les écarts de prix entre les principaux actifs numériques tels que USDT, BTC et ETH sur les bourses mondiales, et déclenche des achats et ventes en temps réel afin de générer des profits stables.",
     "sections": {
       "overview": "Principe du système d'arbitrage intelligent",
@@ -862,7 +866,7 @@
     "title": "Problèmes Courants",
     "lines": [
       "Voici quelques problèmes courants à connaître lors de la participation au programme Upstart.",
-      "1. Les nouveaux utilisateurs doivent déposer au moins 30 USDT pour commencer à trader.",
+      "1. Les nouveaux utilisateurs doivent déposer au moins 35 USDT pour commencer à trader.",
       "2. Pour retirer des fonds, vous devez effectuer des trades quantitatifs totalisant au moins 20 USDT.",
       "3. Le montant minimum de retrait est de 50 USDT.",
       "4. Le traitement des retraits peut prendre 9-16 heures ; veuillez être patient.",
@@ -875,7 +879,7 @@
     ],
     "feesTitle": "Informations sur les Frais",
     "fees": [
-      "Le système quantitatif d'Upstart et le processus de garantie automatisé peuvent entraîner des frais de retrait supplémentaires (0%-5%).",
+      "Le système quantitatif d'Upstart et le processus de garantie automatisé peuvent entraîner des frais de retrait supplémentaires (0%-12%).",
       "Les taux de frais sont sujets à modification sans préavis.",
       "Le temps de traitement standard est d'environ 5 minutes ; avec le traitement de garantie, cela peut prendre jusqu'à 30 minutes.",
       "Les taux de change sont automatiquement mis à jour en fonction des conditions du marché."
