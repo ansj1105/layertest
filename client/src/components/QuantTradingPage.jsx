@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { useDebounce } from '../hooks/useDebounce';
@@ -455,12 +455,41 @@ export default function QuantTradingPage() {
     */
   };
 
+  // 이벤트 핸들러들을 useCallback으로 최적화
+  const handleBack = useCallback(() => {
+    navigate(-1);
+  }, [navigate]);
+
+  const handleShowHistory = useCallback(() => {
+    setShowHistory(true);
+  }, []);
+
+  const handleCloseHistory = useCallback(() => {
+    setShowHistory(false);
+  }, []);
+
+  const handleShowIntro = useCallback(() => {
+    setShowIntro(true);
+  }, []);
+
+  const handleCloseIntro = useCallback(() => {
+    setShowIntro(false);
+  }, []);
+
+  const handleShowTradeModal = useCallback(() => {
+    setShowTradeModal(true);
+  }, []);
+
+  const handleCloseTradeModal = useCallback(() => {
+    setShowTradeModal(false);
+  }, []);
+
   return (
     <div className="page-wrapper-qq">
       {/* 뒤로가기 */}
       <div className="top-bar">
         {/* 뒤로가기 */}
-        <button onClick={() => history.back()} className="top-tran">←</button>
+        <button onClick={handleBack} className="top-tran">←</button>
 
         {/* 제목 */}
         <h2 className="top-h-text">
@@ -468,13 +497,13 @@ export default function QuantTradingPage() {
         </h2>
 
         {/* 히스토리 버튼 */}
-        <button onClick={() => setShowHistory(true)}>
+        <button onClick={handleShowHistory}>
           <HistoryIcon size={20} className="top-tran" />
         </button>
       </div>
 
 
-      {showHistory && <QuantHistoryModal onClose={() => setShowHistory(false)} />}
+      {showHistory && <QuantHistoryModal onClose={handleCloseHistory} />}
       {/* 자산 정보 */}
       <div className="referra-jj">
         <div>
@@ -724,7 +753,7 @@ export default function QuantTradingPage() {
               step="0.000001"
             />
             <div className="flex justify-between">
-              <button onClick={() => setShowTradeModal(false)} className="px-4 py-2 bg-gray-300 rounded">
+              <button onClick={handleCloseTradeModal} className="px-4 py-2 bg-gray-300 rounded">
                 {t('quantTrading.cancel')}
               </button>
               <button onClick={debouncedHandleButtonClick} className="px-4 py-2 bg-yellow-500 text-black rounded">
@@ -741,7 +770,7 @@ export default function QuantTradingPage() {
           <div className="bg-white text-black p-6 rounded w-3/4 max-w-md">
             <h3 className="text-lg font-bold mb-2">{t('quantTrading.introTitle')}</h3>
             <p className="mb-4">{t('quantTrading.introText')}</p>
-            <button onClick={() => setShowIntro(false)} className="bg-yellow-500 text-black px-4 py-2 rounded">
+            <button onClick={handleCloseIntro} className="bg-yellow-500 text-black px-4 py-2 rounded">
               {t('quantTrading.close')}
             </button>
           </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { X } from 'lucide-react';
 import '../styles/AlertPopup.css';
 
-const AlertPopup = ({
+const AlertPopup = React.memo(({
   isOpen,
   onClose,
   title,
@@ -29,6 +29,6 @@ const AlertPopup = ({
       </div>
     </div>
   );
-};
+});
 
 export default AlertPopup; 

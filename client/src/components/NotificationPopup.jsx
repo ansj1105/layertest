@@ -1,6 +1,8 @@
 import '../styles/MainLanding.css';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
+import React from 'react';
+
 NotificationPopup.propTypes = {
   list: PropTypes.arrayOf(
     PropTypes.shape({
@@ -12,9 +14,7 @@ NotificationPopup.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-
-
-export default function NotificationPopup({ list, onClose }) {
+const NotificationPopup = React.memo(({ list, onClose }) => {
   const { t } = useTranslation();
   return (
     <div className="notification-overlay" onClick={onClose}>
@@ -44,4 +44,6 @@ export default function NotificationPopup({ list, onClose }) {
       </div>
     </div>
   );
-}
+});
+
+export default NotificationPopup;
