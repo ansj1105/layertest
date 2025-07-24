@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import '../styles/TokenPurchasePage.css';
-
+import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
 export default function LockupModal({ onClose }) {
   const { t } = useTranslation();
   const [walletDetails, setWalletDetails] = useState(null);
@@ -33,7 +33,9 @@ export default function LockupModal({ onClose }) {
 
         {/* 본문 */}
         {loading ? (
-          <p className="text-center">{t('common.loading')}</p>
+          <div className="flex justify-center items-center py-8">
+            <AdvancedLoadingSpinner text="Loading..." />
+          </div>
         ) : (
           <>
             <div className="lockup-summary">

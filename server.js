@@ -164,7 +164,9 @@ app.get('/api/market-data', async (req, res) => {
   }
 });
 // 1️⃣ 기존 CRON 코드 안의 로직을 함수로 추출
-// 1️⃣ 기존 CRON 코드 안의 로직을 함수로 추출
+// 1️⃣ 기존 CRON 코드 안의 로직을 함수로
+
+
 async function runVipUpdateJob() {
   console.log("⏰ [CRON] VIP 레벨 갱신 시작");
 
@@ -174,6 +176,13 @@ async function runVipUpdateJob() {
     for (const user of users) {
       const userId = user.id;
       const currentVip = user.vip_level;
+
+      const [[amount]] = await db.query(`
+        SELECT (quant_balance + fund_balance) AS amount FROM wallets WHERE user_id = ?`, [userId]);
+
+      // ✅ 안전한 값 추출 (레코드가 없으면 0으로 처리)
+      const newAmount = amount ? amount.amount || 0 : 0;
+
 
       // 2️⃣ 하위 추천인 수 조회
       const [[counts]] = await db.query(`
@@ -189,16 +198,16 @@ async function runVipUpdateJob() {
       const B = counts.B || 0;
       const C = counts.C || 0;
 
-      console.log(`👤 [User ${userId}] 현재 VIP: ${currentVip}, 하위추천 A:${A}, B:${B}, C:${C}`);
+      console.log(`👤 [User ${userId}] 현재 VIP: ${currentVip}, 하위추천 A:${A}, B:${B}, C:${C} 현재 금액: ${newAmount}`);
 
       // 3️⃣ VIP 조건에 맞는 최고 등급 찾기
       const [levels] = await db.query(`
         SELECT level
         FROM vip_levels
-        WHERE min_A <= ? AND min_B <= ? AND min_C <= ?
+        WHERE min_A <= ? AND min_B <= ? AND min_C <= ? and min_holdings <= ?
         ORDER BY level DESC
         LIMIT 1
-      `, [A, B, C]);
+      `, [A, B, C, newAmount]);
 
       const newLevel = levels.length ? levels[0].level : 1;
 

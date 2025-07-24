@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import '../styles/FundingPage.css';
 import '../styles/topbar.css';
-
+import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
 export default function FundingPage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -72,7 +72,9 @@ export default function FundingPage() {
   }, []);
 
   if (loading) {
-    return <div className="text-center mt-10 text-gray-500">{t("funding.loading")}</div>;
+    return <div className="flex justify-center items-center py-8">
+      <AdvancedLoadingSpinner text="Loading..." />
+    </div>;
   }
   // 수수료 계산 헬퍼
   const calcFee = (amt, rate) => +(amt * (rate / 100)).toFixed(6);

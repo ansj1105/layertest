@@ -65,7 +65,7 @@ const AdvancedLoadingSpinner = ({
     };
 
     return (
-        <div className="fixed inset-0 bg-white bg-opacity-95 loading-backdrop z-50 flex items-center justify-center">
+        <div className="fixed inset-0 bg-black bg-opacity-30 loading-backdrop z-50 flex items-center justify-center">
             <div className="text-center">
                 {/* Spinner */}
                 <div className="flex justify-center mb-6">

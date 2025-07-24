@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import '../styles/TokenPurchasePage.css';
-
+import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
 export default function OrderHistoryModal({ onClose }) {
   const { t } = useTranslation();
   const [orders, setOrders] = useState([]);
@@ -42,7 +42,9 @@ export default function OrderHistoryModal({ onClose }) {
           <h3 className="order-section-title">{t('order_history.orders.title')}</h3>
 
           {loadingOrders ? (
-            <p className="order-table-info">{t('common.loading')}</p>
+            <div className="flex justify-center items-center py-8">
+              <AdvancedLoadingSpinner text="Loading..." />
+            </div>
           ) : orders.length === 0 ? (
             <p className="order-table-info">{t('order_history.orders.no_orders')}</p>
           ) : (
@@ -86,7 +88,9 @@ export default function OrderHistoryModal({ onClose }) {
           <h3 className="order-section-title">{t('order_history.redemptions.title')}</h3>
 
           {loadingRedeems ? (
-            <p className="order-table-info">{t('common.loading')}</p>
+            <div className="flex justify-center items-center py-8">
+              <AdvancedLoadingSpinner text="Loading..." />
+            </div>
           ) : redeemLogs.length === 0 ? (
             <p className="order-table-info">{t('order_history.redemptions.no_redemptions')}</p>
           ) : (

@@ -145,9 +145,9 @@ router.delete('/projects/:id', async (req, res) => {
 
 /** ▶ 관리자용: 전체 펀딩 프로젝트 목록 조회 */
 router.get('/projects', async (req, res) => {
-    try {
-      const [projects] = await db.query(
-        `SELECT 
+  try {
+    const [projects] = await db.query(
+      `SELECT 
            id,
            name,
            description,
@@ -162,15 +162,15 @@ router.get('/projects', async (req, res) => {
            status
          FROM funding_projects
          ORDER BY created_at DESC`
-      );
-      res.json(projects);
-    } catch (err) {
-      console.error('Projects fetch failed', err);
-      res.status(500).json({ error: 'Projects fetch failed' });
-    }
-  });
+    );
+    res.json(projects);
+  } catch (err) {
+    console.error('Projects fetch failed', err);
+    res.status(500).json({ error: 'Projects fetch failed' });
+  }
+});
 
-  // 📁 routes/wallet.js
+// 📁 routes/wallet.js
 
 /**
  * ▶ 펀딩 프로젝트 투자
@@ -247,31 +247,6 @@ router.post('/projects/:id/invest', async (req, res) => {
     );
     const investmentId = insertResult.insertId;
 
-       // ————————————————
-       // 6.1) 즉시 계산된 profit 을 wallets 에 "in" 으로 지급 및 로그 남기기
-       // a) wallets에 profit 적립
-       await db.query(
-         `UPDATE wallets
-           SET fund_balance = fund_balance + ?, 
-                updated_at   = NOW()
-          WHERE user_id = ?`,
-         [profit, userId]
-       );
-    
-       // b) 최신 잔액 조회
-       const [[{ fund_balance: balanceAfterForProfit }]] = await db.query(
-         `SELECT fund_balance FROM wallets WHERE user_id = ?`,
-         [userId]
-       );
-    
-       // c) wallets_log에 수익(in) 내역 추가
-       await db.query(
-         `INSERT INTO wallets_log
-            (user_id, category, log_date, direction, amount, balance_after, reference_type, reference_id, description, created_at, updated_at)
-          VALUES
-            (?, 'funding', NOW(), 'in', ?, ?, 'funding_investment', ?, '프로젝트 초기 수익 지급', NOW(), NOW())`,
-         [userId, profit, balanceAfterForProfit, investmentId]
-       );
     // 7) 지갑에서 금액 차감
     await db.query(
       `UPDATE wallets
@@ -331,7 +306,7 @@ router.post('/projects/:id/invest', async (req, res) => {
 });
 
 
-  // 📁 routes/wallet.js
+// 📁 routes/wallet.js
 // …(기존 코드)…
 
 /** ▶ 사용자 금융 지갑 잔액 + 펀딩 수익 요약 조회 ▶ /api/wallet/finance-summary */
@@ -340,135 +315,135 @@ router.post('/projects/:id/invest', async (req, res) => {
 // ▶ 금융지갑 + 펀딩수익 요약 조회
 // 📁 routes/wallet.js
 router.get('/finance-summary', async (req, res) => {
-    const userId = req.session.user?.id;
-    if (!userId) return res.status(401).json({ error: 'Unauthorized' });
-  
-    try {
-      // 1) 지갑 잔액
-      const [walletRows] = await db.query(
-        `SELECT quant_balance, fund_balance
+  const userId = req.session.user?.id;
+  if (!userId) return res.status(401).json({ error: 'Unauthorized' });
+
+  try {
+    // 1) 지갑 잔액
+    const [walletRows] = await db.query(
+      `SELECT quant_balance, fund_balance
          FROM wallets
          WHERE user_id = ?`,
-        [userId]
-      );
-      const {
-        quant_balance = 0,
-        fund_balance  = 0
-      } = walletRows[0] || {};
-  
-      // 2) 오늘 펀딩 수익 - wallets_log 테이블에서 조회
-      const [[{ todayProjectIncome = 0 }]] = await db.query(
-        `SELECT IFNULL(SUM(amount), 0) AS todayProjectIncome
+      [userId]
+    );
+    const {
+      quant_balance = 0,
+      fund_balance = 0
+    } = walletRows[0] || {};
+
+    // 2) 오늘 펀딩 수익 - wallets_log 테이블에서 조회
+    const [[{ todayProjectIncome = 0 }]] = await db.query(
+      `SELECT IFNULL(SUM(amount), 0) AS todayProjectIncome
          FROM wallets_log 
          WHERE user_id = ? 
          AND DATE(log_date) = CURDATE()
          AND reference_type = 'funding_investment'
          AND direction = 'in'`,
-        [userId]
-      );
-  
-      // 3) 누적 펀딩 수익
-      const [[{ totalProjectIncome = 0 }]] = await db.query(
-        `SELECT IFNULL(SUM(profit),0) AS totalProjectIncome
+      [userId]
+    );
+
+    // 3) 누적 펀딩 수익
+    const [[{ totalProjectIncome = 0 }]] = await db.query(
+      `SELECT IFNULL(SUM(profit),0) AS totalProjectIncome
          FROM funding_investments
          WHERE user_id = ?`,
-        [userId]
-      );
+      [userId]
+    );
 
-      // 4) 디포짓수수료료
-      const [[{ depositFee = 0 }]] = await db.query(
-        `SELECT deposit_fee_rate AS depositFee
+    // 4) 디포짓수수료료
+    const [[{ depositFee = 0 }]] = await db.query(
+      `SELECT deposit_fee_rate AS depositFee
          FROM wallet_settings
         `,
-        [userId]
-      );
+      [userId]
+    );
 
-      // 4) 출금짓수수료료
-      const [[{ withdrawFee = 0 }]] = await db.query(
-        `SELECT withdraw_fee_rate AS withdrawFee
+    // 4) 출금짓수수료료
+    const [[{ withdrawFee = 0 }]] = await db.query(
+      `SELECT withdraw_fee_rate AS withdrawFee
          FROM wallet_settings
         `,
-        [userId]
-      );
+      [userId]
+    );
 
-      // 5) 투자 중인 금액 (진행 중인 프로젝트만)
-      const [[{ investingAmount = 0 }]] = await db.query(
-        `SELECT IFNULL(SUM(fi.amount), 0) AS investingAmount
+    // 5) 투자 중인 금액 (진행 중인 프로젝트만)
+    const [[{ investingAmount = 0 }]] = await db.query(
+      `SELECT IFNULL(SUM(fi.amount), 0) AS investingAmount
          FROM funding_investments fi
          JOIN funding_projects fp ON fi.project_id = fp.id
          WHERE fi.user_id = ?
            AND fp.status != 'closed'`,
-        [userId]
-      );
+      [userId]
+    );
 
-      res.json({
-        success: true,
-        data: {
-          quantBalance: Number(quant_balance),
-          fundBalance:  Number(fund_balance),
-          todayProjectIncome,
-          totalProjectIncome,
-          depositFee,
-          withdrawFee,
-          investingAmount
-        }
-      });
-    } catch (err) {
-      console.error('❌ finance-summary 오류:', err);
-      res.status(500).json({ error: 'finance-summary failed' });
-    }
-  });
-  
+    res.json({
+      success: true,
+      data: {
+        quantBalance: Number(quant_balance),
+        fundBalance: Number(fund_balance),
+        todayProjectIncome,
+        totalProjectIncome,
+        depositFee,
+        withdrawFee,
+        investingAmount
+      }
+    });
+  } catch (err) {
+    console.error('❌ finance-summary 오류:', err);
+    res.status(500).json({ error: 'finance-summary failed' });
+  }
+});
+
 /** ▶ quant-summary: 퀀트 지갑 요약 조회 */
 router.get('/quant-summary', async (req, res) => {
-    const userId = req.session.user?.id;
-    if (!userId) return res.status(401).json({ error: 'Unauthorized' });
-  
-    try {
-      // 1) quant_balance 조회
-      const [[{ quant_balance }]] = await db.query(
-        'SELECT quant_balance FROM wallets WHERE user_id = ?',
-        [userId]
-      );
-  
-      // 2) 오늘의 퀀트 수익 합계
-      const [[{ todayQuantIncome }]] = await db.query(
-        `SELECT IFNULL(SUM(profit), 0) AS todayQuantIncome
+  const userId = req.session.user?.id;
+  if (!userId) return res.status(401).json({ error: 'Unauthorized' });
+
+  try {
+    // 1) quant_balance 조회
+    const [[{ quant_balance }]] = await db.query(
+      'SELECT quant_balance FROM wallets WHERE user_id = ?',
+      [userId]
+    );
+
+    // 2) 오늘의 퀀트 수익 합계
+    const [[{ todayQuantIncome }]] = await db.query(
+      `SELECT IFNULL(SUM(profit), 0) AS todayQuantIncome
          FROM quant_trades
          WHERE user_id = ? AND DATE(created_at) = CURDATE()`,
-        [userId]
-      );
-  
-      // 3) 누적 퀀트 수익 합계
-      const [[{ totalQuantIncome }]] = await db.query(
-        `SELECT IFNULL(SUM(profit), 0) AS totalQuantIncome
+      [userId]
+    );
+
+    // 3) 누적 퀀트 수익 합계
+    const [[{ totalQuantIncome }]] = await db.query(
+      `SELECT IFNULL(SUM(profit), 0) AS totalQuantIncome
          FROM quant_trades
          WHERE user_id = ?`,
-        [userId]
-      );
-  
-      res.json({
-        success: true,
-        data: {
-          quantBalance: quant_balance,
-          todayQuantIncome,
-          totalQuantIncome
-        }
-      });
-    } catch (err) {
-      console.error('❌ quant-summary 오류:', err);
-      res.status(500).json({ error: 'quant-summary failed' });
-    }
-  });
-  
+      [userId]
+    );
+
+    res.json({
+      success: true,
+      data: {
+        quantBalance: quant_balance,
+        todayQuantIncome,
+        totalQuantIncome
+      }
+    });
+  } catch (err) {
+    console.error('❌ quant-summary 오류:', err);
+    res.status(500).json({ error: 'quant-summary failed' });
+  }
+});
 
 
-  
+
+
 // 요청: { amount: number }
 
 // ─── 1) 환송: fund_balance → quant_balance ───────────────────────────────
 // 요청 body: { amount: number }
-router.post("/transfer-to-quant",  async (req, res) => {
+router.post("/transfer-to-quant", async (req, res) => {
   const userId = req.session.user.id;
   const amount = parseFloat(req.body.amount);
   if (isNaN(amount) || amount <= 0) {
@@ -494,20 +469,20 @@ router.post("/transfer-to-quant",  async (req, res) => {
       [userId]
     );
     if (!rows.length) throw new Error("Wallet not found");
-    
-    const beforeFund  = parseFloat(rows[0].fund_balance);
+
+    const beforeFund = parseFloat(rows[0].fund_balance);
     const beforeQuant = parseFloat(rows[0].quant_balance);
-    
+
     if (beforeFund < amount) {
       await conn.rollback();
       return res.status(400).json({ error: "Insufficient fund balance" });
     }
-    
+
 
     // 3) 수수료/실제 이체금 계산
-    const fee     = +(amount * (depositFeeRate / 100)).toFixed(6);
-    const netAmt  = +(amount - fee).toFixed(6);
-    const afterFund  = +(beforeFund - amount).toFixed(6);
+    const fee = +(amount * (depositFeeRate / 100)).toFixed(6);
+    const netAmt = +(amount - fee).toFixed(6);
+    const afterFund = +(beforeFund - amount).toFixed(6);
     const afterQuant = +(beforeQuant + netAmt).toFixed(6);
 
     // 4) 잔액 업데이트
@@ -516,7 +491,7 @@ router.post("/transfer-to-quant",  async (req, res) => {
     `, [afterFund, afterQuant, userId]);
 
 
-        // 로그 기록
+    // 로그 기록
     await conn.query(`
       INSERT INTO wallet_transfer_logs 
         (user_id, direction, amount, fee_rate, fee, before_fund, after_fund, before_quant, after_quant)
@@ -544,7 +519,7 @@ router.post("/transfer-to-quant",  async (req, res) => {
 
 // ─── 2) 전출: quant_balance → fund_balance ────────────────────────────────
 // 요청 body: { amount: number }
-router.post("/transfer-to-fund",  async (req, res) => {
+router.post("/transfer-to-fund", async (req, res) => {
   const userId = req.session.user.id;
   const amount = parseFloat(req.body.amount);
   if (isNaN(amount) || amount <= 0) {
@@ -570,21 +545,21 @@ router.post("/transfer-to-fund",  async (req, res) => {
       [userId]
     );
     if (!rows.length) throw new Error("Wallet not found");
-    
-    const beforeQuant = parseFloat(rows[0].quant_balance);
-    const beforeFund  = parseFloat(rows[0].fund_balance);
 
- 
+    const beforeQuant = parseFloat(rows[0].quant_balance);
+    const beforeFund = parseFloat(rows[0].fund_balance);
+
+
     if (beforeQuant < amount) {
       await conn.rollback();
       return res.status(400).json({ error: "Insufficient quant balance" });
     }
 
     // 3) 수수료/실제 이체금 계산
-    const fee    = +(amount * (withdrawFeeRate / 100)).toFixed(6);
+    const fee = +(amount * (withdrawFeeRate / 100)).toFixed(6);
     const netAmt = +(amount - fee).toFixed(6);
     const afterQuant = +(beforeQuant - amount).toFixed(6);
-    const afterFund  = +(beforeFund + netAmt).toFixed(6);
+    const afterFund = +(beforeFund + netAmt).toFixed(6);
 
     // 4) 잔액 업데이트
     await conn.query(`
@@ -647,8 +622,8 @@ router.get('/projects/:id/stats', async (req, res) => {
 
     return res.json({
       data: {
-        target:    parseFloat(target),
-        current:   parseFloat(current),
+        target: parseFloat(target),
+        current: parseFloat(current),
         progressPercent,
         daysLeft,
       }
@@ -675,7 +650,7 @@ router.get('/admin/wallet-settings', async (req, res) => {
 });
 
 // ▶ PUT 설정 업데이트
-router.put('/admin/wallet-settings',  async (req, res) => {
+router.put('/admin/wallet-settings', async (req, res) => {
   const { deposit_fee_rate, withdraw_fee_rate, auto_approve } = req.body;
 
   // 유효성 검사
@@ -684,7 +659,7 @@ router.put('/admin/wallet-settings',  async (req, res) => {
     deposit_fee_rate < 0 ||
     typeof withdraw_fee_rate !== 'number' ||
     withdraw_fee_rate < 0 ||
-    !['auto','manual'].includes(auto_approve)
+    !['auto', 'manual'].includes(auto_approve)
   ) {
     return res.status(400).json({ error: 'Invalid parameters' });
   }

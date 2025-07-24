@@ -112,6 +112,7 @@ function encodeId(id) {
 export default function App() {
   const { t, i18n } = useTranslation();
   const [user, setUser] = useState(null);
+  const [mydata, setMydata] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [copySuccess, setCopySuccess] = useState(false);
   const [pdfs, setPdfs] = useState([]);
@@ -130,6 +131,14 @@ export default function App() {
         setIsLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    axios.get('api/mydata/me')
+      .then(res => {
+        setMydata(res.data.user);
+      })
+      .catch(console.error);
+  }, [user]);
 
   // PDF 파일 목록 가져오기
   useEffect(() => {
@@ -150,7 +159,7 @@ export default function App() {
   };
 
   const handleCopyId = () => {
-    const enc = encodeId(user.id);
+    const enc = mydata.referral_code;
     console.log('복사 시도:', enc);
 
     navigator.clipboard.writeText(enc)
@@ -173,7 +182,7 @@ export default function App() {
   if (isLoading) {
     return (
       <div className="min-h-screen bg-cover bg-center flex flex-col" style={{ backgroundImage: "url('/bg.jpg')" }}>
-        <AdvancedLoadingSpinner text="Loading Vietcoin..." />
+        <AdvancedLoadingSpinner text="Loading..." />
       </div>
     );
   }
@@ -289,7 +298,7 @@ export default function App() {
               <div className="flex-1">
                 <p className="sidebar-username">{user.name}</p>
                 <div className="sidebar-id">
-                  <span>{t('app.idLabel')}: {encodeId(user.id)}</span>
+                  <span>{t('app.idLabel')}: {mydata.referral_code}</span>
                   <ClipboardCopy
                     size={14}
                     className="cursor-pointer hover:text-white"

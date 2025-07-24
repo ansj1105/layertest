@@ -5,7 +5,7 @@ import { ArrowLeft as ArrowLeftIcon, ClipboardCopy } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import '../styles/USDTRechargePage.css';
 import '../styles/topbar.css';
-
+import AdvancedLoadingSpinner from '../components/AdvancedLoadingSpinner';
 export default function BNBRechargePage() {
   const { t } = useTranslation();
   const [address, setAddress] = useState('');
@@ -15,7 +15,7 @@ export default function BNBRechargePage() {
   useEffect(() => {
     (async () => {
       try {
-          const res = await axios.get('/api/recharge/bnb', { withCredentials: true });
+        const res = await axios.get('/api/recharge/bnb', { withCredentials: true });
         if (res.data.success) {
           setAddress(res.data.data.address);
         } else {
@@ -43,7 +43,7 @@ export default function BNBRechargePage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-[#1a1109] text-yellow-100 flex items-center justify-center">
-        {t('bnbRecharge.loading')}
+        <AdvancedLoadingSpinner text="Loading..." />
       </div>
     );
   }

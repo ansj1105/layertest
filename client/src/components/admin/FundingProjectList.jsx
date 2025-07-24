@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import FundingProjectForm from "./FundingProjectForm";
-
+import AdvancedLoadingSpinner from '../AdvancedLoadingSpinner';
 export default function FundingProjectList() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -59,7 +59,9 @@ export default function FundingProjectList() {
   };
 
   if (loading) {
-    return <p className="text-center p-4">로딩 중...</p>;
+    return <div className="flex justify-center items-center py-8">
+      <AdvancedLoadingSpinner text="Loading..." />
+    </div>;
   }
 
   return (

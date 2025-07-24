@@ -6,7 +6,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import '../styles/WithdrawHistoryPage.css';
 import '../styles/topbar.css';
-
+import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
 const tabs = [
   { key: "all", labelKey: "history.tabs.all", filter: null },
   { key: "pending", labelKey: "history.tabs.pending", filter: "PENDING" },
@@ -80,7 +80,9 @@ export default function WithdrawHistoryPage() {
       </div>
 
       {/* 로딩 / 에러 */}
-      {loading && <p className="text-center">{t("history.loading")}</p>}
+      {loading && <div className="flex justify-center items-center py-8">
+        <AdvancedLoadingSpinner text="Loading..." />
+      </div>}
 
       {error && <p className="text-center text-red-400">{error}</p>}
 

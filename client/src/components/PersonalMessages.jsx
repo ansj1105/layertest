@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useTranslation } from 'react-i18next';
-
+import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
 export default function PersonalMessages() {
   const { t } = useTranslation();
   const [messages, setMessages] = useState([]);
@@ -25,7 +25,9 @@ export default function PersonalMessages() {
         {t('messages.title')}
       </h2>
       {loading ? (
-        <p className="text-center text-gray-500">{t('common.loading')}</p>
+        <div className="flex justify-center items-center py-8">
+          <AdvancedLoadingSpinner text="Loading..." />
+        </div>
       ) : messages.length === 0 ? (
         <p className="text-center text-gray-500">{t('messages.no_messages')}</p>
       ) : (

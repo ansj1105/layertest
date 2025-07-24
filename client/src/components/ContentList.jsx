@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from 'axios';
 import VideoWithPreview from './VideoWithPreview';
+import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
 import '../styles/MainLanding.css';
 export default function ContentList() {
   // 컴포넌트 최상단에
@@ -32,7 +33,13 @@ export default function ContentList() {
     fetchContent();
   }, []);
 
-  if (loading) return <p className="text-white text-center">불러오는 중...</p>;
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center py-8">
+        <AdvancedLoadingSpinner text="Loading content..." />
+      </div>
+    );
+  }
 
   const noContent = banners.length === 0 && !video;
 

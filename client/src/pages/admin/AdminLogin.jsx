@@ -8,20 +8,27 @@ export default function AdminLogin() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-// AdminLogin.jsx
-const handleLogin = async () => {
-  try {
-    await axios.post("/api/auth/admin-login", form, { withCredentials: true });
-    // 전체 페이지 리로드 → 세션 쿠키가 살아 있으므로 AdminApp이 admin 상태를 받아 옵니다
-          // 2) 세션 정보 조회
-          const res = await axios.get("/api/auth/admin/me");
-          const user = res.data.user;
-    window.location.href = "/admin.html#/dashboard";
-  } catch (err) {
-    setError(err.response?.data?.error || "Login failed");
-  }
-};
+  // AdminLogin.jsx
+  const handleLogin = async () => {
+    try {
+      // ✅ 기존 세션 파괴
+      await axios.post("/api/auth/logout", {}, { withCredentials: true });
 
+      // ✅ 세션 파괴 완료 대기 (1초)
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      // ✅ 관리자 로그인
+      await axios.post("/api/auth/admin-login", form, { withCredentials: true });
+
+      // ✅ 세션 저장 완료 대기
+      await new Promise(resolve => setTimeout(resolve, 500));
+
+      // ✅ 강제 리로드로 대시보드 이동
+      setTimeout(() => window.location.href = "/admin.html#/dashboard", 200);
+    } catch (err) {
+      setError(err.response?.data?.error || "Login failed");
+    }
+  };
 
   return (
     <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded shadow space-y-4">

@@ -6,7 +6,7 @@ import { ArrowLeft as ArrowLeftIcon, ClipboardCopy } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import '../styles/USDTRechargePage.css';
 import '../styles/topbar.css';
-
+import AdvancedLoadingSpinner from '../components/AdvancedLoadingSpinner';
 export default function USDTRechargePage() {
   const { t } = useTranslation();
   const [address, setAddress] = useState('');
@@ -36,7 +36,7 @@ export default function USDTRechargePage() {
       alert(t('usdtRecharge.errors.noWallet'));
       return;
     }
-  
+
     try {
       if (navigator.clipboard && navigator.clipboard.writeText) {
         await navigator.clipboard.writeText(address);
@@ -51,7 +51,7 @@ export default function USDTRechargePage() {
         document.execCommand("copy");
         document.body.removeChild(textarea);
       }
-  
+
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -59,11 +59,11 @@ export default function USDTRechargePage() {
       alert(t('usdtRecharge.errors.copyFailed'));
     }
   };
-  
+
   if (loading) {
     return (
       <div className="min-h-screen bg-[#1a1109] text-yellow-100 flex items-center justify-center">
-        {t('usdtRecharge.loading')}
+        <AdvancedLoadingSpinner text="Loading..." />
       </div>
     );
   }

@@ -6,7 +6,7 @@ import ProtectedRoute from '../components/ProtectedRoute';
 import ReferralStatsBox from '../components/ReferralStatsBox';
 import '../styles/MyTeamPage.css';
 import '../styles/topbar.css';
-
+import AdvancedLoadingSpinner from '../components/AdvancedLoadingSpinner';
 const LEVELS = [
   { value: 'A', labelKey: 'team.level.A' },
   { value: 'B', labelKey: 'team.level.B' },
@@ -109,7 +109,7 @@ export default function MyTeamPage() {
     return (
       <ProtectedRoute>
         <div className="min-h-screen flex items-center justify-center text-yellow-300">
-          {t('team.loading')}
+          <AdvancedLoadingSpinner text="Loading..." />
         </div>
       </ProtectedRoute>
     );

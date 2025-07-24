@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { X as CloseIcon } from 'lucide-react';
+import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
 
 const EXCHANGES = [
   'Binance',
@@ -50,74 +51,76 @@ export default function QuantHistoryModal({ onClose }) {
 
   return (
     <div className="history-modal-overlay">
-    <div className="history-modal-box">
-      <div className="history-modal-header">
-        <h3 className="history-modal-title">{t('quantTrading.history')}</h3>
-        <button onClick={onClose} className="history-modal-close">
-          <CloseIcon size={20} />
-        </button>
-      </div>
+      <div className="history-modal-box">
+        <div className="history-modal-header">
+          <h3 className="history-modal-title">{t('quantTrading.history')}</h3>
+          <button onClick={onClose} className="history-modal-close">
+            <CloseIcon size={20} />
+          </button>
+        </div>
 
-      <div className="history-modal-scroll">
-        {loading ? (
-          <p className="text-center">{t('quantTrading.loading')}</p>
-        ) : history.length === 0 ? (
-          <p className="text-center" style={{ color: '#9ca3af' }}>{t('quantTrading.noHistory')}</p>
-        ) : (
-          history.map(h => (
-            <div key={h.id} className="history-card">
-              <div className="history-card-header">
-                <span className="history-label">{h.symbol}</span>
-                <span className="history-success">{t('quantTrading.success')}</span>
-              </div>
-
-              <div className="history-card-grid">
-                <div>
-                  <div className="history-label">{t('quantTrading.position')}</div>
-                  <div>{parseFloat(h.tradeAmount).toFixed(2)}</div>
-                </div>
-                <div>
-                  <div className="history-label">{t('quantTrading.buyPlatform')}</div>
-                  <div>{h.buyPlatform}</div>
-                </div>
-                <div>
-                  <div className="history-label">{t('quantTrading.buyPrice')}</div>
-                  <div>{h.buyPrice.toFixed(2)}</div>
-                </div>
-                <div>
-                  <div className="history-label">{t('quantTrading.sellPlatform')}</div>
-                  <div>{h.sellPlatform}</div>
-                </div>
-                <div>
-                  <div className="history-label">{t('quantTrading.sellPrice')}</div>
-                  <div>{h.sellPrice.toFixed(2)}</div>
-                </div>
-                <div>
-                  <div className="history-label">{t('quantTrading.time')}</div>
-                  <div>{new Date(h.createdAt).toLocaleString()}</div>
-                </div>
-                <div>
-                  <div className="history-label">{t('quantTrading.status')}</div>
-                  <div className="history-success">{t('quantTrading.success')}</div>
-                </div>
-                <div>
-                  <div className="history-label">{t('quantTrading.serviceFee')}</div>
-                  <div>{parseFloat(h.profit).toFixed(6)}</div>
-                </div>
-                <div>
-                  <div className="history-label">{t('quantTrading.profit')}</div>
-                  <div className="history-profit">+{parseFloat(h.profit).toFixed(6)}</div>
-                </div>
-                <div>
-                  <div className="history-label">{t('quantTrading.commissionRate')}</div>
-                  <div>{parseFloat(h.commissionRate).toFixed(4)}%</div>
-                </div>
-              </div>
+        <div className="history-modal-scroll">
+          {loading ? (
+            <div className="flex justify-center items-center py-8">
+              <AdvancedLoadingSpinner text="Loading..." />
             </div>
-          ))
-        )}
+          ) : history.length === 0 ? (
+            <p className="text-center" style={{ color: '#9ca3af' }}>{t('quantTrading.noHistory')}</p>
+          ) : (
+            history.map(h => (
+              <div key={h.id} className="history-card">
+                <div className="history-card-header">
+                  <span className="history-label">{h.symbol}</span>
+                  <span className="history-success">{t('quantTrading.success')}</span>
+                </div>
+
+                <div className="history-card-grid">
+                  <div>
+                    <div className="history-label">{t('quantTrading.position')}</div>
+                    <div>{parseFloat(h.tradeAmount).toFixed(2)}</div>
+                  </div>
+                  <div>
+                    <div className="history-label">{t('quantTrading.buyPlatform')}</div>
+                    <div>{h.buyPlatform}</div>
+                  </div>
+                  <div>
+                    <div className="history-label">{t('quantTrading.buyPrice')}</div>
+                    <div>{h.buyPrice.toFixed(2)}</div>
+                  </div>
+                  <div>
+                    <div className="history-label">{t('quantTrading.sellPlatform')}</div>
+                    <div>{h.sellPlatform}</div>
+                  </div>
+                  <div>
+                    <div className="history-label">{t('quantTrading.sellPrice')}</div>
+                    <div>{h.sellPrice.toFixed(2)}</div>
+                  </div>
+                  <div>
+                    <div className="history-label">{t('quantTrading.time')}</div>
+                    <div>{new Date(h.createdAt).toLocaleString()}</div>
+                  </div>
+                  <div>
+                    <div className="history-label">{t('quantTrading.status')}</div>
+                    <div className="history-success">{t('quantTrading.success')}</div>
+                  </div>
+                  <div>
+                    <div className="history-label">{t('quantTrading.serviceFee')}</div>
+                    <div>{parseFloat(h.profit).toFixed(6)}</div>
+                  </div>
+                  <div>
+                    <div className="history-label">{t('quantTrading.profit')}</div>
+                    <div className="history-profit">+{parseFloat(h.profit).toFixed(6)}</div>
+                  </div>
+                  <div>
+                    <div className="history-label">{t('quantTrading.commissionRate')}</div>
+                    <div>{parseFloat(h.commissionRate).toFixed(4)}%</div>
+                  </div>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     </div>
-  </div>
   );
 }

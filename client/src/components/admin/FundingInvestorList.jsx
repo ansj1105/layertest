@@ -1,11 +1,11 @@
 // 📁 src/components/admin/FundingInvestorList.jsx
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import AdvancedLoadingSpinner from '../AdvancedLoadingSpinner';
 export default function FundingInvestorList() {
-  const [projects, setProjects]       = useState([]);
+  const [projects, setProjects] = useState([]);
   const [selectedProjectId, setSelectedProjectId] = useState("");
-  const [investors, setInvestors]     = useState([]);
+  const [investors, setInvestors] = useState([]);
   const [loadingProjects, setLoadingProjects] = useState(true);
   const [loadingInvestors, setLoadingInvestors] = useState(false);
 
@@ -45,7 +45,9 @@ export default function FundingInvestorList() {
       {/* 프로젝트 선택 셀렉트 */}
       <div>
         {loadingProjects
-          ? <p>프로젝트 목록을 불러오는 중…</p>
+          ? <div className="flex justify-center items-center py-8">
+            <AdvancedLoadingSpinner text="Loading..." />
+          </div>
           : (
             <select
               className="border px-3 py-2 rounded w-full max-w-xs"
@@ -70,7 +72,9 @@ export default function FundingInvestorList() {
       {/* 투자자 테이블 */}
       {selectedProjectId && (
         loadingInvestors
-          ? <p>투자자 목록을 불러오는 중…</p>
+          ? <div className="flex justify-center items-center py-8">
+            <AdvancedLoadingSpinner text="Loading..." />
+          </div>
           : (
             <table className="min-w-full bg-white rounded shadow">
               <thead className="bg-gray-100">

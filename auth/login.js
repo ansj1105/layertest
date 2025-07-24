@@ -300,15 +300,24 @@ router.post("/admin-login", async (req, res) => {
       return res.status(401).json({ error: "Invalid credentials" });
     }
 
+    // ✅ 기존 세션 정보 초기화 후 새로운 관리자 세션 생성
     req.session.user = {
       id: admin.id,
       name: admin.name,
       isAdmin: true,
     };
-   req.session.admin=true;
-  
+    req.session.admin = true;
 
-    return res.json({ message: "Admin login success", user: req.session.user });
+    // 세션 저장 후 응답
+    req.session.save((err) => {
+      if (err) {
+        console.error("관리자 세션 저장 에러:", err);
+        return res.status(500).json({ error: "Login failed" });
+      }
+
+      // ✅ 세션 저장 완료 후 응답
+      return res.json({ message: "Admin login success", user: req.session.user });
+    });
   } catch (err) {
     console.error("Admin 로그인 에러:", err);
     return res.status(500).json({ error: "Login failed" });

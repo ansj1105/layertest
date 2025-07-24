@@ -111,48 +111,48 @@ router.get('/summary', async (req, res) => {
 
 
 
-  router.get('/me', async (req, res) => {
-    try {
-      const userId = req.session.user?.id;
-      if (!userId) {
-        return res.status(401).json({ success: false, error: 'Unauthorized' });
-      }
-  
-      const [[user]] = await db.query(
-        'SELECT id, name, email,vip_level FROM users WHERE id = ?',
-        [userId]
-      );
-      if (!user) {
-        return res.status(404).json({ success: false, error: 'User not found' });
-      }
-  
-      // 프론트에서 res.data.user 로 바로 꺼낼 수 있게
-      return res.json({ success: true, user });
-    } catch (err) {
-      console.error('❌ /api/mydata/me 오류:', err);
-      return res.status(500).json({ success: false, error: 'Server error' });
+router.get('/me', async (req, res) => {
+  try {
+    const userId = req.session.user?.id;
+    if (!userId) {
+      return res.status(401).json({ success: false, error: 'Unauthorized' });
     }
-  });
+
+    const [[user]] = await db.query(
+      'SELECT id, name, email,vip_level, referral_code FROM users WHERE id = ?',
+      [userId]
+    );
+    if (!user) {
+      return res.status(404).json({ success: false, error: 'User not found' });
+    }
+
+    // 프론트에서 res.data.user 로 바로 꺼낼 수 있게
+    return res.json({ success: true, user });
+  } catch (err) {
+    console.error('❌ /api/mydata/me 오류:', err);
+    return res.status(500).json({ success: false, error: 'Server error' });
+  }
+});
 
 
-  // ▶ 1) 내 초대 보상 리스트 & 진행도 조회
+// ▶ 1) 내 초대 보상 리스트 & 진행도 조회
 // GET /api/mydata/invite-rewards
 router.get('/invite-rewards', async (req, res) => {
-    const userId = req.session.user?.id;
-    if (!userId) return res.status(401).json({ success:false, error:'Unauthorized' });
-  
-    try {
-      // 1) 설정 값
-      const [configs] = await db.query(`
+  const userId = req.session.user?.id;
+  if (!userId) return res.status(401).json({ success: false, error: 'Unauthorized' });
+
+  try {
+    // 1) 설정 값
+    const [configs] = await db.query(`
         SELECT id, referral_level, required_referrals, reward_amount
         FROM invite_rewards
         ORDER BY referral_level
       `);
-  
-      // 2) 진행도 & 수령 여부 계산
-      const results = await Promise.all(configs.map(async cfg => {
-        // 유효 추천인 수 집계 (wallets.fund_balance >= minimum_deposit_amount 기준)
-        const [[{ cnt }]] = await db.query(`
+
+    // 2) 진행도 & 수령 여부 계산
+    const results = await Promise.all(configs.map(async cfg => {
+      // 유효 추천인 수 집계 (wallets.fund_balance >= minimum_deposit_amount 기준)
+      const [[{ cnt }]] = await db.query(`
           SELECT COUNT(*) AS cnt
           FROM referral_relations rr
           JOIN wallets w ON rr.referred_id = w.user_id
@@ -161,47 +161,47 @@ router.get('/invite-rewards', async (req, res) => {
           AND rr.level = 1 
           AND w.fund_balance >= ws.minimum_deposit_amount
         `, [userId]);
-  
-        // 이미 수령했는지
-        const [[claimed]] = await db.query(`
+
+      // 이미 수령했는지
+      const [[claimed]] = await db.query(`
           SELECT 1 FROM user_invite_rewards
           WHERE user_id = ? AND reward_id = ?
         `, [userId, cfg.id]);
-  
-        return {
-          id: cfg.id,
-          level: cfg.referral_level,
-          required: cfg.required_referrals,
-          amount: cfg.reward_amount,
-          count: cnt,
-          claimed: !!claimed
-        };
-      }));
-  
-      res.json({ success:true, data: results });
-    } catch (err) {
-      console.error('❌ 초대 보상 조회 오류:', err);
-      res.status(500).json({ success:false, error:'Server error' });
-    }
-  });
-  
-  // ▶ 2) 보상 받기
-  // POST /api/mydata/invite-rewards/claim/:id
-  router.post('/invite-rewards/claim/:id', async (req, res) => {
-    const userId = req.session.user?.id;
-    const rewardId = req.params.id;
-    if (!userId) return res.status(401).json({ success:false, error:'Unauthorized' });
-  
-    try {
-      // 설정 가져오기
-      const [[cfg]] = await db.query(`
+
+      return {
+        id: cfg.id,
+        level: cfg.referral_level,
+        required: cfg.required_referrals,
+        amount: cfg.reward_amount,
+        count: cnt,
+        claimed: !!claimed
+      };
+    }));
+
+    res.json({ success: true, data: results });
+  } catch (err) {
+    console.error('❌ 초대 보상 조회 오류:', err);
+    res.status(500).json({ success: false, error: 'Server error' });
+  }
+});
+
+// ▶ 2) 보상 받기
+// POST /api/mydata/invite-rewards/claim/:id
+router.post('/invite-rewards/claim/:id', async (req, res) => {
+  const userId = req.session.user?.id;
+  const rewardId = req.params.id;
+  if (!userId) return res.status(401).json({ success: false, error: 'Unauthorized' });
+
+  try {
+    // 설정 가져오기
+    const [[cfg]] = await db.query(`
         SELECT referral_level, required_referrals, reward_amount
         FROM invite_rewards WHERE id = ?
       `, [rewardId]);
-      if (!cfg) return res.status(404).json({ success:false, error:'Not found' });
-  
-      // 진행도 재검사 (minimum_deposit_amount 기준으로 변경)
-      const [[{ cnt }]] = await db.query(`
+    if (!cfg) return res.status(404).json({ success: false, error: 'Not found' });
+
+    // 진행도 재검사 (minimum_deposit_amount 기준으로 변경)
+    const [[{ cnt }]] = await db.query(`
         SELECT COUNT(*) AS cnt
         FROM referral_relations rr
         JOIN wallets w ON rr.referred_id = w.user_id
@@ -210,35 +210,35 @@ router.get('/invite-rewards', async (req, res) => {
         AND rr.level = 1 
         AND w.fund_balance >= ws.minimum_deposit_amount
       `, [userId]);
-      
-      if (cnt < cfg.required_referrals) {
-        return res.status(400).json({ success:false, error:'조건 미충족' });
-      }
-  
-      // 중복 수령 방지
-      const [[ex]] = await db.query(`
+
+    if (cnt < cfg.required_referrals) {
+      return res.status(400).json({ success: false, error: '조건 미충족' });
+    }
+
+    // 중복 수령 방지
+    const [[ex]] = await db.query(`
         SELECT 1 FROM user_invite_rewards
         WHERE user_id = ? AND reward_id = ?
       `, [userId, rewardId]);
-      if (ex) {
-        return res.status(400).json({ success:false, error:'이미 수령함' });
-      }
+    if (ex) {
+      return res.status(400).json({ success: false, error: '이미 수령함' });
+    }
 
-      // 1) user_invite_rewards 기록
-      await db.query(`
+    // 1) user_invite_rewards 기록
+    await db.query(`
         INSERT INTO user_invite_rewards (user_id, reward_id, claimed_at)
         VALUES (?, ?, NOW())
       `, [userId, rewardId]);
 
-      // 2) wallets 업데이트
-      await db.query(`
+    // 2) wallets 업데이트
+    await db.query(`
         UPDATE wallets
         SET quant_balance = quant_balance + ?
         WHERE user_id = ?
       `, [cfg.reward_amount, userId]);
 
-      // → NEW: wallets_log 기록
-      await db.query(`
+    // → NEW: wallets_log 기록
+    await db.query(`
         INSERT INTO wallets_log
           (user_id, category, log_date, direction, amount,
            balance_after, reference_type, reference_id, description,
@@ -249,16 +249,16 @@ router.get('/invite-rewards', async (req, res) => {
                 NOW(), NOW())
       `, [userId, cfg.reward_amount, userId, rewardId]);
 
-      res.json({ success:true, data: { amount: cfg.reward_amount } });
-    } catch (err) {
-      console.error('❌ 보상 수령 실패:', err);
-      res.status(500).json({ success:false, error:'Server error' });
-    }
-  });
+    res.json({ success: true, data: { amount: cfg.reward_amount } });
+  } catch (err) {
+    console.error('❌ 보상 수령 실패:', err);
+    res.status(500).json({ success: false, error: 'Server error' });
+  }
+});
 // ── 가입 보너스 목록 ─────────────────
 router.get('/join-rewards', async (req, res) => {
   const userId = req.session.user?.id;
-  if (!userId) return res.status(401).json({ error:'로그인이 필요합니다.' });
+  if (!userId) return res.status(401).json({ error: '로그인이 필요합니다.' });
 
   // 1) 전체 보상 조건 가져오기
   const [rewards] = await db.query(`
@@ -271,7 +271,7 @@ router.get('/join-rewards', async (req, res) => {
     ORDER BY jr.required_balance
   `, [userId]);
 
-  res.json({ success:true, data: rewards });
+  res.json({ success: true, data: rewards });
 });
 
 // ── 가입 보너스 수령 ─────────────────
@@ -279,21 +279,21 @@ router.post('/join-rewards/claim/:id', async (req, res) => {
   try {
     const userId = req.session.user?.id;
     const rewardId = req.params.id;
-    if (!userId) return res.status(401).json({ error:'로그인이 필요합니다.' });
+    if (!userId) return res.status(401).json({ error: '로그인이 필요합니다.' });
 
     // 1) 보상 조건 조회
     const [[jr]] = await db.query(
       'SELECT amount, required_balance FROM join_rewards WHERE id=?',
       [rewardId]
     );
-    if (!jr) return res.status(404).json({ error:'보상을 찾을 수 없습니다.' });
+    if (!jr) return res.status(404).json({ error: '보상을 찾을 수 없습니다.' });
 
     // 2) 이미 수령했는지
     const [[ujr]] = await db.query(
       'SELECT claimed FROM user_join_rewards WHERE user_id=? AND join_reward_id=?',
       [userId, rewardId]
     );
-    if (ujr?.claimed) return res.status(400).json({ error:'이미 수령하셨습니다.' });
+    if (ujr?.claimed) return res.status(400).json({ error: '이미 수령하셨습니다.' });
 
     // 3) 지갑 잔액 조건 체크
     console.log('지갑 잔액 조회 시작 - userId:', userId);
@@ -302,12 +302,12 @@ router.post('/join-rewards/claim/:id', async (req, res) => {
       [userId]
     );
     console.log('지갑 잔액 조회 결과:', wallet);
-    
+
     const userBalance = Number(wallet?.quant_balance || 0);
     const requiredBalance = Number(jr.required_balance);
-    
+
     if (!wallet || userBalance < requiredBalance) {
-      return res.status(400).json({ error:`퀀트 잔액이 ${requiredBalance} USDT 이상이어야 합니다.` });
+      return res.status(400).json({ error: `퀀트 잔액이 ${requiredBalance} USDT 이상이어야 합니다.` });
     }
 
     // 4) 펀드 잔액 갱신 + 수령 기록
@@ -337,10 +337,10 @@ router.post('/join-rewards/claim/:id', async (req, res) => {
               NOW(), NOW())
     `, [userId, jr.amount, userId, rewardId]);
 
-    res.json({ success:true, message:`${jr.amount} USDT 보상이 지급되었습니다.` });
+    res.json({ success: true, message: `${jr.amount} USDT 보상이 지급되었습니다.` });
   } catch (err) {
     console.error('❌ 가입 보상 수령 실패:', err);
-    res.status(500).json({ error:'Server error' });
+    res.status(500).json({ error: 'Server error' });
   }
 });
 module.exports = router;

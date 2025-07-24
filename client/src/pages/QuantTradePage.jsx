@@ -3,7 +3,7 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import { ArrowLeftIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-
+import AdvancedLoadingSpinner from "../components/AdvancedLoadingSpinner";
 export default function QuantTradingPage() {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
@@ -33,9 +33,9 @@ export default function QuantTradingPage() {
     const fetchData = async () => {
       try {
         const [vipRes, userRes, finRes] = await Promise.all([
-          axios.get("/api/admin/vip-levels", { headers:{ 'Accept-Language': i18n.language } }),
-          axios.get("/api/auth/me", { withCredentials:true }),
-          axios.get("/api/wallet/finance-summary", { withCredentials:true })
+          axios.get("/api/admin/vip-levels", { headers: { 'Accept-Language': i18n.language } }),
+          axios.get("/api/auth/me", { withCredentials: true }),
+          axios.get("/api/wallet/finance-summary", { withCredentials: true })
         ]);
         const sortedLevels = vipRes.data.data || vipRes.data;
         sortedLevels.sort((a, b) => a.level - b.level);
@@ -57,42 +57,44 @@ export default function QuantTradingPage() {
     fetchData();
   }, [i18n.language]);
 
-  if (loading) return <div className="text-center text-white">{t('quantTrading.loading')}</div>;
+  if (loading) return <div className="text-center text-white">
+    <AdvancedLoadingSpinner text="Loading..." />
+  </div>;
 
   const currentVIP = vipLevels.find(v => v.level === user2?.vip_level) || {};
-// ↙ 기존 executeTrade 대신, 바로 실행하는 함수
-const handleStartTrade = async () => {
-  const minHold   = vipLevels[currentIndex]?.min_holdings;
-  const maxInvest = vipLevels[currentIndex]?.max_investment;
-  const bal       = finance.quantBalance;
+  // ↙ 기존 executeTrade 대신, 바로 실행하는 함수
+  const handleStartTrade = async () => {
+    const minHold = vipLevels[currentIndex]?.min_holdings;
+    const maxInvest = vipLevels[currentIndex]?.max_investment;
+    const bal = finance.quantBalance;
 
-  // 1) 최소 보유량 체크
-  if (bal < minHold) {
-    return alert(t('quantTrading.errorMinHold', { minHold }));
-  }
+    // 1) 최소 보유량 체크
+    if (bal < minHold) {
+      return alert(t('quantTrading.errorMinHold', { minHold }));
+    }
 
-  // 2) 실제 주문 금액 = Math.min(보유량, VIP 최대투자)
-  const amount = Math.min(bal, maxInvest);
+    // 2) 실제 주문 금액 = Math.min(보유량, VIP 최대투자)
+    const amount = Math.min(bal, maxInvest);
 
-  try {
-    // ── 여기에 실제 주문 API 호출 ──
-    const res = await axios.post(
-      '/api/quant-trade',
-      { amount },
-      { withCredentials: true }
-    );
-    alert(t('quantTrading.success', { amount }));
-    // 주문 후 잔액 / 이익 요약 등 재조회
-    const finRes = await axios.get('/api/wallet/finance-summary', { withCredentials: true });
-    setFinance({
-      quantBalance: finRes.data.data.quantBalance,
-      fundBalance:  finRes.data.data.fundBalance
-    });
-  } catch (err) {
-    console.error(err);
-    alert(err.response?.data?.error || t('quantTrading.errorExec'));
-  }
-};
+    try {
+      // ── 여기에 실제 주문 API 호출 ──
+      const res = await axios.post(
+        '/api/quant-trade',
+        { amount },
+        { withCredentials: true }
+      );
+      alert(t('quantTrading.success', { amount }));
+      // 주문 후 잔액 / 이익 요약 등 재조회
+      const finRes = await axios.get('/api/wallet/finance-summary', { withCredentials: true });
+      setFinance({
+        quantBalance: finRes.data.data.quantBalance,
+        fundBalance: finRes.data.data.fundBalance
+      });
+    } catch (err) {
+      console.error(err);
+      alert(err.response?.data?.error || t('quantTrading.errorExec'));
+    }
+  };
   return (
     <div className="p-6 text-yellow-100 bg-[#1a1109] min-h-screen">
       {/* 뒤로가기 */}
@@ -116,8 +118,8 @@ const handleStartTrade = async () => {
         <span className="font-semibold mr-2">{t('quantTrading.currentLevel')}:</span>
         <strong>VIP {currentVIP.level}</strong>
       </div>
-         {/* 레벨 카루셀 (VIP 관계없이 좌우 이동 가능) */}
-         <div className="bg-[#342410] p-4 rounded text-sm mb-2">
+      {/* 레벨 카루셀 (VIP 관계없이 좌우 이동 가능) */}
+      <div className="bg-[#342410] p-4 rounded text-sm mb-2">
         <div className="flex justify-between items-center mb-2">
           <button
             onClick={() => setCurrentIndex(prev => Math.max(0, prev - 1))}
@@ -166,30 +168,30 @@ const handleStartTrade = async () => {
         {t('quantTrading.start')}
       </button>
 
-     {/* 거래 금액 입력 모달 */}
-     {showTradeModal && (
-       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-         <div className="bg-white text-black p-6 rounded w-3/4 max-w-sm">
-           <h3 className="text-lg font-bold mb-4">{t('quantTrading.enterAmount')}</h3>
-           <input
-             type="number"
-             value={tradeAmount}
-             onChange={e => setTradeAmount(parseFloat(e.target.value))}
-             className="w-full mb-4 p-2 border rounded"
-             min={0}
-             step="0.000001"
-           />
-          <div className="flex justify-between">
-             <button onClick={() => setShowTradeModal(false)} className="px-4 py-2 bg-gray-300 rounded">
-               {t('quantTrading.cancel')}
-             </button>
-             <button onClick={executeTrade} className="px-4 py-2 bg-yellow-500 text-black rounded">
-               {t('quantTrading.confirm')}
-             </button>
-           </div>
-         </div>
-       </div>
-  )}
+      {/* 거래 금액 입력 모달 */}
+      {showTradeModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white text-black p-6 rounded w-3/4 max-w-sm">
+            <h3 className="text-lg font-bold mb-4">{t('quantTrading.enterAmount')}</h3>
+            <input
+              type="number"
+              value={tradeAmount}
+              onChange={e => setTradeAmount(parseFloat(e.target.value))}
+              className="w-full mb-4 p-2 border rounded"
+              min={0}
+              step="0.000001"
+            />
+            <div className="flex justify-between">
+              <button onClick={() => setShowTradeModal(false)} className="px-4 py-2 bg-gray-300 rounded">
+                {t('quantTrading.cancel')}
+              </button>
+              <button onClick={executeTrade} className="px-4 py-2 bg-yellow-500 text-black rounded">
+                {t('quantTrading.confirm')}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* 소개 모달 */}
       {showIntro && (

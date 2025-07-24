@@ -8,7 +8,7 @@ import QuantHistoryModal from './QuantHistoryModal';
 import AlertPopup from './AlertPopup';
 import '../styles/QuantTradingPage.css';
 import '../styles/topbar.css';
-
+import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
 
 export default function QuantTradingPage() {
   const { t, i18n } = useTranslation();
@@ -348,7 +348,9 @@ export default function QuantTradingPage() {
     fetchData();
   }, [i18n.language]);
 
-  if (loading) return <div className="text-center text-white">{t('quantTrading.loading')}</div>;
+  if (loading) return <div className="text-center text-white">
+    <AdvancedLoadingSpinner text="Loading..." />
+  </div>;
   const qamount = finance.quantBalance;
   const currentVIP = vipLevels.find(v => v.level === user2?.vip_level) || {};
 

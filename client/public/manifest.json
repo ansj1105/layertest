@@ -57,7 +57,10 @@
       "purpose": "maskable any"
     }
   ],
-  "categories": ["finance", "utilities"],
+  "categories": [
+    "finance",
+    "utilities"
+  ],
   "lang": "ko",
   "dir": "ltr"
-} 
+}

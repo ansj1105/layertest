@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
+import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
 
 import '../styles/MainLanding.css';
 
@@ -30,7 +31,7 @@ export default function CoinList() {
   return (
     <div className="v-main-bottom-list-one">
       <div className="v-main-bottom-list-one-box">
-        
+
         {/* 헤더 */}
         <div className="v-main-bottom-list-one-head">
           <div className="v-main-bottom-list-one-head-item-name">{t('coin_list.trading_pair')}</div>
@@ -40,7 +41,9 @@ export default function CoinList() {
 
         {/* 바디 */}
         {loading ? (
-          <div className="text-center py-6 text-gray-500">{t('common.loading')}</div>
+          <div className="flex justify-center items-center py-8">
+            <AdvancedLoadingSpinner text="Loading coins..." />
+          </div>
         ) : coins.length === 0 ? (
           <div className="text-center py-6 text-gray-500">{t('common.no_data')}</div>
         ) : (

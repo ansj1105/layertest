@@ -11,7 +11,8 @@ import {
   FileText,
   LogOut
 } from 'lucide-react';
-
+import AlertPopup from '../components/AlertPopup';
+import AdvancedLoadingSpinner from '../components/AdvancedLoadingSpinner';
 axios.defaults.withCredentials = true;
 
 function encodeId(id) {
@@ -23,7 +24,7 @@ export default function MyProfilePage() {
   const { t } = useTranslation();
   const [user, setUser] = useState(null);
   const [summary, setSummary] = useState(null);
-  const [copySuccess, setCopySuccess] = useState(false);
+  const [showCopyAlert, setShowCopyAlert] = useState(false); // AlertPopup용 상태
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   // 펀딩(투자) 수익 집계용
   const [investmentEarnings, setInvestmentEarnings] = useState({
@@ -185,10 +186,9 @@ export default function MyProfilePage() {
 
 
   const handleCopyId = () => {
-    const encId = encodeId(user.id);
+    const encId = user.referral_code;
     navigator.clipboard.writeText(encId);
-    setCopySuccess(true);
-    setTimeout(() => setCopySuccess(false), 2000);
+    setShowCopyAlert(true); // AlertPopup 표시
   };
 
   const doLogout = async () => {
@@ -203,12 +203,12 @@ export default function MyProfilePage() {
   if (!user || !summary) {
     return (
       <div className="flex items-center justify-center h-screen bg-[#1a1109] text-yellow-100">
-        {t('profile.loading')}
+        <AdvancedLoadingSpinner text="Loading..." />
       </div>
     );
   }
 
-  const encId = encodeId(user.id);
+  const encId = user.referral_code;
   // summary.earnings.investment.* 대신 우리가 계산한 investmentEarnings 사용
   const totalEarnings = referralEarnings.total
     + investmentEarnings.total
@@ -360,11 +360,13 @@ export default function MyProfilePage() {
       </div>
 
       {/* ── ID 복사 알림 ───────────────────────────────────────── */}
-      {copySuccess && (
-        <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-black/75 text-white py-2 px-4 rounded">
-          {t('profile.copySuccess')}
-        </div>
-      )}
+      <AlertPopup
+        isOpen={showCopyAlert}
+        onClose={() => setShowCopyAlert(false)}
+        title="복사 완료"
+        message={t('profile.copySuccess')}
+        type="success"
+      />
 
       {/* ── 로그아웃 확인 모달 ─────────────────────────────────── */}
       {showLogoutConfirm && (

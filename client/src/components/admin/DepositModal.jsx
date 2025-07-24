@@ -1,12 +1,12 @@
 // 📁 src/components/admin/DepositModal.jsx
 import { useState } from 'react';
 import axios from 'axios';
-
+import AdvancedLoadingSpinner from '../AdvancedLoadingSpinner';
 export default function DepositModal({ wallet, onClose, onDeposited }) {
-  const [type, setType]     = useState('fund');
+  const [type, setType] = useState('fund');
   const [amount, setAmount] = useState('');
   const [loading, setLoading] = useState(false);
-  const [error, setError]     = useState(null);
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,7 +73,7 @@ export default function DepositModal({ wallet, onClose, onDeposited }) {
             className="px-4 py-2 bg-blue-500 text-white rounded"
             disabled={loading}
           >
-            {loading ? '처리 중…' : '입금'}
+            {loading ? <AdvancedLoadingSpinner text="Loading..." /> : '입금'}
           </button>
         </div>
       </form>

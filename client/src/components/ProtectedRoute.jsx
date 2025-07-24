@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
+import AdvancedLoadingSpinner from "./AdvancedLoadingSpinner";
 
 axios.defaults.withCredentials = true;
 
@@ -16,7 +17,9 @@ export default function ProtectedRoute({ children }) {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className="text-center mt-20">🔐 Checking session...</div>;
+  if (loading) return <div className="flex justify-center items-center py-8">
+    <AdvancedLoadingSpinner text="Loading..." />
+  </div>;
 
   return authenticated ? children : <Navigate to="/login" replace />;
 }

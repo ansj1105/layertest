@@ -86,7 +86,9 @@ export default function SystemNotices() {
   };
 
   if (loading) {
-    return <div className="p-4 text-center text-yellow-100">{t('common.loading')}</div>;
+    return <div className="flex justify-center items-center py-8">
+      <AdvancedLoadingSpinner text="Loading..." />
+    </div>;
   }
 
   const list = tab === 'notices' ? notices : inbox;

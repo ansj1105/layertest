@@ -4,6 +4,7 @@ import axios from "axios";
 import { ArrowLeftIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
+import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
 import '../styles/EscrowOrdersPage.css';
 import '../styles/topbar.css';
 
@@ -33,7 +34,9 @@ export default function EscrowOrdersPage() {
         <h1 className="escrow-page-top-h-text">{t('common.escrow.title')}</h1>
       </div>
       {loading ? (
-        <p className="escrow-order-message">{t('common.loading')}</p>
+        <div className="flex justify-center items-center py-8">
+          <AdvancedLoadingSpinner text="Loading escrow orders..." />
+        </div>
       ) : orders.length === 0 ? (
         <p className="escrow-order-message">{t('common.no_data')}</p>
       ) : (

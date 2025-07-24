@@ -1,4 +1,4 @@
-
+import AdvancedLoadingSpinner from '../components/AdvancedLoadingSpinner';
 // ✅ 프론트: TransferPage.jsx (axios 사용)
 import { useState } from 'react';
 import axios from 'axios';
@@ -84,7 +84,7 @@ export default function TransferPage() {
         className="bg-purple-500 text-white px-6 py-2 rounded hover:bg-purple-600 w-full"
         disabled={loading}
       >
-        {loading ? 'Sending...' : 'Send USDT'}
+        {loading ? <AdvancedLoadingSpinner text="Loading..." /> : 'Send USDT'}
       </button>
       {txHash && (
         <p className="text-green-600">✅ Sent! TX Hash: <span className="break-all">{txHash}</span></p>

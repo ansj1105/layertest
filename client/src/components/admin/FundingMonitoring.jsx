@@ -1,13 +1,13 @@
 // 📁 src/components/admin/FundingMonitoring.jsx
 import { useEffect, useState } from "react";
 import axios from "axios";
-
+import AdvancedLoadingSpinner from '../AdvancedLoadingSpinner';
 export default function FundingMonitoring() {
-  const [projects, setProjects]       = useState([]);
-  const [projectId, setProjectId]     = useState("");
-  const [stats, setStats]             = useState(null);
-  const [investors, setInvestors]     = useState([]);
-  const [loadingStats, setLoadingStats]     = useState(false);
+  const [projects, setProjects] = useState([]);
+  const [projectId, setProjectId] = useState("");
+  const [stats, setStats] = useState(null);
+  const [investors, setInvestors] = useState([]);
+  const [loadingStats, setLoadingStats] = useState(false);
   const [loadingInvestors, setLoadingInvestors] = useState(false);
 
   // 1) 프로젝트 목록 불러오기
@@ -62,7 +62,9 @@ export default function FundingMonitoring() {
         <div className="bg-white p-4 rounded shadow">
           <h3 className="font-semibold mb-2">진행 통계</h3>
           {loadingStats ? (
-            <p>로딩 중…</p>
+            <div className="flex justify-center items-center py-8">
+              <AdvancedLoadingSpinner text="Loading..." />
+            </div>
           ) : stats ? (
             <>
               <p>목표금액: {stats.target.toFixed(6)} USDT</p>
@@ -87,7 +89,9 @@ export default function FundingMonitoring() {
         <div className="bg-white p-4 rounded shadow">
           <h3 className="font-semibold mb-2">투자자 목록</h3>
           {loadingInvestors ? (
-            <p>로딩 중…</p>
+            <div className="flex justify-center items-center py-8">
+              <AdvancedLoadingSpinner text="Loading..." />
+            </div>
           ) : investors.length === 0 ? (
             <p>투자자가 없습니다.</p>
           ) : (

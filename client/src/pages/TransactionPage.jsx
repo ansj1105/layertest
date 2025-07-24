@@ -1,8 +1,7 @@
-
 // ✅ 프론트: TransactionPage.jsx (axios 사용)
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-
+import AdvancedLoadingSpinner from '../components/AdvancedLoadingSpinner';
 export default function TransactionPage() {
   const [logs, setLogs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,7 +24,9 @@ export default function TransactionPage() {
     <div className="max-w-4xl mx-auto mt-8 p-6 bg-white rounded shadow">
       <h1 className="text-2xl font-bold text-gray-800 mb-4">Transaction History</h1>
       {loading ? (
-        <p>Loading...</p>
+        <div className="flex justify-center items-center py-8">
+          <AdvancedLoadingSpinner text="Loading..." />
+        </div>
       ) : logs.length === 0 ? (
         <p>No transactions found.</p>
       ) : (
