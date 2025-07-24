@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: vietcoin
+-- Host: localhost    Database: vietcoin
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.42-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,7 +28,7 @@ CREATE TABLE `join_rewards` (
   `required_balance` decimal(18,6) NOT NULL COMMENT '최소 펀드 잔액 조건',
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `join_rewards` (
 
 LOCK TABLES `join_rewards` WRITE;
 /*!40000 ALTER TABLE `join_rewards` DISABLE KEYS */;
-INSERT INTO `join_rewards` VALUES (2,10.000000,30.000000,'2025-05-02 00:41:44'),(3,22.000000,43.000000,'2025-05-21 10:23:20');
+INSERT INTO `join_rewards` VALUES (1,10.000000,0.000000,'2025-05-02 00:41:44');
 /*!40000 ALTER TABLE `join_rewards` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-20 23:43:07
+-- Dump completed on 2025-07-21 16:22:59

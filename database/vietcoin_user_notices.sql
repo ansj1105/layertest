@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: vietcoin
+-- Host: localhost    Database: vietcoin
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.42-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,7 +42,6 @@ CREATE TABLE `user_notices` (
 
 LOCK TABLES `user_notices` WRITE;
 /*!40000 ALTER TABLE `user_notices` DISABLE KEYS */;
-INSERT INTO `user_notices` VALUES (1,1,1,0,'2025-01-19 03:00:00',NULL),(1,2,1,0,'2025-07-20 22:11:10',NULL),(1,3,1,0,'2025-07-20 22:11:13',NULL),(1,4,1,0,'2025-07-20 22:11:16',NULL),(2,1,0,0,NULL,NULL),(2,2,0,0,NULL,NULL),(4,1,1,1,'2025-05-14 08:24:05','2025-05-14 08:24:02'),(4,2,1,1,'2025-05-14 13:25:34','2025-05-14 08:24:02'),(4,3,1,1,'2025-05-14 08:24:05','2025-05-14 08:24:02'),(4,4,1,1,'2025-05-14 08:24:05','2025-05-14 08:24:02'),(22,1,1,0,'2025-05-14 13:35:09',NULL),(22,2,1,0,'2025-05-14 13:30:32',NULL),(22,4,1,0,'2025-05-14 13:33:51',NULL);
 /*!40000 ALTER TABLE `user_notices` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-20 23:43:09
+-- Dump completed on 2025-07-21 16:23:12

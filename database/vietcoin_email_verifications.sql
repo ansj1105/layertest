@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: vietcoin
+-- Host: localhost    Database: vietcoin
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.42-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -47,7 +47,6 @@ CREATE TABLE `email_verifications` (
 
 LOCK TABLES `email_verifications` WRITE;
 /*!40000 ALTER TABLE `email_verifications` DISABLE KEYS */;
-INSERT INTO `email_verifications` VALUES (1,1,'ansj1105@naver.com','2E5F64','old','2025-05-01 16:12:10',0,'2025-05-01 16:49:23',NULL),(2,1,'ansj1105@naver.com','2F376C','old','2025-05-01 16:12:11',0,'2025-05-01 16:49:23',NULL),(3,1,'ansj1105@naver.com','058A7F','old','2025-05-01 16:12:16',0,'2025-05-01 16:49:23',NULL),(4,4,'tete@test.com','674319','old','2025-05-01 16:52:39',0,'2025-05-01 16:49:23',NULL),(5,1,'ansj1105@naver.com','63C2C0','trade','2025-05-01 16:54:58',0,'2025-05-01 16:49:23',NULL),(6,1,'ansj1105@naver.com','E44250','trade','2025-05-01 16:55:18',0,'2025-05-01 16:49:23',NULL),(7,1,'ansj1105@naver.com','BE03BF','trade','2025-05-01 16:56:19',0,'2025-05-01 16:49:23',NULL),(8,1,'ansj1105@naver.com','3B784A','old','2025-05-01 16:57:04',0,'2025-05-01 16:49:23',NULL),(9,1,'ansj1105@naver.com','BF8151','trade','2025-05-01 17:02:10',0,'2025-05-01 16:52:10',NULL),(10,1,'ansj1105@naver.com','2BC232','old','2025-05-01 17:07:20',0,'2025-05-01 16:57:19',NULL),(11,1,'ansj1105@naver.com','1D2FC2','old','2025-05-01 17:24:04',0,'2025-05-01 17:14:04',NULL),(12,4,'tete@test.com','E2C64C','trade','2025-05-01 17:27:25',1,'2025-05-01 17:17:24',NULL),(13,4,'tete@test.com','3F2016','old','2025-05-15 12:27:01',0,'2025-05-15 12:17:01',NULL),(14,4,'tete@test.com','E97BF0','old','2025-05-15 12:27:02',0,'2025-05-15 12:17:02',NULL);
 /*!40000 ALTER TABLE `email_verifications` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -60,4 +59,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-20 23:43:04
+-- Dump completed on 2025-07-21 16:26:33

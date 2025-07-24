@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: vietcoin
+-- Host: localhost    Database: vietcoin
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.42-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -40,7 +40,6 @@ CREATE TABLE `referral_history` (
 
 LOCK TABLES `referral_history` WRITE;
 /*!40000 ALTER TABLE `referral_history` DISABLE KEYS */;
-INSERT INTO `referral_history` VALUES (1,6,'signup',NULL,2,'{\"referrerId\": 4}','2025-04-21 18:06:36'),(2,10,'signup',NULL,2,'{\"referrerId\": 8}','2025-04-22 16:44:03'),(3,11,'signup',NULL,2,'{\"referrerId\": 4}','2025-04-23 15:00:21'),(4,12,'signup',NULL,2,'{\"referrerId\": 4}','2025-04-23 18:52:13'),(5,13,'signup',NULL,2,'{\"referrerId\": 4}','2025-04-23 18:55:28'),(6,14,'signup',NULL,2,'{\"referrerId\": 4}','2025-04-23 18:58:20'),(7,15,'signup',NULL,3,'{\"referrerId\": 5}','2025-04-28 18:05:29');
 /*!40000 ALTER TABLE `referral_history` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-20 23:43:15
+-- Dump completed on 2025-07-21 16:24:17

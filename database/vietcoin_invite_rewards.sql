@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: vietcoin
+-- Host: localhost    Database: vietcoin
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.42-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -28,7 +28,7 @@ CREATE TABLE `invite_rewards` (
   `required_referrals` int NOT NULL COMMENT '필요 추천인 수',
   `reward_amount` decimal(18,6) NOT NULL COMMENT '보상 USDT',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -37,7 +37,7 @@ CREATE TABLE `invite_rewards` (
 
 LOCK TABLES `invite_rewards` WRITE;
 /*!40000 ALTER TABLE `invite_rewards` DISABLE KEYS */;
-INSERT INTO `invite_rewards` VALUES (1,1,4,10.000000),(2,1,10,50.000000),(3,2,5,25.000000),(4,3,5,5.000000),(5,1,20,100.000000),(6,3,3,222.000000),(7,3,3,221.000000);
+INSERT INTO `invite_rewards` VALUES (8,1,3,15.000000),(9,2,10,55.000000),(10,3,20,110.000000),(11,4,30,220.000000),(12,5,50,440.000000),(13,6,70,660.000000),(14,7,100,1100.000000),(15,8,150,2200.000000),(16,9,200,3300.000000),(17,10,300,6500.000000),(18,11,500,16000.000000),(20,12,10000,55000.000000);
 /*!40000 ALTER TABLE `invite_rewards` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-20 23:43:05
+-- Dump completed on 2025-07-21 16:27:26

@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: vietcoin
+-- Host: localhost    Database: vietcoin
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.42-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -38,7 +38,6 @@ CREATE TABLE `quant_logs` (
 
 LOCK TABLES `quant_logs` WRITE;
 /*!40000 ALTER TABLE `quant_logs` DISABLE KEYS */;
-INSERT INTO `quant_logs` VALUES (1,4,'referral_reward','trade 8, level 1, reward 0.008217','2025-05-05 02:43:25'),(2,4,'referral_reward','trade 9, level 1, reward 0.004880','2025-05-05 02:49:05'),(3,4,'referral_reward','trade 10, level 1, reward 0.005001','2025-05-05 15:21:29'),(4,4,'referral_reward','trade 19, level 1, reward 0.020382','2025-05-08 01:39:54'),(5,4,'referral_reward','trade 23, level 1, reward 0.020114','2025-05-13 15:36:47'),(6,4,'referral_reward','trade 24, level 1, reward 0.018116','2025-05-13 15:37:16'),(7,4,'referral_reward','trade 27, level 1, reward 0.019651','2025-05-14 17:19:31'),(8,4,'referral_reward','trade 28, level 1, reward 0.020171','2025-05-14 17:22:46'),(9,4,'referral_reward','trade 29, level 1, reward 0.020353','2025-05-15 02:18:37');
 /*!40000 ALTER TABLE `quant_logs` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-20 23:43:04
+-- Dump completed on 2025-07-21 16:25:49

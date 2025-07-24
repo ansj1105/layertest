@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: vietcoin
+-- Host: localhost    Database: vietcoin
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.42-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -36,7 +36,7 @@ CREATE TABLE `chat_default_message` (
 
 LOCK TABLES `chat_default_message` WRITE;
 /*!40000 ALTER TABLE `chat_default_message` DISABLE KEYS */;
-INSERT INTO `chat_default_message` VALUES (1,'22333222','2025-05-23 06:42:32');
+INSERT INTO `chat_default_message` VALUES (1,'Hello, and welcome to Upstart Support.\n고객님의 빠른 해결을 위해 Upstart 사용자 ID 또는 등록된 이름을 알려주세요.\n문제가 발생한 경우, 상세한 설명을 제출해주시면 보다 신속하게 도움을 드릴 수 있습니다.\n계정 정보, 보안 설정, 결제 비밀번호, 출금 주소 변경이 필요한 경우에는 [내 정보 > 보안센터] 메뉴를 통해 직접 수정하실 수 있습니다.\nUpstart는 여러분의 안전한 투자 환경을 위해 24시간 고객지원을 운영합니다.\n','2025-05-23 06:42:32');
 /*!40000 ALTER TABLE `chat_default_message` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-20 23:43:06
+-- Dump completed on 2025-07-21 16:24:31

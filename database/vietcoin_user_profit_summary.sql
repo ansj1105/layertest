@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: vietcoin
+-- Host: localhost    Database: vietcoin
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.42-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -40,7 +40,6 @@ CREATE TABLE `user_profit_summary` (
 
 LOCK TABLES `user_profit_summary` WRITE;
 /*!40000 ALTER TABLE `user_profit_summary` DISABLE KEYS */;
-INSERT INTO `user_profit_summary` VALUES (4,2455.480000,194.548618,0.000000,2650.020401,'2025-07-20 16:39:40'),(22,0.000000,12.866853,0.000000,12.866853,'2025-05-15 02:18:37');
 /*!40000 ALTER TABLE `user_profit_summary` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-20 23:43:10
+-- Dump completed on 2025-07-21 16:26:53

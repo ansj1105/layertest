@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: vietcoin
+-- Host: localhost    Database: vietcoin
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.42-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -41,7 +41,7 @@ CREATE TABLE `chat_admins` (
 
 LOCK TABLES `chat_admins` WRITE;
 /*!40000 ALTER TABLE `chat_admins` DISABLE KEYS */;
-INSERT INTO `chat_admins` VALUES (1,'admin@example.com','123456','관리자','2025-05-21 06:28:53','2025-05-23 08:57:57',1);
+INSERT INTO `chat_admins` VALUES (1,'adminupstart@upstart.com','qwer123456','관리자','2025-05-21 06:28:53','2025-07-21 04:40:26',1);
 /*!40000 ALTER TABLE `chat_admins` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-20 23:43:05
+-- Dump completed on 2025-07-21 16:23:35

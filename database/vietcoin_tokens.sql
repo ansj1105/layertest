@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: vietcoin
+-- Host: localhost    Database: vietcoin
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.42-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -42,7 +42,7 @@ CREATE TABLE `tokens` (
 
 LOCK TABLES `tokens` WRITE;
 /*!40000 ALTER TABLE `tokens` DISABLE KEYS */;
-INSERT INTO `tokens` VALUES ('11111111-1111-1111-1111-111111111111','QVC Token','QVC','Quantvine 플랫폼 유틸리티 토큰',1000000000,141484,18,'2025-05-05 17:34:51','2025-05-16 08:26:51'),('ed299b25-dda1-44d0-8692-d7172fb03f99','USC TOKEN','USC','그냥만들어봄',100000,9130,22,'2025-05-13 01:22:39','2025-05-21 11:07:48');
+INSERT INTO `tokens` VALUES ('11111111-1111-1111-1111-111111111111','1차 사전 판매','USC','차 사전 판매',500000000,500000000,18,'2025-05-05 17:34:51','2025-07-21 02:33:01'),('31eb181c-b66b-4ab2-bde9-3a73a4f1b6e0','3차 사전 판매','USC','3차 사전 판매',500000000,500000000,18,'2025-07-21 02:26:39','2025-07-21 02:27:06'),('ed299b25-dda1-44d0-8692-d7172fb03f99','2차 사전 판매','USC','2차 사전 판매',500000000,500000000,18,'2025-05-13 01:22:39','2025-07-21 02:28:00');
 /*!40000 ALTER TABLE `tokens` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-20 23:43:03
+-- Dump completed on 2025-07-21 16:25:54

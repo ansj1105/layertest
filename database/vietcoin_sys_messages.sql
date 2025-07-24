@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: vietcoin
+-- Host: localhost    Database: vietcoin
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.42-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -41,7 +41,6 @@ CREATE TABLE `sys_messages` (
 
 LOCK TABLES `sys_messages` WRITE;
 /*!40000 ALTER TABLE `sys_messages` DISABLE KEYS */;
-INSERT INTO `sys_messages` VALUES (1,1,'환영 메시지','Quantvine에 오신 것을 환영합니다!',1,'2025-01-10 09:00:00'),(2,1,'출금 완료 안내','귀하의 출금 요청이 정상 처리되었습니다.',1,'2025-01-15 14:30:00'),(3,2,'보안 알림','새 기기에서 로그인되었습니다. 본인이 아니면 문의 바랍니다.',0,'2025-01-18 08:45:00');
 /*!40000 ALTER TABLE `sys_messages` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-20 23:43:10
+-- Dump completed on 2025-07-21 16:23:17

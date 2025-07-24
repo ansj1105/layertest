@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.42, for macos15 (arm64)
 --
--- Host: 127.0.0.1    Database: vietcoin
+-- Host: localhost    Database: vietcoin
 -- ------------------------------------------------------
--- Server version	8.0.21
+-- Server version	8.0.42-0ubuntu0.24.04.2
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -41,7 +41,6 @@ CREATE TABLE `transaction_log` (
 
 LOCK TABLES `transaction_log` WRITE;
 /*!40000 ALTER TABLE `transaction_log` DISABLE KEYS */;
-INSERT INTO `transaction_log` VALUES (1,'unknown','TWzKGVXgB88MLMEPtpBkStRGoC8koZcmfa',9.000000,NULL,NULL,'failed','2025-04-08 09:19:03'),(2,'unknown','TWzKGVXgB88MLMEPtpBkStRGoC8koZcmfa',9.000000,NULL,NULL,'failed','2025-04-08 09:22:39'),(3,'unknown','TWzKGVXgB88MLMEPtpBkStRGoC8koZcmfa',2.000000,NULL,NULL,'failed','2025-04-14 15:48:23'),(4,'TRtdxfN9yfRridyVYQguoAFmJEgyTomejG','TWzKGVXgB88MLMEPtpBkStRGoC8koZcmfa',9.000000,NULL,'001b46c322704cb2086f623c40741e3dd73190410c461c1fa56f61446f5b7e5d','SUCCESS','2025-05-05 08:59:38'),(5,'TRtdxfN9yfRridyVYQguoAFmJEgyTomejG','TEZwKuAxaPMi1Cjftu9LtAuHCTucuHKktq',79.368500,NULL,'8367968b8990d4cfb8f10496d9c57a563432b1cf73dc68cf968e66a798721347','SUCCESS','2025-05-12 02:45:19'),(6,'TRtdxfN9yfRridyVYQguoAFmJEgyTomejG','TWzKGVXgB88MLMEPtpBkStRGoC8koZcmfa',79.368500,NULL,'e89647ab6725d3f0889298829057c31723d02e1f281308eca967a882be4beb8d','SUCCESS','2025-05-12 03:05:44'),(7,'TRtdxfN9yfRridyVYQguoAFmJEgyTomejG','TWzKGVXgB88MLMEPtpBkStRGoC8koZcmfa',NULL,2.000000,'d78cea6e9ca1406054d0ed5fa1c4d824675f7319f0e48d1df98ebf7e42226769','SUCCESS','2025-05-20 09:24:02');
 /*!40000 ALTER TABLE `transaction_log` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-07-20 23:43:07
+-- Dump completed on 2025-07-21 16:26:04
