@@ -71,7 +71,7 @@ export default function App() {
 
 import './styles/Sidebar.css';
 import './styles/topnav.css';
-import { useEffect, useState, Suspense, lazy } from 'react';
+import { useEffect, useState, Suspense, lazy, useCallback } from 'react';
 import { BrowserRouter as Router, Link, Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import {
@@ -152,13 +152,13 @@ export default function App() {
     }
   }, [user]);
 
-  const handleLogout = async () => {
+  const handleLogout = useCallback(async () => {
     await axios.post("/api/auth/logout");
     setUser(null);
     window.location.href = "/login";
-  };
+  }, []);
 
-  const handleCopyId = () => {
+  const handleCopyId = useCallback(() => {
     const enc = mydata.referral_code;
     console.log('복사 시도:', enc);
 
@@ -172,11 +172,19 @@ export default function App() {
         console.error('복사 실패:', err);
         alert(`ID: ${enc}\n\n복사가 실패했습니다. 위 ID를 수동으로 복사해주세요.`);
       });
-  };
+  }, [mydata]);
 
-  const changeLang = (lang) => {
+  const changeLang = useCallback((lang) => {
     i18n.changeLanguage(lang);
-  };
+  }, [i18n]);
+
+  const toggleSidebar = useCallback(() => {
+    setSidebarOpen(prev => !prev);
+  }, []);
+
+  const closeSidebar = useCallback(() => {
+    setSidebarOpen(false);
+  }, []);
 
   // 로딩 중이거나 모든 컴포넌트가 로드되지 않았으면 로딩 스피너 표시
   if (isLoading) {
@@ -237,7 +245,7 @@ export default function App() {
       <div className="top-nav-bar ">
         {/* 유저 버튼 */}
         <div className="btn-avatar">
-          <button className="avatar-button" onClick={() => setSidebarOpen(true)}>
+          <button className="avatar-button" onClick={toggleSidebar}>
             <img
               src="/img/item/top/avatar.png"
               alt={t('app.userAvatarAlt')}
@@ -276,7 +284,7 @@ export default function App() {
           {/* 백드롭 */}
           <div
             className="sidebar-backdrop"
-            onClick={() => setSidebarOpen(false)}
+            onClick={closeSidebar}
           />
 
           {/* 사이드바 본체 */}
@@ -284,7 +292,7 @@ export default function App() {
             {/* 닫기 버튼 */}
             <button
               className="sidebar-close-btn"
-              onClick={() => setSidebarOpen(false)}
+              onClick={closeSidebar}
               aria-label={t('app.closeButton')}
             >
               <CloseIcon size={20} />
@@ -315,15 +323,15 @@ export default function App() {
 
             {/* 상단 메뉴 (재충전, 출금, 고객서비스) */}
             <div className="sidebar-grid">
-              <Link to="/recharge" onClick={() => setSidebarOpen(false)}>
+              <Link to="/recharge" onClick={closeSidebar}>
                 <RefreshCw size={24} className="mb-1" />
                 <span className="text-xs">{t('app.recharge')}</span>
               </Link>
-              <Link to="/withdraw" onClick={() => setSidebarOpen(false)}>
+              <Link to="/withdraw" onClick={closeSidebar}>
                 <ArrowDownCircle size={24} className="mb-1" />
                 <span className="text-xs">{t('app.withdraw')}</span>
               </Link>
-              <Link to="/support" onClick={() => setSidebarOpen(false)}>
+              <Link to="/support" onClick={closeSidebar}>
                 <Headphones size={24} className="mb-1" />
                 <span className="text-xs">{t('app.customerService')}</span>
               </Link>
@@ -344,7 +352,7 @@ export default function App() {
                 key={item.to}
                 to={item.to}
                 className="sidebar-menu-item"
-                onClick={() => setSidebarOpen(false)}
+                onClick={closeSidebar}
               >
                 <span>{item.label}</span>
                 <ChevronRight size={16} />

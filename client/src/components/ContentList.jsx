@@ -6,7 +6,8 @@ import axios from 'axios';
 import VideoWithPreview from './VideoWithPreview';
 import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
 import '../styles/MainLanding.css';
-export default function ContentList() {
+
+const ContentList = React.memo(() => {
   // 컴포넌트 최상단에
   const API_HOST = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
 
@@ -100,4 +101,6 @@ export default function ContentList() {
       )}
     </div>
   );
-}
+});
+
+export default ContentList;

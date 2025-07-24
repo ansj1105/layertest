@@ -5,10 +5,11 @@ import { ArrowLeftIcon } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
+import React from 'react';
 import '../styles/EscrowOrdersPage.css';
 import '../styles/topbar.css';
 
-export default function EscrowOrdersPage() {
+const EscrowOrdersPage = React.memo(() => {
   const { t } = useTranslation();
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -59,4 +60,6 @@ export default function EscrowOrdersPage() {
       )}
     </div>
   );
-}
+});
+
+export default EscrowOrdersPage;

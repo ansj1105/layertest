@@ -3,10 +3,11 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
+import React from 'react';
 
 import '../styles/MainLanding.css';
 
-export default function CoinList() {
+const CoinList = React.memo(() => {
   const { t } = useTranslation();
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -79,4 +80,6 @@ export default function CoinList() {
       </div>
     </div>
   );
-}
+});
+
+export default CoinList;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDraggable } from '../hooks/useDraggable';
 
-const DraggableBell = ({
+const DraggableBell = React.memo(({
     onClick,
     children,
     className = '',
@@ -63,6 +63,6 @@ const DraggableBell = ({
             </div>
         </div>
     );
-};
+});
 
 export default DraggableBell; 
