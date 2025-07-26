@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Trash2, ArrowLeft, Mail, MailOpen, ArrowLeftIcon } from 'lucide-react';
 import '../styles/topbar.css';
 import '../styles/SystemNotices.css';
+import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
 
 export default function SystemNotices() {
   const { t } = useTranslation();
