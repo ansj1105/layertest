@@ -41,7 +41,7 @@ CREATE TABLE `chat_admins` (
 
 LOCK TABLES `chat_admins` WRITE;
 /*!40000 ALTER TABLE `chat_admins` DISABLE KEYS */;
-INSERT INTO `chat_admins` VALUES (1,'adminupstart@upstart.com','qwer123456','관리자','2025-05-21 06:28:53','2025-07-21 04:40:26',1);
+INSERT INTO `chat_admins` VALUES (1,'admindave@dave.com','qwer123456','관리자','2025-05-21 06:28:53','2025-07-21 04:40:26',1);
 /*!40000 ALTER TABLE `chat_admins` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

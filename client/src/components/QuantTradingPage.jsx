@@ -473,7 +473,10 @@ export default function QuantTradingPage() {
         </button>
       </div>
 
-
+      <div className="referra-m-l">
+        <span className="font-semibold mr-2">{t('quantTrading.currentLevel')} : </span>
+        <strong>{currentVIP.level}</strong>
+      </div>
       {showHistory && <QuantHistoryModal onClose={() => setShowHistory(false)} />}
       {/* 자산 정보 */}
       <div className="referra-jj">
@@ -490,10 +493,7 @@ export default function QuantTradingPage() {
           <div><strong>{summary.totalProfit.toFixed(4)} USDT</strong></div>
         </div>
       </div>
-      <div className="referra-m-l">
-        <span className="font-semibold mr-2">{t('quantTrading.currentLevel')} : </span>
-        <strong>{currentVIP.level}</strong>
-      </div>
+
 
 
       {/* 거래 버튼 및 모달 트리거() => setShowTradeModal(true) 
@@ -553,7 +553,7 @@ export default function QuantTradingPage() {
             xmlns="http://www.w3.org/2000/svg"
             className="referra-quant-icon"
             viewBox="0 0 24 24"
-            fill="#26ffe6"  // 골드 컬러, 원하시는 색으로 변경 가능
+            fill="#F2F8E2"  // 골드 컬러, 원하시는 색으로 변경 가능
           >
             <path d="M12 2 L19 7 L19 17 L12 22 L5 17 L5 7 Z" />
           </svg>
@@ -636,7 +636,30 @@ export default function QuantTradingPage() {
         </button>
       </div>
 
-
+      {/* ─── 2) PARTNERS ICON BAR ─────────────────────────── */}
+      <div className="partners-section">
+        <h3 className="partners-title">{t('quantTrading.partnersTitle')}</h3>
+        <div className="partners-icons">
+          {[
+            '/icons/binance.png',
+            '/icons/coinbase.png',
+            '/icons/kraken.png',
+            '/icons/kucoin.png',
+            '/icons/gate.png',
+            '/icons/bitfinex.png',
+            '/icons/huobi.png',
+            '/icons/gemini.png',
+            '/icons/mexc.png'
+          ].map((src, i) => (
+            <img
+              key={i}
+              src={src}
+              alt={`Partner ${i}`}
+              className="partner-icon"
+            />
+          ))}
+        </div>
+      </div>
 
       {/* ─── 1) LEADERBOARD ─────────────────────────── */}
       <div className="leaderboard-container">
@@ -662,30 +685,7 @@ export default function QuantTradingPage() {
         </table>
       </div>
 
-      {/* ─── 2) PARTNERS ICON BAR ─────────────────────────── */}
-      <div className="partners-section">
-        <h3 className="partners-title">{t('quantTrading.partnersTitle')}</h3>
-        <div className="partners-icons">
-          {[
-            '/icons/binance.png',
-            '/icons/coinbase.png',
-            '/icons/kraken.png',
-            '/icons/kucoin.png',
-            '/icons/gate.png',
-            '/icons/bitfinex.png',
-            '/icons/huobi.png',
-            '/icons/gemini.png',
-            '/icons/mexc.png'
-          ].map((src, i) => (
-            <img
-              key={i}
-              src={src}
-              alt={`Partner ${i}`}
-              className="partner-icon"
-            />
-          ))}
-        </div>
-      </div>
+
 
 
 

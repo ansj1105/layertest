@@ -1,9 +1,9 @@
-
 /* ✅ 사이드바 오버레이 */
 .sidebar-overlay {
   position: fixed;
   inset: 0;
-  z-index: 9999; /* ✅ 최상위로 설정 */
+  z-index: 9999;
+  /* ✅ 최상위로 설정 */
   display: flex;
 }
 
@@ -16,14 +16,17 @@
 
 /* ✅ 사이드바 본체 */
 .sidebar-panel {
-  position: fixed; /* ✅ 화면 고정 */
+  position: fixed;
+  /* ✅ 화면 고정 */
   top: 0;
   left: 0;
   width: 32%;
-  height: 100vh; /* ✅ 전체 높이로 보이게 */
+  height: 100vh;
+  /* ✅ 전체 높이로 보이게 */
   padding: 14px;
-  background-color: #0e0e11;
-  z-index: 10000; /* ✅ overlay보다도 높게 */
+  background-color: #ffffff;
+  z-index: 10000;
+  /* ✅ overlay보다도 높게 */
   overflow-y: auto;
 }
 
@@ -32,13 +35,14 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  color: #facc15; /* text-yellow-300 */
+  color: #000000;
+  /* text-yellow-300 */
   cursor: pointer;
   z-index: 10000
 }
 
 .sidebar-close-btn:hover {
-  color: #ffffff;
+  color: #000000;
 }
 
 /* ✅ 프로필 영역 */
@@ -53,7 +57,8 @@
 .sidebar-avatar {
   width: 48px;
   height: 48px;
-  background-color: #65c1d3; /* bg-yellow-600 */
+  background-color: rgb(0 136 73);
+  /* bg-yellow-600 */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -65,7 +70,8 @@
 
 .sidebar-username {
   font-weight: 600;
-  color: #ffffff;
+  color: rgb(0 136 73);
+  background-color: #ffffff;
 }
 
 .sidebar-id {
@@ -73,21 +79,26 @@
   align-items: center;
   gap: 4px;
   font-size: 12px;
-  color: #facc15;
+  color: #000000;
+  background-color: #ffffff;
 }
 
 .sidebar-id svg {
   display: flex;
   align-items: center;
-  justify-content: flex-end; /* ✅ 오른쪽 정렬 */
+  justify-content: flex-end;
+  /* ✅ 오른쪽 정렬 */
   gap: 4px;
   width: 28px;
   height: 28px;
-  color: #ffffff;
-  margin-left: auto; /* ✅ 남은 공간을 밀어 오른쪽 정렬 */
+  color: #000000;
+  margin-left: auto;
+  /* ✅ 남은 공간을 밀어 오른쪽 정렬 */
 }
 
-
+.sidebar-id svg:hover {
+  color: #000000;
+}
 
 .sidebar-copy-success {
   font-size: 12px;
@@ -100,6 +111,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 8px;
   margin-bottom: 16px;
+  background-color: rgb(255, 255, 255);
 }
 
 .sidebar-grid a {
@@ -107,8 +119,10 @@
   flex-direction: column;
   align-items: center;
   padding: 8px;
-  border-radius: 8px;
-  color: #fef9c3;
+  border-radius: 25px;
+  color: #ffffff;
+  background-color: rgb(0 67 24);
+  ;
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
@@ -121,7 +135,7 @@
 }
 
 .sidebar-grid a:hover {
-  background-color: #356f7a;
+  background-color: rgb(0 136 73);
 }
 
 /* ✅ 메뉴 리스트 */
@@ -131,13 +145,13 @@
   align-items: center;
   padding: 8px;
   border-radius: 8px;
-  color: #fef9c3;
+  color: rgb(0 67 24);
   text-decoration: none;
   transition: background-color 0.3s ease;
 }
 
 .sidebar-menu-item:hover {
-  background-color: #356f7a;
+  background-color: #BEF542;
 }
 
 /* ✅ 로그아웃 버튼 */
@@ -163,9 +177,12 @@
 
 
 .custom-hr {
-  border: none;                /* 기본 선 제거 */
-  border-top: 2px solid #65c1d3; /* 원하는 색상과 두께 설정 (yellow-700) */
-  margin-bottom: 10px;         /* mb-4 (Tailwind 기준 1rem) */
+  border: none;
+  /* 기본 선 제거 */
+  border-top: 2px solid #F2F8E2;
+  /* 원하는 색상과 두께 설정 (yellow-700) */
+  margin-bottom: 10px;
+  /* mb-4 (Tailwind 기준 1rem) */
   width: 100%;
 }
 
@@ -177,13 +194,18 @@
   .sidebar-panel {
     width: 75%;
     padding: 14px;
-    z-index: 1001; /* ✅ 상단바보다 높은 값으로 설정 */
-    position: fixed; /* ✅ 위치 고정 */
+    z-index: 1001;
+    /* ✅ 상단바보다 높은 값으로 설정 */
+    position: fixed;
+    /* ✅ 위치 고정 */
     top: 0;
     left: 0;
-    height: 100vh; /* ✅ 전체 높이로 설정 */
-    background-color: #0e0e11; /* 배경색 유지 */
-    overflow-y: auto; /* 스크롤 가능 */
+    height: 100vh;
+    /* ✅ 전체 높이로 설정 */
+    background-color: #0e0e11;
+    /* 배경색 유지 */
+    overflow-y: auto;
+    /* 스크롤 가능 */
   }
 
   .sidebar-avatar {
@@ -222,7 +244,7 @@
     font-size: 10px;
   }
 
-  .sidebar-grid a span{
+  .sidebar-grid a span {
     font-size: 14px;
   }
 
@@ -230,7 +252,7 @@
     width: 32px;
     height: 32px;
     margin-bottom: 15px;
-    
+
   }
 
   .sidebar-menu-item {

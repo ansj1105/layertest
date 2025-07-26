@@ -100,6 +100,58 @@ export default function MainLanding({ user }) {
                         <ContentList />
                     </div>
 
+
+
+                    {/* ✅ USC 토큰 메뉴 */}
+
+
+
+
+
+                    {/* ✅ 중간 흰색 공간 추가 */}
+                    <div className="h-3 bg-white" />
+
+
+                    {/* 액션 버튼들 */}
+                    <div className="v-main-card-two">
+                        <div className="v-main-card-two-list">
+                            <div onClick={() => navigate('/agent')} className="v-main-card-two-item">
+                                <img src="/img/item/Agent.png" alt="Agent" className="h-8 w-8" />
+                                <span className="text-sm text-white font-bold">
+                                    {t('token.agent')}
+                                </span>
+                            </div>
+
+                            <div onClick={() => navigate('/invite')} className="v-main-card-two-item">
+                                <img src="/img/item/Invite.png" alt="Invite" className="h-8 w-8" />
+                                <span className="text-sm text-white font-bold">
+                                    {t('token.invite')}
+                                </span>
+                            </div>
+
+                            <div onClick={() => navigate('/recharge')} className="v-main-card-two-item">
+                                <img src="/img/item/Recharge.png" alt="Recharge" className="h-8 w-8" />
+                                <span className="text-sm text-white font-bold">
+                                    {t('token.recharge')}
+                                </span>
+                            </div>
+
+                            <div onClick={() => navigate('/withdraw')} className="v-main-card-two-item">
+                                <img src="/img/item/Withdraw.png" alt="Withdraw" className="h-8 w-8" />
+                                <span className="text-sm text-white font-bold">
+                                    {t('token.withdraw')}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* ✅ 기존 Tailwind → CSS class 적용 */}
+                    <div className="v-token" onClick={() => navigate('/token')}>
+                        <img src="/img/item/usc.png" alt="USC token" />
+                        <span className="v-token-text">{t('token.header')}</span>
+
+                    </div>
+
                     <div className="flex justify-between items-center px-6 py-2 bg-white">
 
                         {/* 알림 버튼 */}
@@ -108,8 +160,8 @@ export default function MainLanding({ user }) {
                             className="relative"  // remove flex/text-sm here
                         >
                             {/* 둥근 배경 안에 벨 아이콘 */}
-                            <div className="bg-[#1F6D79] rounded-full p-2">
-                                <Bell size={24} className="text-white" />
+                            <div className="bell-wrapper">
+                                <Bell size={24} className="bell-icon" />
                             </div>
                             {/* 뱃지 */}
                             {unreadCount > 0 && (
@@ -125,58 +177,6 @@ export default function MainLanding({ user }) {
                             </span>
                         </Link>
                     </div>
-
-                    {/* ✅ USC 토큰 메뉴 */}
-
-
-                    {/* ✅ 기존 Tailwind → CSS class 적용 */}
-                    <div className="v-token" onClick={() => navigate('/token')}>
-                        <img src="/img/item/usc.png" alt="USC token" />
-                        <span className="v-token-text">{t('token.header')}</span>
-
-                    </div>
-
-
-                    {/* ✅ 중간 흰색 공간 추가 */}
-                    <div className="h-3 bg-white" />
-
-
-                    {/* 액션 버튼들 */}
-                    <div className="v-main-card-two">
-                        <div className="v-main-card-two-list">
-
-                            <div onClick={() => navigate('/recharge')} className="v-main-card-two-item">
-                                <img src="/img/item/Recharge.png" alt="Recharge" className="h-8 w-8" />
-                                <span className="text-sm text-white font-bold">
-                                    {t('token.recharge')}
-                                </span>
-                            </div>
-
-                            <div onClick={() => navigate('/withdraw')} className="v-main-card-two-item">
-                                <img src="/img/item/Withdraw.png" alt="Withdraw" className="h-8 w-8" />
-                                <span className="text-sm text-white font-bold">
-                                    {t('token.withdraw')}
-                                </span>
-                            </div>
-
-                            <div onClick={() => navigate('/agent')} className="v-main-card-two-item">
-                                <img src="/img/item/Agent.png" alt="Agent" className="h-8 w-8" />
-                                <span className="text-sm text-white font-bold">
-                                    {t('token.agent')}
-                                </span>
-                            </div>
-
-                            <div onClick={() => navigate('/invite')} className="v-main-card-two-item">
-                                <img src="/img/item/Invite.png" alt="Invite" className="h-8 w-8" />
-                                <span className="text-sm text-white font-bold">
-                                    {t('token.invite')}
-                                </span>
-                            </div>
-
-                        </div>
-                    </div>
-
-
 
                     <div className='pb-14'>
                         <CoinList />

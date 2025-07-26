@@ -5,7 +5,7 @@
   margin: 0 auto;
   height: 100%;
   flex-direction: column;
-  background-color: #0e0e11;
+  background-color: #ffffff;
   overflow: auto;
   /* 스크롤 활성화 */
   max-width: 100%;
@@ -39,13 +39,13 @@
 /* 전체 카드 컨테이너 */
 .funding-card {
   width: 97%;
-  background: #152221;
-  border-radius: 8px;
+  background: #001006;
+  border-radius: 15px;
   padding: 16px;
   margin-bottom: 24px;
   color: #ffffff;
   margin: 8px auto;
-  padding: 13px;
+  padding: 15px;
   box-shadow: 0 0 4px 2px #b8dfd9;
   flex-direction: row;
   /* ✅ 가로 배열 */
@@ -93,7 +93,7 @@
 /* 상세보기 버튼 */
 .funding-detail-btn {
   padding: 6px 12px;
-  border: 1px solid #666666;
+  border: 1px solid #ffffff;
   border-radius: 6px;
   background: none;
   color: #ffffff;
@@ -128,17 +128,19 @@
   align-items: center;
   justify-content: center;
   padding: 5px;
-  background: rgb(55, 119, 115);
-  border-radius: 3px;
-  color: #ffffff;
+  background: #BEF542;
+  border-radius: 25px;
+  font-weight: bold;
+  color: rgb(0 67 24);
   transition: all 0.4s ease;
   /* 부드럽게 전환 */
-  box-shadow: 0 0 2px 2px #b8dfd9 !important;
+  box-shadow: 0 0 1px 1px #001006 !important;
 }
 
 .funding-action-btn:hover {
-  background-color: #152221;
-  color: #ffffff;
+  background-color: #001006;
+  color: rgb(0 67 24);
+  box-shadow: 0 0 3px 3px rgb(0 67 24) !important;
 }
 
 
@@ -191,9 +193,10 @@
   align-items: center;
   justify-content: center;
   padding: 5px;
-  color: white;
-  background: #206D7F;
-  border-radius: 13px;
+  color: rgb(0 67 24);
+  background: #BEF542;
+  font-weight: bold;
+  border-radius: 25px;
   cursor: pointer;
   gap: 12px;
   font-size: 18px;
@@ -206,16 +209,16 @@
   /* ✅ 모두 대문자로 (옵션) */
   transition: all 0.4s ease;
   /* 부드럽게 전환 */
-  border: 0.1px solid #1ad3b7 !important;
-  box-shadow: 0 0 1px 1px #b8dfd9 !important;
+  border: 0.1px solid #001006 !important;
+  box-shadow: 0 0 1px 1px #001006 !important;
   transition: background-color 0.3s ease;
 }
 
 .funding-income-button:hover {
-  background: #26ffe61f;
+  background: #001006;
   /* 어두운 청색 톤 */
-  border-color: #26ffe6;
-  box-shadow: 0 0 16px 6px #81f5e9;
+  border-color: 0.1px solid rgb(0 67 24) !important;
+  box-shadow: 0 0 3px 3px rgb(0 67 24) !important;
 }
 
 
@@ -247,20 +250,20 @@
   font-weight: bold;
   margin-bottom: 12px;
   margin-top: -6px;
-  color: #ffffff;
+  color: rgb(0 136 73) !important;
   margin-left: 14px;
 }
 
 /* 프로젝트 카드 */
 .project-card {
-  background: #0e0e11;
+  background: #F2F8E2;
   border-radius: 8px;
   padding: 20px;
   margin-bottom: 16px;
 
-  color: #ffffff;
+  color: rgb(0 136 73);
   width: 100%;
-  box-shadow: 0 0px 12px rgba(202, 234, 255, 0.945);
+  box-shadow: 0 0px 8px 2px rgba(166, 223, 190, 0.541) !important;
 }
 
 /* 프로젝트 이름 */
@@ -273,17 +276,18 @@
 /* 프로젝트 설명 텍스트 */
 .project-description {
   font-size: 15px;
-  color: #fef9c3;
+  color: rgb(0 67 24);
   margin-bottom: 4px;
+  font-weight: bold;
 }
 
 /* 프로젝트 버튼 */
 .project-apply-btn {
   width: 100%;
-  background: #206D7F;
+  background: rgb(0 136 73);
   color: #ffffff;
   padding: 10px 0;
-  border-radius: 8px;
+  border-radius: 30px;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -292,8 +296,10 @@
 }
 
 .project-apply-btn:hover {
-  background: #26ffe61f;
+  background: #F2F8E2;
   transform: scale(1.02);
+  color: rgb(0 136 73);
+  box-shadow: 0 0 3px 3px rgb(0 136 73) !important;
 
 }
 
@@ -315,7 +321,7 @@
 /* 빈 목록 안내 텍스트 */
 .funding-empty-message {
   text-align: center;
-  color: #888888;
+  color: #727272;
   padding: 16px 0;
   font-size: 14px;
 }
@@ -905,6 +911,7 @@
     width: 95%;
     padding: 12px;
     margin: 8px auto;
+    font-weight: bold;
   }
 
   .funding-expired-card {

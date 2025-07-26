@@ -1,8 +1,8 @@
 {
   "notification": {
     "title": "Systembenachrichtigung",
-    "subtitle": "Upstart offizielle Anleitung",
-    "official": "\nWachstum und Gelegenheiten zentrieren, neue individuelle Arbeitsstätte eröffnet!\n\nJetzt ist Upstart-Plattform durch intelligente KI-basierte Gewinnsysteme noch präziser und zuverlässiger. \n\nDieses Programm ist jedem offen, der an der Gewinnstruktur teilnimmt und aktiv handelt.\n\nDieser Weg ist nicht nur eine Belohnung, sondern eine Gelegenheit für das Wachstum.\nUpstart ist Ihr stärkster Partner, um Ihre Grenzen zu überschreiten und Ihre zukünftige Zukunft zu gestalten.\n\nJetzt teilnehmen und mit uns zusammen den zukünftigen globalen Finanzökosystem aufbauen.\n\nWir freuen uns auf Ihre Herausforderung."
+    "subtitle": "Offizielle DAVE-Mitteilung",
+    "official": "\n'Einladung in das automatisierte Einkommensökosystem mit KI'\n\n1. Eröffnung des Quant-Algorithmus-Zentrums\nDave hat ein optimiertes Vermögensverwaltungssystem eingerichtet, das auf einer fortschrittlichen KI-basierten Quant-Engine basiert, um individuelle Einkommenschancen zu analysieren und automatisch umzusetzen. Basierend auf Echtzeit-Marktdaten wird das Risiko-Rendite-Verhältnis angepasst, um nachhaltige und stabile Renditen zu erzielen.\n\n2. Partizipatives Algorithmus-Strategieprogramm\nDieses Programm ist so konzipiert, dass jeder teilnehmen kann. Ein Strategie-Matching-Algorithmus bietet automatisch optimierte Handelspläne, die auf den eigenen Investitionsstil, die Risikopräferenz und das Vermögensvolumen zugeschnitten sind. Vom Anfänger bis zum Experten kann jeder professionelle Quant-Strategien nutzen, um ein diversifiziertes Einkommensmodell auf dem globalen Markt aufzubauen.\n\n3. Automatisierter Handel jenseits passiver Investitionen\nDaves Ziel ist es, die Einstiegshürden für datenbasierten, automatisierten Handel zu senken – nicht nur einfache Gewinne. Durch die integrierte Analyse von On-Chain- und Off-Chain-Daten werden optimale Kauf-/Verkaufszeitpunkte ermittelt und Funktionen wie Arbitrage auf Basis von Preisdifferenzen sowie frühzeitige Risikovermeidung vor Eintritt in Risikozonen bereitgestellt, um die Entscheidungsfindung der Nutzer zu minimieren und Risiken zu steuern.\n\n4. Das Herzstück des Dave-Quant-Ökosystems – der USC-Token\nUSC ist die zentrale Währung des Dave-Quant-Ökosystems und wird für Strategieausführung, Gewinnverteilung, Zugang zu Premium-Funktionen und DAO-Governance auf der Plattform verwendet. Die auf USC basierende Token-Ökonomie schafft durch Belohnungsverteilung nach Beiträgen zu kostenpflichtigen Algorithmus-Strategien und ein tokenbasiertes Rankingsystem Vertrauen und Motivation unter den Mitgliedern.\n\n5. Gestalten Sie mit Dave die Zukunft des Quant-Finanzwesens\nDave strebt über bloße Gewinne hinaus eine Plattform an, die durch Demokratisierung von Finanzdaten und Automatisierung von Strategien jedem einen fairen Wettbewerb am Markt ermöglicht. Algorithmusbasierte Strategieautomatisierung, transparente Gewinnverteilung durch Smart Contracts, Echtzeit-Backtesting und Strategie-Check-Tools sowie ein Community-basiertes Strategieranking-System – erleben Sie jetzt mit Dave ein neues Paradigma quantitativer Finanzgewinne.\n\nTreten Sie jetzt dem Dave-Ökosystem bei und werden Sie Teil des blockchainbasierten automatischen Einkommenssystems.\n"
   },
   "order_history": {
     "title": "Meine Bestellungen und Auszahlungen",
@@ -476,13 +476,15 @@
     }
   },
   "info": {
-    "title": "Was sind Finanzprodukte?",
-    "definition": "Die Finanzprodukte von Upstart sind intelligente Ertragswerkzeuge, die entwickelt wurden, um Nutzern zu helfen, digitale Vermögenswerte effizienter zu verwalten.\n\nDiese Produkte basieren auf einer mit Upstart kooperierenden Finanzinfrastruktur und Smart Contracts, wodurch Nutzer Vermögenswerte für einen festgelegten Zeitraum einzahlen können, um Zinsen oder Punktprämien zu erhalten.",
-    "settlement": "Durch den Einsatz von Blockchain-Technologie sind diese Produkte darauf ausgelegt, den Fluss und die Rendite der eingezahlten Vermögenswerte transparent zu verfolgen. Prämien werden automatisch ausgeschüttet, sobald bestimmte Bedingungen erfüllt sind. Nutzer können ihre Erträge in Echtzeit entsprechend der Performance ihrer Einlagen einsehen und erhalten die Prämien am Ende der Vertragslaufzeit.\n\nGewinn- und Verlustabrechnung\nBasierend auf dem Datum des erfolgreichen Abonnements (T-Tag):\nDie Verzinsung beginnt ab 00:00 Uhr am Tag T+1,\nund die Abrechnung wird am folgenden Tag um 00:00 Uhr reflektiert.",
-    "tradingTitle": "Handelserklärung [Kaufregeln]",
-    "trade1": "1. Sie können direkt mit Vermögenswerten aus Ihrem Quant-Wallet oder Profit-Wallet an Finanzprodukten teilnehmen. (Es gilt die gleiche Auszahlungsgebühr.)",
-    "trade2": "2. Die Renditen der Finanzprodukte werden als variable, nicht feste Sätze bereitgestellt. Die tägliche Ertragsberechnung beginnt zwei Werktage nach dem Abonnementdatum. Bei einer Auszahlung innerhalb von drei Tagen nach Vertragsabschluss fällt eine Verwaltungsgebühr von 1 % an.",
-    "trade3": "3. Sowohl das Kapital als auch die Erträge werden am Ende der Laufzeit abgerechnet, ohne automatische Reinvestition. Eine vorzeitige Kündigung oder Auszahlung ist nicht möglich."
+    "title": "Dave Finanzprodukt Übersicht",
+    "definition": "1. Definition und Funktion\n\nDas **Finanzprodukt** von Dave ist ein KI-basiertes Ertragsoptimierungs-Tool, das entwickelt wurde, um Nutzern zu ermöglichen, digitale Vermögenswerte systematischer und effizienter zu verwalten. Dieses Produkt wird über das geprüfte Finanzpartnernetzwerk von Dave und ein automatisiertes System auf Basis von Smart Contracts betrieben. Nutzer können Zinsen oder Punktprämien durch die Einlage ihrer Vermögenswerte erwarten.\n",
+    "settlement": "2. Transparenzorientiertes Design\n\nBetrieb auf Blockchain-Wallet-Basis: Alle Einlagen- und Ertragsaktivitäten werden auf einer öffentlichen Blockchain aufgezeichnet, sodass Nutzer den Geldfluss jederzeit in Echtzeit einsehen können. Automatische Belohnungsverteilung: Sobald vordefinierte Bedingungen erfüllt sind, verteilt der Smart Contract sofort Erträge und Kapital.\n\n",
+    "tradingTitle": "3. Abrechnungsgrundlage für Gewinne und Verluste",
+    "trade1": "Basierend auf dem **Tag des erfolgreichen Abonnements (T-Day)**:\nAb T+1, 00:00 Uhr, werden die Erträge generiert und ab dann täglich um 00:00 Uhr automatisch kumuliert und angezeigt.\n",
+    "trade2": "📌 Teilnahme\nNutzer können mit Vermögenswerten aus ihrer Dave-Wallet oder Funding-Wallet in dieses Finanzprodukt investieren. Die Investition erfolgt über eine verknüpfte Auszahlung zwischen den Wallets, es fallen keine zusätzlichen Auszahlungsgebühren an.\n\n📌 Ertragsstruktur\nVariable Rendite (APY): Der Zinssatz wird je nach Marktlage regelmäßig angepasst. Beginn der Ertragsauszahlung: Die Zinszahlung startet einen Werktag nach dem Abonnement.\n",
+    "trade3": "📌 Kapitalrückzahlung und Kapitalerhalt\nAutomatische Abrechnung bei Fälligkeit: Nach Vertragsende werden Kapital und Ertrag in einer Summe auf das Konto ausgezahlt. Vorzeitige Kündigung: Während der Vertragslaufzeit ist eine vorzeitige Rückzahlung oder Kündigung nicht möglich.",
+    "tradingTitle2": "5. Wert des Dave Finanzprodukts",
+    "trade4": "Transparenzgarantie: Durch Blockchain-basierte Nachverfolgung ist der Geldfluss vollständig offen und überprüfbar.\n\nErhöhte Sicherheit: Die Integrität der Kapital- und Ertragsverteilung wird durch Smart Contracts und Partnerbanken gewährleistet.\n\nBenutzerzentriertes Design: Dank einer für UI/UX optimierten Automatisierung können auch komplexe Finanzprodukte einfach genutzt werden.\n\nErtragsoptimierungsstrategie: Interne Quant-Algorithmen und Marktdaten werden genutzt, um maximale Erträge dynamisch zu erzielen."
   },
   "header": "Finanzmanagement",
   "loading": "Laden…",
@@ -541,40 +543,58 @@
   },
   "agencyCooperation": {
     "back": "Zurück",
-    "title": "Agenten-Partner",
-    "subTitle": "Netzwerk-Belohnungen für Agenten",
+    "title": "Agenten-Partnerschaft",
+    "subTitle": "Überblick",
     "lines": [
-      "Das Agentenprogramm von Upstart ist ein System für Partner, die zur globalen Expansion der Plattform und zur Vertrauensbildung in Finanzprodukte beitragen.",
-      "Partner, die neue Nutzer gewinnen und den Handel auf der Plattform fördern, erhalten von Upstart regelmäßige Gewinnbeteiligungen als Provision.",
+      "Dave ist eine benutzerorientierte Fintech-Plattform mit Sitz in Amerika, die das Agent Partner Program zur Erweiterung des Partner-Ökosystems anbietet.",
+      "Dies ist mehr als nur ein Empfehlungsprogramm – es handelt sich um eine professionelle Partnerschaft mit nachhaltiger Einkommensstruktur und transparentem Vergütungssystem. Dave-Partner sind nicht nur Vermittler, sondern strategische Partner, die für ihre Vertrauenswürdigkeit und ihren Beitrag zur Liquidität der Plattform tatsächlich belohnt werden.",
       "",
       "3-stufige Provisionsstruktur",
-      "Upstart bietet für maximale Transparenz ein dreistufiges Provisionssystem:",
+      "Dave bietet ein dreistufiges Provisionssystem, das auf messbaren Beiträgen basiert.",
       "",
-      "Stufe 1 (direkt geworbene Mitglieder): 20 % Provision auf den Tagesgewinn des jeweiligen Mitglieds",
-      "Stufe 2 (von Stufe-1-Mitgliedern geworbene Nutzer): 8 % Provision auf deren Gewinn",
-      "Stufe 3 (von Stufe-2-Mitgliedern geworbene Nutzer): 4 % Provision auf deren Gewinn",
+      "Stufe 1 (direkt geworbene Mitglieder): 18 % Provision auf den Tagesgewinn des jeweiligen Mitglieds",
+      "Stufe 2 (von Stufe-1-Mitgliedern geworbene Nutzer): 7 % Provision auf deren Gewinn",
+      "Stufe 3 (von Stufe-2-Mitgliedern geworbene Nutzer): 3 % Provision auf deren Gewinn",
       "",
-      "※ Alle Provisionen werden auf Basis tatsächlich erzielter Gewinne berechnet. Falsche Einladungen oder unregelmäßige Aktivitäten sind ausgeschlossen.",
+      "※ Die Gewinne werden in Echtzeit automatisch berechnet und täglich oder wöchentlich abgerechnet.",
+      "※ Falsche Anmeldungen, automatisierter Traffic und Nutzer, die gegen die Regeln verstoßen, sind von der Provision ausgeschlossen.",
+      "※ Bei Verstößen gegen AML- und KYC-Richtlinien können Konten gesperrt und Gewinne eingefroren werden.",
       "",
-      "Beispiel-Szenario",
-      "Wenn A, B und C jeweils Ihre Partner der Stufen 1, 2 und 3 sind und jeder $100 Tagesgewinn erzielt:",
-      "- Gewinn von A: $100 × 20 % = $20",
-      "- Gewinn von B: $100 × 8 % = $8",
-      "- Gewinn von C: $100 × 4 % = $4",
-      "⇒ Ihre gesamte Tagesprovision: $32",
+      "Abrechnungssimulation",
+      "Wenn A, B und C jeweils Partner der Stufen 1, 2 und 3 sind und jeder $100 pro Tag verdient:",
+      "- Gewinn von A: $100 × 18 % = $18",
+      "- Gewinn von B: $100 × 7 % = $7",
+      "- Gewinn von C: $100 × 3 % = $3",
+      "⇒ Ihre tägliche Gesamtprovision: $28",
       "",
-      "Beispiel für Team-Provisionsabrechnung",
+      "Beispiel für ein erweitertes Netzwerk",
       "Wenn alle Unterkonten jeweils $100 pro Tag verdienen und die Anzahl der aktiven Mitglieder wie folgt ist:",
-      "- Stufe 1: 10 Personen → $100 × 20 % × 10 = $200",
-      "- Stufe 2: 100 Personen → $100 × 8 % × 100 = $800",
-      "- Stufe 3: 1.000 Personen → $100 × 4 % × 1.000 = $4.000",
-      "⇒ Erwartete gesamte Tagesprovision: $5.000"
+      "- Stufe 1: 10 Personen → $100 × 18 % × 10 = $180",
+      "- Stufe 2: 100 Personen → $100 × 7 % × 100 = $700",
+      "- Stufe 3: 1000 Personen → $100 × 3 % × 1000 = $3000",
+      "⇒ Geschätzte tägliche Gesamtprovision: $3.880",
+      "Wert der Dave-Partnerschaft",
+      "Dave bietet mehr als nur Provisionen.",
+      "✔️ Nachhaltige Einkommensstruktur",
+      "Provisionsabrechnung auf Basis des tatsächlichen Nutzergewinns",
+      "Ehrliches Einkommensmodell ohne Übertreibung",
+      "Beitragsmessung auf Zahlenbasis",
+      "",
+      "✔️ Transparentes Partnerschaftssystem",
+      "Automatisierte Abrechnung durch das System",
+      "Echtzeit-Einsicht in Provisionshistorie",
+      "API-basierte Gewinnprognose vor Vertragsabschluss",
+      "",
+      "✔️ Markterweiterungsstrategie",
+      "Erweiterung von den USA auf den globalen Markt möglich",
+      "Agentennetzwerk auf lokaler Community-Basis",
+      "Vertrauen in die Marke Dave und technologische Infrastruktur"
     ]
   },
   "companyIntro": {
     "back": "Zurück",
     "title": "Unternehmensvorstellung",
-    "featuresTitle": "Hauptmerkmale",
+    "featuresTitle": "Kerntechnologien",
     "items": [
       "Quantitativer Handel",
       "Finanzierungsprojekte",
@@ -584,86 +604,86 @@
     "details": {
       "quantitative": {
         "title": "Quantitativer Handel",
-        "description": "Upstart generiert stabile Gewinne durch ein quantitatives Analysesystem basierend auf künstlicher Intelligenz (KI) und Algorithmen, die Marktineffizienzen erkennen und ultra-kurz- und mittelfristige Handelsstrategien umsetzen.",
+        "description": "Dave erkennt mit dem auf CashAI™ basierenden automatischen Analysemodell und dem Algorithmus-Trading-System Ineffizienzen auf den Finanzmärkten präzise und erzielt durch Ausführung von Hochfrequenz- (HFT) und mittel- bis kurzfristigen Strategien stabile Gewinne.\n**CashAI™** analysiert über 180 Datenpunkte wie Cashflow, Ausgabeverhalten, Position und Einkommen der Nutzer und prognostiziert in Echtzeit Kredit- und Liquiditätschancen.",
         "features": [
-          "Automatisierte Gewinnstruktur durch Nutzung von Marktineffizienzen",
-          "Hochfrequenzhandel (HFT) und algorithmisches Portfoliomanagement nach Strategie",
-          "Risikosteuerungsbasierte Vermögensdiversifizierung und Szenario-Antwortsystem",
-          "Automatisierte Börsenübergreifende Arbitrage"
+          "KI-Analyse basierend auf globalen Handelsdaten",
+          "Automatisierte Ausführung von Arbitrage zwischen Börsen und Märkten",
+          "Risikokontrolle auf Basis von Strategieportfolios → Diversifiziertes Asset-Management",
+          "Automatisierter Optimierungsprozess (Echtzeit-Strategieanpassung)"
         ],
-        "conclusion": "Upstart geht über einfachen automatisierten Handel hinaus und implementiert 'intelligenten' quantitativen Handel basierend auf Marktdaten. Durch KI-basierte Analyse maximieren wir die Genauigkeit der Kursbewegungsvorhersage und optimieren Strategien in Echtzeit, um aktiv auf Marktbedingungen zu reagieren."
+        "conclusion": "Das System nutzt globale ATM- und Immobilienmarktdaten sowie interne Nutzerkaufmuster der App, um Algorithmen innerhalb von Sekunden automatisch entscheiden, Aufträge ausführen und Arbitragegewinne realisieren zu lassen."
       },
       "funding": {
-        "title": "Finanzierungsprojekte",
-        "description": "Eine innovative Finanzierungsplattform, die Blockchain-Technologie nutzt und eine transparente und sichere Umgebung bietet, die Investoren und Projekte verbindet.",
+        "title": "Intelligente Investmentprogramme",
+        "description": "Dave bietet eine Vielzahl von Investmentprodukten mit unterschiedlichen Laufzeiten, die auf Finanztechnologie und Nutzervertrauen basieren.",
         "features": [
-          "Smart Contract-basierter automatisierter Finanzierungsprozess",
-          "Transparentes Fondsmanagement und Echtzeitüberwachung",
-          "Verschiedene Investitionsmöglichkeiten und Risikodiversifizierung",
-          "Globale Investorennetzwerkverbindung"
+          "Tägliche Gewinnbeteiligung – Die erzielten Gewinne werden täglich automatisch an die Investoren verteilt. Die Gewinne können ausgezahlt oder für eine Verlängerung reinvestiert werden.",
+          "Lock-up-basierte Verwaltung – Das Kapital ist für die festgelegte Laufzeit des Produkts gebunden, nach Ablauf werden Kapital und Gewinn automatisch abgerechnet.",
+          "Stabile Rendite auf USDT-Basis – Fokus auf ein vorhersehbares Ertragsmodell statt Volatilität.",
+          "Unterstützung von Treuhandstrukturen – Sicherer Vermögensfluss und ein auf den Plattformgewinnen basierendes Verteilungssystem."
         ],
-        "conclusion": "Über traditionelle Finanzierungsbeschränkungen hinausgehend bauen wir ein neues Investitionsökosystem auf, das durch Blockchain-Technologie sowohl Transparenz als auch Effizienz gewährleistet."
+        "conclusion": "** Für VIP- oder institutionelle Investoren werden maßgeschneiderte Investmentprodukte und bevorzugte Renditen angeboten."
       },
       "blockchain": {
-        "title": "Blockchain-basiert",
-        "description": "Wir bieten dezentralisierte, sichere und transparente Finanzdienstleistungen unter Verwendung der neuesten Blockchain-Technologie.",
+        "title": "Blockchain-Basis",
+        "description": "Dave gestaltet die gesamte Plattform auf Basis von Blockchain und Smart Contracts.",
         "features": [
-          "Datenintegritätsgarantie basierend auf Distributed Ledger Technology (DLT)",
-          "Automatisierte Transaktionsausführung durch Smart Contracts",
-          "Cross-Chain-Kompatibilität mit Unterstützung verschiedener Blockchain-Netzwerke",
-          "Dezentralisierte Governance-Struktur"
+          "Investitionshistorie, Dividendenvorgänge und Vermögensflüsse werden vollständig on-chain aufgezeichnet und sind öffentlich überprüfbar.",
+          "Automatisierte Gewinnverteilung, Vertragserfüllung und Einhaltung von Bedingungen werden alle durch Smart Contracts ausgeführt.",
+          "Ziel ist es, die Intransparenz zentralisierter Finanzsysteme zu beseitigen und ein dezentrales Vertrauensökosystem zu schaffen."
         ],
-        "conclusion": "Wir bieten eine zukunftsorientierte Plattform durch perfekte Integration der Kernwerte der Blockchain - Transparenz, Sicherheit und Effizienz - in Finanzdienstleistungen."
+        "conclusion": "Die Kernwerte der Blockchain – Transparenz, Sicherheit und Effizienz – werden vollständig in die Finanzdienstleistungen integriert, um eine zukunftsorientierte Plattform zu bieten."
       },
       "security": {
-        "title": "Vollständige Sicherheit",
-        "description": "Wir schützen die Vermögenswerte und Informationen der Benutzer sicher durch Spitzensicherheitstechnologie und mehrschichtige Sicherheitssysteme.",
+        "title": "Umfassendes Sicherheitskonzept",
+        "description": "Dave stellt den Schutz der Vermögenswerte und Daten der Nutzer an oberste Stelle.",
         "features": [
-          "Multi-Signatur-Wallet-System",
-          "Cold Storage-basierte Vermögensverwahrung",
-          "Echtzeit-Sicherheitsüberwachung und Bedrohungserkennung",
-          "Regelmäßige Sicherheitsaudits und Schwachstellenprüfungen"
+          "Mehrschichtige Sicherheitsarchitektur für alle Funktionen wie CashAI™, ExtraCash™ und Checking/Goals-Konten.",
+          "Zweistufige Authentifizierung (2FA), biometrische Verifizierung und Einschränkung von Wallet-Adressänderungen.",
+          "DDoS-Abwehr und Echtzeitüberwachung verdächtiger Transaktionen.",
+          "Nutzervermögen werden in Multi-Signature-Cold-Wallets dezentral gespeichert.",
+          "Einlagenkonten sind durch die FDIC-Versicherung über die Evolve Bank & Trust (USA) abgesichert."
         ],
-        "conclusion": "Durch Priorisierung der Sicherheit, dem Kern von Finanzdienstleistungen, bieten wir eine Umgebung, in der Benutzer den Service mit Seelenruhe nutzen können."
+        "conclusion": "Sicherheit steht an erster Stelle, damit Nutzer die Dienste von Dave sorgenfrei nutzen können."
       }
     }
   },
   "quantTutorial": {
-    "title": "Handelsleitfaden",
-    "description": "Systemübersicht\n\nUpstart bietet ein automatisiertes quantitatives Arbitragesystem, das modernste KI-basierte Analysetechnologie mit automatisierten Handelsalgorithmen kombiniert, um Preisineffizienzen auf dem digitalen Vermögensmarkt auszunutzen.\n\nDieses System erkennt automatisch Preisunterschiede zwischen wichtigen digitalen Vermögenswerten wie USDT, BTC und ETH auf globalen Börsen und löst in Echtzeit Kauf- und Verkaufssignale aus, um stabile Gewinne zu erzielen.",
+    "title": "DAVE Arbitrage-System",
+    "description": "1. Systemübersicht\n\nDAVE nutzt eine Echtzeit-AI-Analyse-Engine und strategie-basierte automatische Handelsalgorithmen, um Preisungleichgewichte (Spreads) auf dem Kryptowährungsmarkt auszunutzen. Preisunterschiede zwischen globalen Börsen für wichtige Vermögenswerte (USDT, BTC, ETH usw.) werden quantitativ analysiert und erkannt. Das System entscheidet automatisch über Kauf- und Verkaufszeitpunkte, um stabile und effiziente Gewinne zu erzielen.\n\n2. VIP-Stufenstruktur\n\nDas präzise Arbitrage-System von DAVE ist je nach Investitionsvolumen und Netzwerkbeitrag in VIP-Stufen unterteilt. Jede Stufe bietet eine bestimmte Anzahl an erlaubten automatischen Trades.",
     "sections": {
-      "overview": "Prinzip des Smart-Arbitrage-Systems",
-      "principle": "Prinzip des Smart-Arbitrage-Systems",
-      "process": "Gewinnrealisierungsprozess",
-      "vipCriteria": "VIP-Aufstiegsbedingungen",
-      "dailyReturns": "VIP-Beispielrechnungen für tägliche Rendite",
+      "overview": "3. Funktionsweise des Systems",
+      "principle": "Funktionsprinzip des Smart-Arbitrage-Systems",
+      "process": "Prozess der Gewinnerzielung",
+      "vipCriteria": "Kriterien für VIP-Upgrades",
+      "dailyReturns": "Beispiel für tägliche VIP-Renditen",
       "caution": "Hinweise",
       "suitability": "Für wen ist dieses System geeignet?"
     },
     "method": {
-      "title": "Hinweise",
-      "title2": "Für wen ist dieses System geeignet?",
-      "description": "- Alle Renditen können je nach Marktbedingungen, Börsenliquidität und Systemstatus variieren.\n- Dieses System verwendet ausschließlich offiziell lizenzierte Börsen-APIs und geprüfte Algorithmen.\n- Betrügerische Registrierungen, doppelte Konten und unregelmäßiger Handel werden sofort blockiert und Gewinne zurückgefordert.",
-      "description2": "- Smarte Investoren mit kurzfristigen Gewinnzielen\n- Einsteiger im Bereich digitale Vermögenswerte mit geringer Markterfahrung\n- Großinvestoren, die automatisierte Gewinnmodelle nutzen möchten"
+      "title": "Betriebs- und Risikohinweise",
+      "title2": "Wer sollte dieses System nutzen?",
+      "description": "- DAVE verwendet ausschließlich offizielle APIs und geprüfte Algorithmen.\n- Falsche/duplizierte Konten und unregelmäßige Transaktionen werden sofort vom System blockiert und Gewinne eingezogen.\n- Es bestehen gewisse technische und Marktrisiken, daher ist ein sorgfältiges Verständnis des automatischen Handels im Voraus erforderlich.",
+      "description2": "- Smarte Investoren, die auf quantitativen kurzfristigen Arbitragegewinn abzielen\n- Einsteiger im Bereich digitaler Vermögenswerte mit begrenzter Markterfahrung\n- Nutzer, die automatisierte Strategien für große Vermögenswerte umsetzen möchten\n- Einsteiger mit geringer Markterfahrung\n- Großinvestoren, die automatisierte Gewinnmodelle nutzen möchten"
     },
-    "overview": "- Marktüberwachung: KI überwacht automatisch Echtzeit-Preisdaten von großen globalen Börsen\n- Analyse von Preisunterschieden: Bei signifikanten Preisabweichungen desselben Vermögenswertes zwischen Börsen werden Kauf-/Verkaufssignale ausgelöst\n- Automatische Ausführung: Kauf- und Verkaufsgeschäfte werden gleichzeitig ausgeführt, und die Spanne (Gewinn) wird automatisch realisiert\n- Gewinnverteilung: 50 % des erzielten Gewinns wird als Plattformgebühr einbehalten, 50 % an den Investor zurückgegeben\n\nBeispiel: BTC bei OXX-Börse für 1000 USDT kaufen → bei CoinEase-Börse für 1050 USDT verkaufen → Von den 50 USDT Gesamtgewinn werden 25 USDT an den Nutzer ausgezahlt\n\nGewinnrealisierungsprozess\n\n1. Button klicken → automatischer Handel startet\n2. Algorithmus führt innerhalb von 1–3 Minuten den quantitativen Handel aus\n3. Automatischer Verkauf bei Höchstpreis → Gewinn wird generiert und verteilt\n4. Plattform bietet Echtzeit-Gewinnberichte",
+    "overview": "1) Marktüberwachung: Das System sammelt in Echtzeit Kursdaten globaler Börsen, die von der KI kontinuierlich überwacht werden\n2) Arbitrage-Erkennung: Überschreitet die Preisdifferenz zwischen bestimmten Vermögenswerten einen Schwellenwert, wird automatisch ein Kauf-/Verkaufssignal ausgelöst\n3) Automatische Ausführung: Gleichzeitige Ausführung von Kauf- und Verkaufsaufträgen zur Sicherung des Spreads\n4) Gewinnverteilung: 50 % des erzielten Gewinns gehen als Plattformgebühr, die restlichen 50 % werden automatisch an die Investoren ausgeschüttet\n\nLeitfaden: Ablauf der Gewinnerzielung\n\n1) Klick auf die Schaltfläche „Strategie ausführen“ → Automatischer Handel wird aktiviert\n2) Innerhalb von ca. 1–3 Minuten wird der vordefinierte Quant-Algorithmus ausgeführt\n3) Automatischer Verkauf abgeschlossen und Gewinn gesichert\n4) Über einen Echtzeitbericht kann der Betriebsstatus transparent eingesehen werden",
     "vipUpgradeCriteria": [
-      "VIP1: Erfordert ein Minimum von 35 USDT an Vermögenswerten.",
-      "VIP2: Erfordert mindestens 300 USDT + 2 aktive A-Stufen-Einladungen + 2 B-Stufen + 2 C-Stufen.",
-      "VIP3: Mindestens 1000 USDT + 5 aktive Einladungen pro A-, B- und C-Stufe.",
-      "VIP4: Mindestens 3000 USDT + 15 aktive Einladungen pro A-, B- und C-Stufe.",
-      "VIP5: Mindestens 5000 USDT + 30 aktive Einladungen pro A-, B- und C-Stufe.",
-      "VIP6: Mindestens 50000 USDT + 60 aktive Einladungen pro A-, B- und C-Stufe.",
+      "VIP1: Mindestens 35 USDT Vermögen erforderlich.",
+      "VIP2: Mindestens 250 USDT + Einladung von je 2 Nutzern der Stufen A, B und C.",
+      "VIP3: Mindestens 800 USDT + Einladung von je 4 Nutzern der Stufen A, B und C.",
+      "VIP4: Mindestens 2.500 USDT + Einladung von je 17 Nutzern der Stufen A, B und C.",
+      "VIP5: Mindestens 4.000 USDT + Einladung von je 28 Nutzern der Stufen A, B und C.",
+      "VIP6: Mindestens 45.000 USDT + Einladung von je 50 Nutzern der Stufen A, B und C.",
       "",
-      "※ Alle Bedingungen basieren auf aktiven Nutzern; betrügerische Konten sind ungültig."
+      "※ Alle Stufenvoraussetzungen gelten nur für aktive Nutzer mit echtem Handelsvolumen. Unregelmäßige Anmeldungen sind ausgeschlossen."
     ],
     "vipDaily": [
-      "VIP1: Bis zu 5 Trades pro Tag, Rendite 1,3 % ~ 1,6 %, basierend auf 500 USDT → 6,5 ~ 8 USDT/Tag",
-      "VIP2: Bis zu 6 Trades pro Tag, Rendite 1,8 % ~ 2,1 %, basierend auf 2000 USDT → 36 ~ 42 USDT/Tag",
-      "VIP3: Bis zu 7 Trades pro Tag, Rendite 2,2 % ~ 2,5 %, basierend auf 5000 USDT → 110 ~ 125 USDT/Tag",
-      "VIP4: Bis zu 8 Trades pro Tag, Rendite 2,8 % ~ 3,2 %, basierend auf 20000 USDT → 560 ~ 640 USDT/Tag",
-      "VIP5: Bis zu 9 Trades pro Tag, Rendite 3,3 % ~ 3,8 %, basierend auf 100000 USDT → 3300 ~ 3800 USDT/Tag",
-      "VIP6: Bis zu 10 Trades pro Tag, Rendite 4,5 % ~ 5,0 %, basierend auf 200000 USDT → 9000 ~ 10000 USDT/Tag"
+      "VIP1: Bis zu 6 Trades pro Tag, Rendite 1,6 % ~ 2,0 %, bei 500 USDT → 8 ~ 10 USDT/Tag",
+      "VIP2: Bis zu 7 Trades pro Tag, Rendite 2,1 % ~ 2,4 %, bei 2.000 USDT → 42 ~ 48 USDT/Tag",
+      "VIP3: Bis zu 8 Trades pro Tag, Rendite 2,5 % ~ 2,8 %, bei 5.000 USDT → 125 ~ 140 USDT/Tag",
+      "VIP4: Bis zu 9 Trades pro Tag, Rendite 3,1 % ~ 3,5 %, bei 20.000 USDT → 620 ~ 700 USDT/Tag",
+      "VIP5: Bis zu 10 Trades pro Tag, Rendite 3,8 % ~ 4,2 %, bei 100.000 USDT → 3.800 ~ 4.200 USDT/Tag",
+      "VIP6: Bis zu 11 Trades pro Tag, Rendite 4,3 % ~ 5,3 %, bei 200.000 USDT → 8.600 ~ 10.600 USDT/Tag"
     ]
   },
   "commonProblems": {
@@ -804,22 +824,22 @@
     "terms": {
       "title": "Nutzungsbedingungen",
       "general": {
-        "title": "1. Allgemeine Grundsätze\n\n",
-        "1_1": "1.1 Vertragsstruktur\nDiese Nutzungsbedingungen (im Folgenden „Vertrag“) regeln sämtliche Vereinbarungen, die bei der Nutzung der Website und der Dienste von Upstart (im Folgenden „Plattform“) durch den Nutzer gelten. Der Vertrag umfasst die Datenschutzrichtlinie, das KYC-Verfahren (Know Your Customer), die AML-Richtlinie (Anti-Geldwäsche), technische Nutzungsrichtlinien, Hinweise zur Plattformnutzung, Warnungen, Mitteilungen und sonstige Richtlinien. Diese können nach eigenem Ermessen von uns geändert oder ergänzt werden.\n\n",
-        "1_2": "1.2 Zustimmung und Verständnis des Vertrags\nDer Nutzer darf die Dienste nur in Anspruch nehmen, wenn er diesen Vertrag vollständig gelesen und akzeptiert hat. Wenn einzelne Inhalte unklar oder unverständlich sind, wird empfohlen, rechtlichen Rat einzuholen. Die Nutzung der Plattform gilt als Zustimmung zu allen Vertragsbedingungen.\n\n",
-        "1_3": "1.3 Registrierung und elektronische Signatur\nDie vom Nutzer während des Registrierungsprozesses bereitgestellten Informationen müssen der Wahrheit entsprechen. Durch das Klicken auf die Schaltfläche „Zustimmen“ oder eine ähnliche Kennzeichnung kommt eine elektronische Zustimmung zustande. Diese ist auch ohne handschriftliche Unterschrift rechtlich verbindlich.\n\n"
+        "title": "1. Grundprinzipien\n\n",
+        "1_1": "1.1 Vertragsstruktur\n\nDiese Nutzungsbedingungen (im Folgenden „Vertrag“) enthalten die grundlegenden Regeln und Richtlinien für die Nutzung der digitalen Finanzplattform von **Dave Inc.** (im Folgenden „Plattform“) durch den Nutzer. Dieser Vertrag umfasst die Datenschutzrichtlinie, Nutzerverifizierung (KYC), Richtlinien zur Geldwäscheprävention (AML), technische Nutzungsanweisungen, Sicherheitshinweise und Hinweise zur Nutzung des Dienstes. Der Vertrag kann nach Ermessen von Dave geändert werden.\n\n",
+        "1_2": "1.2 Zustimmung zu den Bedingungen\n\nMit der Nutzung der Plattform gilt der Nutzer als mit diesen Bedingungen und allen Richtlinien vollständig einverstanden. Wer den Bedingungen nicht zustimmt, muss die Nutzung des Dienstes einstellen. Bei Unklarheiten oder dem Wunsch nach weiteren Erklärungen steht Dave über den Kundendienst oder offizielle Kanäle zur Verfügung.\n\n",
+        "1_3": "1.3 Registrierung und Zustimmung\n\nDie bei der Registrierung angegebenen Informationen müssen korrekt und vom Nutzer selbst stammen. Das Klicken auf die Schaltfläche „Registrieren“ gilt als elektronische Unterschrift und ist rechtlich bindend.\n\n"
       },
       "use": {
-        "title": "2. Nutzung der Dienste\n\n",
-        "2_1": "2.1 Kontoerstellung und Verwaltung\nDer Nutzer darf nur ein einziges Konto erstellen. Für sämtliche Aktivitäten innerhalb des Kontos trägt der Nutzer die volle Verantwortung. Die Verwendung falscher Angaben, Identitätsdiebstahl oder automatisierte Anmeldeskripte sind untersagt.\n\n",
-        "2_2": "2.2 Verbotene Handlungen\nDem Nutzer ist Folgendes untersagt:\n  - Unbefugter Zugriff auf Systeme oder Netzwerke sowie Angriffe\n  - Unerlaubtes Sammeln von Kontoinformationen anderer Nutzer\n  - Täuschende oder illegale Vermögensübertragungen\n  - Jegliche Handlungen, die den ordnungsgemäßen Betrieb des Dienstes stören\n\n",
-        "2_3": "2.3 Änderungen und Unterbrechung des Dienstes\nUpstart behält sich das Recht vor, Teile oder den gesamten Dienst mit vorheriger Ankündigung zu ändern, einzuschränken oder einzustellen. Gründe dafür können Systemwartung, dringende Sicherheitsprobleme oder gesetzliche Anforderungen sein. Für dadurch entstehende Schäden übernimmt Upstart keine Haftung.\n\n"
+        "title": "2. Nutzung des Dienstes\n\n",
+        "2_1": "2.1 Kontoerstellung und -verwaltung\nJeder Nutzer darf nur ein Konto besitzen und ist für sämtliche Aktivitäten selbst verantwortlich.\nDie Angabe falscher Informationen, Identitätsdiebstahl oder die Nutzung automatisierter Registrierungsprogramme sind verboten. Bei Verstößen kann der Dienst eingeschränkt oder das Konto gesperrt werden.\n\n",
+        "2_2": "2.2 Verbotene Handlungen\nDave verbietet folgende Handlungen:\n  - Unbefugter Zugriff auf oder Angriffe auf das System oder Netzwerk der Plattform\n  - Unbefugtes Sammeln von Konten, persönlichen Daten oder Transaktionsverläufen anderer Nutzer\n  - Versuch von betrügerischen oder falschen Vermögenstransaktionen\n  - Jegliche absichtliche Störung des Plattformbetriebs\n\n",
+        "2_3": "2.3 Änderungen und Unterbrechungen des Dienstes\nDave kann zum Zweck von Sicherheitsupdates, Systemwartung, Richtlinienänderungen oder zur Erfüllung gesetzlicher Anforderungen nach vorheriger Ankündigung einzelne Funktionen oder den gesamten Dienst ändern oder vorübergehend aussetzen. Für daraus entstehende Verluste übernimmt Dave keine Haftung.\n\n"
       },
       "liability": {
-        "title": "3. Verantwortung und Rechte\n\n",
-        "3_1": "3.1 Verantwortung des Nutzers\nAlle Transaktionen, Aktivitäten und Wallet-Verwaltung liegen in der Verantwortung des Nutzers. Upstart haftet nicht für Schäden, die durch die Preisgabe oder den Verlust von Kontoinformationen entstehen.\n\n",
-        "3_2": "3.2 Haftungsausschluss\nUpstart übernimmt keine Haftung für folgende Fälle:\n  - Dienstunterbrechungen durch externe Angriffe wie Hacking oder DDoS\n  - Einschränkungen aufgrund gesetzlicher Vorschriften oder behördlicher Anordnungen\n  - Fehler oder Verzögerungen im Blockchain-Netzwerk\n\n",
-        "3_3": "3.3 Urheber- und Markenrechte\nAlle Inhalte, Logos und Quellcodes auf der Plattform sind Eigentum von Upstart. Jegliche Vervielfältigung, Verbreitung oder Nutzung ohne Genehmigung ist strengstens untersagt.\n\n"
+        "title": "3. Nutzerverantwortung und Rechte\n\n",
+        "3_1": "3.1 Nutzerverantwortung\nDie Nutzer sind selbst dafür verantwortlich, ihre Konten, digitalen Wallets und Zugangsdaten sicher zu verwahren.\nFür Verluste, die durch Fahrlässigkeit des Nutzers entstehen (z. B. Phishing, Verlust, Offenlegung an Dritte), übernimmt Dave keine Haftung.\n\n",
+        "3_2": "3.2 Haftungsausschluss\nDave haftet nicht für Schäden, die in folgenden Fällen entstehen:\n  - Unerwartete technische Fehler, Systemausfälle, Hacking oder andere externe Ursachen\n  - Dienstunterbrechungen aufgrund behördlicher Anweisungen oder gesetzlicher Änderungen\n  - Fehler oder Verzögerungen im Blockchain-Netzwerk oder bei Transaktionen\n\n",
+        "3_3": "3.3 Urheberrechte und Marken\nAlle Designs, Inhalte, Quellcodes, Logos und Daten auf der Dave-Plattform sind Eigentum des Unternehmens.\nUnerlaubte Vervielfältigung, kommerzielle Nutzung oder Weitergabe an Dritte ist ohne ausdrückliche Zustimmung des Unternehmens verboten und kann rechtliche Konsequenzen nach sich ziehen.\n\n"
       },
       "etc": {
         "4": "4. Nutzungsbeschränkung\nMissbräuchliche Nutzung des Dienstes, einschließlich Hacking, Reverse Engineering oder rechtswidrige Handlungen, ist verboten.\n\n",
@@ -829,8 +849,16 @@
       }
     },
     "privacy": {
-      "title": "Datenschutzrichtlinie",
-      "content": "1. **Einführung**\n\nUpstart (\"wir\", \"uns\" oder \"unser\") respektiert Ihre Privatsphäre und verpflichtet sich zum Schutz Ihrer Daten.\n\n2. **Erhobene Informationen**\n\n- **Personenbezogene Daten**: Name, E-Mail, Telefonnummer, Wallet-Adressen.\n- **Nutzungsdaten**: Besuchte Seiten, ausgeführte Aktionen.\n\n3. **Verwendung der Informationen**\n\nWir nutzen Ihre Daten, um unsere Services bereitzustellen, zu warten und zu verbessern, um mit Ihnen zu kommunizieren und um rechtlichen Verpflichtungen nachzukommen.\n\n4. **Datenweitergabe**\n\nWir verkaufen keine personenbezogenen Daten. Wir können sie in strikter Vertraulichkeit mit Dienstleistern teilen.\n\n5. **Sicherheit**\n\nWir setzen branchenübliche Maßnahmen ein, um Ihre Informationen zu schützen.\n\n6. **Ihre Rechte**\n\nSie können auf Ihre Daten zugreifen, sie korrigieren oder löschen, indem Sie unseren Support kontaktieren.\n\n7. **Änderungen**\n\nWir können diese Richtlinie überarbeiten; wir informieren Sie über wesentliche Änderungen."
+      "title": "Datenschutzerklärung",
+      "1": "1. Überblick\n\nDiese Datenschutzerklärung (im Folgenden „Erklärung“) gilt für Nutzer, die den Dave-Service nutzen oder die Dave-Website und mobile Anwendungen (im Folgenden „Plattform“) besuchen.\nDave stellt den Schutz Ihrer Privatsphäre an erste Stelle und informiert transparent über die Erhebung, Nutzung, Speicherung und Weitergabe personenbezogener Daten.\n\nDave bietet optimierte Finanzdienstleistungen zur Förderung Ihrer finanziellen Gesundheit und erläutert in dieser Erklärung klar, wie personenbezogene Daten erfasst und verarbeitet werden.\nDie Nutzung des Dave-Services gilt als Zustimmung zu dieser Erklärung. Wenn Sie nicht zustimmen, müssen Sie die Nutzung des Dienstes einstellen.\n\n",
+      "2": "2. Definitionen\n\n  - Konto (Account): Ein vom Nutzer auf der Dave-Plattform registriertes und erstelltes persönliches Identifikationskonto\n  - Dienste (Services): Alle von Dave bereitgestellten Finanzfunktionen (z. B. Ein- und Auszahlungen, Cashback, Dave ExtraCash™, automatische Überweisungen usw.)\n  - Plattform (Platform): Von Dave betriebene Websites, mobile Apps und andere digitale Dienste\n  - Nutzer (User): Eine Person, die die Dave-Plattform nutzt oder Inhaber eines solchen Kontos ist\n\n",
+      "3": "3. Cookies und Tracking-Technologien\n\nDave verwendet verschiedene Tracking-Technologien wie Cookies und Web-Beacons, um die Nutzererfahrung zu verbessern.\n\nDie so gesammelten Informationen werden für personalisierte Dienste, Traffic-Analyse und die Messung der Werbewirksamkeit verwendet. Nutzer können die Erfassung von Cookies über ihre Browsereinstellungen ablehnen.\n\n",
+      "4": "4. Arten der gesammelten Informationen\n\n  - Dave kann folgende Kategorien von Informationen erfassen:\n  - Identifikationsdaten: E-Mail, Telefonnummer, Name, Geburtsdatum, Adresse usw.\n  - Finanzdaten: Verknüpfte Bankkonten, Kartendaten, Transaktionsverlauf usw.\n  - Technische Daten: Zugriffs-IP, Geräte-ID, Betriebssystem, Browsertyp usw.\n  - Nutzungsdaten: App-Nutzungsprotokolle, Anfragen und Feedback-Historie usw.\n\n",
+      "5": "5. Zweck der Nutzung personenbezogener Daten\n\nDave verwendet die gesammelten Informationen zu folgenden Zwecken:\n\n  - Authentifizierung und Verwaltung von Nutzerkonten\n  - Analyse des finanziellen Status der Nutzer und Bereitstellung maßgeschneiderter Finanzlösungen wie Dave ExtraCash™ und Budget-Tools\n  - Erfüllung gesetzlicher Pflichten im Zusammenhang mit AML/KYC (Geldwäscheprävention und Kundenidentifikation)\n  - Interne Audits und Erkennung von Missbrauch zur Stärkung der Sicherheit\n  - Datenanalyse zur Verbesserung des Dienstes und für Marketingzwecke\n\n",
+      "6": "6. Weitergabe und Übertragung von Informationen\n\nDave gibt personenbezogene Daten nur in folgenden Fällen an Dritte weiter oder überträgt sie:\n\n  - Zusammenarbeit mit vertrauenswürdigen Finanzpartnern und Technologieanbietern mit Zustimmung des Nutzers\n  - Bei gesetzlichen Anforderungen oder auf Anfrage von Behörden zur öffentlichen Sicherheit\n  - Alle Partner unterliegen vertraglich den Datenschutzstandards von Dave und werden entsprechend überwacht.\n\n",
+      "7": "7. Speicherung und Löschung\n\nDave löscht personenbezogene Daten unverzüglich, sobald der Erhebungszweck erreicht ist.\n- Sofern gesetzliche Aufbewahrungspflichten bestehen, werden die Daten sicher gespeichert und danach dauerhaft gelöscht oder anonymisiert.\n\n",
+      "8": "8. Rechte der Nutzer\n\nNutzer können jederzeit folgende Rechte ausüben:\n\n  - Auskunfts- und Kopieanfrage\n  - Berichtigung und Löschung\n  - Einschränkung der Verarbeitung\n\n- Anfragen können über das Einstellungsmenü in der Dave-App oder den Kundensupport gestellt werden.",
+      "contact": "Kontakt\n\nBei Fragen zum Datenschutz wenden Sie sich bitte an den Upstart-Kundendienst.\n\n※ Diese Erklärung kann bei Gesetzesänderungen oder Änderungen der Dienstleistungsrichtlinien nach vorheriger Ankündigung angepasst werden."
     }
   },
   "profile": {

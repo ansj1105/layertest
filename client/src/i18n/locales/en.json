@@ -1,8 +1,8 @@
 {
   "notification": {
     "title": "System Notification",
-    "subtitle": "Upstart Official Guide",
-    "official": "\nGrowth and opportunity center, new personalization work center opened!\n\nNow, Upstart platform is more precise and reliable through intelligent AI-based profit systems.\n\nThis program is open to everyone who participates in the profit structure and actively engages.\n\nThis journey is not just a reward, but an opportunity for growth.\nUpstart is your strongest partner to help you exceed your limits and design your future.\n\nJoin now and together build the future global financial ecosystem.\n\nWe look forward to your challenge."
+    "subtitle": "Official DAVE Announcement",
+    "official": "\n'Invitation to the Automated Income Ecosystem with AI'\n\n1. Launch of the Quant Algorithm Center\nDave has established an optimized asset management system based on an advanced AI-powered quant engine, which analyzes individual income opportunities and automatically executes them. Based on real-time market data, the risk-return balance is adjusted to achieve sustainable and stable returns.\n\n2. Participatory Algorithm Strategy Program\nThis program is designed so that anyone can participate. A strategy-matching algorithm automatically provides optimized trading plans tailored to your investment style, risk preference, and asset size. From beginners to experts, everyone can utilize professional quant strategies to build a diversified income model in the global market.\n\n3. Automated Trading Beyond Passive Investment\nDave's goal is to lower the entry barriers to data-driven automated trading—not just simple profits. By integrating and analyzing on-chain and off-chain data, optimal buy/sell timings are determined, and features such as arbitrage based on price differences and early risk avoidance before entering risk zones are provided to minimize user decision-making and control risk.\n\n4. The Core of the Dave Quant Ecosystem – The USC Token\nUSC is the central currency of the Dave Quant Ecosystem and is used for strategy execution, profit distribution, access to premium features, and DAO governance on the platform. The USC-based token economy creates trust and motivation among members through reward distribution based on contributions to paid algorithm strategies and a token-based ranking system.\n\n5. Shape the Future of Quant Finance with Dave\nDave aims to go beyond simple profits by enabling fair competition in the market for everyone through the democratization of financial data and automation of strategies. Algorithm-based strategy automation, transparent profit distribution via smart contracts, real-time backtesting and strategy check tools, and a community-based strategy ranking system—experience a new paradigm of quantitative financial gains with Dave.\n\nJoin the Dave ecosystem now and become part of the blockchain-based automated income system.\n"
   },
   "order_history": {
     "title": "My Orders and Redemptions",
@@ -468,13 +468,15 @@
       "exceed_balance": "Insufficient balance."
     },
     "info": {
-      "title": "What are financial products?",
-      "definition": "Upstart's financial products are intelligent yield tools designed to help users manage digital assets more efficiently.\n\nThese products operate based on financial infrastructure partnered with Upstart and smart contracts, allowing users to deposit assets for a set period to earn interest or point rewards.",
-      "settlement": "Leveraging blockchain technology, these products are designed to transparently track the flow and returns of deposited assets, with rewards automatically distributed when certain conditions are met. Users can check their earnings in real time based on the performance of their deposited assets and will receive rewards at the end of the contract period.\n\nProfit and Loss Statement\nBased on the subscription success date (T day):\nInterest starts accruing from 00:00 on T+1 day,\nand settlement is reflected at 00:00 the following day.",
-      "tradingTitle": "Trading Explanation [Purchase Rules]",
-      "trade1": "1. You can participate directly in financial products using assets from your Quant Wallet or Profit Wallet. (The same withdrawal fee applies.)",
-      "trade2": "2. The returns of financial products are provided as variable, not fixed, rates. Daily earnings calculation starts two business days after the subscription date. If you withdraw within three days of the contract date, a 1% management fee applies.",
-      "trade3": "3. Both principal and returns are settled at the end of the period without automatic reinvestment. Early termination and withdrawal are not allowed."
+      "title": "Dave Financial Product Overview",
+      "definition": "1. Definition and Function\n\nDave's **Financial Product** is an AI-based yield optimization tool designed to help users manage digital assets more systematically and efficiently. This product operates through Dave's verified financial partner network and an automated system based on smart contracts. Users can expect to earn interest or point rewards by depositing their assets.\n",
+      "settlement": "2. Transparency-Oriented Design\n\nBlockchain Wallet-Based Operation: All deposit and yield activities are recorded on a public blockchain, allowing users to check the flow of funds in real time at any time. Automatic Reward Distribution: Once predefined conditions are met, the smart contract immediately distributes yields and principal.\n\n",
+      "tradingTitle": "3. Profit and Loss Settlement Criteria",
+      "trade1": "Based on the **subscription success date (T-Day)**:\nFrom T+1, 00:00, yields are generated and daily cumulative yields are automatically calculated and displayed at 00:00 each day.\n",
+      "trade2": "📌 Participation\nUsers can invest in this financial product using assets held in their Dave wallet or funding wallet. The investment is processed via inter-wallet linked withdrawal, with no additional withdrawal fees.\n\n📌 Yield Structure\nVariable APY: The interest rate is adjusted regularly according to market conditions. Yield Start Date: Interest payments begin one business day after the subscription date.\n",
+      "trade3": "📌 Principal Recovery and Retention\nAutomatic settlement at maturity: At the end of the contract, principal and yield are deposited into the account in a lump sum. Early termination restriction: Early withdrawal or termination is not possible during the contract period.",
+      "tradingTitle2": "5. Value of Dave Financial Product",
+      "trade4": "Transparency Guarantee: Asset flows are fully open and verifiable through blockchain-based tracking.\n\nEnhanced Security: The integrity of principal and yield distribution is ensured through smart contracts and partner bank infrastructure.\n\nUser-Centered Design: Even expert-level financial products can be easily used thanks to automation optimized for UI/UX.\n\nYield Optimization Strategy: Internal quant algorithms and market data are used for dynamic adjustment to maximize returns."
     },
     "header": "Funding Management",
     "loading": "Loading...",
@@ -535,97 +537,115 @@
   "agencyCooperation": {
     "back": "Back",
     "title": "Agent Partner",
-    "subTitle": "Agent Network Rewards",
+    "subTitle": "Overview",
     "lines": [
-      "Upstart's agent program is a system for partners who help expand the platform and build trust in financial products worldwide.",
-      "Partners who bring in new users and help activate trading can receive regular profit-sharing commissions from Upstart.",
+      "Dave is a US-based fintech platform leading user-centric financial innovation, offering the Agent Partner Program to expand its partner ecosystem.",
+      "This is a professional partnership that goes beyond simple referrals, featuring a sustainable revenue structure and a transparent contribution settlement system. Dave's partners are considered strategic collaborators who receive real rewards for contributing to platform credibility and liquidity, not just intermediaries.",
       "",
-      "3-Tier Commission Structure",
-      "Upstart offers a transparent 3-tier commission system:",
+      "3-Tier Commission Reward Structure",
+      "Dave offers a 3-level commission settlement system based on quantifiable contributions.",
       "",
-      "Level 1 (directly invited members): 20% commission on the daily profit of each member",
-      "Level 2 (users invited by Level 1 members): 8% commission on their profit",
-      "Level 3 (users invited by Level 2 members): 4% commission on their profit",
+      "Level 1 (Directly invited members): Receive 18% commission on the daily earnings of these members.",
+      "Level 2 (Members invited by your Level 1): Receive 7% commission on the earnings of these members.",
+      "Level 3 (Members invited by your Level 2): Receive 3% commission on the earnings of these members.",
       "",
-      "※ All commissions are calculated based on actual profits generated. False invitations or abnormal activities are excluded.",
+      "※ Earnings are automatically calculated in real time and settled daily or weekly.",
+      "※ Fake sign-ups, automated traffic, and users who violate the rules are excluded from commission eligibility.",
+      "※ Accounts may be suspended and earnings frozen if AML or KYC standards are violated.",
       "",
-      "Example Scenario",
-      "If A, B, and C are your Level 1, 2, and 3 partners respectively, and each earns $100 daily:",
-      "- A's profit: $100 × 20% = $20",
-      "- B's profit: $100 × 8% = $8",
-      "- C's profit: $100 × 4% = $4",
-      "⇒ Your total daily commission: $32",
+      "Settlement Simulation",
+      "If A, B, and C are Level 1, 2, and 3 partners respectively, and each earns $100 per day:",
+      "- A's earnings: $100 × 18% = $18",
+      "- B's earnings: $100 × 7% = $7",
+      "- C's earnings: $100 × 3% = $3",
+      "⇒ Your total daily commission: $28",
       "",
-      "Team Commission Calculation Example",
-      "If all sub-accounts each earn $100 per day and the number of active members is as follows:",
-      "- Level 1: 10 people → $100 × 20% × 10 = $200",
-      "- Level 2: 100 people → $100 × 8% × 100 = $800",
-      "- Level 3: 1,000 people → $100 × 4% × 1,000 = $4,000",
-      "⇒ Expected total daily commission: $5,000"
+      "Expanded Structure Example",
+      "If all sub-accounts earn $100 per day and the number of valid members is as follows:",
+      "- Level 1: 10 people → $100 × 18% × 10 = $180",
+      "- Level 2: 100 people → $100 × 7% × 100 = $700",
+      "- Level 3: 1000 people → $100 × 3% × 1000 = $3000",
+      "⇒ Total expected daily commission: $3,880",
+      "Value of Dave Partnership",
+      "Dave offers more than just commission value to its partners.",
+      "✔️ Sustainable Revenue Structure",
+      "Commission settlement based on users' actual earnings",
+      "No exaggerated profit models",
+      "Contribution measured by real numbers",
+      "",
+      "✔️ Transparent Partnership System",
+      "System-based automated settlement",
+      "Real-time commission history inquiry",
+      "API-based earnings forecast provided before contract",
+      "",
+      "✔️ Market Expansion Strategy",
+      "Expandable from the US to global markets",
+      "Agent network based on local communities",
+      "Dave's brand trust and technology infrastructure provided"
     ]
   },
   "companyIntro": {
     "back": "Back",
     "title": "Company Introduction",
-    "featuresTitle": "Key Features",
+    "featuresTitle": "Core Technologies",
     "items": [
       "Quantitative Trading",
-      "Funding Projects",
+      "Funding Project",
       "Blockchain Based",
       "Complete Security"
     ],
     "details": {
       "quantitative": {
         "title": "Quantitative Trading",
-        "description": "Upstart generates stable profits through a quantitative analysis system based on artificial intelligence (AI) and algorithms that detect market inefficiencies and implement ultra-short and medium-term trading strategies.",
+        "description": "Dave generates stable profits by precisely detecting market inefficiencies through CashAI™-based automated analysis models and algorithmic trading systems, executing high-frequency trading (HFT) and medium-short-term strategies.\n**CashAI™** analyzes over 180 data points including users' cash flow, spending patterns, job level and income, and predicts lending and liquidity supply opportunities in real-time Granite Firmdave.com+1Nasdaq+1.",
         "features": [
-          "Automated profit structure utilizing market inefficiencies",
-          "High-frequency trading (HFT) and algorithmic portfolio management by strategy",
-          "Risk control-based asset diversification and scenario response system",
-          "Automated inter-exchange arbitrage"
+          "AI analysis based on global trading data",
+          "Automated execution of arbitrage between exchanges and markets",
+          "Risk control based on strategic portfolio → diversified asset management",
+          "Automated optimization process (real-time strategy adjustment)"
         ],
-        "conclusion": "Upstart goes beyond simple automated trading to implement 'intelligent' quantitative trading based on market data. Through AI-based analysis, we maximize price movement prediction accuracy and optimize strategies in real-time to actively respond to market conditions."
+        "conclusion": "Utilizing global ATM and real estate market data along with in-app user consumption patterns, the algorithm automates the flow of automatic decision-making → order execution → profit realization within seconds."
       },
       "funding": {
-        "title": "Funding Projects",
-        "description": "An innovative funding platform utilizing blockchain technology, providing a transparent and secure environment connecting investors and projects.",
+        "title": "Smart Investment Programs",
+        "description": "Dave provides various time-based investment products designed based on financial technology and user trust.",
         "features": [
-          "Smart contract-based automated funding process",
-          "Transparent fund management and real-time monitoring",
-          "Various investment options and risk diversification",
-          "Global investor network connection"
+          "Daily yield sharing structure - Automatically distributes daily generated profits to investors, with options to withdraw profits or extend reinvestment.",
+          "Lock-up based management - Funds are locked for fixed periods per product, with principal + profit automatically settled at contract expiration.",
+          "USDT-based stable yield provision - Focus on predictable profit models rather than volatility",
+          "Escrow structure support - Safely stores asset flows and provides distribution systems based on platform profit flows"
         ],
-        "conclusion": "Going beyond traditional funding limitations, we build a new investment ecosystem that ensures both transparency and efficiency through blockchain technology."
+        "conclusion": "** For VIP or institutional investors, customized profit products and preferential yield rates are provided."
       },
       "blockchain": {
-        "title": "Blockchain Based",
-        "description": "We provide decentralized, secure, and transparent financial services using the latest blockchain technology.",
+        "title": "Blockchain Foundation",
+        "description": "Dave designs the entire platform based on blockchain and smart contracts.",
         "features": [
-          "Data integrity guarantee based on Distributed Ledger Technology (DLT)",
-          "Automated transaction execution through smart contracts",
-          "Cross-chain compatibility supporting various blockchain networks",
-          "Decentralized governance structure"
+          "All investment records, dividend processes, and asset flows are recorded on-chain and publicly verifiable",
+          "Automated profit distribution, contract execution, and condition compliance are all executed through smart contracts",
+          "Aims to build a decentralized trust ecosystem by eliminating the opacity of centralized finance"
         ],
         "conclusion": "We provide a future-oriented platform by perfectly integrating blockchain's core values of transparency, security, and efficiency into financial services."
       },
       "security": {
-        "title": "Complete Security",
-        "description": "We safely protect users' assets and information through top-level security technology and multi-layered security systems.",
+        "title": "Robust Security Framework",
+        "description": "Dave prioritizes the protection of user assets and data above all else.",
         "features": [
-          "Multi-signature wallet system",
-          "Cold storage-based asset custody",
-          "Real-time security monitoring and threat detection",
-          "Regular security audits and vulnerability checks"
+          "Multi-layered security system applied across all features including CashAI™, ExtraCash™, and Checking/Goals accounts",
+          "Two-factor authentication (2FA), biometric authentication, and wallet address change restriction features provided",
+          "DDoS protection and real-time monitoring of abnormal transactions",
+          "User assets are distributed and stored in Multi-signature cold wallets",
+          "Deposit account protection through US Evolve Bank & Trust based on FDIC insurance"
         ],
-        "conclusion": "By prioritizing security, the core of financial services, we provide an environment where users can use the service with peace of mind."
+        "conclusion": "By prioritizing security, we provide an environment where users can use the service with peace of mind."
       }
     }
   },
   "quantTutorial": {
-    "title": "Trading System guide",
-    "description": "System Overview\n\nUpstart provides an automatic quantitative arbitrage system that combines the latest AI-based analysis technology and automated trading algorithms to exploit price inefficiencies in the digital asset market.\n\nThis system automatically detects price differences between major digital assets such as USDT, BTC, and ETH across global exchanges, and executes real-time buy and sell triggers to pursue stable profit generation.",
+    "title": "DAVE Arbitrage System",
+    "description": "1. System Overview\n\nDAVE utilizes a real-time AI analysis engine and strategy-based automated trading algorithms to capitalize on price imbalances (spreads) in the cryptocurrency market. It quantitatively analyzes and detects price differences between global exchanges for major assets (USDT, BTC, ETH, etc.), and automatically determines buy and sell timings to generate stable and efficient profits.\n\n2. VIP Tier Structure\n\nDAVE's precise arbitrage is divided into VIP tiers according to investment size and network contribution, with each tier supporting a set number of allowed automated trades.",
     "sections": {
-      "overview": "Smart Arbitrage System Principle",
+      "overview": "3. How the System Works",
       "principle": "Smart Arbitrage System Principle",
       "process": "Profit Realization Process",
       "vipCriteria": "VIP Upgrade Criteria",
@@ -634,29 +654,29 @@
       "suitability": "Who is this system suitable for?"
     },
     "method": {
-      "title": "Cautions",
-      "title2": "Who is this system suitable for?",
-      "description": "-All returns may vary depending on market conditions, exchange liquidity, and system status.\n-This system only uses officially contracted exchange APIs and verified algorithms.\n-Fraudulent registrations, duplicate accounts, and abnormal trades will be immediately blocked and profits recovered.",
-      "description2": "-Smart investors aiming for short-term profits\n-Beginners in digital assets who lack market response capability\n-High-value investors seeking to utilize automated profit models"
+      "title": "Operation and Risk Cautions",
+      "title2": "Who Should Use This System?",
+      "description": "- DAVE uses only official APIs and verified algorithms.\n- Fake/duplicate accounts and abnormal transactions are immediately blocked by the system and profits are forfeited.\n- There are certain technical and market risks, so a careful understanding of automated trading is required in advance.",
+      "description2": "- Smart investors aiming for short-term quant-based arbitrage profits\n- Beginners in digital assets with limited market experience\n- Users seeking to implement automated management strategies for large assets\n- Beginners with insufficient market response ability\n- High-value investors wishing to utilize automated profit models"
     },
-    "overview": "-Market Monitoring: AI automatically monitors real-time price data from major global exchanges\n-Price Spread Analysis: When the price gap for the same asset between exchanges exceeds a certain level, buy/sell signals are triggered\n-Automatic Execution: Buy and sell trades are executed simultaneously, and the spread (profit) is automatically realized\n-Profit Distribution: 50% of the generated profit is taken as a platform fee, and 50% is returned to the investor\n\nExample: Buy BTC at OXX Exchange for 1000 USDT → Sell at CoinEase Exchange for 1050 USDT → Of the total profit of 50 USDT, 25 USDT is distributed to the user\n\nProfit Realization Process\n\n1. Click the button → Start automated trading\n2. The algorithm performs quantitative trading within 1–3 minutes\n3. Automatic execution up to high-price selling → Profits are generated and distributed\n4. Real-time profit reports are provided on the platform",
+    "overview": "1) Market Monitoring: The system collects real-time prices from global exchanges, continuously monitored by AI\n2) Arbitrage Detection: If the price gap between certain assets exceeds a threshold, an automatic buy/sell signal is triggered\n3) Automatic Execution: Buy and sell orders are executed simultaneously to secure spread profits\n4) Profit Distribution: 50% of the generated profit is taken as a platform fee, and the remaining 50% is automatically distributed to investors\n\nGuide: Profit Realization Procedure\n\n1) Click the 'Execute Strategy' button → Automated trading is activated\n2) The predefined quant algorithm is executed within about 1–3 minutes\n3) Automatic selling is completed and profit is secured\n4) The operational status can be transparently checked via real-time reports",
     "vipUpgradeCriteria": [
-      "VIP1: Requires a minimum of 35 USDT in assets.",
-      "VIP2: Requires a minimum of 300 USDT + 2 active A-level invites + 2 B-level + 2 C-level.",
-      "VIP3: Minimum 1000 USDT + 5 A-level + 5 B-level + 5 C-level active invites.",
-      "VIP4: Minimum 3000 USDT + 15 A-level + 15 B-level + 15 C-level active invites.",
-      "VIP5: Minimum 5000 USDT + 30 A-level + 30 B-level + 30 C-level active invites.",
-      "VIP6: Minimum 50000 USDT + 60 A-level + 60 B-level + 60 C-level active invites.",
+      "VIP1: At least 35 USDT in assets required.",
+      "VIP2: At least 250 USDT + invitation of 2 users each from Grade A, B, and C.",
+      "VIP3: At least 800 USDT + invitation of 4 users each from Grade A, B, and C.",
+      "VIP4: At least 2,500 USDT + invitation of 17 users each from Grade A, B, and C.",
+      "VIP5: At least 4,000 USDT + invitation of 28 users each from Grade A, B, and C.",
+      "VIP6: At least 45,000 USDT + invitation of 50 users each from Grade A, B, and C.",
       "",
-      "※ Each grade condition is based on active users; fraudulent accounts are invalid."
+      "※ All tier requirements are based on active users with real trading volume; abnormal registrations are excluded."
     ],
     "vipDaily": [
-      "VIP1: Up to 5 trades per day, return rate 1.3% ~ 1.6%, based on 500 USDT → 6.5 ~ 8 USDT/day",
-      "VIP2: Up to 6 trades per day, return rate 1.8% ~ 2.1%, based on 2000 USDT → 36 ~ 42 USDT/day",
-      "VIP3: Up to 7 trades per day, return rate 2.2% ~ 2.5%, based on 5000 USDT → 110 ~ 125 USDT/day",
-      "VIP4: Up to 8 trades per day, return rate 2.8% ~ 3.2%, based on 20000 USDT → 560 ~ 640 USDT/day",
-      "VIP5: Up to 9 trades per day, return rate 3.3% ~ 3.8%, based on 100000 USDT → 3300 ~ 3800 USDT/day",
-      "VIP6: Up to 10 trades per day, return rate 4.5% ~ 5.0%, based on 200000 USDT → 9000 ~ 10000 USDT/day"
+      "VIP1: Up to 6 trades per day, return rate 1.6% ~ 2.0%, based on 500 USDT → 8 ~ 10 USDT/day",
+      "VIP2: Up to 7 trades per day, return rate 2.1% ~ 2.4%, based on 2,000 USDT → 42 ~ 48 USDT/day",
+      "VIP3: Up to 8 trades per day, return rate 2.5% ~ 2.8%, based on 5,000 USDT → 125 ~ 140 USDT/day",
+      "VIP4: Up to 9 trades per day, return rate 3.1% ~ 3.5%, based on 20,000 USDT → 620 ~ 700 USDT/day",
+      "VIP5: Up to 10 trades per day, return rate 3.8% ~ 4.2%, based on 100,000 USDT → 3,800 ~ 4,200 USDT/day",
+      "VIP6: Up to 11 trades per day, return rate 4.3% ~ 5.3%, based on 200,000 USDT → 8,600 ~ 10,600 USDT/day"
     ]
   },
   "commonProblems": {
@@ -798,21 +818,21 @@
       "title": "Terms of Service",
       "general": {
         "title": "1. General Principles\n\n",
-        "1_1": "1.1 Contract Structure\nThese Terms of Service (hereinafter 'Agreement') set forth all commitments applicable to users' use of Upstart's website and services (hereinafter 'Platform'). This Agreement includes privacy policy, Know Your Customer (KYC), Anti-Money Laundering (AML) policy, technical usage rules, platform usage precautions, warnings, notices, related guidelines, etc., which may be amended or supplemented at our discretion.\n\n",
-        "1_2": "1.2 Agreement Consent and Understanding\nUsers may only use the services after reviewing and agreeing to the terms of this Agreement. If any content is unclear or not understood, users may seek legal counsel, and users must continue using the platform on the premise of accepting all conditions.\n\n",
-        "1_3": "1.3 Member Registration and Electronic Signature\nInformation entered by users during platform registration must be truthful, and consent in the form of electronic signature is established by clicking the 'Agree' button or similar indication. This is considered a legally valid contract even without a handwritten signature.\n\n"
+        "1_1": "1.1 Structure of the Agreement\n\nThese Terms of Service (hereinafter referred to as the 'Agreement') set forth the basic rules and policies for users of the digital financial platform provided by **Dave Inc.** (hereinafter referred to as the 'Platform'). This Agreement includes the Privacy Policy, Know Your Customer (KYC) policy, Anti-Money Laundering (AML) policy, technical usage guidelines, security instructions, and service usage notes, and may be amended at Dave's discretion.\n\n",
+        "1_2": "1.2 Agreement to Terms\n\nBy using the Platform, you are deemed to have fully agreed to these Terms and all related guidelines. If you do not agree to the Terms, you must stop using the service. If you have any questions or need further explanation, Dave is available to assist you through customer service or official channels.\n\n",
+        "1_3": "1.3 Registration and Consent\n\nThe information you provide during registration must be accurate and your own. Clicking the registration button is considered an electronic signature and is legally binding.\n\n"
       },
       "use": {
-        "title": "2. Service Usage\n\n",
-        "2_1": "2.1 Account Creation and Management\nUsers may create only one account, and all activities must be conducted under their own responsibility. Identity theft, providing false information, and registration through automated scripts are prohibited.\n\n",
-        "2_2": "2.2 Prohibited Actions\nUsers must not engage in the following:\n  - Unauthorized access or attacks on systems or networks\n  - Unauthorized collection of other users' account information\n  - Attempts at fraudulent or illegal asset transfers\n  - Any actions that interfere with normal service operation\n\n",
-        "2_3": "2.3 Service Changes and Interruptions\nUpstart may change, suspend, or restrict part or all of services after prior notice. This may be due to system maintenance, urgent security issues, regulatory compliance, etc., and we are not liable for any resulting damages.\n\n"
+        "title": "2. Use of Service\n\n",
+        "2_1": "2.1 Account Creation and Management\nEach user may only have one account, and all activities are the user's own responsibility. Providing false information, using someone else's information, or using automated registration programs is prohibited. Violations may result in service restrictions or account suspension.\n\n",
+        "2_2": "2.2 Prohibited Actions\nDave prohibits the following actions:\n  - Unauthorized access to or attacks on the platform's system or network\n  - Unauthorized collection of other users' accounts, personal information, or transaction history\n  - Attempting fraudulent or false asset transactions\n  - Any intentional disruption of platform operations\n\n",
+        "2_3": "2.3 Service Changes and Suspension\nDave may, after prior notice, change or temporarily suspend certain features or the entire service for security updates, system maintenance, policy changes, or to comply with legal requirements. Dave is not responsible for any losses resulting from such actions.\n\n"
       },
       "liability": {
-        "title": "3. Responsibilities and Rights\n\n",
-        "3_1": "3.1 User Responsibility\nAll transactions, activities, and wallet management actions are the user's responsibility, and Upstart is not responsible for damages caused by the leakage or loss of personal account information.\n\n",
-        "3_2": "3.2 Disclaimer\nUpstart is not responsible for:\n  - Interruptions due to external hacking, DDoS attacks, etc.\n  - Service restrictions due to laws or government orders\n  - Blockchain network errors or delays\n\n",
-        "3_3": "3.3 Copyright and Trademark\nAll content, logos, and source code within the platform are our assets, and unauthorized copying, distribution, or use is strictly prohibited.\n\n"
+        "title": "3. User Responsibilities and Rights\n\n",
+        "3_1": "3.1 User Responsibilities\nUsers are responsible for securely managing their accounts, digital asset wallets, and login information.\nDave is not liable for losses resulting from user negligence (e.g., phishing, loss, or third-party exposure).\n\n",
+        "3_2": "3.2 Disclaimer\nDave is not responsible for damages arising from the following situations:\n  - Unexpected technical errors, system failures, hacking, or other external factors\n  - Service suspension due to government orders or changes in relevant laws\n  - Blockchain network errors or transaction delays\n\n",
+        "3_3": "3.3 Intellectual Property Rights\nAll designs, content, source code, logos, and data within the Dave platform are the property of the company.\nUnauthorized reproduction, commercial use, or sharing with third parties may result in legal liability and is prohibited without the company's explicit consent.\n\n"
       },
       "etc": {
         "4": "4. Usage Restrictions\nMisuse of services such as hacking, reverse engineering, and illegal activities is prohibited.\n\n",
@@ -823,7 +843,15 @@
     },
     "privacy": {
       "title": "Privacy Policy",
-      "content": "1. **Introduction**\n\nUpstart (\"we,\" \"our,\" or \"us\") respects your privacy and is committed to protecting it.\n\n2. **Information We Collect**\n\n- **Personal Data**: name, email, phone number, wallet addresses.\n- **Usage Data**: pages visited, actions taken.\n\n3. **How We Use Information**\n\nWe use your data to provide, maintain, and improve our services, to communicate with you, and to comply with legal obligations.\n\n4. **Data Sharing**\n\nWe do not sell personal data. We may share with service providers under strict confidentiality.\n\n5. **Security**\n\nWe implement industry‑standard measures to protect your information.\n\n6. **Your Rights**\n\nYou may access, correct, or delete your personal data by contacting support.\n\n7. **Changes**\n\nWe may revise this policy; we'll notify you of significant changes."
+      "1": "1. Overview\n\nThis Privacy Policy (hereinafter referred to as 'this Policy') applies to users who use Dave's services or visit Dave's website and mobile applications (hereinafter referred to as the 'Platform').\nDave places the highest priority on protecting users' privacy and transparently informs users about how personal information is collected, used, stored, and shared.\n\nDave provides optimized financial service experiences to help users' financial health, and this Policy clearly explains how personal information is collected and processed for that purpose.\nBy using Dave's services, you are deemed to have agreed to this Policy. If you do not agree, you must stop using the service.\n\n",
+      "2": "2. Definitions\n\n  - Account: A personal identification account created by registering on the Dave platform\n  - Services: All financial-related features provided by Dave (e.g., deposits and withdrawals, cashback, Dave ExtraCash™, automatic transfers, etc.)\n  - Platform: Dave's website, mobile app, and other related digital services operated by Dave\n  - User: An individual who uses Dave's platform or owns such an account\n\n",
+      "3": "3. Cookies and Tracking Technologies\n\nDave uses various tracking technologies such as cookies and web beacons to enhance user experience.\n\nInformation collected through these technologies is used for providing personalized services, traffic analysis, and measuring advertising performance. Users can refuse the collection of cookies through their browser settings.\n\n",
+      "4": "4. Types of Information Collected\n\n  - Dave may collect the following categories of information:\n  - User identification information: email, mobile phone number, name, date of birth, address, etc.\n  - Financial information: linked bank account information, card details, transaction records, etc.\n  - Technical information: access IP, device ID, operating system, browser type, etc.\n  - Service usage records: in-app activity logs, inquiry and feedback history, etc.\n\n",
+      "5": "5. Purpose of Using Personal Information\n\nDave uses the collected information for the following purposes:\n\n  - Authentication and management of user accounts\n  - Analysis of users' financial status and provision of personalized financial solutions such as Dave ExtraCash™ and budgeting tools\n  - Fulfillment of legal obligations related to AML/KYC (Anti-Money Laundering and Know Your Customer)\n  - Internal audits and detection of fraudulent use to enhance security\n  - Data analysis for service improvement and marketing\n\n",
+      "6": "6. Information Sharing and Entrustment\n\nDave only provides or entrusts personal information to external parties in the following cases:\n\n  - When cooperating with trusted financial partners and technology vendors with user consent\n  - When required by law or upon request from judicial authorities for public safety\n  - All partners are subject to contracts and supervision according to Dave's personal information protection standards.\n\n",
+      "7": "7. Retention and Deletion\n\nDave deletes relevant information without delay after the purpose of collection has been achieved.\n- However, information is securely stored for the mandatory retention period stipulated by relevant laws, after which it is permanently deleted or anonymized.\n\n",
+      "8": "8. User Rights\n\nUsers may exercise the following rights at any time:\n\n  - Request to view and copy\n  - Request to correct and delete\n  - Request to suspend processing\n\n -Requests can be made through the settings menu in the Dave app or via customer support channels.",
+      "contact": "Contact\n\nFor inquiries regarding personal information, please contact the Upstart customer center.\n\n※ This Policy may be amended with prior notice in accordance with changes in laws or service policies."
     }
   },
   "profile": {

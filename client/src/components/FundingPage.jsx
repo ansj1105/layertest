@@ -192,6 +192,10 @@ export default function FundingPage() {
                 <br></br>
                 <li style={{ listStyleType: 'none', whiteSpace: 'pre-line' }}>{t("funding.info.trade3")}</li>
               </ul>
+              <h4 className="info-modal-subtitle">{t("funding.info.tradingTitle2")}</h4>
+              <ul className="info-modal-list">
+                <li style={{ listStyleType: 'none', whiteSpace: 'pre-line' }}>{t("funding.info.trade4")}</li>
+              </ul>
             </div>
           </div>
         </div>

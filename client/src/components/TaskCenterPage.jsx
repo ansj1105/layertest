@@ -154,9 +154,9 @@ export default function TaskCenterPage() {
         </div>
       )}
 
-      <div className="text-box-container" style={{ whiteSpace: 'pre-line' }}>
+      {/* <div className="text-box-container" style={{ whiteSpace: 'pre-line' }}>
         <p>{t('task.text2')}</p>
-      </div>
+      </div> */}
 
 
       <br></br>

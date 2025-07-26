@@ -9,17 +9,17 @@ import UserChat from '../UserChat';
 import '../../styles/login.css';
 
 axios.defaults.withCredentials = true;
- 
+
 export default function LoginPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   // identifier: 이메일 or 전화번호
   const [identifier, setIdentifier] = useState("");
-  const [password, setPassword]     = useState("");
-  const [captcha, setCaptcha]       = useState("");
-  const [error, setError]           = useState("");
-  const [success, setSuccess]       = useState("");
+  const [password, setPassword] = useState("");
+  const [captcha, setCaptcha] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   // 간단 유효성 검사
   const isValidEmail = v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
@@ -54,7 +54,7 @@ export default function LoginPage() {
     }
   };
 
-  
+
   return (
     <div className="page-wrapper-l">
       {/* 상단 바 */}
@@ -64,7 +64,7 @@ export default function LoginPage() {
         </button>
 
         <button onClick={() => navigate("/settings/language")}>
-          <Globe size={24} className="top-tran"/>
+          <Globe size={24} className="top-tran" />
         </button>
       </div>
 
@@ -76,6 +76,10 @@ export default function LoginPage() {
           alt="Upstart"
           className="login-logo"
         />
+        <div className="login-title">
+          <h1>Join Dave today</h1>
+          <p>First, a little information about you.</p>
+        </div>
         <input
           type="text"
           placeholder={t("login.identifier")}
@@ -105,7 +109,7 @@ export default function LoginPage() {
           {t("login.submit")}
         </button>
 
-        {error   && <p className="text-red-400 text-center">{error}</p>}
+        {error && <p className="text-red-400 text-center">{error}</p>}
         {success && <p className="text-green-400 text-center">{success}</p>}
 
         <div className="auth-links-l">

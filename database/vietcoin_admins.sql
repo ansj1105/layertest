@@ -39,7 +39,7 @@ CREATE TABLE `admins` (
 
 LOCK TABLES `admins` WRITE;
 /*!40000 ALTER TABLE `admins` DISABLE KEYS */;
-INSERT INTO `admins` VALUES (1,'adminupstart','$2b$10$RYv.cL3t91GIZE59zE1Pkuof.v7q6cUhHJwPHfsx3fhy8ETGrFKxi','관리자','2025-04-12 18:22:44');
+INSERT INTO `admins` VALUES (1,'admindave','$2b$10$RYv.cL3t91GIZE59zE1Pkuof.v7q6cUhHJwPHfsx3fhy8ETGrFKxi','관리자','2025-04-12 18:22:44');
 /*!40000 ALTER TABLE `admins` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

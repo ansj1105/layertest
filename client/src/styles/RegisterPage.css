@@ -15,6 +15,7 @@
   box-sizing: border-box;
   margin-bottom: 200px;
   z-index: 100;
+
 }
 
 /* 내부 스크롤 가능 영역 */
@@ -42,19 +43,21 @@
   max-width: 500px;
   /* ✅ container와 맞춤 */
   height: 58.27px;
-  background: #1d1d27;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
   z-index: 1000;
+  border-bottom: 1px solid rgb(0, 67, 24) !important;
+  /* 아래쪽만 테두리 */
 }
 
 
 /* 탑바 중간간 글씨 */
 .login-h-text-r {
   font-weight: bold;
-  color: #ffffff;
+  color: rgb(0 136 73);
   text-align: left;
   font-size: 20px;
   font-weight: bold;
@@ -77,7 +80,7 @@
   width: 100%;
   max-width: 500px;
   height: 100%;
-  background: #1d1d27;
+  background: #ffffff;
   display: flex;
   /* ✅ Flexbox 적용 */
   flex-direction: column;
@@ -88,6 +91,7 @@
   justify-content: flex-start;
   /* ✅ 위쪽 정렬 */
   z-index: 100;
+  border: 1px solid #000000 !important;
 }
 
 .r-box1 {
@@ -97,7 +101,7 @@
   width: 100%;
   max-width: 500px;
   height: 100%;
-  background: #1d1d27;
+  background: #ffffff;
   display: flex;
   /* ✅ Flexbox 적용 */
   flex-direction: column;
@@ -115,7 +119,7 @@
   width: 180px;
   height: 70px;
   padding-bottom: 2.5px;
-  margin-top: 55px;
+  margin-top: 65px;
 
 }
 
@@ -133,15 +137,15 @@
   align-items: center;
   justify-content: center;
   padding: 5px;
-  background: #191c29;
   border-radius: 13px;
   cursor: pointer;
   gap: 12px;
-  color: #26ffe6;
+  color: rgb(0 67 24);
+  background: #ffffff;
   transition: all 0.4s ease;
   /* 부드럽게 전환 */
-  border: 1.1px solid #1ad3b7 !important;
-  box-shadow: 0 0 12px 2px #b8dfd9 !important;
+  border: 1.1px solid rgb(0 67 24) !important;
+
   padding-left: 16px;
   /* 왼쪽에서 16px 만큼 떨어지게 */
   flex-shrink: 0;
@@ -151,7 +155,7 @@
 }
 
 .v-token-r::placeholder {
-  color: #ccc;
+  color: rgb(0 67 24);
   /* 글자 색상 */
   font-size: 14px;
   /* 글자 크기 */
@@ -175,15 +179,16 @@
   align-items: center;
   justify-content: center;
   padding: 5px;
-  background: #191c29;
+
   border-radius: 13px;
   cursor: pointer;
   gap: 12px;
-  color: #26ffe6;
+  color: rgb(0 67 24);
+  background: #E6EDEA;
   transition: all 0.4s ease;
   /* 부드럽게 전환 */
-  border: 1.1px solid #1ad3b7 !important;
-  box-shadow: 0 0 12px 2px #b8dfd9 !important;
+  border: 1.1px solid rgb(0 67 24) !important;
+
   padding-left: 16px;
   /* 왼쪽에서 16px 만큼 떨어지게 */
   flex-shrink: 0;
@@ -193,7 +198,7 @@
 }
 
 .v-token-r-ex::placeholder {
-  color: #ccc;
+  color: rgb(0 67 24);
   /* 글자 색상 */
   font-size: 14px;
   /* 글자 크기 */
@@ -252,15 +257,15 @@
   align-items: center;
   justify-content: left;
   padding: 5px;
-  background: #191c29;
   border-radius: 13px;
   cursor: pointer;
   gap: 12px;
-  color: #ccc;
+  color: #A2AEBA;
+  background: #ffffff;
   transition: all 0.4s ease;
   /* 부드럽게 전환 */
-  border: 1.1px solid #1ad3b7 !important;
-  box-shadow: 0 0 12px 2px #b8dfd9 !important;
+  border: 1.1px solid rgb(0 67 24) !important;
+
   padding-left: 16px;
   /* 왼쪽에서 16px 만큼 떨어지게 */
 
@@ -289,15 +294,15 @@
   align-items: center;
   justify-content: center;
   padding: 5px;
-  background: #191c29;
   border-radius: 13px;
   cursor: pointer;
   gap: 12px;
-  color: #26ffe6;
+  color: rgb(0 67 24);
+  background: #ffffff;
   transition: all 0.4s ease;
   /* 부드럽게 전환 */
-  border: 1.1px solid #1ad3b7 !important;
-  box-shadow: 0 0 12px 2px #b8dfd9 !important;
+  border: 1.1px solid rgb(0 67 24) !important;
+
   padding-left: 16px;
   /* 왼쪽에서 16px 만큼 떨어지게 */
 
@@ -353,15 +358,15 @@
   align-items: center;
   justify-content: right !important;
   padding: 5px;
-  background: #191c29;
   border-radius: 13px;
   cursor: pointer;
   gap: 12px;
-  color: #26ffe6;
+  color: #000000;
+  background: #ffffff;
   transition: all 0.4s ease;
   /* 부드럽게 전환 */
-  border: 1.1px solid #1ad3b7 !important;
-  box-shadow: 0 0 12px 2px #b8dfd9 !important;
+  border: 1.1px solid rgb(0 67 24) !important;
+
   padding-left: 16px;
   /* 왼쪽에서 16px 만큼 떨어지게 */
 
@@ -425,22 +430,22 @@
   align-items: center;
   justify-content: center;
   padding: 5px;
-  background: #191c29;
   border-radius: 13px;
   cursor: pointer;
   gap: 12px;
-  color: #26ffe6;
+  color: #000000 !important;
+  background: #ffffff;
   transition: all 0.4s ease;
   /* 부드럽게 전환 */
-  border: 1.1px solid #1ad3b7 !important;
-  box-shadow: 0 0 12px 2px #b8dfd9 !important;
+  border: 1.1px solid rgb(0 67 24) !important;
+
   padding-left: 16px;
   /* 왼쪽에서 16px 만큼 떨어지게 */
 
 }
 
 .v-token-r2::placeholder {
-  color: #ccc;
+  color: #A2AEBA;
   /* 글자 색상 */
   font-size: 14px;
   /* 글자 크기 */
@@ -494,7 +499,8 @@
   border-radius: 13px;
   cursor: pointer;
   gap: 12px;
-  color: #26ffe6;
+  color: #000000 !important;
+  background: #E6EDEA;
   transition: all 0.4s ease;
   /* 부드럽게 전환 */
   border: 1.1px solid #1ad3b7 !important;
@@ -531,9 +537,9 @@
   align-items: center;
   justify-content: center;
   padding: 5px;
-  color: white;
-  background: #206D7F;
-  border-radius: 13px;
+  color: #A2AEBA;
+  background: #E6EDEA;
+  border-radius: 30px;
   cursor: pointer;
   gap: 12px;
   font-size: 18px;
@@ -546,16 +552,16 @@
   /* ✅ 모두 대문자로 (옵션) */
   transition: all 0.4s ease;
   /* 부드럽게 전환 */
-  border: 0.1px solid #1ad3b7 !important;
-  box-shadow: 0 0 1px 1px #b8dfd9 !important;
+
   transition: background-color 0.3s ease;
 }
 
 .r-button:hover {
-  background: #26ffe61f;
+  background: #ffffff;
   /* 어두운 청색 톤 */
-  border-color: #26ffe6;
-  box-shadow: 0 0 16px 6px #81f5e9;
+
+  color: #008849;
+  border: 2px solid #008849 !important;
 }
 
 
@@ -577,7 +583,7 @@
 
 
 .auth-links-r-t {
-  color: #ffd54f;
+  color: rgb(0 136 73);
 }
 
 .auth-links-r-t:hover {
@@ -598,20 +604,20 @@
 }
 
 .auth-links-r span {
-  color: #ffffff;
+  color: rgb(0 67 24);
 }
 
 
 .auth-links-r a {
   text-decoration: none;
-  color: #26ffe6;
+  color: rgb(0 136 73);
   transition: color 0.3s, text-decoration 0.3s;
   margin-left: 10px;
 }
 
 .auth-links-r a:hover {
   text-decoration: underline;
-  color: #ffd54f;
+  color: rgb(0 67 24);
   /* 조금 더 밝은 노란색으로 hover 효과 */
 }
 
@@ -619,13 +625,14 @@
 
 
 .active-button {
-  background-color: #365754;
-  color: #ffd54f;
+  background-color: rgb(0 136 73);
+  color: #ffffff;
   font-weight: 600;
 }
 
 .inactive-button {
-  background-color: #152221;
+  background-color: rgb(0 67 24);
+  ;
   color: #ffffff;
 }
 

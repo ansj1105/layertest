@@ -1,0 +1,319 @@
+{
+  "rooms": [
+    {
+      "id": 2,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_d9be467a-eb7a-41e1-9a6b-b00e225c78d0",
+      "status": "active",
+      "created_at": "2025-05-23T03:12:46.000Z",
+      "last_message_at": "2025-05-23T03:12:46.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 3,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_2e8bf0de-8814-49bb-843f-7d86d1165fd0",
+      "status": "active",
+      "created_at": "2025-05-23T03:13:33.000Z",
+      "last_message_at": "2025-05-23T03:13:33.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 4,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_0d7bc2ac-3927-42e1-aaeb-77272fd5b6ac",
+      "status": "active",
+      "created_at": "2025-05-23T03:19:46.000Z",
+      "last_message_at": "2025-05-23T03:19:46.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 5,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_6cde7f09-2219-4146-82e7-719f9b67c6b0",
+      "status": "active",
+      "created_at": "2025-05-23T03:24:55.000Z",
+      "last_message_at": "2025-05-23T03:24:55.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 6,
+      "user_id": 1,
+      "admin_id": null,
+      "guest_id": null,
+      "status": "active",
+      "created_at": "2025-05-23T06:43:06.000Z",
+      "last_message_at": "2025-05-23T06:43:06.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 7,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_26e3c286-0dba-4623-a39a-0207132e9ad7",
+      "status": "active",
+      "created_at": "2025-05-23T06:44:49.000Z",
+      "last_message_at": "2025-05-23T06:44:49.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 8,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_18781a26-f9de-4a66-8d49-b1e479e41e07",
+      "status": "active",
+      "created_at": "2025-05-23T06:44:52.000Z",
+      "last_message_at": "2025-05-23T06:44:52.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 9,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_8c46de41-3675-4c72-8e24-12bd71fe363f",
+      "status": "active",
+      "created_at": "2025-05-23T06:45:04.000Z",
+      "last_message_at": "2025-05-23T06:45:04.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 10,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_01f187aa-fe59-4e66-9753-9aa275a25e57",
+      "status": "active",
+      "created_at": "2025-05-23T06:45:22.000Z",
+      "last_message_at": "2025-05-23T06:45:22.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 11,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_a81a42eb-6292-4d01-abc6-8200018aedfa",
+      "status": "active",
+      "created_at": "2025-05-23T06:45:45.000Z",
+      "last_message_at": "2025-05-23T06:45:45.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 12,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_fc5787f4-fde1-496c-bbf8-2bae172c292a",
+      "status": "active",
+      "created_at": "2025-05-23T06:47:21.000Z",
+      "last_message_at": "2025-05-23T06:47:21.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 13,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_de4507d9-a2a6-4b61-9e84-b4c1137d9f72",
+      "status": "active",
+      "created_at": "2025-05-23T06:50:28.000Z",
+      "last_message_at": "2025-05-23T06:50:28.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 14,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_5b824006-a83e-4b98-9995-ac8d68e7c1b3",
+      "status": "active",
+      "created_at": "2025-05-23T06:58:14.000Z",
+      "last_message_at": "2025-05-23T06:58:14.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 15,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_2a0d346d-00ea-4433-85a2-498af1a184d7",
+      "status": "active",
+      "created_at": "2025-05-23T07:00:48.000Z",
+      "last_message_at": "2025-05-23T07:00:48.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 16,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_d779cf5d-3ca1-4668-8974-655b93808b62",
+      "status": "active",
+      "created_at": "2025-05-23T07:04:22.000Z",
+      "last_message_at": "2025-05-23T07:04:22.000Z",
+      "is_archived": 0
+    },
+    {
+      "id": 17,
+      "user_id": null,
+      "admin_id": null,
+      "guest_id": "guest_51de6431-23aa-462c-82b1-d0df7ee4e80b",
+      "status": "active",
+      "created_at": "2025-05-23T07:06:03.000Z",
+      "last_message_at": "2025-05-23T07:06:03.000Z",
+      "is_archived": 0
+    }
+  ],
+  "messages": [
+    {
+      "id": 7,
+      "room_id": 5,
+      "sender_type": "guest",
+      "sender_id": "guest_6cde7f09-2219-4146-82e7-719f9b67c6b0",
+      "message": "2222",
+      "is_read": 0,
+      "created_at": "2025-05-23T03:25:57.000Z"
+    },
+    {
+      "id": 8,
+      "room_id": 15,
+      "sender_type": "admin",
+      "sender_id": "1",
+      "message": "22",
+      "is_read": 0,
+      "created_at": "2025-05-23T07:00:48.000Z"
+    },
+    {
+      "id": 9,
+      "room_id": 15,
+      "sender_type": "guest",
+      "sender_id": "guest_2a0d346d-00ea-4433-85a2-498af1a184d7",
+      "message": "11",
+      "is_read": 0,
+      "created_at": "2025-05-23T07:02:03.000Z"
+    },
+    {
+      "id": 10,
+      "room_id": 16,
+      "sender_type": "admin",
+      "sender_id": "1",
+      "message": "22",
+      "is_read": 0,
+      "created_at": "2025-05-23T07:04:22.000Z"
+    },
+    {
+      "id": 11,
+      "room_id": 17,
+      "sender_type": "admin",
+      "sender_id": "1",
+      "message": "22",
+      "is_read": 0,
+      "created_at": "2025-05-23T07:06:03.000Z"
+    },
+    {
+      "id": 12,
+      "room_id": 4,
+      "sender_type": "guest",
+      "sender_id": "guest_0d7bc2ac-3927-42e1-aaeb-77272fd5b6ac",
+      "message": "111",
+      "is_read": 0,
+      "created_at": "2025-05-23T07:07:59.000Z"
+    },
+    {
+      "id": 13,
+      "room_id": 4,
+      "sender_type": "guest",
+      "sender_id": "guest_0d7bc2ac-3927-42e1-aaeb-77272fd5b6ac",
+      "message": "2222",
+      "is_read": 0,
+      "created_at": "2025-05-23T07:08:10.000Z"
+    },
+    {
+      "id": 14,
+      "room_id": 6,
+      "sender_type": "admin",
+      "sender_id": "4",
+      "message": "22222",
+      "is_read": 1,
+      "created_at": "2025-05-23T07:32:16.000Z"
+    },
+    {
+      "id": 15,
+      "room_id": 6,
+      "sender_type": "admin",
+      "sender_id": "4",
+      "message": "21312312412",
+      "is_read": 1,
+      "created_at": "2025-05-23T07:33:21.000Z"
+    },
+    {
+      "id": 16,
+      "room_id": 6,
+      "sender_type": "admin",
+      "sender_id": "4",
+      "message": "2222",
+      "is_read": 1,
+      "created_at": "2025-05-23T07:41:18.000Z"
+    },
+    {
+      "id": 17,
+      "room_id": 17,
+      "sender_type": "admin",
+      "sender_id": "4",
+      "message": "22222",
+      "is_read": 0,
+      "created_at": "2025-05-23T07:48:41.000Z"
+    },
+    {
+      "id": 18,
+      "room_id": 10,
+      "sender_type": "guest",
+      "sender_id": "guest_01f187aa-fe59-4e66-9753-9aa275a25e57",
+      "message": "12312312",
+      "is_read": 0,
+      "created_at": "2025-05-23T07:49:30.000Z"
+    },
+    {
+      "id": 19,
+      "room_id": 10,
+      "sender_type": "guest",
+      "sender_id": "guest_01f187aa-fe59-4e66-9753-9aa275a25e57",
+      "message": "123123123",
+      "is_read": 0,
+      "created_at": "2025-05-23T07:49:33.000Z"
+    },
+    {
+      "id": 20,
+      "room_id": 17,
+      "sender_type": "admin",
+      "sender_id": "1",
+      "message": "222",
+      "is_read": 0,
+      "created_at": "2025-05-23T07:49:54.000Z"
+    },
+    {
+      "id": 22,
+      "room_id": 17,
+      "sender_type": "admin",
+      "sender_id": "4",
+      "message": "22",
+      "is_read": 0,
+      "created_at": "2025-05-23T07:58:01.000Z"
+    },
+    {
+      "id": 23,
+      "room_id": 6,
+      "sender_type": "admin",
+      "sender_id": "4",
+      "message": "222",
+      "is_read": 1,
+      "created_at": "2025-05-23T08:07:18.000Z"
+    },
+    {
+      "id": 30,
+      "room_id": 6,
+      "sender_type": "admin",
+      "sender_id": "1",
+      "message": "아 ㅈ같다",
+      "is_read": 1,
+      "created_at": "2025-07-20T07:20:42.000Z"
+    }
+  ]
+}

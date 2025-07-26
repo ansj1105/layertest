@@ -1,8 +1,8 @@
 {
   "notification": {
     "title": "Thông báo hệ thống",
-    "subtitle": "Hướng dẫn chính thức Upstart",
-    "official": "\nTrung tâm công việc tùy chỉnh, cửa hàng công việc tùy chỉnh đã mở!\n\nBây giờ, nền tảng Upstart đã chính xác và tin cậy hơn bao giờ hết thông qua hệ thống lợi nhuận dựa trên AI thông minh.\n\nChương trình này được mở ra cho tất cả những người tham gia vào cấu trúc lợi nhuận và tích cực tham gia.\n\nChặng đường này không chỉ là một phần thưởng, mà là cơ hội cho sự phát triển.\nUpstart là đối tác mạnh mẽ nhất giúp bạn vượt qua giới hạn của mình và thiết kế tương lai của mình.\n\nTham gia ngay và cùng xây dựng hệ thống tài chính thế giới trong tương lai.\n\nChúng tôi đang chờ đợi thử thách của bạn."
+    "subtitle": "Thông báo chính thức từ DAVE",
+    "official": "\n'Lời mời tham gia hệ sinh thái thu nhập tự động với AI'\n\n1. Ra mắt Trung tâm Thuật toán Định lượng\nDave đã xây dựng một hệ thống quản lý tài sản tối ưu dựa trên động cơ định lượng tiên tiến sử dụng AI, giúp phân tích các cơ hội thu nhập cá nhân và tự động thực hiện chúng. Dựa trên dữ liệu thị trường theo thời gian thực, cân bằng rủi ro - lợi nhuận được điều chỉnh để đạt được lợi nhuận bền vững và ổn định.\n\n2. Chương trình Chiến lược Thuật toán Tham gia\nChương trình này được thiết kế để bất kỳ ai cũng có thể tham gia. Thuật toán ghép chiến lược sẽ tự động cung cấp các kế hoạch giao dịch tối ưu phù hợp với phong cách đầu tư, mức độ chấp nhận rủi ro và quy mô tài sản của bạn. Từ người mới đến chuyên gia, ai cũng có thể sử dụng các chiến lược định lượng chuyên nghiệp để xây dựng mô hình thu nhập đa dạng trên thị trường toàn cầu.\n\n3. Giao dịch Tự động vượt ra ngoài Đầu tư Thụ động\nMục tiêu của Dave là giảm rào cản tham gia giao dịch tự động dựa trên dữ liệu, không chỉ đơn thuần là lợi nhuận. Bằng cách tích hợp và phân tích dữ liệu on-chain và off-chain, xác định thời điểm mua/bán tối ưu, cung cấp các tính năng như giao dịch chênh lệch giá dựa trên sự khác biệt giá và tránh rủi ro sớm trước khi vào vùng nguy hiểm, giúp giảm thiểu quyết định của người dùng và kiểm soát rủi ro.\n\n4. Trái tim của hệ sinh thái Dave Quant – Token USC\nUSC là đồng tiền trung tâm của hệ sinh thái Dave Quant, được sử dụng để thực hiện chiến lược, phân phối lợi nhuận, truy cập các tính năng cao cấp và quản trị DAO trên nền tảng. Nền kinh tế token dựa trên USC tạo dựng niềm tin và động lực giữa các thành viên thông qua phân phối phần thưởng dựa trên đóng góp vào các chiến lược thuật toán trả phí và hệ thống xếp hạng dựa trên token.\n\n5. Cùng Dave kiến tạo tương lai tài chính định lượng\nDave hướng tới việc vượt qua lợi nhuận đơn thuần bằng cách cho phép mọi người cạnh tranh công bằng trên thị trường thông qua dân chủ hóa dữ liệu tài chính và tự động hóa chiến lược. Tự động hóa chiến lược dựa trên thuật toán, phân phối lợi nhuận minh bạch qua hợp đồng thông minh, công cụ kiểm tra và backtest chiến lược theo thời gian thực, cùng hệ thống xếp hạng chiến lược dựa vào cộng đồng — hãy trải nghiệm một kỷ nguyên mới về thu nhập tài chính định lượng cùng Dave.\n\nTham gia hệ sinh thái Dave ngay hôm nay để trở thành một phần của hệ thống thu nhập tự động dựa trên blockchain.\n"
   },
   "order_history": {
     "title": "Đơn hàng và Đổi thưởng của tôi",
@@ -462,13 +462,15 @@
     }
   },
   "info": {
-    "title": "Sản phẩm tài chính là gì?",
-    "definition": "Sản phẩm tài chính của Upstart là các công cụ sinh lợi thông minh được thiết kế để giúp người dùng quản lý tài sản số hiệu quả hơn.\n\nNhững sản phẩm này hoạt động dựa trên hạ tầng tài chính hợp tác với Upstart và hợp đồng thông minh, cho phép người dùng gửi tài sản trong một khoảng thời gian nhất định để nhận lãi suất hoặc phần thưởng điểm.",
-    "settlement": "Ứng dụng công nghệ blockchain, các sản phẩm này được thiết kế để theo dõi minh bạch dòng tiền và lợi nhuận của tài sản đã gửi, với phần thưởng được phân phối tự động khi đáp ứng điều kiện nhất định. Người dùng có thể kiểm tra thu nhập theo thời gian thực dựa trên hiệu suất tài sản đã gửi và sẽ nhận thưởng vào cuối kỳ hợp đồng.\n\nBáo cáo Lãi/Lỗ\nDựa trên ngày đăng ký thành công (ngày T):\nLãi bắt đầu tính từ 00:00 ngày T+1,\nvà việc thanh toán được phản ánh vào 00:00 ngày tiếp theo.",
-    "tradingTitle": "Giải thích giao dịch [Quy tắc mua]",
-    "trade1": "1. Bạn có thể tham gia trực tiếp vào sản phẩm tài chính bằng tài sản từ Ví Quant hoặc Ví Lợi nhuận. (Áp dụng cùng mức phí rút tiền.)",
-    "trade2": "2. Lợi nhuận của sản phẩm tài chính là biến động, không cố định. Việc tính thu nhập hàng ngày bắt đầu sau hai ngày làm việc kể từ ngày đăng ký. Nếu bạn rút trong vòng ba ngày kể từ ngày hợp đồng, sẽ bị tính phí quản lý 1%.",
-    "trade3": "3. Cả gốc và lãi đều được thanh toán vào cuối kỳ mà không tự động tái đầu tư. Không cho phép kết thúc hoặc rút trước hạn."
+    "title": "Tổng quan Sản phẩm Tài chính Dave",
+    "definition": "1. Định nghĩa và Chức năng\n\n**Sản phẩm tài chính** của Dave là một công cụ tối ưu hóa lợi nhuận dựa trên AI, được thiết kế để giúp người dùng quản lý tài sản kỹ thuật số một cách hệ thống và hiệu quả hơn. Sản phẩm này vận hành thông qua mạng lưới đối tác tài chính đã được kiểm chứng của Dave và hệ thống tự động hóa dựa trên hợp đồng thông minh, cho phép người dùng nhận lãi suất hoặc phần thưởng điểm khi gửi tài sản.\n",
+    "settlement": "2. Thiết kế minh bạch\n\nVận hành dựa trên ví blockchain: Tất cả hoạt động gửi và nhận lợi nhuận đều được ghi lại trên blockchain công khai, giúp người dùng có thể kiểm tra dòng tiền mọi lúc, theo thời gian thực. Phân phối phần thưởng tự động: Khi các điều kiện được xác định trước được đáp ứng, hợp đồng thông minh sẽ tự động phân phối lợi nhuận và gốc.\n\n",
+    "tradingTitle": "3. Cơ sở tính toán lãi/lỗ",
+    "trade1": "Dựa trên **ngày đăng ký thành công (T-Day)**:\nTừ 00:00 ngày T+1, lợi nhuận bắt đầu được tính và cập nhật tự động vào lúc 00:00 mỗi ngày.\n",
+    "trade2": "📌 Cách tham gia\nNgười dùng có thể đầu tư vào sản phẩm tài chính này bằng tài sản có trong ví Dave hoặc ví quỹ. Việc đầu tư được thực hiện thông qua chuyển khoản liên ví mà không phát sinh thêm phí rút tiền.\n\n📌 Cấu trúc lợi nhuận\nLãi suất biến động (Variable APY): Lãi suất được điều chỉnh linh hoạt theo tình hình thị trường. Thời điểm bắt đầu sinh lãi: Sau 1 ngày làm việc kể từ ngày đăng ký, lãi sẽ bắt đầu được trả.\n",
+    "trade3": "📌 Thu hồi vốn và bảo toàn gốc\nTự động tất toán khi đáo hạn: Khi hợp đồng kết thúc, cả gốc và lãi sẽ được chuyển vào tài khoản một lần. Không thể rút hoặc hủy giữa kỳ: Không thể thu hồi vốn hoặc hủy hợp đồng trong thời gian hiệu lực.",
+    "tradingTitle2": "5. Giá trị của Sản phẩm tài chính Dave",
+    "trade4": "Đảm bảo minh bạch: Theo dõi dòng tiền hoàn toàn công khai và xác minh được nhờ blockchain.\n\nTăng cường bảo mật: Đảm bảo tính toàn vẹn của việc phân phối gốc và lãi nhờ hợp đồng thông minh và hạ tầng ngân hàng đối tác.\n\nThiết kế lấy người dùng làm trung tâm: Quy trình tự động hóa tối ưu cho UI/UX giúp người dùng dễ dàng sử dụng các sản phẩm tài chính chuyên nghiệp.\n\nChiến lược tối ưu hóa lợi nhuận: Điều chỉnh linh hoạt dựa trên thuật toán định lượng nội bộ và dữ liệu thị trường để tối đa hóa lợi nhuận."
   },
   "header": "Quản lý Tài trợ",
   "loading": "Đang tải...",
@@ -527,99 +529,117 @@
   },
   "agencyCooperation": {
     "back": "Quay lại",
-    "title": "Đối tác đại lý",
-    "subTitle": "Phần thưởng mạng lưới đại lý",
+    "title": "Đối tác Đại lý",
+    "subTitle": "Tổng quan",
     "lines": [
-      "Chương trình đại lý của Upstart là hệ thống dành cho các đối tác giúp mở rộng nền tảng và xây dựng niềm tin vào các sản phẩm tài chính trên toàn thế giới.",
-      "Đối tác giới thiệu người dùng mới và kích hoạt giao dịch sẽ nhận được hoa hồng chia sẻ lợi nhuận định kỳ từ Upstart.",
+      "Dave là một nền tảng fintech có trụ sở tại Mỹ, dẫn đầu đổi mới tài chính lấy người dùng làm trung tâm và cung cấp Chương trình Đối tác Đại lý để mở rộng hệ sinh thái đối tác.",
+      "Đây là một quan hệ đối tác chuyên nghiệp vượt ra ngoài việc giới thiệu đơn thuần, với cơ cấu thu nhập bền vững và hệ thống tính toán đóng góp minh bạch. Đối tác của Dave không chỉ là người trung gian mà còn là đối tác chiến lược nhận được phần thưởng thực tế cho sự đóng góp vào độ tin cậy và thanh khoản của nền tảng.",
       "",
       "Cấu trúc hoa hồng 3 cấp",
-      "Upstart cung cấp hệ thống hoa hồng 3 cấp minh bạch:",
+      "Dave cung cấp hệ thống tính hoa hồng 3 tầng dựa trên mức độ đóng góp có thể định lượng.",
       "",
-      "Cấp 1 (thành viên mời trực tiếp): Hoa hồng 20% trên lợi nhuận hàng ngày của mỗi thành viên",
-      "Cấp 2 (người dùng được mời bởi thành viên cấp 1): Hoa hồng 8% trên lợi nhuận của họ",
-      "Cấp 3 (người dùng được mời bởi thành viên cấp 2): Hoa hồng 4% trên lợi nhuận của họ",
+      "Cấp 1 (thành viên do bạn trực tiếp mời): Nhận 18% hoa hồng từ lợi nhuận hàng ngày của thành viên đó",
+      "Cấp 2 (người dùng được mời bởi thành viên cấp 1): Nhận 7% hoa hồng từ lợi nhuận của thành viên đó",
+      "Cấp 3 (người dùng được mời bởi thành viên cấp 2): Nhận 3% hoa hồng từ lợi nhuận của thành viên đó",
       "",
-      "※ Tất cả hoa hồng được tính dựa trên lợi nhuận thực tế phát sinh. Lời mời giả hoặc hoạt động bất thường sẽ bị loại trừ.",
+      "※ Lợi nhuận được tính toán tự động theo thời gian thực và thanh toán hàng ngày hoặc hàng tuần",
+      "※ Các tài khoản đăng ký giả, lưu lượng truy cập tự động, hoặc vi phạm quy định sẽ bị loại khỏi chương trình hoa hồng",
+      "※ Vi phạm tiêu chuẩn AML hoặc KYC có thể dẫn đến khóa tài khoản và đóng băng lợi nhuận",
       "",
-      "Ví dụ minh họa",
-      "Nếu A, B và C lần lượt là đối tác cấp 1, 2, 3 của bạn và mỗi người kiếm được $100 mỗi ngày:",
-      "- Lợi nhuận của A: $100 × 20% = $20",
-      "- Lợi nhuận của B: $100 × 8% = $8",
-      "- Lợi nhuận của C: $100 × 4% = $4",
-      "⇒ Tổng hoa hồng hàng ngày của bạn: $32",
+      "Mô phỏng thanh toán hoa hồng",
+      "Giả sử A, B, C lần lượt là đối tác cấp 1, 2, 3 và mỗi người đều có lợi nhuận $100/ngày:",
+      "- Lợi nhuận của A: $100 × 18% = $18",
+      "- Lợi nhuận của B: $100 × 7% = $7",
+      "- Lợi nhuận của C: $100 × 3% = $3",
+      "⇒ Tổng hoa hồng hàng ngày của bạn: $28",
       "",
-      "Ví dụ tính hoa hồng đội nhóm",
-      "Nếu tất cả các tài khoản phụ đều kiếm $100/ngày và số lượng thành viên hoạt động như sau:",
-      "- Cấp 1: 10 người → $100 × 20% × 10 = $200",
-      "- Cấp 2: 100 người → $100 × 8% × 100 = $800",
-      "- Cấp 3: 1.000 người → $100 × 4% × 1.000 = $4.000",
-      "⇒ Tổng hoa hồng hàng ngày dự kiến: $5.000"
+      "Mô hình mở rộng",
+      "Nếu tất cả các tài khoản cấp dưới đều có lợi nhuận $100/ngày và số lượng thành viên như sau:",
+      "- Cấp 1: 10 người → $100 × 18% × 10 = $180",
+      "- Cấp 2: 100 người → $100 × 7% × 100 = $700",
+      "- Cấp 3: 1000 người → $100 × 3% × 1000 = $3000",
+      "⇒ Tổng hoa hồng hàng ngày dự kiến: $3,880",
+      "Giá trị đối tác Dave",
+      "Dave mang lại giá trị đối tác vượt trên hoa hồng.",
+      "✔️ Cơ cấu thu nhập bền vững",
+      "Hoa hồng dựa trên lợi nhuận thực tế của người dùng",
+      "Mô hình thu nhập không phóng đại",
+      "Đo lường đóng góp dựa trên số liệu thực tế",
+      "",
+      "✔️ Hệ thống đối tác minh bạch",
+      "Tự động hóa thanh toán dựa trên hệ thống",
+      "Xem lịch sử hoa hồng theo thời gian thực",
+      "Cung cấp dự đoán lợi nhuận qua API trước khi ký hợp đồng",
+      "",
+      "✔️ Chiến lược mở rộng thị trường",
+      "Có thể mở rộng từ Mỹ ra toàn cầu",
+      "Mạng lưới đại lý dựa trên cộng đồng địa phương",
+      "Cung cấp uy tín thương hiệu và hạ tầng công nghệ của Dave"
     ]
   },
   "companyIntro": {
     "back": "Quay lại",
     "title": "Giới thiệu Công ty",
-    "featuresTitle": "Các tính năng chính",
+    "featuresTitle": "Công nghệ cốt lõi",
     "items": [
-      "Giao dịch Định lượng",
-      "Dự án Tài trợ",
+      "Giao dịch định lượng",
+      "Dự án tài trợ",
       "Nền tảng Blockchain",
-      "Bảo mật Toàn diện"
+      "Bảo mật toàn diện"
     ],
     "details": {
       "quantitative": {
-        "title": "Giao dịch Định lượng",
-        "description": "Upstart tạo ra lợi nhuận ổn định thông qua hệ thống phân tích định lượng dựa trên trí tuệ nhân tạo (AI) và thuật toán phát hiện sự không hiệu quả của thị trường và thực hiện chiến lược giao dịch siêu ngắn hạn và trung hạn.",
+        "title": "Giao dịch định lượng",
+        "description": "Dave tạo ra lợi nhuận ổn định bằng cách phát hiện chính xác các bất cân xứng trên thị trường thông qua các mô hình phân tích tự động dựa trên CashAI™ và hệ thống giao dịch thuật toán, thực hiện giao dịch tần suất cao (HFT) và các chiến lược trung-ngắn hạn.\n**CashAI™** phân tích hơn 180 chỉ số dữ liệu bao gồm dòng tiền, thói quen chi tiêu, cấp bậc công việc và thu nhập của người dùng, đồng thời dự đoán cơ hội cho vay và cung cấp thanh khoản theo thời gian thực.",
         "features": [
-          "Cơ cấu lợi nhuận tự động tận dụng sự không hiệu quả của thị trường",
-          "Giao dịch tần suất cao (HFT) và quản lý danh mục đầu tư theo thuật toán theo chiến lược",
-          "Hệ thống phân bổ tài sản và phản ứng theo kịch bản dựa trên kiểm soát rủi ro",
-          "Chênh lệch giá tự động giữa các sàn giao dịch"
+          "Phân tích AI dựa trên dữ liệu giao dịch toàn cầu",
+          "Tự động thực hiện giao dịch chênh lệch giữa các sàn và thị trường",
+          "Kiểm soát rủi ro dựa trên danh mục chiến lược → quản lý tài sản đa dạng",
+          "Quy trình tối ưu hóa tự động (điều chỉnh chiến lược theo thời gian thực)"
         ],
-        "conclusion": "Upstart vượt xa giao dịch tự động đơn giản để thực hiện giao dịch định lượng 'thông minh' dựa trên dữ liệu thị trường. Thông qua phân tích dựa trên AI, chúng tôi tối đa hóa độ chính xác dự đoán biến động giá và tối ưu hóa chiến lược theo thời gian thực để chủ động đáp ứng điều kiện thị trường."
+        "conclusion": "Khai thác dữ liệu thị trường ATM toàn cầu, bất động sản và hành vi tiêu dùng trong ứng dụng, thuật toán tự động hóa quy trình ra quyết định → đặt lệnh → hiện thực hóa lợi nhuận chỉ trong vài giây."
       },
       "funding": {
-        "title": "Dự án Tài trợ",
-        "description": "Nền tảng tài trợ sáng tạo sử dụng công nghệ blockchain, cung cấp môi trường minh bạch và an toàn kết nối nhà đầu tư và dự án.",
+        "title": "Chương trình đầu tư thông minh",
+        "description": "Dave cung cấp nhiều sản phẩm đầu tư theo thời gian được thiết kế dựa trên công nghệ tài chính và sự tin tưởng của người dùng.",
         "features": [
-          "Quy trình tài trợ tự động dựa trên hợp đồng thông minh",
-          "Quản lý quỹ minh bạch và giám sát thời gian thực",
-          "Nhiều lựa chọn đầu tư và đa dạng hóa rủi ro",
-          "Kết nối mạng lưới nhà đầu tư toàn cầu"
+          "Cơ chế chia sẻ lợi nhuận hàng ngày - Tự động phân phối lợi nhuận phát sinh mỗi ngày cho nhà đầu tư, có thể rút hoặc tái đầu tư.",
+          "Quản lý khóa vốn - Vốn được khóa trong thời gian cố định theo từng sản phẩm, gốc + lãi tự động thanh toán khi hết hạn hợp đồng.",
+          "Lợi nhuận ổn định dựa trên USDT - Tập trung vào mô hình lợi nhuận dự đoán thay vì biến động",
+          "Hỗ trợ cấu trúc ký quỹ - Lưu trữ dòng tiền an toàn và phân phối dựa trên dòng lợi nhuận của nền tảng"
         ],
-        "conclusion": "Vượt qua giới hạn tài trợ truyền thống, chúng tôi xây dựng hệ sinh thái đầu tư mới đảm bảo cả tính minh bạch và hiệu quả thông qua công nghệ blockchain."
+        "conclusion": "** Đối với nhà đầu tư VIP hoặc tổ chức, cung cấp sản phẩm lợi nhuận tùy chỉnh và tỷ suất ưu đãi."
       },
       "blockchain": {
         "title": "Nền tảng Blockchain",
-        "description": "Chúng tôi cung cấp dịch vụ tài chính phi tập trung, an toàn và minh bạch sử dụng công nghệ blockchain mới nhất.",
+        "description": "Dave thiết kế toàn bộ nền tảng dựa trên blockchain và hợp đồng thông minh.",
         "features": [
-          "Đảm bảo tính toàn vẹn dữ liệu dựa trên Công nghệ Sổ cái Phân tán (DLT)",
-          "Thực hiện giao dịch tự động thông qua hợp đồng thông minh",
-          "Khả năng tương thích chuỗi chéo hỗ trợ nhiều mạng blockchain",
-          "Cấu trúc quản trị phi tập trung"
+          "Lịch sử đầu tư, quá trình chia cổ tức và luồng tài sản đều được ghi lại on-chain, có thể kiểm chứng công khai",
+          "Phân phối lợi nhuận tự động, thực hiện hợp đồng và tuân thủ điều kiện đều được vận hành bằng hợp đồng thông minh",
+          "Loại bỏ sự không minh bạch của tài chính tập trung, hướng tới xây dựng hệ sinh thái tin cậy phi tập trung"
         ],
-        "conclusion": "Chúng tôi cung cấp nền tảng hướng tới tương lai bằng cách tích hợp hoàn hảo các giá trị cốt lõi của blockchain về tính minh bạch, bảo mật và hiệu quả vào dịch vụ tài chính."
+        "conclusion": "Tích hợp hoàn hảo các giá trị cốt lõi của blockchain như minh bạch, bảo mật và hiệu quả vào dịch vụ tài chính, mang đến nền tảng hướng tới tương lai."
       },
       "security": {
-        "title": "Bảo mật Toàn diện",
-        "description": "Chúng tôi bảo vệ an toàn tài sản và thông tin của người dùng thông qua công nghệ bảo mật cấp cao và hệ thống bảo mật đa lớp.",
+        "title": "Khung bảo mật toàn diện",
+        "description": "Dave đặt ưu tiên hàng đầu cho việc bảo vệ tài sản và dữ liệu người dùng.",
         "features": [
-          "Hệ thống ví đa chữ ký",
-          "Lưu ký tài sản dựa trên lưu trữ lạnh",
-          "Giám sát bảo mật thời gian thực và phát hiện mối đe dọa",
-          "Kiểm toán bảo mật và kiểm tra lỗ hổng thường xuyên"
+          "Vận hành hệ thống bảo mật nhiều lớp trên toàn bộ các tính năng như CashAI™, ExtraCash™, tài khoản Checking/Goals",
+          "Cung cấp xác thực hai lớp (2FA), xác thực sinh trắc học và hạn chế thay đổi địa chỉ ví",
+          "Bảo vệ chống DDoS và giám sát giao dịch bất thường theo thời gian thực",
+          "Tài sản người dùng được lưu trữ phân tán trong ví lạnh đa chữ ký (Multi-signature)",
+          "Bảo vệ tài khoản gửi tiền thông qua Evolve Bank & Trust (Mỹ) dựa trên bảo hiểm FDIC"
         ],
-        "conclusion": "Bằng cách ưu tiên bảo mật, yếu tố cốt lõi của dịch vụ tài chính, chúng tôi cung cấp môi trường nơi người dùng có thể sử dụng dịch vụ một cách yên tâm."
+        "conclusion": "Bằng cách ưu tiên bảo mật, chúng tôi mang đến môi trường dịch vụ an toàn để người dùng yên tâm sử dụng."
       }
     }
   },
   "quantTutorial": {
-    "title": "Hướng dẫn Hệ thống Giao dịch",
-    "description": "Tổng quan hệ thống\n\nUpstart cung cấp hệ thống giao dịch chênh lệch định lượng tự động, kết hợp công nghệ phân tích dựa trên AI mới nhất và các thuật toán giao dịch tự động để khai thác sự chênh lệch giá trên thị trường tài sản số.\n\nHệ thống này tự động phát hiện sự chênh lệch giá giữa các tài sản số lớn như USDT, BTC và ETH trên các sàn giao dịch toàn cầu, và thực hiện lệnh mua/bán theo thời gian thực để tạo ra lợi nhuận ổn định.",
+    "title": "Hệ thống Arbitrage DAVE",
+    "description": "1. Tổng quan hệ thống\n\nDAVE tận dụng cơ chế phân tích AI thời gian thực và thuật toán giao dịch tự động dựa trên chiến lược để khai thác các cơ hội chênh lệch giá (spread) trên thị trường tiền mã hóa. Hệ thống phân tích định lượng sự chênh lệch giá giữa các sàn giao dịch toàn cầu đối với các tài sản chính (USDT, BTC, ETH, v.v.), tự động xác định thời điểm mua/bán nhằm tối ưu hóa lợi nhuận với độ an toàn và hiệu quả cao.\n\n2. Cấu trúc cấp bậc VIP\n\nGiao dịch arbitrage chính xác của DAVE được phân loại theo cấp VIP dựa trên quy mô đầu tư và mức độ đóng góp mạng lưới, mỗi cấp được hỗ trợ số lần giao dịch tự động tương ứng.",
     "sections": {
-      "overview": "Nguyên lý hệ thống chênh lệch thông minh",
-      "principle": "Nguyên lý hệ thống chênh lệch thông minh",
+      "overview": "3. Nguyên lý hoạt động hệ thống",
+      "principle": "Nguyên lý hệ thống Smart Arbitrage",
       "process": "Quy trình hiện thực hóa lợi nhuận",
       "vipCriteria": "Tiêu chí nâng cấp VIP",
       "dailyReturns": "Ví dụ lợi nhuận hàng ngày VIP",
@@ -627,29 +647,29 @@
       "suitability": "Hệ thống này phù hợp với ai?"
     },
     "method": {
-      "title": "Lưu ý",
-      "title2": "Hệ thống này phù hợp với ai?",
-      "description": "-Tất cả lợi nhuận có thể thay đổi tùy theo điều kiện thị trường, thanh khoản sàn và trạng thái hệ thống.\n-Hệ thống chỉ sử dụng API sàn giao dịch chính thức và thuật toán đã được kiểm chứng.\n-Đăng ký gian lận, tài khoản trùng lặp và giao dịch bất thường sẽ bị chặn ngay lập tức và thu hồi lợi nhuận.",
-      "description2": "-Nhà đầu tư thông minh hướng đến lợi nhuận ngắn hạn\n-Người mới tham gia tài sản số chưa có khả năng phản ứng thị trường\n-Nhà đầu tư giá trị lớn muốn sử dụng mô hình lợi nhuận tự động"
+      "title": "Lưu ý vận hành & rủi ro",
+      "title2": "Ai nên sử dụng hệ thống này?",
+      "description": "- DAVE chỉ sử dụng API chính thức và thuật toán đã kiểm chứng.\n- Tài khoản giả mạo, trùng lặp hoặc giao dịch bất thường sẽ bị chặn ngay lập tức và thu hồi lợi nhuận.\n- Tồn tại rủi ro kỹ thuật và rủi ro thị trường nhất định, vì vậy cần hiểu rõ trước khi sử dụng giao dịch tự động.",
+      "description2": "- Nhà đầu tư thông minh muốn kiếm lợi nhuận chênh lệch ngắn hạn dựa trên định lượng\n- Người mới trong lĩnh vực tài sản số có ít kinh nghiệm phản ứng thị trường\n- Người dùng muốn triển khai chiến lược vận hành tự động hóa với tài sản lớn\n- Nhà đầu tư vốn lớn muốn tận dụng mô hình lợi nhuận tự động hóa"
     },
-    "overview": "-Giám sát thị trường: AI tự động theo dõi dữ liệu giá theo thời gian thực từ các sàn giao dịch lớn toàn cầu\n-Phân tích chênh lệch giá: Khi chênh lệch giá của cùng một tài sản giữa các sàn vượt mức nhất định, tín hiệu mua/bán sẽ được kích hoạt\n-Thực hiện tự động: Lệnh mua và bán được thực hiện đồng thời, lợi nhuận (chênh lệch) được ghi nhận tự động\n-Phân phối lợi nhuận: 50% lợi nhuận tạo ra được giữ làm phí nền tảng, 50% trả lại cho nhà đầu tư\n\nVí dụ: Mua BTC tại sàn OXX với giá 1000 USDT → Bán tại sàn CoinEase với giá 1050 USDT → Tổng lợi nhuận 50 USDT, người dùng nhận 25 USDT\n\nQuy trình hiện thực hóa lợi nhuận\n\n1. Nhấn nút → Bắt đầu giao dịch tự động\n2. Thuật toán thực hiện giao dịch định lượng trong 1–3 phút\n3. Tự động thực hiện đến khi bán giá cao → Lợi nhuận được tạo ra và phân phối\n4. Báo cáo lợi nhuận theo thời gian thực trên nền tảng",
+    "overview": "1) Giám sát thị trường: AI liên tục thu thập và theo dõi giá thời gian thực từ các sàn giao dịch toàn cầu\n2) Phát hiện arbitrage: Khi chênh lệch giá giữa các tài sản vượt ngưỡng, hệ thống tự động kích hoạt tín hiệu mua/bán\n3) Thực thi tự động: Đặt lệnh mua và bán đồng thời để thu lợi nhuận spread\n4) Phân phối lợi nhuận: 50% lợi nhuận là phí nền tảng, 50% còn lại tự động chia cho nhà đầu tư\n\nHướng dẫn: Quy trình hiện thực hóa lợi nhuận\n\n1) Nhấn nút thực thi chiến lược → Kích hoạt giao dịch tự động\n2) Trong 1–3 phút, thuật toán định lượng được thực hiện\n3) Tự động bán hoàn tất và lợi nhuận được ghi nhận\n4) Báo cáo thời gian thực giúp minh bạch trạng thái vận hành",
     "vipUpgradeCriteria": [
-      "VIP1: Yêu cầu tối thiểu 35 USDT tài sản.",
-      "VIP2: Yêu cầu tối thiểu 300 USDT + 2 lời mời cấp A hoạt động + 2 cấp B + 2 cấp C.",
-      "VIP3: Tối thiểu 1000 USDT + 5 cấp A + 5 cấp B + 5 cấp C hoạt động.",
-      "VIP4: Tối thiểu 3000 USDT + 15 cấp A + 15 cấp B + 15 cấp C hoạt động.",
-      "VIP5: Tối thiểu 5000 USDT + 30 cấp A + 30 cấp B + 30 cấp C hoạt động.",
-      "VIP6: Tối thiểu 50000 USDT + 60 cấp A + 60 cấp B + 60 cấp C hoạt động.",
+      "VIP1: Cần tối thiểu 35 USDT tài sản.",
+      "VIP2: Tối thiểu 250 USDT + mời 2 người cấp A + 2 người cấp B + 2 người cấp C.",
+      "VIP3: Tối thiểu 800 USDT + 4 người cấp A + 4 người cấp B + 4 người cấp C.",
+      "VIP4: Tối thiểu 2500 USDT + 17 người cấp A + 17 người cấp B + 17 người cấp C.",
+      "VIP5: Tối thiểu 4000 USDT + 28 người cấp A + 28 người cấp B + 28 người cấp C.",
+      "VIP6: Tối thiểu 45000 USDT + 50 người cấp A + 50 người cấp B + 50 người cấp C.",
       "",
-      "※ Mỗi điều kiện cấp dựa trên người dùng hoạt động; tài khoản gian lận không hợp lệ."
+      "※ Tất cả điều kiện cấp bậc dựa trên người dùng thực sự có giao dịch; đăng ký bất thường sẽ bị loại trừ."
     ],
     "vipDaily": [
-      "VIP1: Tối đa 5 giao dịch/ngày, lợi nhuận 1.3% ~ 1.6%, với 500 USDT → 6.5 ~ 8 USDT/ngày",
-      "VIP2: Tối đa 6 giao dịch/ngày, lợi nhuận 1.8% ~ 2.1%, với 2000 USDT → 36 ~ 42 USDT/ngày",
-      "VIP3: Tối đa 7 giao dịch/ngày, lợi nhuận 2.2% ~ 2.5%, với 5000 USDT → 110 ~ 125 USDT/ngày",
-      "VIP4: Tối đa 8 giao dịch/ngày, lợi nhuận 2.8% ~ 3.2%, với 20000 USDT → 560 ~ 640 USDT/ngày",
-      "VIP5: Tối đa 9 giao dịch/ngày, lợi nhuận 3.3% ~ 3.8%, với 100000 USDT → 3300 ~ 3800 USDT/ngày",
-      "VIP6: Tối đa 10 giao dịch/ngày, lợi nhuận 4.5% ~ 5.0%, với 200000 USDT → 9000 ~ 10000 USDT/ngày"
+      "VIP1: Tối đa 6 giao dịch/ngày, lợi nhuận 1.6% ~ 2.0%, với 500 USDT → 8 ~ 10 USDT/ngày",
+      "VIP2: Tối đa 7 giao dịch/ngày, lợi nhuận 2.1% ~ 2.4%, với 2,000 USDT → 42 ~ 48 USDT/ngày",
+      "VIP3: Tối đa 8 giao dịch/ngày, lợi nhuận 2.5% ~ 2.8%, với 5,000 USDT → 125 ~ 140 USDT/ngày",
+      "VIP4: Tối đa 9 giao dịch/ngày, lợi nhuận 3.1% ~ 3.5%, với 20,000 USDT → 620 ~ 700 USDT/ngày",
+      "VIP5: Tối đa 10 giao dịch/ngày, lợi nhuận 3.8% ~ 4.2%, với 100,000 USDT → 3,800 ~ 4,200 USDT/ngày",
+      "VIP6: Tối đa 11 giao dịch/ngày, lợi nhuận 4.3% ~ 5.3%, với 200,000 USDT → 8,600 ~ 10,600 USDT/ngày"
     ]
   },
   "commonProblems": {
@@ -790,22 +810,22 @@
     "terms": {
       "title": "Điều khoản Dịch vụ",
       "general": {
-        "title": "1. Nguyên tắc Chung\n\n",
-        "1_1": "1.1 Cấu trúc Hợp đồng\nCác Điều khoản Dịch vụ này (sau đây gọi là 'Thỏa thuận') quy định tất cả các cam kết áp dụng cho việc sử dụng trang web và dịch vụ của Upstart (sau đây gọi là 'Nền tảng'). Thỏa thuận này bao gồm chính sách quyền riêng tư, chính sách Nhận biết Khách hàng (KYC), chính sách Chống Rửa tiền (AML), quy tắc sử dụng kỹ thuật, biện pháp phòng ngừa khi sử dụng nền tảng, cảnh báo, thông báo, hướng dẫn liên quan, v.v., có thể được sửa đổi hoặc bổ sung theo quyết định của chúng tôi.\n\n",
-        "1_2": "1.2 Đồng ý và Hiểu rõ Thỏa thuận\nNgười dùng chỉ có thể sử dụng dịch vụ sau khi xem xét và đồng ý với các điều khoản của Thỏa thuận này. Nếu có nội dung nào không rõ ràng hoặc không hiểu, người dùng có thể tìm kiếm tư vấn pháp lý, và người dùng phải tiếp tục sử dụng nền tảng trên cơ sở chấp nhận tất cả các điều kiện.\n\n",
-        "1_3": "1.3 Đăng ký Thành viên và Chữ ký Điện tử\nThông tin do người dùng nhập trong quá trình đăng ký nền tảng phải trung thực, và sự đồng ý dưới hình thức chữ ký điện tử được thiết lập bằng cách nhấp vào nút 'Đồng ý' hoặc chỉ định tương tự. Điều này được coi là hợp đồng hợp pháp ngay cả khi không có chữ ký tay.\n\n"
+        "title": "1. Nguyên tắc chung\n\n",
+        "1_1": "1.1 Cấu trúc Điều khoản\n\nĐiều khoản sử dụng này (sau đây gọi là 'Điều khoản') quy định các quy tắc và chính sách cơ bản mà người dùng phải tuân thủ khi sử dụng nền tảng tài chính số của **Dave Inc.** (sau đây gọi là 'Nền tảng'). Điều khoản này bao gồm Chính sách Bảo mật, xác thực người dùng (KYC), chính sách phòng chống rửa tiền (AML), hướng dẫn sử dụng kỹ thuật, hướng dẫn bảo mật và các lưu ý khi sử dụng dịch vụ, và có thể được thay đổi theo quyết định của Dave.\n\n",
+        "1_2": "1.2 Đồng ý với Điều khoản\n\nKhi sử dụng nền tảng, người dùng được coi là đã hoàn toàn đồng ý với Điều khoản này và tất cả các hướng dẫn liên quan. Nếu không đồng ý với Điều khoản, vui lòng ngừng sử dụng dịch vụ. Nếu có điều gì chưa rõ hoặc cần giải thích thêm, Dave sẽ hỗ trợ thông qua trung tâm chăm sóc khách hàng hoặc các kênh chính thức.\n\n",
+        "1_3": "1.3 Đăng ký và Đồng ý\n\nThông tin cung cấp khi đăng ký thành viên phải chính xác và thuộc về chính bạn. Việc nhấn nút đăng ký được coi là chữ ký điện tử và có hiệu lực pháp lý.\n\n"
       },
       "use": {
         "title": "2. Sử dụng Dịch vụ\n\n",
-        "2_1": "2.1 Tạo và Quản lý Tài khoản\nNgười dùng chỉ được tạo một tài khoản, và tất cả các hoạt động phải được thực hiện dưới trách nhiệm của chính họ. Nghiêm cấm đánh cắp danh tính, cung cấp thông tin sai lệch và đăng ký thông qua các script tự động.\n\n",
-        "2_2": "2.2 Hành vi Bị cấm\nNgười dùng không được tham gia vào các hành vi sau:\n  - Truy cập trái phép hoặc tấn công hệ thống hoặc mạng\n  - Thu thập trái phép thông tin tài khoản của người dùng khác\n  - Cố gắng chuyển tài sản gian lận hoặc bất hợp pháp\n  - Bất kỳ hành động nào cản trở hoạt động bình thường của dịch vụ\n\n",
-        "2_3": "2.3 Thay đổi và Gián đoạn Dịch vụ\nUpstart có thể thay đổi, tạm ngừng hoặc hạn chế một phần hoặc toàn bộ dịch vụ sau khi thông báo trước. Điều này có thể do bảo trì hệ thống, vấn đề bảo mật khẩn cấp, tuân thủ quy định, v.v., và chúng tôi không chịu trách nhiệm về bất kỳ thiệt hại nào do việc này gây ra.\n\n"
+        "2_1": "2.1 Tạo và Quản lý Tài khoản\nNgười dùng chỉ được sở hữu một tài khoản duy nhất và chịu trách nhiệm cho mọi hoạt động của mình. Nghiêm cấm đăng ký thông tin sai lệch, sử dụng thông tin của người khác, hoặc sử dụng chương trình tự động để đăng ký. Nếu vi phạm, tài khoản có thể bị hạn chế hoặc khóa.\n\n",
+        "2_2": "2.2 Hành vi bị cấm\nDave nghiêm cấm các hành vi sau:\n  - Truy cập hoặc tấn công trái phép vào hệ thống hoặc mạng lưới của nền tảng\n  - Thu thập trái phép tài khoản, thông tin cá nhân, lịch sử giao dịch của người khác\n  - Thực hiện giao dịch tài sản giả mạo hoặc gian lận\n  - Cố ý gây cản trở hoạt động của nền tảng\n\n",
+        "2_3": "2.3 Thay đổi và Tạm ngừng Dịch vụ\nDave có thể thay đổi hoặc tạm ngừng một phần hoặc toàn bộ dịch vụ sau khi thông báo trước để cập nhật bảo mật, bảo trì hệ thống, thay đổi chính sách hoặc đáp ứng yêu cầu pháp lý. Dave không chịu trách nhiệm cho bất kỳ tổn thất nào phát sinh từ việc này.\n\n"
       },
       "liability": {
-        "title": "3. Trách nhiệm và Quyền hạn\n\n",
-        "3_1": "3.1 Trách nhiệm của Người dùng\nTất cả các giao dịch, hoạt động và hành động quản lý ví là trách nhiệm của người dùng, và Upstart không chịu trách nhiệm về thiệt hại do rò rỉ hoặc mất thông tin tài khoản cá nhân.\n\n",
-        "3_2": "3.2 Từ chối Trách nhiệm\nUpstart không chịu trách nhiệm về:\n  - Gián đoạn do hack từ bên ngoài, tấn công DDoS, v.v.\n  - Hạn chế dịch vụ do luật pháp hoặc lệnh của chính phủ\n  - Lỗi hoặc chậm trễ của mạng blockchain\n\n",
-        "3_3": "3.3 Bản quyền và Thương hiệu\nTất cả nội dung, logo và mã nguồn trong nền tảng là tài sản của chúng tôi, và nghiêm cấm sao chép, phân phối hoặc sử dụng trái phép.\n\n"
+        "title": "3. Trách nhiệm và Quyền của Người dùng\n\n",
+        "3_1": "3.1 Trách nhiệm của Người dùng\nNgười dùng chịu trách nhiệm bảo mật tài khoản, ví tài sản số, thông tin đăng nhập của mình.\nDave không chịu trách nhiệm cho bất kỳ tổn thất nào do sơ suất cá nhân (ví dụ: lừa đảo, mất mát, tiết lộ cho bên thứ ba).\n\n",
+        "3_2": "3.2 Miễn trừ trách nhiệm\nDave không chịu trách nhiệm đối với các thiệt hại phát sinh trong các trường hợp sau:\n  - Lỗi kỹ thuật bất ngờ, sự cố hệ thống, tấn công mạng hoặc các yếu tố bên ngoài khác\n  - Dịch vụ bị gián đoạn do chỉ thị của chính phủ hoặc thay đổi pháp luật liên quan\n  - Lỗi mạng blockchain hoặc giao dịch bị trì hoãn\n\n",
+        "3_3": "3.3 Quyền sở hữu trí tuệ\nMọi thiết kế, nội dung, mã nguồn, logo, dữ liệu trên nền tảng Dave đều là tài sản của công ty.\nNghiêm cấm sao chép, sử dụng cho mục đích thương mại hoặc chia sẻ cho bên thứ ba khi chưa có sự đồng ý bằng văn bản của công ty. Vi phạm sẽ bị xử lý theo quy định của pháp luật.\n\n"
       },
       "etc": {
         "4": "4. Hạn chế Sử dụng\nNghiêm cấm lạm dụng dịch vụ như hack, kỹ thuật đảo ngược và các hoạt động bất hợp pháp.\n\n",
@@ -815,8 +835,16 @@
       }
     },
     "privacy": {
-      "title": "Chính sách Quyền riêng tư",
-      "content": "1. **Giới thiệu**\n\nUpstart (\"chúng tôi\",\"của chúng tôi\" hoặc \"chúng tôi\") tôn trọng quyền riêng tư của bạn và cam kết bảo vệ nó.\n\n2. **Thông tin Chúng tôi Thu thập**\n\n- **Dữ liệu Cá nhân**: tên, email, số điện thoại, địa chỉ ví.\n- **Dữ liệu Sử dụng**: trang đã xem, hành động đã thực hiện.\n\n3. **Cách Chúng tôi Sử dụng Thông tin**\n\nChúng tôi sử dụng dữ liệu của bạn để cung cấp, duy trì và cải thiện dịch vụ, giao tiếp với bạn và tuân thủ nghĩa vụ pháp lý.\n\n4. **Chia sẻ Dữ liệu**\n\nChúng tôi không bán dữ liệu cá nhân. Có thể chia sẻ với nhà cung cấp dịch vụ dưới cam kết bảo mật nghiêm ngặt.\n\n5. **Bảo mật**\n\nChúng tôi áp dụng các biện pháp tiêu chuẩn ngành để bảo vệ thông tin của bạn.\n\n6. **Quyền của Bạn**\n\nBạn có thể truy cập, chỉnh sửa hoặc xóa dữ liệu cá nhân bằng cách liên hệ hỗ trợ.\n\n7. **Thay đổi**\n\nChúng tôi có thể sửa đổi chính sách này; sẽ thông báo cho bạn về các thay đổi quan trọng."
+      "title": "Chính sách Bảo mật Thông tin Cá nhân",
+      "1": "1. Tổng quan\n\nChính sách bảo mật này (sau đây gọi là 'Chính sách') áp dụng cho người dùng sử dụng dịch vụ Dave hoặc truy cập website và ứng dụng di động của Dave (sau đây gọi là 'Nền tảng').\nDave luôn đặt quyền riêng tư của người dùng lên hàng đầu và minh bạch về cách thu thập, sử dụng, lưu trữ, chia sẻ thông tin cá nhân.\n\nDave cung cấp trải nghiệm dịch vụ tài chính tối ưu để hỗ trợ sức khỏe tài chính của người dùng, đồng thời giải thích rõ ràng cách thông tin cá nhân được thu thập và xử lý qua Chính sách này.\nViệc sử dụng dịch vụ Dave đồng nghĩa với việc bạn đồng ý với Chính sách này. Nếu không đồng ý, vui lòng ngừng sử dụng dịch vụ.\n\n",
+      "2": "2. Định nghĩa\n\n  - Tài khoản (Account): Tài khoản cá nhân được tạo khi người dùng đăng ký trên nền tảng Dave\n  - Dịch vụ (Services): Tất cả các chức năng tài chính do Dave cung cấp (ví dụ: nạp/rút tiền, hoàn tiền, Dave ExtraCash™, chuyển tiền tự động, v.v.)\n  - Nền tảng (Platform): Website, ứng dụng di động và các dịch vụ số liên quan do Dave vận hành\n  - Người dùng (User): Cá nhân sử dụng nền tảng Dave hoặc chủ sở hữu tài khoản\n\n",
+      "3": "3. Cookie và Công nghệ theo dõi\n\nDave sử dụng cookie và các công nghệ theo dõi khác nhau (như web beacon) để nâng cao trải nghiệm người dùng.\n\nThông tin thu thập qua các công nghệ này được sử dụng để cung cấp dịch vụ cá nhân hóa, phân tích lưu lượng truy cập, đo lường hiệu quả quảng cáo. Người dùng có thể từ chối cookie qua cài đặt trình duyệt.\n\n",
+      "4": "4. Loại thông tin được thu thập\n\nDave có thể thu thập các loại thông tin sau:\n  - Thông tin nhận diện người dùng: email, số điện thoại, họ tên, ngày sinh, địa chỉ, v.v.\n  - Thông tin tài chính: thông tin tài khoản ngân hàng liên kết, lịch sử giao dịch, thông tin thẻ, v.v.\n  - Thông tin kỹ thuật: địa chỉ IP, ID thiết bị, hệ điều hành, loại trình duyệt, v.v.\n  - Lịch sử sử dụng dịch vụ: nhật ký hoạt động trong ứng dụng, lịch sử liên hệ và phản hồi, v.v.\n\n",
+      "5": "5. Mục đích sử dụng thông tin cá nhân\n\nDave sử dụng thông tin thu thập được cho các mục đích sau:\n\n  - Xác thực và quản lý tài khoản người dùng\n  - Phân tích tình trạng tài chính và cung cấp giải pháp tài chính cá nhân hóa như Dave ExtraCash™, công cụ lập ngân sách, v.v.\n  - Thực hiện nghĩa vụ pháp lý liên quan đến AML/KYC (chống rửa tiền và xác minh khách hàng)\n  - Kiểm tra nội bộ và phát hiện hành vi gian lận để tăng cường bảo mật\n  - Phân tích dữ liệu để cải thiện dịch vụ và tiếp thị\n\n",
+      "6": "6. Chia sẻ và ủy thác thông tin\n\nDave chỉ chia sẻ hoặc ủy thác thông tin cá nhân trong các trường hợp sau:\n\n  - Khi có sự đồng ý của người dùng, hợp tác với đối tác tài chính hoặc nhà cung cấp công nghệ đáng tin cậy\n  - Khi có yêu cầu pháp lý hoặc yêu cầu từ cơ quan chức năng vì lý do an toàn công cộng\n  - Tất cả đối tác đều phải tuân thủ tiêu chuẩn bảo mật thông tin cá nhân của Dave theo hợp đồng và được giám sát nghiêm ngặt\n\n",
+      "7": "7. Lưu trữ và xóa thông tin\n\nDave sẽ xóa thông tin liên quan ngay sau khi đạt được mục đích thu thập.\n- Tuy nhiên, thông tin sẽ được lưu trữ an toàn trong thời gian bắt buộc theo quy định pháp luật, sau đó sẽ bị xóa vĩnh viễn hoặc ẩn danh hóa.\n\n",
+      "8": "8. Quyền của người dùng\n\nNgười dùng có thể thực hiện các quyền sau bất cứ lúc nào:\n\n  - Yêu cầu xem và sao chép thông tin\n  - Yêu cầu chỉnh sửa hoặc xóa thông tin\n  - Yêu cầu ngừng xử lý thông tin\n\n - Các yêu cầu này có thể thực hiện qua mục cài đặt trong ứng dụng Dave hoặc kênh hỗ trợ khách hàng.",
+      "contact": "Liên hệ\n\nMọi thắc mắc liên quan đến thông tin cá nhân, vui lòng liên hệ Trung tâm Chăm sóc Khách hàng Upstart.\n\n※ Chính sách này có thể được sửa đổi sau khi thông báo trước nếu có thay đổi về pháp luật hoặc chính sách dịch vụ."
     }
   },
   "profile": {

@@ -20,19 +20,20 @@
   max-width: 500px;
   /* ✅ container와 맞춤 */
   height: 61.27px;
-  background: #1d1d27;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid #0c423a;
-  box-shadow: 0 4px 4px -2px #2d423f;
+
+  box-shadow: 0 4px 4px -2px #adb8b6;
   padding: 0 16px;
   z-index: 1000;
+  border: 1.1px solid rgb(0 136 73) !important;
 }
 
 .top-logo {
-  width: 130px;
-  height: 50px;
+  width: 100px;
+  height: 40px;
   padding-bottom: 2.5px;
 }
 
@@ -49,7 +50,7 @@
 .avatar-button {
   width: 40px;
   height: 40px;
-  background-color: #206d7f;
+  background-color: rgb(0 67 24);
   border-radius: 50%;
   padding: 6px;
   display: flex;
@@ -62,13 +63,16 @@
 }
 
 .avatar-button:hover {
-  background-color: #114450;
+  background-color: rgb(0 136 73);
+  ;
 }
 
 .avatar-img {
   width: 32px;
   height: 32px;
+
 }
+
 
 .avatar-mase {
   padding-right: 10px;
@@ -89,9 +93,9 @@
   z-index: 9999 !important;
   width: 60px !important;
   height: 60px !important;
-  background: rgba(26, 115, 134, 0.6) !important;
+  background: rgb(177, 236, 209) !important;
   border-radius: 50% !important;
-  box-shadow: 0 12px 24px rgba(11, 61, 68, 0.699) !important;
+  box-shadow: 0 12px 24px rgb(0 136 73) !important;
   display: flex;
   align-items: center;
   justify-content: center;

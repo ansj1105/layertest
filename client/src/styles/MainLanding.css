@@ -13,6 +13,7 @@ body {
 
 .pt-16 {
     background-color: #ffffff;
+    border: 1.1px solid rgb(0 136 73) !important;
 }
 
 html::-webkit-scrollbar,
@@ -27,6 +28,7 @@ body::-webkit-scrollbar {
     overflow-x: hidden;
     scrollbar-width: none;
     z-index: 100;
+
 }
 
 .page-wrapper::-webkit-scrollbar,
@@ -37,30 +39,30 @@ body::-webkit-scrollbar {
 
 .v-token {
     margin-top: 10px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     padding: 5px;
-    background: #191c29;
-    border-radius: 13px;
+    background: #001006;
+    border-radius: 0px;
     cursor: pointer;
     gap: 12px;
     transition: all 0.4s ease;
     /* 부드럽게 전환 */
-    border: 2.0px solid #1ad3b7 !important;
-    box-shadow: 0 0 12px 10px #b8dfd9;
+
     width: 100% !important;
     height: 90px !important;
+
 
 }
 
 .v-token:hover {
-    background: #1f2233;
+    background: #013013;
     /* 어두운 청색 톤 */
-    border-color: #26ffe6;
-    box-shadow: 0 0 16px 6px #81f5e9;
+    border-color: rgb(34, 78, 58);
+    box-shadow: 0 0 16px 6px #98b6a3;
 }
 
 .v-token img {
@@ -86,7 +88,8 @@ body::-webkit-scrollbar {
 }
 
 .v-token-text:hover {
-    color: #26ffe6;
+    color: rgb(0 136 73);
+    ;
     transition: color 0.4s;
 }
 
@@ -100,30 +103,30 @@ body::-webkit-scrollbar {
     align-items: center;
     justify-content: center;
     padding: 16px;
-    background: #191c29;
-    border-radius: 13px;
+    background: rgb(0 67 24);
+    border-radius: 0px;
     height: 110px;
     cursor: pointer;
     gap: 12px;
     transition: all 0.4s ease;
     /* 부드럽게 전환 */
-    border: 2.0px solid #1ad3b7 !important;
-    box-shadow: 0 0 12px 10px #b8dfd9;
+
     margin-bottom: 10px;
 
 }
 
 .v-main-card-two:hover {
-    background: #1f2233;
+    background: rgb(0 67 24);
     /* 어두운 청색 톤 */
-    border-color: #26ffe6;
-    box-shadow: 0 0 16px 6px #81f5e9;
+    border-color: rgb(0 136 73);
+    box-shadow: 0 0 16px 6px rgb(0 136 73);
+    ;
 }
 
 .v-main-card-two-list {
     display: flex;
     justify-content: space-around;
-    background: #191c29 !important;
+    background: rgb(0 67 24) !important;
     width: 100% !important;
     transition: all 0.3s ease;
     /* 부드럽게 전환 */
@@ -141,7 +144,7 @@ body::-webkit-scrollbar {
     /* 가로 가운데 */
     text-align: center;
     cursor: pointer;
-    background: #191c29 !important;
+    background: rgb(0 67 24) !important;
     width: 100%;
     gap: 6px;
     /* 아이콘과 텍스트 사이 간격 */
@@ -181,18 +184,17 @@ body::-webkit-scrollbar {
 
 
 .v-main-bottom-list-one-box {
-    background: #fafafa;
+    background: #F2F8E2;
     margin-top: 8px;
     padding: 1px;
 }
 
 .v-main-bottom-list-one-head {
-    background: #0e3a44 !important;
-    height: 70px;
+    background: #BEF542 !important;
+    height: 45px !important;
     padding: 6px 0;
     display: flex;
-    border: 2.0px solid #52eed6 !important;
-    box-shadow: 0 0 24px 8px #58978f;
+
 }
 
 .v-main-bottom-list-one-item {
@@ -242,7 +244,7 @@ body::-webkit-scrollbar {
     text-align: center;
     /* 내부 텍스트 중앙 정렬 */
     cursor: pointer;
-    color: #ffffff;
+    color: rgb(0 67 24);
     width: 370px;
     height: 100%;
     /* 부모 높이를 채우도록 */
@@ -255,7 +257,7 @@ body::-webkit-scrollbar {
     /* flex 컨테이너로 만듦 */
     text-align: center;
     cursor: pointer;
-    color: #ffffff;
+    color: rgb(0 67 24);
     align-items: center;
     /* 세로 가운데 */
     width: 160px;
@@ -269,7 +271,7 @@ body::-webkit-scrollbar {
     /* flex 컨테이너로 만듦 */
     text-align: center;
     cursor: pointer;
-    color: #ffffff;
+    color: rgb(0 67 24);
     align-items: center;
     /* 세로 가운데 */
     width: 100px;
@@ -280,8 +282,9 @@ body::-webkit-scrollbar {
 
 
 .v-main-bottom-list-one-item {
-    border: 1.0px solid #808d8d !important;
-    box-shadow: 0 0 0px 0px #7a9995;
+    border: 1.0px solid #94ce97 !important;
+    box-shadow: 0 0 0px 0px #50d44b;
+    border-radius: 15px;
 }
 
 
@@ -326,7 +329,7 @@ body::-webkit-scrollbar {
     align-items: center;
     font-weight: bold;
     width: 240px;
-    background-color: #f6fdff;
+    background-color: #F2F8E2;
 }
 
 .g-flex-justify-end {
@@ -334,7 +337,7 @@ body::-webkit-scrollbar {
     align-items: center;
     font-weight: bold;
     width: 140px;
-    background-color: #f6fdff;
+    background-color: #F2F8E2;
     justify-content: center;
     /* 가로 가운데 */
     text-align: center;
@@ -345,7 +348,7 @@ body::-webkit-scrollbar {
     align-items: center;
     font-weight: bold;
     width: 120px;
-    background-color: #f6fdff;
+    background-color: #F2F8E2;
     justify-content: center;
     /* 가로 가운데 */
     text-align: center;
@@ -458,7 +461,9 @@ body::-webkit-scrollbar {
 
 
 
-
+.items-center {
+    height: 30px !important;
+}
 
 
 
@@ -580,6 +585,31 @@ body::-webkit-scrollbar {
 
 
 
+
+
+.bell-wrapper {
+    background-color: rgb(0 67 24);
+    border-radius: 9999px;
+    /* rounded-full */
+    padding: 0.5rem;
+    /* p-2 = 8px */
+    display: inline-flex;
+    /* 아이콘 정렬을 위한 안전조치 */
+    align-items: center;
+    justify-content: center;
+}
+
+.bell-icon {
+    color: white;
+    font-size: 24px;
+    /* 필요 시 명시적 설정 */
+}
+
+
+.bell-wrapper:hover {
+    background-color: rgb(0 136 73);
+    ;
+}
 
 
 
