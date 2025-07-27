@@ -200,3 +200,77 @@
   font-size: 20px;
   margin-top: 4px;
 }
+
+
+
+@media (max-width: 768px) {
+  .charge-page {
+
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .charge-header {
+    height: 52px;
+    padding: 0 12px;
+  }
+
+  .charge-title {
+    font-size: 18px;
+  }
+
+  .charge-back-button {
+    font-size: 24px !important;
+  }
+
+  .charge-protocol-box {
+    height: auto;
+    padding: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .charge-protocol-label {
+    font-size: 14px;
+    padding: 3px 10px;
+  }
+
+  .charge-qr-box {
+    width: 90%;
+    height: auto;
+    padding: 12px;
+    margin-top: 20px;
+    margin-bottom: 100px;
+  }
+
+  .charge-qr-label {
+    font-size: 13px;
+    margin-top: 16px;
+    margin-bottom: 12px;
+  }
+
+  .charge-qr-wrapper {
+
+    max-width: 260px;
+    margin: 0 auto 10px auto;
+  }
+
+  .charge-wallet-line {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .charge-wallet-address {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .charge-copy-button {
+    font-size: 14px;
+  }
+
+  .charge-copy-success {
+    font-size: 16px;
+  }
+}

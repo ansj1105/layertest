@@ -33,6 +33,7 @@
   padding: 0 16px;
   z-index: 1000;
   margin-bottom: 8px;
+  border-bottom: 1.1px solid rgb(0 67 24) !important;
 }
 
 /* 뒤로가기 버튼 */
@@ -400,58 +401,94 @@
   font-weight: bolder;
 }
 
-@media (max-width: 768px) {
-  .withdraw-ww-wrapper {}
 
-  .withdraw-ww-header {}
+@media (max-width: 768px) {
+  .withdraw-ww-wrapper {
+
+    height: auto;
+  }
+
+  .withdraw-ww-header {
+    height: 52px;
+    padding: 0 12px;
+    margin-bottom: 6px;
+  }
+
+  .withdraw-title {
+    font-size: 18px;
+  }
 
   .withdraw-ww-back-button {
     font-size: 24px !important;
   }
 
-  .withdraw-title {
-    font-size: 18px;
-    margin-left: 0;
-  }
-
   .withdraw-www-wrapper {
-    width: 96%;
+    width: 95%;
+    height: auto;
     padding: 12px;
-    margin: 16px auto;
-    height: 500px;
-    font-size: 14px;
+    margin: 12px auto;
   }
 
-  .withdraw-ww-label {
-    font-size: 13px;
-  }
-
-  .withdraw-ww-input {
-    height: 48px;
-    font-size: 14px;
-    border-radius: 10px;
-    padding-left: 12px;
-    gap: 8px;
-    margin-top: 8px;
-    margin-bottom: 4px;
-  }
-
-  .withdraw-ww-info {
+  .withdraw-www-wrapper p,
+  .withdraw-ww-info,
+  .withdraw-ww-warning p,
+  .withdraw-ww-info-box p {
     font-size: 13px;
     line-height: 1.5;
   }
 
-  .withdraw-ww-error,
-  .withdraw-ww-success {
+  .withdraw-ww-input,
+  .withdraw-ww-button {
+    height: 48px;
+    font-size: 15px;
+    border-radius: 10px;
+    padding-left: 12px;
+  }
+
+  .withdraw-ww-label {
+    font-size: 13.5px;
+  }
+
+  .withdraw-ww-success,
+  .withdraw-ww-error {
     font-size: 13px;
   }
 
-  .withdraw-ww-button {
-    height: 50px;
-    font-size: 15px;
-    letter-spacing: 0.5px;
-    margin-top: 24px;
-    border-radius: 10px;
+  .keypad-container {
+    width: 95%;
+    padding: 16px;
+  }
+
+  .keypad-container h3 {
+    font-size: 16px;
+  }
+
+  .keypad-input {
+    font-size: 14px;
     padding: 10px;
+  }
+
+  .keypad-cancel,
+  .keypad-submit {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .withdraw-ww-setup-button,
+  .withdraw-ww-setup-button-disabled {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  .withdraw-ww-info-box,
+  .withdraw-ww-warning {
+    padding: 12px;
+    font-size: 13px;
+  }
+
+  .withdraw-ww-balance,
+  .withdraw-ww-balance-after {
+    font-size: 14px;
+    text-align: center;
   }
 }

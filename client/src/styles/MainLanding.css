@@ -45,7 +45,7 @@ body::-webkit-scrollbar {
     align-items: center;
     justify-content: center;
     padding: 5px;
-    background: #001006;
+    background: #008849;
     border-radius: 0px;
     cursor: pointer;
     gap: 12px;
@@ -105,7 +105,7 @@ body::-webkit-scrollbar {
     padding: 16px;
     background: rgb(0 67 24);
     border-radius: 0px;
-    height: 110px;
+    height: 90px;
     cursor: pointer;
     gap: 12px;
     transition: all 0.4s ease;
@@ -190,8 +190,8 @@ body::-webkit-scrollbar {
 }
 
 .v-main-bottom-list-one-head {
-    background: #BEF542 !important;
-    height: 45px !important;
+    background: #001006;
+    height: 40px !important;
     padding: 6px 0;
     display: flex;
 
@@ -244,7 +244,8 @@ body::-webkit-scrollbar {
     text-align: center;
     /* 내부 텍스트 중앙 정렬 */
     cursor: pointer;
-    color: rgb(0 67 24);
+    color: #BEF542;
+    font-weight: bolder;
     width: 370px;
     height: 100%;
     /* 부모 높이를 채우도록 */
@@ -257,7 +258,8 @@ body::-webkit-scrollbar {
     /* flex 컨테이너로 만듦 */
     text-align: center;
     cursor: pointer;
-    color: rgb(0 67 24);
+    color: #BEF542;
+    font-weight: bolder;
     align-items: center;
     /* 세로 가운데 */
     width: 160px;
@@ -271,7 +273,8 @@ body::-webkit-scrollbar {
     /* flex 컨테이너로 만듦 */
     text-align: center;
     cursor: pointer;
-    color: rgb(0 67 24);
+    color: #BEF542;
+    font-weight: bolder;
     align-items: center;
     /* 세로 가운데 */
     width: 100px;
@@ -614,127 +617,84 @@ body::-webkit-scrollbar {
 
 
 
+@media (max-width: 768px) {
 
-@media screen and (max-width: 768px) {
-    .page-wrapper-l {
-        max-width: 100%;
-        padding: 0 12px;
+
+
+    .v-main-card-two-item img {
+        width: 30px;
+        height: 30px;
     }
 
-    .top-nav-bar-login {
-        max-width: 100%;
-        height: 50px;
-        padding: 0 12px;
-    }
-
-    .login-h-text {
-        font-size: 16px;
-        margin-left: 20px;
-    }
-
-    .login-box {
-        max-width: 100%;
-        width: 100%;
-        padding: 0 12px;
-    }
-
-    .login-logo {
-        width: 150px;
-        height: auto;
-        margin-top: 60px;
-        margin-bottom: 40px;
-    }
-
-    .v-token1-l {
-        width: 100%;
-        height: 50px;
+    .v-main-card-two-item span {
         font-size: 14px;
-        padding-left: 12px;
+        text-align: left;
     }
 
-    .login-button {
+
+
+    .v-main-bottom-list-one-item-img img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .g-flex-align-center,
+    .g-flex-justify-end,
+    .g-flex-justify-center11 {
         width: 100%;
-        height: 50px;
-        font-size: 16px;
+        font-size: 14px;
+        padding: 8px;
     }
 
-    .login-button-text {
-        font-size: 20px;
-    }
-
-    .auth-links-l {
+    .flex-center-container {
         flex-direction: column;
-        font-size: 12px;
-        gap: 8px;
+        padding: 10px 0;
     }
 
-    .auth-links-l a {
-        margin-left: 0;
-    }
-
-    .custom-recaptcha iframe {
-        transform: scale(0.85);
-        /* 모바일에서 캡차 크기 축소 */
-    }
-
-
-    .notification-overlay {
-        padding-top: 90px;
-        align-items: flex-start;
-
+    .content-wrapper {
+        padding: 0 12px;
+        text-align: center;
+        font-size: 14px;
     }
 
     .notification-popup {
-        width: 92%;
-        max-width: 82%;
-        padding: 1rem;
-        border-radius: 10px;
-        flex-direction: column;
-        gap: 12px;
-        height: 80%;
 
-        margin: 0 auto 16px auto;
+        height: 85% !important;
+        width: 90%;
+        max-width: 90%;
+        padding: 12px;
+        flex-direction: column;
+        height: auto;
+        overflow-y: auto;
     }
 
     .notification-title {
-        font-size: 1rem;
-        margin-top: 6px;
-        margin-bottom: 16px;
-        padding-bottom: 12px;
-        margin-left: 0;
-        text-align: center;
-    }
-
-    .notification-item {
-        margin-bottom: 16px;
-        padding-bottom: 2.5rem;
-    }
-
-    .notification-item h4 {
-        font-size: 1rem;
-        margin-bottom: 12px;
+        font-size: 18px;
+        margin-bottom: 15px;
     }
 
     .notification-item p {
-        font-size: 0.8125rem;
-        max-height: 51vh;
-        line-height: 1.6;
-        padding-right: 0.25rem;
-        /* ✅ 스크롤바 숨기기 */
-        scrollbar-width: none;
-        /* Firefox */
-        -ms-overflow-style: none;
-        /* IE 10+ */
-    }
-
-    .notification-item p::-webkit-scrollbar {
-        display: none;
-        /* Chrome, Safari, Opera */
+        font-size: 14px;
+        line-height: 1.5;
+        max-height: 50vh;
     }
 
     .notification-close-btn {
         font-size: 1rem;
-        top: 0.5rem;
-        right: 0.5rem;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+    }
+
+    .more-link {
+        font-size: 16px;
+    }
+
+    .bell-icon {
+        font-size: 20px;
+    }
+
+    .bell-wrapper {
+        padding: 0.25rem;
     }
 }

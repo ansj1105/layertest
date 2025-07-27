@@ -144,44 +144,57 @@
 
 
 
+@media (max-width: 768px) {
+  .security-page-wrapper {
 
-@media screen and (max-width: 768px) {
+    height: auto;
+    /* 고정 높이 제거 */
+    overflow-y: auto;
+  }
 
-
-
+  .security-top-bar {
+    max-width: 100%;
+    padding: 0 12px;
+    height: 50px;
+  }
 
   .security-back-button {
     font-size: 24px !important;
+    padding: 0 6px;
   }
 
   .security-title {
-    font-size: 1rem;
-    height: auto;
+    font-size: 18px;
     text-align: center;
+    padding: 0 6px;
+    height: auto;
   }
 
-
+  .security-item-wrapper {
+    margin-top: 20px;
+    padding: 5px;
+  }
 
   .security-item-list {
     margin-top: 20px;
-    padding: 0;
-    gap: 0.5rem;
+    width: 100%;
   }
 
   .security-item {
-    width: 90%;
-    padding: 12px;
-    font-size: 0.875rem;
-    border-radius: 6px;
 
+    align-items: flex-start;
+    padding: 12px;
+    width: 100%;
+    gap: 6px;
   }
 
   .security-item-value {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    margin-left: 0;
+    color: #BEF542;
   }
 
   .security-item-icon {
-    width: 18px;
-    height: 18px;
+    font-size: 18px;
   }
 }

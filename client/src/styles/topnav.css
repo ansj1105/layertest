@@ -132,28 +132,50 @@
   transform: scale(1.1);
 }
 
+@media (max-width: 768px) {
 
-@media screen and (max-width: 768px) {
-  #fixed-bell {
-    position: fixed !important;
-    left: 90% !important;
-    /* 모바일에서는 오른쪽 끝에 배치 */
-    bottom: 80px !important;
-    /* 하단에서 조금 위로 */
-    transform: translateX(-50%) !important;
-    z-index: 9999 !important;
-    width: 50px !important;
-    /* 사이즈 축소 */
-    height: 50px !important;
-    background: rgba(26, 115, 134, 0.7) !important;
-    border-radius: 50% !important;
-    box-shadow: 0 8px 16px rgba(11, 61, 68, 0.6) !important;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
+
+  .top-nav-bar {
+    max-width: 100%;
+    height: 56px;
+    padding: 0 12px;
+    box-shadow: 0 2px 2px -1px #adb8b6;
   }
 
+  .top-logo {
+    width: 80px;
+    height: auto;
+  }
 
+  .btn-avatar img {
+    width: 20px;
+    height: 20px;
+  }
+
+  .avatar-button {
+    width: 36px;
+    height: 36px;
+    padding: 4px;
+  }
+
+  .avatar-img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .avatar-mase {
+    padding-right: 6px;
+  }
+
+  #fixed-bell {
+    width: 50px !important;
+    height: 50px !important;
+    left: 90% !important;
+    bottom: 80px !important;
+  }
+
+  #fixed-bell img {
+    width: 40px;
+    height: 40px;
+  }
 }

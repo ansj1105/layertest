@@ -362,19 +362,11 @@
 
 
 
-
-
 @media (max-width: 768px) {
   .profile-container {
     padding: 12px;
     gap: 16px;
-    margin-bottom: 50px;
-
-  }
-
-  .profile-header {
-
-    gap: 12px;
+    padding-bottom: 5rem;
   }
 
   .profile-avatar {
@@ -384,78 +376,108 @@
   }
 
   .profile-username {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .profile-vip-level {
     font-size: 12px;
   }
 
+  .profile-id-section {
+    font-size: 11px;
+  }
+
   .profile-summary-card {
     padding: 12px;
-    gap: 12px;
+    font-size: 13px;
+    margin-bottom: -4px;
+    margin-top: -6px;
   }
 
   .profile-summary-header {
-    gap: 8px;
+
+
+    font-size: 13px;
   }
 
   .profile-summary-balance-label {
-    font-size: 16px;
-
-  }
-
-  .profile-summary-balance-value {
-    font-size: 20px;
-
-  }
-
-  .profile-summary-grid {
-    gap: 4px;
-  }
-
-  .profile-actions-container {
-    gap: 16px;
-  }
-
-  .profile-action-btn {
-    gap: 8px;
-  }
-
-  .profile-action-icon {
-    width: 32px !important;
-    height: 32px !important;
-  }
-
-  .profile-action-text {
     font-size: 14px;
   }
 
+  .profile-summary-balance-value {
+    font-size: 14px;
+  }
+
+
+
+  .profile-summary-grid-label {
+    font-size: 13px;
+  }
+
+  .profile-summary-grid-value {
+    font-size: 14px;
+  }
+
+  .profile-actions-container {
+
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .profile-action-btn {
+    width: 100%;
+    padding: 10px;
+
+    justify-content: start;
+
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .profile-action-icon {
+    width: 35px !important;
+    height: 35px !important;
+    margin-bottom: 0;
+  }
+
+  .profile-action-text {
+    font-size: 13px;
+  }
+
   .referral-level-container {
-    gap: 8px;
+    margin-bottom: -25px;
+  }
+
+  .referral-level-item {
+    height: auto;
+    padding: 8px;
+  }
+
+  .referral-level-title {
+    font-size: 13px;
   }
 
   .referral-level-value {
     font-size: 16px;
   }
 
-  .profile-menu-container {
-    padding: 0;
+  .profile-menu-item {
+    padding: 12px;
+    font-size: 14px;
   }
 
-  .profile-menu-item {
-    padding: 10px;
-    font-size: 14px;
-    margin: 6px 0;
+  .profile-menu-icon {
+    font-size: 18px;
+    margin-right: 8px;
   }
 
   .logout-button-container {
-    margin-bottom: 30px;
     font-size: 16px;
+    margin-bottom: 40px;
   }
 
   .logout-button svg {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
   }
 }

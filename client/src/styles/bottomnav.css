@@ -166,147 +166,50 @@ html *::after {
 }
 
 
-@media screen and (max-width: 768px) {
 
-
-  html {
-
-    box-sizing: border-box;
-    --bgColorMenu: #1d1d27;
-    --duration: .7s;
-
-
-  }
-
-  html *,
-  html *::before,
-  html *::after {
-
-    box-sizing: inherit;
-
-  }
-
-
-  .nav-body {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
-    width: 100%;
-    /* ✅ 모바일은 자동, 데스크탑은 max-width로 제한 */
-    max-width: 500px;
-    border-top: 2px solid #1d1d27;
-    box-shadow: 0 -8px 12px -4px #b8dfd9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 999;
-    box-sizing: border-box;
-  }
-
-  .menu {
-    width: 100%;
+@media (max-width: 768px) {
+  .nav-body-b {
+    height: 55px;
     max-width: 100%;
-    display: flex;
-    font-size: 0.68em;
-    justify-content: space-around;
-    align-items: center;
-    background-color: var(--bgColorMenu);
-    margin: 0;
-    padding: 0 1em;
-    margin-left: 8px;
-    margin-right: 8px;
-    position: relative;
-    justify-content: center;
+    padding: 0;
+    box-shadow: 0 -8px 12px -4px #001006;
+    border: 1.1px solid rgb(0 67 24) !important;
+  }
 
-
+  .menu-b {
+    padding: 0 6px;
+    margin-top: 3px;
+    gap: 0;
+    border-top: 1px solid rgb(0 67 24);
   }
 
 
 
 
   .menu__item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 100%;
+    flex: 1;
+    margin-bottom: 10px;
     gap: 2px;
-    flex-grow: 1;
-    z-index: 100;
-    cursor: pointer;
-    position: relative;
-    border-radius: 50%;
-    will-change: transform;
-    justify-content: center;
-    padding: 5px;
-    transition: transform var(--timeOut, var(--duration));
-    margin-bottom: 2px;
-
   }
-
-
-  .menu__item::before {
-
-    content: "";
-    z-index: -1;
-    width: 4.5em;
-    height: 4.5em;
-    border-radius: 50%;
-    position: absolute;
-    transform: scale(0);
-    transition: background-color var(--duration), transform var(--duration);
-
-  }
-
-  .menu__item.active::before {
-
-    transform: scale(1);
-    background-color: var(--bgColorItem);
-
-  }
-
-
 
   .icon {
-    width: 2.5em;
-    height: 2.5em;
-    stroke: white;
-    fill: transparent;
-    stroke-width: 1pt;
-    stroke-miterlimit: 10;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-dasharray: 400;
+    width: 1.8em;
+    height: 1.8em;
+    stroke-width: 1.2pt;
   }
 
   .menu__label {
-
-    font-size: 0.75rem;
-    color: #fff;
-    pointer-events: none;
+    font-size: 0.65rem;
+    line-height: 1;
   }
 
-
-
+  .menu__item.active {
+    transform: translate3d(0, -0.2em, 0);
+  }
 
   .menu__item.active .icon {
-
-    animation: strok 1.5s reverse;
-
-
+    stroke: #BEF542;
+    animation: strok 1s reverse;
   }
-
-  @keyframes strok {
-
-    100% {
-
-      stroke-dashoffset: 400;
-
-    }
-
-  }
-
-
-
-
 }

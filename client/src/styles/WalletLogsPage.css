@@ -230,3 +230,55 @@
   display: flex;
   justify-content: center;
 }
+
+@media (max-width: 768px) {
+
+
+  .back-button-top-bar {
+    margin-top: 0px;
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    /* ✅ 가운데 정렬 */
+    width: 100%;
+    max-width: 500px;
+    /* ✅ container와 맞춤 */
+    height: 40.27px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    z-index: 1000;
+    margin-bottom: 8px;
+  }
+
+
+
+
+
+  .scroll-wrapper {
+    width: 100%;
+    height: auto;
+
+    box-sizing: border-box;
+  }
+
+  .logs-table {
+    font-size: 11px;
+    table-layout: fixed;
+    word-break: break-word;
+  }
+
+  .logs-table th,
+  .logs-table td {
+    padding: 6px 4px;
+    font-size: 11px;
+  }
+
+  .pagination-container {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}

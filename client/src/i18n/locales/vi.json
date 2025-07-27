@@ -398,7 +398,11 @@
   "errors": {
     "invalidAddress": "Vui lòng nhập địa chỉ hợp lệ.",
     "invalidAmount": "Vui lòng nhập số tiền rút hợp lệ.",
-    "submitFailed": "Gửi yêu cầu rút tiền thất bại."
+    "submitFailed": "Gửi yêu cầu rút tiền thất bại.",
+    "invalidTradePassword": "Mật khẩu giao dịch không khớp.",
+    "minAmount": "Số tiền rút thấp hơn số tiền rút tối thiểu.",
+    "dailyLimitExceeded": "Bạn đã vượt quá số tiền rút tối đa hàng ngày.",
+    "pendingRequestExists": "Bạn đã có yêu cầu rút tiền đang chờ xử lý."
   },
   "success": {
     "submitted": "Yêu cầu rút tiền đã được gửi thành công."

@@ -1067,174 +1067,42 @@
 
 
 
+/* 높이 고정 제거 및 세로 레이아웃 */
+.page-content {
+  height: auto;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
 
-
-@media screen and (max-width: 768px) {
-  .page-wrapper-token {}
-
-  .summary-card {
-    padding: 0.75rem;
-    margin-bottom: 0.75rem;
+/* 모바일 화면용 반응형 처리 */
+@media (max-width: 768px) {
+  .page-wrapper-ag {
+    padding: 0 12px 100px 12px;
+    height: auto;
   }
 
-  .summary-card .value {
-    font-size: 1.25rem;
-    /* 좀 더 작게 */
-  }
-
-  .summary-card .actions {
-
-    gap: 8px;
-  }
-
-  .summary-card .actions button {
+  .page-content {
     width: 100%;
-    padding: 0.5rem 0;
-  }
-
-  .summary-card .order-details-button {
-    width: 100%;
-    margin-top: 1rem;
-  }
-
-  .project-list-container {
-    padding: 0 8px;
-  }
-
-  .funding-card {
-    width: 100%;
-
-    gap: 12px;
     padding: 12px;
+    flex-direction: column;
+    height: auto;
   }
 
-  .funding-detail-btn {
-    margin-left: 0;
-
-
+  .agency-content-card {
+    max-height: none;
+    overflow-y: auto;
+    padding: 16px 10px;
   }
 
-
-
-  .funding-balance-amount-t {
-    font-size: 16px;
-    margin: 8px 0;
-    margin-left: 0 !important;
+  .agency-content-card p {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    max-height: unset;
+    overflow-y: visible;
   }
-
-  .data-box-container-t1 {
-    width: 75%;
-    margin-bottom: 100px;
-  }
-
-  .data-card-to {
-    padding: 16px;
-    margin-top: 20px;
-  }
-
-  .data-card-to-title-img {
-    width: 40px;
-    height: 40px;
-  }
-
-  .data-row {
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: 0.8rem;
-  }
-
-  .data-row span {
-    font-size: 0.85rem;
-  }
-
-  .data-box-container-tt font {
-    font-size: 14px;
-  }
-
-
-
-
-  .lockup-modal,
-  .order-modal {
-    padding: 1rem;
-  }
-
-  .lockup-modal-title,
-  .order-modal-title {
-    font-size: 1rem;
-  }
-
-  .lockup-table,
-  .order-table,
-  .redeem-table {
-    font-size: 0.775rem;
-  }
-
-  .order-section-title {
-    font-size: 1rem;
-  }
-
-
-
-
-
-
-  .redeem-modal {
-
-    padding: 1.25rem;
-    /* 패딩 약간 축소 */
-    border-radius: 0.5rem;
-    font-size: 0.9rem;
-  }
-
-  .redeem-modal-title {
-    font-size: 1rem;
-
-    margin-bottom: 0.75rem;
-  }
-
-  .redeem-modal-balance {
-    font-size: 0.8125rem;
-    margin-bottom: 0.5rem;
-
-  }
-
-  .redeem-modal-input {
-    font-size: 0.8125rem;
-    padding: 0.45rem;
-  }
-
-  .redeem-modal-error {
-    font-size: 0.8125rem;
-    text-align: center;
-  }
-
-  .redeem-modal-submit {
-    font-size: 0.9rem;
-    padding: 0.6rem;
-  }
-
-  .redeem-modal-close {
-    font-size: 1.1rem;
-    top: 0.5rem;
-    right: 0.5rem;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

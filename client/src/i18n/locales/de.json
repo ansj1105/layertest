@@ -2,7 +2,7 @@
   "notification": {
     "title": "Systembenachrichtigung",
     "subtitle": "Offizielle DAVE-Mitteilung",
-    "official": "\n'Einladung in das automatisierte Einkommensökosystem mit KI'\n\n1. Eröffnung des Quant-Algorithmus-Zentrums\nDave hat ein optimiertes Vermögensverwaltungssystem eingerichtet, das auf einer fortschrittlichen KI-basierten Quant-Engine basiert, um individuelle Einkommenschancen zu analysieren und automatisch umzusetzen. Basierend auf Echtzeit-Marktdaten wird das Risiko-Rendite-Verhältnis angepasst, um nachhaltige und stabile Renditen zu erzielen.\n\n2. Partizipatives Algorithmus-Strategieprogramm\nDieses Programm ist so konzipiert, dass jeder teilnehmen kann. Ein Strategie-Matching-Algorithmus bietet automatisch optimierte Handelspläne, die auf den eigenen Investitionsstil, die Risikopräferenz und das Vermögensvolumen zugeschnitten sind. Vom Anfänger bis zum Experten kann jeder professionelle Quant-Strategien nutzen, um ein diversifiziertes Einkommensmodell auf dem globalen Markt aufzubauen.\n\n3. Automatisierter Handel jenseits passiver Investitionen\nDaves Ziel ist es, die Einstiegshürden für datenbasierten, automatisierten Handel zu senken – nicht nur einfache Gewinne. Durch die integrierte Analyse von On-Chain- und Off-Chain-Daten werden optimale Kauf-/Verkaufszeitpunkte ermittelt und Funktionen wie Arbitrage auf Basis von Preisdifferenzen sowie frühzeitige Risikovermeidung vor Eintritt in Risikozonen bereitgestellt, um die Entscheidungsfindung der Nutzer zu minimieren und Risiken zu steuern.\n\n4. Das Herzstück des Dave-Quant-Ökosystems – der USC-Token\nUSC ist die zentrale Währung des Dave-Quant-Ökosystems und wird für Strategieausführung, Gewinnverteilung, Zugang zu Premium-Funktionen und DAO-Governance auf der Plattform verwendet. Die auf USC basierende Token-Ökonomie schafft durch Belohnungsverteilung nach Beiträgen zu kostenpflichtigen Algorithmus-Strategien und ein tokenbasiertes Rankingsystem Vertrauen und Motivation unter den Mitgliedern.\n\n5. Gestalten Sie mit Dave die Zukunft des Quant-Finanzwesens\nDave strebt über bloße Gewinne hinaus eine Plattform an, die durch Demokratisierung von Finanzdaten und Automatisierung von Strategien jedem einen fairen Wettbewerb am Markt ermöglicht. Algorithmusbasierte Strategieautomatisierung, transparente Gewinnverteilung durch Smart Contracts, Echtzeit-Backtesting und Strategie-Check-Tools sowie ein Community-basiertes Strategieranking-System – erleben Sie jetzt mit Dave ein neues Paradigma quantitativer Finanzgewinne.\n\nTreten Sie jetzt dem Dave-Ökosystem bei und werden Sie Teil des blockchainbasierten automatischen Einkommenssystems.\n"
+    "official": "\n'Einladung in das automatisierte Einkommensökosystem mit KI'\n\n1. Eröffnung des Quant-Algorithmus-Zentrums\nDave hat ein optimiertes Vermögensverwaltungssystem eingerichtet, das auf einer fortschrittlichen KI-basierten Quant-Engine basiert, um individuelle Einkommenschancen zu analysieren und automatisch umzusetzen. Basierend auf Echtzeit-Marktdaten wird das Risiko-Rendite-Verhältnis angepasst, um nachhaltige und stabile Renditen zu erzielen.\n\n2. Partizipatives Algorithmus-Strategieprogramm\nDieses Programm ist so konzipiert, dass jeder teilnehmen kann. Ein Strategie-Matching-Algorithmus bietet automatisch optimierte Handelspläne, die auf den eigenen Investitionsstil, die Risikopräferenz und das Vermögensvolumen zugeschnitten sind. Vom Anfänger bis zum Experten kann jeder professionelle Quant-Strategien nutzen, um ein diversifiziertes Einkommensmodell auf dem globalen Markt aufzubauen.\n\n3. Automatisierter Handel jenseits passiver Investitionen\nDaves Ziel ist es, die Einstiegshürden für datenbasierten, automatisierten Handel zu senken – nicht nur einfache Gewinne. Durch die integrierte Analyse von On-Chain- und Off-Chain-Daten werden optimale Kauf-/Verkaufszeitpunkte ermittelt und Funktionen wie Arbitrage auf Basis von Preisdifferenzen sowie frühzeitige Risikovermeidung vor Eintritt in Risikozonen bereitgestellt, um die Entscheidungsfindung der Nutzer zu minimieren und Risiken zu steuern.\n\n4. Das Herzstück des Dave-Quant-Ökosystems – der DVC-Token\nDVC ist die zentrale Währung des Dave-Quant-Ökosystems und wird für Strategieausführung, Gewinnverteilung, Zugang zu Premium-Funktionen und DAO-Governance auf der Plattform verwendet. Die auf DVC basierende Token-Ökonomie schafft durch Belohnungsverteilung nach Beiträgen zu kostenpflichtigen Algorithmus-Strategien und ein tokenbasiertes Rankingsystem Vertrauen und Motivation unter den Mitgliedern.\n\n5. Gestalten Sie mit Dave die Zukunft des Quant-Finanzwesens\nDave strebt über bloße Gewinne hinaus eine Plattform an, die durch Demokratisierung von Finanzdaten und Automatisierung von Strategien jedem einen fairen Wettbewerb am Markt ermöglicht. Algorithmusbasierte Strategieautomatisierung, transparente Gewinnverteilung durch Smart Contracts, Echtzeit-Backtesting und Strategie-Check-Tools sowie ein Community-basiertes Strategieranking-System – erleben Sie jetzt mit Dave ein neues Paradigma quantitativer Finanzgewinne.\n\nTreten Sie jetzt dem Dave-Ökosystem bei und werden Sie Teil des blockchainbasierten automatischen Einkommenssystems.\n"
   },
   "order_history": {
     "title": "Meine Bestellungen und Auszahlungen",
@@ -302,7 +302,7 @@
     "errorLoad": "Laden des Verlaufs fehlgeschlagen."
   },
   "tokenPurchase": {
-    "title": "USC-Token",
+    "title": "DVC-Token",
     "lockupDetails": "Sperrdetails",
     "purchaseSuccessTitle": "Kauf erfolgreich",
     "purchaseSuccessWithAmount": "{{amount}} USDT gekauft.",
@@ -310,8 +310,8 @@
     "swapSuccess": "Tausch erfolgreich",
     "depositSuccess": "Einzahlung erfolgreich",
     "redeemSuccess": "Einlösung erfolgreich",
-    "available": "Verfügbar: USC",
-    "inputUsdc": "USC ",
+    "available": "Verfügbar: DVC",
+    "inputUsdc": "DVC ",
     "redeemTitle": "Einlösen",
     "redeemSubmit": "Absenden",
     "maxAll": "Alles",
@@ -319,7 +319,7 @@
     "token": "Token pro",
     "totalCost": "Gesamtkosten (USDT)",
     "yourBalance": "USDT-Guthaben",
-    "price": "Preis pro USC-Token",
+    "price": "Preis pro DVC-Token",
     "min": "Min.",
     "selected": "Ausgewählt",
     "max": "Max.",
@@ -333,7 +333,7 @@
     "back": "Zurück",
     "details": "Details",
     "quantWallet": "Quant-Wallet (USDT)",
-    "uscWallet": "USC-Wallet",
+    "uscWallet": "DVC-Wallet",
     "swap": "Tauschen",
     "recharge": "Aufladen",
     "deposit": "Einzahlen",
@@ -346,16 +346,16 @@
     "fee": "Gebühr ({{rate}} %)",
     "afterSwap": "Nach dem Tausch:",
     "submit": "Absenden",
-    "noSales": "Keine aktiven USC-Angebote.",
+    "noSales": "Keine aktiven DVC-Angebote.",
     "phase": " Phase",
     "totalSupply": "Gesamtangebot:",
     "remainingSupply": "Verbleibendes Angebot:",
     "startTime": "Startzeit:",
     "notStarted": "Noch nicht gestartet",
-    "endedSales": "Endete USC-Angebote",
+    "endedSales": "Endete DVC-Angebote",
     "ended": "Endete",
     "onSale": "Aktiv",
-    "promptAmount": "Bitte Menge USC eingeben:",
+    "promptAmount": "Bitte Menge DVC eingeben:",
     "purchaseSuccess": "Kauf erfolgreich!",
     "errors": {
       "invalidAmount": "Bitte geben Sie einen gültigen Betrag ein.",
@@ -367,7 +367,7 @@
     }
   },
   "token": {
-    "header": "USC-Token",
+    "header": "DVC-Token",
     "more": "Mehr",
     "recharge": "Aufladen",
     "withdraw": "Abheben",
@@ -412,7 +412,11 @@
   "errors": {
     "invalidAddress": "Bitte geben Sie eine gültige Adresse ein.",
     "invalidAmount": "Bitte geben Sie einen gültigen Auszahlungsbetrag ein.",
-    "submitFailed": "Anfrage zur Auszahlung konnte nicht gesendet werden."
+    "submitFailed": "Anfrage zur Auszahlung konnte nicht gesendet werden.",
+    "invalidTradePassword": "Handelskennwort stimmt nicht überein.",
+    "minAmount": "Der Betrag ist unter dem Mindestauszahlungslimit.",
+    "dailyLimitExceeded": "Sie haben Ihr tägliches Auszahlungslimit überschritten.",
+    "pendingRequestExists": "Sie haben bereits eine ausstehende Auszahlungsanfrage."
   },
   "success": {
     "submitted": "Auszahlungsanforderung erfolgreich eingereicht."

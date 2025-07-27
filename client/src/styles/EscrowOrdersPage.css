@@ -197,80 +197,61 @@
   /* text-gray-500 */
 }
 
+@media (max-width: 768px) {
+  .escrow-page-wrapper {
+    width: 100% !important;
+    height: auto;
 
-@media screen and (max-width: 768px) {
-
-  /* 전체 페이지 래퍼: 좌우 패딩 축소 */
-  .escrow-page-wrapper {}
-
-  /* 상단 바: 높이 및 패딩 축소 */
-  .escrow-page-top-bar {}
-
-  /* 탑바 제목 텍스트: 폰트 크기 축소 */
-  .escrow-page-top-h-text {
-    font-size: 18px;
+    box-sizing: border-box;
   }
 
-  /* 뒤로가기 버튼: 폰트 크기 축소 */
+  .escrow-page-top-bar {
+    height: 40px;
+    padding: 0 12px;
+    font-size: 14px;
+  }
+
+  .escrow-page-top-h-text {
+    font-size: 16px;
+
+  }
+
   .escrow-back-button {
     font-size: 24px !important;
   }
 
-  /* (필요시 뒤로가기 아이콘의 추가 마진은 그대로 유지) */
-  .escrow-back-button span {
-    margin-left: 0.5rem;
-  }
-
-  /* 로딩/빈 메시지: 폰트 크기 및 마진 축소 */
-  .escrow-order-message {
-    font-size: 0.85rem;
-    margin-top: 0.75rem;
-  }
-
-  /* 주문 리스트 전체: 패딩 및 마진 축소 */
   .escrow-order-list {
-    padding: 10px;
-    margin-bottom: 120px;
-    /* 기존 200px 보다 축소 */
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 100px;
   }
 
-  /* 개별 주문 카드: 패딩, 여백, border-radius 축소 */
   .escrow-order-item {
-    padding: 10px;
-    border-radius: 6px;
-    margin-top: 4px;
-    margin-bottom: 18px !important;
-    flex-direction: column;
-    /* ✅ 내부 콘텐츠는 세로 배치 유지 */
-    width: 75%;
-    /* ✅ 너비를 줄임 */
-    max-width: 420px;
-    /* ✅ 최대 너비 제한 (선택 사항) */
-    margin: 10px auto;
-    /* ✅ 상하 여백 + 좌우 자동 -> 가운데 정렬 */
-    justify-content: center;
-
+    padding: 12px;
+    font-size: 0.85rem;
   }
 
-  /* 프로젝트명(주문 제목): 폰트 크기 및 여백 조정 */
   .escrow-order-title {
     font-size: 1rem;
-    margin-bottom: 0.4rem;
   }
 
-  /* 투자 금액 및 수익 영역: 폰트 크기 축소, 패딩 축소 */
   .escrow-order-info {
-    font-size: 0.75rem;
-    padding: 3px 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    font-size: 0.8125rem;
   }
 
   .escrow-order-info span {
-    margin-right: 0.2rem;
+    width: 100%;
   }
 
-  /* 날짜: 폰트 크기 및 여백 축소 */
   .escrow-order-date {
-    font-size: 0.65rem;
-    margin-top: 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  .escrow-order-message {
+    font-size: 0.85rem;
+    padding: 0 10px;
   }
 }

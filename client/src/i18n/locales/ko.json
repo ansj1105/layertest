@@ -904,7 +904,11 @@
   "errors": {
     "invalidAddress": "유효한 주소를 입력해 주세요.",
     "invalidAmount": "출금 수량을 올바르게 입력해 주세요.",
-    "submitFailed": "출금 요청에 실패했습니다."
+    "submitFailed": "출금 요청에 실패했습니다.",
+    "invalidTradePassword": "거래 비밀번호가 일치하지 않습니다.",
+    "minAmount": "출금 금액이 최소 출금 한도를 미만입니다.",
+    "dailyLimitExceeded": "오늘 출금 한도를 초과하였습니다.",
+    "pendingRequestExists": "출금 요청이 이미 진행 중입니다."
   },
   "success": {
     "submitted": "출금 요청이 성공적으로 접수되었습니다."

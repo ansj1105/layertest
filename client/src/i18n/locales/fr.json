@@ -2,7 +2,7 @@
   "notification": {
     "title": "Notification du système",
     "subtitle": "Annonce officielle de DAVE",
-    "official": "\n'Invitation à l'écosystème de revenus automatisés avec l'IA'\n\n1. Lancement du Centre d'Algorithmes Quantitatifs\nDave a mis en place un système de gestion d'actifs optimisé basé sur un moteur quantitatif avancé alimenté par l'IA, qui analyse les opportunités de revenus individuelles et les exécute automatiquement. Sur la base des données de marché en temps réel, l'équilibre risque-rendement est ajusté pour atteindre des rendements durables et stables.\n\n2. Programme de Stratégie Algorithmique Participative\nCe programme est conçu pour que tout le monde puisse participer. Un algorithme d'appariement de stratégies fournit automatiquement des plans de trading optimisés adaptés à votre style d'investissement, à votre tolérance au risque et à la taille de vos actifs. Du débutant à l'expert, chacun peut utiliser des stratégies quantitatives professionnelles pour construire un modèle de revenus diversifié sur le marché mondial.\n\n3. Trading Automatisé au-delà de l'Investissement Passif\nL'objectif de Dave est d'abaisser les barrières d'entrée au trading automatisé basé sur les données, et pas seulement de générer des profits simples. En intégrant et en analysant les données on-chain et off-chain, les moments d'achat/vente optimaux sont déterminés, et des fonctionnalités telles que l'arbitrage basé sur les écarts de prix et l'évitement précoce des zones de risque sont fournies pour minimiser la prise de décision de l'utilisateur et contrôler le risque.\n\n4. Le Cœur de l'Écosystème Quantitatif Dave – Le Jeton USC\nUSC est la monnaie centrale de l'écosystème quantitatif Dave et est utilisée pour l'exécution des stratégies, la distribution des profits, l'accès aux fonctionnalités premium et la gouvernance DAO sur la plateforme. L'économie de jetons basée sur l'USC crée la confiance et la motivation entre les membres grâce à la distribution des récompenses basée sur la contribution aux stratégies algorithmiques payantes et à un système de classement basé sur les jetons.\n\n5. Façonnez l'Avenir de la Finance Quantitative avec Dave\nDave vise à aller au-delà des profits simples en permettant à chacun de participer équitablement au marché grâce à la démocratisation des données financières et à l'automatisation des stratégies. Automatisation des stratégies basées sur des algorithmes, distribution transparente des profits via des smart contracts, outils de backtesting en temps réel et de vérification des stratégies, et système de classement communautaire des stratégies — découvrez un nouveau paradigme de gains financiers quantitatifs avec Dave.\n\nRejoignez dès maintenant l'écosystème Dave et devenez membre du système de revenus automatisés basé sur la blockchain.\n"
+    "official": "\n'Invitation à l'écosystème de revenus automatisés avec l'IA'\n\n1. Lancement du Centre d'Algorithmes Quantitatifs\nDave a mis en place un système de gestion d'actifs optimisé basé sur un moteur quantitatif avancé alimenté par l'IA, qui analyse les opportunités de revenus individuelles et les exécute automatiquement. Sur la base des données de marché en temps réel, l'équilibre risque-rendement est ajusté pour atteindre des rendements durables et stables.\n\n2. Programme de Stratégie Algorithmique Participative\nCe programme est conçu pour que tout le monde puisse participer. Un algorithme d'appariement de stratégies fournit automatiquement des plans de trading optimisés adaptés à votre style d'investissement, à votre tolérance au risque et à la taille de vos actifs. Du débutant à l'expert, chacun peut utiliser des stratégies quantitatives professionnelles pour construire un modèle de revenus diversifié sur le marché mondial.\n\n3. Trading Automatisé au-delà de l'Investissement Passif\nL'objectif de Dave est d'abaisser les barrières d'entrée au trading automatisé basé sur les données, et pas seulement de générer des profits simples. En intégrant et en analysant les données on-chain et off-chain, les moments d'achat/vente optimaux sont déterminés, et des fonctionnalités telles que l'arbitrage basé sur les écarts de prix et l'évitement précoce des zones de risque sont fournies pour minimiser la prise de décision de l'utilisateur et contrôler le risque.\n\n4. Le Cœur de l'Écosystème Quantitatif Dave – Le Jeton DVC\nDVC est la monnaie centrale de l'écosystème quantitatif Dave et est utilisée pour l'exécution des stratégies, la distribution des profits, l'accès aux fonctionnalités premium et la gouvernance DAO sur la plateforme. L'économie de jetons basée sur l'DVC crée la confiance et la motivation entre les membres grâce à la distribution des récompenses basée sur la contribution aux stratégies algorithmiques payantes et à un système de classement basé sur les jetons.\n\n5. Façonnez l'Avenir de la Finance Quantitative avec Dave\nDave vise à aller au-delà des profits simples en permettant à chacun de participer équitablement au marché grâce à la démocratisation des données financières et à l'automatisation des stratégies. Automatisation des stratégies basées sur des algorithmes, distribution transparente des profits via des smart contracts, outils de backtesting en temps réel et de vérification des stratégies, et système de classement communautaire des stratégies — découvrez un nouveau paradigme de gains financiers quantitatifs avec Dave.\n\nRejoignez dès maintenant l'écosystème Dave et devenez membre du système de revenus automatisés basé sur la blockchain.\n"
   },
   "order_history": {
     "title": "Mes Commandes et Remboursements",
@@ -318,7 +318,7 @@
     "copySuccess": "Adresse BNB copiée !"
   },
   "tokenPurchase": {
-    "title": "Token USC",
+    "title": "Token DVC",
     "swapSuccess": "Échange réussi",
     "depositSuccess": "Dépôt réussi",
     "lockupDetails": "Détails du Verrouillage",
@@ -326,15 +326,15 @@
     "purchaseSuccessWithAmount": "{{amount}} USDT acheté.",
     "purchaseFailTitle": "Achat échoué",
     "redeemSuccess": "rachat réussi",
-    "available": "USC disponible",
-    "inputUsdc": "USC",
+    "available": "DVC disponible",
+    "inputUsdc": "DVC",
     "redeemTitle": "Racheter",
     "redeemSubmit": "Soumettre",
     "quantity": "quantité",
     "token": "token PER",
     "totalCost": "coût total en USDT",
     "yourBalance": "Solde USDT",
-    "price": "Prix du token USC",
+    "price": "Prix du token DVC",
     "min": "min",
     "selected": "sélectionné",
     "maxAll": "Tout",
@@ -349,7 +349,7 @@
     "back": "Retour",
     "details": "Détails",
     "quantWallet": "Portefeuille Quant (USDT)",
-    "uscWallet": "Portefeuille USC",
+    "uscWallet": "Portefeuille DVC",
     "swap": "Échanger",
     "recharge": "Recharger",
     "deposit": "Dépôt",
@@ -362,15 +362,15 @@
     "fee": "Frais ({{rate}}%)",
     "afterSwap": "Après échange :",
     "submit": "Soumettre",
-    "noSales": "Aucune vente USC active.",
+    "noSales": "Aucune vente DVC active.",
     "phase": "Phase",
     "totalSupply": "Offre totale :",
     "remainingSupply": "Offre restante :",
     "startTime": "Heure de début :",
     "notStarted": "Pas encore commencé",
-    "endedSales": "Ventes USC terminées",
+    "endedSales": "Ventes DVC terminées",
     "ended": "Terminé",
-    "promptAmount": "Entrez le montant USC à acheter :",
+    "promptAmount": "Entrez le montant DVC à acheter :",
     "purchaseSuccess": "Achat réussi !",
     "errors": {
       "invalidAmount": "Veuillez entrer un montant valide.",
@@ -382,7 +382,7 @@
     }
   },
   "token": {
-    "header": "Token USC",
+    "header": "Token DVC",
     "more": "Plus",
     "recharge": "Recharger",
     "withdraw": "Retirer",
@@ -425,9 +425,13 @@
     "submit": "Soumettre"
   },
   "errors": {
-    "invalidAddress": "Veuillez entrer une adresse valide.",
-    "invalidAmount": "Veuillez entrer un montant de retrait valide.",
-    "submitFailed": "Échec de la soumission de la demande de retrait."
+    "invalidAddress": "Please enter a valid address.",
+    "invalidAmount": "Please enter a valid withdrawal amount.",
+    "submitFailed": "Failed to submit withdrawal request.",
+    "invalidTradePassword": "Trade password does not match.",
+    "minAmount": "Le montant est inférieur au montant minimum de retrait.",
+    "dailyLimitExceeded": "Vous avez dépassé votre limite de retrait quotidien.",
+    "pendingRequestExists": "Vous avez déjà une demande de retrait en attente."
   },
   "success": {
     "submitted": "Demande de retrait soumise avec succès."

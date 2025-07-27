@@ -13,17 +13,17 @@ export default function TradePasswordPage() {
   const { t } = useTranslation();
   const nav = useNavigate();
 
-  const [email, setEmail]             = useState('');
-  const [code, setCode]               = useState('');
-  const [newPwd, setNewPwd]           = useState('');
-  const [confirmPwd, setConfirmPwd]   = useState('');
-  const [showPwd, setShowPwd]         = useState(false);
+  const [email, setEmail] = useState('');
+  const [code, setCode] = useState('');
+  const [newPwd, setNewPwd] = useState('');
+  const [confirmPwd, setConfirmPwd] = useState('');
+  const [showPwd, setShowPwd] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
   useEffect(() => {
     axios.get('/api/mydata/me', { withCredentials: true })
       .then(res => setEmail(res.data.user.email || ''))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const sendCode = async () => {
@@ -53,21 +53,21 @@ export default function TradePasswordPage() {
       alert('❌ ' + (e.response?.data?.error || t('trade_pwd.failed')));
     }
   };
- 
+
   return (
-    <div className="trade-pwd-wrapper">
+    <div className="trade-pwd-wrapper1">
       {/* 상단 바 */}
-      <div className="trade-pwd-header">
+      <div className="trade-pwd-header1">
         <button onClick={() => nav(-1)} className="trade-pwd-back-btn">
-          <ArrowLeft size={24}/>
+          <ArrowLeft size={24} />
         </button>
         <div className="trade-pwd-title">{t('trade_pwd.title')}</div>
       </div>
 
 
       {/* 이메일 */}
-      <div className="trade-label-wrapper">
-      <label className="trade-label">{t('trade_pwd.email_label')}</label>
+      <div className="trade-label-wrapper1">
+        <label className="trade-label">{t('trade_pwd.email_label')}</label>
         <input
           type="text"
           placeholder={t('security_p.enter_new_email')}

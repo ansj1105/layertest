@@ -452,25 +452,25 @@ export default function TokenPurchasePage() {
                   return (
                     <div key={sale.id} className="data-card-to">
                       <div className="data-box-container-tt">
-                        <img src="/img/item/usc.png" alt="USC" className="data-card-to-title-img" />
+                        <img src="/img/item/dvc.png" alt="DVC" className="data-card-to-title-img" />
                         <span className="font-bold text-lg">
                           {idx + 1}{t("tokenPurchase.phase")} – {sale.name}
                         </span>
                       </div>
                       <div className="data-row">
-                        {t("tokenPurchase.totalSupply")} <span>{sale.total_supply.toLocaleString()} USC</span>
+                        {t("tokenPurchase.totalSupply")} <span>{sale.total_supply.toLocaleString()} DVC</span>
                       </div>
                       <div className="data-row">
-                        {t("tokenPurchase.remainingSupply")} <span>{sale.remaining_supply.toLocaleString()} USC</span>
+                        {t("tokenPurchase.remainingSupply")} <span>{sale.remaining_supply.toLocaleString()} DVC</span>
                       </div>
                       <div className="data-row">
                         {t("tokenPurchase.price")} <span>{sale.price.toFixed(6)} USDT</span>
                       </div>
                       <div className="data-row">
-                        {t("tokenPurchase.minPurchase")} <span>{sale.minimum_purchase} USC</span>
+                        {t("tokenPurchase.minPurchase")} <span>{sale.minimum_purchase} DVC</span>
                       </div>
                       <div className="data-row">
-                        {t("tokenPurchase.maxPurchase")} <span>{sale.maximum_purchase} USC</span>
+                        {t("tokenPurchase.maxPurchase")} <span>{sale.maximum_purchase} DVC</span>
                       </div>
                       <div className="data-row">
                         {t("tokenPurchase.lockupPeriod")} <span>{sale.lockup_period} {t("tokenPurchase.days")}</span>
@@ -519,25 +519,25 @@ export default function TokenPurchasePage() {
                   return (
                     <div key={sale.id} className="data-card-to">
                       <div className="data-box-container-tt">
-                        <img src="/img/item/usc.png" alt="USC" className="data-card-to-title-img" />
+                        <img src="/img/item/dvc.png" alt="DVC" className="data-card-to-title-img" />
                         <span className="font-bold text-lg">
                           {idx + 1}{t("tokenPurchase.phase")} – {sale.name}
                         </span>
                       </div>
                       <div className="data-row">
-                        {t("tokenPurchase.totalSupply")} <span>{sale.total_supply.toLocaleString()} USC</span>
+                        {t("tokenPurchase.totalSupply")} <span>{sale.total_supply.toLocaleString()} DVC</span>
                       </div>
                       <div className="data-row">
-                        {t("tokenPurchase.remainingSupply")} <span>{sale.remaining_supply.toLocaleString()} USC</span>
+                        {t("tokenPurchase.remainingSupply")} <span>{sale.remaining_supply.toLocaleString()} DVC</span>
                       </div>
                       <div className="data-row">
                         {t("tokenPurchase.price")} <span>{sale.price.toFixed(6)} USDT</span>
                       </div>
                       <div className="data-row">
-                        {t("tokenPurchase.minPurchase")} <span>{sale.minimum_purchase} USC</span>
+                        {t("tokenPurchase.minPurchase")} <span>{sale.minimum_purchase} DVC</span>
                       </div>
                       <div className="data-row">
-                        {t("tokenPurchase.maxPurchase")} <span>{sale.maximum_purchase} USC</span>
+                        {t("tokenPurchase.maxPurchase")} <span>{sale.maximum_purchase} DVC</span>
                       </div>
                       <div className="data-row">
                         {t("tokenPurchase.lockupPeriod")} <span>{sale.lockup_period} {t("tokenPurchase.days")}</span>
@@ -573,25 +573,25 @@ export default function TokenPurchasePage() {
                 .map((sale, idx) => (
                   <div key={sale.id} className="data-card-to opacity-60">
                     <div className="data-box-container-tt">
-                      <img src="/img/item/usc.png" alt="USC" className="data-card-to-title-img" />
+                      <img src="/img/item/dvc.png" alt="DVC" className="data-card-to-title-img" />
                       <span className="font-bold text-lg">
                         {idx + 1}{t("tokenPurchase.phase")} – {sale.name}
                       </span>
                     </div>
                     <div className="data-row">
-                      {t("tokenPurchase.totalSupply")} <span>{sale.total_supply.toLocaleString()} USC</span>
+                      {t("tokenPurchase.totalSupply")} <span>{sale.total_supply.toLocaleString()} DVC</span>
                     </div>
                     <div className="data-row">
-                      {t("tokenPurchase.remainingSupply")} <span>{sale.remaining_supply.toLocaleString()} USC</span>
+                      {t("tokenPurchase.remainingSupply")} <span>{sale.remaining_supply.toLocaleString()} DVC</span>
                     </div>
                     <div className="data-row">
                       {t("tokenPurchase.price")} <span>{sale.price.toFixed(6)} USDT</span>
                     </div>
                     <div className="data-row">
-                      {t("tokenPurchase.minPurchase")} <span>{sale.minimum_purchase} USC</span>
+                      {t("tokenPurchase.minPurchase")} <span>{sale.minimum_purchase} DVC</span>
                     </div>
                     <div className="data-row">
-                      {t("tokenPurchase.maxPurchase")} <span>{sale.maximum_purchase} USC</span>
+                      {t("tokenPurchase.maxPurchase")} <span>{sale.maximum_purchase} DVC</span>
                     </div>
                     <div className="data-row">
                       {t("tokenPurchase.lockupPeriod")} <span>{sale.lockup_period} {t("tokenPurchase.days")}</span>

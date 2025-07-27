@@ -6,82 +6,109 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #0e0e11;
-  overflow: auto; /* 스크롤 활성화 */
+  background-color: #ffffff;
+  overflow: auto;
+  /* 스크롤 활성화 */
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
   z-index: 100;
+  border-color: 0.1px solid rgb(0 67 24) !important;
 }
 
 /* 헤더 컨테이너 */
-.charge-header {
+.charge-header1 {
   margin-top: 0px;
   position: relative;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  transform: translateX(-50%);
+  /* ✅ 가운데 정렬 */
   width: 100%;
-  max-width: 500px;              /* ✅ container와 맞춤 */
+  max-width: 500px;
+  /* ✅ container와 맞춤 */
   height: 58.27px;
-  background: #1d1d27;
+  background: #ffffff !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
+  padding: 0 16px !important;
   z-index: 1000;
-  margin-bottom: 8px;
+  margin-bottom: 0px !important;
+  border-bottom: 0.1px solid rgb(0 67 24);
+
+
 }
 
 /* 뒤로가기 버튼 */
 .charge-back-button {
-  color: #ffffff;
+  color: rgb(0 136 73) !important;
   font-size: 30px !important;
-  font-weight: bold !important;              /* 글자 굵게 */
-  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  height: 100%;                   /* 부모 요소 높이 기준 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  font-weight: bold !important;
+  /* 글자 굵게 */
+  display: flex;
+  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  height: 100%;
+  /* 부모 요소 높이 기준 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 
 
 .charge-header-right {
-  color: #ffffff;
+  color: rgb(0 136 73);
   font-size: 30px !important;
-  font-weight: bold !important;              /* 글자 굵게 */
-  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  height: 100%;                   /* 부모 요소 높이 기준 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  font-weight: bold !important;
+  /* 글자 굵게 */
+  display: flex;
+  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  height: 100%;
+  /* 부모 요소 높이 기준 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 
 
 .charge-back-button:hover {
-  color: #fef08a; /* hover:text-yellow-100 */
+  color: #fef08a;
+  /* hover:text-yellow-100 */
 }
 
 /* 가운데 타이틀 */
 .charge-title {
   font-weight: bold;
-  color: #ffffff;
+  color: rgb(0 136 73) !important;
   text-align: left;
   font-size: 20px;
   width: 100%;
   height: 40%;
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 
 
 
 
-
+.charge-method-charge-wrapper {
+  border-color: 0.1px solid rgb(0 67 24) !important;
+  height: 750px;
+  margin-top: 10px;
+}
 
 
 
@@ -97,15 +124,17 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.5s ease;
-  margin-top: 20px;
-  background-color: #153c44;
-  border: 1px solid #65c1d3; /* border-yellow-700 */
-  grid-template-columns: repeat(3, 1fr); /* 3개 칼럼 */
+  margin-top: 15px;
+  background-color: #001006;
+
+  /* border-yellow-700 */
+  grid-template-columns: repeat(3, 1fr);
+  /* 3개 칼럼 */
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
 }
 
 .charge-method-selector:hover {
-  background-color: #2d575f;
+  background-color: rgb(0 136 73);
 }
 
 /* 왼쪽: 아이콘 + 텍스트 묶음 */
@@ -113,7 +142,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #fef08a; /* text-yellow-100 느낌 */
+  color: #fef08a;
+  /* text-yellow-100 느낌 */
   font-size: 16px;
 }
 
@@ -127,7 +157,8 @@
 /* 텍스트 라벨 */
 .charge-method-label {
   font-size: 15px;
-  color: #fef08a; /* 밝은 노란색 */
+  color: #ffffff;
+  /* 밝은 노란색 */
 }
 
 /* 꺾쇠 아이콘 */
@@ -150,7 +181,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #fef08a; /* text-yellow-100 느낌 */
+  color: #fef08a;
+  /* text-yellow-100 느낌 */
   font-size: 16px;
 }
 
@@ -169,33 +201,37 @@
 
 
 
-
-
-
-
 @media (max-width: 768px) {
+  .charge-wrapper {
 
+    height: auto;
+  }
 
-  .withdraw-header {
+  .charge-header1 {
     height: 54px;
-    padding: 0 12px;
-    font-size: 16px;
+    padding: 0 12px !important;
   }
 
-  .withdraw-title {
-    font-size: 16px;
-    margin-left: 0;
-  }
-
-  .back-button,
-  .menu-button {
+  .charge-back-button,
+  .charge-header-right {
     font-size: 24px !important;
   }
 
-  .currency-selector {
+  .charge-title {
+    font-size: 18px;
+  }
+
+  .charge-method-charge-wrapper {
+    height: auto;
+    margin-top: 8px;
+    padding: 5px;
+  }
+
+  .charge-method-selector {
+    flex-direction: row;
     padding: 12px;
-    margin-top: 16px;
-    border-radius: 6px;
+    margin-top: 10px;
+    gap: 12px;
     font-size: 14px;
   }
 
@@ -204,12 +240,29 @@
     font-size: 14px;
   }
 
+  .charge-method-icon,
   .currency-icon {
     width: 20px;
     height: 20px;
   }
 
+  .charge-method-label {
+    font-size: 13px;
+  }
+
+  .charge-method-chevron,
   .currency-arrow {
     font-size: 16px;
+  }
+
+  /* 아이콘이 우측 정렬 되도록 */
+  .charge-method-selector {
+    justify-content: space-between;
+  }
+
+  /* 여유 공간 확보 */
+  .charge-wrapper,
+  .charge-method-selector {
+    box-sizing: border-box;
   }
 }

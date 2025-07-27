@@ -2,7 +2,7 @@
   "notification": {
     "title": "System Notification",
     "subtitle": "Official DAVE Announcement",
-    "official": "\n'Invitation to the Automated Income Ecosystem with AI'\n\n1. Launch of the Quant Algorithm Center\nDave has established an optimized asset management system based on an advanced AI-powered quant engine, which analyzes individual income opportunities and automatically executes them. Based on real-time market data, the risk-return balance is adjusted to achieve sustainable and stable returns.\n\n2. Participatory Algorithm Strategy Program\nThis program is designed so that anyone can participate. A strategy-matching algorithm automatically provides optimized trading plans tailored to your investment style, risk preference, and asset size. From beginners to experts, everyone can utilize professional quant strategies to build a diversified income model in the global market.\n\n3. Automated Trading Beyond Passive Investment\nDave's goal is to lower the entry barriers to data-driven automated trading—not just simple profits. By integrating and analyzing on-chain and off-chain data, optimal buy/sell timings are determined, and features such as arbitrage based on price differences and early risk avoidance before entering risk zones are provided to minimize user decision-making and control risk.\n\n4. The Core of the Dave Quant Ecosystem – The USC Token\nUSC is the central currency of the Dave Quant Ecosystem and is used for strategy execution, profit distribution, access to premium features, and DAO governance on the platform. The USC-based token economy creates trust and motivation among members through reward distribution based on contributions to paid algorithm strategies and a token-based ranking system.\n\n5. Shape the Future of Quant Finance with Dave\nDave aims to go beyond simple profits by enabling fair competition in the market for everyone through the democratization of financial data and automation of strategies. Algorithm-based strategy automation, transparent profit distribution via smart contracts, real-time backtesting and strategy check tools, and a community-based strategy ranking system—experience a new paradigm of quantitative financial gains with Dave.\n\nJoin the Dave ecosystem now and become part of the blockchain-based automated income system.\n"
+    "official": "\n'Invitation to the Automated Income Ecosystem with AI'\n\n1. Launch of the Quant Algorithm Center\nDave has established an optimized asset management system based on an advanced AI-powered quant engine, which analyzes individual income opportunities and automatically executes them. Based on real-time market data, the risk-return balance is adjusted to achieve sustainable and stable returns.\n\n2. Participatory Algorithm Strategy Program\nThis program is designed so that anyone can participate. A strategy-matching algorithm automatically provides optimized trading plans tailored to your investment style, risk preference, and asset size. From beginners to experts, everyone can utilize professional quant strategies to build a diversified income model in the global market.\n\n3. Automated Trading Beyond Passive Investment\nDave's goal is to lower the entry barriers to data-driven automated trading—not just simple profits. By integrating and analyzing on-chain and off-chain data, optimal buy/sell timings are determined, and features such as arbitrage based on price differences and early risk avoidance before entering risk zones are provided to minimize user decision-making and control risk.\n\n4. The Core of the Dave Quant Ecosystem – The DVC Token\nDVC is the central currency of the Dave Quant Ecosystem and is used for strategy execution, profit distribution, access to premium features, and DAO governance on the platform. The DVC-based token economy creates trust and motivation among members through reward distribution based on contributions to paid algorithm strategies and a token-based ranking system.\n\n5. Shape the Future of Quant Finance with Dave\nDave aims to go beyond simple profits by enabling fair competition in the market for everyone through the democratization of financial data and automation of strategies. Algorithm-based strategy automation, transparent profit distribution via smart contracts, real-time backtesting and strategy check tools, and a community-based strategy ranking system—experience a new paradigm of quantitative financial gains with Dave.\n\nJoin the Dave ecosystem now and become part of the blockchain-based automated income system.\n"
   },
   "order_history": {
     "title": "My Orders and Redemptions",
@@ -291,7 +291,7 @@
     "errorLoad": "Failed to load history."
   },
   "tokenPurchase": {
-    "title": "USC Token",
+    "title": "DVC Token",
     "swapSuccess": "Swap successful",
     "depositSuccess": "Deposit successful",
     "lockupDetails": "Lockup Details",
@@ -300,15 +300,15 @@
     "purchaseSuccessWithAmount": "{{amount}} USDT purchased.",
     "purchaseFailTitle": "Purchase failed",
     "redeemSuccess": "redeemSuccess",
-    "available": "USC available",
-    "inputUsdc": "USC ",
+    "available": "DVC available",
+    "inputUsdc": "DVC ",
     "redeemTitle": "Redeem",
     "redeemSubmit": "Submit",
     "quantity": "quantity",
     "token": "token PER",
     "totalCost": "total USDT Cost",
     "yourBalance": "USDT Balance",
-    "price": "USC Token per price",
+    "price": "DVC Token per price",
     "min": "min",
     "selected": "selected",
     "max": "max",
@@ -322,7 +322,7 @@
     "back": "Back",
     "details": "Details",
     "quantWallet": "Quant Wallet (USDT)",
-    "uscWallet": "USC Wallet",
+    "uscWallet": "DVC Wallet",
     "swap": "Swap",
     "recharge": "Recharge",
     "deposit": "Deposit",
@@ -335,7 +335,7 @@
     "fee": "Fee ({{rate}}%)",
     "afterSwap": "After swap:",
     "submit": "Submit",
-    "noSales": "No active USC sales.",
+    "noSales": "No active DVC sales.",
     "phase": " Phase",
     "totalSupply": "Total Supply:",
     "remainingSupply": "Remaining Supply:",
@@ -345,7 +345,7 @@
     "notStarted": "Not started yet",
     "endedSales": "Ended Token Sales",
     "ended": "Ended",
-    "promptAmount": "Enter USC amount to purchase:",
+    "promptAmount": "Enter DVC amount to purchase:",
     "purchaseSuccess": "Purchase successful!",
     "errors": {
       "invalidAmount": "Please enter a valid amount.",
@@ -360,7 +360,7 @@
     "endedSection": "Ended"
   },
   "token": {
-    "header": "USC Token",
+    "header": "DVC Token",
     "more": "More",
     "recharge": "Recharge",
     "withdraw": "Withdraw",
@@ -405,7 +405,11 @@
   "errors": {
     "invalidAddress": "Please enter a valid address.",
     "invalidAmount": "Please enter a valid withdrawal amount.",
-    "submitFailed": "Failed to submit withdrawal request."
+    "submitFailed": "Failed to submit withdrawal request.",
+    "invalidTradePassword": "Trade password does not match.",
+    "minAmount": "Withdrawal amount is below the minimum withdrawal limit.",
+    "dailyLimitExceeded": "You have exceeded your daily withdrawal limit.",
+    "pendingRequestExists": "You already have a pending withdrawal request."
   },
   "success": {
     "submitted": "Withdrawal request submitted successfully."

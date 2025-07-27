@@ -880,31 +880,6 @@
 
 @media screen and (max-width: 768px) {
 
-  /* 페이지 전체 */
-  .page-wrapper-f {
-    position: relative;
-    max-width: 506px;
-    margin: 0 auto;
-    height: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    background-color: #0e0e11;
-
-
-    padding: 0 8px;
-
-
-
-  }
-
-  .quant-tutorial-wrapper {
-    padding-bottom: 200px !important;
-  }
-
-
   /* 카드 공통 */
   .funding-card,
   .project-card {

@@ -111,7 +111,7 @@
 }
 
 .referra-m-l {
-  width: 35%;
+  width: 40%;
   height: 50px;
   margin: auto;
   /* 블록 요소 가로 세로 중앙 정렬 */
@@ -141,17 +141,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 83%;
-  height: 80px;
-  margin: 40px auto 30px;
+  width: 200px;
+  height: 200px;
+  margin: 20px auto 10px;
   padding: 30px;
-  border-radius: 30px;
+  border-radius: 100px;
   background: linear-gradient(110deg, rgb(0 136 73), rgb(0 67 24), #001006);
   color: #ffffff;
   gap: 16px;
   box-shadow: 0 0 32px 12px #2a2c2c !important;
   background-size: 200% 200%;
   /* ✅ 부드러운 애니메이션용 */
+  font-size: 14px;
   transition: background 0.6s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -908,159 +909,23 @@
   color: #BEF542
 }
 
-
-
-@media screen and (max-width: 768px) {
-
-  .page-wrappe-q {
-    position: relative;
-    max-width: 506px;
-    margin: 0 auto;
-    height: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    background-color: #0e0e11;
-    overflow: auto;
-    /* 스크롤 활성화 */
-
-
-  }
-
-
-  .top-bar {
-    width: 106% !important;
-  }
-
-
-
-
-
-
-
-
-
-  .referra-jj {
-    width: 97%;
-    height: 90px;
-
-
-    gap: 10px;
-    padding: 12px;
-  }
-
-  .referra-jj div {
-    justify-content: space-between;
-    /* 라벨과 값 좌우 배치 */
-    align-items: center;
-    font-weight: 500;
-    font-size: 15px;
-    color: #ffffff;
-    font-weight: bold;
-    text-align: center;
-    /* 텍스트 가운데 정렬 (fallback) */
-  }
-
-  .referra-jj div strong {
-    font-size: 13.6px;
-    font-weight: bold;
-    color: #fef9c3;
-    /* text-yellow-100 */
-    margin: 1px;
-  }
-
-
-  .referra-h {
-    width: 95%;
-    padding: 12px;
-  }
-
-
-
-
-
-  .referra-quant-container {
-
-    height: auto;
-    padding: 8px;
-  }
-
-  .referra-quant-tutorial-btn {
-    width: 28px;
-    height: 28px;
-    font-size: 14px;
-  }
-
-  .referra-progress-text {
-    font-size: 28px !important;
-  }
-
-  .referra-level-nav button {
-    font-size: 1rem !important;
-  }
-
-  .referra-bold {
-    font-size: 1.2rem !important;
-  }
-
-  .flex-container {
-    flex-direction: column;
-    height: auto;
-  }
-
-  .vip-details-container {
-    margin-left: 0;
-    padding: 8px;
-  }
-
-  .referra-invite-btn {
-    height: 45px;
-    font-size: 15px;
-  }
-
-
-
-  .partner-icon {
-    width: 50px;
-    height: 50px;
-    margin: 8px;
-  }
-
-
-
-
-
-
-
-
-
-
-  /* 모달 오버레이 상단 여백 줄이기 */
-  .history-modal-overlay {
-    padding-top: 60px;
-    align-items: flex-start;
-  }
-
-  /* 모달 박스 전체 너비 확보 */
+@media (max-width: 768px) {
   .history-modal-box {
-    width: 92%;
-    max-width: 80%;
-    padding: 1rem;
-    border-radius: 10px;
-    height: auto;
-    margin: 0 auto 16px auto;
-    flex-direction: column;
+    width: 90% !important;
+    max-width: 90% !important;
+    height: auto !important;
+    padding: 16px 12px;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
     gap: 12px;
-    margin-top: 65px;
   }
 
-  /* 상단 타이틀 */
   .history-modal-header {
-    font-size: 1rem;
-    margin-top: 6px;
-    margin-bottom: 12px;
+    flex-direction: row;
+    font-size: 16px;
+    margin-top: 8px;
+    margin-bottom: 16px;
   }
 
   .history-modal-title {
@@ -1068,47 +933,53 @@
     margin-left: 6px;
   }
 
-  /* 닫기 버튼 */
   .history-modal-close {
     font-size: 1rem;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: 8px;
+    right: 8px;
   }
 
-  /* 스크롤 영역 */
   .history-modal-scroll {
-    max-height: 60vh;
+    max-height: 60vh !important;
+    padding-right: 4px;
     margin-bottom: 20px;
-    padding-right: 2px;
   }
 
-  /* 카드 */
   .history-card {
     padding: 0.75rem;
-
   }
 
   .history-card-header {
-    font-size: 0.9rem;
-    margin-bottom: 0.75rem;
+    font-size: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
 
-  /* 그리드 항목 */
   .history-card-grid {
-    gap: 0.15rem;
-    font-size: 0.8125rem;
+    font-size: 0.8rem;
+    gap: 8px;
   }
 
   .history-card-grid div {
-    padding: 2px 0;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 13px;
   }
 
-  /* 라벨 */
   .history-label {
-    font-size: 0.85rem;
+    font-size: 13px;
   }
 
   .history-profit {
-    font-size: 0.85rem;
+    font-size: 13px;
+  }
+
+  .history-modal-scroll::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .history-modal-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.15);
   }
 }

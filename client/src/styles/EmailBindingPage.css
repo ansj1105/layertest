@@ -284,65 +284,56 @@
 
 
 
+@media (max-width: 768px) {
+  .security-p-wrapper {
 
-
-@media screen and (max-width: 768px) {
-  .security-p-wrapper {}
+    height: auto;
+  }
 
   .security-p-header {
-
-
-
-    align-items: center;
-    justify-content: space-between;
+    height: 50px;
+    padding: 0 10px;
   }
 
   .security-p-back-btn {
     font-size: 24px !important;
+    padding: 0 6px;
   }
 
   .security-p-title {
-    font-size: 1rem;
+    font-size: 18px;
+    padding: 0 6px;
+    height: auto;
   }
 
   .security-label-wrapper {
-
-
+    width: 100%;
+    padding: 12px;
     height: auto;
-    gap: 8px;
-    margin: 12px auto;
+    gap: 12px;
   }
 
   .security-label {
-    margin-bottom: 3px;
+    font-size: 0.9rem;
   }
 
-  .security-input {
-    min-height: 48px;
+  .security-input,
+  .security-code-input {
     height: 48px;
-    font-size: 0.875rem;
+    font-size: 14px;
     padding-left: 12px;
-    border-radius: 10px;
   }
 
   .security-code-group {
 
-    gap: 6px;
-  }
-
-  .security-code-input {
-    width: 100%;
-    height: 48px;
-    font-size: 0.875rem;
-    border-radius: 10px;
-    padding-left: 12px;
+    gap: 8px;
   }
 
   .security-send-btn {
-    width: 70%;
+    width: 65%;
     height: 48px;
-    font-size: 0.875rem;
-    border-radius: 10px;
+    font-size: 12px;
+    padding: 10px;
   }
 
   .security-send-btn svg {
@@ -351,10 +342,10 @@
   }
 
   .security-submit-btn {
-    height: 50px;
-    font-size: 1rem;
-    border-radius: 10px;
-    margin-top: 12px;
-    margin-bottom: 24px;
+    width: 100%;
+    height: 48px;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    margin-top: 20px;
   }
 }
