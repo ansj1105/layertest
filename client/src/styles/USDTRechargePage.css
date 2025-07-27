@@ -6,8 +6,9 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #0e0e11;
-  overflow: auto; /* 스크롤 활성화 */
+  background-color: #ffffff;
+  overflow: auto;
+  /* 스크롤 활성화 */
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -21,46 +22,59 @@
   position: relative;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  transform: translateX(-50%);
+  /* ✅ 가운데 정렬 */
   width: 100%;
-  max-width: 500px;              /* ✅ container와 맞춤 */
+  max-width: 500px;
+  /* ✅ container와 맞춤 */
   height: 58.27px;
-  background: #1d1d27;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
   z-index: 1000;
   margin-bottom: 8px;
+  border-bottom: 1.1px solid rgb(0 67 24) !important;
 }
 
 /* 뒤로가기 버튼 */
 .charge-back-button {
-  color: #ffffff;
+  color: rgb(0 136 73);
   font-size: 30px !important;
-  font-weight: bold !important;              /* 글자 굵게 */
-  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  height: 100%;                   /* 부모 요소 높이 기준 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  font-weight: bold !important;
+  /* 글자 굵게 */
+  display: flex;
+  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  height: 100%;
+  /* 부모 요소 높이 기준 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 .charge-back-button:hover {
-  color: #fef08a; /* hover:text-yellow-100 */
+  color: rgb(0 67 24) !important;
+  /* hover:text-yellow-100 */
 }
 
 /* 타이틀 */
 .charge-title {
   font-weight: bold;
-  color: #ffffff;
+  color: rgb(0 136 73) !important;
   text-align: left;
   font-size: 20px;
   width: 100%;
   height: 40%;
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 
@@ -78,18 +92,22 @@
   height: 80px;
   margin: 8px auto;
   padding: 13px;
-  background: #152221;
+  background: #001006;
   border-radius: 8px;
-  box-shadow: 0 0 4px 2px #b8dfd9;
-  display: flex;               /* ✅ Flexbox 활성화 */
-  align-items: center;         /* ✅ 세로 중앙 정렬 */
-  justify-content: flex-start; /* ✅ 가로 왼쪽 정렬 */
+  box-shadow: 0 0 1px 1px rgb(0 136 73);
+  display: flex;
+  /* ✅ Flexbox 활성화 */
+  align-items: center;
+  /* ✅ 세로 중앙 정렬 */
+  justify-content: flex-start;
+  /* ✅ 가로 왼쪽 정렬 */
 }
 
 /* TRC-20 라벨 */
 .charge-protocol-label {
   display: inline-block;
-  background-color: #206D7F; /* yellow-700 */
+  background-color: rgb(0 136 73);
+  /* yellow-700 */
   color: #ffffff;
   padding: 4px 12px;
   border-radius: 6px;
@@ -106,23 +124,26 @@
 
 /* QR 코드 포함 전체 박스 */
 .charge-qr-box {
-  width: 80%;
+  width: 70%;
   height: 380px;
   margin: 8px auto;
   padding: 13px;
-  background: #152221;
+  background: #001006;
   border-radius: 8px;
-  box-shadow: 0 0 4px 2px #b8dfd9;
+  box-shadow: 0 0 4px 2px #BEF542;
   margin-top: 40px;
-  align-items: center;        /* ✅ 세로 중앙 정렬 */
-  justify-content: center;    /* ✅ 가로 중앙 정렬 */
-  text-align: center;         /* ✅ 텍스트도 가운데 */
+  align-items: center;
+  /* ✅ 세로 중앙 정렬 */
+  justify-content: center;
+  /* ✅ 가로 중앙 정렬 */
+  text-align: center;
+  /* ✅ 텍스트도 가운데 */
   margin-bottom: 150px;
 }
 
 /* QR 설명 텍스트 */
 .charge-qr-label {
-  color: #fde68a;
+  color: rgb(255, 255, 255);
   font-size: 14px;
   margin-bottom: 15px;
   margin-top: 20px;
@@ -139,7 +160,8 @@
 
 /* 지갑 없음 경고 */
 .charge-wallet-missing {
-  color: #f87171; /* red-400 */
+  color: #f87171;
+  /* red-400 */
   margin-bottom: 16px;
   font-size: 14px;
 }
@@ -153,16 +175,17 @@
   margin-top: 8px;
   flex-wrap: wrap;
 
+
 }
 
 .charge-wallet-address {
-  color: #fde68a;
+  color: #BEF542;
   word-break: break-word;
   font-size: 14px;
 }
 
 .charge-copy-button {
-  color: #facc15;
+  color: #ffffff;
   cursor: pointer;
   transition: color 0.5s ease;
 }

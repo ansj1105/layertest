@@ -56,28 +56,13 @@ export default function InviteFriendPage() {
 
   return (
     <div className="page-wrapper-invi">
+
       <div className="top-bar">
         <button onClick={() => window.history.back()} className="top-tran">
           <ArrowLeftIcon size={24} />
         </button>
         <div className="invite-title">{t('invite.title')}</div>
       </div>
-
-      <div className="invite-box">
-        <p className="invite-label">{t('invite.invite_link')}</p>
-        <input
-          readOnly
-          className="invite-input"
-          value={fullUrl}
-        />
-        <button
-          className="invite-copy-btn"
-          onClick={() => handleCopy(fullUrl)}
-        >
-          {t('invite.copy_invite_link')}
-        </button>
-      </div>
-
       {/* QR 코드 + 초대 코드 복사 섹션 */}
       <div className="referral-box-container">
         <p className="referral-box-description">
@@ -102,6 +87,23 @@ export default function InviteFriendPage() {
           </div>
         )}
       </div>
+
+      <div className="invite-box">
+        <p className="invite-label">{t('invite.invite_link')}</p>
+        <input
+          readOnly
+          className="invite-input"
+          value={fullUrl}
+        />
+        <button
+          className="invite-copy-btn"
+          onClick={() => handleCopy(fullUrl)}
+        >
+          {t('invite.copy_invite_link')}
+        </button>
+      </div>
+
+
     </div>
   );
 }

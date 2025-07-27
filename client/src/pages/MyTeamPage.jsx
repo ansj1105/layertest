@@ -259,7 +259,7 @@ export default function MyTeamPage() {
                           {new Date(item.time).toLocaleString()}
                         </td>
                         <td className="p-2">
-                          {item.earning.toLocaleString()} USC
+                          {item.earning.toLocaleString()} DVC
                         </td>
                       </tr>
                     ))}

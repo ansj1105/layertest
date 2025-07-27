@@ -7,7 +7,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #0e0e11;
+  background-color: #ffffff;
   overflow-x: hidden;
   /* ✅ 수평 스크롤 제거 */
   overflow-y: auto;
@@ -253,13 +253,13 @@
 /* 카드 스타일 */
 .data-card-to {
   margin-top: 12px;
-  background: #111b1b;
+  background: #001006;
   padding-left: 25px;
   padding-right: 25px;
   padding-bottom: 15px;
   border-radius: 8px;
   color: #ffffff;
-  box-shadow: 0 0 1px 1px #b8dfd9;
+  box-shadow: 0 0 1px 1px rgb(0 136 73);
   /* ✅ Flex 제거하고 블록 형태로 변경 */
   display: block;
 }
@@ -284,8 +284,8 @@
 
 .data-card-to-sub {
   font-size: 0.85rem;
-  color: #fde68a;
-  /* text-yellow-100 */
+  color: rgb(0 136 73)
+    /* text-yellow-100 */
 }
 
 .data-row {
@@ -294,14 +294,14 @@
   align-items: center;
   font-size: 0.875rem;
   /* text-sm */
-  color: #d1d5db;
+  color: #ffffff;
   /* text-gray-300 */
   font-weight: bold;
   margin-bottom: 3px;
 }
 
 .data-row span {
-  color: #fef08a;
+  color: rgb(5, 182, 99);
   /* text-yellow-100 */
   font-weight: bold;
   font-size: 15px;
@@ -418,8 +418,8 @@
 /* 전송 버튼 */
 .modal-submit-btn {
   width: 100%;
-  background-color: #facc15;
-  color: black;
+  background-color: rgb(0 136 73);
+  color: rgb(255, 255, 255);
   padding: 0.5rem;
   font-weight: 600;
   border-radius: 0.375rem;
@@ -428,7 +428,7 @@
 }
 
 .modal-submit-btn:hover {
-  background-color: #eab308;
+  background-color: rgb(0 67 24);
 }
 
 
@@ -456,20 +456,20 @@
 
 /* 모달 컨텐츠 박스 */
 .lockup-modal {
-  background-color: #002b2b;
-  color: #99f6e4;
+  background-color: #001006;
+  color: #ffffff;
   /* emerald-200 */
   border-radius: 0.5rem;
   width: 91.666667%;
   /* w-11/12 */
-  max-width: 480px;
+  max-width: 470px;
   /* max-w-lg */
   padding: 1.5rem;
-  border: 2px solid #34d399;
+  border: 2px solid #BEF542;
   /* emerald-400 */
   overflow-y: auto;
   max-height: 70vh;
-  box-shadow: 0 0 12px #34d399;
+  box-shadow: 0 0 12px #BEF542;
 }
 
 /* 상단 제목 및 닫기버튼 영역 */
@@ -482,7 +482,7 @@
 .lockup-modal-title {
   font-size: 1.25rem;
   font-weight: bold;
-  color: #ffffff;
+  color: #BEF542
 }
 
 /* 닫기 버튼 */
@@ -490,7 +490,7 @@
   position: absolute;
   top: 0.25rem;
   right: 0.25rem;
-  color: #99f6e4;
+  color: #ffffff;
   font-size: 1.4rem;
   background: none;
   border: none;
@@ -570,20 +570,20 @@
 
 /* 모달 컨테이너 */
 .order-modal {
-  background-color: #002b2b;
-  color: #99f6e4;
+  background-color: #001006;
+  color: #BEF542;
   /* emerald-200 */
   border-radius: 0.5rem;
   width: 91.666667%;
   /* w-11/12 */
-  max-width: 480px;
+  max-width: 470px;
   /* max-w-lg */
   padding: 1.5rem;
-  border: 2px solid #34d399;
+  border: 2px solid #BEF542;
   /* emerald-400 */
   overflow-y: auto;
   max-height: 70vh;
-  box-shadow: 0 0 12px #34d399;
+  box-shadow: 0 0 12px #BEF542;
   /* ✅ 스크롤 숨기기 */
 
 }
@@ -610,7 +610,7 @@
   position: absolute;
   top: 0.25rem;
   right: 0.25rem;
-  color: #99f6e4;
+  color: #ffffff;
   font-size: 1.4rem;
   background: none;
   border: none;
@@ -713,14 +713,14 @@
 
 /* 모달 박스 */
 .redeem-modal {
-  background: #1a3030;
-  color: #fef08a;
+  background: #001006;
+  color: #BEF542;
   /* text-yellow-100 */
   width: 320px;
   padding: 1.5rem;
   border-radius: 0.5rem;
   position: relative;
-  box-shadow: 0 0 2px 2px #b8dfd9;
+  box-shadow: 0 0 2px 2px #BEF542
 }
 
 /* 닫기 버튼 */
@@ -728,7 +728,7 @@
   position: absolute;
   top: 0.75rem;
   right: 0.75rem;
-  color: #fef08a;
+  color: #ffffff !important;
   /* text-gray-400 */
   font-size: 1.25rem;
   cursor: pointer;
@@ -750,20 +750,20 @@
   font-size: 0.875rem;
   color: #d1d5db;
   margin-bottom: 0.5rem;
-  color: #fef2c0;
+  color: #ffffff;
 }
 
 /* 입력창 */
 .redeem-modal-input {
   width: 100%;
-  background-color: #1a1109;
+  background-color: #ffffff;
   padding: 0.5rem;
   border-radius: 0.375rem;
   margin-bottom: 0.5rem;
-  color: #fef9c3;
+  color: rgb(0 136 73);
   font-size: 0.875rem;
   border: none;
-  box-shadow: 0 0 1px 1px #b8dfd9;
+  box-shadow: 0 0 1px 1px rgb(0 67 24);
 }
 
 /* 오류 메시지 */
@@ -776,17 +776,18 @@
 /* 제출 버튼 */
 .redeem-modal-submit {
   width: 100%;
-  background-color: #facc15;
-  color: black;
+  background-color: rgb(0 136 73);
+  color: rgb(255, 255, 255);
   padding: 0.5rem;
   font-weight: 600;
   border-radius: 0.375rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 10px;
 }
 
 .redeem-modal-submit:hover {
-  background-color: #eab308;
+  background-color: rgb(0 67 24);
 }
 
 
@@ -868,7 +869,7 @@
   background-color: #0e1817;
 
   width: 440px;
-  color: #fef9c3;
+  color: #BEF542;
   margin-bottom: 24px;
   margin: 8px auto;
   border-radius: 8px;
@@ -882,7 +883,7 @@
   gap: 16px;
   margin-bottom: 13px;
   box-shadow: 0 0 12px 2px #b8dfd9;
-  height: 50%;
+  height: 380px;
 
   transform: scale(1.0);
   /* 선택사항: 조금 키움 */
@@ -893,7 +894,7 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  color: #fde68a;
+  color: rgb(255, 255, 255);
   background: none;
   border: none;
   font-size: 1.2rem;
@@ -901,7 +902,7 @@
 }
 
 .modal-close-btn:hover {
-  color: #ffffff;
+  color: rgb(255, 255, 255);
 }
 
 
@@ -918,12 +919,12 @@
 /* 입력 필드 */
 .modal-input {
   width: 100%;
-  background-color: #1a1109;
+  background-color: #ffffff;
   padding: 8px;
   padding-right: 72px;
   /* ← 버튼 공간 확보 */
   border-radius: 6px;
-  color: #fef08a;
+  color: rgb(0 136 73);
   border: none;
   box-sizing: border-box;
 
@@ -937,8 +938,8 @@
   /* 🔼 부모 기준 세로 중앙 */
   transform: translateY(-50%);
   /* 🔽 실제 버튼 높이만큼 보정 */
-  background-color: #facc15;
-  color: #000000;
+  background-color: rgb(0 136 73) !important;
+  color: #ffffff !important;
   padding: 4px 8px;
   font-size: 14px;
   border-radius: 6px;
@@ -950,7 +951,7 @@
 
 
 .modal-max-btn:hover {
-  background-color: #eab308;
+  background-color: rgb(0 67 24);
 }
 
 /* 슬라이더 */
@@ -978,8 +979,8 @@
 /* 버튼 */
 .modal-submit-btn {
   width: 100%;
-  background-color: #facc15;
-  color: black;
+  background-color: rgb(0 136 73);
+  color: rgb(255, 255, 255);
   padding: 0.5rem;
   font-weight: 600;
   border-radius: 0.375rem;
@@ -989,12 +990,12 @@
 }
 
 .modal-submit-btn.enabled {
-  background-color: #facc15;
-  color: #000000;
+  background-color: rgb(0 67 24);
+  color: #ffffff;
 }
 
 .modal-submit-btn.enabled:hover {
-  background-color: #eab308;
+  background-color: rgb(0 67 24);
 }
 
 .modal-submit-btn.disabled {
@@ -1011,10 +1012,32 @@
 
 
 
+.sale-heading {
+  font-weight: bold;
+  /* font-bold */
+  font-size: 1.125rem;
+  /* text-lg (약 18px) */
+  margin-bottom: 0.5rem;
+  /* mb-2 */
+  color: rgb(0 136 73);
+  /* text-white */
+  padding-left: 5%;
+}
 
 
-
-
+.upcoming-heading {
+  font-weight: bold;
+  /* font-bold */
+  font-size: 1.125rem;
+  /* text-lg ≒ 18px */
+  margin-top: 2rem;
+  /* mt-8 */
+  margin-bottom: 0.5rem;
+  /* mb-2 */
+  color: rgb(0 136 73);
+  /* text-white */
+  padding-left: 5%;
+}
 
 
 

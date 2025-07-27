@@ -9,7 +9,14 @@ import {
   RefreshCw,
   ArrowDownCircle,
   FileText,
-  LogOut
+  LogOut,
+  Trophy,
+  HelpCircle,
+  Shield,
+  BarChart3,
+  Globe,
+  Building2,
+  Download
 } from 'lucide-react';
 import AlertPopup from '../components/AlertPopup';
 import AdvancedLoadingSpinner from '../components/AdvancedLoadingSpinner';
@@ -286,6 +293,22 @@ export default function MyProfilePage() {
           </div>
         </div>
       </div>
+      {/* ── 레퍼럴 계층 현황 ──────────────────────────────────── */}
+      <div className="referral-level-container">
+        <div className="referral-level-item">
+          <p className="referral-level-title">{t('profile.referral.level1')}</p>
+          <p className="referral-level-value">{summary.referrals.level2}</p>
+        </div>
+        <div className="referral-level-item">
+          <p className="referral-level-title">{t('profile.referral.level2')}</p>
+          <p className="referral-level-value">{summary.referrals.level3}</p>
+        </div>
+        <div className="referral-level-item">
+          <p className="referral-level-title">{t('profile.referral.level3')}</p>
+          <p className="referral-level-value">{summary.referrals.level4}</p>
+        </div>
+      </div>
+
 
       {/* ── 작업 버튼 ─────────────────────────────────────────── */}
       <div className="profile-actions-container">
@@ -312,38 +335,24 @@ export default function MyProfilePage() {
         </button>
       </div>
 
-      {/* ── 레퍼럴 계층 현황 ──────────────────────────────────── */}
-      <div className="referral-level-container">
-        <div className="referral-level-item">
-          <p className="referral-level-title">{t('profile.referral.level1')}</p>
-          <p className="referral-level-value">{summary.referrals.level2}</p>
-        </div>
-        <div className="referral-level-item">
-          <p className="referral-level-title">{t('profile.referral.level2')}</p>
-          <p className="referral-level-value">{summary.referrals.level3}</p>
-        </div>
-        <div className="referral-level-item">
-          <p className="referral-level-title">{t('profile.referral.level3')}</p>
-          <p className="referral-level-value">{summary.referrals.level4}</p>
-        </div>
-      </div>
+
 
       {/* ── 메뉴 리스트 ───────────────────────────────────────── */}
       <div className="profile-menu-container">
         {[
-          { icon: '🏆', key: 'taskCenter', to: '/taskcenter' },
-          { icon: '❓', key: 'faq', to: '/commonproblem' },
-          { icon: '🔒', key: 'securityCenter', to: '/security' },
-          { icon: '📈', key: 'quantTutorial', to: '/quant-tutorial' },
-          { icon: '🌐', key: 'language', to: '/settings/language' },
-          { icon: '🏢', key: 'aboutCompany', to: '/company' },
-          { icon: '⬇️', key: 'downloadApp', to: '/download' }
+          { icon: Trophy, key: 'taskCenter', to: '/taskcenter' },
+          { icon: HelpCircle, key: 'faq', to: '/commonproblem' },
+          { icon: Shield, key: 'securityCenter', to: '/security' },
+          { icon: BarChart3, key: 'quantTutorial', to: '/quant-tutorial' },
+          { icon: Globe, key: 'language', to: '/settings/language' },
+          { icon: Building2, key: 'aboutCompany', to: '/company' },
+          { icon: Download, key: 'downloadApp', to: '/download' }
         ].map((item, i) => {
-          const label = t(`profile.menu.${item.key}`);
+          const LabelComponent = item.icon;
           return (
             <Link key={i} to={item.to} className="profile-menu-item">
-              <span className="profile-menu-icon">{item.icon}</span>
-              <span>{label}</span>
+              <span className="profile-menu-icon"><LabelComponent size={20} /></span>
+              <span>{t(`profile.menu.${item.key}`)}</span>
             </Link>
           );
         })}

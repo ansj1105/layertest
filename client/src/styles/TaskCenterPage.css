@@ -13,7 +13,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: #0e0e11;
+  background-color: #ffffff;
   overflow: auto;
   /* 스크롤 활성화 */
   max-width: 100%;
@@ -40,12 +40,11 @@
   /* rounded */
   margin-bottom: 0;
   cursor: pointer;
-  background: #111b1b;
+  background: #001006;
   padding: 14px;
   border-radius: 8px;
   color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 1px 1px #b8dfd9;
+
   margin-top: 5px;
   margin-bottom: 5px !important;
   justify-content: space-between;
@@ -62,16 +61,17 @@
 .invite-reward-description {
   padding: 1rem;
   /* p-4 */
-  background-color: #0e0e11;
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
+  background-color: #F2F8E2;
+
   /* rounded-b */
   margin-bottom: 1px;
   /* mb-6 */
   font-size: 0.875rem;
   /* text-sm */
-  color: #fde68a;
+  color: rgb(0 67 24);
+  font-weight: bold;
   /* text-yellow-300 */
+  border: 1px solid #008849 !important;
 }
 
 
@@ -102,10 +102,10 @@
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem;
-  background: #111b1b;
+  background: #001006;
   border-radius: 0.5rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 1px 1px #b8dfd9;
+  box-shadow: 0 2px 8px rgb(0 136 73)(0, 0, 0, 0.2);
+  box-shadow: 0 0 1px 1px rgb(0 136 73);
   border-radius: 0.5rem;
   cursor: pointer;
   padding: 14px;
@@ -158,13 +158,14 @@
 .invite-reward-text {
   font-size: 0.875rem;
   /* text-sm */
-  color: #ffffff;
+  color: #BEF542;
+  font-weight: bold;
 }
 
 .invite-reward-subtext {
   font-size: 0.75rem;
   /* text-xs */
-  color: #fde68a;
+  color: #ffffff;
   /* text-yellow-300 */
 }
 
@@ -174,7 +175,7 @@
   padding: 0.25rem 0.75rem;
   border-radius: 0.375rem;
   font-size: 0.875rem;
-  min-width: 70px;
+  width: 60px;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -197,9 +198,9 @@
 }
 
 .reward-btn-active {
-  background-color: #ca8a04;
+  background-color: rgb(0 136 73);
   /* bg-yellow-600 */
-  color: #000000;
+  color: #ffffff;
   /* text-black */
 }
 
@@ -232,7 +233,7 @@
 
 .text-box-container {
   padding: 1rem;
-  background-color: rgb(30, 54, 53);
+  background-color: #BEF542;
   border-radius: 3px;
   width: 90%;
   height: auto;
@@ -244,7 +245,8 @@
   /* ✅ 자식 요소 전체 너비 사용 */
   justify-content: flex-start;
   /* ✅ 위쪽 정렬 */
-  color: #ffffff;
+  color: rgb(0 67 24);
+  font-weight: bold;
   transition: all 0.4s ease;
   box-shadow: 0 0 2px 2px #b8dfd9 !important;
 }
@@ -305,9 +307,9 @@
 }
 
 .reward-btn-active {
-  background-color: #ca8a04;
+  background-color: rgb(0 136 73);
   /* bg-yellow-600 */
-  color: #000000;
+  color: #ffffff;
 }
 
 

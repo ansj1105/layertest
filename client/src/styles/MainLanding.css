@@ -492,10 +492,10 @@ body::-webkit-scrollbar {
 }
 
 .notification-popup {
-    background-color: #142b27;
+    background-color: #001006;
     max-width: 480px;
-    width: 450px;
-    color: #fef9c3;
+    width: 470px;
+    color: #BEF542;
     margin-bottom: 24px;
     margin: 8px auto;
     border-radius: 8px;
@@ -509,7 +509,7 @@ body::-webkit-scrollbar {
     /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
     gap: 16px;
     margin-bottom: 13px;
-    box-shadow: 0 0 12px 6px #b8dfd9;
+    box-shadow: 0 0 12px 6px #BEF542;
     height: 90%;
 
 }
@@ -543,7 +543,7 @@ body::-webkit-scrollbar {
 
 .notification-item p {
     font-size: 0.875rem;
-    color: #f7ef99;
+    color: #ffffff;
     line-height: 1.75;
     max-height: 60vh;
     overflow-y: auto;

@@ -2,11 +2,12 @@
   position: relative;
   max-width: 506px !important;
   margin: 0 auto;
-  height: 100%;
+  height: 750px;
   display: flex;
   flex-direction: column;
-  background-color: #0e0e11;
-  overflow: auto; /* 스크롤 활성화 */
+  background-color: #ffffff;
+  overflow: auto;
+  /* 스크롤 활성화 */
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -19,11 +20,13 @@
   position: relative;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  transform: translateX(-50%);
+  /* ✅ 가운데 정렬 */
   width: 100%;
-  max-width: 500px;              /* ✅ container와 맞춤 */
+  max-width: 500px;
+  /* ✅ container와 맞춤 */
   height: 58.27px;
-  background: #1d1d27;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -34,18 +37,25 @@
 
 
 .back-button {
-  color: #ffffff;
+  color: rgb(0 136 73);
   font-size: 30px !important;
-  font-weight: bold !important;              /* 글자 굵게 */
-  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  height: 100%;                   /* 부모 요소 높이 기준 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  font-weight: bold !important;
+  /* 글자 굵게 */
+  display: flex;
+  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  height: 100%;
+  /* 부모 요소 높이 기준 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 .back-button:hover {
-  color: #fef9c3; /* hover:text-yellow-100 */
+  color: rgb(0 67 24);
+  /* hover:text-yellow-100 */
 }
 
 .back-button span {
@@ -54,14 +64,17 @@
 
 .page-title {
   font-weight: bold;
-  color: #ffffff;
+  color: rgb(0 136 73);
   text-align: left;
   font-size: 20px;
   width: 100%;
   height: 40%;
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 
@@ -79,8 +92,10 @@
 .tab-group {
   width: 100%;
   display: flex;
-  justify-content: center;   /* Flex 아이템 가로 중앙 정렬 */
-  margin: 0 auto;            /* 컨테이너 자체를 중앙에 배치 */
+  justify-content: center;
+  /* Flex 아이템 가로 중앙 정렬 */
+  margin: 0 auto;
+  /* 컨테이너 자체를 중앙에 배치 */
 
   z-index: 100;
 }
@@ -98,21 +113,24 @@
   background: #152221;
   border-radius: 3px;
   color: #ffffff;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   box-shadow: 0 0 1px 1px #366b65 !important;
 }
 
 .tab-button:hover {
-  color: #ffe695; /* 조금 더 밝은 노란색으로 hover 효과 */
+  color: #ffe695;
+  /* 조금 더 밝은 노란색으로 hover 효과 */
 }
 
 .tab-button.active {
-  background-color: #facc15; /* yellow-600 */
+  background-color: #facc15;
+  /* yellow-600 */
   color: #000;
 }
 
 .tab-button.inactive {
-  background-color: #152221;
+  background-color: #001006 !important;
   color: #ffffff;
 }
 
@@ -121,17 +139,18 @@
   position: relative;
   max-width: 506px !important;
 
-  height: 100%;
+  height: 630px;
   display: flex;
   flex-direction: column;
-  background-color: #0e0e11;
-  overflow: auto; /* 스크롤 활성화 */
+  background-color: #001006;
+  overflow: auto;
+  /* 스크롤 활성화 */
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
   z-index: 100;
   margin-bottom: 30px;
-  
+
 }
 
 
@@ -163,34 +182,39 @@
   font-size: 12px;
   table-layout: auto;
   min-width: 100%;
-  color: #fde68a;
+  color: #ffffff;
   max-height: 100%;
   margin-bottom: 30px;
 }
 
 /* ✅ 테이블 헤더 */
 .logs-table thead {
-  background-color: #1f2937; /* bg-gray-800 */
-  color: #ffffff;            /* text-yellow-200 */
+  background-color: #1f2937;
+  /* bg-gray-800 */
+  color: #ffffff;
+  /* text-yellow-200 */
 }
 
 .logs-table th {
-  text-align: center; /* ✅ 가운데 정렬 */
+  text-align: center;
+  /* ✅ 가운데 정렬 */
   padding: 4px 8px;
   height: 35px;
 }
 
 /* ✅ 테이블 본문 */
 .logs-table td {
-  text-align: center; /* ✅ 가운데 정렬 */
+  text-align: center;
+  /* ✅ 가운데 정렬 */
   padding: 4px 8px;
   height: 35px;
 }
 
 /* 테이블 바디 행 구분선 */
 .logs-table tbody tr {
-  border-top: 1px solid #808ea5; /* border-gray-700 */
-  
+  border-top: 1px solid #808ea5;
+  /* border-gray-700 */
+
 }
 
 /* ✅ 로딩 행 */

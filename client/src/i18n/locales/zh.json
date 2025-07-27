@@ -2,7 +2,7 @@
   "notification": {
     "title": "系统通知",
     "subtitle": "DAVE官方公告",
-    "official": "\n“诚邀您加入AI驱动的自动化收益生态系统”\n\n1. 量化算法中心上线\nDave构建了以先进AI量化引擎为核心的资产管理优化系统，能够分析个人收益机会并自动执行。基于实时市场数据，动态平衡风险与收益，追求可持续且稳定的回报。\n\n2. 参与式算法策略计划\n该计划面向所有用户开放。策略匹配算法会根据您的投资风格、风险偏好和资产规模，自动提供最优交易方案。从新手到专家，均可利用专业量化策略，在全球市场构建多元化收益模型。\n\n3. 超越被动投资的自动化交易\nDave的目标不仅是追求收益，更是降低数据驱动自动化交易的门槛。通过整合分析链上与链下数据，捕捉最佳买卖时机，结合价差套利、风险区提前规避等功能，最大程度减少用户决策压力，有效控制风险。\n\n4. Dave量化生态的核心——USC通证\nUSC是Dave量化生态的核心货币，用于平台内策略执行、收益分配、高级功能访问及DAO治理。基于USC的通证经济，通过算法策略付费订阅、收益贡献奖励分配、通证排名系统，激发成员间的信任与动力。\n\n5. 与Dave共创量化金融未来\nDave致力于通过金融数据民主化与策略自动化，让每个人都能在市场中公平竞争。算法驱动的策略自动化、智能合约透明分润、实时回测与策略检测工具、社区驱动的策略排名系统——与Dave一起，体验全新量化金融收益范式。\n\n立即加入Dave生态，成为区块链自动化收益系统的一员。\n"
+    "official": "\n“诚邀您加入AI驱动的自动化收益生态系统”\n\n1. 量化算法中心上线\nDave构建了以先进AI量化引擎为核心的资产管理优化系统，能够分析个人收益机会并自动执行。基于实时市场数据，动态平衡风险与收益，追求可持续且稳定的回报。\n\n2. 参与式算法策略计划\n该计划面向所有用户开放。策略匹配算法会根据您的投资风格、风险偏好和资产规模，自动提供最优交易方案。从新手到专家，均可利用专业量化策略，在全球市场构建多元化收益模型。\n\n3. 超越被动投资的自动化交易\nDave的目标不仅是追求收益，更是降低数据驱动自动化交易的门槛。通过整合分析链上与链下数据，捕捉最佳买卖时机，结合价差套利、风险区提前规避等功能，最大程度减少用户决策压力，有效控制风险。\n\n4. Dave量化生态的核心——DVC通证\nDVC是Dave量化生态的核心货币，用于平台内策略执行、收益分配、高级功能访问及DAO治理。基于DVC的通证经济，通过算法策略付费订阅、收益贡献奖励分配、通证排名系统，激发成员间的信任与动力。\n\n5. 与Dave共创量化金融未来\nDave致力于通过金融数据民主化与策略自动化，让每个人都能在市场中公平竞争。算法驱动的策略自动化、智能合约透明分润、实时回测与策略检测工具、社区驱动的策略排名系统——与Dave一起，体验全新量化金融收益范式。\n\n立即加入Dave生态，成为区块链自动化收益系统的一员。\n"
   },
   "order_history": {
     "title": "我的订单和兑换",
@@ -298,7 +298,7 @@
     "errorLoad": "加载失败。"
   },
   "tokenPurchase": {
-    "title": "USC 代币",
+    "title": "DVC 代币",
     "swapSuccess": "兑换成功",
     "depositSuccess": "充值成功",
     "lockupDetails": "锁仓详情",
@@ -307,15 +307,15 @@
     "purchaseSuccessWithAmount": "已购买 {{amount}} USDT。",
     "purchaseFailTitle": "购买失败",
     "redeemSuccess": "赎回成功",
-    "available": "USC 可用",
-    "inputUsdc": "USC",
+    "available": "DVC 可用",
+    "inputUsdc": "DVC",
     "redeemTitle": "赎回",
     "redeemSubmit": "提交",
     "quantity": "数量",
     "token": "代币 单价",
     "totalCost": "总 USDT 成本",
     "yourBalance": "USDT 余额",
-    "price": "USC 代币 单价",
+    "price": "DVC 代币 单价",
     "min": "最小",
     "selected": "已选择",
     "max": "最大",
@@ -329,7 +329,7 @@
     "back": "返回",
     "details": "详情",
     "quantWallet": "Quant 钱包 (USDT)",
-    "uscWallet": "USC 钱包",
+    "uscWallet": "DVC 钱包",
     "swap": "兑换",
     "recharge": "充值",
     "deposit": "存入",
@@ -342,15 +342,15 @@
     "fee": "手续费 ({{rate}}%)",
     "afterSwap": "兑换后：",
     "submit": "提交",
-    "noSales": "当前无可用的 USC 出售。",
+    "noSales": "当前无可用的 DVC 出售。",
     "phase": " 阶段",
     "totalSupply": "总供应量：",
     "remainingSupply": "剩余供应量：",
     "startTime": "开始时间：",
     "notStarted": "尚未开始",
-    "endedSales": "已结束的 USC 出售",
+    "endedSales": "已结束的 DVC 出售",
     "ended": "已结束",
-    "promptAmount": "请输入要购买的 USC 数量：",
+    "promptAmount": "请输入要购买的 DVC 数量：",
     "purchaseSuccess": "购买成功！",
     "errors": {
       "invalidAmount": "请输入有效的金额。",
@@ -362,7 +362,7 @@
     }
   },
   "token": {
-    "header": "USC 代币",
+    "header": "DVC 代币",
     "recharge": "充值",
     "withdraw": "提取",
     "agent": "代理",

@@ -48,7 +48,8 @@ export default function VideoWithPreview({ src }) {
       {/* 재생 전 커스텀 오버레이: 썸네일이 없어도 보여줌 */}
       {!playing && (
         <div
-          className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10 cursor-pointer rounded"
+          className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10 cursor-pointer rounded video-preview-overlay"
+          style={{ height: 'auto', minHeight: '100%' }}
           onClick={handlePlay}
         >
           <svg

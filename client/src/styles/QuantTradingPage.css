@@ -156,7 +156,7 @@
 }
 
 .referra-butt:hover {
-  background: linear-gradient(110deg, rgb(14, 160, 65), #001006, rgb(21, 141, 85); );
+  background: linear-gradient(110deg, rgb(14, 160, 65), #001006, rgb(21, 141, 85));
   background-position: right center;
   /* ✅ 애니메이션 방향 */
   box-shadow: 0 0 16px 6px #81f5e9;
@@ -205,7 +205,7 @@
   /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
   gap: 16px;
   margin-bottom: 13px;
-
+  border: 1.1px solid rgb(0 67 24) !important;
 }
 
 
@@ -762,10 +762,10 @@
 
 /* 모달 박스 */
 .history-modal-box {
-  background-color: #0e1817;
-  max-width: 498px;
+  background-color: #001006;
+
   width: 430px;
-  color: #fef9c3;
+  color: #ffffff;
   margin-bottom: 24px;
   margin: 8px auto;
   border-radius: 8px;
@@ -779,7 +779,7 @@
   /* ✅ 요소 사이 균등 분배 (필요 시 center로 조정) */
   gap: 16px;
   margin-bottom: 13px;
-  box-shadow: 0 0 4px 2px #b8dfd9;
+  box-shadow: 0 0 4px 2px #BEF542;
   height: 70% !important;
 
 }
@@ -812,7 +812,7 @@
   color: inherit;
   top: 1rem;
   right: 1rem;
-  color: #fde68a;
+  color: #ffffff;
   border: none;
   font-size: 1.2rem;
   cursor: pointer;
@@ -850,7 +850,7 @@
 
 /* 개별 히스토리 카드 */
 .history-card {
-  background-color: #1a2c2a;
+  background-color: rgb(2, 24, 10);
   border-radius: 0.375rem;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -886,7 +886,7 @@
   /* 양쪽 정렬 */
   align-items: center;
   /* 수직 정렬 */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgb(0 67 24);
   /* 연한 밑줄 */
 
 }
@@ -901,11 +901,11 @@
 
 /* 수익 텍스트 */
 .history-profit {
-  color: #4ade80;
+  color: rgb(2, 212, 114)
 }
 
 .history-card-header span {
-  color: #fde68a;
+  color: #BEF542
 }
 
 

@@ -40,10 +40,10 @@ export default function LockupModal({ onClose }) {
           <>
             <div className="lockup-summary">
               <div>
-                {t('lockup.total_balance')}: <span className="font-semibold">{walletDetails.wallet.balance.toFixed(6)} USC</span>
+                {t('lockup.total_balance')}: <span className="font-semibold">{walletDetails.wallet.balance.toFixed(6)} DVC</span>
               </div>
               <div>
-                {t('lockup.total_locked')}: <span className="font-semibold">{walletDetails.wallet.locked_amount.toFixed(6)} USC</span>
+                {t('lockup.total_locked')}: <span className="font-semibold">{walletDetails.wallet.locked_amount.toFixed(6)} DVC</span>
               </div>
             </div>
 

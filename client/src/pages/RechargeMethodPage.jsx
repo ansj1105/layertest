@@ -8,11 +8,11 @@ import '../styles/topbar.css';
 export default function RechargeMethodPage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
- 
+
   return (
     <div className="charge-wrapper">
       {/* 헤더 */}
-      <div className="charge-header">
+      <div className="charge-header1">
         <button
           onClick={() => navigate(-1)}
           className="charge-back-button"
@@ -50,22 +50,24 @@ export default function RechargeMethodPage() {
       </div>
 
       {/* 본문 */}
-      <div
-        className="charge-method-selector"
-        onClick={() => navigate('/recharge/usdt')}
-      >
-        <div className="currency-label">
-          <img src="/img/usdt.png" alt={t('rechargeMethod.usdtLogoAlt')} className="charge-method-icon" />
-          <span className="charge-method-label">USDT</span>
+      <div className="charge-method-charge-wrapper">
+        <div
+          className="charge-method-selector"
+          onClick={() => navigate('/recharge/usdt')}
+        >
+          <div className="currency-label">
+            <img src="/img/usdt.png" alt={t('rechargeMethod.usdtLogoAlt')} className="charge-method-icon" />
+            <span className="charge-method-label">USDT</span>
+          </div>
+          <span className="charge-method-chevron">{'>'}</span>
         </div>
-        <span className="charge-method-chevron">{'>'}</span>
-      </div>
-      <div className="charge-method-selector" onClick={() => navigate('/recharge/bnb')}> 
-        <div className="currency-label">
-          <img src="/img/bnb.png" alt={t('rechargeMethod.bnbLogoAlt')} className="charge-method-icon" />
-          <span className="charge-method-label">BNB</span>
+        <div className="charge-method-selector" onClick={() => navigate('/recharge/bnb')}>
+          <div className="currency-label">
+            <img src="/img/bnb.png" alt={t('rechargeMethod.bnbLogoAlt')} className="charge-method-icon" />
+            <span className="charge-method-label">BNB</span>
+          </div>
+          <span className="charge-method-chevron">{'>'}</span>
         </div>
-        <span className="charge-method-chevron">{'>'}</span>
       </div>
     </div>
   );

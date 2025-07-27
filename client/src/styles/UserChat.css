@@ -2,7 +2,7 @@
   position: fixed;
   bottom: 80px;
   right: 24px;
-  width: 250px;
+  width: 400px;
   max-width: 95vw;
   height: 480px;
   max-height: 80vh;
@@ -12,13 +12,12 @@
   flex-direction: column;
   overflow: hidden;
   box-sizing: border-box;
-  border-radius: 12px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+  border-radius: 5px;
+  box-shadow: 0 0 22px 15px rgba(0, 0, 0, 0.18);
 }
 
 
 .chatbox-header {
-  margin-top: 0px;
   position: relative;
   top: 0;
   left: 50%;
@@ -27,23 +26,22 @@
   width: 100%;
   max-width: 500px;
   /* ✅ container와 맞춤 */
-  height: 58.27px;
-  background: #126d5f;
+  height: 30px;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
   z-index: 1000;
-  margin-bottom: 8px;
+  border: 1.1px solid rgb(0 136 73) !important;
+
 }
 
 .chatbox-title {
   font-weight: bold;
-  color: #ffffff;
+  color: rgb(0 136 73);
   text-align: left;
-  font-size: 20px;
+  font-size: 15px;
   width: 100%;
-  height: 40%;
   align-items: center;
   /* 세로 가운데 정렬 */
   justify-content: center;
@@ -51,11 +49,12 @@
   text-align: center;
   /* 텍스트 중앙 정렬 (fallback) */
   margin-left: 16px;
+  font-weight: bold;
 }
 
 .chatbox-close-btn {
-  color: #ffffff;
-  font-size: 19px !important;
+  color: #001006;
+  font-size: 15px !important;
   font-weight: bold !important;
   /* 글자 굵게 */
   display: flex;
@@ -68,44 +67,49 @@
   /* 부모 요소 높이 기준 */
   text-align: center;
   /* 텍스트 중앙 정렬 (fallback) */
+  margin-right: 5px;
 }
 
 .chatbox-close-btn:hover {
-  color: #ffe695;
+  color: rgb(0 136 73);
 }
 
 .chatbox-body {
   flex: 1;
   margin: auto;
   padding: 5px 16px;
-  background: #cdf0ee;
+  background: #ffffff;
   border-radius: 3px;
   color: #000000;
   transition: all 0.4s ease;
-  box-shadow: 0 0 2px 2px #b8dfd9 !important;
+
   overflow-y: auto;
-  width: 98%;
+  border: 1.1px solid rgb(0 136 73) !important;
 }
 
 .chatbox-msg {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   padding: 8px;
-  border-radius: 8px;
-  max-width: 80%;
+  border-radius: 6px;
+  max-width: 90%;
   word-wrap: break-word;
   margin-top: 13px;
+  border: 1.1px solid rgb(0 136 73) !important;
+
 
 }
 
 .chatbox-msg-user {
-  background-color: #91f0e1;
+  background-color: #ffffff;
+  color: rgb(0 67 24);
   align-self: flex-end;
   margin-left: auto;
 
 }
 
 .chatbox-msg-admin {
-  background-color: #d1d1d1;
+  background-color: #ffffff;
+  color: rgb(0 67 24);
   align-self: flex-start;
   margin-right: auto;
   margin-top: 13px;
@@ -113,16 +117,17 @@
 
 .chatbox-meta {
   font-size: 0.8rem;
-  color: #000000;
-  margin-bottom: 8px;
+  color: rgb(0 136 73);
+  margin-bottom: 2px;
   display: block;
-  font-weight: 500;
+  font-weight: bold;
 }
 
 .chatbox-input-group {
   display: flex;
   gap: 1px;
-  border: 2px solid #868686;
+  border: 2.1px solid rgb(0 136 73) !important;
+  height: 40px;
 
 }
 
@@ -137,19 +142,19 @@
 }
 
 .chatbox-send-btn {
-  background-color: #4da59e;
+  background-color: rgb(0 136 73);
   color: white;
-  padding: 10px 16px;
-
-  font-weight: 500;
+  padding: 0px 16px;
+  font-weight: bold;
   white-space: nowrap;
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: auto;
+
 }
 
 .chatbox-send-btn:hover {
-  background-color: #34706b;
+  background-color: rgb(0 67 24);
 }
 
 /* Scrollbar hide on Webkit */
@@ -191,6 +196,45 @@
   box-sizing: border-box;
   pointer-events: none;
 }
+
+
+
+
+
+
+
+.ws-banner {
+  text-align: center;
+  padding: 10px;
+  font-size: 10px;
+  border-radius: 0px;
+
+  border: 1.1px solid rgb(0 136 73) !important;
+}
+
+/* 연결 중 또는 재연결 시도 */
+.ws-connecting {
+  background-color: #f0f0f0;
+  color: #a00909;
+  font-weight: bold;
+}
+
+/* 연결 끊김 (polling fallback 상태) */
+.ws-disconnected {
+  background-color: #fff3cd;
+  color: #a00909;
+  font-weight: bold;
+}
+
+/* 연결 성공 */
+.ws-connected {
+  background-color: #E6EDEA;
+  color: #155724;
+  font-weight: bold;
+}
+
+
+
 
 
 @media (max-width: 768px) {

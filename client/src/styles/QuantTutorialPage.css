@@ -5,8 +5,9 @@
   margin: 0 auto;
   height: 100%;
   flex-direction: column;
-  background-color: #0e0e11;
-  overflow: auto; /* 스크롤 활성화 */
+  background-color: #ffffff;
+  overflow: auto;
+  /* 스크롤 활성화 */
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -14,53 +15,66 @@
   padding-bottom: 150px;
 
 }
- 
+
 /* 상단 바 */
 .quant-tutorial-header {
   margin-top: 0px;
   position: relative;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  transform: translateX(-50%);
+  /* ✅ 가운데 정렬 */
   width: 100%;
-  max-width: 500px;              /* ✅ container와 맞춤 */
+  max-width: 500px;
+  /* ✅ container와 맞춤 */
   height: 58.27px;
-  background: #1d1d27;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
   z-index: 1000;
   margin-bottom: 8px;
+  border-bottom: 0.1px solid rgb(0 136 73) !important;
 }
 
 /* 뒤로가기 버튼 */
 .quant-tutorial-back-btn {
-  color: #ffffff;
+  color: rgb(0 136 73);
   font-size: 30px !important;
-  font-weight: bold !important;              /* 글자 굵게 */
-  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  height: 100%;                   /* 부모 요소 높이 기준 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  font-weight: bold !important;
+  /* 글자 굵게 */
+  display: flex;
+  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  height: 100%;
+  /* 부모 요소 높이 기준 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 .quant-tutorial-back-btn:hover {
-  color: #fef9c3; /* text-yellow-100 */
+  color: rgb(0 67 24);
+  /* text-yellow-100 */
 }
 
 /* 제목 */
 .quant-tutorial-title {
   font-weight: bold;
-  color: #ffffff;
+  color: rgb(0 136 73);
   text-align: left;
   font-size: 20px;
   width: 100%;
   height: 40%;
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 
@@ -76,26 +90,31 @@
 /* 전체 컨텐츠 래퍼 */
 .quant-tutorial-content {
   width: 90%;
-  background: #152221;
-  border-radius: 8px;
-  padding: 13px;
+  background: #001006;
+  border-radius: 5px;
+  padding: 15px;
   margin: 20px auto 13px auto;
-  color: #fef9c3;
-  box-shadow: 0 0 4px 2px #b8dfd9;
+  color: #ffffff;
+
   display: flex;
-  flex-direction: column;          /* 세로 정렬 */
+  flex-direction: column;
+  /* 세로 정렬 */
   align-items: flex-start;
   justify-content: flex-start;
   gap: 16px;
-  height: 550px;
-  overflow-y: auto;                /* ✅ 스크롤 동작 */
+  height: 600px;
+  overflow-y: auto;
+  /* ✅ 스크롤 동작 */
   overflow-x: hidden;
-  -ms-overflow-style: none;        /* IE/Edge */
-  scrollbar-width: none;           /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 .quant-tutorial-content::-webkit-scrollbar {
-  display: none;                   /* Chrome/Safari */
+  display: none;
+  /* Chrome/Safari */
 }
 
 .quant-tutorial-content p {
@@ -107,33 +126,37 @@
 .quant-tutorial-description {
   line-height: 1.75;
   font-size: 1rem;
-  color: #fef9c3;
+  color: #ffffff;
+
 }
 
 /* 각 섹션 제목 */
 .quant-tutorial-section-title {
-  font-size: 1rem; /* text-md */
+  font-size: 1rem;
+  /* text-md */
   font-weight: 600;
   margin-bottom: 0.5rem;
-  color: #fef9c3;
+  color: #BEF542
 }
 
 /* 리스트 스타일 */
 .quant-tutorial-list {
   list-style-type: disc;
-  padding-left: 1.25rem; /* list-inside 비슷하게 */
+  padding-left: 1.25rem;
+  /* list-inside 비슷하게 */
   font-size: 0.875rem;
-  color: #fef9c3;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem; /* space-y-1 */
+  gap: 0.25rem;
+  /* space-y-1 */
 }
 
 /* 섹션 내 문단 */
 .quant-tutorial-paragraph {
   font-size: 0.875rem;
   line-height: 1.75;
-  color: #fef9c3;
+  color: #ffffff;
 }
 
 
@@ -142,9 +165,7 @@
 
 
 @media screen and (max-width: 768px) {
-  .quant-tutorial-wrapper {
-
-  }
+  .quant-tutorial-wrapper {}
 
   .quant-tutorial-header {
     height: auto;
@@ -165,7 +186,8 @@
   .quant-tutorial-content {
     width: 90%;
     padding: 15px;
-    height: 580px; /* 더 작게 조정 */
+    height: 580px;
+    /* 더 작게 조정 */
     font-size: 0.875rem;
     gap: 12px;
   }
@@ -187,6 +209,3 @@
     font-size: 0.8125rem;
   }
 }
-
-
-

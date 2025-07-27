@@ -400,7 +400,7 @@ export default function UserChat({ userId }) {
           id="fixed-bell"
           onClick={() => setIsOpen(true)}
         >
-          <img src="/img/item/top/headphones.svg" alt={t('userChat.notificationAlt')} />
+          <img src="/img/item/top/headphones.png" alt={t('userChat.notificationAlt')} />
         </button>
         {isOpen && (
           <div className="chatbox-wrapper">
@@ -471,7 +471,7 @@ export default function UserChat({ userId }) {
             setIsOpen(true);
           }}
         >
-          <img src="/img/item/top/headphones.svg" alt={t('userChat.notificationAlt')} />
+          <img src="/img/item/top/headphones.png" alt={t('userChat.notificationAlt')} />
           {unread > 0 && (
             <span className="unread-badge bg-red-500 text-white rounded-full">{unread}</span>
           )}
@@ -494,17 +494,21 @@ export default function UserChat({ userId }) {
         <button onClick={() => setIsOpen(false)} className="chatbox-close-btn">✕</button>
       </div>
       {isConnecting && (
-        <div style={{ textAlign: 'center', padding: '10px', backgroundColor: '#f0f0f0', color: '#666', fontSize: '14px' }}>
-          {wsRef.current?.readyState === WebSocket.CONNECTING ? "연결중입니다..." : "연결이 끊어졌습니다. 재연결을 시도합니다..."}
+        <div className="ws-banner ws-connecting">
+          {wsRef.current?.readyState === WebSocket.CONNECTING
+            ? "연결중입니다..."
+            : "연결이 끊어졌습니다. 재연결을 시도합니다..."}
         </div>
       )}
+
       {!isConnecting && !wsConnected && (
-        <div style={{ textAlign: 'center', padding: '10px', backgroundColor: '#fff3cd', color: '#856404', fontSize: '14px' }}>
+        <div className="ws-banner ws-disconnected">
           실시간 연결이 끊어졌습니다. 2초마다 새 메시지를 확인합니다.
         </div>
       )}
+
       {wsConnected && (
-        <div style={{ textAlign: 'center', padding: '10px', backgroundColor: '#d4edda', color: '#155724', fontSize: '14px' }}>
+        <div className="ws-banner ws-connected">
           실시간 연결됨
         </div>
       )}

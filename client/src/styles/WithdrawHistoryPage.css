@@ -16,6 +16,11 @@
   padding-bottom: 200px;
 }
 
+.history-page-m {
+  height: 750px !important;
+  background-color: #ffffff;
+}
+
 /* 상단 헤더 컨테이너 */
 .history-header {
   margin-top: 0px;
@@ -28,18 +33,18 @@
   max-width: 500px;
   /* ✅ container와 맞춤 */
   height: 58.27px;
-  background: #1d1d27;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
   z-index: 1000;
-  margin-bottom: 8px;
+  border-bottom: 1.1px solid rgb(0 136 73) !important;
 }
 
 /* 뒤로가기 버튼 */
 .history-back-button {
-  color: #ffffff;
+  color: rgb(0 136 73);
   font-size: 30px !important;
   font-weight: bold !important;
   /* 글자 굵게 */
@@ -56,14 +61,14 @@
 }
 
 .history-back-button:hover {
-  color: #fef08a;
+  color: rgb(0 67 24);
   /* hover:text-yellow-100 */
 }
 
 /* 제목 */
 .history-title {
   font-weight: bold;
-  color: #ffffff;
+  color: rgb(0 136 73);
   text-align: left;
   font-size: 20px;
   width: 100%;
@@ -112,12 +117,13 @@
   align-items: center;
   justify-content: center;
   padding: 5px;
-  background: #152221;
+  background: #001006;
   border-radius: 3px;
   color: #ffffff;
+  font-weight: bold;
   transition: all 0.4s ease;
   /* 부드럽게 전환 */
-  box-shadow: 0 0 1px 1px #366b65 !important;
+  box-shadow: 0 0 1px 1px rgb(0 136 73) !important;
 }
 
 /* 활성 탭 */
@@ -129,7 +135,7 @@
 }
 
 .tab-button.active {
-  background-color: #365754;
+  background-color: rgb(0 136 73);
   /* yellow-600 */
   color: #ffe695;
 }

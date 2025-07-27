@@ -5,61 +5,75 @@
   margin: 0 auto;
   height: 100%;
   flex-direction: column;
-  background-color: #0e0e11;
-  overflow: auto; /* 스크롤 활성화 */
+  background-color: #ffffff;
+  overflow: auto;
+  /* 스크롤 활성화 */
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
   z-index: 100;
   padding-bottom: 200px;
 }
- 
+
 /* 상단 바 */
 .common-problems-header {
   margin-top: 0px;
   position: relative;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  transform: translateX(-50%);
+  /* ✅ 가운데 정렬 */
   width: 100%;
-  max-width: 500px;              /* ✅ container와 맞춤 */
+  max-width: 500px;
+  /* ✅ container와 맞춤 */
   height: 58.27px;
-  background: #1d1d27;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px;
   z-index: 1000;
   margin-bottom: 8px;
+  border-bottom: 1px solid #008849 !important;
 }
 
 /* 뒤로가기 버튼 */
 .common-problems-back-btn {
-  color: #ffffff;
+  color: rgb(0 136 73);
   font-size: 30px !important;
-  font-weight: bold !important;              /* 글자 굵게 */
-  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  height: 100%;                   /* 부모 요소 높이 기준 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  font-weight: bold !important;
+  /* 글자 굵게 */
+  display: flex;
+  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  height: 100%;
+  /* 부모 요소 높이 기준 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 .common-problems-back-btn:hover {
-  color: #fef9c3; /* hover:text-yellow-100 */
+  color: rgb(0 67 24);
+  /* hover:text-yellow-100 */
 }
 
 /* 제목 */
 .common-problems-title {
   font-weight: bold;
-  color: #ffffff;
+  color: rgb(0 67 24);
   text-align: left;
   font-size: 20px;
   width: 100%;
   height: 40%;
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 
@@ -70,28 +84,33 @@
 
 /* 전체 래퍼 */
 .problems-content-wrapper {
-  width: 97%;
-  background: #152221;
-  border-radius: 8px;
+  width: 95%;
+  background: #001006;
+  border-radius: 5px;
   padding: 13px;
   margin: 20px auto 13px auto;
-  color: #fef9c3;
-  box-shadow: 0 0 4px 2px #b8dfd9;
+  color: #ffffff;
+
   display: flex;
-  flex-direction: column;          /* 세로 정렬 */
+  flex-direction: column;
+  /* 세로 정렬 */
   align-items: flex-start;
   justify-content: flex-start;
   gap: 16px;
-  height: 600px;
-  overflow-y: auto;                /* ✅ 스크롤 동작 */
+  height: 620px;
+  overflow-y: auto;
+  /* ✅ 스크롤 동작 */
   overflow-x: hidden;
-  -ms-overflow-style: none;        /* IE/Edge */
-  scrollbar-width: none;           /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
 
 .problems-content-wrapper::-webkit-scrollbar {
-  display: none;                   /* Chrome/Safari */
+  display: none;
+  /* Chrome/Safari */
 }
 
 .problems-content-wrapper p {
@@ -104,11 +123,13 @@
 /* 주요 문제 리스트 */
 .problems-list {
   list-style-type: decimal;
-  padding-left: 1.25rem; /* list-inside 유사 효과 */
+  padding-left: 1.25rem;
+  /* list-inside 유사 효과 */
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* space-y-2 */
-  color: #fef9c3;
+  gap: 0.5rem;
+  /* space-y-2 */
+  color: #ffffff;
 }
 
 /* 리스트 항목 텍스트 */
@@ -119,7 +140,7 @@
 
 /* 수수료 안내 블록 */
 .problems-fee-section {
-  color: #fef9c3;
+  color: #ffffff;
 }
 
 /* 수수료 안내 제목 */
@@ -134,7 +155,9 @@
   padding-left: 1.25rem;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem; /* space-y-1 */
+  gap: 0.25rem;
+  margin-bottom: 100px;
+  /* space-y-1 */
 }
 
 /* 수수료 항목 */
@@ -149,10 +172,7 @@
 
 
 @media screen and (max-width: 768px) {
-  .common-problems-wrapper {
-
-    
-  }
+  .common-problems-wrapper {}
 
   .common-problems-header {
     height: auto;
@@ -176,7 +196,7 @@
     height: 580px;
     font-size: 0.875rem;
     gap: 12px;
-    
+
   }
 
   .problems-list {

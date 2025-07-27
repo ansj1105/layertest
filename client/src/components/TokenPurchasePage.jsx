@@ -151,7 +151,7 @@ export default function TokenPurchasePage() {
     }
   };
 
-  // USC 구매
+  // DVC 구매
   const handlePurchase = async saleId => {
     const amt = prompt(t("tokenPurchase.promptAmount"));
     if (!amt || isNaN(amt)) {
@@ -218,7 +218,7 @@ export default function TokenPurchasePage() {
 
         <div className="funding-balance-amount-token">
           <span className="funding-balance-amount-t">
-            {wallet?.balance?.toFixed(6) || "0.000000"}&nbsp;&nbsp;USC</span>
+            {wallet?.balance?.toFixed(6) || "0.000000"}&nbsp;&nbsp;DVC</span>
 
           <button
             onClick={() => setShowLockup(true)}
@@ -286,7 +286,7 @@ export default function TokenPurchasePage() {
             </h3>
             <div className="redeem-modal-balance">
               {t("tokenPurchase.available")}{" "}
-              {(wallet.balance - wallet.locked_amount).toFixed(6)} USC
+              {(wallet.balance - wallet.locked_amount).toFixed(6)} DVC
             </div>
             <input
               type="number"
@@ -431,7 +431,7 @@ export default function TokenPurchasePage() {
       ) : (
         <>
           {/* 판매중 */}
-          <h3 className="font-bold text-lg mb-2 text-white" style={{ paddingLeft: "5%" }}>
+          <h3 className="sale-heading">
             {t("tokenPurchase.onSale")}
           </h3>
           <div className="data-box-container-t1">
@@ -500,7 +500,9 @@ export default function TokenPurchasePage() {
             )}
           </div>
           {/* 판매예정 */}
-          <h3 className="font-bold text-lg mb-2 mt-8 text-white" style={{ paddingLeft: "5%" }}>{t("tokenPurchase.upcoming")}</h3>
+          <h3 className="upcoming-heading">
+            {t("tokenPurchase.upcoming")}
+          </h3>
           <div className="data-box-container-t1">
             {sales.filter(sale => {
               const now = Date.now();

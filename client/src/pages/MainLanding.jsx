@@ -6,7 +6,8 @@ import axios from 'axios';
 import AppDownloadPage from './AppDownloadPage';
 import CoinList from '../components/CoinList';
 import RechargeMethodPage from './RechargeMethodPage';
-import ContentList from '../components/ContentList';
+import ContentListBanner from '../components/ContentListBanner';
+import ContentListVideo from '../components/ContentListVideo';
 import WalletPage from './WalletPage';
 import MyProfilePage from './MyProfilePage';
 import BalancePage from './BalancePage';
@@ -96,13 +97,15 @@ export default function MainLanding({ user }) {
         <>
             {location.pathname === "/" && (
                 <>
+
+
+
+
+
                     <div className="flex ">
-                        <ContentList />
+                        <ContentListVideo />
+
                     </div>
-
-
-
-                    {/* ✅ USC 토큰 메뉴 */}
 
 
 
@@ -147,11 +150,17 @@ export default function MainLanding({ user }) {
 
                     {/* ✅ 기존 Tailwind → CSS class 적용 */}
                     <div className="v-token" onClick={() => navigate('/token')}>
-                        <img src="/img/item/usc.png" alt="USC token" />
+                        <img src="/img/item/dvc.png" alt="DVC token" />
                         <span className="v-token-text">{t('token.header')}</span>
 
                     </div>
 
+                    <div className="flex ">
+                        <ContentListBanner />
+
+                    </div>
+                    {/* ✅ 중간 흰색 공간 추가 */}
+                    <div className="h-3 bg-white" />
                     <div className="flex justify-between items-center px-6 py-2 bg-white">
 
                         {/* 알림 버튼 */}

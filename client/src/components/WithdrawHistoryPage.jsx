@@ -65,67 +65,68 @@ export default function WithdrawHistoryPage() {
         <span className="history-spacer" />
       </div>
 
+      <div className="history-page-m">
+        {/* 탭 바 */}
+        <div className="tab-bar">
+          {tabs.map(tab => (
+            <button
+              key={tab.key}
+              onClick={() => setActiveTab(tab.key)}
+              className={`tab-button ${activeTab === tab.key ? "active" : ""}`}
+            >
+              {t(tab.labelKey)}
+            </button>
+          ))}
+        </div>
 
-      {/* 탭 바 */}
-      <div className="tab-bar">
-        {tabs.map(tab => (
-          <button
-            key={tab.key}
-            onClick={() => setActiveTab(tab.key)}
-            className={`tab-button ${activeTab === tab.key ? "active" : ""}`}
-          >
-            {t(tab.labelKey)}
-          </button>
-        ))}
-      </div>
+        {/* 로딩 / 에러 */}
+        {loading && <div className="flex justify-center items-center py-8">
+          <AdvancedLoadingSpinner text="Loading..." />
+        </div>}
 
-      {/* 로딩 / 에러 */}
-      {loading && <div className="flex justify-center items-center py-8">
-        <AdvancedLoadingSpinner text="Loading..." />
-      </div>}
+        {error && <p className="text-center text-red-400">{error}</p>}
 
-      {error && <p className="text-center text-red-400">{error}</p>}
-
-      {/* ✅ 테이블 영역 */}
-      {!loading && !error && filtered.length > 0 && (
-        <div className="table-scroll-wrapper">
-          <table className="table-auto">
-            <thead>
-              <tr>
-                <th>{t("history.table.id")}</th>
-                <th>{t("history.table.amount")}</th>
-                <th>{t("history.table.flow")}</th>
-                <th>{t("history.table.method")}</th>
-                <th>{t("history.table.status")}</th>
-                <th>{t("history.table.date")}</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map(r => (
-                <tr key={r.id}>
-                  <td>{r.id}</td>
-                  <td>{r.amount}</td>
-                  <td>{t(`history.flow.${r.flow_type.toLowerCase()}`)}</td>
-                  <td>{r.method}</td>
-                  <td>{t(`history.status.${r.status.toLowerCase()}`)}</td>
-                  <td>{formatDateTime(r.created_at)}</td>
+        {/* ✅ 테이블 영역 */}
+        {!loading && !error && filtered.length > 0 && (
+          <div className="table-scroll-wrapper">
+            <table className="table-auto">
+              <thead>
+                <tr>
+                  <th>{t("history.table.id")}</th>
+                  <th>{t("history.table.amount")}</th>
+                  <th>{t("history.table.flow")}</th>
+                  <th>{t("history.table.method")}</th>
+                  <th>{t("history.table.status")}</th>
+                  <th>{t("history.table.date")}</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      )}
-
-      {/* ✅ 데이터 없음일 때 */}
-      {!loading && !error && filtered.length === 0 && (
-        <div className="no-data">
-          <div className="no-data-icon">
-            <FileText size={64} className="text-gray-400" />
+              </thead>
+              <tbody>
+                {filtered.map(r => (
+                  <tr key={r.id}>
+                    <td>{r.id}</td>
+                    <td>{r.amount}</td>
+                    <td>{t(`history.flow.${r.flow_type.toLowerCase()}`)}</td>
+                    <td>{r.method}</td>
+                    <td>{t(`history.status.${r.status.toLowerCase()}`)}</td>
+                    <td>{formatDateTime(r.created_at)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <p className="no-data-text">{t("history.noData")}</p>
-        </div>
-      )}
+        )}
 
+        {/* ✅ 데이터 없음일 때 */}
+        {!loading && !error && filtered.length === 0 && (
+          <div className="no-data">
+            <div className="no-data-icon">
+              <FileText size={64} className="text-gray-400" />
+            </div>
+            <p className="no-data-text">{t("history.noData")}</p>
+          </div>
+        )}
+
+      </div>
     </div>
   );
 }
