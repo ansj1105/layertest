@@ -425,9 +425,13 @@
     "submit": "Soumettre"
   },
   "errors": {
-    "invalidAddress": "Veuillez entrer une adresse valide.",
-    "invalidAmount": "Veuillez entrer un montant de retrait valide.",
-    "submitFailed": "Échec de la soumission de la demande de retrait."
+    "invalidAddress": "Please enter a valid address.",
+    "invalidAmount": "Please enter a valid withdrawal amount.",
+    "submitFailed": "Failed to submit withdrawal request.",
+    "invalidTradePassword": "Trade password does not match.",
+    "minAmount": "Le montant est inférieur au montant minimum de retrait.",
+    "dailyLimitExceeded": "Vous avez dépassé votre limite de retrait quotidien.",
+    "pendingRequestExists": "Vous avez déjà une demande de retrait en attente."
   },
   "success": {
     "submitted": "Demande de retrait soumise avec succès."
@@ -1054,7 +1058,8 @@
     "errors": {
       "messageSaveFailed": "Échec de l'enregistrement du message",
       "connectionFailed": "Échec de la connexion au serveur de chat",
-      "loadFailed": "Échec du chargement des messages"
+      "loadFailed": "Échec du chargement des messages",
+      "invalidTradePassword": "Le mot de passe de trading ne correspond pas."
     },
     "status": {
       "connecting": "Connexion...",

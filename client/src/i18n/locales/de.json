@@ -412,7 +412,11 @@
   "errors": {
     "invalidAddress": "Bitte geben Sie eine gültige Adresse ein.",
     "invalidAmount": "Bitte geben Sie einen gültigen Auszahlungsbetrag ein.",
-    "submitFailed": "Anfrage zur Auszahlung konnte nicht gesendet werden."
+    "submitFailed": "Anfrage zur Auszahlung konnte nicht gesendet werden.",
+    "invalidTradePassword": "Handelskennwort stimmt nicht überein.",
+    "minAmount": "Der Betrag ist unter dem Mindestauszahlungslimit.",
+    "dailyLimitExceeded": "Sie haben Ihr tägliches Auszahlungslimit überschritten.",
+    "pendingRequestExists": "Sie haben bereits eine ausstehende Auszahlungsanfrage."
   },
   "success": {
     "submitted": "Auszahlungsanforderung erfolgreich eingereicht."

@@ -400,7 +400,11 @@
   "errors": {
     "invalidAddress": "有効なアドレスを入力してください。",
     "invalidAmount": "有効な出金額を入力してください。",
-    "submitFailed": "出金リクエストの送信に失敗しました。"
+    "submitFailed": "出金リクエストの送信に失敗しました。",
+    "invalidTradePassword": "取引パスワードが一致しません。",
+    "minAmount": "出金額が最低出金額を下回っています。",
+    "dailyLimitExceeded": "1日の出金限度額を超えています。",
+    "pendingRequestExists": "保留中の出金リクエストがあります。"
   },
   "success": {
     "submitted": "出金リクエストが正常に送信されました。"

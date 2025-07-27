@@ -407,7 +407,11 @@
   "errors": {
     "invalidAddress": "请输入有效地址。",
     "invalidAmount": "请输入有效的提取金额。",
-    "submitFailed": "提交提取请求失败。"
+    "submitFailed": "提交提取请求失败。",
+    "invalidTradePassword": "交易密码不匹配。",
+    "minAmount": "提取金额低于最低提取金额。",
+    "dailyLimitExceeded": "您已超过每日提取限额。",
+    "pendingRequestExists": "您已有一个待处理的提取请求。"
   },
   "success": {
     "submitted": "提取请求提交成功。"

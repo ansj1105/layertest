@@ -400,12 +400,23 @@
     "estimatedFee": "Estimated Fee",
     "netAmount": "Net Amount",
     "submitting": "Submitting…",
-    "submit": "Submit"
+    "submit": "Submit",
+    "withdrawalLimits": "Withdrawal Limits",
+    "minAmount": "Minimum Withdrawal Amount",
+    "maxDailyAmount": "Daily Maximum Withdrawal",
+    "todayWithdrawn": "Today's Withdrawn Amount",
+    "remainingDailyLimit": "Remaining Daily Limit",
+    "maxWithdrawable": "Maximum Withdrawable Amount",
+    "cannotWithdraw": "Cannot withdraw as minimum withdrawal amount is not met."
   },
   "errors": {
     "invalidAddress": "Please enter a valid address.",
     "invalidAmount": "Please enter a valid withdrawal amount.",
-    "submitFailed": "Failed to submit withdrawal request."
+    "submitFailed": "Failed to submit withdrawal request.",
+    "invalidTradePassword": "Trade password does not match.",
+    "minAmount": "Withdrawal amount is below the minimum withdrawal limit.",
+    "dailyLimitExceeded": "You have exceeded your daily withdrawal limit.",
+    "pendingRequestExists": "You already have a pending withdrawal request."
   },
   "success": {
     "submitted": "Withdrawal request submitted successfully."

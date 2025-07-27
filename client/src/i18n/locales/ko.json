@@ -879,12 +879,23 @@
     "estimatedFee": "예상 수수료",
     "netAmount": "예상 수령액",
     "submitting": "제출 중…",
-    "submit": "제출"
+    "submit": "제출",
+    "withdrawalLimits": "출금 제한 정보",
+    "minAmount": "최소 출금 금액",
+    "maxDailyAmount": "일일 최대 출금 금액",
+    "todayWithdrawn": "오늘 출금한 금액",
+    "remainingDailyLimit": "오늘 남은 출금 한도",
+    "maxWithdrawable": "최대 출금 가능 금액",
+    "cannotWithdraw": "최소 출금 금액을 충족하지 않아 출금할 수 없습니다."
   },
   "errors": {
     "invalidAddress": "유효한 주소를 입력해 주세요.",
     "invalidAmount": "출금 수량을 올바르게 입력해 주세요.",
-    "submitFailed": "출금 요청에 실패했습니다."
+    "submitFailed": "출금 요청에 실패했습니다.",
+    "invalidTradePassword": "거래 비밀번호가 일치하지 않습니다.",
+    "minAmount": "출금 금액이 최소 출금 한도를 미만입니다.",
+    "dailyLimitExceeded": "오늘 출금 한도를 초과하였습니다.",
+    "pendingRequestExists": "출금 요청이 이미 진행 중입니다."
   },
   "success": {
     "submitted": "출금 요청이 성공적으로 접수되었습니다."

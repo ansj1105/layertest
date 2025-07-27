@@ -24,6 +24,7 @@ export default function WithdrawMethodPage() {
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [currentBalance, setCurrentBalance] = useState(0);
+  const [withdrawalLimits, setWithdrawalLimits] = useState(null);
 
   const [feeRate, setFeeRate] = useState(0);     // 관리자 설정에서 불러온 실출금 수수료율
   const [netAmount, setNetAmount] = useState(0); // 예상 수령액
@@ -78,6 +79,24 @@ export default function WithdrawMethodPage() {
       }
     };
     fetchBalance();
+  }, []);
+
+  // 출금 가능 금액 정보 추가 로드
+  useEffect(() => {
+    const fetchWithdrawalLimits = async () => {
+      try {
+        const response = await axios.get("/api/withdrawals/withdraw/remain");
+        if (response.data.success) {
+          const data = response.data;
+          console.log("🔍 출금 가능 금액 정보:", data);
+          setWithdrawalLimits(data);
+        }
+      } catch (err) {
+        console.error("❌ 출금 가능 금액 조회 실패:", err);
+      }
+    };
+
+    fetchWithdrawalLimits();
   }, []);
 
   // 주소 유효성 검사
@@ -152,8 +171,20 @@ export default function WithdrawMethodPage() {
       if (err.response?.data?.error === 'Invalid trade password' || err.message === 'Invalid trade password') {
         setError("errors.invalidTradePassword");
       } else {
-        setError(err.response?.data?.error || "errors.submitFailed");
+        const serverMsg = err.response?.data?.error || "errors.submitFailed";
+
+        // 의도된 메시지에 대해 i18n 키 매핑
+        if (serverMsg.includes("Minimum withdrawal")) {
+          setError("errors.minAmount");
+        } else if (serverMsg.includes("Daily withdrawal limit exceeded")) {
+          setError("errors.dailyLimitExceeded");
+        } else if (serverMsg.includes("pending withdrawal request")) {
+          setError("errors.pendingRequestExists");
+        } else {
+          setError(serverMsg); // 기타 메시지 그대로 출력
+        }
       }
+
     } finally {
       setSubmitting(false);
     }
@@ -376,6 +407,7 @@ export default function WithdrawMethodPage() {
 
             <div className="withdraw-ww-info">
               <p>{t("withdraw.feeRate")}: {(feeRate * 100).toFixed(2)}%</p>
+              {/* <p>{t("withdraw.minAmount")}: {withdrawalLimits?.min_amount?.toFixed(6) || '0.000000'} USDT</p> */}
               <p>{t("withdraw.estimatedFee")}: {(parseFloat(amount) * feeRate || 0).toFixed(6)} USDT</p>
               <p>{t("withdraw.netAmount")}: {netAmount.toFixed(6)} USDT</p>
               <p className="withdraw-ww-balance">
@@ -387,6 +419,42 @@ export default function WithdrawMethodPage() {
                 </p>
               )}
             </div>
+
+            {/* 출금 제한 정보 표시 - 새로운 API 데이터 */}
+            {withdrawalLimits && (
+              <div className="withdraw-ww-limits">
+                <h4 className="withdraw-ww-limits-title">{t("withdraw.withdrawalLimits")}</h4>
+                <div className="withdraw-ww-limits-grid">
+                  <div className="withdraw-ww-limit-item">
+                    <span className="withdraw-ww-limit-label">{t("withdraw.minAmount")}:</span>
+                    <span className="withdraw-ww-limit-value">{withdrawalLimits.min_amount.toFixed(6)} USDT</span>
+                  </div>
+                  <div className="withdraw-ww-limit-item">
+                    <span className="withdraw-ww-limit-label">{t("withdraw.maxDailyAmount")}:</span>
+                    <span className="withdraw-ww-limit-value">{withdrawalLimits.max_daily_amount.toFixed(6)} USDT</span>
+                  </div>
+                  <div className="withdraw-ww-limit-item">
+                    <span className="withdraw-ww-limit-label">{t("withdraw.todayWithdrawn")}:</span>
+                    <span className="withdraw-ww-limit-value">{withdrawalLimits.today_withdrawn.toFixed(6)} USDT</span>
+                  </div>
+                  <div className="withdraw-ww-limit-item">
+                    <span className="withdraw-ww-limit-label">{t("withdraw.remainingDailyLimit")}:</span>
+                    <span className="withdraw-ww-limit-value">{withdrawalLimits.remaining_daily_limit.toFixed(6)} USDT</span>
+                  </div>
+                  <div className="withdraw-ww-limit-item">
+                    <span className="withdraw-ww-limit-label">{t("withdraw.maxWithdrawable")}:</span>
+                    <span className="withdraw-ww-limit-value withdraw-ww-limit-value-highlight">
+                      {withdrawalLimits.max_withdrawable.toFixed(6)} USDT
+                    </span>
+                  </div>
+                </div>
+                {!withdrawalLimits.can_withdraw && (
+                  <p className="withdraw-ww-limit-warning">
+                    {t("withdraw.cannotWithdraw")}
+                  </p>
+                )}
+              </div>
+            )}
 
             {error && <p className="withdraw-ww-error">{t(error)}</p>}
             {success && <p className="withdraw-ww-success">{t(success)}</p>}

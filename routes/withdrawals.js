@@ -1,9 +1,9 @@
 // 📁 routes/withdrawals.js
 
 const express = require('express');
-const router  = express.Router();
-const db      = require('../db');
-const axios   = require('axios');
+const router = express.Router();
+const db = require('../db');
+const axios = require('axios');
 const { getTronBalance } = require('../routes/tron');
 const USDT_CONTRACT = process.env.USDT_CONTRACT;
 // 📁 routes/tron.js (기존 라우터 맨 아래에 추가)
@@ -11,9 +11,9 @@ const { getTronWeb } = require("../utils/tron");
 const bcrypt = require('bcrypt');
 const { ethers } = require('ethers');
 // polling intervals
-const DEPOSIT_POLL_INTERVAL    = 2 * 60 * 1000;   // 2분
-const REAL_AMOUNT_INTERVAL     = 2 * 60 * 60 * 1000; // 2시간
-const MAX_DEPOSIT_RETRIES      = 10;
+const DEPOSIT_POLL_INTERVAL = 2 * 60 * 1000;   // 2분
+const REAL_AMOUNT_INTERVAL = 2 * 60 * 60 * 1000; // 2시간
+const MAX_DEPOSIT_RETRIES = 10;
 
 // 전체 지갑 목록 조회
 // GET /api/withdrawals/wallets
@@ -45,8 +45,6 @@ router.get('/wallets', async (req, res) => {
 });
 
 // 📁 routes/withdrawals.js
-// 📁 routes/withdrawals.js
-// 📁 routes/withdrawals.js
 router.post('/wallets/:id/deposit', async (req, res) => {
   const walletId = req.params.id;
   const { type, amount } = req.body;
@@ -66,11 +64,11 @@ router.post('/wallets/:id/deposit', async (req, res) => {
     }
 
     // 2) 새 잔액 계산
-    const prevFund  = parseFloat(wallet.fund_balance);
+    const prevFund = parseFloat(wallet.fund_balance);
     const prevQuant = parseFloat(wallet.quant_balance);
-    const amt       = parseFloat(amount);
+    const amt = parseFloat(amount);
 
-    const newFund  = type === 'fund'  ? prevFund  + amt : prevFund;
+    const newFund = type === 'fund' ? prevFund + amt : prevFund;
     const newQuant = type === 'quant' ? prevQuant + amt : prevQuant;
 
     // 3) 지갑 테이블 업데이트
@@ -80,12 +78,12 @@ router.post('/wallets/:id/deposit', async (req, res) => {
              quant_balance = ?, 
              updated_at     = NOW() 
        WHERE id = ?`,
-      [ newFund.toFixed(6), newQuant.toFixed(6), walletId ]
+      [newFund.toFixed(6), newQuant.toFixed(6), walletId]
     );
 
     // 4) wallets_log 에 로그 삽입
-    const category      = type === 'fund' ? 'funding' : 'quant';
-    const balanceAfter  = type === 'fund' ? newFund : newQuant;
+    const category = type === 'fund' ? 'funding' : 'quant';
+    const balanceAfter = type === 'fund' ? newFund : newQuant;
     await db.query(
       `INSERT INTO wallets_log
          (user_id, category, log_date, direction, amount, balance_after,
@@ -107,8 +105,8 @@ router.post('/wallets/:id/deposit', async (req, res) => {
     return res.json({
       success: true,
       data: {
-        wallet_id:     walletId,
-        fund_balance:  newFund.toFixed(6),
+        wallet_id: walletId,
+        fund_balance: newFund.toFixed(6),
         quant_balance: newQuant.toFixed(6),
       }
     });
@@ -225,13 +223,13 @@ async function updateRealAmountFor(id, address, userId) {
     'UPDATE wallets SET real_amount = ?, updated_at = NOW() WHERE id = ?',
     [usdt.toFixed(6), id]
   );
-   // 2) real_amount가 증가했으면 fund_balance에도 동일 금액만큼 추가
- if (diff > 0) {
-   await db.query(
-     'UPDATE wallets SET fund_balance = fund_balance + ? WHERE id = ?',
-     [diff, id]
-   );
- }
+  // 2) real_amount가 증가했으면 fund_balance에도 동일 금액만큼 추가
+  if (diff > 0) {
+    await db.query(
+      'UPDATE wallets SET fund_balance = fund_balance + ? WHERE id = ?',
+      [diff, id]
+    );
+  }
 
   await db.query(
     'INSERT INTO balance_log (address, balance_usdt) VALUES (?, ?)',
@@ -241,7 +239,7 @@ async function updateRealAmountFor(id, address, userId) {
   // 변화가 있으면 withdrawals에 기록
   if (diff !== 0) {
     const flowType = diff > 0 ? 'DEPOSIT' : 'WITHDRAWAL';
-    const amount   = Math.abs(diff);
+    const amount = Math.abs(diff);
     await db.query(
       `INSERT INTO withdrawals
          (user_id, amount, to_address, method, status, flow_type,
@@ -249,7 +247,7 @@ async function updateRealAmountFor(id, address, userId) {
        VALUES (?, ?, ?, 'TRC-20', 'SUCCESS', ?, ?, 0, NOW())`,
       [userId, amount, address, flowType, prevAmt]
     );
-    
+
     const balanceSql = diff > 0
       ? 'UPDATE wallets SET fund_balance = fund_balance + ?, updated_at = NOW() WHERE id = ?'
       : 'UPDATE wallets SET fund_balance = fund_balance - ?, updated_at = NOW() WHERE id = ?';
@@ -272,22 +270,22 @@ router.get('/real-amount/all', async (_req, res) => {
 router.get('/real-amount/:id', async (req, res) => {
   try {
     const id = parseInt(req.params.id, 10);
-       // user_id 까지 같이 SELECT
-       const [[wallet]] = await db.query(
-         'SELECT id, address, user_id FROM wallets WHERE id = ?', [id]
-       );
-       if (!wallet) {
-        return res.status(404).json({ success: false, error: 'Wallet not found' });
-      }
-     if (!wallet.user_id) {
-       return res
-         .status(400)
-         .json({ success: false, error: '이 지갑은 사용자에 연결되어 있지 않습니다.' });
-     }
-  
-      const result = await updateRealAmountFor(
-       wallet.id, wallet.address, wallet.user_id
-      );
+    // user_id 까지 같이 SELECT
+    const [[wallet]] = await db.query(
+      'SELECT id, address, user_id FROM wallets WHERE id = ?', [id]
+    );
+    if (!wallet) {
+      return res.status(404).json({ success: false, error: 'Wallet not found' });
+    }
+    if (!wallet.user_id) {
+      return res
+        .status(400)
+        .json({ success: false, error: '이 지갑은 사용자에 연결되어 있지 않습니다.' });
+    }
+
+    const result = await updateRealAmountFor(
+      wallet.id, wallet.address, wallet.user_id
+    );
     return res.json({ success: true, result });
   } catch (err) {
     console.error('❌ /real-amount/:id 실패:', err);
@@ -324,9 +322,95 @@ router.get('/validate-address', async (req, res) => {
   return res.json({ success: true, valid: true });
 });
 
+
+
+// ▶ 사용자 등급따른 출금가능금액 조회 
+router.get('/withdraw/remain', async (req, res) => {
+  const userId = req.session.user?.id;
+  if (!userId) {
+    return res.status(401).json({ success: false, error: 'Not authenticated' });
+  }
+
+  const conn = await db.getConnection();
+  try {
+    // ✅ [1] 유저의 VIP 레벨 조회
+    const [[user]] = await conn.query(`SELECT vip_level FROM users WHERE id = ?`, [userId]);
+    if (!user) {
+      return res.status(404).json({ success: false, error: 'User not found' });
+    }
+    const vipLevel = user.vip_level;
+
+    // ✅ [2] vip_level에 해당하는 출금 설정 불러오기
+    const [[limit]] = await conn.query(
+      `SELECT min_amount, daily_max_amount FROM withdrawals_settings WHERE level = ?`,
+      [vipLevel]
+    );
+    if (!limit) {
+      return res.status(404).json({ success: false, error: 'Withdrawal settings not found for this VIP level' });
+    }
+
+    // ✅ [3] 현재 지갑 잔액 조회
+    const [[wallet]] = await conn.query(
+      `SELECT quant_balance FROM wallets WHERE user_id = ?`,
+      [userId]
+    );
+    if (!wallet) {
+      return res.status(404).json({ success: false, error: 'Wallet not found' });
+    }
+
+    // ✅ [4] 출금 수수료율 조회
+    const [[setting]] = await conn.query(
+      `SELECT real_withdraw_fee FROM wallet_settings ORDER BY id DESC LIMIT 1`
+    );
+    const feeRate = setting ? parseFloat(setting.real_withdraw_fee) : 0;
+
+    // ✅ [5] 당일 출금액 조회 (SUCCESS 상태만)
+    const [[dailyWithdrawal]] = await conn.query(
+      `SELECT COALESCE(SUM(amount), 0) AS today_total
+       FROM withdrawals
+      WHERE user_id = ?
+        AND DATE(created_at) = CURDATE()
+        AND status = 'SUCCESS'
+        AND flow_type = 'WITHDRAWAL'`,
+      [userId]
+    );
+    const todayWithdrawn = parseFloat(dailyWithdrawal.today_total);
+
+    // ✅ [6] 계산
+    const minAmount = parseFloat(limit.min_amount);
+    const maxDailyAmount = parseFloat(limit.daily_max_amount);
+    const currentBalance = parseFloat(wallet.quant_balance);
+    const remainingDailyLimit = maxDailyAmount - todayWithdrawn;
+
+    // 수수료를 고려한 실제 출금 가능 금액 계산
+    const maxWithdrawableWithFee = currentBalance / (1 + feeRate);
+    const actualMaxWithdrawable = Math.min(remainingDailyLimit, maxWithdrawableWithFee);
+
+    res.json({
+      success: true,
+      vip_level: vipLevel,
+      min_amount: minAmount,
+      max_daily_amount: maxDailyAmount,
+      current_balance: currentBalance,
+      today_withdrawn: todayWithdrawn,
+      remaining_daily_limit: remainingDailyLimit,
+      fee_rate: feeRate,
+      max_withdrawable: parseFloat(actualMaxWithdrawable.toFixed(6)),
+      can_withdraw: actualMaxWithdrawable >= minAmount
+    });
+
+  } catch (err) {
+    console.error('❌ withdraw/remain error:', err);
+    res.status(500).json({ success: false, error: 'Failed to get withdrawal limits' });
+  } finally {
+    conn.release();
+  }
+});
+
 // ▶ 사용자 출금 요청 (수수료 반영 + wallets_log 기록)
 // POST /api/wallets/withdraw
 router.post('/withdraw', async (req, res) => {
+
   const userId = req.session.user?.id;
   if (!userId) {
     return res.status(401).json({ success: false, error: 'Not authenticated' });
@@ -334,7 +418,7 @@ router.post('/withdraw', async (req, res) => {
 
   const { to_address, amount, method } = req.body;
   const amt = parseFloat(amount);
-  if (!to_address || !amt || amt <= 0 || !['TRX','USDT','BANK'].includes(method)) {
+  if (!to_address || !amt || amt <= 0 || !['TRX', 'USDT', 'BANK'].includes(method)) {
     return res.status(400).json({ success: false, error: 'Invalid parameters' });
   }
 
@@ -342,44 +426,89 @@ router.post('/withdraw', async (req, res) => {
   try {
     await conn.beginTransaction();
 
-    // 1) 출금 수수료율 조회 (wallet_settings 최신 행)
+    // ✅ [1] 유저의 VIP 레벨 조회
+    const [[user]] = await conn.query(`SELECT vip_level FROM users WHERE id = ?`, [userId]);
+    if (!user) throw new Error('USER_NOT_FOUND');
+    const vipLevel = user.vip_level;
+
+    // ✅ [2] vip_level에 해당하는 출금 설정 불러오기
+    const [[limit]] = await conn.query(
+      `SELECT min_amount, daily_max_amount FROM withdrawals_settings WHERE level = ?`,
+      [vipLevel]
+    );
+    if (!limit) throw new Error('WITHDRAWAL_SETTING_NOT_FOUND');
+
+    if (amt < limit.min_amount) {
+      return res.status(400).json({
+        success: false,
+        error: `Minimum withdrawal for your level is ${limit.min_amount}`
+      });
+    }
+
+    // ✅ [3] 당일 SUCCESS 상태 출금 합계 조회
+    const [[dailySuccess]] = await conn.query(
+      `SELECT COALESCE(SUM(amount), 0) AS today_total
+       FROM withdrawals
+      WHERE user_id = ?
+        AND DATE(created_at) = CURDATE()
+        AND status = 'SUCCESS'
+        AND flow_type = 'WITHDRAWAL'`,
+      [userId]
+    );
+    const todayTotal = parseFloat(dailySuccess.today_total);
+    const projectedTotal = todayTotal + amt;
+
+    if (projectedTotal > parseFloat(limit.daily_max_amount)) {
+      return res.status(400).json({
+        success: false,
+        error: `Daily withdrawal limit exceeded. Max: ${limit.daily_max_amount}, Used: ${todayTotal}`
+      });
+    }
+
+    // ✅ [4] 현재 PENDING 출금이 있으면 차단
+    const [[pendingCheck]] = await conn.query(
+      `SELECT COUNT(*) AS cnt
+       FROM withdrawals
+      WHERE user_id = ?
+        AND status = 'PENDING'
+        AND flow_type = 'WITHDRAWAL'`,
+      [userId]
+    );
+    if (pendingCheck.cnt > 0) {
+      return res.status(400).json({
+        success: false,
+        error: 'You have a pending withdrawal request. Please wait until it is processed.'
+      });
+    }
+
+    // ▶ 출금 수수료율 조회
     const [[setting]] = await conn.query(
-      `SELECT real_withdraw_fee
-         FROM wallet_settings
-       ORDER BY id DESC
-       LIMIT 1`
+      `SELECT real_withdraw_fee FROM wallet_settings ORDER BY id DESC LIMIT 1`
     );
     const feeRate = setting ? parseFloat(setting.real_withdraw_fee) : 0;
 
-    // 2) 현재 지갑 잔액 조회 (quant_balance)
+    // ▶ 현재 지갑 잔액 조회
     const [[wallet]] = await conn.query(
-      `SELECT quant_balance
-         FROM wallets
-        WHERE user_id = ?
-          FOR UPDATE`,
+      `SELECT quant_balance FROM wallets WHERE user_id = ? FOR UPDATE`,
       [userId]
     );
     if (!wallet) throw new Error('NO_WALLET');
 
-    // 3) 수수료 계산
-    const feeAmount   = parseFloat((amt * feeRate).toFixed(6));
+    // ▶ 수수료 계산 및 잔액 체크
+    const feeAmount = parseFloat((amt * feeRate).toFixed(6));
     const totalDeduct = parseFloat((amt + feeAmount).toFixed(6));
-
-    // 4) 잔액 부족 체크
     if (wallet.quant_balance < totalDeduct) {
       return res.status(400).json({ success: false, error: 'Insufficient quant_balance (including fee)' });
     }
 
-    // 5) quant_balance 차감
+    // ▶ 잔액 차감
     const newBal = parseFloat((wallet.quant_balance - totalDeduct).toFixed(6));
     await conn.query(
-      `UPDATE wallets
-          SET quant_balance = ?, updated_at = NOW()
-        WHERE user_id = ?`,
+      `UPDATE wallets SET quant_balance = ?, updated_at = NOW() WHERE user_id = ?`,
       [newBal, userId]
     );
 
-    // 6) withdrawals 테이블에 PENDING 기록
+    // ▶ withdrawals 테이블 기록
     const [result] = await conn.query(
       `INSERT INTO withdrawals
          (user_id, amount, to_address, method, status, reason,
@@ -396,7 +525,7 @@ router.post('/withdraw', async (req, res) => {
     );
     const withdrawalId = result.insertId;
 
-    // 7) wallets_log 테이블에 기록
+    // ▶ 로그 기록
     await conn.query(
       `INSERT INTO wallets_log
          (user_id, category, log_date, direction, amount, balance_after,
@@ -433,6 +562,7 @@ router.post('/withdraw', async (req, res) => {
     conn.release();
   }
 });
+
 // ▶ 서버 시작 시 즉시 실행 및 스케줄러 등록
 processPendingDeposits();
 //updateAllRealAmounts();
@@ -456,7 +586,7 @@ router.get('/', async (req, res) => {
          FROM withdrawals w
          JOIN users u ON u.id = w.user_id
         WHERE w.status = ?
-        ORDER BY w.created_at DESC`, 
+        ORDER BY w.created_at DESC`,
       [status]
     );
     res.json({ success: true, data: rows });
@@ -479,7 +609,7 @@ router.put('/:id/approve', async (req, res) => {
       `SELECT user_id, amount, reason 
          FROM withdrawals 
         WHERE id = ? AND status = 'PENDING' 
-        FOR UPDATE`, 
+        FOR UPDATE`,
       [id]
     );
     if (!wd) return res.status(404).json({ success: false, error: 'Withdrawal not found or not pending' });
@@ -488,7 +618,7 @@ router.put('/:id/approve', async (req, res) => {
     await conn.query(
       `UPDATE withdrawals 
          SET status = 'SUCCESS', updated_at = NOW() 
-       WHERE id = ?`, 
+       WHERE id = ?`,
       [id]
     );
 
@@ -528,7 +658,7 @@ router.put('/:id/reject', async (req, res) => {
       `SELECT user_id, amount, reason 
          FROM withdrawals 
         WHERE id = ? AND status = 'PENDING' 
-        FOR UPDATE`, 
+        FOR UPDATE`,
       [id]
     );
     if (!wd) return res.status(404).json({ success: false, error: 'Withdrawal not found or not pending' });
@@ -605,7 +735,7 @@ router.put('/admin/wallet-settings', async (req, res) => {
     withdraw_fee_rate == null ||
     token_to_quant_rate == null ||
     minimum_deposit_amount == null ||
-    !['auto','manual'].includes(auto_approve)
+    !['auto', 'manual'].includes(auto_approve)
   ) {
     return res.status(400).json({ success: false, error: 'Missing or invalid fields' });
   }
@@ -657,6 +787,109 @@ router.put('/admin/wallet-settings', async (req, res) => {
   } catch (err) {
     console.error('❌ 설정 저장 실패:', err);
     res.status(500).json({ success: false, error: 'Failed to save settings' });
+  }
+});
+
+// GET /api/admin/withdrawals-settings - 출금 설정 목록 조회
+router.get('/admin/withdrawals-settings', async (_req, res) => {
+  try {
+    const [rows] = await db.query(
+      `SELECT level, min_amount, daily_max_amount, created_at, updated_at
+         FROM withdrawals_settings
+         ORDER BY level ASC`
+    );
+    res.json({ success: true, data: rows });
+  } catch (err) {
+    console.error('❌ 출금 설정 조회 실패:', err);
+    res.status(500).json({ success: false, error: 'Failed to fetch withdrawal settings' });
+  }
+});
+
+// POST /api/admin/withdrawals-settings - 출금 설정 추가
+router.post('/admin/withdrawals-settings', async (req, res) => {
+  const { level, min_amount, daily_max_amount } = req.body;
+
+  // 필수값 검사
+  if (level == null || min_amount == null || daily_max_amount == null) {
+    return res.status(400).json({ success: false, error: 'Missing required fields' });
+  }
+
+  // level은 1-10 범위로 제한
+  if (level < 1 || level > 10) {
+    return res.status(400).json({ success: false, error: 'Level must be between 1 and 10' });
+  }
+
+  try {
+    // 기존 level이 있는지 확인
+    const [[existing]] = await db.query(
+      `SELECT level FROM withdrawals_settings WHERE level = ?`,
+      [level]
+    );
+
+    if (existing) {
+      return res.status(400).json({ success: false, error: `Level ${level} already exists` });
+    }
+
+    const [result] = await db.query(
+      `INSERT INTO withdrawals_settings (level, min_amount, daily_max_amount, created_at, updated_at)
+       VALUES (?, ?, ?, NOW(), NOW())`,
+      [level, min_amount, daily_max_amount]
+    );
+
+    res.json({ success: true, data: { id: result.insertId, level } });
+  } catch (err) {
+    console.error('❌ 출금 설정 추가 실패:', err);
+    res.status(500).json({ success: false, error: 'Failed to add withdrawal setting' });
+  }
+});
+
+// PUT /api/admin/withdrawals-settings/:level - 출금 설정 수정
+router.put('/admin/withdrawals-settings/:level', async (req, res) => {
+  const level = parseInt(req.params.level);
+  const { min_amount, daily_max_amount } = req.body;
+
+  // 필수값 검사
+  if (min_amount == null || daily_max_amount == null) {
+    return res.status(400).json({ success: false, error: 'Missing required fields' });
+  }
+
+  try {
+    const [result] = await db.query(
+      `UPDATE withdrawals_settings
+         SET min_amount = ?, daily_max_amount = ?, updated_at = NOW()
+       WHERE level = ?`,
+      [min_amount, daily_max_amount, level]
+    );
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ success: false, error: `Level ${level} not found` });
+    }
+
+    res.json({ success: true, data: { level } });
+  } catch (err) {
+    console.error('❌ 출금 설정 수정 실패:', err);
+    res.status(500).json({ success: false, error: 'Failed to update withdrawal setting' });
+  }
+});
+
+// DELETE /api/admin/withdrawals-settings/:level - 출금 설정 삭제
+router.delete('/admin/withdrawals-settings/:level', async (req, res) => {
+  const level = parseInt(req.params.level);
+
+  try {
+    const [result] = await db.query(
+      `DELETE FROM withdrawals_settings WHERE level = ?`,
+      [level]
+    );
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ success: false, error: `Level ${level} not found` });
+    }
+
+    res.json({ success: true, data: { level } });
+  } catch (err) {
+    console.error('❌ 출금 설정 삭제 실패:', err);
+    res.status(500).json({ success: false, error: 'Failed to delete withdrawal setting' });
   }
 });
 
@@ -815,7 +1048,7 @@ async function updateBNBAmountFor(id, address, userId) {
     const provider = new ethers.JsonRpcProvider('https://bsc-dataseed.binance.org/');
     const balanceWei = await provider.getBalance(address);
     const balanceBNB = Number(ethers.formatEther(balanceWei));
-    
+
     console.log(`🔍 updateBNBAmountFor walletId=${id}, address=${address}, prevAmt=${prevAmt}, fetched=${balanceBNB}`);
 
     // 차이(diff) 계산 및 업데이트
@@ -866,7 +1099,7 @@ async function updateAllBNBAmounts() {
       'SELECT w.id, b.address, w.user_id FROM wallets w JOIN bnb_log b ON w.user_id = b.user_id'
     );
     console.log('📝 updateAllBNBAmounts - wallets to update:', wallets);
-    
+
     const results = [];
     for (const w of wallets) {
       const result = await updateBNBAmountFor(w.id, w.address, w.user_id);
@@ -899,18 +1132,18 @@ router.get('/real-bnb-amount/:id', async (req, res) => {
       `SELECT w.id, b.address, w.user_id 
        FROM wallets w 
        JOIN bnb_log b ON w.user_id = b.user_id 
-       WHERE w.id = ?`, 
+       WHERE w.id = ?`,
       [id]
     );
-    
+
     if (!wallet) {
       return res.status(404).json({ success: false, error: 'Wallet not found' });
     }
-    
+
     if (!wallet.user_id) {
-      return res.status(400).json({ 
-        success: false, 
-        error: '이 지갑은 사용자에 연결되어 있지 않습니다.' 
+      return res.status(400).json({
+        success: false,
+        error: '이 지갑은 사용자에 연결되어 있지 않습니다.'
       });
     }
 
