@@ -117,7 +117,7 @@
   align-items: center;
   box-shadow: 0 0 2px 2px #BEF542;
   margin-top: 5px;
-  margin-bottom: 12px !important;
+  margin-bottom: 100px !important;
   height: 100%;
   max-height: 800px;
   margin-top: 30px;
@@ -280,7 +280,6 @@
     padding: 12px;
     width: 100%;
     margin-top: 12px;
-    margin-bottom: 16px !important;
     max-height: none;
   }
 
