@@ -120,7 +120,7 @@ export default function FundingPage() {
       setShowDepositModal(false);
       setDepositAmt("");
       setResultModalInfo({
-        title: t("funding.deposit_modal.success_title"),
+        title: t("funding.deposit_modal.title"),
         message: t("funding.deposit_modal.success", {
           transferred: res.data.transferred,
           fee: res.data.fee
@@ -160,7 +160,7 @@ export default function FundingPage() {
       setShowWithdrawModal(false);
       setWithdrawAmt("");
       setResultModalInfo({
-        title: t("funding.withdraw_modal.success_title"),
+        title: t("funding.withdraw_modal.title"),
         message: t("funding.withdraw_modal.success", {
           transferred: res.data.transferred,
           fee: res.data.fee
