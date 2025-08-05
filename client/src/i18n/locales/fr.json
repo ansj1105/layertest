@@ -399,6 +399,13 @@
   "withdraw": {
     "setTradePasswordFirst": "Veuillez définir d'abord votre mot de passe de transaction",
     "setupTradePassword": "Définir le mot de passe de transaction",
+    "withdrawalLimits": "Limites de retrait",
+    "minAmount": "Montant minimum de retrait",
+    "maxDailyAmount": "Montant maximum de retrait quotidien",
+    "todayWithdrawn": "Montant retiré aujourd'hui",
+    "remainingDailyLimit": "Limite de retrait restante",
+    "maxWithdrawable": "Montant maximum de retrait",
+    "cannotWithdraw": "Vous ne pouvez pas retirer.",
     "currentBalance": "Solde actuel : USDT",
     "balanceAfter": "Solde après : USDT",
     "confirm": "Confirmer",
