@@ -244,12 +244,23 @@
   list-style: none;
   padding-left: 0;
   font-size: 0.875rem;
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 8px;
 }
 
 .investor-item {
   border-bottom: 1px solid #374151;
   /* gray-700 */
   padding-bottom: 0.25rem;
+  padding-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.investor-item:last-child {
+  border-bottom: none;
 }
 
 
@@ -323,7 +334,13 @@
     font-size: 13px;
   }
 
+  .investor-list {
+    max-height: 250px;
+  }
+
   .investor-item {
     padding-bottom: 6px;
+    padding-top: 6px;
+    gap: 6px;
   }
 }
