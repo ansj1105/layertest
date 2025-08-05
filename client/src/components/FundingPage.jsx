@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import '../styles/FundingPage.css';
 import '../styles/topbar.css';
 import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
+import AlertPopup from './AlertPopup';
 export default function FundingPage() {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -30,6 +31,13 @@ export default function FundingPage() {
   const [withdrawAmt, setWithdrawAmt] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [openFaq, setOpenFaq] = useState(null);
+  // 결과 모달 상태
+  const [showResultModal, setShowResultModal] = useState(false);
+  const [resultModalInfo, setResultModalInfo] = useState({
+    title: '',
+    message: '',
+    type: 'success' // 'success' | 'error' | 'info'
+  });
   const activeProjects = projects.filter(p => p.status === 'open');
   const expiredProjects = projects.filter(p => p.status === 'closed');
   // 요약 API
@@ -502,6 +510,15 @@ export default function FundingPage() {
             );
           })}
         </div>
+
+        {/* ─── 결과 모달 ───────────────────────── */}
+        <AlertPopup
+          isOpen={showResultModal}
+          onClose={() => setShowResultModal(false)}
+          title={resultModalInfo.title}
+          message={resultModalInfo.message}
+          type={resultModalInfo.type}
+        />
       </div>
     </div>
   );
