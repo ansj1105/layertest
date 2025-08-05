@@ -119,10 +119,15 @@ export default function FundingPage() {
       setSummary(fin);
       setShowDepositModal(false);
       setDepositAmt("");
-      alert(t("funding.deposit_modal.success", {
-        transferred: res.data.transferred,
-        fee: res.data.fee
-      }));
+      setResultModalInfo({
+        title: t("funding.deposit_modal.success_title"),
+        message: t("funding.deposit_modal.success", {
+          transferred: res.data.transferred,
+          fee: res.data.fee
+        }),
+        type: 'success'
+      });
+      setShowResultModal(true);
     } catch (err) {
       setErrorMsg(err.response?.data?.error || t("funding.transfer_fail"));
     }
@@ -154,10 +159,15 @@ export default function FundingPage() {
       setSummary(fin);
       setShowWithdrawModal(false);
       setWithdrawAmt("");
-      alert(t("funding.withdraw_modal.success", {
-        transferred: res.data.transferred,
-        fee: res.data.fee
-      }));
+      setResultModalInfo({
+        title: t("funding.withdraw_modal.success_title"),
+        message: t("funding.withdraw_modal.success", {
+          transferred: res.data.transferred,
+          fee: res.data.fee
+        }),
+        type: 'success'
+      });
+      setShowResultModal(true);
     } catch (err) {
       setErrorMsg(err.response?.data?.error || t("funding.transfer_fail"));
     }
