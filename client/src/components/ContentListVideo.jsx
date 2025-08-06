@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import VideoWithPreview from './VideoWithPreview';
 import AdvancedLoadingSpinner from './AdvancedLoadingSpinner';
+import '../styles/ContentListVideo.css';
 
 const ContentListVideo = React.memo(() => {
     const API_HOST = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
@@ -28,7 +29,7 @@ const ContentListVideo = React.memo(() => {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center py-8">
+            <div className="video-loading">
                 <AdvancedLoadingSpinner text="Loading video..." />
             </div>
         );
@@ -36,16 +37,16 @@ const ContentListVideo = React.memo(() => {
 
     if (!video) {
         return (
-            <div className="content-wrapper">
-                <p className="text-gray-400">업로드된 비디오가 없습니다.</p>
+            <div className="video-empty">
+                <p>업로드된 비디오가 없습니다.</p>
             </div>
         );
     }
 
     return (
         <div className="content-wrapper">
-            {/* 동영상: VideoWithPreview 컴포넌트 사용 */}
-            <div className="w-full aspect-video">
+            {/* 동영상: 반응형 비디오 컨테이너 */}
+            <div className="video-container">
                 <VideoWithPreview
                     src={`${API_HOST}${video}`}
                 />

@@ -5,8 +5,11 @@ import axios from 'axios';
 import '../styles/topbar.css';
 import '../styles/UserChat.css';
 
-// .env 기반 WebSocket 호스트
-const WS_HOST = import.meta.env.VITE_WS_HOST || 'ws://localhost:4000';
+// .env 기반 WebSocket 호스트 (도메인 사용)
+const WS_HOST = import.meta.env.VITE_WS_HOST ||
+  (window.location.protocol === 'https:'
+    ? `wss://${window.location.hostname}`
+    : `ws://${window.location.hostname}:4000`);
 
 // WebSocket 연결 설정
 const connectWebSocket = (roomId, isGuest = false) => {

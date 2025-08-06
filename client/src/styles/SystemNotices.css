@@ -1,13 +1,12 @@
-
-
 .page-wrapper-mass {
   position: relative;
   max-width: 506px !important;
   margin: 0 auto;
-  height: 100%;
+  height: 750px;
   flex-direction: column;
-  background-color: #0e0e11;
-  overflow: auto; /* 스크롤 활성화 */
+  background-color: #ffffff;
+  overflow: auto;
+  /* 스크롤 활성화 */
   max-width: 100%;
   overflow-x: hidden;
   box-sizing: border-box;
@@ -16,17 +15,22 @@
 
 .project-list-container-mass {
   display: flex;
-  justify-content: center;   /* 가로 중앙 정렬 */
-  align-items: center;       /* 세로축 기준 가로 중앙 정렬 (하위 div들이 중앙에 배치됨) */
-  flex-direction: column;    /* 카드가 세로로 쌓이도록 */
+  justify-content: center;
+  /* 가로 중앙 정렬 */
+  align-items: center;
+  /* 세로축 기준 가로 중앙 정렬 (하위 div들이 중앙에 배치됨) */
+  flex-direction: column;
+  /* 카드가 세로로 쌓이도록 */
   width: 100%;
   margin-top: 3px;
 }
 
 .project-list-container-mass::-webkit-scrollbar {
-  width: 0px; /* Chrome, Safari, Opera */
+  width: 0px;
+  /* Chrome, Safari, Opera */
   height: 0px;
-  background: transparent; /* Optional, just in case */
+  background: transparent;
+  /* Optional, just in case */
 }
 
 
@@ -35,41 +39,55 @@
 
 .top-h-text-sys {
   font-weight: bold;
-  color: #ffffff;
+  color: rgb(0 136 73);
   text-align: left;
   font-size: 20px;
   width: 100%;
   height: 40%;
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 
 /* 탑바 번역역 */
 .top-tran-sys {
-  color: #ffffff;
+  color: rgb(0 136 73);
   font-size: 30px !important;
-  font-weight: bold !important;              /* 글자 굵게 */
-  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  height: 100%;                   /* 부모 요소 높이 기준 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  font-weight: bold !important;
+  /* 글자 굵게 */
+  display: flex;
+  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  height: 100%;
+  /* 부모 요소 높이 기준 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 }
 
 
 
 
-
+.no-messages {
+  color: #001006;
+  text-align: center;
+}
 
 
 /* 탭 바 */
 .tab-bar {
   width: 97%;
   display: flex;
-  justify-content: center;   /* Flex 아이템 가로 중앙 정렬 */
-  margin: 0 auto;            /* 컨테이너 자체를 중앙에 배치 */
+  justify-content: center;
+  /* Flex 아이템 가로 중앙 정렬 */
+  margin: 0 auto;
+  /* 컨테이너 자체를 중앙에 배치 */
 
   z-index: 100;
 }
@@ -88,14 +106,16 @@
   background: rgb(55, 119, 115);
   border-radius: 3px;
   color: #ffffff;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   box-shadow: 0 0 2px 2px #b8dfd9 !important;
 
 }
 
 
 .tab-button:hover {
-  color: #ffe695; /* 조금 더 밝은 노란색으로 hover 효과 */
+  color: #ffe695;
+  /* 조금 더 밝은 노란색으로 hover 효과 */
 }
 
 
@@ -129,10 +149,13 @@
   transition: background-color 0.3s ease;
   width: 100%;
   height: 100%;
-  max-height: 280px; /* 🔸 스크롤 한계 높이 지정 */
-  overflow-y: auto;  /* 🔸 세로 스크롤 생성 */
+  max-height: 280px;
+  /* 🔸 스크롤 한계 높이 지정 */
+  overflow-y: auto;
+  /* 🔸 세로 스크롤 생성 */
   margin-bottom: 30px;
-  z-index: 9999; /* 또는 modal보다 높은 값 */
+  z-index: 9999;
+  /* 또는 modal보다 높은 값 */
 }
 
 /* 스크롤바 커스터마이징 (선택) */
@@ -167,19 +190,22 @@
 
 /* 읽지 않은 항목 */
 .message-item.unread {
-  background-color: #111b1b;; /* bg-yellow-800 */
+  background-color: #111b1b;
+  ;
+  /* bg-yellow-800 */
 }
 
 /* 읽은 항목 */
 .message-item.read {
-  background-color: #000000; /* bg-yellow-900 */
+  background-color: #000000;
+  /* bg-yellow-900 */
 }
 
 /* 좌측: 아이콘 + 본문 */
 .message-content {
   display: flex;
   align-items: center;
-  
+
 }
 
 /* 제목 */
@@ -192,7 +218,8 @@
 /* 날짜 */
 .message-date {
   font-size: 0.75rem;
-  color: #fde68a; /* text-yellow-300 */
+  color: #fde68a;
+  /* text-yellow-300 */
 }
 
 /* 아이콘 (Mail / MailOpen) */
@@ -210,7 +237,8 @@
 }
 
 .message-delete:hover {
-  color: #ef4444; /* red-500 */
+  color: #ef4444;
+  /* red-500 */
 }
 
 
@@ -223,8 +251,10 @@
 .bottom-action-bar {
   width: 97%;
   display: flex;
-  justify-content: center;   /* Flex 아이템 가로 중앙 정렬 */
-  margin: 0 auto;            /* 컨테이너 자체를 중앙에 배치 */
+  justify-content: center;
+  /* Flex 아이템 가로 중앙 정렬 */
+  margin: 0 auto;
+  /* 컨테이너 자체를 중앙에 배치 */
 
   z-index: 100;
 }
@@ -243,13 +273,15 @@
   background: rgb(20, 46, 45);
   border-radius: 3px;
   color: #ffffff;
-  transition: all 0.4s ease; /* 부드럽게 전환 */
+  transition: all 0.4s ease;
+  /* 부드럽게 전환 */
   box-shadow: 0 0 1px 1px #b8dfd9 !important;
 
 }
 
 .bottom-action-btn:hover {
-  background-color: rgb(37, 58, 56); /* hover 색상 */
+  background-color: rgb(37, 58, 56);
+  /* hover 색상 */
 }
 
 
@@ -265,19 +297,23 @@
 
 /* 오버레이 */
 .detail-overlay {
-  position: fixed;            /* ✅ 최상단 고정 */
+  position: fixed;
+  /* ✅ 최상단 고정 */
   top: 66px;
   left: 0;
   right: 0;
-  bottom: 0;                  /* 전체 화면 차지 */
+  bottom: 0;
+  /* 전체 화면 차지 */
   max-width: 500px;
   margin: 0 auto;
   height: 100%;
   display: flex;
   flex-direction: column;
   background-color: #0e0e11;
-  overflow-y: auto;           /* 세로 스크롤 */
-  overflow-x: hidden;         /* 가로 스크롤 방지 */
+  overflow-y: auto;
+  /* 세로 스크롤 */
+  overflow-x: hidden;
+  /* 가로 스크롤 방지 */
   box-sizing: border-box;
   z-index: 9999;
 }
@@ -290,9 +326,11 @@
   position: relative;
   top: 0;
   left: 50%;
-  transform: translateX(-50%);   /* ✅ 가운데 정렬 */
+  transform: translateX(-50%);
+  /* ✅ 가운데 정렬 */
   width: 100%;
-  max-width: 500px;              /* ✅ container와 맞춤 */
+  max-width: 500px;
+  /* ✅ container와 맞춤 */
   height: 58.27px;
   background: #1d1d27;
   display: flex;
@@ -307,12 +345,18 @@
 .detail-back-btn {
   color: #ffffff;
   font-size: 30px !important;
-  font-weight: bold !important;              /* 글자 굵게 */
-  display: flex;                  /* 중앙 정렬을 위한 flex 사용 */
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  height: 100%;                   /* 부모 요소 높이 기준 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  font-weight: bold !important;
+  /* 글자 굵게 */
+  display: flex;
+  /* 중앙 정렬을 위한 flex 사용 */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  height: 100%;
+  /* 부모 요소 높이 기준 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 
 }
 
@@ -328,9 +372,12 @@
   font-size: 20px;
   width: 100%;
   height: 40%;
-  align-items: center;            /* 세로 가운데 정렬 */
-  justify-content: center;        /* 가로 가운데 정렬 */
-  text-align: center;             /* 텍스트 중앙 정렬 (fallback) */
+  align-items: center;
+  /* 세로 가운데 정렬 */
+  justify-content: center;
+  /* 가로 가운데 정렬 */
+  text-align: center;
+  /* 텍스트 중앙 정렬 (fallback) */
 
 }
 
@@ -371,31 +418,46 @@
 
 
 
-
-
-@media screen and (max-width: 768px) {
-  /* 전체 페이지 래퍼 */
+@media (max-width: 768px) {
   .page-wrapper-mass {
-    max-width: 100% !important;
-    padding: 0 12px;
+    height: auto;
+    max-width: 100%;
+
   }
 
-  /* 메시지 리스트 */
-  .message-list {
-    max-height: 55vh; /* 더 작은 화면에 맞춰 제한 */
+  .top-h-text-sys,
+  .detail-title {
+    font-size: 18px;
+    height: auto;
+    padding: 10px 0;
+  }
 
+  .top-tran-sys {
+    font-size: 24px !important;
+    padding: 10px;
+  }
+
+  .tab-button,
+  .bottom-action-btn {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  .message-list {
+    max-height: 200px;
+    padding: 10px;
   }
 
   .message-item {
-
-
-
-    padding: 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 10px;
   }
 
   .message-content {
-
-
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .message-title {
@@ -404,88 +466,45 @@
 
   .message-date {
     font-size: 0.7rem;
+    margin-top: 5px;
   }
 
-  /* 하단 버튼 */
+  .tab-bar,
   .bottom-action-bar {
 
-    width: 100%;
     gap: 8px;
-    padding: 0 1rem;
   }
 
-  .bottom-action-btn {
-    width: 100%;
-    height: 42px;
-    font-size: 0.95rem;
-  }
-
-  /* 탭 바 */
-  .tab-bar {
-
-    align-items: center;
-    width: 100%;
-  }
-
-  .tab-button {
-    width: 100%;
-    font-size: 0.95rem;
-    padding: 10px;
-  }
-
-  /* detail overlay (모달) */
   .detail-overlay {
-
-
-
+    top: 0;
+    height: 100vh;
+    max-width: 100%;
+    padding: 0 10px;
   }
 
   .detail-header {
-
-
-
-  }
-
-  .detail-title {
-    font-size: 1rem;
+    height: 52px;
+    padding: 0 10px;
   }
 
   .detail-back-btn {
-    font-size: 1.2rem !important;
+    font-size: 24px !important;
   }
 
   .detail-body {
-    padding: 1rem 0.5rem;
+    padding: 0.5rem;
   }
 
   .detail-body h1 {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   .detail-date {
     font-size: 0.7rem;
-    margin-top: 24px;
-
+    margin-top: 20px;
   }
 
   .detail-content {
-    font-size: 0.875rem;
-    line-height: 1.6;
-  }
-
-  /* 탑 텍스트 번역 */
-  .top-tran-sys {
-    font-size: 1.1rem !important;
-    text-align: center;
-  }
-
-  .top-h-text-sys {
-    font-size: 1rem;
-    text-align: center;
-  }
-
-  .project-list-container-mass {
-    margin-top: 0;
-    padding: 0 8px;
+    font-size: 0.9rem;
   }
 }

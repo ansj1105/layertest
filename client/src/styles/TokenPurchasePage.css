@@ -1080,8 +1080,9 @@
 /* 모바일 화면용 반응형 처리 */
 @media (max-width: 768px) {
   .page-wrapper-ag {
-    padding: 0 12px 100px 12px;
+
     height: auto;
+
   }
 
   .page-content {

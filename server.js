@@ -23,8 +23,8 @@ app.use(
     saveUninitialized: false,
     cookie: {
       httpOnly: true,  //JS에서 쿠키 접근 금지 (보안 강화)
-      secure: process.env.NODE_ENV === "production", // 배포 시에만 HTTPS 전용 쿠키 	HTTPS 환경에서만 쿠키를 전달
-      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // CORS + 쿠키 지원용 CORS 요청에서도 쿠키 전달 허용 (프론트와 백엔드 도메인이 다를 경우
+      secure: process.env.NODE_ENV === "production", // 배포 시에만 HTTPS 전용 쿠키
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // CORS + 쿠키 지원용
       maxAge: 1000 * 60 * 60 * 3, // 3시간
     },
   })
@@ -48,8 +48,10 @@ session({
 */
 const allowedOrigins = [
   'http://localhost:5173',         // 개발 환경
-  'https://yourdomain.com',
+  'https://localhost:5173',        // 개발 환경 HTTPS
+  'https://yourdomain.com',        // 프로덕션 HTTPS
   'http://54.85.128.211:5173',
+  'https://54.85.128.211:5173',   // HTTPS 지원
 ];
 
 app.use(
@@ -288,9 +290,10 @@ cron.schedule('0 * * * *', async () => {
     console.error("❌ [CRON ERROR] VIP 갱신 실패:", err.message);
   }
 });
-// ✅ 서버 실행
+// ✅ 서버 실행 (nginx에서 SSL 처리하므로 HTTP로 실행)
 const server = app.listen(process.env.PORT || 4000, () => {
   console.log(`Server is running on port ${process.env.PORT || 4000}`);
+  console.log('✅ nginx에서 SSL/WSS 처리 예정');
 });
 
 server.on('upgrade', async (request, socket, head) => {

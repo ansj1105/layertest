@@ -142,7 +142,7 @@
   height: 630px;
   display: flex;
   flex-direction: column;
-  background-color: #001006;
+  background-color: #ffffff;
   overflow: auto;
   /* 스크롤 활성화 */
   max-width: 100%;

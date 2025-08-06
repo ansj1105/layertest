@@ -1,0 +1,142 @@
+/* ContentListBanner 반응형 스타일 */
+
+.banner-container {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+/* 반응형 높이 설정 */
+.banner-container .slick-slider {
+    height: 120px;
+    /* 모바일 기본 */
+}
+
+@media (min-width: 640px) {
+    .banner-container .slick-slider {
+        height: 150px;
+        /* sm */
+    }
+}
+
+@media (min-width: 768px) {
+    .banner-container .slick-slider {
+        height: 170px;
+        /* md */
+    }
+}
+
+@media (min-width: 1024px) {
+    .banner-container .slick-slider {
+        height: 200px;
+        /* lg */
+    }
+}
+
+/* 이미지 최적화 */
+.banner-container .slick-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+/* 호버 효과 (선택사항) */
+.banner-container .slick-slide:hover img {
+    transform: scale(1.05);
+}
+
+/* Dots 위치 조정 - 이미지 하단에 붙임 */
+.banner-container .slick-dots {
+    bottom: 4px !important;
+}
+
+@media (min-width: 640px) {
+    .banner-container .slick-dots {
+        bottom: 1px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .banner-container .slick-dots {
+        bottom: 8px !important;
+    }
+}
+
+/* Dots 크기 조정 - 더 작게 */
+.banner-container .slick-dots li button:before {
+    font-size: 6px;
+    opacity: 0.6;
+    color: white;
+}
+
+.banner-container .slick-dots li.slick-active button:before {
+    opacity: 1;
+    color: white;
+}
+
+/* 화살표 버튼 숨김 */
+.banner-container .slick-prev,
+.banner-container .slick-next {
+    display: none !important;
+}
+
+/* 로딩 상태 */
+.banner-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    background: #f3f4f6;
+    border-radius: 8px;
+}
+
+@media (min-width: 640px) {
+    .banner-loading {
+        height: 150px;
+    }
+}
+
+@media (min-width: 768px) {
+    .banner-loading {
+        height: 170px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .banner-loading {
+        height: 200px;
+    }
+}
+
+/* 빈 상태 */
+.banner-empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 120px;
+    background: #f9fafb;
+    border: 2px dashed #d1d5db;
+    border-radius: 8px;
+    color: #6b7280;
+}
+
+@media (min-width: 640px) {
+    .banner-empty {
+        height: 150px;
+    }
+}
+
+@media (min-width: 768px) {
+    .banner-empty {
+        height: 170px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .banner-empty {
+        height: 200px;
+    }
+}

@@ -6,11 +6,11 @@ import { useTranslation } from 'react-i18next';
 import '../../styles/ForgotPassword.css';
 import '../../styles/topbar.css';
 import UserChat from '../UserChat';
- 
+
 export default function ForgotPassword() {
   const { t } = useTranslation();
   const nav = useNavigate();
-  
+
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -75,23 +75,23 @@ export default function ForgotPassword() {
       setError(err.response?.data?.error || t('forgotPassword.errors.resetFailed'));
     }
   };
- 
+
   return (
-    <div className="trade-pwd-wrapper">
+    <div className="trade-pwd-wrapper1">
       {/* 상단 바 */}
-      <div className="trade-pwd-header">
+      <div className="trade-pwd-header1">
         <button onClick={() => navigate(-1)}>
 
         </button>
         <button onClick={() => nav(-1)} className="trade-pwd-back-btn">
-          <ArrowLeft size={24}/>
+          <ArrowLeft size={24} />
         </button>
         <div className="trade-pwd-title">{t('forgotPassword.title')}</div>
       </div>
 
 
       {/* 폼 */}
-      <div className="trade-label-wrapper">
+      <div className="trade-label-wrapper1">
         <label className="trade-label">{t('forgotPassword.emailLabel')}</label>
         <input
           type="email"
@@ -116,8 +116,8 @@ export default function ForgotPassword() {
           </button>
         </div>
 
-        <button 
-          onClick={handleVerifyCode} 
+        <button
+          onClick={handleVerifyCode}
           className="trade-submit-btn mb-4"
           style={{ marginTop: '0.5rem' }}
         >

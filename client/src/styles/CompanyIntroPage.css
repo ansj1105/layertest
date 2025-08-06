@@ -127,6 +127,7 @@
 .modal-content {
   background: #001006 !important;
   color: #fef08a;
+  height: auto !important;
   width: 320px;
   padding: 2.5rem 1.5rem 1.5rem 1.5rem;
   border-radius: 0.5rem;
