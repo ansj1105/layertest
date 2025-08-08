@@ -407,19 +407,15 @@ export default function TokenPurchasePage() {
       )}
 
       {/* Purchase Modal */}
+      {/* Purchase Modal */}
       {modalSale && (
         <PurchaseModal
           sale={modalSale}
           walletBalance={financeSummary.quantBalance}
           onClose={() => setModalSale(null)}
-          onPurchased={() => {
-            // 구매 후 재조회
-            axios.get("/api/token/active-token-sales").then(r => setSales(r.data));
-            axios.get("/api/wallet/finance-summary", { withCredentials: true })
-              .then(r => setFinanceSummary(d => ({
-                ...d,
-                quantBalance: Number(r.data.data.quantBalance)
-              })));
+          onPurchased={async () => {
+            // 구매 후 전체 데이터 재조회
+            await loadAll();
           }}
         />
       )}
